@@ -10,3 +10,6 @@
 .remember/
 .unlazy/
 .unlazy-hook-state.json
+
+# local until reviewed for anything private
+.handoff-review/

@@ -39,7 +39,14 @@ he is. Mondai product mechanics are background for the case studies and nothing 
 
 ## What's in this folder
 
-- `LEDGER.md` : current build state, decisions, what is open. Read first.
+- `docs/PROJECT_CONTEXT.md` : purpose, the Figma file that is the visual source of truth,
+  current work and the layout guardrails. Read first.
+- `docs/ABOUT.md` and `docs/VOICE.md` : approved biography and approved writing guidance. Both
+  deliberately empty until something is reviewed and approved. Never fill them with guesses.
+- `docs/DECISIONS.md` : durable choices and the reasoning.
+- `NEXT.md` : the current short list of what to do next.
+- `LEDGER.md` : build state for `build/`, decisions, what is open.
+- `layout-decision-board/` : small local tool for working through layout choices.
 - `build/` : ten Metalab case study layout rebuilds, self contained HTML. The body copy in
   them is Metalab scaffold text kept so section heights stay calibrated. Not shippable.
 - `reference/cs1/` : source material for case study 1, the operation. Verbatim evidence, the

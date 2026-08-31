@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Layout Decision Board</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top">CF / Portfolio</a>
+      <p>Layout decision board <span>01</span></p>
+      <button class="grid-toggle" type="button" aria-pressed="false">Show 12-column grid</button>
+    </header>
+
+    <main id="top">
+      <section class="intro">
+        <p class="eyebrow">Working method</p>
+        <h1>Choose the system<br />before building the page.</h1>
+        <div class="intro-copy">
+          <p>These are controlled layout choices, not finished designs. Each option uses the portfolio’s 12 columns, 40px margins and 40px gutters.</p>
+          <p>We select the rules together here. Figma is only where approved rules become case-study pages.</p>
+        </div>
+      </section>
+
+      <nav class="archetype-nav" aria-label="Case study archetypes">
+        <a href="#orientation"><span>01</span> Orientation</a>
+        <a href="#threshold"><span>02</span> Story threshold</a>
+        <a class="active" href="#evidence"><span>03</span> Tension &amp; evidence</a>
+        <a class="active" href="#logic"><span>04</span> Decision logic</a>
+        <a href="#process"><span>05</span> Process &amp; proof</a>
+        <a href="#outcome"><span>06</span> Outcome &amp; reflection</a>
+      </nav>
+
+      <section class="system-note">
+        <p class="eyebrow">System rules already agreed</p>
+        <div>
+          <p>Retain existing headers, type scale, color and generous negative space.</p>
+          <p>Center only threshold statements. Keep explanatory copy column-aligned. Let asymmetric media and diagrams create energy without breaking the grid.</p>
+        </div>
+      </section>
+
+      <section id="evidence" class="decision-section" data-section="evidence">
+        <div class="section-heading">
+          <div><p class="eyebrow">Archetype 03</p><h2>Tension &amp;<br />evidence</h2></div>
+          <div class="section-purpose"><p>Use when the reader needs to understand a problem through research, data or a visualized finding.</p><p>The visual is the primary evidence, not an illustration added after the copy.</p></div>
+        </div>
+        <div class="variant-controls" role="tablist" aria-label="Tension and evidence variants">
+          <button class="variant-button active" type="button" data-target="evidence" data-variant="0">A. Evidence split</button>
+          <button class="variant-button" type="button" data-target="evidence" data-variant="1">B. Interlocking field</button>
+          <button class="variant-button" type="button" data-target="evidence" data-variant="2">C. Data bands</button>
+        </div>
+        <article class="layout-frame evidence-frame">
+          <div class="layout-meta"><span class="variant-name">A. Evidence split</span><span class="variant-use">Best for one strong statistic, rate or diagram.</span></div>
+          <div class="layout-canvas evidence-canvas">
+            <div class="small-label">Identifying the problem</div>
+            <h3 class="display-title">A problem<br />without a solution</h3>
+            <p class="body-copy">Use the left columns to give the finding enough context to be understood, then let the evidence occupy its own visual field.</p>
+            <div class="evidence-visual"><span>Attempted<br />suicide rates</span><strong>28%</strong><i></i><b>Visual evidence</b></div>
+            <div class="motion-tag">motion: evidence rises into place after copy settles</div>
+          </div>
+        </article>
+        <div class="decision-notes"><p><strong>What stays fixed</strong> Clear explanatory copy, a visual field with room to breathe, plus a caption or source.</p><p><strong>What can vary</strong> Column side, diagram scale, image crop and whether a display word becomes a background layer.</p><p><strong>Overlap rule</strong> An artifact may intersect oversized display type only. It must never cover source notes, body copy or a readable chart axis.</p></div>
+      </section>
+
+      <section id="logic" class="decision-section" data-section="logic">
+        <div class="section-heading">
+          <div><p class="eyebrow">Archetype 04</p><h2>Decision<br />logic</h2></div>
+          <div class="section-purpose"><p>Use when the story moves from research into a principle, an MVP rationale, a framework or a meaningful tradeoff.</p><p>It should make thinking visible without turning the case study into a slide deck.</p></div>
+        </div>
+        <div class="variant-controls" role="tablist" aria-label="Decision logic variants">
+          <button class="variant-button active" type="button" data-target="logic" data-variant="0">A. Decision rail</button>
+          <button class="variant-button" type="button" data-target="logic" data-variant="1">B. Framed choice</button>
+          <button class="variant-button" type="button" data-target="logic" data-variant="2">C. Comparative spread</button>
+        </div>
+        <article class="layout-frame logic-frame">
+          <div class="layout-meta"><span class="variant-name">A. Decision rail</span><span class="variant-use">Best for a sequence of criteria, questions or principles.</span></div>
+          <div class="layout-canvas logic-canvas">
+            <div class="small-label">How might we?</div>
+            <h3 class="display-title">Three questions<br />guided the MVP</h3>
+            <div class="logic-rail"><span>01</span><p>What makes each user feel known?</p><span>02</span><p>What creates enough trust to begin?</p><span>03</span><p>How can conversations stay safe?</p></div>
+            <div class="logic-visual"><span>research</span><i></i><span>decision</span><i></i><span>prototype</span></div>
+            <div class="motion-tag">motion: steps resolve one at a time, then the model enters</div>
+          </div>
+        </article>
+        <div class="decision-notes"><p><strong>What stays fixed</strong> One clear claim, an ordered reading path and a visible relation between insight and decision.</p><p><strong>What can vary</strong> A rail, an intersecting model, a two-option comparison or a stacked set of principles.</p><p><strong>Visual role</strong> A diagram can sit beside the decision or become the full-width proof directly after it.</p></div>
+      </section>
+
+      <section id="orientation" class="future-section"><span>01</span><div><h2>Orientation</h2><p>Existing header system. Preserve it.</p></div><em>Later batch</em></section>
+      <section id="threshold" class="future-section"><span>02</span><div><h2>Story threshold</h2><p>Oversized centered context or background statement.</p></div><em>Later batch</em></section>
+      <section id="process" class="future-section"><span>05</span><div><h2>Process &amp; proof</h2><p>Artifacts, wireframes, tests and applied evidence.</p></div><em>Later batch</em></section>
+      <section id="outcome" class="future-section"><span>06</span><div><h2>Outcome &amp; reflection</h2><p>Final designs, impact, learning and next steps.</p></div><em>Later batch</em></section>
+    </main>
+    <footer><p>Decision board v1. No Figma layouts have been changed.</p></footer>
+    <script src="./app.js"></script>
+  </body>
+</html>
