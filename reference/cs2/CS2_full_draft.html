@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mondai · Case Study 02 — Guide, not gatekeeper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08090A;--bg-2:#0D0E10;--ink:#F3F3F1;--muted:#8A8B90;--faint:#5A5B60;
+    --green:#34E39B;--magenta:#FF3D9A;--gold:#E9B15C;--purple:#9B7BFF;
+    --line:rgba(255,255,255,0.08);--ease:cubic-bezier(0.32,0.72,0,1);--measure:64ch;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Heebo',system-ui,sans-serif;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .glow::before{content:"";position:absolute;top:-25vh;left:50%;transform:translateX(-50%);width:80vw;height:70vh;border-radius:50%;background:radial-gradient(closest-side,rgba(52,227,155,0.10),transparent 70%);filter:blur(30px)}
+  main{position:relative;z-index:1}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:24px 40px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);mix-blend-mode:difference}
+  .topbar .dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;margin-right:9px;vertical-align:middle}
+
+  /* HERO */
+  .hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding-top:120px;padding-bottom:70px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:var(--green);margin-bottom:34px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .eyebrow .sep{color:var(--faint)}.eyebrow .k2{color:var(--muted)}
+  h1{font-weight:800;font-size:clamp(3.4rem,10vw,8.2rem);line-height:0.92;letter-spacing:-0.03em;margin-bottom:38px}
+  h1 .thin{font-weight:300}h1 .grn{color:var(--green)}
+  .dek{font-size:clamp(1.15rem,2.4vw,1.7rem);line-height:1.4;color:var(--ink);font-weight:300;max-width:30ch;margin-bottom:44px}
+  .role{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;letter-spacing:0.02em;color:var(--muted);max-width:54ch;border-left:2px solid var(--line);padding-left:18px}
+  .role b{color:var(--ink);font-weight:500}
+  .scrollcue{margin-top:58px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--faint);display:flex;align-items:center;gap:12px}
+  .scrollcue .bar{width:34px;height:1px;background:var(--faint);position:relative;overflow:hidden}
+  .scrollcue .bar::after{content:"";position:absolute;inset:0;background:var(--green);transform:translateX(-100%);animation:slide 2.6s var(--ease) infinite}
+  @keyframes slide{0%{transform:translateX(-100%)}55%{transform:translateX(0)}100%{transform:translateX(100%)}}
+
+  /* context facts */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:0}
+  .facts div{background:var(--bg);padding:22px 24px}
+  .facts .l{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
+  .facts .v{font-size:14px;color:var(--ink);font-weight:500;line-height:1.4}
+
+  section.block{padding:13vh 0}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);margin-bottom:42px;display:flex;align-items:center;gap:14px}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--green)}
+  .lead{font-size:clamp(1.7rem,4vw,3rem);line-height:1.15;letter-spacing:-0.02em;font-weight:700;max-width:20ch;margin-bottom:56px}
+  .lead .grn{color:var(--green)}
+  .chunks{display:flex;flex-direction:column;gap:32px;max-width:var(--measure)}
+  .chunks p{font-size:clamp(1.1rem,2vw,1.45rem);line-height:1.5;font-weight:300;color:var(--ink)}
+  .chunks p .em{font-weight:500;color:#fff}
+  .cap{font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.7;letter-spacing:0.02em;color:var(--faint);max-width:60ch;margin-top:30px;padding-left:16px;border-left:2px solid rgba(52,227,155,0.35)}
+  .cap b{color:var(--green);font-weight:500}
+
+  /* reframe card + generic shell */
+  .shell{background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:30px;padding:10px}
+  .core{background:linear-gradient(180deg,#0E0F12,#0A0B0D);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.05);padding:clamp(34px,6vw,68px)}
+  .core .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:var(--faint);margin-bottom:38px}
+  .reframe{margin-top:11vh}
+  .q-old{font-weight:700;font-size:clamp(1.8rem,5vw,3.2rem);letter-spacing:-0.02em;color:var(--faint);text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:rgba(255,61,154,0.6);line-height:1.05}
+  .becomes{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin:20px 0;display:flex;align-items:center;gap:12px}
+  .becomes::before{content:"↓";color:var(--green);font-size:16px}
+  .q-new{font-weight:800;font-size:clamp(2.2rem,6.4vw,4.4rem);letter-spacing:-0.03em;color:#fff;line-height:1.0}
+  .chips{display:flex;gap:16px;margin-top:48px;flex-wrap:wrap}
+  .chip{border-radius:100px;padding:14px 22px 14px 18px;font-size:15px;display:flex;align-items:center;gap:12px;border:1px solid var(--line)}
+  .chip .d{width:9px;height:9px;border-radius:50%}
+  .chip.g{background:rgba(52,227,155,0.06);border-color:rgba(52,227,155,0.25)}.chip.g .d{background:var(--green)}
+  .chip.m{background:rgba(255,61,154,0.05);border-color:rgba(255,61,154,0.2);color:var(--muted)}.chip.m .d{background:var(--magenta)}
+  .chip b{color:var(--ink);font-weight:600}
+  .closer{margin-top:11vh;max-width:54ch}
+  .closer p{font-size:clamp(1.3rem,2.8vw,2rem);line-height:1.4;font-weight:300}
+  .closer .hl{color:var(--green);font-weight:500}
+
+  /* pull quote */
+  .pq{max-width:60ch;margin:8vh 0}
+  .pq blockquote{font-size:clamp(1.4rem,3.4vw,2.4rem);line-height:1.3;font-weight:300;letter-spacing:-0.01em;color:#fff}
+  .pq blockquote .mk{color:var(--green)}
+  .pq cite{display:block;margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);font-style:normal}
+
+  /* big stat */
+  .stat{margin:2vh 0 6vh}
+  .stat .n{font-weight:800;font-size:clamp(3rem,9vw,7rem);letter-spacing:-0.03em;line-height:1;color:var(--green)}
+  .stat .t{font-size:clamp(1.2rem,2.4vw,1.7rem);font-weight:300;color:var(--ink);max-width:26ch;margin-top:20px}
+
+  /* dependency chain */
+  .chain{display:flex;flex-direction:column;gap:0;margin-top:2vh}
+  .step{display:grid;grid-template-columns:64px 1fr;gap:26px;padding:30px 0;border-top:1px solid var(--line)}
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .step .idx{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green);padding-top:6px}
+  .step h3{font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:700;letter-spacing:-0.01em;margin-bottom:12px}
+  .step h3 .so{color:var(--faint);font-weight:400;font-size:0.7em}
+  .step p{font-size:clamp(1rem,1.8vw,1.2rem);font-weight:300;color:var(--muted);max-width:60ch;line-height:1.5}
+  .step .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);border:1px solid rgba(52,227,155,0.3);border-radius:100px;padding:5px 11px;margin-top:16px}
+
+  /* states grid */
+  .states{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:2vh}
+  .state{background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:22px 20px;min-height:210px;display:flex;flex-direction:column}
+  .state .h{font-weight:700;font-size:1.15rem;margin-bottom:6px}
+  .state .tr{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+  .state .ds{font-size:0.95rem;font-weight:300;color:var(--muted);line-height:1.45;margin-top:auto}
+  .state .tag{width:22px;height:3px;border-radius:2px;margin-bottom:18px}
+  .state.s1 .tag{background:var(--green)}.state.s2 .tag{background:var(--gold)}
+  .state.s3 .tag{background:var(--magenta)}.state.s4 .tag{background:var(--purple)}
+  .state.s5 .tag{background:#5A93FF}
+
+  /* kills before/after */
+  .kill{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:2vh}
+  .kill .panel{border-radius:22px;padding:32px;position:relative;overflow:hidden}
+  .kill .before{background:rgba(255,61,154,0.04);border:1px solid rgba(255,61,154,0.2)}
+  .kill .after{background:rgba(52,227,155,0.04);border:1px solid rgba(52,227,155,0.22)}
+  .kill .tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:22px;display:inline-block}
+  .kill .before .tag{color:var(--magenta)}.kill .after .tag{color:var(--green)}
+  .modalmock{background:#111214;border:1px solid var(--line);border-radius:14px;padding:22px;opacity:0.75}
+  .modalmock .mt{font-weight:700;font-size:1.05rem;margin-bottom:6px}
+  .modalmock .mm{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:18px}
+  .modalmock .mb{display:flex;gap:10px}
+  .modalmock .b{flex:1;text-align:center;font-size:12px;padding:10px;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
+  .kill h4{font-size:1.5rem;font-weight:700;margin-bottom:14px;letter-spacing:-0.01em}
+  .kill p{font-size:1.02rem;font-weight:300;color:var(--muted);line-height:1.5}
+  .killstamp{position:absolute;top:20px;right:22px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--magenta);border:1px solid rgba(255,61,154,0.4);border-radius:6px;padding:4px 8px;transform:rotate(4deg)}
+  .killrow{margin-top:20px;padding-top:24px;border-top:1px solid var(--line);display:flex;gap:20px;align-items:baseline}
+  .killrow .old{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--faint);text-decoration:line-through}
+  .killrow .new{font-weight:600}
+  .killrow .why{color:var(--muted);font-weight:300;font-size:0.98rem}
+
+  /* AI two surfaces */
+  .ai2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:2vh}
+  .surface{border-radius:22px;padding:34px;border:1px solid var(--line);background:var(--bg-2)}
+  .surface .badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;padding:6px 12px;border-radius:100px;display:inline-block;margin-bottom:24px}
+  .surface.gold .badge{color:var(--gold);border:1px solid rgba(233,177,92,0.35);background:rgba(233,177,92,0.06)}
+  .surface.grn .badge{color:var(--green);border:1px solid rgba(52,227,155,0.3);background:rgba(52,227,155,0.06)}
+  .surface h4{font-size:1.5rem;font-weight:700;margin-bottom:12px}
+  .surface p{font-size:1.02rem;font-weight:300;color:var(--muted);line-height:1.5}
+  .surface ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:10px}
+  .surface li{font-size:0.95rem;color:var(--muted);font-weight:300;padding-left:18px;position:relative}
+  .surface li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%}
+  .surface.gold li::before{background:var(--gold)}.surface.grn li::before{background:var(--green)}
+
+  /* aside / process */
+  .aside{border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(155,123,255,0.05),rgba(155,123,255,0.01));padding:clamp(30px,5vw,56px);max-width:760px}
+  .aside .t{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--purple);margin-bottom:26px}
+  .aside p{font-size:clamp(1.1rem,2vw,1.35rem);font-weight:300;line-height:1.5;color:var(--ink);margin-bottom:20px}
+  .aside p:last-child{margin-bottom:0}
+  .aside .b{color:#fff;font-weight:500}
+
+  /* validation plan */
+  .valgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:2vh}
+  .valcard{border:1px solid var(--line);border-radius:22px;padding:34px;background:var(--bg-2)}
+  .valcard .t{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+  .valcard ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+  .valcard li{font-size:1rem;font-weight:300;color:var(--ink);line-height:1.45;padding-left:22px;position:relative}
+  .valcard li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:2px;background:var(--green)}
+  .valcard.plan li::before{background:var(--gold);border-radius:50%}
+
+  /* walkthrough placeholders */
+  .screens{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:2vh}
+  .screen{aspect-ratio:16/10;border:1.5px dashed rgba(255,255,255,0.16);border-radius:18px;background:repeating-linear-gradient(45deg,rgba(255,255,255,0.014),rgba(255,255,255,0.014) 12px,transparent 12px,transparent 24px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;gap:10px}
+  .screen .st{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(233,177,92,0.4);border-radius:5px;padding:3px 8px}
+  .screen .nm{font-weight:600;font-size:1.05rem;color:var(--ink)}
+  .screen .ds{font-size:0.85rem;color:var(--faint);font-weight:300;max-width:24ch}
+
+  /* placeholder note */
+  .ph{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;color:var(--gold);background:rgba(233,177,92,0.06);border:1px solid rgba(233,177,92,0.25);border-radius:8px;padding:10px 14px;display:inline-flex;gap:10px;align-items:center;margin-top:26px}
+  .ph::before{content:"◆";font-size:9px}
+
+  /* competitive teardown */
+  .teardown{margin-top:3vh;border-top:1px solid var(--line)}
+  .tdrow{display:grid;grid-template-columns:1fr auto;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:center}
+  .tdrow h5{font-weight:600;font-size:clamp(1.05rem,2vw,1.3rem);margin-bottom:7px}
+  .tdrow p{font-size:0.98rem;color:var(--muted);font-weight:300;line-height:1.45;max-width:54ch}
+  .verdict{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;border-radius:100px;white-space:nowrap}
+  .verdict.bad{color:var(--magenta);border:1px solid rgba(255,61,154,0.3);background:rgba(255,61,154,0.05)}
+  .verdict.mid{color:var(--muted);border:1px solid var(--line)}
+  .verdict.good{color:var(--green);border:1px solid rgba(52,227,155,0.3);background:rgba(52,227,155,0.05)}
+  .tdnote{margin-top:38px;font-size:clamp(1.15rem,2.3vw,1.5rem);font-weight:300;max-width:56ch;line-height:1.45}
+  .tdnote .grn{color:var(--green);font-weight:500}
+  @media(max-width:768px){.tdrow{grid-template-columns:1fr;gap:14px}}
+
+  /* close */
+  .final{min-height:80vh;display:flex;flex-direction:column;justify-content:center}
+  .final .big{font-weight:800;font-size:clamp(2.4rem,7vw,5.5rem);line-height:0.98;letter-spacing:-0.03em;max-width:16ch;margin-bottom:44px}
+  .final .big .grn{color:var(--green)}
+  .final .sub{font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:300;color:var(--muted);max-width:52ch;line-height:1.5}
+  .demo{margin-top:56px;border:1.5px dashed rgba(52,227,155,0.35);border-radius:18px;background:rgba(52,227,155,0.03);padding:40px;display:flex;align-items:center;gap:20px;max-width:640px}
+  .demo .play{width:52px;height:52px;border-radius:50%;border:1px solid var(--green);display:flex;align-items:center;justify-content:center;color:var(--green);flex-shrink:0}
+  .demo .tx .a{font-weight:600;margin-bottom:5px}
+  .demo .tx .b{font-size:0.9rem;color:var(--faint);font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em}
+
+  .foot{padding:14vh 0 10vh;text-align:center;color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.24em;text-transform:uppercase}
+
+  .rv{opacity:0;transform:translateY(30px);filter:blur(6px);transition:opacity 0.9s var(--ease),transform 0.9s var(--ease),filter 0.9s var(--ease)}
+  .rv.in{opacity:1;transform:none;filter:none}
+  .rv.d1{transition-delay:0.08s}.rv.d2{transition-delay:0.16s}.rv.d3{transition-delay:0.24s}.rv.d4{transition-delay:0.32s}
+
+  @media(max-width:900px){
+    .facts{grid-template-columns:repeat(2,1fr)}
+    .states{grid-template-columns:repeat(2,1fr)}
+    .kill,.ai2,.valgrid{grid-template-columns:1fr}
+    .screens{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:768px){
+    .wrap{padding:0 22px}.topbar{padding:18px 22px}.hero{padding-top:92px}
+    section.block{padding:9vh 0}
+    .step{grid-template-columns:40px 1fr;gap:16px}
+  }
+  @media(prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none;filter:none}.scrollcue .bar::after{animation:none}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="topbar">
+  <span><span class="dot"></span>Mondai — Case Study 02</span>
+  <span>Guide, not gatekeeper</span>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <header class="hero wrap">
+    <div class="eyebrow rv">Case Study 02 <span class="sep">/</span> <span class="k2">Mondai · Growth Journey framework</span></div>
+    <h1 class="rv d1">Guide, <span class="thin">not</span> <span class="grn">gatekeeper.</span></h1>
+    <p class="dek rv d2">Designing a weekly framework that gives people real structure without becoming the thing they came here to escape.</p>
+    <p class="role rv d3">Design Lead. I own the <b>Growth Journey framework</b>, the <b>weekly scheduling model</b> and the <b>product AI strategy</b>, working directly with the founder to set product direction.</p>
+    <div class="scrollcue rv d4"><span class="bar"></span> Scroll</div>
+  </header>
+
+  <!-- FACTS -->
+  <section class="wrap" style="padding-bottom:6vh">
+    <div class="facts rv">
+      <div><div class="l">Product</div><div class="v">Mondai — AI career navigation for emerging technologists</div></div>
+      <div><div class="l">My role</div><div class="v">Design Lead · framework, scheduling, product AI</div></div>
+      <div><div class="l">Surface</div><div class="v">Desktop and web, pre-launch</div></div>
+      <div><div class="l">Focus</div><div class="v">The weekly framework and its AI strategy</div></div>
+    </div>
+  </section>
+
+  <!-- PROBLEM + REFRAME -->
+  <section class="block wrap">
+    <div class="kicker rv">The reframe</div>
+    <div class="chunks">
+      <p class="rv">Mondai gives people a structured path into a tech career. <span class="em">The structure was never the hard part.</span></p>
+      <p class="rv">Its users chase that career around lives that are already full and rarely the same two weeks running. They do not need less structure. They need structure that fits into a life like that, not one they have to rebuild their life around.</p>
+      <p class="rv">The original direction was fixed scheduling and keep-pace accountability, the model traditional education runs on. I pushed for a different kind, because a fixed cadence assumes a student with open, regular time, and that is not who these users are.</p>
+    </div>
+
+    <div class="reframe rv">
+      <div class="shell"><div class="core">
+        <div class="lbl">The reframe</div>
+        <div class="q-old">How much structure?</div>
+        <div class="becomes">becomes</div>
+        <div class="q-new">What kind of structure?</div>
+        <div class="chips">
+          <span class="chip g"><span class="d"></span><b>Guides</b> you through</span>
+          <span class="chip m"><span class="d"></span><b>Gates</b> you out</span>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="closer rv"><p>Everything downstream comes from that one answer. And one honest answer to it <span class="hl">generates a whole system.</span></p></div>
+  </section>
+
+  <!-- COMPETITIVE TEARDOWN -->
+  <section class="block wrap">
+    <div class="kicker rv">The evidence</div>
+    <div class="lead rv">This came from the field, <span class="grn">not from taste.</span></div>
+    <div class="teardown">
+      <div class="tdrow rv"><div><h5>Fixed-cohort programs</h5><p>One timetable, one pace. Miss a week and you are behind the group with no way back in.</p></div><span class="verdict bad">Falls off real lives</span></div>
+      <div class="tdrow rv"><div><h5>Open course libraries</h5><p>Total flexibility, no spine. Nothing decides what comes next, so people drift and quit.</p></div><span class="verdict mid">No direction</span></div>
+      <div class="tdrow rv"><div><h5>Structured but self-paced</h5><p>A clear path you move through at your own speed. The model that actually holds this audience.</p></div><span class="verdict good">The survivors</span></div>
+    </div>
+    <div class="tdnote rv">The pattern held every time. What lasts gives structure you <span class="grn">move through at your own pace</span>, not a schedule you fall off of. That was the target.</div>
+  </section>
+
+  <!-- SINGLE INPUT -->
+  <section class="block wrap">
+    <div class="kicker rv">One input</div>
+    <div class="stat rv">
+      <div class="n">1 number</div>
+      <div class="t">The entire system runs on one thing the user gives us: how many hours a week they actually have.</div>
+    </div>
+    <div class="chunks">
+      <p class="rv">Capacity is the only scheduling input. The target date, the weekly plan, the pace, the way a bad week gets absorbed, all of it is derived from that one number. Declared by the user, not observed by the system, because observed capacity means two or three weeks with no real plan to offer. Declared means a real plan on day one.</p>
+    </div>
+    <div class="cap rv"><b>Planning fallacy:</b> people overestimate their own time, so the capacity screen uses honest framing and manual entry, never pre-filled buckets, and previews on a button press instead of recalculating on every keystroke, which had felt like a slot machine.</div>
+  </section>
+
+  <!-- THE SYSTEM -->
+  <section class="block wrap">
+    <div class="kicker rv">The system</div>
+    <div class="lead rv">One decision forces <span class="grn">the next.</span> That is the whole design.</div>
+    <div class="chain">
+      <div class="step rv"><div class="idx">01</div><div><h3>Capacity is the only input <span class="so">so</span></h3><p>Every other number in the system is downstream of it. Which means the system can commit to a plan on day one and revise it honestly later.</p></div></div>
+      <div class="step rv"><div class="idx">02</div><div><h3>The Target locks <span class="so">so</span></h3><p>A real commitment date. It moves only through deliberate recalibration. A locked target makes a bad week visible, and visible drift is what pulls people back. A rolling target would just hide the slip.</p><span class="pill">Loss aversion</span></div></div>
+      <div class="step rv"><div class="idx">03</div><div><h3>The Pace moves <span class="so">so</span></h3><p>It updates once a week, never per task. Per-task updates scatter the signal across the week. Weekly concentrates it into one moment the user can actually attend to.</p></div></div>
+      <div class="step rv"><div class="idx">04</div><div><h3>Rollover stays silent <span class="so">so</span></h3><p>Unfinished work carries into the new week automatically. No modal, no math, no decision on the worst possible day. The system carries the weight of what to bring forward, not the user.</p></div></div>
+      <div class="step rv"><div class="idx">05</div><div><h3>The week needs states</h3><p>Five of them, because being behind and being absent are different problems, and each needs a different response. That is the next section.</p></div></div>
+    </div>
+    <div class="closer rv"><p>Move one piece and nothing crashes. It is the <span class="hl">principle</span> that breaks. Make rollover a decision and the product quietly becomes a gatekeeper again. The coupling is not fragility, it is coherence. Every part descends from the same answer.</p></div>
+  </section>
+
+  <!-- FIVE STATES -->
+  <section class="block wrap">
+    <div class="kicker rv">Start of week</div>
+    <div class="lead rv">Every Sunday, the week opens in one of <span class="grn">five states.</span></div>
+    <div class="states">
+      <div class="state s1 rv"><div class="tag"></div><div class="h">Clean</div><div class="tr">On track or ahead</div><div class="ds">No rollover, no flags. The plan is holding.</div></div>
+      <div class="state s2 rv d1"><div class="tag"></div><div class="h">Catching Up</div><div class="tr">Behind but moving</div><div class="ds">Closed last week clean, still behind pace, trending the right way.</div></div>
+      <div class="state s3 rv d2"><div class="tag"></div><div class="h">Rollover</div><div class="tr">Work carried in</div><div class="ds">Items followed you here. Not an error, so the headline stays neutral.</div></div>
+      <div class="state s4 rv d3"><div class="tag"></div><div class="h">Recalibration</div><div class="tr">Capacity mismatch</div><div class="ds">Weeks of finishing under capacity. The plan offers to right-size, no penalty.</div></div>
+      <div class="state s5 rv d4"><div class="tag"></div><div class="h">Reset</div><div class="tr">You were gone</div><div class="ds">Long absence. Re-bundles from today, progress intact. You disappeared and we are not mad.</div></div>
+    </div>
+    <div class="cap rv"><b>One shared element</b> across all five: a single pace-movement line, so the user always sees whether the distance is closing or slipping. Goal gradient and the progress principle.</div>
+  </section>
+
+  <!-- KILLS -->
+  <section class="block wrap">
+    <div class="kicker rv">What I killed</div>
+    <div class="lead rv">The framework is defined as much by <span class="grn">what came out</span> as what stayed.</div>
+    <div class="kill">
+      <div class="panel before rv">
+        <span class="killstamp">Killed</span>
+        <div class="tag">Before</div>
+        <div class="modalmock">
+          <div class="mt">You have 7 items this week</div>
+          <div class="mm">4 carried + 3 new = 7</div>
+          <div class="mb"><div class="b">Take on all</div><div class="b">Use a flex point</div></div>
+        </div>
+        <h4 style="margin-top:24px">The rollover decision modal</h4>
+        <p>A math problem and two buttons, served on Sunday when the user is already behind.</p>
+      </div>
+      <div class="panel after rv d1">
+        <div class="tag">After</div>
+        <h4>Silent absorption</h4>
+        <p>The week just already has the carried work in it. No modal, no math, no toll to keep going. The moment the framework most needed to feel like a guide was the moment the old design read most like a gatekeeper, so it went.</p>
+      </div>
+    </div>
+    <div class="killrow rv"><span class="old">In Progress</span><span class="new">Active</span><span class="why">The system knows an item is the one available to work on. It does not know you are working on it, so it does not claim to.</span></div>
+  </section>
+
+  <!-- PRODUCT AI -->
+  <section class="block wrap">
+    <div class="kicker rv">The AI, on purpose</div>
+    <div class="lead rv">For this audience, how the product uses AI is a <span class="grn">trust decision,</span> not a feature.</div>
+    <div class="ai2">
+      <div class="surface gold rv"><span class="badge">Contextual AI</span><h4>Adjustment knobs</h4><p>Scoped to a single action item. Preset chips and a tag input, no chat box, no history.</p><ul><li>Lives inside one task</li><li>Single transformation, then done</li><li>Never a conversation</li></ul></div>
+      <div class="surface grn rv d1"><span class="badge">Rita</span><h4>The guide</h4><p>Journey-level and persistent. A conversational surface for the whole path.</p><ul><li>Full text and memory</li><li>Product-wide scope</li><li>Its own space, always</li></ul></div>
+    </div>
+    <div class="cap rv">The two never share a container. The moment a user sees a text field, the model flips to <b>“I am talking to someone.”</b> Keeping them visually and spatially distinct is what protects that.</div>
+    <div class="chunks" style="margin-top:7vh">
+      <p class="rv">Onboarding explains the AI honestly. After that, recommendations are attributed to the reasoning, not to a label. <span class="em">Based on your interest in UX design and your graphic background,</span> not <span class="em">AI-generated suggestion.</span></p>
+      <p class="rv">Research shows AI labels reduce trust, and for this audience, where most surveyed Black women believe AI is used to surveil them, concealment discovered would be worse. So the product discloses once and demonstrates always. And the AI only ever recommends. The person can always override. For these users that is the position the whole product takes.</p>
+    </div>
+  </section>
+
+  <!-- HOW I WORKED -->
+  <section class="block wrap">
+    <div class="kicker rv">How I worked</div>
+    <div class="aside rv">
+      <div class="t">Process · design in the AI era</div>
+      <p>The wireframe used to be where I did my thinking. <span class="b">Now it is where I commit.</span></p>
+      <p>I explore and compare directions before committing a frame, so by the time something becomes a wireframe it has already been pressure-tested against its alternatives. That widened the option space. It did not just make me converge faster.</p>
+      <p>I do not use AI to decide what good looks like. Only to apply what was already decided, and I throw out the passes that miss.</p>
+      <div class="ph">Placeholder · drop in one concrete example (the expired-task logic flow worked step by step with the full design system loaded) and one before/after of options compared</div>
+    </div>
+  </section>
+
+  <!-- VALIDATION -->
+  <section class="block wrap">
+    <div class="kicker rv">How it holds up, and how it gets proven</div>
+    <div class="chunks"><p class="rv">The product has not launched, so I am not going to show you a usability report that does not exist. Here is the validation that is real, and the plan for the validation that is next.</p></div>
+    <div class="valgrid">
+      <div class="valcard rv"><div class="t">What validated it so far</div><ul>
+        <li>Founder and stakeholder review at every major decision</li>
+        <li>Structured design critique, which is where the kills came from</li>
+        <li>A behavioral-evidence base used to defend each call, not decorate it</li>
+        <li>Systems modeling of the dependencies before any change shipped</li>
+      </ul></div>
+      <div class="valcard plan rv d1"><div class="t">The validation plan, designed</div><ul>
+        <li>Hypothesis: users understand rollover with zero explanation</li>
+        <li>Hypothesis: the locked target drives return after a slip</li>
+        <li>Measure: comprehension, re-entry after a missed week, perceived pressure</li>
+        <li>Protocol: moderated runs of the weekly flow across low and high capacity users</li>
+      </ul></div>
+    </div>
+    <div class="ph rv">Placeholder · this becomes a real test round and results once run</div>
+  </section>
+
+  <!-- WALKTHROUGH -->
+  <section class="block wrap">
+    <div class="kicker rv">The framework, running</div>
+    <div class="lead rv">Where all of it <span class="grn">lands on screen.</span></div>
+    <div class="screens">
+      <div class="screen rv"><span class="st">Screen</span><span class="nm">Capacity setup</span><span class="ds">The one input, with anti-bias framing</span></div>
+      <div class="screen rv d1"><span class="st">Screen</span><span class="nm">First-time moment</span><span class="ds">The journey assembling, target as the hero</span></div>
+      <div class="screen rv d2"><span class="st">Screen</span><span class="nm">Action Hub</span><span class="ds">The week, list and schedule views</span></div>
+      <div class="screen rv"><span class="st">Screen</span><span class="nm">Rollover Sunday</span><span class="ds">Silent absorption in context</span></div>
+      <div class="screen rv d1"><span class="st">Screen</span><span class="nm">Action Item</span><span class="ds">Where the work actually happens</span></div>
+      <div class="screen rv d2"><span class="st">Screen</span><span class="nm">Growth Journey</span><span class="ds">The macro view of the whole path</span></div>
+    </div>
+    <div class="ph rv">Placeholder · real hi-fi screens drop into these frames from the design files</div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="block wrap final">
+    <div class="big rv">Nothing on the market is a <span class="grn">reference class</span> for this.</div>
+    <div class="sub rv d1">Every mechanic descends from one principle, so the whole thing behaves like a guide. That was the point, and it is why there was nothing to copy.</div>
+    <div class="demo rv d2">
+      <div class="play">▶</div>
+      <div class="tx"><div class="a">Recorded walkthrough of the weekly flow</div><div class="b">Placeholder · the demo that carries the close</div></div>
+    </div>
+  </section>
+
+  <div class="foot">Mondai · Case Study 02 · draft</div>
+</main>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+.env
+.env.local
+
+# machine specific, never shared
+.claude/settings.local.json
+
+# auto generated session logs
+.remember/
+.unlazy/
+.unlazy-hook-state.json
