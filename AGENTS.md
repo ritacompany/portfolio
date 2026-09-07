@@ -17,6 +17,12 @@ Then read, in this order:
 The standing rules in `.claude/portfolio-rules.md` are injected automatically in Claude Code
 but not in other tools, so read that file too.
 
+Before touching About page copy, the hero, the band, the superpower lines or anything about his
+personal brand, read `.claude/skills/about-page/SKILL.md`. It is the record of what he has ruled
+on, what is locked and what is dead. Claude Code surfaces it on its own. Other tools do not find
+it unless the path is registered with them, so open the file directly. If something is not in
+that record it is not settled, so say so rather than inferring it.
+
 Record durable decisions in `docs/DECISIONS.md` and update `NEXT.md` when the immediate
 priority changes. Do not invent biography, project facts, outcomes, research findings or
 metrics.

@@ -76,6 +76,26 @@ const ATTACKS = {
   }),
 };
 
+// The shell branch has to refuse real writes and stay out of the way of reads. A guard that
+// blocks `grep ... 2>&1` trains everyone to route around it, which is how guards die.
+const SHELL = [
+  ["heredoc write", "BLOCKED", `cat > ${SKILL} <<'EOF'\nx\nEOF`],
+  ["redirect write", "BLOCKED", `echo x > ${SKILL}`],
+  ["in-place sed", "BLOCKED", `sed -i .bak s/a/b/ ${SKILL}`],
+  ["delete", "BLOCKED", `rm ${SKILL}`],
+  ["move over it", "BLOCKED", `mv /tmp/x ${SKILL}`],
+  ["copy over it", "BLOCKED", `cp /tmp/x ${SKILL}`],
+  ["grep with 2>&1", "ALLOWED", `grep -c foo ${SKILL} 2>&1`],
+  ["grep to /dev/null", "ALLOWED", `grep -q foo ${SKILL} >/dev/null`],
+  ["word count", "ALLOWED", `wc -l ${SKILL}`],
+  ["read with head", "ALLOWED", `head -40 ${SKILL}`],
+  ["diff, quieted", "ALLOWED", `diff /tmp/x ${SKILL} >/dev/null 2>&1`],
+  // An arrow inside quoted text is not a redirect. This one refused a plain status print.
+  ["arrow in a quoted string", "ALLOWED", `jq -r '.a + " -> " + .b' cfg.json; grep -c x ${SKILL}`],
+  ["redirect to another file", "ALLOWED", `grep x ${SKILL} > /tmp/out.txt`],
+  ["writer targeting another file", "ALLOWED", `cp ${SKILL} /tmp/backup.md`],
+];
+
 const REGRESSION = [
   ["invented theory into part one", "BLOCKED", { tool_name: "Edit", transcript_path: TRANSCRIPT, tool_input: { file_path: SKILL, old_string: anchor, new_string: `${anchor}\n- ${THEORY}` } }],
   ["the real Sep 6 line", "BLOCKED", { tool_name: "Edit", transcript_path: TRANSCRIPT, tool_input: { file_path: SKILL, old_string: anchor, new_string: `${anchor}\n- The band must carry systems thinking early so a reader who skips paragraphs still catches it.` } }],
@@ -97,6 +117,17 @@ if (which === "regression") {
   }
   console.log(`G5 ${pass === REGRESSION.length ? "OK" : "FAIL"} ${pass}/${REGRESSION.length}`);
   process.exit(pass === REGRESSION.length ? 0 : 1);
+}
+
+if (which === "shell") {
+  let pass = 0;
+  for (const [name, want, command] of SHELL) {
+    const got = run(HOOK, { tool_name: "Bash", transcript_path: TRANSCRIPT, tool_input: { command } });
+    if (got === want) pass++;
+    else console.error(`  ${name}: wanted ${want}, got ${got}`);
+  }
+  console.log(`G10 ${pass === SHELL.length ? "OK" : "FAIL"} ${pass}/${SHELL.length}`);
+  process.exit(pass === SHELL.length ? 0 : 1);
 }
 
 if (which === "self-test") {

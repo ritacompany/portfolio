@@ -45,8 +45,22 @@ TARGET = "skills/about-page"
 # redirected to the edit tools, where the rest of this check can actually see the text.
 if tool == "Bash":
     cmd = ti.get("command", "")
-    WRITERS = r">|\btee\b|\bsed\b[^|]*-[a-zA-Z]*i|\bperl\b[^|]*-[a-zA-Z]*i|\bcp\b|\bmv\b|\brm\b|\btruncate\b|\bdd\b|\bpatch\b|\binstall\b"
-    if TARGET in cmd and re.search(WRITERS, cmd):
+    # Match the shape of a write to THIS file, not "mentions the file and contains a
+    # writing character somewhere". The blunt version refused ordinary reads: a grep that
+    # merged stderr, or an echo whose quoted text happened to contain an arrow. A guard
+    # that blocks harmless reads teaches everyone to route around it, which is how a guard
+    # stops working.
+    T = re.escape(TARGET)
+    SEG = r"[^|;&\n]*"                       # stay inside one command in a pipeline
+    WRITES = [
+        rf">>?\s*{SEG}{T}",                                     # redirect into it
+        rf"\b(tee|rm|truncate|dd|patch)\b{SEG}{T}",             # writer, any mention is a write
+        # For copy and move the destination is the last argument, so the record being the
+        # source is a read. Copying it out to a backup should not be refused.
+        rf"\b(cp|mv|install)\b{SEG}{T}\S*\s*(;|\||&|$)",
+        rf"\b(sed|perl|python[0-9.]*|ruby)\b{SEG}-[a-zA-Z]*i{SEG}{T}",  # edit in place
+    ]
+    if any(re.search(p, cmd) for p in WRITES):
         deny("Blocked by the record intake check.\n\n"
              "This writes the About record from the shell, which goes around the check that "
              "keeps inferences out of his rulings.\n\n"
