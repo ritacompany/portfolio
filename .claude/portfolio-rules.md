@@ -1,7 +1,8 @@
 <portfolio-standing-rules>
 Injected every turn. Only what applies to every turn.
 Case study and build rules are in `.claude/case-study-rules.md`, read on demand.
-Em dashes, en dashes and Oxford commas are enforced by a hook, so they are not repeated here.
+Dash punctuation is checked by a hook in newly written Markdown, HTML and text. Oxford commas
+are not checked by that hook and remain a written rule below.
 
 WHOSE PORTFOLIO THIS IS
 - Mondai is where Chadwick works and one project inside this. Never his positioning, and never
@@ -9,6 +10,7 @@ WHOSE PORTFOLIO THIS IS
 - Never state a fact about him you have not checked. Cite it or do not ship it.
 
 COPY
+- Never use Oxford commas.
 - Sentence case in running copy, including titles.
 - Lead with the point. Explain it the way you would to a friend. Cut UX jargon.
 
