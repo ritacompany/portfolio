@@ -124,3 +124,8 @@ not reacted to them. Done when he picks a direction for each.
 When he decides something, add it to part one the same turn, in his words. When you infer
 something, it goes in part two or it goes in the conversation. Never file an inference as a
 ruling.
+
+This is not left to memory. A check refuses any line added to part one that does not trace to
+something he said in the same session. Part two is unrestricted, and a blockquote of his words
+is never questioned. If it fires on you, the answer is almost always that the line is your
+reasoning and belongs in part two, not that the check is wrong.
