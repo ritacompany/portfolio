@@ -107,20 +107,17 @@ managers, mostly New York. Motion is not blocked on copy, only on where the Mond
 Figma is the source of truth for live copy. Nothing in Figma is law. Never quote it back to him
 as settled.
 
-**This page is not active work.** A repository review on 7 Sep 2026 retired the band, hero and
-About drafts from 5 to 6 Sep. `NEXT.md` at the repo root is the source of truth for what to do
-next. Do not resume any of the work below from this file, and do not treat those drafts as
-queued.
-
-What remains recorded here is his rulings, so that whenever the page does come back nothing has
-to be relitigated. Unfinished threads at the point it was set down:
+**Open, in order:**
 
 1. Band and hero, written together. They sit before the work and must not say the same thing.
 2. Superpower slots one and two.
 3. What else section 3 carries. He cut every candidate so far, so this needs new material.
 4. Tactics pass, once, across the whole assembled page. Never run.
 
-**His call whenever it resumes:** which WIP layout, and where the Mondai role paragraph lives.
+**His call, any time:** which WIP layout, and where the Mondai role paragraph lives.
+
+**Live step:** band and hero. Not started. He has options in hand from an earlier session and has
+not reacted to them. Done when he picks a direction for each.
 
 ## Keeping this current
 

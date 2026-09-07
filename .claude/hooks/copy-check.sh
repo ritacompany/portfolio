@@ -39,19 +39,9 @@ prose=$(printf '%s\n' "$written" | awk '
                                          print }
 ')
 
-# Em and en dashes are never valid. Two hyphens count only as an exact pair, so a longer
-# run of hyphens is treated as structure rather than punctuation.
-#
-# A pair used as punctuation either sits between two words or has a word pressed against
-# it. A pair that opens a token and runs straight into a letter is a CSS custom property
-# or a command flag, and those were being rejected whenever an edit fragment arrived
-# without its enclosing style or code markup. That false positive fires on ordinary build
-# work, and a check that cries wolf on real work gets worked around.
-dashes=$(printf '%s\n' "$prose" | grep -E \
-  -e '—|–' \
-  -e '[[:alnum:]]--[^-]' \
-  -e '[[:alnum:]]--$' \
-  -e '(^|[^-])--([[:space:]]|$)' | head -10)
+# Em and en dashes are never valid. Two hyphens count only as an exact pair,
+# so a longer run of hyphens is treated as structure rather than punctuation.
+dashes=$(printf '%s\n' "$prose" | grep -E -e '—|–' -e '(^|[^-])--([^-]|$)' | head -10)
 
 [ -n "$dashes" ] || exit 0
 
