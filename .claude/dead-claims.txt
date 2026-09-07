@@ -1,0 +1,15 @@
+# Claims known to be FALSE or RETRACTED.
+# One per line. Matched case-insensitively against Claude's response before it is allowed to finish.
+# Discussing one of these is fine. Asserting one is blocked.
+# Add a line here the moment something is found to be false, and it can never come back silently.
+
+most-claimed trait in the field
+the universality slot
+a taste for the choice that should not work
+star of the event does not exist
+the star of the event was invented
+bridge lexically back to block 1
+slot two is upstream
+human-centered, strategy, collaboration, visual impact
+Haven is an app he has been designing across multiple years
+Haven, a multi-year

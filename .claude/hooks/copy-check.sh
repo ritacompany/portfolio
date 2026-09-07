@@ -26,6 +26,12 @@ written=$(printf '%s' "$payload" | jq -r '.tool_input.new_string // .tool_input.
 prose=$(printf '%s\n' "$written" | awk '
   /^[[:space:]]*```/                   { infence = !infence; next }
   infence                              { next }
+  /<\/style>/                          { instyle = 0; next }
+  /<style/                             { instyle = 1; next }
+  instyle                              { next }
+  /<\/script>/                         { inscript = 0; next }
+  /<script/                            { inscript = 1; next }
+  inscript                             { next }
   /^[[:space:]]*>/                     { next }
   /^[[:space:]]*[-=|: ]+[[:space:]]*$/ { next }
                                        { gsub(/`[^`]*`/, "")

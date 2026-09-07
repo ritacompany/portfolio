@@ -1,0 +1,528 @@
+<title>Voice Bank</title>
+<style>
+  :root{
+    --bg:#0c0b0a; --surface:#161412; --surface-2:#1d1a17; --border:#332f2a; --border-soft:#292521;
+    --text:#eeece6; --text-dim:#a29c93; --text-faint:#6f695f;
+    --accent:#c1502e; --accent-soft:#3a231a;
+    --rubric:#7a8fa6; --rubric-soft:#1c2530;
+    --fit-close:#8ba07c; --fit-close-soft:#1c2117;
+    --fit-partial:#c39a54; --fit-partial-soft:#26200f;
+    --fit-no:#8a5850; --fit-no-soft:#251815;
+    --verified:#7c9473; --reported:#8a7f6a;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="light"]){
+      --bg:#0c0b0a; --surface:#161412; --surface-2:#1d1a17; --border:#332f2a; --border-soft:#292521;
+      --text:#eeece6; --text-dim:#a29c93; --text-faint:#6f695f; --rubric:#7a8fa6;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#0c0b0a; --surface:#161412; --surface-2:#1d1a17; --border:#332f2a; --border-soft:#292521;
+    --text:#eeece6; --text-dim:#a29c93; --text-faint:#6f695f; --rubric:#7a8fa6;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Archivo',system-ui,-apple-system,sans-serif;
+    line-height:1.5; font-size:14px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:44px 24px 100px;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:12px;
+  }
+  h1{
+    font-family:'Fraunces',Georgia,serif; font-weight:600; font-style:italic;
+    font-size:clamp(30px,4.2vw,42px); line-height:1.02; letter-spacing:-.015em;
+    margin:0 0 16px; text-wrap:balance;
+  }
+  .headline-row{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  .idx{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint); letter-spacing:.06em;}
+
+  .rubric{
+    border:1px solid var(--border); border-radius:8px; margin:24px 0 28px; overflow:hidden;
+  }
+  .rubric-head{
+    display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+    padding:12px 16px; background:var(--surface); border-bottom:1px solid var(--border);
+  }
+  .rubric-head .tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--rubric);}
+  .rubric-head .n{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--text-faint);}
+  .rubric-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+  .rcrit{padding:14px 16px; border-right:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft);}
+  .rcrit:last-child{border-right:none;}
+  .rcrit .rname{font-weight:600; font-size:12.5px; margin:0 0 4px;}
+  .rcrit .rdesc{font-size:11.5px; color:var(--text-faint); line-height:1.5; margin:0;}
+  .rcrit .rnum{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--rubric); margin-right:6px;}
+
+  .northstar{
+    background:var(--surface); border:1px solid var(--accent); border-left-width:3px;
+    border-radius:8px; padding:16px 18px; margin:20px 0 28px; max-width:78ch;
+  }
+  .northstar .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:8px; display:block;
+  }
+  .northstar p{margin:0; font-size:14.5px; color:var(--text); line-height:1.55;}
+
+  .dek{color:var(--text-dim); font-size:13.5px; max-width:80ch; margin:0 0 8px;}
+
+  table{width:100%; border-collapse:collapse; margin-top:20px; table-layout:fixed;}
+  th{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--text-faint); text-align:left; padding:0 12px 10px; font-weight:400;
+    border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg);
+  }
+  col.c-name{width:12%;} col.c-quote{width:27%;} col.c-mech{width:17%;}
+  col.c-fit{width:13%;} col.c-note{width:31%;}
+
+  tr.row{border-bottom:1px solid var(--border-soft);}
+  tr.row:hover{background:var(--surface);}
+  td{padding:14px 12px; vertical-align:top;}
+
+  .name{font-weight:600; font-size:13.5px; margin:0 0 2px;}
+  .role{color:var(--text-faint); font-size:11.5px; margin:0 0 6px;}
+  .url{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-faint); text-decoration:none;}
+  .url:hover{color:var(--accent);}
+  .badge{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.05em;
+    text-transform:uppercase; padding:2px 6px; border-radius:3px; margin-top:4px;
+  }
+  .badge.verified{background:rgba(124,148,115,.12); color:var(--verified);}
+  .badge.reported{background:rgba(138,127,106,.12); color:var(--reported);}
+
+  .quote{
+    font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:13.5px; line-height:1.5;
+    color:var(--text); border-left:2px solid var(--border); padding-left:10px;
+  }
+  .quote + .quote{margin-top:8px;}
+
+  .tagrow{display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px;}
+  .tag-chip{
+    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.02em;
+    padding:3px 7px; border-radius:4px; background:var(--surface-2); color:var(--text-dim);
+    border:1px solid var(--border-soft); white-space:nowrap; cursor:pointer;
+  }
+  .tag-chip:hover{border-color:var(--text-faint); color:var(--text);}
+  .tag-chip.active{background:var(--accent-soft); border-color:var(--accent); color:var(--text);}
+  .why{font-size:12px; color:var(--text-faint); line-height:1.5;}
+
+  .filterbar{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px; align-items:center;}
+  .filterbar .flabel{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-right:2px;}
+
+  .fitpill{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.02em;
+    text-transform:uppercase; padding:3px 8px; border-radius:8px; white-space:normal; line-height:1.4;
+    max-width:100%;
+  }
+  .fitpill.close{background:var(--fit-close-soft); color:var(--fit-close); border:1px solid var(--fit-close);}
+  .fitpill.partial{background:var(--fit-partial-soft); color:var(--fit-partial); border:1px solid var(--fit-partial);}
+  .fitpill.no{background:var(--fit-no-soft); color:var(--fit-no); border:1px solid var(--fit-no);}
+
+  .notewrap label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--text-faint); margin-bottom:5px;
+  }
+  textarea.note{
+    width:100%; resize:vertical; min-height:56px; max-height:220px;
+    background:var(--surface-2); color:var(--text); border:1px solid var(--border-soft);
+    border-radius:6px; padding:8px 10px; font-family:'Archivo',sans-serif; font-size:12.5px; line-height:1.45;
+  }
+  textarea.note:focus{outline:none; border-color:var(--accent);}
+  .hint{
+    font-size:11px; color:var(--text-faint); margin-top:4px; font-style:italic;
+  }
+  .saved{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--fit-close); height:12px; margin-top:3px; opacity:0; transition:opacity .3s;}
+  .saved.show{opacity:1;}
+
+  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:24px; flex-wrap:wrap;}
+  .exportBtn{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.03em; text-transform:uppercase;
+    padding:7px 14px; border-radius:6px; border:1px solid var(--accent); background:transparent; color:var(--accent);
+    cursor:pointer;
+  }
+  .exportBtn:hover{background:var(--accent-soft);}
+  #exportBox{display:none; margin:14px 0 0;}
+  #exportText{
+    width:100%; min-height:180px; background:var(--surface); color:var(--text); border:1px solid var(--border);
+    border-radius:8px; padding:14px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; line-height:1.6;
+  }
+
+  footer{margin-top:36px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint);}
+
+  .table-scroll{overflow-x:auto; margin-top:20px; padding-bottom:4px;}
+  .table-scroll table{margin-top:0; min-width:960px;}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">About-section voice reference &mdash; v3</div>
+  <div class="headline-row">
+    <h1>What works, what doesn't</h1>
+    <span class="idx">EXHIBIT&nbsp;01</span>
+  </div>
+  <p class="dek">Cut the ones that told you nothing new. Real table, my actual judgment on fit, and now a real rubric instead of gut calls &mdash; every fit judgment below is scored against the five criteria underneath, not vibes.</p>
+
+  <div class="northstar">
+    <span class="tag">The real principle, from your own note on Craig Jackson</span>
+    <p>Good personal copy names a specific, private, maybe-weird thing &mdash; a quirk, a habit, a thought you assumed was just yours &mdash; and someone reading it goes <i>&ldquo;wait, same.&rdquo;</i> The connection isn't the detail itself. It's the recognition. That's a sharper design principle than anything in the 7 examples below, and it's yours, not mine.</p>
+  </div>
+
+  <div class="northstar" style="border-color:var(--rubric);">
+    <span class="tag" style="color:var(--rubric);">The mechanic that showed up in every good one &mdash; &ldquo;the deflating third item&rdquo;</span>
+    <p>State real credentials, then let one item break the pattern on purpose. Sloan: <i>writer, printer, &amp; manufacturer.</i> Appleton: <i>designer, anthropologist, and mediocre developer.</i> Baz: <i>cook, video host, recipe developer cookbook author, weenie lover and caesar salad enthusiast.</i> Trixie Mattel: <i>singer, actor, drag queen and recognized &ldquo;Skinny Legend.&rdquo;</i></p>
+    <p style="margin-top:10px;"><b>And this answers the doubt you raised on Kicks Condor.</b> Baz and Mattel both have real commercial careers with brand deals and national press, and both put an absurd item directly inside the credential list rather than quarantining it in a fun section at the bottom. The move doesn&rsquo;t require being an indie-web hobbyist with nothing to lose. It survives professionalization. What Kicks Condor shows is only the far end of the dial, not the price of admission.</p>
+  </div>
+
+  <div class="rubric">
+    <div class="rubric-head">
+      <span class="tag">The rubric &mdash; what &ldquo;fit&rdquo; actually measures</span>
+      <span class="n">1&ndash;4 scale, forced choice, no safe middle</span>
+    </div>
+    <div class="rubric-grid">
+      <div class="rcrit"><p class="rname"><span class="rnum">01</span>Specificity</p><p class="rdesc">1 = trait-claim anyone could write (&ldquo;proven track record&rdquo;). 4 = a fact only this person could produce.</p></div>
+      <div class="rcrit"><p class="rname"><span class="rnum">02</span>Recognition, not detail</p><p class="rdesc">1 = detail admired from a distance. 4 = names something private enough that a stranger thinks &ldquo;wait, same.&rdquo;</p></div>
+      <div class="rcrit"><p class="rname"><span class="rnum">03</span>Register fit</p><p class="rdesc">1 = warm/cute or corporate-clean. 4 = reads as weird, high fashion, editorial &mdash; your stated lane, not a nearby one.</p></div>
+      <div class="rcrit"><p class="rname"><span class="rnum">04</span>Economy</p><p class="rdesc">1 = explains the joke or over-hedges. 4 = confident, says the thing once, stops.</p></div>
+      <div class="rcrit"><p class="rname"><span class="rnum">05</span>Unfakeable voice</p><p class="rdesc">1 = could be swapped onto any bio with a name-and-replace. 4 = the sentence dies if you change a single specific in it.</p></div>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <span class="dek" style="margin:0;" id="countLabel">7 entries. 5 verified live, 2 reported/unconfirmed.</span>
+    <button class="exportBtn" id="exportBtn">copy my notes for Claude</button>
+  </div>
+  <div class="filterbar" id="filterbar"><span class="flabel">Filter by mechanic</span></div>
+  <div id="exportBox"><textarea id="exportText" readonly></textarea></div>
+
+  <div class="table-scroll">
+  <table>
+    <colgroup>
+      <col class="c-name"><col class="c-quote"><col class="c-mech"><col class="c-fit"><col class="c-note">
+    </colgroup>
+    <thead>
+      <tr><th>Who</th><th>The line</th><th>Mechanic</th><th>Fit</th><th>Your notes</th></tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  </div>
+
+  <footer>
+    <p style="margin:0 0 8px;">21 entries. 19 fetched directly Aug 2026; Clare Barry and Brett Shea are reported via a secondary roundup and not independently confirmed.</p>
+    <p style="margin:0 0 8px; color:var(--text-faint);">Search coverage: ~100 URLs attempted across five corpora &mdash; Brutalist Websites, idiosyncratic-prose personal sites, indie-web / net-art, SF product-design (Vercel / Linear / Apple / OpenAI), and non-design fields (food, drag, illustration, fashion).</p>
+    <p style="margin:0 0 8px; color:var(--text-faint);"><b style="color:var(--text-dim);">Correction to an earlier claim on this page.</b> An earlier version asserted that writing for hiring managers caps how weird you can go. That was inferred from eight product designers, all in one conservative slice of tech, none of whom reported any hiring outcome. It was not supportable and it was wrong to narrow the search around it. Molly Baz and Trixie Mattel are direct counter-evidence.</p>
+    <p style="margin:0; color:var(--text-faint);"><b style="color:var(--text-dim);">What holds up.</b> The anti-design/brutalist lane rarely writes About copy at all &mdash; it carries personality visually and withholds prose. And within SF product design specifically, flat credential bios are near-universal. Outside that lane, in food, drag and illustration, the same people with equally serious careers write with real voice. That&rsquo;s a culture of one industry, not a constraint on what works.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = [
+  {
+    id:'baz', name:'Molly Baz', role:'Cook / cookbook author, real commercial career',
+    url:'https://www.mollybaz.com/about', verified:true,
+    tags:['deflating-third-item','absurd-item-in-credential-list','professional-context'],
+    fit:'close', fitLabel:'answers your question',
+    quote:["I am a cook, video host, recipe developer cookbook author, <b>weenie lover and caesar salad enthusiast</b> with a lifelong love of cooking, eating and teaching other people how to cook."],
+    why:"<b>This is the direct answer to your Kicks Condor doubt.</b> She has a genuinely commercial career (cookbooks, brand deals, national press) and she still puts &lsquo;weenie lover&rsquo; in her professional bio next to real credentials. The absurd items aren&rsquo;t a separate joke section, they&rsquo;re inside the credential list itself. Proof the mechanic survives professionalization.",
+    defaultNote:""
+  },
+  {
+    id:'trixie', name:'Trixie Mattel', role:'Drag performer / musician',
+    url:'https://www.trixiemattel.com/about', verified:true,
+    tags:['deflating-third-item','absurd-item-in-credential-list','scare-quotes'],
+    fit:'close', fitLabel:'same move, drag register',
+    quote:["Trixie Mattel is an American singer, actor, drag queen and recognized &ldquo;Skinny Legend.&rdquo;"],
+    why:"Three real nouns then a self-aware internet honorific in scare quotes. The quotes do the work &mdash; they signal she knows exactly what she&rsquo;s doing without over-explaining it. Second independent confirmation that the deflating-third-item move holds up in a real professional bio.",
+    defaultNote:""
+  },
+  {
+    id:'draplin', name:'Aaron Draplin', role:'Graphic designer, Portland (DDC)',
+    url:'https://draplin.com/about/', verified:true,
+    tags:['unexpected-verb','specimen-label','irreverent'],
+    fit:'close', fitLabel:'strong, and a designer',
+    quote:["Graphic Designer, Age: 52",
+           "&hellip;squeezed out in Detroit, Michigan on October 15th in the year 1973, to the proud parents of Jim and Lauren Draplin."],
+    why:"&lsquo;Squeezed out&rsquo; instead of &lsquo;born&rsquo; is the whole move &mdash; one verb swap carries the entire personality. Also states his age flatly like a specimen label, which almost nobody does. A working designer with a massive career writing like this, which matters given the population problem.",
+    defaultNote:""
+  },
+  {
+    id:'hanawalt', name:'Lisa Hanawalt', role:'Illustrator / production designer (BoJack, Tuca &amp; Bertie)',
+    url:'https://www.lisahanawalt.com/about', verified:true,
+    tags:['interrupts-own-bio','aside','deadpan'],
+    fit:'close', fitLabel:'great interruption move',
+    quote:["Lisa is the creator of Tuca &amp; Bertie, the production designer/producer of BoJack Horseman, and the production designer/producer of the upcoming Long Story Short. <b>Those are all animated shows, for adults!</b>"],
+    why:"She lists three heavyweight credentials then interrupts herself with an exclamation-marked aside. The interruption is the personality &mdash; it breaks the register of the sentence that came before it. Cheap to execute, very hard to fake.",
+    defaultNote:""
+  },
+  {
+    id:'velour', name:'Sasha Velour', role:'Drag artist / director / writer',
+    url:'https://www.sashavelour.com/about', verified:true,
+    tags:['radical-intimacy','specific-fact-not-trait','editorial'],
+    fit:'partial', fitLabel:'different lever entirely',
+    quote:["Velour is the only child of Mark D. Steinberg, a professor and writer of History and Jane T. Hedges, a copyeditor <b>who died of cancer in 2015</b>.",
+           "Velour lives in Brooklyn, NY, with her partner Johnny and their beloved dog Vanya."],
+    why:"Not funny at all, which is why it&rsquo;s here. After a long list of major credentials she names her parents, her mother&rsquo;s death, her partner and her dog. Radical specificity as the closing move instead of a joke. Worth knowing this lever exists if the humour route ever feels wrong.",
+    defaultNote:""
+  },
+  {
+    id:'adamjk', name:'Adam J. Kurtz', role:'Artist / author, Honolulu',
+    url:'https://adamjk.com/pages/about', verified:true,
+    tags:['self-coined-term','names-own-contradiction'],
+    fit:'partial', fitLabel:'one good technique',
+    quote:["&hellip;whose illustrative work is rooted in honesty, humor, and a little bit of darkness.",
+           "&hellip;delivering what he describes as &ldquo;back-handed optimism&rdquo;"],
+    why:"&lsquo;Back-handed optimism&rsquo; is a coined compound that names a contradiction in his own work. Inventing a two-word term for your own thing is a real technique &mdash; it gives a reader something portable to repeat. The rest of the bio is third-person and standard.",
+    defaultNote:""
+  },
+  {
+    id:'kicks', name:'Kicks Condor', role:'Indie-web writer / directory-keeper',
+    url:'https://www.kickscondor.com/', verified:true,
+    tags:['absurdist-deadpan','refuses-the-format','specific-fact-not-trait'],
+    fit:'close', fitLabel:'weirdest found',
+    quote:["the most exquisite mind in Grape-Nuts marketing that this generation has seen&hellip;"],
+    why:"4 on Register fit &mdash; the only entry in the set that is genuinely <i>weird</i> rather than just funny. It answers &lsquo;who are you&rsquo; with an absurd credential in a field nobody asked about, delivered totally straight. No wink, no explanation. Closest thing found to anti-design applied to prose.",
+    defaultNote:""
+  },
+  {
+    id:'kleon', name:'Austin Kleon', role:'Writer / artist, Austin TX',
+    url:'https://austinkleon.com/about/', verified:true,
+    tags:['crossed-pairing','extreme-compression','opens-flat'],
+    fit:'partial', fitLabel:'technique only',
+    quote:["I&rsquo;m a writer who draws. I make art with words and books with pictures."],
+    why:"The move is chiasmus &mdash; crossing the expected pairings so words go with art and pictures go with books. Two sentences, no adjectives, fully memorable. Tone is warm rather than weird, but the compression technique is clean and stealable.",
+    defaultNote:""
+  },
+  {
+    id:'kazemi', name:'Darius Kazemi', role:'Internet artist, Portland',
+    url:'https://tinysubversions.com/', verified:true,
+    tags:['category-refusal','opens-flat','deadpan'],
+    fit:'partial', fitLabel:'good posture',
+    quote:["Hello. I&rsquo;m Darius Kazemi. I&rsquo;m an internet artist.", "I make bots and generators and other weird internet stuff."],
+    why:"&lsquo;Other weird internet stuff&rsquo; is a deliberate refusal to itemize &mdash; same instinct as Geslot&rsquo;s &lsquo;etc.&rsquo; Flat, unhurried, zero credential anxiety. The opener is deliberately boring, which makes the refusal land harder.",
+    defaultNote:""
+  },
+  {
+    id:'sloan', name:'Robin Sloan', role:'Novelist / printer, Bay Area',
+    url:'https://www.robinsloan.com/about/', verified:true,
+    tags:['deflating-third-item','undercuts-own-credential','specific-fact-not-trait'],
+    fit:'close', fitLabel:'strongest find',
+    quote:["I&rsquo;m the author of the novels Mr. Penumbra&rsquo;s 24-Hour Bookstore, a New York Times Best Seller published in 2012; Sourdough, a <b>non-New York Times Best Seller but still very good book</b> published in 2017&hellip;",
+           "a writer, printer, &amp; manufacturer"],
+    why:"4 on Specificity, 4 on Economy, 4 on Unfakeable. He states a real credential and undercuts it inside the same sentence, no hedging, no wink. &lsquo;Printer &amp; manufacturer&rsquo; instead of the expected third noun. Also mentions producing olive oil. Nothing here is swappable onto another person.",
+    defaultNote:""
+  },
+  {
+    id:'appleton', name:'Maggie Appleton', role:'Designer / anthropologist, GitHub Next',
+    url:'https://maggieappleton.com/about', verified:true,
+    tags:['deflating-third-item','self-deprecating','opens-flat'],
+    fit:'close', fitLabel:'strong, transferable',
+    quote:["Designer, anthropologist, and mediocre developer."],
+    why:"Same mechanic as Sloan, compressed to five words. Two real credentials then a deliberate deflation. 4 on Economy. Register isn&rsquo;t fashion-editorial but the <i>move</i> is exactly transferable to your lane.",
+    defaultNote:""
+  },
+  {
+    id:'mod', name:'Craig Mod', role:'Writer / photographer, Japan',
+    url:'https://craigmod.com/about/', verified:true,
+    tags:['deflating-third-item','admits-a-flaw','specific-fact-not-trait'],
+    fit:'partial', fitLabel:'good mechanic, warm tone',
+    quote:["a writer, photographer, &amp; walker",
+           "I am bad at email, but I do read it all"],
+    why:"&lsquo;Walker&rsquo; as the third noun is the same deflation move. &lsquo;I am bad at email&rsquo; is a real admitted flaw stated flatly, not performed as charming. Tone runs warmer than your lane but the two techniques are clean.",
+    defaultNote:""
+  },
+  {
+    id:'geslot', name:'Emma Geslot', role:'Graphic designer, Paris',
+    url:'https://emmageslot.com', verified:true,
+    tags:['deadpan','extreme-compression','anti-design'],
+    fit:'partial', fitLabel:'right attitude, thin',
+    quote:["Graphic design etc. in Paris &amp; available for work (&bull;\\_&bull;)"],
+    why:"The &lsquo;etc.&rsquo; is doing real work &mdash; refusing to list disciplines is itself a stance. Kaomoji instead of a headshot. Closest thing found to genuine anti-design attitude in <i>writing</i>, but there&rsquo;s almost nothing here to learn from beyond the posture.",
+    defaultNote:""
+  },
+  {
+    id:'niemann', name:'Christoph Niemann', role:'Illustrator, New Yorker covers',
+    url:'https://www.christophniemann.com/about/', verified:true,
+    tags:['third-person-agency-voice','credential-list','anti-example'],
+    fit:'no', fitLabel:'cut',
+    quote:["Christoph Niemann (*1970) is an artist, author and animator. His illustrations are frequently featured on the covers of The New Yorker, and The New York Times Magazine."],
+    why:"Included deliberately: this is a genuinely great illustrator with an entirely generic bio. Proof that talent doesn&rsquo;t produce voice on the About page &mdash; it&rsquo;s a separate decision you have to actually make.",
+    defaultNote:""
+  },
+  {
+    id:'noguier', name:'Robin Noguier', role:'Product designer, France/Portugal',
+    url:'https://robin-noguier.com/about', verified:true,
+    tags:['specific-fact-not-trait', 'ends-on-punchline'],
+    fit:'partial', fitLabel:'closest, not quite',
+    quote:["I&rsquo;m the guy who always organizes the holiday trips&hellip; In my ten year career as an amateur boxer, I have an impressively unimpressive unbeaten record (1-0-0). I always eat standing up because those calories don&rsquo;t count.",
+           "Unlike the Spice Girls, I think that if you want my future, you shouldn&rsquo;t forget about my past."],
+    why:"Scores 4 on Specificity, 3 on Economy. Drops to 2 on Register fit &mdash; this is cheeky/funny, not weird-high-fashion-editorial. The mechanic transfers, the tone doesn&rsquo;t.",
+    defaultNote:"actually most of this doesnt match as well as i thought.  i mean its ok but the parts that catch my eye are the"
+  },
+  {
+    id:'vino', name:'Johny Vino', role:'Human Interface Designer, Apple',
+    url:'https://johnyvino.com', verified:true,
+    tags:['single-controlling-metaphor', 'opens-mid-thought'],
+    fit:'partial', fitLabel:'technique yes, tone no',
+    quote:["A hand-stitched bag feels different&hellip; That&rsquo;s how I design &mdash; hand-crafted, shaped by many perspectives, refined through persistent iteration to meet the highest standards."],
+    why:"Scores well on Economy (one image, no over-explaining). Fails Register fit &mdash; warm/craft metaphor, not weird-editorial. You called this &lsquo;cheesy,&rsquo; and that&rsquo;s criterion 03 talking.",
+    defaultNote:"kind of cute. maybe a bit cheesy for my taste as where my taste ends up being a bit more \"weird but high fashion\" and editorial almost than this"
+  },
+  {
+    id:'covey', name:'Ellen Covey', role:'Senior product designer',
+    url:'https://ellencovey.com', verified:true,
+    tags:['one-real-detail', 'buried-in-filler'],
+    fit:'no', fitLabel:'cut',
+    quote:["a senior product designer with a flair for visuals and a proven track record&hellip;", "When I&rsquo;m not at my desk, I&rsquo;m probably cycling long distances slowly, looking for interesting birds or camping in the rain."],
+    why:"1 on Specificity for the opener, 3 for the second line only. Fails Unfakeable voice overall &mdash; swap the name and 80% of this still works on anyone.",
+    defaultNote:"meh generic"
+  },
+  {
+    id:'jackson', name:'Craig Jackson', role:'Freelance graphic designer &amp; creative director',
+    url:'https://craigjackson.io', verified:true,
+    tags:['third-person-agency-voice', 'credential-list', 'anti-example'],
+    fit:'no', fitLabel:'cut, on purpose',
+    quote:["Craig Jackson is an independent multidisciplinary freelance Graphic Designer&hellip; helping them grow, evolve and connect with the audiences that matter."],
+    why:"1 across all five criteria &mdash; the clean floor of the rubric. Third person, zero specifics, unfakeable-voice score of 1 since literally nothing here is particular to Craig. Your own note on this one is the best thing on the page &mdash; see the callout above.",
+    defaultNote:"generic. its important for us to tell the viewer about me. there is a dynamic between prfoesionalism and showing who i am as a designer and feeling real and authentic. for instance an amazing way we could do this to some extent is to replicate a common human experience. as humans it's often extremely insightful and eye opening when you feel like something was a weird quirk or weird thing u did, experience u hav, a thought or whatever and someone else says it outloud its this jarring but cool moment that makes u feel connected to others more than u realize"
+  },
+  {
+    id:'guan', name:'Stella Guan', role:'Multi-hyphenate: entrepreneur, educator, designer',
+    url:'https://stellaguan.com', verified:true,
+    tags:['resume-as-bio', 'title-per-sentence', 'anti-example'],
+    fit:'no', fitLabel:'cut, on purpose',
+    quote:["Stella Guan is a serial entrepreneur, award-winning multidisciplinary designer, educator, speaker, and content creator&hellip; Founder and CEO of This Uncommon Life&hellip; Founder and CEO of Path Unbound&hellip; founded Top Immigrants&hellip;"],
+    why:"1 on Economy specifically &mdash; explains nothing, just accumulates. Every sentence adds a title instead of an idea, the same density problem you flagged in your own draft sounding &lsquo;like a book,&rsquo; with credentials instead of scenes.",
+    defaultNote:""
+  },
+  {
+    id:'barry', name:'Clare Barry', role:'Creative director, Lions',
+    url:'#', verified:false,
+    tags:['extreme-compression'],
+    fit:'partial', fitLabel:'maybe, if sharpened',
+    quote:["I write down ideas for money."],
+    why:"Reported, not independently confirmed. Maxes Economy (4) by definition. Register fit is genuinely uncertain at six words &mdash; not enough material to tell if it&rsquo;s editorial or just short. You flagged this exact ambiguity yourself.",
+    defaultNote:"kind of low key cheeky which almost gives cute and different if done right."
+  },
+  {
+    id:'shea', name:'Brett Shea', role:'Copywriter &amp; creative director',
+    url:'#', verified:false,
+    tags:['invented-persona-world'],
+    fit:'no', fitLabel:'cut',
+    quote:["Now entering Brett Land."],
+    why:"Also unconfirmed. Fails Register fit the same way as Vino &mdash; inventing a whole persona-world reads theme-park, not editorial. You called it cheesy, criterion 03 again.",
+    defaultNote:"not my taste feels cheesy."
+  }
+];
+
+const STORAGE_KEY = 'voicebank_v3';
+function getStore(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }catch(e){ return {}; }
+}
+function saveStore(s){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }catch(e){}
+}
+
+const ALL_TAGS = [...new Set(DATA.flatMap(d=>d.tags))].sort();
+let activeTags = new Set();
+
+function renderFilterbar(){
+  const el = document.getElementById('filterbar');
+  el.querySelectorAll('.tag-chip').forEach(c=>c.remove());
+  ALL_TAGS.forEach(tag=>{
+    const chip = document.createElement('span');
+    chip.className = 'tag-chip' + (activeTags.has(tag) ? ' active' : '');
+    chip.textContent = tag;
+    chip.onclick = ()=>{
+      if(activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
+      render();
+    };
+    el.appendChild(chip);
+  });
+  if(activeTags.size){
+    const clear = document.createElement('span');
+    clear.className = 'tag-chip';
+    clear.style.color = 'var(--accent)';
+    clear.textContent = 'clear ×';
+    clear.onclick = ()=>{ activeTags.clear(); render(); };
+    el.appendChild(clear);
+  }
+}
+
+function render(){
+  renderFilterbar();
+  const store = getStore();
+  const rows = document.getElementById('rows');
+  rows.innerHTML = '';
+  const items = DATA.filter(d => activeTags.size === 0 || d.tags.some(t=>activeTags.has(t)));
+  document.getElementById('countLabel').textContent = items.length + ' of ' + DATA.length + ' entries shown';
+  items.forEach((d,i)=>{
+    if(!(d.id in store)) store[d.id] = d.defaultNote || '';
+    const tr = document.createElement('tr');
+    tr.className = 'row';
+    tr.innerHTML = `
+      <td>
+        <p class="name"><span class="idx" style="margin-right:6px;">${String(i+1).padStart(2,'0')}</span>${d.name}</p>
+        <p class="role">${d.role}</p>
+        ${d.url!=='#' ? `<a class="url" href="${d.url}" target="_blank" rel="noopener">visit &rarr;</a><br>` : ''}
+        <span class="badge ${d.verified?'verified':'reported'}">${d.verified?'verified':'reported'}</span>
+      </td>
+      <td>${d.quote.map(q=>`<div class="quote">&ldquo;${q}&rdquo;</div>`).join('')}</td>
+      <td><div class="tagrow">${d.tags.map(t=>`<span class="tag-chip" style="cursor:default;">${t}</span>`).join('')}</div><div class="why">${d.why}</div></td>
+      <td><span class="fitpill ${d.fit}">${d.fitLabel}</span></td>
+      <td class="notewrap">
+        <label>Your notes</label>
+        <textarea class="note" data-id="${d.id}" placeholder="">${store[d.id]}</textarea>
+        <div class="saved"></div>
+      </td>
+    `;
+    rows.appendChild(tr);
+  });
+
+  document.querySelectorAll('.note').forEach(ta=>{
+    let t;
+    ta.addEventListener('input', ()=>{
+      clearTimeout(t);
+      t = setTimeout(()=>{
+        const s = getStore();
+        s[ta.dataset.id] = ta.value;
+        saveStore(s);
+        const ind = ta.closest('td').querySelector('.saved');
+        ind.textContent = 'saved';
+        ind.classList.add('show');
+        clearTimeout(ind._t);
+        ind._t = setTimeout(()=>ind.classList.remove('show'), 1200);
+      }, 500);
+    });
+  });
+}
+
+document.getElementById('exportBtn').addEventListener('click', ()=>{
+  const store = getStore();
+  let out = 'Voice bank notes\n' + '='.repeat(30) + '\n\n';
+  DATA.forEach(d=>{
+    const note = (store[d.id] || '').trim();
+    if(note){
+      out += d.name + ' (' + d.fitLabel + ')\n' + note + '\n\n';
+    }
+  });
+  if(out.trim() === 'Voice bank notes\n' + '='.repeat(30)) out += '(nothing written yet)';
+  const box = document.getElementById('exportBox');
+  const ta = document.getElementById('exportText');
+  ta.value = out;
+  box.style.display = 'block';
+  ta.select();
+  navigator.clipboard && navigator.clipboard.writeText(out).then(()=>{
+    const btn = document.getElementById('exportBtn');
+    btn.textContent = 'copied ✓';
+    setTimeout(()=>{ btn.textContent = 'copy my notes for Claude'; }, 1800);
+  }).catch(()=>{});
+});
+
+render();
+</script>

@@ -1,0 +1,332 @@
+<title>About Structures</title>
+<style>
+  :root{
+    --bg:#0a0a0c; --surface:#141519; --surface-2:#1a1c21; --border:#2b2e36; --border-soft:#232630;
+    --text:#edeff3; --text-dim:#9aa1ad; --text-faint:#666d79;
+    --accent:#c1502e; --accent-soft:#2e1a12;
+    --ann:#6f8fae; --ann-soft:#16212c;
+    --cost:#b5715f;
+    --hero:#8a9a7a;
+  }
+  @media (prefers-color-scheme: light){:root:not([data-theme="light"]){--bg:#0a0a0c;--surface:#141519;--text:#edeff3;--text-dim:#9aa1ad;--text-faint:#666d79;}}
+  :root[data-theme="light"]{--bg:#0a0a0c;--surface:#141519;--text:#edeff3;--text-dim:#9aa1ad;--text-faint:#666d79;}
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Archivo',system-ui,sans-serif;line-height:1.5;font-size:14px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1300px;margin:0 auto;padding:40px 24px 90px;}
+
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-style:italic;font-size:clamp(28px,4vw,40px);line-height:1.03;margin:0 0 14px;}
+  .dek{color:var(--text-dim);font-size:13.5px;max-width:80ch;margin:0 0 6px;}
+
+  .keynote{background:var(--surface);border:1px solid var(--accent);border-left-width:3px;border-radius:8px;padding:14px 18px;margin:18px 0 24px;max-width:82ch;}
+  .keynote .t{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:7px;}
+  .keynote p{margin:0;font-size:13.5px;color:var(--text-dim);}
+  .keynote b{color:var(--text);}
+
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:0;}
+  .tab{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;padding:11px 18px;border:1px solid var(--border);border-bottom:none;border-radius:7px 7px 0 0;background:transparent;color:var(--text-faint);cursor:pointer;}
+  .tab:hover{color:var(--text-dim);}
+  .tab.on{background:var(--surface);color:var(--text);border-color:var(--accent);}
+  .tab .sub{display:block;text-transform:none;letter-spacing:0;font-size:10px;color:var(--text-faint);margin-top:3px;}
+  .tab.on .sub{color:var(--text-dim);}
+
+  .panel{display:none;padding-top:26px;}
+  .panel.on{display:block;}
+
+  .modelnote{font-size:12.5px;color:var(--text-faint);margin:0 0 22px;max-width:78ch;line-height:1.6;}
+  .modelnote b{color:var(--text-dim);}
+
+  .blk{display:grid;grid-template-columns:1fr 300px;gap:26px;padding:20px 0;border-top:1px solid var(--border-soft);align-items:start;}
+  .blk:first-of-type{border-top:none;}
+  .blabel{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);margin-bottom:11px;}
+  .blabel.hero{color:var(--hero);}
+
+  .copy{font-family:'Fraunces',Georgia,serif;font-size:17px;line-height:1.48;color:var(--text);}
+  .copy p{margin:0 0 13px;} .copy p:last-child{margin-bottom:0;}
+  .copy .three{margin:16px 0;padding-left:15px;border-left:2px solid var(--border);}
+  .copy .three div{margin-bottom:9px;font-style:italic;}
+  .copy .three div:last-child{margin-bottom:0;}
+  .copy .unsettled{color:var(--text-dim);}
+  .copy small{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-faint);font-style:normal;display:block;margin-top:4px;letter-spacing:.03em;}
+
+  .ann{background:var(--ann-soft);border:1px solid rgba(111,143,174,.25);border-radius:7px;padding:13px 15px;}
+  .ann h4{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ann);margin:0 0 9px;font-weight:400;}
+  .ann ul{margin:0;padding-left:15px;}
+  .ann li{font-size:12px;color:var(--text-dim);line-height:1.5;margin-bottom:8px;}
+  .ann li:last-child{margin-bottom:0;}
+  .ann .tno{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ann);}
+  .ann .cost{color:var(--cost);}
+
+  .verdict{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:15px 18px;margin-top:26px;}
+  .verdict h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);margin:0 0 9px;font-weight:400;}
+  .verdict p{margin:0 0 8px;font-size:13px;color:var(--text-dim);line-height:1.6;}
+  .verdict p:last-child{margin:0;}
+  .verdict b{color:var(--text);}
+
+  .notewrap{margin-top:22px;}
+  .notewrap label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;}
+  textarea{width:100%;resize:vertical;min-height:88px;background:var(--surface-2);color:var(--text);border:1px solid var(--border-soft);border-radius:6px;padding:10px 12px;font-family:'Archivo',sans-serif;font-size:13px;line-height:1.5;}
+  textarea:focus{outline:none;border-color:var(--accent);}
+  .saved{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--hero);height:12px;margin-top:3px;opacity:0;transition:opacity .3s;}
+  .saved.show{opacity:1;}
+
+  .exportBtn{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding:7px 14px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;margin-top:20px;}
+  .exportBtn:hover{background:var(--accent-soft);}
+  #exportBox{display:none;margin-top:12px;}
+  #exportText{width:100%;min-height:180px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:13px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.6;}
+
+  footer{margin-top:34px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-faint);line-height:1.7;}
+  @media(max-width:900px){.blk{grid-template-columns:1fr;}}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Hero and about &mdash; three structures &mdash; exhibit 04</div>
+  <h1>Three ways this could be built</h1>
+  <p class="dek">Not three wordings. Three different information architectures, each derived from one of the sites you sent. Hero and About together, because they have to be decided together.</p>
+
+  <div class="keynote">
+    <span class="t">Why the three lines keep stalling</span>
+    <p>They can't be settled before the structure is, because <b>structure decides what job they do.</b> In model 1 they are the centrepiece and have to carry the page. In model 2 they sit in a personal block and can be looser. In model 3 they are evidence for a claim and have to be concrete. Same three slots, three different writing problems. Pick a structure and the lines get much easier.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-p="1">Model 1<span class="sub">belief-led &middot; Goodside</span></button>
+    <button class="tab" data-p="2">Model 2<span class="sub">split register &middot; Jon Howell</span></button>
+    <button class="tab" data-p="3">Model 3<span class="sub">problem-led &middot; Monolog</span></button>
+  </div>
+
+  <!-- MODEL 1 -->
+  <div class="panel on" id="p1">
+    <p class="modelnote"><b>The Goodside shape.</b> A one-line positioning statement sits small next to the wordmark, then the About page opens on belief and lets everything else follow from it. Closest to what you already have. The belief is the thesis and the three lines are the proof.</p>
+
+    <div class="blk">
+      <div>
+        <div class="blabel hero">Hero &mdash; small text block</div>
+        <div class="copy"><p>I design the systems underneath products, mostly for people the tech industry has never really designed for. Currently at Mondai, occasionally in Figma at 2am.</p></div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#06</span> Rule of three broken. Two straight clauses, then a third that undercuts. The 2am line is the deflation.</li>
+          <li><span class="tno">#39</span> Names the actual thing. Figma, Mondai, not "design tools" and "a startup."</li>
+          <li class="cost"><b>Cost:</b> the 2am joke is the only personality in the hero. If it doesn't land there's nothing else holding it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div>
+        <div class="blabel">About &mdash; opening</div>
+        <div class="copy">
+          <p>I'm convinced that people would be happier if we encouraged one another to figure out our super powers. I've been lucky enough to have the right people around to help me discover some of mine.</p>
+          <div class="three">
+            <div class="unsettled">[ line one &mdash; unsettled ]</div>
+            <div class="unsettled">[ line two &mdash; unsettled ]</div>
+            <div>The kind of energy that pulls people in.</div>
+            <small>centrepiece role &middot; these carry the page &middot; must be strong enough to stand alone</small>
+          </div>
+        </div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#35</span> Attribution. Others found these, so three bold claims arrive as observation rather than boast.</li>
+          <li><span class="tno">#01</span> Names an unnamed thing. Most people have never had a word for their own quirks.</li>
+          <li class="cost"><b>Cost:</b> highest bar for the lines. Nothing else on the page does any work, so a weak line is visibly weak.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div>
+        <div class="blabel">About &mdash; role</div>
+        <div class="copy"><p>I lead design at Mondai, a career tool for people the tech industry usually overlooks. Two years, unpaid, one of four people deciding what it becomes. I met the founder when he was my mentor. Now I'm one of the voices he argues with.</p></div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#38</span> Oddly precise numbers. Two, four. Counted, not estimated.</li>
+          <li><span class="tno">#14</span> Costly admission. "Unpaid" works against you, which is exactly why it reads as honest.</li>
+          <li><span class="tno">#19</span> Peak-end. The mentor reversal is the last thing read and the best line in the block.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h4>Verdict</h4>
+      <p><b>Lowest risk, highest dependency.</b> It preserves everything you've already written and the sequence you said felt right. But it puts the entire weight of the page on three lines that aren't settled, which is why this model has felt stuck.</p>
+      <p><b>Pick this if</b> you want to protect the existing opening and are willing to spend more time on the lines.</p>
+    </div>
+  </div>
+
+  <!-- MODEL 2 -->
+  <div class="panel" id="p2">
+    <p class="modelnote"><b>The Jon Howell shape.</b> His profile page keeps two registers in separate adjacent blocks and never blends them: a straight career paragraph, then a personal one that mentions he is a lifelong Jimmy Buffett fan. The separation is what lets both be fully themselves.</p>
+
+    <div class="blk">
+      <div>
+        <div class="blabel hero">Hero &mdash; small text block</div>
+        <div class="copy"><p>Product designer. I lead design at Mondai, which is a career tool for people the industry skips, and I have been doing it unpaid for two years, which tells you something.</p></div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#45</span> Serious content, flat delivery. A real fact stated without weight.</li>
+          <li><span class="tno">#43</span> The unexplained reference. "Tells you something" refuses to say what. The reader finishes it.</li>
+          <li class="cost"><b>Cost:</b> spends the strongest fact in the hero, so About has to open with something else.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div>
+        <div class="blabel">About &mdash; block one, professional register</div>
+        <div class="copy"><p>Two years ago the founder of Mondai asked me to design a product he had been building in his head for a long time. He had been my mentor. I said yes, and I have been one of four people deciding what it becomes ever since. In that time it went from a set of screens to a system, and from one designer to five.</p></div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#30</span> Scene, not summary. Opens on an actual moment rather than a characterisation.</li>
+          <li><span class="tno">#41</span> Sentence length variance. Long, short, long.</li>
+          <li class="cost"><b>Cost:</b> more words before the reader learns anything about who you are.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div>
+        <div class="blabel">About &mdash; block two, human register</div>
+        <div class="copy">
+          <p>Separately, and this is the part I actually believe: people would be happier if we encouraged one another to figure out our super powers. I've been lucky enough to have the right people around to help me find some of mine.</p>
+          <div class="three">
+            <div class="unsettled">[ line one &mdash; unsettled ]</div>
+            <div class="unsettled">[ line two &mdash; unsettled ]</div>
+            <div>The kind of energy that pulls people in.</div>
+            <small>supporting role &middot; the block before them already established credibility &middot; these can be looser and warmer</small>
+          </div>
+        </div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#24</span> Says the quiet part. "This is the part I actually believe" names the register change out loud, which is what makes the switch legible instead of jarring.</li>
+          <li><span class="tno">#13</span> Pratfall ordering. Competence is fully established first, so warmth reads as secure rather than soft.</li>
+          <li><b>Structural payoff:</b> the lines no longer have to carry the page, so weaker lines survive here.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h4>Verdict</h4>
+      <p><b>This is the one that solves your actual blocker.</b> Because credibility is established before the belief block, the three lines stop being load-bearing. They become the warm close rather than the whole argument.</p>
+      <p><b>Cost:</b> your belief opening no longer opens. You said you preferred belief first, and this contradicts that directly. Worth knowing that preference is what makes model 1 hard.</p>
+    </div>
+  </div>
+
+  <!-- MODEL 3 -->
+  <div class="panel" id="p3">
+    <p class="modelnote"><b>The Monolog shape.</b> Opens on a problem in the world rather than a fact about you, then positions you as the person who noticed it. The founder statement is signed at the bottom, which turns the whole thing into an argument with an author.</p>
+
+    <div class="blk">
+      <div>
+        <div class="blabel hero">Hero &mdash; small text block</div>
+        <div class="copy"><p>The people who most need a way into tech are the ones the industry writes the least software for. I design for them. Currently at Mondai, where that is the entire point.</p></div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#30</span> Leads with the problem, so the reader agrees with something before being asked to be interested in you.</li>
+          <li class="cost"><b>Cost:</b> mission-forward openings can read as worthy. It needs the About page to get personal fast or the whole page stays cold.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div>
+        <div class="blabel">About &mdash; the claim</div>
+        <div class="copy"><p>Most career products assume you already know the unwritten rules. Ours cannot, because our users mostly don't, and that single fact changes almost every decision underneath the interface. I have spent two years working out what it changes.</p></div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#15</span> Preempts the objection. Names the assumption most products make before a reader can call it obvious.</li>
+          <li><span class="tno">#43</span> Withholds. It says a fact changes everything and refuses to list what. That gap pulls the reader down the page.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div>
+        <div class="blabel">About &mdash; the person, signed</div>
+        <div class="copy">
+          <p>I'm convinced people would be happier if we encouraged one another to figure out our super powers, and I've been lucky enough to have the right people around to help me find some of mine.</p>
+          <div class="three">
+            <div class="unsettled">[ line one &mdash; unsettled ]</div>
+            <div class="unsettled">[ line two &mdash; unsettled ]</div>
+            <div>The kind of energy that pulls people in.</div>
+            <small>evidence role &middot; must be concrete and checkable &middot; abstract lines will not survive here</small>
+          </div>
+          <p style="margin-top:16px;">Chadwick Fenner, design lead. Two years, unpaid, one of four voices.</p>
+        </div>
+      </div>
+      <div class="ann">
+        <h4>What's working</h4>
+        <ul>
+          <li><span class="tno">#33</span> Wrong document type. The signature turns the page into a position statement rather than a bio.</li>
+          <li><span class="tno">#19</span> Peak-end. The signature is a deliberate final beat instead of the page just stopping.</li>
+          <li class="cost"><b>Cost:</b> raises the bar on the three lines again. Following a real argument, abstract lines will read as filler.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h4>Verdict</h4>
+      <p><b>Highest ceiling, least like a portfolio.</b> It is the only model where a hiring manager reads an argument rather than a description, and the signature is a move nobody else makes.</p>
+      <p><b>Cost:</b> it is the furthest from what you have, and it makes the belief block share the page with a thesis rather than owning it.</p>
+    </div>
+  </div>
+
+  <div class="notewrap">
+    <label>Your notes on all three</label>
+    <textarea id="note"></textarea>
+    <div class="saved" id="saved"></div>
+  </div>
+  <button class="exportBtn" id="exportBtn">copy my notes for Claude</button>
+  <div id="exportBox"><textarea id="exportText" readonly></textarea></div>
+
+  <footer>
+    <p style="margin:0 0 6px;">Hero copy in all three is new and unsettled. The belief opening is yours, verbatim. The two open lines are marked in every model rather than quietly filled.</p>
+    <p style="margin:0;">Footer, contact and photo deliberately excluded &mdash; you're handling those. Skill lists excluded pending your call.</p>
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById('p'+t.dataset.p).classList.add('on');
+  };
+});
+const K='aboutstructures_v1';
+const note=document.getElementById('note'), sv=document.getElementById('saved');
+try{note.value=localStorage.getItem(K)||''}catch(e){}
+let t;
+note.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(()=>{
+  try{localStorage.setItem(K,note.value)}catch(e){}
+  sv.textContent='saved';sv.classList.add('show');
+  clearTimeout(sv._t);sv._t=setTimeout(()=>sv.classList.remove('show'),1200);
+},500);});
+document.getElementById('exportBtn').onclick=()=>{
+  const v=(note.value||'').trim()||'(nothing written yet)';
+  const o='About structures notes\n'+'='.repeat(30)+'\n\n'+v;
+  const b=document.getElementById('exportBox'),x=document.getElementById('exportText');
+  x.value=o;b.style.display='block';x.select();
+  navigator.clipboard&&navigator.clipboard.writeText(o).then(()=>{
+    const btn=document.getElementById('exportBtn');btn.textContent='copied ✓';
+    setTimeout(()=>{btn.textContent='copy my notes for Claude';},1800);}).catch(()=>{});
+};
+</script>

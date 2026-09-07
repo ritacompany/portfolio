@@ -1,0 +1,522 @@
+<title>Tactics Bank</title>
+<style>
+  :root{
+    --bg:#08090b; --surface:#12141a; --surface-2:#181b23; --border:#282d38; --border-soft:#20242c;
+    --text:#e8ebf0; --text-dim:#9aa2b1; --text-faint:#646c7c;
+    --accent:#5b8fb0; --accent-soft:#152430;
+    --recog:#7fa88a; --surprise:#c08a5e; --trust:#8b8ac0; --memory:#b07f96; --form:#5f9ba3;
+    --warn:#b5715f; --warn-soft:#2a1a15;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="light"]){
+      --bg:#08090b; --surface:#12141a; --surface-2:#181b23; --border:#282d38; --border-soft:#20242c;
+      --text:#e8ebf0; --text-dim:#9aa2b1; --text-faint:#646c7c;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#08090b; --surface:#12141a; --surface-2:#181b23; --border:#282d38; --border-soft:#20242c;
+    --text:#e8ebf0; --text-dim:#9aa2b1; --text-faint:#646c7c;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Archivo',system-ui,-apple-system,sans-serif;
+    line-height:1.5; font-size:14px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1240px; margin:0 auto; padding:44px 24px 100px;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:12px;
+  }
+  .headline-row{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  h1{
+    font-family:'Fraunces',Georgia,serif; font-weight:600; font-style:italic;
+    font-size:clamp(30px,4.2vw,42px); line-height:1.02; letter-spacing:-.015em;
+    margin:0 0 16px; text-wrap:balance;
+  }
+  .idx{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint); letter-spacing:.06em;}
+  .dek{color:var(--text-dim); font-size:13.5px; max-width:82ch; margin:0 0 8px;}
+
+  .frame{
+    background:var(--surface); border:1px solid var(--accent); border-left-width:3px;
+    border-radius:8px; padding:16px 18px; margin:22px 0 10px; max-width:84ch;
+  }
+  .frame .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:8px; display:block;
+  }
+  .frame p{margin:0 0 10px; font-size:14px; color:var(--text); line-height:1.55;}
+  .frame p:last-child{margin-bottom:0;}
+
+  .warnbox{
+    background:var(--warn-soft); border:1px solid var(--warn); border-radius:8px;
+    padding:14px 16px; margin:14px 0 26px; max-width:84ch;
+  }
+  .warnbox .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--warn); margin-bottom:7px; display:block;
+  }
+  .warnbox p{margin:0; font-size:13.5px; color:var(--text-dim); line-height:1.55;}
+
+  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:24px; flex-wrap:wrap;}
+  .exportBtn{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.03em; text-transform:uppercase;
+    padding:7px 14px; border-radius:6px; border:1px solid var(--accent); background:transparent; color:var(--accent);
+    cursor:pointer;
+  }
+  .exportBtn:hover{background:var(--accent-soft);}
+  #exportBox{display:none; margin:14px 0 0;}
+  #exportText{
+    width:100%; min-height:200px; background:var(--surface); color:var(--text); border:1px solid var(--border);
+    border-radius:8px; padding:14px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; line-height:1.6;
+  }
+
+  .filterbar{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px; align-items:center;}
+  .filterbar .flabel{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-right:2px;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.02em;
+    padding:4px 9px; border-radius:4px; background:var(--surface-2); color:var(--text-dim);
+    border:1px solid var(--border-soft); white-space:nowrap; cursor:pointer;
+  }
+  .chip:hover{border-color:var(--text-faint); color:var(--text);}
+  .chip.active{background:var(--accent-soft); border-color:var(--accent); color:var(--text);}
+
+  .table-scroll{overflow-x:auto; margin-top:20px; padding-bottom:4px;}
+  table{width:100%; border-collapse:collapse; table-layout:fixed; min-width:1080px;}
+  th{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--text-faint); text-align:left; padding:0 12px 10px; font-weight:400;
+    border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg);
+  }
+  col.c-n{width:4%;} col.c-name{width:15%;} col.c-mech{width:24%;}
+  col.c-ex{width:22%;} col.c-risk{width:16%;} col.c-note{width:19%;}
+
+  tr.row{border-bottom:1px solid var(--border-soft);}
+  tr.row:hover{background:var(--surface);}
+  td{padding:14px 12px; vertical-align:top;}
+
+  .num{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint);}
+  .tname{font-weight:600; font-size:13.5px; margin:0 0 5px; line-height:1.25;}
+  .catpill{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.05em;
+    text-transform:uppercase; padding:2px 6px; border-radius:3px; margin-bottom:5px;
+  }
+  .catpill.recognition{background:rgba(127,168,138,.13); color:var(--recog);}
+  .catpill.surprise{background:rgba(192,138,94,.13); color:var(--surprise);}
+  .catpill.trust{background:rgba(139,138,192,.13); color:var(--trust);}
+  .catpill.memory{background:rgba(176,127,150,.13); color:var(--memory);}
+  .catpill.form{background:rgba(95,155,163,.13); color:var(--form);}
+  .catpill.structure{background:rgba(140,160,190,.13); color:#8ca0be;}
+  .catpill.voice{background:rgba(190,160,120,.13); color:#bea078;}
+  .catpill.evidence{background:rgba(120,175,160,.13); color:#78afa0;}
+  .catpill.pacing{background:rgba(175,150,185,.13); color:#af96b9;}
+  .catpill.medium{background:rgba(130,170,185,.13); color:#82aab9;}
+  .catpill.curiosity{background:rgba(195,155,110,.13); color:#c39b6e;}
+  .src{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--text-faint); display:block; margin-top:3px;}
+
+  .mech{font-size:12.5px; color:var(--text-dim); line-height:1.5;}
+  .ex{
+    font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:13px; line-height:1.45;
+    color:var(--text); border-left:2px solid var(--border); padding-left:10px;
+  }
+  .risk{font-size:12px; color:var(--text-faint); line-height:1.5;}
+  .risk b{color:var(--warn); font-weight:500;}
+
+  .notewrap label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--text-faint); margin-bottom:5px;
+  }
+  textarea.note{
+    width:100%; resize:vertical; min-height:64px; max-height:240px;
+    background:var(--surface-2); color:var(--text); border:1px solid var(--border-soft);
+    border-radius:6px; padding:8px 10px; font-family:'Archivo',sans-serif; font-size:12.5px; line-height:1.45;
+  }
+  textarea.note:focus{outline:none; border-color:var(--accent);}
+  .saved{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--recog); height:12px; margin-top:3px; opacity:0; transition:opacity .3s;}
+  .saved.show{opacity:1;}
+
+  footer{margin-top:36px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint); line-height:1.6;}
+  footer a{color:var(--text-faint);}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Reader-effect tactics &mdash; companion to the voice bank</div>
+  <div class="headline-row">
+    <h1>How to make someone stop reading</h1>
+    <span class="idx">EXHIBIT&nbsp;02</span>
+  </div>
+  <p class="dek">Not about being weird. About the specific moves that make a reader pause, feel caught, or enjoy the sentence they just read. Twenty-four of them, each with the mechanic, a worked example, and the way it fails.</p>
+
+  <div class="frame">
+    <span class="tag">The effect you described actually has a name</span>
+    <p>What you called &ldquo;that jarring but cool moment that makes u feel connected to others more than u realize&rdquo; is <b>universality</b> &mdash; one of Irvin Yalom&rsquo;s therapeutic factors in group psychotherapy. The realisation, often for the first time, that you are not alone in a thought you assumed was privately yours.</p>
+    <p>The detail that matters for us: when patients themselves rank what helped, universality consistently scores near the top, above things clinicians expect to win. Being told &ldquo;you&rsquo;re not alone&rdquo; does almost nothing. Hearing a stranger describe your specific private thing does the work. That gap is the whole design problem, and it&rsquo;s why the tactics below are about <i>specificity</i>, not reassurance.</p>
+  </div>
+
+  <div class="frame" style="border-color:var(--recog);">
+    <span class="tag" style="color:var(--recog);">Why anything feels private in the first place &mdash; pluralistic ignorance</span>
+    <p>Yalom names the <i>effect</i>. <b>Pluralistic ignorance</b> (Katz &amp; Allport, 1932) names the <i>cause</i>, and it is the more useful of the two. Summarised: <i>no one believes, but everyone thinks that everyone believes.</i> People know their own behaviour does not reflect what they actually feel, then assume everyone else&rsquo;s behaviour does reflect what <i>they</i> feel.</p>
+    <p>The detail that matters most here: people in this state reliably see themselves as <b>deviant, less competent, less knowledgeable, or less committed than their peers</b> &mdash; while every peer privately thinks the same thing. That is the richest available seam, because it is common, it is intense, and it is almost never said aloud in professional writing.</p>
+  </div>
+
+  <div class="warnbox">
+    <span class="tag">Corrected &mdash; the earlier version of this box was wrong</span>
+    <p style="margin:0 0 10px;">It defined the Barnum effect by <b>vagueness</b>, then tested for it by <b>commonality</b>. Those are different properties, and the test contradicted the definition. Universality is <i>by definition</i> true of most people, so &ldquo;could this be true of most readers&rdquo; would have ruled out the exact thing we want.</p>
+    <p style="margin:0 0 10px;">The real axis is not how many people share it. It is <b>whether they know other people share it.</b> Two conditions, not one: specific enough to be falsifiable, <i>and</i> assumed private by the reader.</p>
+    <table style="width:auto; min-width:0; margin:12px 0 0; font-size:12.5px;">
+      <tr>
+        <td style="padding:6px 14px 6px 0; border:none;"></td>
+        <td style="padding:6px 14px; border:none; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint);">Assumed shared</td>
+        <td style="padding:6px 14px; border:none; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint);">Assumed private</td>
+      </tr>
+      <tr>
+        <td style="padding:6px 14px 6px 0; border:none; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint);">Vague</td>
+        <td style="padding:6px 14px; border:none; color:var(--warn);">Barnum. Hollow.</td>
+        <td style="padding:6px 14px; border:none; color:var(--text-faint);">Incoherent &mdash; vagueness cannot feel private</td>
+      </tr>
+      <tr>
+        <td style="padding:6px 14px 6px 0; border:none; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-faint);">Specific</td>
+        <td style="padding:6px 14px; border:none; color:var(--text-dim);">Clich&eacute;. True, flat, no charge.</td>
+        <td style="padding:6px 14px; border:none; color:var(--recog);"><b>Universality. The jolt.</b></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="topbar">
+    <span class="dek" style="margin:0;" id="countLabel">24 tactics</span>
+    <button class="exportBtn" id="exportBtn">copy my notes for Claude</button>
+  </div>
+  <div class="filterbar" id="filterbar"><span class="flabel">Filter</span></div>
+  <div id="exportBox"><textarea id="exportText" readonly></textarea></div>
+
+  <div class="table-scroll">
+  <table>
+    <colgroup><col class="c-n"><col class="c-name"><col class="c-mech"><col class="c-ex"><col class="c-risk"><col class="c-note"></colgroup>
+    <thead><tr><th>#</th><th>Tactic</th><th>The mechanic</th><th>Worked example</th><th>How it fails</th><th>Your notes</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  </div>
+
+  <footer>
+    <p style="margin:0 0 8px;">45 tactics across eleven categories. Grounded where grounding exists: Yalom (universality), Katz &amp; Allport 1932 (pluralistic ignorance), Bruk, Scholl &amp; Bless 2018 (beautiful mess effect, JPSP), false uniqueness / false consensus literature, Aronson 1966 (pratfall), Zeigarnik, Kahneman &amp; Fredrickson (peak-end), von Restorff (isolation effect), Loewenstein (information-gap theory), Forer/Barnum. Genre craft drawn from profile journalism and obituary writing (Alden Whitman, Margalit Fox). Rhetorical devices are classical and named. Comedy structures are standard standup craft.</p>
+    <p style="margin:0 0 8px; color:var(--text-faint);"><b style="color:var(--text-dim);">Revision notes.</b> The Barnum box originally tested for commonality rather than vagueness, which contradicted its own definition and would have excluded universality itself. Corrected above. Tactic 03 was too coarse and split into four once research showed unflattering <i>behaviour</i> and unflattering <i>internal state</i> sit in opposite biases. And the first build over-indexed on recognition &mdash; one effect took eight of twenty-eight slots. Seventeen tactics added across structure, voice, evidence, pacing, medium and curiosity to correct the balance.</p>
+    <p style="margin:0; color:var(--text-faint);">Examples are written fresh to demonstrate each mechanic. They are illustrations of the move, not copy proposals and not quotes from anyone.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = [
+  {id:'t01', cat:'recognition', name:'Name the unnamed feeling', src:'Yalom, universality',
+   mech:'Describe a common internal experience that has no established word for it. The reader has had it but never had language, so your sentence does the naming for them. Highest-yield version of the &ldquo;me too&rdquo; because it delivers relief, not just agreement.',
+   ex:'The specific dread of a Figma file someone else organised.',
+   risk:'<b>Fails when</b> the feeling is too common to need naming. If a word already exists, using the long description just reads as padding.'},
+
+  {id:'t02', cat:'recognition', name:'The specificity paradox', src:'Craft principle',
+   mech:'Counterintuitive but well established: the narrower the detail, the wider the recognition. Precision invites projection because the brain fills gaps. Broad statements give it nothing to fill.',
+   ex:'&ldquo;I reread sent messages&rdquo; lands. &ldquo;I&rsquo;m a perfectionist&rdquo; does not.',
+   risk:'<b>Fails when</b> the specific is <i>only</i> yours with no shared substrate. A detail nobody can map onto anything reads as trivia.'},
+
+  {id:'t03', cat:'recognition', name:'The competence-adjacent admission', src:'Pluralistic ignorance',
+   mech:'Corrected after research. Not any unflattering thing &mdash; specifically an <i>internal state about your own competence</i>. This is the seam where pluralistic ignorance is densest: everyone privately suspects they are less competent than their peers, and everyone assumes the others genuinely have it figured out.',
+   ex:'Admitting you rewrote a message three times before sending it.',
+   risk:'<b>Fails when</b> the flaw is load-bearing for the job. &ldquo;I miss deadlines&rdquo; is disqualifying, not endearing. Aim at the private <i>feeling</i> about the work, never at your reliability doing it.'},
+
+  {id:'t03b', cat:'recognition', name:'The false-consensus trap', src:'Anti-tactic, research-driven',
+   mech:'Research contradicted my original assumption here. People <b>overestimate</b> how many others share their undesirable <i>behaviours</i> &mdash; a &ldquo;safety in numbers&rdquo; justification move. So confessing a common bad habit lands in the clich&eacute; box, not the jolt box.',
+   ex:'&ldquo;I procrastinate.&rdquo; &ldquo;My desktop is a disaster.&rdquo; Reader: yeah, everyone.',
+   risk:'<b>This is the failure itself.</b> The split that matters: unflattering <i>behaviour</i> reads as universal already and goes flat. Unflattering <i>internal state</i> is assumed private and produces the jolt.'},
+
+  {id:'t03c', cat:'recognition', name:'The false-uniqueness trap', src:'Anti-tactic, research-driven',
+   mech:'The mirror image, and it explains something we kept observing without a mechanism. People <b>underestimate</b> how many others share their desirable traits. So stating a good trait plainly gives the reader nothing &mdash; they believe they have it too, and rarer than you.',
+   ex:'&ldquo;I think in systems.&rdquo; Reader: so do I, and better.',
+   risk:'<b>This is why positive-trait bios die.</b> Not merely generic &mdash; structurally incapable of recognition, because the reader&rsquo;s own bias positions them as the more distinctive holder of the same trait.'},
+
+  {id:'t03d', cat:'recognition', name:'Trust their read, not yours', src:'Bruk, Scholl &amp; Bless, 2018',
+   mech:'The &ldquo;beautiful mess effect.&rdquo; You construe your own vulnerability as weakness and exposure; observers construe the same disclosure as courage and authenticity. Construal level theory explains it: you are too close to it, they have distance. Your instinct about what is too much is miscalibrated in a <i>known direction</i>.',
+   ex:'The line you cut for being too revealing is often the one that works.',
+   risk:'<b>Not a licence to overshare.</b> The effect is about ordinary vulnerability, not crisis disclosure. It calibrates the dial, it does not remove it.'},
+
+  {id:'t04', cat:'recognition', name:'The private ritual', src:'Extension of 02',
+   mech:'A specific procedure or superstition you follow and have never explained aloud. Rituals are near-universal and near-universally unspoken, so naming one produces recognition with almost no risk of being generic.',
+   ex:'Naming the exact order you open apps before starting work.',
+   risk:'<b>Fails when</b> it is performed rather than real. Invented quirks read instantly as invented.'},
+
+  {id:'t05', cat:'recognition', name:'The thing you assumed was just you', src:'Yalom, direct',
+   mech:'State it flatly, with no framing and no &ldquo;is it just me or&hellip;&rdquo; hedge. The hedge is what kills it. Delivered straight, the reader supplies the recognition themselves, which is the entire effect.',
+   ex:'Flat statement, no setup, no wink at the reader.',
+   risk:'<b>Fails when</b> you signpost it. &ldquo;We&rsquo;ve all been there&rdquo; does the reader&rsquo;s job for them and removes the discovery.'},
+
+  {id:'t06', cat:'surprise', name:'Rule of three, broken', src:'Standup craft',
+   mech:'Two items establish a pattern, the third breaks it. The most reliable comic structure in existence and the one you already found in the wild four separate times.',
+   ex:'Designer, systems thinker, competitive Roblox dresser.',
+   risk:'<b>Fails when</b> the third item is merely surprising rather than <i>true</i>. Random is not funny. Specific and true and off-pattern is.'},
+
+  {id:'t07', cat:'surprise', name:'Misdirection / the turn', src:'Standup craft',
+   mech:'Clause one sets a direction, clause two reveals you meant something else. Works at sentence scale, so it is cheap to deploy and does not need a whole paragraph.',
+   ex:'&ldquo;I spent two years building a design system. Nobody asked me to.&rdquo;',
+   risk:'<b>Fails when</b> overused. Two turns in a page is craft. Five is a tic, and the reader starts bracing for it.'},
+
+  {id:'t08', cat:'surprise', name:'Bathos, deliberate anticlimax', src:'Classical rhetoric',
+   mech:'Build genuine altitude then drop hard to the mundane. The drop is the joke, and it also works as a humility signal because you are the one puncturing yourself.',
+   ex:'Grand statement of design philosophy, then: &ldquo;Anyway.&rdquo;',
+   risk:'<b>Fails when</b> the build was never sincere. If the reader senses you were setting up the drop the whole time, the deflation has nothing to deflate.'},
+
+  {id:'t09', cat:'surprise', name:'Literalise the figurative', src:'Standup craft',
+   mech:'Take a dead metaphor everyone uses without hearing and mean it literally. Reactivates language that has gone invisible.',
+   ex:'Treating &ldquo;wearing many hats&rdquo; as an actual wardrobe problem.',
+   risk:'<b>Fails when</b> the phrase is still alive. Only works on phrases so worn nobody hears them any more.'},
+
+  {id:'t10', cat:'surprise', name:'Interrupt your own sentence', src:'Observed, Hanawalt',
+   mech:'List credentials, then break in on yourself with an aside in a different register. The interruption is where the personality lives, because it proves a person is present and reacting.',
+   ex:'&ldquo;&hellip;the production designer of three animated shows. For adults!&rdquo;',
+   risk:'<b>Fails when</b> the aside is a joke rather than a genuine impulse. It has to read as something that occurred to you, not something you placed.'},
+
+  {id:'t11', cat:'surprise', name:'Register clash', src:'Classical, high/low',
+   mech:'Put a technical term next to a casual one in the same sentence. The collision is the effect. This is the verbal version of the editorial-meets-anti-design instinct you already have visually.',
+   ex:'&ldquo;Cognitive load&rdquo; and &ldquo;a mess&rdquo; in the same clause.',
+   risk:'<b>Fails when</b> the technical term is wrong or decorative. Jargon used loosely reads as posturing and costs you credibility instantly.'},
+
+  {id:'t12', cat:'surprise', name:'Metanoia, correct yourself in-line', src:'Classical rhetoric',
+   mech:'Say it, then revise it mid-sentence without deleting the first attempt. Shows thinking happening in real time rather than a conclusion being delivered.',
+   ex:'&ldquo;I lead design. Led. It is complicated.&rdquo;',
+   risk:'<b>Fails when</b> it reads as indecision rather than precision. The correction must be sharper than the original, never vaguer.'},
+
+  {id:'t13', cat:'trust', name:'Pratfall effect', src:'Aronson, 1966',
+   mech:'A small blunder makes a <i>competent</i> person more likeable, and a mediocre one less. Order is everything: establish the competence first, then the flaw. Reversed, it just reads as weakness.',
+   ex:'A real capability paragraph, then one admitted small failing.',
+   risk:'<b>Fails when</b> competence is not yet established, or when the flaw is fake-humble. &ldquo;I care too much&rdquo; is the classic dead version.'},
+
+  {id:'t14', cat:'trust', name:'The costly admission', src:'Signalling theory',
+   mech:'Say the thing that works against your own interest. It reads as honest precisely because it is expensive, and cheap talk cannot imitate it.',
+   ex:'Naming what you are not good at, without a recovery clause.',
+   risk:'<b>Fails when</b> you immediately spin it. The recovery clause is what converts an honest admission back into marketing.'},
+
+  {id:'t15', cat:'trust', name:'Preempt the objection', src:'Classical, prolepsis',
+   mech:'Name the doubt the reader is currently forming, before they finish forming it. Being beaten to your own scepticism is disarming, and it transfers authority.',
+   ex:'&ldquo;This is the part where every designer says they think in systems.&rdquo;',
+   risk:'<b>Fails when</b> you name an objection nobody had. Inventing a doubt to defeat plants the doubt.'},
+
+  {id:'t16', cat:'trust', name:'Refuse a claim you could make', src:'Paralipsis, adjacent',
+   mech:'Decline to state something you are entitled to state. The refusal communicates it more strongly than the claim would, and signals you are not counting.',
+   ex:'Mentioning there is a list of clients, and not listing them.',
+   risk:'<b>Fails when</b> transparently coy. Paralipsis proper (&ldquo;I won&rsquo;t mention that I&hellip;&rdquo;) is smug. The refusal must be genuine, not a delivery vehicle.'},
+
+  {id:'t17', cat:'memory', name:'Isolation effect', src:'von Restorff',
+   mech:'In a series of similar items, the one that differs is disproportionately remembered. One deliberate anomaly on an otherwise disciplined page outperforms five.',
+   ex:'One handwritten line in an otherwise typeset page.',
+   risk:'<b>Fails when</b> you use it more than once or twice. Multiple anomalies cancel each other out and the effect goes to zero.'},
+
+  {id:'t18', cat:'memory', name:'Zeigarnik effect', src:'Zeigarnik, 1927',
+   mech:'Interrupted or incomplete tasks are recalled better than completed ones. A deliberately unresolved thread keeps working on the reader after they leave the page.',
+   ex:'Referring to a decision you still think you got wrong, without resolving it.',
+   risk:'<b>Fails when</b> the opening is a hook rather than a real question. Clickbait-shaped gaps read as manipulation and burn trust.'},
+
+  {id:'t19', cat:'memory', name:'Peak-end rule', src:'Kahneman &amp; Fredrickson',
+   mech:'People judge an experience almost entirely by its most intense moment and its ending, not its average. Applied here: engineer one peak and the last line, and stop optimising the middle.',
+   ex:'One line doing all the work, plus a deliberate final sentence.',
+   risk:'<b>Fails when</b> you build a peak the content cannot support. A big swing on a thin page reads as overreach.'},
+
+  {id:'t20', cat:'memory', name:'The portable phrase', src:'Observed, coinage',
+   mech:'Give the reader a two or three word coinage for your own thing. Portable language gets repeated in rooms you are not in, which is the actual mechanism of being remembered.',
+   ex:'A short compound naming a contradiction in your own work.',
+   risk:'<b>Fails when</b> it sounds like a personal brand tagline. If it would look at home on a LinkedIn banner it is dead on arrival.'},
+
+  {id:'t21', cat:'form', name:'Break the container', src:'Form-level',
+   mech:'The About section does not have to be prose. A spec sheet, a footnote, a margin note, an index card, a changelog, a form someone filled in. Format itself carries voice before a word is read.',
+   ex:'Writing the bio as a technical specification with fields.',
+   risk:'<b>Fails when</b> the format is a costume. The container has to match how you actually think, or it reads as a gimmick with a bio inside it.'},
+
+  {id:'t22', cat:'form', name:'Reward the second look', src:'Progressive disclosure',
+   mech:'Something present but not surfaced &mdash; visible on hover, after scroll, or only noticed on a reread. It makes attention feel repaid, and people who find it feel like insiders.',
+   ex:'A line that only appears if you stay long enough to trigger it.',
+   risk:'<b>Fails when</b> load-bearing content is hidden. Never put the thing they need behind an interaction they may not perform.'},
+
+  {id:'t23', cat:'form', name:'The overheard register', src:'Address-level',
+   mech:'Write as though the reader is not the intended audience &mdash; a note to yourself, a message to a colleague, a fragment of something private. Found text is read with more attention than delivered text.',
+   ex:'A bio written as a note you wrote to yourself and did not tidy.',
+   risk:'<b>Fails when</b> staged. Real found text has friction in it: bad punctuation, an unexplained reference. Clean it and it stops reading as found.'},
+
+  {id:'t30', cat:'structure', name:'Scene, not summary', src:'Profile journalism',
+   mech:'The core move of profile writing. Do not characterise yourself, drop the reader into a specific moment and let them draw the conclusion. Journalists immerse in scene rather than telling us about the subject, because a reader who concludes something themselves believes it.',
+   ex:'A specific Tuesday, a specific file, a specific argument &mdash; instead of &ldquo;I&rsquo;m collaborative.&rdquo;',
+   risk:'<b>Fails when</b> the scene has no point. A vivid moment that demonstrates nothing is just an anecdote, and it burns the most expensive real estate on the page.'},
+
+  {id:'t31', cat:'structure', name:'The deliberate snapshot', src:'Alden Whitman, obituary craft',
+   mech:'Whitman&rsquo;s definition of a good obituary: it has the characteristics of a well-focused snapshot, and <i>does not disclose everything</i> yet conveys a vivid and accurate impression. Completeness is not the goal and actively works against vividness.',
+   ex:'Three things about you, chosen. Not eleven, covered.',
+   risk:'<b>Fails when</b> the omissions look accidental rather than composed. A snapshot is framed. A crop that reads as an oversight just looks thin.'},
+
+  {id:'t32', cat:'structure', name:'Constraint as form', src:'Formal',
+   mech:'Impose a visible rule and let the reader see it: exactly one sentence, exactly a hundred words, one line per year. The constraint itself communicates rigour before any content is read, and it forces compression.',
+   ex:'A bio that is one sentence, and obviously on purpose.',
+   risk:'<b>Fails when</b> the constraint fights the content. If the rule forces you to omit something load-bearing, the rule is wrong, not the content.'},
+
+  {id:'t33', cat:'structure', name:'The wrong document type', src:'Formal',
+   mech:'Write the bio as a different genre entirely &mdash; a changelog, a spec sheet, a receipt, a field guide entry, a set of release notes. The mismatch between container and content does the work before a word is read.',
+   ex:'Your career as a changelog with version numbers.',
+   risk:'<b>Fails when</b> the genre is decorative. It has to be a genre <i>you actually think in</i>, or it is a costume with a bio inside it.'},
+
+  {id:'t34', cat:'structure', name:'Two lengths, both live', src:'Formal',
+   mech:'Publish a ten-word version and a long version on the same page. Readers self-select, and the existence of the short one signals you can compress, which is itself a competence claim.',
+   ex:'A single line up top, the full thing underneath for whoever wants it.',
+   risk:'<b>Fails when</b> the two versions disagree in tone. They must read as the same person at two zoom levels, not two drafts.'},
+
+  {id:'t35', cat:'voice', name:'Let someone else make the claim', src:'Attribution',
+   mech:'A quote from a colleague can state something you cannot state about yourself without cost. Third-party attribution launders confidence into credibility &mdash; you already discovered this with the creative-director line.',
+   ex:'One short quote doing the bragging you are not allowed to do.',
+   risk:'<b>Fails when</b> the quote is generic praise. &ldquo;Great to work with&rdquo; is worthless. It must contain an observation only that person would make.'},
+
+  {id:'t36', cat:'voice', name:'The self-interview', src:'Form',
+   mech:'Q&amp;A where you ask yourself the question a reader actually has, including the awkward one. The question format gives permission to answer bluntly, because you are answering rather than volunteering.',
+   ex:'&ldquo;Why is this unpaid?&rdquo; asked and answered in your own words.',
+   risk:'<b>Fails when</b> the questions are soft. Softball questions you wrote yourself are transparently self-serving and read worse than no questions.'},
+
+  {id:'t37', cat:'evidence', name:'Show the artifact, skip the adjective', src:'Proof',
+   mech:'Instead of claiming rigour, display one real artifact &mdash; a note, a decision log, a rejected version. The reader evaluates the object and reaches the adjective on their own.',
+   ex:'The actual message, cropped, instead of &ldquo;I communicate clearly.&rdquo;',
+   risk:'<b>Fails when</b> the artifact needs a paragraph of setup. If it does not read in three seconds it is not doing the job.'},
+
+  {id:'t38', cat:'evidence', name:'The oddly precise number', src:'Credibility',
+   mech:'Precise figures read as counted; round figures read as estimated or inflated. Seven, eleven, a hundred and twenty land differently from &ldquo;dozens&rdquo; or &ldquo;over a hundred.&rdquo;',
+   ex:'&ldquo;Two years, one part-time designer, about a hundred and twenty screens.&rdquo;',
+   risk:'<b>Fails when</b> the precision is fake. A made-up specific number is worse than a vague one, because it invites a question you cannot answer.'},
+
+  {id:'t39', cat:'evidence', name:'Name the actual thing', src:'Concreteness',
+   mech:'Real proper nouns over categories. Not &ldquo;a design tool&rdquo; but the tool. Not &ldquo;a game&rdquo; but the game. Named things are checkable, and checkability reads as honesty even when nobody checks.',
+   ex:'The specific product, city, font, or game &mdash; never the category.',
+   risk:'<b>Fails when</b> the name means nothing to the reader and you do not gloss it. One unexplained reference is intriguing. Five is exclusionary.'},
+
+  {id:'t40', cat:'pacing', name:'The one-line paragraph', src:'Typographic',
+   mech:'A single sentence alone between two blocks functions as a full stop for the eye. It is the cheapest emphasis device available and it works on skimmers, who are most of your readers.',
+   ex:'Any sentence you want remembered, given its own line.',
+   risk:'<b>Fails when</b> repeated. Three of these in a page and none of them are emphatic any more &mdash; the isolation effect cancels itself.'},
+
+  {id:'t41', cat:'pacing', name:'Vary sentence length hard', src:'Prose rhythm',
+   mech:'Uniform sentence length is one of the most reliable tells of generated text. Humans jump from three words to forty. Deliberate variance reads as a person thinking rather than a system producing.',
+   ex:'A long, winding, qualified sentence. Then four words.',
+   risk:'<b>Fails when</b> mechanical. Alternating long-short-long-short on a schedule is its own detectable pattern.'},
+
+  {id:'t42', cat:'medium', name:'It is a website, not a page', src:'Medium-native',
+   mech:'An About section on the web can do things print cannot: change on return visits, respond to time of day, reveal on hover, remember you. Using the medium is itself a design argument for a design portfolio.',
+   ex:'Copy that differs at 2am from what it says at noon.',
+   risk:'<b>Fails when</b> it is a trick rather than a fit. Novel interaction on a bio reads as showing off unless the behaviour means something.'},
+
+  {id:'t43', cat:'curiosity', name:'The unexplained reference', src:'Information gap',
+   mech:'Drop a specific thing and refuse to gloss it. The unexplained detail creates a small gap the reader wants closed, and gaps are what sustain attention past the first screen.',
+   ex:'Naming something without saying what it is.',
+   risk:'<b>Fails when</b> the reader cannot proceed without it. Withhold colour, never withhold the thing they need to understand you.'},
+
+  {id:'t44', cat:'curiosity', name:'Omit the expected thing', src:'Structural absence',
+   mech:'Leave out the element every page in this genre has &mdash; the years of experience, the client logos, the headshot. Absence is loud when the convention is strong, and it signals a deliberate hand.',
+   ex:'No years of experience anywhere on the page.',
+   risk:'<b>Fails when</b> the omitted thing is what they came for. Omission is a statement only if everything else is clearly composed.'},
+
+  {id:'t45', cat:'surprise', name:'Serious content, casual delivery', src:'Register',
+   mech:'State something genuinely weighty in flat, unbothered language. The gap between the content&rsquo;s weight and the delivery&rsquo;s ease is where the effect lives, and it reads as confidence rather than performance.',
+   ex:'A significant fact delivered in the same tone as a small one.',
+   risk:'<b>Fails when</b> the flatness reads as not caring. Underplaying works only if the content is unmistakably heavy on its own.'},
+
+  {id:'t46', cat:'trust', name:'Be useful, not impressive', src:'Generosity',
+   mech:'Give the reader something they can take away &mdash; a real recommendation, a small piece of craft, a genuine opinion they can use. Usefulness is a competence demonstration that costs the reader nothing to verify.',
+   ex:'A specific thing you learned, stated so someone else can use it.',
+   risk:'<b>Fails when</b> it turns into a lesson. One gift, offered flat. A bio that starts teaching becomes a blog post.'},
+
+  {id:'t24', cat:'form', name:'Say the quiet part about the format', src:'Meta-level',
+   mech:'Acknowledge, once, that you know what kind of document this is and what it is for. Naming the frame breaks the frame, and buys permission for everything after it.',
+   ex:'One line admitting you know how an About page usually sounds.',
+   risk:'<b>Fails when</b> used more than once. Two meta moments and the page is about itself instead of about you. Strictly a one-time spend.'}
+];
+
+const CATS = ['recognition','structure','voice','evidence','pacing','medium','curiosity','surprise','trust','memory','form'];
+let activeCats = new Set();
+
+const STORAGE_KEY = 'tacticsbank_v1';
+function getStore(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }catch(e){ return {}; } }
+function saveStore(s){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }catch(e){} }
+
+function renderFilters(){
+  const el = document.getElementById('filterbar');
+  el.querySelectorAll('.chip').forEach(c=>c.remove());
+  CATS.forEach(c=>{
+    const chip = document.createElement('span');
+    chip.className = 'chip' + (activeCats.has(c)?' active':'');
+    chip.textContent = c;
+    chip.onclick = ()=>{ activeCats.has(c)?activeCats.delete(c):activeCats.add(c); render(); };
+    el.appendChild(chip);
+  });
+  if(activeCats.size){
+    const clr = document.createElement('span');
+    clr.className='chip'; clr.style.color='var(--accent)'; clr.textContent='clear ×';
+    clr.onclick=()=>{ activeCats.clear(); render(); };
+    el.appendChild(clr);
+  }
+}
+
+function render(){
+  renderFilters();
+  const store = getStore();
+  const rows = document.getElementById('rows');
+  rows.innerHTML='';
+  const items = DATA.filter(d=> activeCats.size===0 || activeCats.has(d.cat));
+  document.getElementById('countLabel').textContent = items.length + ' of ' + DATA.length + ' tactics';
+  items.forEach(d=>{
+    if(!(d.id in store)) store[d.id]='';
+    const tr=document.createElement('tr');
+    tr.className='row';
+    tr.innerHTML = `
+      <td><span class="num">${d.id.replace('t','')}</span></td>
+      <td>
+        <span class="catpill ${d.cat}">${d.cat}</span>
+        <p class="tname">${d.name}</p>
+        <span class="src">${d.src}</span>
+      </td>
+      <td><div class="mech">${d.mech}</div></td>
+      <td><div class="ex">${d.ex}</div></td>
+      <td><div class="risk">${d.risk}</div></td>
+      <td class="notewrap">
+        <label>Your notes</label>
+        <textarea class="note" data-id="${d.id}"></textarea>
+        <div class="saved"></div>
+      </td>`;
+    rows.appendChild(tr);
+    tr.querySelector('.note').value = store[d.id];
+  });
+
+  document.querySelectorAll('.note').forEach(ta=>{
+    let t;
+    ta.addEventListener('input',()=>{
+      clearTimeout(t);
+      t=setTimeout(()=>{
+        const s=getStore(); s[ta.dataset.id]=ta.value; saveStore(s);
+        const ind=ta.closest('td').querySelector('.saved');
+        ind.textContent='saved'; ind.classList.add('show');
+        clearTimeout(ind._t); ind._t=setTimeout(()=>ind.classList.remove('show'),1200);
+      },500);
+    });
+  });
+}
+
+document.getElementById('exportBtn').addEventListener('click',()=>{
+  const store=getStore();
+  let out='Tactics bank notes\n'+'='.repeat(30)+'\n\n';
+  let any=false;
+  DATA.forEach(d=>{
+    const n=(store[d.id]||'').trim();
+    if(n){ any=true; out += d.id.replace('t','')+'. '+d.name+' ['+d.cat+']\n'+n+'\n\n'; }
+  });
+  if(!any) out+='(nothing written yet)';
+  const box=document.getElementById('exportBox'); const ta=document.getElementById('exportText');
+  ta.value=out; box.style.display='block'; ta.select();
+  navigator.clipboard && navigator.clipboard.writeText(out).then(()=>{
+    const b=document.getElementById('exportBtn');
+    b.textContent='copied ✓'; setTimeout(()=>{b.textContent='copy my notes for Claude';},1800);
+  }).catch(()=>{});
+});
+
+render();
+</script>

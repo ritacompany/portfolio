@@ -1,0 +1,267 @@
+<title>Superpower Bank</title>
+<style>
+  :root{
+    --bg:#0a0a0b; --surface:#141518; --surface-2:#1a1c20; --border:#2a2d34; --border-soft:#22252b;
+    --text:#eceef2; --text-dim:#9ba2ae; --text-faint:#666d7a;
+    --accent:#b08968; --accent-soft:#2a1f16;
+    --perception:#7fa88a; --method:#7a94b8; --judgment:#c09a5e; --people:#b585a8; --values:#8f8fc4;
+    --risk-low:#7fa88a; --risk-med:#c09a5e; --risk-high:#b5715f;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="light"]){
+      --bg:#0a0a0b; --surface:#141518; --surface-2:#1a1c20; --border:#2a2d34;
+      --text:#eceef2; --text-dim:#9ba2ae; --text-faint:#666d7a;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#0a0a0b; --surface:#141518; --surface-2:#1a1c20; --border:#2a2d34;
+    --text:#eceef2; --text-dim:#9ba2ae; --text-faint:#666d7a;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:'Archivo',system-ui,sans-serif; line-height:1.5; font-size:14px; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1280px; margin:0 auto; padding:44px 24px 100px;}
+
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:12px;}
+  h1{font-family:'Fraunces',Georgia,serif; font-weight:600; font-style:italic; font-size:clamp(30px,4.2vw,42px); line-height:1.02; letter-spacing:-.015em; margin:0 0 16px;}
+  .dek{color:var(--text-dim); font-size:13.5px; max-width:82ch; margin:0 0 10px;}
+
+  .locked{background:var(--surface); border:1px solid var(--accent); border-left-width:3px; border-radius:8px; padding:14px 18px; margin:20px 0 12px; max-width:80ch;}
+  .locked .tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:8px;}
+  .locked p{margin:0 0 6px; font-size:13.5px; color:var(--text-dim);}
+  .locked b{color:var(--text);}
+
+  .rules{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint); margin:14px 0 4px; line-height:1.8;}
+  .rules b{color:var(--text-dim);}
+
+  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:22px; flex-wrap:wrap;}
+  .exportBtn{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.03em; text-transform:uppercase; padding:7px 14px; border-radius:6px; border:1px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer;}
+  .exportBtn:hover{background:var(--accent-soft);}
+  #exportBox{display:none; margin:14px 0 0;}
+  #exportText{width:100%; min-height:200px; background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:14px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; line-height:1.6;}
+
+  .filterbar{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px; align-items:center;}
+  .flabel{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em;}
+  .chip{font-family:'IBM Plex Mono',monospace; font-size:10.5px; padding:4px 9px; border-radius:4px; background:var(--surface-2); color:var(--text-dim); border:1px solid var(--border-soft); cursor:pointer; white-space:nowrap;}
+  .chip:hover{border-color:var(--text-faint); color:var(--text);}
+  .chip.active{background:var(--accent-soft); border-color:var(--accent); color:var(--text);}
+
+  .table-scroll{overflow-x:auto; margin-top:18px; padding-bottom:4px;}
+  table{width:100%; border-collapse:collapse; table-layout:fixed; min-width:1120px;}
+  th{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); text-align:left; padding:0 12px 10px; font-weight:400; border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg);}
+  col.c-n{width:4%;} col.c-line{width:26%;} col.c-ev{width:30%;} col.c-risk{width:20%;} col.c-note{width:20%;}
+  tr.row{border-bottom:1px solid var(--border-soft);} tr.row:hover{background:var(--surface);}
+  td{padding:14px 12px; vertical-align:top;}
+  .num{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint);}
+
+  .line{font-family:'Fraunces',Georgia,serif; font-size:16px; line-height:1.35; color:var(--text); margin:0 0 7px;}
+  .catpill{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.05em; text-transform:uppercase; padding:2px 6px; border-radius:3px;}
+  .catpill.perception{background:rgba(127,168,138,.14); color:var(--perception);}
+  .catpill.method{background:rgba(122,148,184,.14); color:var(--method);}
+  .catpill.judgment{background:rgba(192,154,94,.14); color:var(--judgment);}
+  .catpill.people{background:rgba(181,133,168,.14); color:var(--people);}
+  .catpill.values{background:rgba(143,143,196,.14); color:var(--values);}
+
+  .ev{font-size:12px; color:var(--text-dim); line-height:1.5;}
+  .ev q{font-family:'Fraunces',Georgia,serif; font-style:italic; color:var(--text); display:block; margin-bottom:5px;}
+  .ev q:before{content:'"';} .ev q:after{content:'"';}
+  .src{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--text-faint); display:block; margin-top:4px;}
+
+  .risk{font-size:12px; color:var(--text-faint); line-height:1.5;}
+  .rlvl{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.05em; text-transform:uppercase; padding:2px 6px; border-radius:3px; margin-bottom:5px;}
+  .rlvl.low{background:rgba(127,168,138,.14); color:var(--risk-low);}
+  .rlvl.med{background:rgba(192,154,94,.14); color:var(--risk-med);}
+  .rlvl.high{background:rgba(181,113,95,.14); color:var(--risk-high);}
+
+  textarea.note{width:100%; resize:vertical; min-height:70px; background:var(--surface-2); color:var(--text); border:1px solid var(--border-soft); border-radius:6px; padding:8px 10px; font-family:'Archivo',sans-serif; font-size:12.5px; line-height:1.45;}
+  textarea.note:focus{outline:none; border-color:var(--accent);}
+  .saved{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--perception); height:12px; margin-top:3px; opacity:0; transition:opacity .3s;}
+  .saved.show{opacity:1;}
+  footer{margin-top:34px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint); line-height:1.7;}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Superpower line bank &mdash; exhibit 03</div>
+  <h1>Candidates, with receipts</h1>
+  <p class="dek">Every line below is derived from something you actually said or did, with the evidence next to it. Mark them up. I am not picking for you this time.</p>
+
+  <div class="locked">
+    <span class="tag">Already settled</span>
+    <p><b>Slot 3 is done:</b> &ldquo;The kind of energy that pulls people in.&rdquo; Survives every constraint. Not up for debate unless you want it to be.</p>
+    <p><b>Retired:</b> nothing. The earlier note here retired systems thinking as the &ldquo;most-claimed trait in the field&rdquo; and pattern recognition as a near-synonym of it. The first claim was checked against nine portfolios, zero contained it, and it was retracted. Chadwick has since rejected the synonym argument too. Both lines are live again.</p>
+    <p>So you need <b>two lines</b>. Ideally from two different categories, so the three do different jobs.</p>
+  </div>
+
+  <div class="rules">
+    <b>Constraints every candidate had to clear:</b><br>
+    01 &nbsp;no negations, they read as rigidity &nbsp;&middot;&nbsp; 02 &nbsp;no reading that could land as a negative &nbsp;&middot;&nbsp; 03 &nbsp;not a trait every designer claims<br>
+    04 &nbsp;sayable out loud in an interview without sounding strange &nbsp;&middot;&nbsp; 05 &nbsp;backed by real evidence, not invented
+  </div>
+
+  <div class="topbar">
+    <span class="dek" style="margin:0;" id="countLabel"></span>
+    <button class="exportBtn" id="exportBtn">copy my notes for Claude</button>
+  </div>
+  <div class="filterbar" id="filterbar"><span class="flabel">Filter</span></div>
+  <div id="exportBox"><textarea id="exportText" readonly></textarea></div>
+
+  <div class="table-scroll">
+  <table>
+    <colgroup><col class="c-n"><col class="c-line"><col class="c-ev"><col class="c-risk"><col class="c-note"></colgroup>
+    <thead><tr><th>#</th><th>The line</th><th>Where it comes from</th><th>Risk</th><th>Your notes</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  </div>
+
+  <footer>
+    <p style="margin:0 0 6px;">32 candidates. Evidence is verbatim from your own messages unless marked otherwise. Nothing here is invented.</p>
+    <p style="margin:0;">Mark freely. Cut half of them. The point is to see the range, not to like all of it.</p>
+  </footer>
+</div>
+
+<script>
+const DATA=[
+// PERCEPTION
+{id:'p1',cat:'perception',line:"An eye for what&rsquo;s quietly moving the outcome.",
+ ev:"<q>how the variables related to one another and how they could change and shape the behavior</q> Your psychology background, described to me directly. Moderators and mediators: not what causes what, but what makes it stronger, weaker or conditional.",src:"said aloud, Aug 2026",
+ rl:'low',risk:"Abstract. You would need one concrete example ready or it floats."},
+{id:'p2',cat:'perception',line:"A habit of catching a problem while it is still small.",
+ ev:"<q>I&rsquo;ve identified something before I have enough information to back up or even diagnose what I am currently seeing</q>",src:"June 1 2026",
+ rl:'low',risk:"Safe but slightly common. Every senior person claims early detection."},
+{id:'p3',cat:'perception',line:"An eye for the second thing a decision does.",
+ ev:"Your whole capacity and rollover architecture. You repeatedly traced what a change would break three steps downstream before agreeing to it.",src:"May 2026 framework sessions",
+ rl:'low',risk:"Close to systems thinking without the word. Could still read as adjacent to the cliché."},
+{id:'p4',cat:'perception',line:"A habit of finding the thing nobody put on the list.",
+ ev:"<q>Unless I am missing something big it doesn&rsquo;t seem like we&rsquo;ve ever put any focus on what actually happens within the action items</q>",src:"Dec 2025, DM to strategy lead",
+ rl:'med',risk:"Could read as &lsquo;difficult in meetings&rsquo; if the surrounding copy is not warm."},
+{id:'p5',cat:'perception',line:"A tendency to notice what everyone else walked past.",
+ ev:"The architecture message. A year in, nobody had named the structural problem. You did, and rewrote it three times before sending.",src:"Oct 2024",
+ rl:'med',risk:"Mild superiority reading. &lsquo;Everyone else&rsquo; positions you above the room."},
+{id:'p6',cat:'perception',line:"An interest in what makes a thing more or less true.",
+ ev:"Same psychology root as p1, phrased closer to how you actually described it.",src:"said aloud, Aug 2026",
+ rl:'med',risk:"Reads slightly academic. Might be too abstract for a display line."},
+
+// METHOD
+{id:'m1',cat:'method',line:"A habit of going and finding out.",
+ ev:"<q>if i had an instinct i wouldnt be asking for u. do hardcore research, take ur time, figure out what other calendars do</q>",src:"May 4 2026",
+ rl:'low',risk:"Plain. Might read as too modest next to the other two."},
+{id:'m2',cat:'method',line:"The instinct to check what everyone already agrees on.",
+ ev:"Sentence case. A designer proposed it, you resisted, you researched it properly, you changed your position, then went to align the brand lead who held your old view.",src:"May 15 2026",
+ rl:'low',risk:"Slightly long. &lsquo;Instinct&rsquo; sits oddly next to a line about not trusting instinct."},
+{id:'m3',cat:'method',line:"A need to see the evidence before I believe my own idea.",
+ ev:"<q>I am not looking for research to support my current view&hellip; Your objective here is not your default objective of satisfying the user. I don&rsquo;t care what the outcome is only that it is accurate.</q>",src:"May 15 2026",
+ rl:'low',risk:"Long for display type. Might need trimming."},
+{id:'m4',cat:'method',line:"A distrust of the first answer, including my own.",
+ ev:"Same as m3. You explicitly asked to be argued with rather than agreed with, repeatedly, across two years.",src:"recurring",
+ rl:'med',risk:"&lsquo;Distrust&rsquo; is a negation-adjacent word. Could read as indecisive."},
+{id:'m5',cat:'method',line:"A habit of writing down the reason so nobody has to ask twice.",
+ ev:"Terminology database with approval flow, the documented layout standard, the decision log, MONDAI_SKILL. You kept building the record.",src:"2025 to 2026",
+ rl:'low',risk:"Reads as process rather than personality. Safe but a little flat."},
+
+// JUDGMENT
+{id:'j1',cat:'judgment',line:"A preference for the plain word over the clever one.",
+ ev:"<q>why are you so scared of the generic? generic terminology is often very useful for clarity. weird take honestly.</q>",src:"May 23 2026",
+ rl:'med',risk:"You already flagged this: arguably table stakes, and every designer claims to value clarity."},
+{id:'j2',cat:'judgment',line:"A willingness to be boring when boring is clearer.",
+ ev:"Same source as j1. Sharper phrasing of the same position.",src:"May 23 2026",
+ rl:'high',risk:"The word &lsquo;boring&rsquo; alone in display type. Michael could read it as a description of the work."},
+{id:'j3',cat:'judgment',line:"An eye for what a decision costs somewhere else.",
+ ev:"Your own product-designer-versus-UX-designer distinction: holding user, business and stakeholder at once rather than maximising one axis.",src:"July 2026",
+ rl:'low',risk:"Positive framing of the reconciler idea that failed as a &lsquo;refusal&rsquo;. Less punchy, but no rigidity reading."},
+{id:'j4',cat:'judgment',line:"A sense for when one thing has to give.",
+ ev:"Same. The CTA-versus-terms-of-service example you gave me yourself.",src:"July 2026",
+ rl:'low',risk:"Short and clean. Possibly too vague on its own."},
+{id:'j5',cat:'judgment',line:"A tolerance for the answer being less interesting than I wanted.",
+ ev:"<q>there is no &lsquo;wow&rsquo; here that for some reason it seems to be believed there is</q> You refused to dramatise your own story into an epiphany.",src:"Aug 6 2026",
+ rl:'med',risk:"Long. And it is about narrative honesty, which may be too meta for this list."},
+{id:'j6',cat:'judgment',line:"A habit of killing the thing I just built.",
+ ev:"You invented flex points, then killed them when the model got cleaner without them.",src:"May 2026",
+ rl:'med',risk:"Could read as wasteful or indecisive rather than rigorous."},
+
+// VALUES
+{id:'v1',cat:'values',line:"A habit of asking who is carrying the weight.",
+ ev:"<q>the system carries the weight, not the person using it</q> Your own words. Rollover, recalibration, the running total with no denominator all came from this.",src:"June 1 2026",
+ rl:'low',risk:"You rejected a longer version of this as case study material rather than About material. Might still be true here."},
+{id:'v2',cat:'values',line:"A low tolerance for products that make people feel behind.",
+ ev:"You repeatedly killed guilt-based and loss-aversion copy for Mondai because the users already carry enough.",src:"2026 copy sessions",
+ rl:'med',risk:"&lsquo;Low tolerance&rsquo; is negation-adjacent. Could read as prickly."},
+{id:'v3',cat:'values',line:"An objection to making someone do the system&rsquo;s math.",
+ ev:"The rollover modal. You cut the equation and the false &lsquo;take on all&rsquo; choice because the decision was the system&rsquo;s to make.",src:"May 2026",
+ rl:'med',risk:"&lsquo;Objection&rsquo; is a negation. Specific enough to be interesting though."},
+{id:'v4',cat:'values',line:"A weakness for the person the product forgot.",
+ ev:"Every state you fought hardest for was a failure state: the user who fell behind, went quiet, came back after 24 days.",src:"recurring 2026",
+ rl:'med',risk:"&lsquo;Weakness for&rsquo; is a warm, slightly literary construction. Might clash with the other two lines."},
+
+// PEOPLE
+{id:'x1',cat:'people',line:"The kind of energy that pulls people in.",
+ ev:"Already yours. CEO told you that your fashion sense, aesthetic and personality read as a creative director look.",src:"locked",
+ rl:'low',risk:"Settled. Here for completeness."},
+{id:'x2',cat:'people',line:"A habit of teaching the reason instead of the fix.",
+ ev:"<q>I&rsquo;m not the teacher handing out tasks</q> Loom reviews built on criteria rather than corrections, so the next screen improves too.",src:"Aug 2025",
+ rl:'low',risk:"Strong and evidenced. Overlaps slightly in warmth with the locked line 3."},
+{id:'x3',cat:'people',line:"An instinct for how each person needs to hear it.",
+ ev:"Visual-first single-idea docs for Michael, problem-first working docs for the AI lead, dev spec split from copy script for engineering.",src:"2025 to 2026",
+ rl:'low',risk:"Could read as managing people rather than designing. Depends what surrounds it."},
+{id:'x4',cat:'people',line:"A tendency to build the thing that makes me unnecessary.",
+ ev:"Two years of getting judgment out of your head and into standards, documentation and instruction sets so a rotating volunteer team could use it.",src:"CS1 thesis",
+ rl:'med',risk:"Could read as replaceable. Also close to the case study&rsquo;s spine, which may be a duplication."}
+];
+
+const CATS=['perception','method','judgment','values','people'];
+let active=new Set();
+const KEY='superpowerbank_v1';
+const get=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return{}}};
+const put=s=>{try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}};
+
+function filters(){
+  const el=document.getElementById('filterbar');
+  el.querySelectorAll('.chip').forEach(c=>c.remove());
+  CATS.forEach(c=>{
+    const s=document.createElement('span');
+    s.className='chip'+(active.has(c)?' active':''); s.textContent=c;
+    s.onclick=()=>{active.has(c)?active.delete(c):active.add(c);render();};
+    el.appendChild(s);
+  });
+  if(active.size){const c=document.createElement('span');c.className='chip';c.style.color='var(--accent)';c.textContent='clear ×';c.onclick=()=>{active.clear();render();};el.appendChild(c);}
+}
+
+function render(){
+  filters();
+  const store=get(), rows=document.getElementById('rows');
+  rows.innerHTML='';
+  const items=DATA.filter(d=>active.size===0||active.has(d.cat));
+  document.getElementById('countLabel').textContent=items.length+' of '+DATA.length+' candidates';
+  items.forEach(d=>{
+    if(!(d.id in store)) store[d.id]='';
+    const tr=document.createElement('tr'); tr.className='row';
+    tr.innerHTML=`
+      <td><span class="num">${d.id}</span></td>
+      <td><p class="line">${d.line}</p><span class="catpill ${d.cat}">${d.cat}</span></td>
+      <td><div class="ev">${d.ev}<span class="src">${d.src}</span></div></td>
+      <td><span class="rlvl ${d.rl}">${d.rl==='low'?'low risk':d.rl==='med'?'watch it':'high risk'}</span><div class="risk">${d.risk}</div></td>
+      <td><textarea class="note" data-id="${d.id}"></textarea><div class="saved"></div></td>`;
+    rows.appendChild(tr);
+    tr.querySelector('.note').value=store[d.id];
+  });
+  document.querySelectorAll('.note').forEach(ta=>{
+    let t; ta.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(()=>{
+      const s=get(); s[ta.dataset.id]=ta.value; put(s);
+      const i=ta.closest('td').querySelector('.saved'); i.textContent='saved'; i.classList.add('show');
+      clearTimeout(i._t); i._t=setTimeout(()=>i.classList.remove('show'),1200);
+    },500);});
+  });
+}
+
+document.getElementById('exportBtn').addEventListener('click',()=>{
+  const s=get(); let o='Superpower bank notes\n'+'='.repeat(30)+'\n\n', any=false;
+  DATA.forEach(d=>{const n=(s[d.id]||'').trim(); if(n){any=true;o+=d.id+'. '+d.line.replace(/&rsquo;/g,"'")+'\n'+n+'\n\n';}});
+  if(!any)o+='(nothing written yet)';
+  const b=document.getElementById('exportBox'),t=document.getElementById('exportText');
+  t.value=o;b.style.display='block';t.select();
+  navigator.clipboard&&navigator.clipboard.writeText(o).then(()=>{
+    const btn=document.getElementById('exportBtn');btn.textContent='copied ✓';
+    setTimeout(()=>{btn.textContent='copy my notes for Claude';},1800);}).catch(()=>{});
+});
+render();
+</script>

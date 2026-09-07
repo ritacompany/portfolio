@@ -13,3 +13,7 @@
 
 # local until reviewed for anything private
 .handoff-review/
+
+# personal conversation corpus, do not publish
+docs/about-source/HUMAN_CORPUS.txt
+docs/about-source/CHADWICK_ONLY.txt
