@@ -11,6 +11,8 @@ dist/
 .remember/
 .unlazy/
 .unlazy-hook-state.json
+.playwright-cli/
+output/
 
 # local until reviewed for anything private
 .handoff-review/
