@@ -1,0 +1,184 @@
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/satoshi-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/satoshi-medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: clip;
+}
+
+body {
+  background: #18181b;
+  color: #f2f1f8;
+  font-family: "Satoshi", Arial, sans-serif;
+  font-weight: 500;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.foundation-canvas {
+  position: relative;
+  width: min(100%, 1920px);
+  margin-inline: auto;
+  overflow: hidden;
+  background: #040405;
+}
+
+.foundation-grid {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: min(56px, max(2.777778vw, calc(3.333333vw - 8px)));
+  padding-inline: min(64px, max(2.777778vw, calc(5vw - 32px)));
+  pointer-events: none;
+}
+
+.foundation-grid span {
+  background: rgb(72 44 255 / 10%);
+  border-inline: 1px solid rgb(72 44 255 / 24%);
+}
+
+.prototype-note,
+.study-label {
+  position: relative;
+  z-index: 6;
+  color: #aeaeb4;
+  font-size: min(0.972222vw, 18.667px);
+  line-height: 140%;
+  letter-spacing: min(0.019444vw, 0.373px);
+  text-transform: uppercase;
+}
+
+.prototype-note {
+  display: flex;
+  justify-content: space-between;
+  padding: 27px min(64px, max(2.777778vw, calc(5vw - 32px))) 0;
+}
+
+.display-study {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #28282b;
+}
+
+.study-label {
+  position: absolute;
+  top: 36px;
+  left: min(64px, max(2.777778vw, calc(5vw - 32px)));
+}
+
+.hero-study {
+  height: 800px;
+}
+
+.hero-study h1 {
+  position: absolute;
+  top: 537px;
+  left: min(0px, max(-3.472222vw, calc(10.416667vw - 200px)));
+  width: min(1920px, 106.944444vw, calc(79.166667vw + 400px));
+  color: #fbf7f8;
+  font-size: min(376.5px, 20.972222vw, calc(15.520833vw + 78.5px));
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: max(-20.7075px, -1.153472vw, calc(-0.853646vw - 4.3175px));
+  white-space: nowrap;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+.superpowers-study {
+  height: 532px;
+}
+
+.superpowers-study h2 {
+  position: absolute;
+  top: 154px;
+  left: min(0px, max(-2.777778vw, calc(8.333333vw - 160px)));
+  width: min(1920px, max(92.430556vw, calc(122.708333vw - 436px)));
+  color: #e8e7ee;
+  font-size: min(357.7px, max(17.222222vw, calc(22.854167vw - 81px)));
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: max(-19.6735px, min(-0.947222vw, calc(-1.256979vw + 4.4605px)));
+  white-space: nowrap;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+.outro-study {
+  height: 595px;
+}
+
+.outro-study h2 {
+  position: absolute;
+  top: 216px;
+  left: min(0px, max(-2.013889vw, calc(6.041667vw - 116px)));
+  width: min(1920px, 104.027778vw, calc(87.916667vw + 232px));
+  color: #e8e7ee;
+  font-size: min(271.7px, 14.722222vw, calc(12.4375vw + 32.9px));
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: max(-14.9435px, -0.809722vw, calc(-0.684063vw - 1.8095px));
+  white-space: nowrap;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+.measure-study {
+  position: relative;
+  min-height: 620px;
+  padding: 150px min(64px, max(2.777778vw, calc(5vw - 32px)));
+}
+
+.measure-study > .study-label {
+  top: 72px;
+}
+
+.measure-layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: min(56px, max(2.777778vw, calc(3.333333vw - 8px)));
+}
+
+.measure-layout h2 {
+  grid-column: 1 / span 5;
+  max-width: min(35.763889vw, 686.667px);
+  color: #f2f1f8;
+  font-size: min(2.777778vw, 53.333px);
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: max(-1.067px, -0.055556vw);
+}
+
+.measure-layout p {
+  grid-column: 7 / span 6;
+  max-width: min(45.451389vw, 872.667px);
+  color: #dedee5;
+  font-size: min(1.666667vw, 32px);
+  line-height: 132%;
+  letter-spacing: min(0.003333vw, 0.064px);
+}

@@ -41,7 +41,10 @@ Status values are `not discussed`, `draft`, `approved`, `implemented` and `verif
 
 * The accepted 1440 homepage is the desktop visual reference.
 * The desktop grid has 12 stretch columns, 40 pixel page margins and 40 pixel gutters.
-* The responsive content canvas must continue growing beyond 1440 pixels. The exact maximum is not approved yet.
+* The responsive content canvas grows through 1920 pixels, then remains centered at that maximum.
+* The desktop grid remains 12 stretch columns. Its margins grow from 40 pixels at 1440 to 64 pixels at 1920. Its gutters grow from 40 pixels at 1440 to 56 pixels at 1920.
+* Margins, gutters and text also respond below the 1440 reference while the desktop structure remains viable.
+* All text responds to viewport changes. Exact type values and structural reflow require section-level approval.
 * Large display type may bleed beyond the canvas without creating horizontal scrolling.
 * When the content canvas reaches its eventual maximum and outer browser space begins to appear, display words must no longer look cropped against that empty space. Their bleed should resolve gradually to a full-width fit by that endpoint.
 * Mobile is deliberately recomposed rather than treated as a scaled desktop page.
@@ -56,16 +59,14 @@ Status values are `not discussed`, `draft`, `approved`, `implemented` and `verif
 * Use fluid values for continuous changes such as page margins, gutters and selected display sizes.
 * Use breakpoints only where content needs to reflow, disappear, appear or change structure.
 * Keep absolute positioning only for intentional art direction such as overlap or edge bleed.
-* Test 1920 pixels as the leading candidate for the maximum content canvas. Between 1440 and 1920, continue growing the grid and gradually reduce the display-word crop. Above the approved maximum, center the canvas and allow outer browser space.
+* Between 1440 and 1920, continue growing the grid and gradually reduce the display-word crop. Above 1920, center the canvas and allow outer browser space.
 
 ### Open decisions
 
-* Maximum content width, with 1920 pixels as the current test candidate
 * Minimum page margin
 * Minimum gutter
 * Column behavior below desktop
 * Smallest supported viewport
-* Which display type roles scale fluidly
 * Exact content-driven breakpoint locations
 
 ## Figma layout audit
@@ -86,9 +87,27 @@ The implementation cannot copy every Figma sizing mode literally because the fil
 
 No minimum width values were defined on the inspected major frames. Figma therefore gives useful alignment, fill, hug and fixed-size evidence, but it does not supply a complete responsive specification by itself.
 
+## Wide desktop foundation prototype
+
+Status: approved
+
+The isolated review page is `site/responsive-foundation.html`. It tests the global wide-screen system without changing the accepted homepage in `site/index.html`:
+
+* The content canvas grows from 1440 to an approved 1920 pixel ceiling, then centers inside wider browser space.
+* Page margins grow continuously from 40 to 64 pixels.
+* Grid gutters grow continuously from 40 to 56 pixels.
+* The grid remains 12 equal stretch columns throughout this range.
+* CHADWICK and CATCHY OUTRO retain their intentional 1440 bleed, then reduce that bleed continuously until the text fits the canvas at 1920.
+* Superpowers retains its intentional 1440 edge overlap, then resolves continuously until it fits the canvas at 1920.
+* Every text size in the prototype responds below and above the 1440 reference, including labels and readable-measure samples. Text blocks scale with their type where required to preserve line relationships. Growth stops at the 1920 ceiling.
+* The prototype establishes the global responsive behavior. Exact type values remain subject to section-level approval.
+* No structural breakpoint or section reflow is included.
+
+The prototype was measured and captured at 1434, 1440, 1600, 1728, 1920 and 2048 pixels. It has no horizontal document overflow at those widths. Chadwick approved its wide canvas, margin, gutter, responsive-text and edge-resolution rules. Tablet, mobile and section-specific behavior remain unapproved.
+
 ## Section sequence
 
-0. Global foundation, draft: canvas, grid, margins, gutters, type strategy and testing range
+0. Global foundation, approved: canvas, grid, margins, gutters, type strategy and testing range
 1. Hero and navigation, not discussed: header layout, display word, navigation links, link states and full-screen menu
 2. Work cards, not discussed: images, metadata, views, card links and responsive stacking
 3. Mondai index, not discussed: header, collection label, case rows, arrows and destination behavior

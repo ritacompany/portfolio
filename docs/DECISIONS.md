@@ -53,6 +53,18 @@ Codex must explain the purpose and scope of a proposed branch or commit, then re
 approval before creating it. The planned responsive implementation remains one branch with separate
 reviewable commits for the foundation and each verified section.
 
+## 2026-09-08: Wide desktop responsive foundation approved
+
+The responsive content canvas grows through 1920 pixels, then remains centered at that maximum.
+The 12-column grid retains the accepted 40 pixel margins and 40 pixel gutters at 1440 pixels.
+Margins grow fluidly to 64 pixels and gutters grow fluidly to 56 pixels at 1920 pixels. These values
+also respond below the 1440 reference while the desktop structure remains viable.
+
+All text must respond to viewport changes rather than remaining frozen at the 1440 reference. Exact
+type values and structural reflow still require section-level approval. CHADWICK, Superpowers and
+CATCHY OUTRO retain their intentional edge overlap at 1440 pixels, resolve it continuously and fit
+inside the canvas at 1920 pixels. None of that bleed may create horizontal page scrolling.
+
 ## Existing design direction
 
 The portfolio should use an asymmetric, editorial and evidence-led layout grammar. Figma is the visual source of truth. The existing Haven and Mondai WIP frames are protected from direct edits unless explicitly approved.
