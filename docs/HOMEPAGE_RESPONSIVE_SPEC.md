@@ -108,11 +108,32 @@ The prototype was measured and captured at 1434, 1440, 1600, 1728, 1920 and 2048
 ## Section sequence
 
 0. Global foundation, approved: canvas, grid, margins, gutters, type strategy and testing range
-1. Hero and navigation, not discussed: header layout, display word, navigation links, link states and full-screen menu
+1. Hero and navigation, approved for wide desktop: header layout, display word, navigation links and link states. Compact navigation and the full-screen menu remain open
 2. Work cards, not discussed: images, metadata, views, card links and responsive stacking
 3. Mondai index, not discussed: header, collection label, case rows, arrows and destination behavior
 4. About, not discussed: quote, portrait, display word, superpower statements and overview rows
 5. Footer, not discussed: callout, button, contact links, location and live clock placement
+
+### Hero and navigation
+
+Status: approved for wide desktop
+
+* Desktop reference: the accepted Figma-based hero at 1440 by 800 pixels.
+* Elements and reading order: logo, biography, relocation note, primary navigation and CHADWICK.
+* Alignment anchors: logo begins at the leading page margin. The biography starts 121 pixels after that margin at 1440, matching the updated custom Figma spacing. The relocation note begins at column 6 and navigation ends at the trailing page margin. All four top-row groups share the same initial top alignment.
+* Fluid values: from 1440 to 1920 pixels, hero height grows from 800 to 1000 pixels and CHADWICK grows from 302 to 376.5 pixels. The page margins, gutters and horizontal anchors continue following the approved responsive grid.
+* Display behavior: CHADWICK starts at 302 pixels with a 50 pixel left bleed at 1440. It grows to 376.5 pixels and resolves to the canvas edge at 1920. Its vertical placement grows with the hero so the bottom crop remains visually proportional. Its detached Figma styling is represented by the approved custom tracking runs: C and the second C use negative 7 percent tracking, HA and W use negative 5 percent, I uses negative 8 percent and the final K inherits negative 5.5 percent.
+* Fixed values: biography text stays at 16 pixels, navigation text stays at 14 pixels and the logo stays at 60.458 by 17.92 pixels. Their top position stays at 27 pixels. Biography width stays 341 pixels, relocation width stays 201 pixels and the 76 pixel navigation gap stays fixed. Font families, weights, colors, copy and navigation labels remain the accepted values. Current copy is still temporary layout content.
+* Reflow rules: none in this wide-desktop study. Structural changes below the viable desktop range will be defined separately.
+* Visibility or replacement rules: all wide-desktop top-row elements remain visible. The logo and three navigation links are sticky. The biography and relocation note only align with that menu at the top of the page, then scroll away with the hero. The menu button and full-screen menu are not part of this study.
+* Breakpoint triggers: 1920 pixels is the growth ceiling. The first compact-layout breakpoint remains open until the header is tested below the wide range.
+* Default, hover, focus and active states: navigation preserves its accepted default color, underlines and brightens on hover, uses a visible two pixel keyboard-focus outline and shifts to Neutral 500 while pressed. States have no animation.
+* Click or keyboard behavior: links retain the existing homepage anchors. Each link has at least a 44 pixel-tall interaction area and remains reachable in source order by keyboard. Sticky behavior does not trap focus or change the reading order.
+* Content growth and wrapping: biography keeps its accepted fixed width and wrapping. Relocation and navigation labels remain on one line in the wide range.
+* Accessibility requirements: semantic navigation, visible focus, no horizontal page overflow and no text clipping except the intentional CHADWICK edge treatment.
+* Intentional exceptions: CHADWICK is art-directed and may remain absolutely positioned. Header content uses normal grid placement.
+* Open questions: the compact-layout breakpoint, tablet composition, mobile composition, menu button and full-screen menu remain deliberately open.
+* Verification evidence: isolated study at `site/hero-navigation-study.html`, measured at 1434, 1440, 1600, 1728, 1920 and 2048 pixels.
 
 ## Section decision template
 

@@ -65,6 +65,17 @@ type values and structural reflow still require section-level approval. CHADWICK
 CATCHY OUTRO retain their intentional edge overlap at 1440 pixels, resolve it continuously and fit
 inside the canvas at 1920 pixels. None of that bleed may create horizontal page scrolling.
 
+## 2026-09-09: Wide hero and navigation approved
+
+The 1440 hero retains the updated Figma spacing and detached custom tracking for CHADWICK. Only
+CHADWICK changes type size across the wide desktop range. Biography text remains 16 pixels,
+navigation text remains 14 pixels and the logo remains 60.458 by 17.92 pixels. Their horizontal
+positions follow the responsive grid while their sizes and custom internal spacing remain fixed.
+
+The logo and navigation links remain sticky as the page scrolls. The biography and relocation note
+align with them at the top of the hero but scroll away with the hero because they are not menu
+content. Navigation retains visible hover, focus and pressed states without motion.
+
 ## Existing design direction
 
 The portfolio should use an asymmetric, editorial and evidence-led layout grammar. Figma is the visual source of truth. The existing Haven and Mondai WIP frames are protected from direct edits unless explicitly approved.
