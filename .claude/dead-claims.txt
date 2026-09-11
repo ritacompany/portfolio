@@ -1,15 +1,28 @@
-# Claims known to be FALSE or RETRACTED.
-# One per line. Matched case-insensitively against Claude's response before it is allowed to finish.
+# GENERATED. Do not edit by hand, your change will be overwritten.
+# Built by .claude/hooks/build-dead-claims.py from the Rejected copy and Killed lists
+# in the about-page skill, plus .claude/dead-claims-manual.txt.
+# To block something, reject it in the skill. There is nothing to keep in sync here.
+#
+# Matched case-insensitively against Claude's response before it is allowed to finish.
 # Discussing one of these is fine. Asserting one is blocked.
-# Add a line here the moment something is found to be false, and it can never come back silently.
 
-most-claimed trait in the field
-the universality slot
+a condition nobody wrote down
+a preference for the plain word over the clever one
 a taste for the choice that should not work
-star of the event does not exist
-the star of the event was invented
+a willingness to kill my own good ideas
+always thinks he's right
 bridge lexically back to block 1
-slot two is upstream
-human-centered, strategy, collaboration, visual impact
+decisions I could only half explain
 Haven is an app he has been designing across multiple years
 Haven, a multi-year
+human-centered, strategy, collaboration, visual impact
+Mondai first so he stops interrupting himself
+most-claimed trait in the field
+no real attachment to my own ideas
+refusal to make one thing better by making another worse
+slot two is upstream
+star of the event does not exist
+the number does not move
+the shape underneath it
+the star of the event was invented
+the universality slot

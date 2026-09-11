@@ -1,0 +1,24 @@
+# Hand maintained. Feeds the generated dead-claims.txt alongside the about-page skill.
+#
+# Put a phrase here only when it is not a quoted line in the skill's Rejected copy or
+# Killed lists. Anything quoted there is picked up on its own and does not belong here.
+#
+# A line starting with - is an exemption. It is never blocked, even if the skill quotes it.
+
+# Retracted findings and paraphrases. These are not lines of copy, so they have no
+# quoted form in the skill, but asserting one is still wrong.
+most-claimed trait in the field
+the universality slot
+star of the event does not exist
+the star of the event was invented
+bridge lexically back to block 1
+slot two is upstream
+human-centered, strategy, collaboration, visual impact
+Haven is an app he has been designing across multiple years
+Haven, a multi-year
+
+# Exemptions
+# Rejected as a line of copy, but it is an ordinary English sentence. Blocking it would
+# fire on unrelated writing, and a check that cries wolf gets ignored. The strike lives
+# in the skill instead, where a reader sees it.
+-I didn't think of that
