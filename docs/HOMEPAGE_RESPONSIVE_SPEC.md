@@ -1,6 +1,6 @@
 # Homepage responsive and behavior specification
 
-Status: planning in progress
+Status: ready for single-task responsive implementation
 
 This file is the working source of truth for homepage responsiveness and non-motion behavior. It exists so Codex, Claude Code and future tasks can continue without reconstructing decisions from chat history.
 
@@ -10,33 +10,33 @@ Use sources in this order:
 
 1. Explicit owner-approved decisions in `docs/DECISIONS.md`
 2. Entries marked `approved` in this specification
-3. The accepted 1440 implementation in `site/`
-4. The Figma `Master` frame at node `3461:7711`
-5. Entries marked `draft` in this specification
-6. Conversation history
+3. The committed wide study in `site/homepage-wide-study.html` and its companion files
+4. The older fixed 1440 implementation in `site/index.html` and `site/styles.css`
+5. The Figma `Master` frame at node `3461:7711`
+6. Entries marked `draft` in this specification
+7. Conversation history
 
 A recent message amends only the rule it directly addresses. It does not silently replace unrelated approved rules. When a new request conflicts with an approved entry, record the amendment before implementation.
 
 ## Working method
 
-First define the global grid and canvas rules. Then work through the homepage one section at a time.
+Complete the responsive homepage in one task. First define the global grid and canvas rules, then work
+through the sections in order.
 
 For each section:
 
 1. Inspect the accepted 1440 reference.
 2. Record layout, resizing, reflow and visibility behavior.
 3. Record links, controls, states and other non-motion behavior belonging to that section.
-4. Build the strongest evidence-based recommendation as a reversible study. Do not require Chadwick
-   to design the responsive solution before it can be tested.
+4. Implement the strongest evidence-based responsive treatment as a reversible working-tree change.
 5. Follow `docs/FRONTEND_WORKFLOW.md`: verify anchor widths and widths between them, inspect every
    fresh capture, correct defects and repeat until the complete pass is clean.
-6. Present one verified recommendation. Mark it `approved` only after Chadwick accepts any decision
-   reserved to him, then apply the rule to the homepage.
-7. Record the decision and verification evidence, then continue to the next section.
+6. Record the section's rule and verification evidence, then continue without an approval stop.
+7. Present the complete verified homepage once every section and the full-page integration pass are clean.
 
-Do not build the whole responsive page before review. A section study may be implemented and tested
-while its design status remains `draft`. Do not separate closely related layout and interaction rules
-into different tasks. Motion remains a later scope.
+Do not pause for routine breakpoint, layout, spacing, stacking, crop or responsive display-size choices.
+Pause only if completion requires changing locked copy, typography, brand direction or desktop art direction.
+Mobile remains deliberately recomposed and motion remains a later scope.
 
 Status values are `not discussed`, `draft`, `approved`, `implemented` and `verified`.
 
@@ -116,8 +116,8 @@ The prototype was measured and captured at 1434, 1440, 1600, 1728, 1920, 2048 an
 1. Hero and navigation, approved for wide desktop: header layout, display word, navigation links and link states. Compact navigation and the full-screen menu remain open
 2. Work cards, approved for wide desktop: images, metadata, views, card links and responsive stacking
 3. Mondai index, approved for wide desktop: header, collection label, case rows, arrows and destination behavior
-4. About, wide-desktop study ready for review: quote, portrait, display word, superpower statements and overview rows
-5. Footer, wide-desktop study ready for review: callout, button, contact links, location and live clock placement
+4. About, committed wide baseline: quote, portrait, display word, superpower statements and overview rows
+5. Footer, committed wide baseline: callout, button, contact links, location and live clock placement
 
 ### Hero and navigation
 
@@ -183,7 +183,7 @@ Status: approved for wide desktop
 
 ### About
 
-Status: draft, wide-desktop study ready for review
+Status: committed wide baseline for responsive work
 
 * Desktop reference: the Figma About frame at node `3461:27984`, extracted directly from the Master frame and captured at 1440 pixels.
 * Elements and reading order: three-line quote with bolt, supporting intro, portrait, Superpowers display, three superpower statements, Overview row and Current role row.
@@ -196,12 +196,12 @@ Status: draft, wide-desktop study ready for review
 * Content growth and wrapping: intro and overview blocks grow vertically when their fixed-size type wraps. Their rows use minimum heights so text is never clipped.
 * Accessibility requirements: meaningful portrait alternative, decorative bolt with an empty alternative, logical source order, no horizontal scrolling and no clipped supporting text.
 * Intentional exceptions: Superpowers keeps its detached Figma tracking, original left clipping and right-side breathing room at and beyond the canvas ceiling.
-* Open questions: owner approval of the demonstrated wide composition. The current second superpower mirrors the Figma draft but is not recorded as locked About copy. Tablet and mobile composition remain open.
+* Open questions: the current second superpower is not recorded as locked About copy, but copy is outside this responsive task and must remain unchanged. Tablet and mobile composition remain open.
 * Verification evidence: combined study at `site/homepage-wide-study.html`, checked at 786, 900, 960, 1024, 1194, 1200, 1434, 1440, 1600, 1728, 1920 and 2048 pixels. The three statement line counts and measures are tested at every width. The 1440 About capture is compared directly with the fresh Figma reference.
 
 ### Footer
 
-Status: draft, wide-desktop study ready for review
+Status: committed wide baseline for responsive work
 
 * Desktop reference: the Figma footer frame at node `3461:7986`, extracted directly from the Master frame and captured at 1440 pixels.
 * Elements and reading order: CATCHY OUTRO display, fixed call-to-action button, Chicago location, live Chicago time, LinkedIn label and email link.
@@ -215,43 +215,40 @@ Status: draft, wide-desktop study ready for review
 * Content growth and wrapping: contact lines remain on one line in the verified wide range. The location and contact groups stay separated.
 * Accessibility requirements: a semantic email link, visible focus, at least 44 pixel interaction targets, machine-readable time and no horizontal overflow.
 * Intentional exceptions: CATCHY OUTRO uses detached Figma tracking and retains its intentional left and right edge overlap at and beyond the canvas ceiling.
-* Open questions: the LinkedIn profile URL plus final button copy and destination remain owner decisions. Tablet and mobile composition remain open.
+* Open questions: the LinkedIn profile URL plus final button copy and destination remain owner decisions, but they are outside this responsive task and must not block it. Tablet and mobile composition remain open.
 * Verification evidence: combined study at `site/homepage-wide-study.html`, checked at 900, 960, 1024, 1194, 1200, 1434, 1440, 1600, 1728, 1920 and 2048 pixels. The hero also has explicit height checks at 1194 by 775, 1440 by 800 and 1440 by 1000. The 1440 footer capture is compared directly with the fresh Figma reference. The live clock is verified against `America/Chicago`.
 
 ## Compact, tablet and mobile execution plan
 
-Status: recommended plan, no compact or mobile layout approved or implemented
+Status: execution plan approved, no compact or mobile layout implemented
 
 ### Recommendation
 
-Do not split future tasks by breakpoint. Tablet and mobile are coupled expressions of the same
-responsive system, so separating them would duplicate discovery and encourage contradictory CSS.
-Use one future task per homepage section, take that section from the widest approved state through
-compact, tablet and mobile behavior, then review it before the next section begins.
+Use one new Codex task in this same project for the entire responsive homepage. Tablet and mobile are
+coupled expressions of the same system, so separating them would duplicate discovery and encourage
+contradictory CSS. The agent should work through the sections in order, but those are internal checkpoints,
+not reasons to stop for approval.
 
-Keep every section on one responsive branch and one semantic HTML structure. Use separate commits
-for the foundation and each verified section, subject to the existing requirement that Chadwick
-approves the branch and commit purpose first. A separate branch is justified only for a competing
-art direction that may be discarded.
+Keep every section in one semantic HTML structure. Chadwick is committing the accepted wide version on the
+existing `codex/homepage-responsive` branch before the responsive task starts. A new worktree must start from
+that branch, not `main`, because `main` does not contain the wide-study commits. The responsive agent should not
+create another branch or commit unless Chadwick asks. It should leave one complete, tested working-tree change
+for review.
 
 ### Preflight dependency
 
-The responsive source is not yet consolidated. `site/index.html` and `site/styles.css` remain the
-accepted fixed 1440 implementation, while the newer wide behavior and semantic improvements live in
-`site/homepage-wide-study.html`, its CSS and its JavaScript. About and footer are still draft wide
-studies awaiting review. The current working tree also contains uncommitted responsive work.
+The committed wide study is the accepted desktop source for this task. `site/index.html` and
+`site/styles.css` still contain the older fixed 1440 implementation, while the finished wide behavior
+and semantic improvements live in `site/homepage-wide-study.html`, its CSS and its JavaScript.
 
-Before compact or mobile implementation begins:
+At the start of the responsive task:
 
-1. Review the combined wide study and resolve the remaining About and footer decisions.
-2. Reconcile the accepted wide study into the canonical homepage files without changing its approved
-   1440 appearance.
-3. Capture a clean 1440 baseline plus the approved wide anchors.
-4. Explain the responsive branch and first commit boundary, then receive Chadwick's approval before
-   creating either.
+1. Treat the committed wide study as the accepted desktop source.
+2. Capture a clean 1440 baseline plus the approved wide anchors.
+3. Implement against that source and make the finished responsive page the canonical homepage.
+4. Preserve the accepted 1440 and wide behavior throughout the work.
 
-Starting breakpoint work before this consolidation would create two responsive sources and force the
-same structural decisions to be made twice.
+This source promotion is part of the responsive task. It is not a review stop.
 
 ### Content-driven breakpoint method
 
@@ -367,19 +364,18 @@ reference. This is a prerequisite, not compact or mobile implementation.
 
 Derive the compact and mobile canvas rules from the stress sweep. Recompose hero and header together,
 because display width, sticky navigation, biography placement and the menu trigger compete for the same
-space. Stop for review once one fully tested recommendation covers both tablet and mobile.
+space. Continue directly to the next section after the phase gates pass.
 
 #### Phase 2: Work cards, then Mondai index
 
-Use a separate task for each section. Carry each section through both structural ranges, verify it and
-record its breakpoint cause before moving to the next. Work cards come first because they establish the
-media, metadata and horizontal-margin behavior reused lower on the page.
+Carry each section through both structural ranges, verify it and record its breakpoint cause before moving
+to the next. Work cards come first because they establish the media, metadata and horizontal-margin behavior
+reused lower on the page.
 
 #### Phase 3: About, then footer
 
-Use a separate task for each section. About gets its own task because it has the highest density of
-art-directed relationships and text-growth risks. Footer follows after page margins, display treatment
-and stacking behavior are stable.
+About gets its own internal gate group because it has the highest density of art-directed relationships and
+text-growth risks. Footer follows after page margins, display treatment and stacking behavior are stable.
 
 #### Phase 4: Full-screen menu and integration audit
 
@@ -387,9 +383,9 @@ Build the full-screen menu only after the compact trigger is approved. Then run 
 section transitions, sticky layering, anchors, accumulated vertical rhythm, interaction states, browser
 coverage and regressions at every approved width.
 
-### Future task boundaries
+### Single-task work order
 
-Use these tasks in order:
+Use this order inside one end-to-end implementation task:
 
 1. Wide-source consolidation plus the compact and mobile foundation, hero and navigation
 2. Work cards across compact, tablet and mobile
@@ -398,9 +394,11 @@ Use these tasks in order:
 5. Footer across compact, tablet and mobile
 6. Full-screen menu plus full-page responsive audit
 
-Each task must begin by reading the authority files listed in the handoff requirements below. It owns
-only its named section plus shared tokens that are necessary for that section. Every task updates this
-specification with the actual failure point, chosen rule, reviewed widths, corrected defects and status.
+The task must begin by reading the authority files listed in the handoff requirements below. Make reversible
+responsive decisions yourself. Do not pause for intermediate approval when a gate passes. Only stop and ask
+when the work cannot continue without changing locked copy, typography, brand direction, desktop art direction
+or using missing external information. Update this specification with each actual failure point, chosen rule,
+reviewed width, corrected defect and final status before reporting completion.
 
 ### Verification plan
 
@@ -428,10 +426,10 @@ usable, no unreviewed capture remains and this specification contains the eviden
 
 ### Skills, tools and plugin decision
 
-Use the installed `responsive-design` and `better-layout` skills to derive content-driven structure. Use
-the installed `playwright` skill for browser sweeps, computed-geometry checks, state checks and fresh
-screenshots. Use `accessibility-test-plan` and `design-qa-checklist` to define the manual checks. Use
-`unlazy` to keep section acceptance gates visible through implementation and re-verification.
+Use the installed `unlazy` skill first to create acceptance gates for the full task. Use `responsive-design`
+and `better-layout` to derive content-driven structure. Use `playwright` for browser sweeps, computed-geometry
+checks, state checks and fresh screenshots. Use `accessibility-test-plan` and `design-qa-checklist` to define
+the manual checks.
 
 Use the existing Figma connector only to read the Master node, inspect constraints and export current
 reference screenshots or assets. The browser implementation remains the responsive source because Figma
@@ -443,6 +441,12 @@ or browser testing capability. Marketplace conclusion: the popular external resp
 overlap the installed skill and the project-specific workflow, while lower-adoption audit skills add no
 coverage that is missing from the installed Playwright, accessibility and design QA stack. Installing more
 guidance would add process variance without removing a real blocker.
+
+The exact `no-ai-slop` skill is not installed in this environment. The external skills found under that name
+edit prose rather than responsive interface composition, so they do not add useful layout coverage here. Apply
+the intent directly: preserve this portfolio's asymmetric editorial system and reject generic card grids,
+bento layouts, stock mobile templates, decorative gradients and unearned visual effects. Do not claim the
+missing skill was loaded.
 
 Marketplace review recorded 10 Sep 2026:
 
@@ -467,12 +471,41 @@ Marketplace review recorded 10 Sep 2026:
 
 Start the next task with this instruction:
 
-> Read `AGENTS.md`, `CLAUDE.md`, `docs/PROJECT_CONTEXT.md`, `docs/DECISIONS.md`,
-> `docs/FRONTEND_WORKFLOW.md`, `docs/HOMEPAGE_RESPONSIVE_SPEC.md` and `NEXT.md`. Follow the Compact,
-> tablet and mobile execution plan. Work only on the next incomplete phase. Treat exact breakpoints as
-> content-driven findings. Do not split tablet and mobile into separate implementations. Preserve the
-> accepted 1440 baseline, use the Figma Master only as reference and complete the browser plus visual
-> verification loop before asking for review.
+> Build the complete compact, tablet and mobile homepage in one end-to-end task. Do not stop for section
+> approvals or routine implementation choices. Read `AGENTS.md`, `CLAUDE.md`, `docs/PROJECT_CONTEXT.md`,
+> `docs/DECISIONS.md`, `docs/FRONTEND_WORKFLOW.md`, `docs/HOMEPAGE_RESPONSIVE_SPEC.md` and `NEXT.md` before
+> editing. This task must start from the existing `codex/homepage-responsive` branch, not `main`. Use the
+> committed wide study as the accepted desktop source, preserve its 1440 through 1920 behavior and make the
+> finished responsive page the canonical homepage.
+>
+> Use the installed `unlazy` skill first. Write gates for the complete page before implementation and do not
+> report completion until every gate is reverified. Also use `responsive-design`, `better-layout`, `playwright`,
+> `accessibility-test-plan` and `design-qa-checklist`. The exact `no-ai-slop` skill is not installed here, so do
+> not pretend to load it. Apply its intended visual constraint directly: preserve the existing asymmetric,
+> editorial design and do not introduce generic card grids, bento layouts, gradients, stock mobile patterns or
+> decorative effects that are not already part of the desktop system.
+>
+> Implement the complete responsive homepage, including foundation, hero, navigation, work cards, Mondai index,
+> About, footer and the compact full-screen menu. Derive breakpoints from the widths where the content actually
+> fails. Do not treat common device widths as automatic CSS breakpoints. Use one DOM and one responsive stylesheet.
+> Make reversible responsive decisions yourself, including grid, margins, spacing, stacking, media crops and
+> responsive display sizes. Do not change copy, type family, type weight, type style, colors, personal brand or
+> desktop art direction. Do not add motion.
+>
+> Work in two internal passes. Pass one implements the whole page from 320 through 2048 CSS pixels. Pass two runs
+> the complete QA and repair loop. Check the actual breakpoint boundaries plus one pixel on either side, 320, 360,
+> 390, 430, 768, 834, 1024, 1440, 1920 and 2048 pixels. Include portrait and landscape heights, actual 200 percent
+> browser zoom, keyboard order, visible focus, hover and pressed states, 44 pixel touch targets, sticky behavior,
+> menu focus management, image ratios, text wrapping, horizontal overflow and console errors. Test current Safari,
+> Chrome and Firefox where available.
+>
+> Capture fresh screenshots at every decisive width and view every screenshot. Compare the 1440 result with the
+> accepted baseline. Review the full responsive set for hierarchy, rhythm, alignment, readable measure, image crop
+> and accidental empty space. Fix every material defect you find, rerun the affected checks and repeat until a full
+> pass finds nothing material. Update `docs/HOMEPAGE_RESPONSIVE_SPEC.md` and `NEXT.md` with the final breakpoints,
+> behavior and verification evidence. Do not create a branch or commit. Report only when the complete responsive
+> homepage is ready for my review. Only stop and ask if finishing requires changing one of the locked design or copy
+> decisions above or requires information that does not exist in the project.
 
 ## Section decision template
 
@@ -502,17 +535,14 @@ Status: not discussed
 
 Recommended sequence:
 
-1. Commit the accepted desktop baseline on `main` before responsive CSS begins.
-2. Create one branch named `codex/homepage-responsive`.
-3. Commit the global foundation separately.
-4. Commit each implemented and verified section separately.
-5. Merge only after the complete responsive audit passes.
+1. Start one new Codex task in this project from the existing `codex/homepage-responsive` branch after
+   Chadwick commits the accepted wide baseline and these planning records.
+2. Implement the complete responsive homepage in the current working tree.
+3. Use Unlazy section gates and browser evidence as internal checkpoints.
+4. Leave the complete tested change uncommitted for Chadwick's final review.
 
-Do not create separate branches for each section, interaction rules or tablet behavior. Those changes touch the same HTML and CSS and would create avoidable merge conflicts. Use a separate branch only for a genuinely competing implementation that may be discarded.
-
-Before creating the branch or making any commit, explain what the operation will preserve, what work it will contain and why it is the right checkpoint. Wait for Chadwick's approval before running it.
-
-Keep this planning work in the current task. Another task may research a narrow tool or technique, but its result has no authority until it is reconciled into this specification or `docs/DECISIONS.md`.
+Do not create a branch or commit during the task unless Chadwick explicitly asks. Do not split tablet and
+mobile behavior across separate tasks or files.
 
 ## Verification record
 

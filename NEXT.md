@@ -1,13 +1,12 @@
 # Next
 
-1. Review the combined wide homepage study, including the updated Hero, Work, About and footer behavior.
-2. After approval, reconcile the verified wide studies into the accepted homepage files.
-3. Follow the Compact, tablet and mobile execution plan in `docs/HOMEPAGE_RESPONSIVE_SPEC.md`.
-4. Derive content-driven boundaries and complete the foundation, hero and navigation across compact,
-   tablet and mobile in one section task.
-5. Continue with one task per section: Work cards, Mondai index, About then footer. Each task covers
-   compact, tablet and mobile together.
-6. Design the full screen mobile menu only after the compact navigation trigger is approved.
-7. Replace the footer button placeholder only after its copy and destination are approved.
-8. Run the final full-page visual, behavioral and browser audit after every section is responsive.
-9. Keep Vercel setup as a separate deployment task.
+1. Commit the accepted wide baseline and the updated responsive planning records on
+   `codex/homepage-responsive`.
+2. Start one end-to-end implementation task from `codex/homepage-responsive`, not `main`, using
+   `docs/RESPONSIVE_HANDOFF.md`.
+3. In that task, promote the committed wide study to the canonical homepage, implement compact, tablet
+   and mobile behavior for every section, build the full-screen menu and complete the full QA repair loop.
+4. Review the finished responsive homepage only after its Unlazy gates, browser checks and viewed screenshot
+   set are complete.
+5. Replace the footer button placeholder only after its copy and destination are approved.
+6. Keep Vercel setup as a separate deployment task.

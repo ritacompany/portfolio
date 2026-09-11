@@ -146,6 +146,19 @@ freeze with the 1920 pixel canvas on wider browsers. CHADWICK remains bottom-ali
 optical inset so its lower glyphs are not clipped. Supporting text, grids and containers keep their
 existing responsive behavior.
 
+## 2026-09-11: Single-task responsive execution
+
+Compact, tablet and mobile homepage work will run as one end-to-end implementation task in the same
+portfolio project. The earlier recommendation to use a separate task and review stop for every section
+is retired. The section sequence remains the agent's internal work order and acceptance ledger.
+
+The agent owns reversible breakpoint, grid, spacing, stacking, media-treatment and responsive display-size
+choices that preserve the accepted desktop art direction. It does not need intermediate approval for those
+choices. It must not change approved copy, type family, type weight, type style, color system, personal brand
+or desktop art direction. It pauses only when completion genuinely requires one of those owner-held decisions
+or missing external information. Otherwise it implements the full page, runs the complete browser and visual
+review loop, fixes every material defect and reports once when the full responsive page is ready for review.
+
 ## Existing design direction
 
 The portfolio should use an asymmetric, editorial and evidence-led layout grammar. Figma is the visual source of truth. The existing Haven and Mondai WIP frames are protected from direct edits unless explicitly approved.

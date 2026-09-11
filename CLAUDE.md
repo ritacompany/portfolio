@@ -48,6 +48,8 @@ he is. Mondai product mechanics are background for the case studies and nothing 
   deliberately empty until something is reviewed and approved. Never fill them with guesses.
 - `docs/DECISIONS.md` : durable choices and the reasoning.
 - `docs/FRONTEND_WORKFLOW.md` : decision ownership, browser testing and the frontend definition of done.
+- `docs/RESPONSIVE_HANDOFF.md` : start here when continuing the compact, tablet and mobile homepage work
+  in Claude Code or another cloud task.
 - `NEXT.md` : the current short list of what to do next.
 - `LEDGER.md` : build state for `build/`, decisions, what is open.
 - `layout-decision-board/` : small local tool for working through layout choices.
