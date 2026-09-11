@@ -27,7 +27,8 @@ comparison. Current personal copy is temporary layout content and is not approve
 ## 2026-09-08: Homepage desktop review corrections
 
 The large display words may bleed beyond the canvas, but that bleed must be clipped by the page
-without creating horizontal scrolling. The `Superpowers` letterforms must remain fully visible.
+without creating horizontal scrolling. Their original art-directed edge relationships remain visible
+as intentional clipping rather than being normalized to fit the canvas.
 Mondai case numbers align to the left edge of their rows. All text in the Overview and Current
 role rows uses Neutral 050.
 
@@ -46,8 +47,8 @@ responsive type sizing must be proposed within the relevant section review.
 
 The responsive content canvas will continue growing beyond the accepted 1440 pixel desktop frame.
 The exact maximum remains open. Intentional display-word bleed may continue while the canvas grows,
-but it must resolve to a full-width fit by the maximum so cropped letters never sit beside empty outer
-browser space.
+and may remain clipped when the canvas reaches its maximum. Outer browser space does not require the
+display words to resolve to a full-width fit.
 
 Codex must explain the purpose and scope of a proposed branch or commit, then receive Chadwick's
 approval before creating it. The planned responsive implementation remains one branch with separate
@@ -62,21 +63,28 @@ also respond below the 1440 reference while the desktop structure remains viable
 
 Responsive type scaling is reserved for large display headlines. Body text, labels, navigation and
 supporting headings retain their approved font sizes. CHADWICK, Superpowers and CATCHY OUTRO retain
-their intentional edge overlap at 1440 pixels, resolve it continuously and fit inside the canvas at
-1920 pixels. None of that bleed may create horizontal page scrolling.
+their intentional edge overlap at 1440 pixels and preserve that relationship through the 1920 pixel
+ceiling. None of that bleed may create horizontal page scrolling.
 
 ## 2026-09-09: Wide hero and navigation approved, amended 2026-09-10
 
 The 1440 hero retains the updated Figma spacing and detached custom tracking for CHADWICK. Only
-CHADWICK changes type size across the wide desktop range. The 10 Sep Figma revision moves the top
-alignment to 24 pixels and applies Label/14 to the biography and relocation note. At 1440 the
+CHADWICK changes type size across the wide desktop range. The latest 10 Sep Figma revision moves the top
+alignment to 32 pixels and applies Label/14 to the biography and relocation note. At 1440 the
 biography is 306 pixels wide, the relocation note is 179 pixels wide, navigation remains 14 pixels
 and the logo remains 60.458 by 17.92 pixels. Their outer anchors follow the responsive layout while
 their type sizes and custom internal spacing remain fixed.
 
 The logo and navigation links remain sticky as the page scrolls. The biography and relocation note
 align with them at the top of the hero but scroll away with the hero because they are not menu
-content. Navigation retains visible hover, focus and pressed states without motion.
+content. The navigation uses a 102 pixel gap. CONTACT is a Neutral 200 button with 30 pixel
+horizontal padding, 13 pixel vertical padding, a 6 pixel radius and Label/14 Bold text. Its visible
+height is 40 pixels inside a 44 pixel interaction target. Navigation retains visible hover, focus
+and pressed states without motion.
+
+CHADWICK remains anchored to the bottom of the visible hero, but its glyphs are fully visible along
+that edge. The earlier negative 0.13 em offset was a mistaken interpretation of the reference and is
+removed.
 
 ## 2026-09-09: Wide work cards approved, amended 2026-09-10
 
@@ -128,6 +136,15 @@ homepage study. The first two remain 515 pixels wide and the third remains 481 p
 column 2 start continues to follow the responsive grid, but the text measure does not collapse with
 the grid. This keeps every statement at two lines or fewer at 786 pixels and above. Tablet and mobile
 work must recompose the block rather than force a third line.
+
+## 2026-09-10: Persistent display-word edge bleed
+
+The 1920 pixel content ceiling does not end the intentional clipping of the large display words.
+CHADWICK retains left and right bleed, Superpowers retains its original left bleed and right-side
+breathing room and CATCHY OUTRO retains left and right bleed. Their size and clipping relationship
+freeze with the 1920 pixel canvas on wider browsers. CHADWICK remains bottom-aligned with a 0.02 em
+optical inset so its lower glyphs are not clipped. Supporting text, grids and containers keep their
+existing responsive behavior.
 
 ## Existing design direction
 

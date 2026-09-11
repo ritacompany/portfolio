@@ -51,7 +51,7 @@ Status values are `not discussed`, `draft`, `approved`, `implemented` and `verif
 * Margins, gutters and text also respond below the 1440 reference while the desktop structure remains viable.
 * Responsive type scaling is reserved for large display headlines. Body text, labels, navigation and supporting headings retain their approved font sizes while their containers and positions may respond.
 * Large display type may bleed beyond the canvas without creating horizontal scrolling.
-* When the content canvas reaches its eventual maximum and outer browser space begins to appear, display words must no longer look cropped against that empty space. Their bleed should resolve gradually to a full-width fit by that endpoint.
+* When the content canvas reaches its 1920 pixel maximum and outer browser space begins to appear, display words retain their original art-directed clipping. They do not resolve to a fitted canvas treatment.
 * Mobile is deliberately recomposed rather than treated as a scaled desktop page.
 * Small fidelity differences may wait for the final audit after responsiveness is complete.
 * Current copy is temporary layout content and is not approved for shipping.
@@ -64,7 +64,7 @@ Status values are `not discussed`, `draft`, `approved`, `implemented` and `verif
 * Use fluid values for continuous changes such as page margins, gutters and selected display sizes.
 * Use breakpoints only where content needs to reflow, disappear, appear or change structure.
 * Keep absolute positioning only for intentional art direction such as overlap or edge bleed.
-* Between 1440 and 1920, continue growing the grid and gradually reduce the display-word crop. Above 1920, center the canvas and allow outer browser space.
+* Between 1440 and 1920, continue growing the grid and preserve each display word's original edge relationship. Above 1920, center the fixed canvas and allow outer browser space while the display treatment remains unchanged.
 
 ### Open decisions
 
@@ -102,13 +102,13 @@ The isolated review page is `site/responsive-foundation.html`. It tests the glob
 * Page margins grow continuously from 40 to 64 pixels.
 * Grid gutters grow continuously from 40 to 56 pixels.
 * The grid remains 12 equal stretch columns throughout this range.
-* CHADWICK and CATCHY OUTRO retain their intentional 1440 bleed, then reduce that bleed continuously until the text fits the canvas at 1920.
-* Superpowers retains its intentional 1440 edge overlap, then resolves continuously until it fits the canvas at 1920.
+* CHADWICK and CATCHY OUTRO retain proportional left and right bleed through the 1920 ceiling.
+* Superpowers retains its intentional left overlap and right-side breathing room through the 1920 ceiling.
 * CHADWICK, Superpowers and CATCHY OUTRO respond below and above the 1440 reference, then stop growing at the 1920 ceiling. Prototype notes, labels and readable-measure samples remain fixed at their 1440 font sizes.
 * The prototype establishes the global responsive behavior. Exact type values remain subject to section-level approval.
 * No structural breakpoint or section reflow is included.
 
-The prototype was measured and captured at 1434, 1440, 1600, 1728, 1920 and 2048 pixels. It has no horizontal document overflow at those widths. Chadwick approved its wide canvas, margin, gutter, responsive-text and edge-resolution rules. Tablet, mobile and section-specific behavior remain unapproved.
+The prototype was measured and captured at 1434, 1440, 1600, 1728, 1920, 2048 and 2560 pixels. It has no horizontal document overflow at those widths. Chadwick approved its wide canvas, margin, gutter and responsive-text rules, then amended the display treatment so each large word retains its original art-directed clipping at and beyond 1920. Tablet, mobile and section-specific behavior remain unapproved.
 
 ## Section sequence
 
@@ -125,14 +125,14 @@ Status: approved for wide desktop
 
 * Desktop reference: the accepted Figma-based hero at 1440 by 800 pixels.
 * Elements and reading order: logo, biography, relocation note, primary navigation and CHADWICK.
-* Alignment anchors: logo begins at the leading page margin. The biography starts 121 pixels after that margin at 1440. The relocation note starts 467 pixels after the leading page margin and navigation ends at the trailing page margin. All four top-row groups share the 24 pixel top alignment.
-* Fluid values: the hero fills the visible viewport height. CHADWICK remains anchored to its bottom edge with a proportional 0.13 em crop while growing from 302 pixels at 1440 to 376.5 pixels at the 1920 ceiling. The page margins, gutters and horizontal anchors continue following the approved responsive grid.
-* Display behavior: CHADWICK starts at 302 pixels with a 47 pixel left bleed at 1440. It grows to 376.5 pixels and resolves to the canvas edge at 1920. Its bottom anchor is independent of browser height so the display stays visible at the bottom of a shorter window. Its detached Figma styling is represented by the approved custom tracking runs: C and the second C use negative 7 percent tracking, HA and W use negative 5 percent, I uses negative 8 percent and the final K inherits negative 5.5 percent.
-* Fixed values: biography and relocation text use Label/14 throughout the wide study. Biography width is 306 pixels at 1440 and becomes 268 pixels at 1199 pixels and below. Navigation stays at 14 pixels at 1200 and above, then uses 12 pixels. The logo stays 60.458 by 17.92 pixels, the top position stays 24 pixels, relocation width stays 179 pixels and the 76 pixel navigation gap stays fixed. Font families, weights, colors, copy and navigation labels remain the accepted values. Current copy is still temporary layout content.
+* Alignment anchors: logo begins at the leading page margin. The biography starts 121 pixels after that margin at 1440. The relocation note starts 467 pixels after the leading page margin and navigation ends at the trailing page margin. All four top-row groups share the 32 pixel top alignment.
+* Fluid values: the hero fills the visible viewport height. CHADWICK remains anchored to its bottom edge with a 0.02 em optical inset that preserves its lower glyphs while growing from 302 pixels at 1440 to 402.6667 pixels at the 1920 ceiling. The page margins, gutters and horizontal anchors continue following the approved responsive grid.
+* Display behavior: CHADWICK starts at 302 pixels with a 47 pixel left bleed at 1440. It grows proportionally to 402.6667 pixels with 62.6667 pixels of left bleed at 1920, then freezes with the centered canvas on wider browsers. Its right edge remains intentionally clipped. Its bottom anchor is independent of browser height so the complete lower letterforms stay visible at the bottom of a shorter window. Its detached Figma styling is represented by the approved custom tracking runs: C and the second C use negative 7 percent tracking, HA and W use negative 5 percent, I uses negative 8 percent and the final K inherits negative 5.5 percent.
+* Fixed values: biography and relocation text use Label/14 throughout the wide study. Biography width is 306 pixels at 1440 and becomes 268 pixels at 1199 pixels and below. Navigation stays at 14 pixels at 1200 and above, then uses 12 pixels. The logo stays 60.458 by 17.92 pixels, the top position stays 32 pixels, relocation width stays 179 pixels and the 102 pixel navigation gap stays fixed. CONTACT uses a Neutral 200 fill, Neutral 900 label, Label/14 Bold text, 30 pixel horizontal padding, 13 pixel vertical padding and a 6 pixel radius. Its visible 40 pixel button sits inside a 44 pixel interaction target. Font families, colors, copy and the remaining navigation labels retain their accepted values. Current copy is still temporary layout content.
 * Reflow rules: none in this wide-desktop study. Structural changes below the viable desktop range will be defined separately.
 * Visibility or replacement rules: all wide-desktop top-row elements remain visible. The logo and three navigation links are sticky. The biography and relocation note only align with that menu at the top of the page, then scroll away with the hero. The menu button and full-screen menu are not part of this study.
 * Breakpoint triggers: 1920 pixels is the growth ceiling. The 1199 pixel annotation boundary centers the final quote line and gives the Superpowers statement block 431 pixel top and bottom padding. The final compact-header structure remains open.
-* Default, hover, focus and active states: navigation preserves its accepted default color, underlines and brightens on hover, uses a visible two pixel keyboard-focus outline and shifts to Neutral 500 while pressed. States have no animation.
+* Default, hover, focus and active states: HOME and ABOUT preserve their accepted default color, underline and brighten on hover, use a visible two pixel keyboard-focus outline and shift to Neutral 500 while pressed. CONTACT brightens its fill on hover, uses the same visible focus outline and shifts its fill to Neutral 500 while pressed. States have no animation.
 * Click or keyboard behavior: links retain the existing homepage anchors. Each link has at least a 44 pixel-tall interaction area and remains reachable in source order by keyboard. Sticky behavior does not trap focus or change the reading order.
 * Content growth and wrapping: biography keeps its accepted fixed width and wrapping. Relocation and navigation labels remain on one line in the wide range.
 * Accessibility requirements: semantic navigation, visible focus, no horizontal page overflow and no text clipping except the intentional CHADWICK edge treatment.
@@ -188,14 +188,14 @@ Status: draft, wide-desktop study ready for review
 * Desktop reference: the Figma About frame at node `3461:27984`, extracted directly from the Master frame and captured at 1440 pixels.
 * Elements and reading order: three-line quote with bolt, supporting intro, portrait, Superpowers display, three superpower statements, Overview row and Current role row.
 * Alignment anchors: quote and intro start at the leading page margin. The portrait occupies grid columns 9 through 11 and aligns its right edge to the end of column 11. Every superpower statement begins in column 2. The first two keep a 515 pixel minimum measure and the third keeps a 481 pixel minimum measure, preserving a maximum of two lines for each statement at 786 pixels and above. Overview labels begin in column 1. Overview copy begins 8.1667 pixels before column 8 at the 1440 reference and ends at the trailing margin.
-* Fluid values: Superpowers is the only responsive type in the section. It begins at 248 pixels with the Figma 40 pixel left overlap at 1440. It grows to 344 pixels and resolves to the canvas edge by 1920. The heading frame grows enough to preserve the complete letterforms. Margins, gutters, portrait anchor, statement anchor and overview-copy anchor follow the approved grid.
+* Fluid values: Superpowers is the only responsive type in the section. It begins at 248 pixels with the Figma 40 pixel left overlap at 1440. It grows proportionally to 330.6667 pixels with 53.3333 pixels of left overlap at 1920, then freezes with the centered canvas. Its original right-side breathing room remains. The heading frame grows enough to preserve the complete lower letterforms. Margins, gutters, portrait anchor, statement anchor and overview-copy anchor follow the approved grid.
 * Fixed values: quote stays 64 pixels, intro and overview copy stay 24 pixels, statements stay 40 pixels and the portrait stays 258 by 344 pixels. The three statements share one 809 pixel block with 230 pixel vertical padding and 65 pixel gaps. Overview content keeps Neutral 050.
 * Reflow rules: below 1100 pixels the quote lines may wrap and increase the opening area rather than collide. The statement measures stop shrinking before a third line can form. A future tablet or mobile composition must move the text block or change its typography rather than narrow these three measures. The wide composition otherwise remains intact.
 * Visibility or replacement rules: no About content is hidden in the wide study.
 * Breakpoint triggers: 1100 pixels only releases the Figma line-by-line quote positioning for narrow stress behavior. The Superpowers display reaches its growth ceiling by 1920.
 * Content growth and wrapping: intro and overview blocks grow vertically when their fixed-size type wraps. Their rows use minimum heights so text is never clipped.
 * Accessibility requirements: meaningful portrait alternative, decorative bolt with an empty alternative, logical source order, no horizontal scrolling and no clipped supporting text.
-* Intentional exceptions: Superpowers keeps its detached Figma tracking and art-directed edge treatment. It may clip at the canvas edges below 1920, then must fit completely at the canvas ceiling.
+* Intentional exceptions: Superpowers keeps its detached Figma tracking, original left clipping and right-side breathing room at and beyond the canvas ceiling.
 * Open questions: owner approval of the demonstrated wide composition. The current second superpower mirrors the Figma draft but is not recorded as locked About copy. Tablet and mobile composition remain open.
 * Verification evidence: combined study at `site/homepage-wide-study.html`, checked at 786, 900, 960, 1024, 1194, 1200, 1434, 1440, 1600, 1728, 1920 and 2048 pixels. The three statement line counts and measures are tested at every width. The 1440 About capture is compared directly with the fresh Figma reference.
 
@@ -206,7 +206,7 @@ Status: draft, wide-desktop study ready for review
 * Desktop reference: the Figma footer frame at node `3461:7986`, extracted directly from the Master frame and captured at 1440 pixels.
 * Elements and reading order: CATCHY OUTRO display, fixed call-to-action button, Chicago location, live Chicago time, LinkedIn label and email link.
 * Alignment anchors: the call-to-action stays centered. Location follows the leading page margin. The contact group aligns to the trailing page margin. Those anchors continue through the 1920 canvas ceiling.
-* Fluid values: CATCHY OUTRO begins at 212 pixels with a 29 pixel left overlap at 1440. It grows to 263.5 pixels and resolves inside the canvas by 1920. The callout grows from 595 to 700 pixels so the larger display retains clear separation from the button.
+* Fluid values: CATCHY OUTRO begins at 212 pixels with a 29 pixel left overlap at 1440. It grows proportionally to 282.6667 pixels with 38.6667 pixels of left overlap at 1920, retains its right clipping and then freezes with the centered canvas. The callout grows from 595 to 700 pixels so the larger display retains clear separation from the button.
 * Fixed values: button stays 270 by 76 pixels with 24 pixel text. Footer contact text stays 20 pixels at 1200 pixels and above, then uses 14 pixels below 1200 pixels. The purple contact field stays 343 pixels high.
 * Reflow rules: none in the wide study. Compact and mobile recomposition remain separate work.
 * Visibility or replacement rules: no footer content is hidden.
@@ -214,7 +214,7 @@ Status: draft, wide-desktop study ready for review
 * Click or keyboard behavior: the approved email address uses a mail link. LinkedIn remains text because no verified profile URL is recorded in the project. Button copy and its final destination remain unchanged because the Figma source still labels it `Button` and no approved destination exists.
 * Content growth and wrapping: contact lines remain on one line in the verified wide range. The location and contact groups stay separated.
 * Accessibility requirements: a semantic email link, visible focus, at least 44 pixel interaction targets, machine-readable time and no horizontal overflow.
-* Intentional exceptions: CATCHY OUTRO uses detached Figma tracking and intentional edge overlap below the canvas ceiling.
+* Intentional exceptions: CATCHY OUTRO uses detached Figma tracking and retains its intentional left and right edge overlap at and beyond the canvas ceiling.
 * Open questions: the LinkedIn profile URL plus final button copy and destination remain owner decisions. Tablet and mobile composition remain open.
 * Verification evidence: combined study at `site/homepage-wide-study.html`, checked at 900, 960, 1024, 1194, 1200, 1434, 1440, 1600, 1728, 1920 and 2048 pixels. The hero also has explicit height checks at 1194 by 775, 1440 by 800 and 1440 by 1000. The 1440 footer capture is compared directly with the fresh Figma reference. The live clock is verified against `America/Chicago`.
 

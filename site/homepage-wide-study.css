@@ -82,7 +82,7 @@ button {
 .wide-sticky-header {
   position: sticky;
   z-index: 20;
-  top: 24px;
+  top: 32px;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: min(56px, max(2.777778vw, calc(3.333333vw - 8px)));
@@ -103,7 +103,7 @@ button {
   justify-self: end;
   display: flex;
   align-items: start;
-  gap: 76px;
+  gap: 102px;
   color: #e8e7ee;
   font-size: 14px;
   line-height: 100%;
@@ -122,7 +122,30 @@ button {
   text-align: center;
 }
 
-.wide-navigation a:hover,
+.wide-navigation .wide-nav-contact {
+  display: flex;
+  min-width: 0;
+  min-height: 44px;
+  margin-block: -15px;
+  margin-inline: 0;
+  padding: 0;
+  align-items: center;
+  color: #040405;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.wide-nav-contact span {
+  display: flex;
+  min-height: 40px;
+  padding-inline: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #dedee5;
+}
+
+.wide-navigation a:not(.wide-nav-contact):hover,
 .wide-card-link:hover .wide-project-title,
 .wide-card-link:hover .wide-project-view,
 .wide-case-list a:hover .wide-case-title,
@@ -142,13 +165,21 @@ button {
   outline-offset: 4px;
 }
 
-.wide-navigation a:active,
+.wide-navigation a:not(.wide-nav-contact):active,
 .wide-card-link:active .wide-project-title,
 .wide-card-link:active .wide-project-view,
 .wide-case-list a:active .wide-case-number,
 .wide-case-list a:active .wide-case-title,
 .wide-contact-links a:active {
   color: #aeaeb4;
+}
+
+.wide-nav-contact:hover span {
+  background: #fbf7f8;
+}
+
+.wide-nav-contact:active span {
+  background: #aeaeb4;
 }
 
 .wide-hero {
@@ -160,7 +191,7 @@ button {
 
 .wide-hero-copy {
   position: absolute;
-  top: 24px;
+  top: 32px;
   inset-inline: min(64px, max(2.777778vw, calc(5vw - 32px)));
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -199,11 +230,11 @@ button {
 
 .wide-hero h1 {
   position: absolute;
-  bottom: -0.13em;
-  left: min(0px, max(-3.263889vw, calc(9.791667vw - 188px)));
-  width: min(1920px, 105.763889vw, calc(79.166667vw + 383px));
+  bottom: 0.02em;
+  left: max(-62.6667px, -3.263889vw);
+  width: min(2030.6667px, 105.763889vw);
   color: #fbf7f8;
-  font-size: min(376.5px, 20.972222vw, calc(15.520833vw + 78.5px));
+  font-size: min(402.6667px, 20.972222vw);
   font-weight: 500;
   line-height: 100%;
   letter-spacing: -0.055em;
@@ -558,10 +589,10 @@ button {
 .wide-superpowers-heading-frame h2 {
   position: absolute;
   top: 24px;
-  left: min(0px, max(-2.777778vw, calc(8.333333vw - 160px)));
-  width: min(1920px, max(92.430556vw, calc(122.708333vw - 436px)));
+  left: max(-53.3333px, -2.777778vw);
+  width: min(1774.6667px, 92.430556vw);
   color: #e8e7ee;
-  font-size: min(344px, max(17.222222vw, calc(22.854167vw - 81px)));
+  font-size: min(330.6667px, 17.222222vw);
   font-weight: 500;
   line-height: 100%;
   letter-spacing: 0;
@@ -682,10 +713,10 @@ button {
 .wide-footer-callout h2 {
   position: absolute;
   top: clamp(131px, calc(3.958333vw + 74px), 150px);
-  left: min(0px, max(-2.013889vw, calc(6.041667vw - 116px)));
-  width: min(1920px, 104.027778vw, calc(87.916667vw + 232px));
+  left: max(-38.6667px, -2.013889vw);
+  width: min(1997.3333px, 104.027778vw);
   color: #e8e7ee;
-  font-size: min(263.5px, 14.722222vw, calc(12.4375vw + 32.9px));
+  font-size: min(282.6667px, 14.722222vw);
   font-weight: 500;
   line-height: 100%;
   letter-spacing: 0;

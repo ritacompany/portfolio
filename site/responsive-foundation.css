@@ -97,11 +97,11 @@ p {
 
 .hero-study h1 {
   position: absolute;
-  top: 537px;
-  left: min(0px, max(-3.472222vw, calc(10.416667vw - 200px)));
-  width: min(1920px, 106.944444vw, calc(79.166667vw + 400px));
+  bottom: 0.02em;
+  left: max(-66.6667px, -3.472222vw);
+  width: min(2053.3333px, 106.944444vw);
   color: #fbf7f8;
-  font-size: min(376.5px, 20.972222vw, calc(15.520833vw + 78.5px));
+  font-size: min(402.6667px, 20.972222vw);
   font-weight: 500;
   line-height: 100%;
   letter-spacing: max(-20.7075px, -1.153472vw, calc(-0.853646vw - 4.3175px));
@@ -117,10 +117,10 @@ p {
 .superpowers-study h2 {
   position: absolute;
   top: 154px;
-  left: min(0px, max(-2.777778vw, calc(8.333333vw - 160px)));
-  width: min(1920px, max(92.430556vw, calc(122.708333vw - 436px)));
+  left: max(-53.3333px, -2.777778vw);
+  width: min(1774.6667px, 92.430556vw);
   color: #e8e7ee;
-  font-size: min(357.7px, max(17.222222vw, calc(22.854167vw - 81px)));
+  font-size: min(330.6667px, 17.222222vw);
   font-weight: 500;
   line-height: 100%;
   letter-spacing: max(-19.6735px, min(-0.947222vw, calc(-1.256979vw + 4.4605px)));
@@ -136,10 +136,10 @@ p {
 .outro-study h2 {
   position: absolute;
   top: 216px;
-  left: min(0px, max(-2.013889vw, calc(6.041667vw - 116px)));
-  width: min(1920px, 104.027778vw, calc(87.916667vw + 232px));
+  left: max(-38.6667px, -2.013889vw);
+  width: min(1997.3333px, 104.027778vw);
   color: #e8e7ee;
-  font-size: min(271.7px, 14.722222vw, calc(12.4375vw + 32.9px));
+  font-size: min(282.6667px, 14.722222vw);
   font-weight: 500;
   line-height: 100%;
   letter-spacing: max(-14.9435px, -0.809722vw, calc(-0.684063vw - 1.8095px));
