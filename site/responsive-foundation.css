@@ -67,9 +67,9 @@ p {
   position: relative;
   z-index: 6;
   color: #aeaeb4;
-  font-size: min(0.972222vw, 18.667px);
+  font-size: 14px;
   line-height: 140%;
-  letter-spacing: min(0.019444vw, 0.373px);
+  letter-spacing: 0.28px;
   text-transform: uppercase;
 }
 
@@ -168,17 +168,17 @@ p {
   grid-column: 1 / span 5;
   max-width: min(35.763889vw, 686.667px);
   color: #f2f1f8;
-  font-size: min(2.777778vw, 53.333px);
+  font-size: 40px;
   font-weight: 500;
   line-height: 110%;
-  letter-spacing: max(-1.067px, -0.055556vw);
+  letter-spacing: -0.8px;
 }
 
 .measure-layout p {
   grid-column: 7 / span 6;
   max-width: min(45.451389vw, 872.667px);
   color: #dedee5;
-  font-size: min(1.666667vw, 32px);
+  font-size: 24px;
   line-height: 132%;
-  letter-spacing: min(0.003333vw, 0.064px);
+  letter-spacing: 0.048px;
 }

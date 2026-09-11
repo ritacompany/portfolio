@@ -60,21 +60,74 @@ The 12-column grid retains the accepted 40 pixel margins and 40 pixel gutters at
 Margins grow fluidly to 64 pixels and gutters grow fluidly to 56 pixels at 1920 pixels. These values
 also respond below the 1440 reference while the desktop structure remains viable.
 
-All text must respond to viewport changes rather than remaining frozen at the 1440 reference. Exact
-type values and structural reflow still require section-level approval. CHADWICK, Superpowers and
-CATCHY OUTRO retain their intentional edge overlap at 1440 pixels, resolve it continuously and fit
-inside the canvas at 1920 pixels. None of that bleed may create horizontal page scrolling.
+Responsive type scaling is reserved for large display headlines. Body text, labels, navigation and
+supporting headings retain their approved font sizes. CHADWICK, Superpowers and CATCHY OUTRO retain
+their intentional edge overlap at 1440 pixels, resolve it continuously and fit inside the canvas at
+1920 pixels. None of that bleed may create horizontal page scrolling.
 
-## 2026-09-09: Wide hero and navigation approved
+## 2026-09-09: Wide hero and navigation approved, amended 2026-09-10
 
 The 1440 hero retains the updated Figma spacing and detached custom tracking for CHADWICK. Only
-CHADWICK changes type size across the wide desktop range. Biography text remains 16 pixels,
-navigation text remains 14 pixels and the logo remains 60.458 by 17.92 pixels. Their horizontal
-positions follow the responsive grid while their sizes and custom internal spacing remain fixed.
+CHADWICK changes type size across the wide desktop range. The 10 Sep Figma revision moves the top
+alignment to 24 pixels and applies Label/14 to the biography and relocation note. At 1440 the
+biography is 306 pixels wide, the relocation note is 179 pixels wide, navigation remains 14 pixels
+and the logo remains 60.458 by 17.92 pixels. Their outer anchors follow the responsive layout while
+their type sizes and custom internal spacing remain fixed.
 
 The logo and navigation links remain sticky as the page scrolls. The biography and relocation note
 align with them at the top of the hero but scroll away with the hero because they are not menu
 content. Navigation retains visible hover, focus and pressed states without motion.
+
+## 2026-09-09: Wide work cards approved, amended 2026-09-10
+
+Both work-card media containers use a shared 464 pixel height at the 1440 baseline, replacing
+the differing heights in the accepted page. The 10 Sep Figma revision narrows both media and metadata
+containers to 1124 pixels at 1440 and centers them. The black Mondai composition is the approved card.
+The green Mondai field was an experiment and is excluded. Their 1124 by 464 container ratio scales
+with the responsive canvas through 1920 pixels. Supporting typography remains fixed in the wide
+range. Each complete card is one accessible link with visible hover, focus and pressed states and
+no motion.
+
+## 2026-09-09: Responsive type scope clarified
+
+Only large display headlines change font size with the viewport. Body text, labels, navigation,
+list text and supporting headings keep their approved font sizes. Responsive positioning, container
+sizing and structural reflow remain separate layout decisions.
+
+## 2026-09-09: Mondai heading uses bounded fluid typography
+
+The Mondai section heading grows from 148 pixels at 1024 to 212 pixels at 1440, then more slowly
+to 236 pixels at 1728 before stopping while the canvas continues through 1920. This two-stage range
+keeps strong contrast without allowing the fixed 16 pixel description to become visually disconnected.
+The description wraps within the available header width and aligns to the visible bottom of the title.
+The 12 pixel collection label keeps its top position in the same header frame. Case-list text remains
+fixed at 40 pixels. Numbers use grid column 1, titles use column 4 and arrows use column 12 so the
+spacing follows the responsive grid.
+
+## 2026-09-09: Wide Mondai index approved
+
+The verified Mondai index study is the approved wide-desktop behavior. The list follows the
+12-column grid while its supporting type stays fixed. Compact, tablet and mobile composition
+remain separate work.
+
+## 2026-09-09: Autonomous frontend implementation and QA
+
+Agents own reversible implementation choices inside the approved portfolio direction. For each
+responsive section they should build and verify one evidence-based recommendation before asking for
+review. Chadwick retains approval of personal brand, art direction and typography choices, but he is
+not responsible for deriving breakpoints, layout mechanics or test cases.
+
+Frontend work follows `docs/FRONTEND_WORKFLOW.md`. Browser captures must be viewed, not merely created.
+Existence or file-size checks cannot serve as visual evidence. The agent fixes material defects and
+repeats the affected visual and behavioral checks before returning the result.
+
+## 2026-09-10: Superpower statement minimum measures
+
+All three Superpowers statements retain their Figma text measures as minimum widths in the wide
+homepage study. The first two remain 515 pixels wide and the third remains 481 pixels wide. Their
+column 2 start continues to follow the responsive grid, but the text measure does not collapse with
+the grid. This keeps every statement at two lines or fewer at 786 pixels and above. Tablet and mobile
+work must recompose the block rather than force a third line.
 
 ## Existing design direction
 

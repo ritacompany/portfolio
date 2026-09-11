@@ -36,6 +36,9 @@ he is. Mondai product mechanics are background for the case studies and nothing 
 - Close with one question or none, never a compound one. When the decision is genuinely mine,
   state the choice in one line, then what yes means, then what no means, then your
   recommendation with its reason.
+- For frontend implementation, read and follow `docs/FRONTEND_WORKFLOW.md`. Own reversible choices
+  inside the approved direction, bring Chadwick one tested recommendation and complete the browser
+  and visual review loop before returning work for review.
 
 ## What's in this folder
 
@@ -44,6 +47,7 @@ he is. Mondai product mechanics are background for the case studies and nothing 
 - `docs/ABOUT.md` and `docs/VOICE.md` : approved biography and approved writing guidance. Both
   deliberately empty until something is reviewed and approved. Never fill them with guesses.
 - `docs/DECISIONS.md` : durable choices and the reasoning.
+- `docs/FRONTEND_WORKFLOW.md` : decision ownership, browser testing and the frontend definition of done.
 - `NEXT.md` : the current short list of what to do next.
 - `LEDGER.md` : build state for `build/`, decisions, what is open.
 - `layout-decision-board/` : small local tool for working through layout choices.

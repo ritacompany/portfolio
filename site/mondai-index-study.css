@@ -1,0 +1,227 @@
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/satoshi-medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: clip;
+}
+
+body {
+  background: #18181b;
+  color: #f2f1f8;
+  font-family: "Satoshi", Arial, sans-serif;
+  font-weight: 500;
+}
+
+h1,
+p,
+ol {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.figma-text {
+  text-align: left;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+.mondai-study {
+  width: min(100%, 1920px);
+  height: clamp(720px, calc(43.269231vw + 276.923px), 900px);
+  margin-inline: auto;
+  padding-block-start: clamp(82px, calc(8.413462vw - 4.154px), 117px);
+  padding-inline: min(64px, max(2.777778vw, calc(5vw - 32px)));
+  overflow: hidden;
+  background: #040405;
+}
+
+.mondai-header {
+  display: grid;
+  grid-template-columns: clamp(460px, calc(47.836538vw - 29.846px), 659px) minmax(0, 1fr);
+  gap: clamp(17px, calc(1.682692vw - 0.231px), 24px);
+  height: clamp(117px, calc(12.191587vw - 7.843px), 168px);
+  margin-inline-start: calc(-1 * clamp(12px, calc(1.201923vw - 0.308px), 17px));
+}
+
+.mondai-title {
+  color: #e8e7ee;
+  font-size: clamp(148px, calc(15.384615vw - 9.538px), 212px);
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+.mondai-title .tracking-m {
+  letter-spacing: -0.07em;
+}
+
+.mondai-title .tracking-a {
+  letter-spacing: -0.08em;
+}
+
+.header-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding-block-end: clamp(10px, calc(0.961538vw + 0.154px), 14px);
+}
+
+.mondai-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 29.216px;
+}
+
+.mondai-label img {
+  display: block;
+  width: 6.464px;
+  height: 29.216px;
+}
+
+.label-text {
+  color: #e8e7ee;
+  font-size: 12px;
+  line-height: 114%;
+  letter-spacing: 0.07em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.mondai-description {
+  width: min(355px, 100%);
+  max-width: 355px;
+  color: #c9c9d4;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0.01em;
+  overflow-wrap: break-word;
+}
+
+.case-list {
+  margin-block-start: clamp(121px, calc(7.932692vw + 39.769px), 154px);
+  padding: 0;
+  list-style: none;
+}
+
+.case-list a {
+  border-bottom: 1px solid #28282b;
+}
+
+.case-list li:first-child a {
+  border-top: 1px solid #28282b;
+}
+
+.case-list a {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: min(56px, max(2.777778vw, calc(3.333333vw - 8px)));
+  align-items: center;
+  min-height: 122px;
+}
+
+.case-list li:first-child a {
+  min-height: 123px;
+}
+
+.case-number,
+.case-title {
+  color: #f2f1f8;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.case-number {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.case-title {
+  grid-column: 4 / span 5;
+  justify-self: start;
+}
+
+.case-arrow {
+  grid-column: 12;
+  justify-self: end;
+  display: block;
+  width: 33px;
+  height: 33px;
+}
+
+.case-list a:hover .case-title {
+  color: #fbf7f8;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.case-list a:hover .case-arrow {
+  filter: brightness(1.12);
+}
+
+.case-list a:focus-visible {
+  outline: 2px solid #f2f1f8;
+  outline-offset: 4px;
+}
+
+.case-list a:active .case-number,
+.case-list a:active .case-title {
+  color: #aeaeb4;
+}
+
+.case-list a:active .case-arrow {
+  opacity: 0.68;
+}
+
+@media (forced-colors: active) {
+  .case-list a:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+@media (min-width: 1440px) {
+  .mondai-study {
+    height: clamp(900px, calc(13.194444vw + 710px), 938px);
+    padding-block-start: clamp(117px, calc(2.777778vw + 77px), 125px);
+  }
+
+  .mondai-header {
+    grid-template-columns: clamp(659px, calc(26.041667vw + 284px), 734px) minmax(0, 1fr);
+    gap: clamp(24px, calc(1.041667vw + 9px), 27px);
+    height: clamp(168px, calc(6.597222vw + 73px), 187px);
+    margin-inline-start: max(-19px, calc(-0.694444vw - 7px));
+  }
+
+  .header-details {
+    padding-block-end: clamp(14px, calc(0.694444vw + 4px), 16px);
+  }
+
+  .mondai-title {
+    font-size: clamp(212px, calc(8.333333vw + 92px), 236px);
+  }
+
+  .case-list {
+    margin-block-start: clamp(154px, calc(3.819444vw + 99px), 165px);
+  }
+}
