@@ -1,6 +1,6 @@
 # Homepage responsive and behavior specification
 
-Status: ready for single-task responsive implementation
+Status: implemented and verified from 320 through 2048 CSS pixels, 13 Sep 2026
 
 This file is the working source of truth for homepage responsiveness and non-motion behavior. It exists so Codex, Claude Code and future tasks can continue without reconstructing decisions from chat history.
 
@@ -121,7 +121,7 @@ The prototype was measured and captured at 1434, 1440, 1600, 1728, 1920, 2048 an
 
 ### Hero and navigation
 
-Status: approved for wide desktop
+Status: verified across the full range
 
 * Desktop reference: the accepted Figma-based hero at 1440 by 800 pixels.
 * Elements and reading order: logo, biography, relocation note, primary navigation and CHADWICK.
@@ -142,7 +142,7 @@ Status: approved for wide desktop
 
 ### Work cards
 
-Status: approved for wide desktop
+Status: verified across the full range
 
 * Desktop reference: the accepted 1440 implementation in `site/`, supported by a fresh Figma extraction of node `3461:26549`.
 * Source decision: current Figma reports 528 pixel Mondai media and 463 pixel Haven media. Chadwick explicitly replaced both values with a shared 464 pixel media-container height at the 1440 baseline.
@@ -163,7 +163,7 @@ Status: approved for wide desktop
 
 ### Mondai index
 
-Status: approved for wide desktop
+Status: verified across the full range
 
 * Desktop reference: the accepted 1440 implementation in `site/`, supported by a fresh Figma extraction of node `3461:27892`.
 * Elements and reading order: Mondai heading, collection label, product description, then three numbered case-study rows.
@@ -183,7 +183,7 @@ Status: approved for wide desktop
 
 ### About
 
-Status: committed wide baseline for responsive work
+Status: verified across the full range
 
 * Desktop reference: the Figma About frame at node `3461:27984`, extracted directly from the Master frame and captured at 1440 pixels.
 * Elements and reading order: three-line quote with bolt, supporting intro, portrait, Superpowers display, three superpower statements, Overview row and Current role row.
@@ -201,7 +201,7 @@ Status: committed wide baseline for responsive work
 
 ### Footer
 
-Status: committed wide baseline for responsive work
+Status: verified across the full range
 
 * Desktop reference: the Figma footer frame at node `3461:7986`, extracted directly from the Master frame and captured at 1440 pixels.
 * Elements and reading order: CATCHY OUTRO display, fixed call-to-action button, Chicago location, live Chicago time, LinkedIn label and email link.
@@ -220,7 +220,8 @@ Status: committed wide baseline for responsive work
 
 ## Compact, tablet and mobile execution plan
 
-Status: execution plan approved, no compact or mobile layout implemented
+Status: implemented. The rules, measured failure points and verification evidence are
+recorded under `Implemented responsive behaviour` below.
 
 ### Recommendation
 
@@ -506,6 +507,133 @@ Start the next task with this instruction:
 > behavior and verification evidence. Do not create a branch or commit. Report only when the complete responsive
 > homepage is ready for my review. Only stop and ask if finishing requires changing one of the locked design or copy
 > decisions above or requires information that does not exist in the project.
+
+## Implemented responsive behaviour
+
+Status: verified 13 Sep 2026
+
+The canonical homepage is now `site/index.html`, `site/styles.css` and `site/main.js`.
+The wide study files stay in the repository as the accepted desktop evidence the
+implementation was measured against. They are no longer the source of truth.
+
+### Architecture
+
+The mobile composition is the base stylesheet. Compact and desktop behaviour is added
+with min-width queries, so the smallest viewport needs no override to be correct. Page
+margin, gutter, canvas ceiling, the colour system and each display word's size, bleed
+and layer width are custom properties on `:root`.
+
+Each display word derives its overlap and its layer width from one size value using the
+exact Figma ratios, so the art-directed bleed is preserved proportionally at every
+width rather than being re-specified per breakpoint:
+
+* CHADWICK: bleed is 47/302 of the size, layer width is 1523/302 of the size
+* Superpowers: bleed is 40/248 of the size, layer width is 1331/248 of the size
+* CATCHY OUTRO: bleed is 29/212 of the size, layer width is 1498/212 of the size
+
+Those ratios reproduce the approved 1440 and 1920 values exactly, which is what the
+regression check confirms.
+
+### Structural boundaries and the content failure behind each one
+
+| Boundary | Measured cause |
+| --- | --- |
+| 600px | The work-card metadata pair, the Mondai header pair and the footer contact pair stop holding two groups on one line with a readable measure. Below it every pair stacks. |
+| 1120px | The four fixed-anchor hero groups stop fitting. On the accepted study the relocation note and the navigation overlap from 1110 pixels down and clear at 1120, so the desktop top row fails at 1119. Below it the hero copy leaves the top row and the navigation becomes the full-screen menu. |
+| 1440px | The accepted desktop reference. Above it the approved wide formulas grow the canvas to the 1920 pixel ceiling. |
+
+Two further failures were measured on the study and are removed by the compact
+composition before they can be reached: case titles collide with their row arrow below
+about 500 pixels, and the superpower statements overflow their container below about
+545 pixels.
+
+320 pixels is the stated support floor rather than a measured failure.
+
+### Section rules below the desktop boundary
+
+* **Header.** Sticky at every width. Below 1120 the three navigation links are replaced
+  by a MENU trigger that reuses the accepted CONTACT pill, so the control stays legible
+  over the page and no new component is introduced. The trigger label and the CLOSE
+  label are interface copy, not personal brand copy.
+* **Hero.** Keeps the desktop grammar of opening copy at the top, the name on the bottom
+  edge and an open field between. Below 600 the biography and the relocation note stack
+  instead of sitting on one line. CHADWICK keeps its proportional bleed and its bottom
+  anchor at every width.
+* **Work cards.** The card fills the page margins below 600 and 86 percent of the canvas
+  from 600 to 1119. Below 600 the 281 by 116 band becomes a sliver, so the same asset is
+  cropped to 3 by 2 with `object-fit: cover`. Both metadata rows stack and the
+  description becomes left aligned with a 46 character maximum.
+* **Mondai index.** The header stacks below 600. The display heading uses
+  `clamp(64px, 17vw, 148px)` below the desktop layer and meets the approved desktop
+  curve continuously at 1024. Rows become number, title and arrow in three intrinsic
+  columns, with the title at `clamp(24px, 5.2vw, 40px)` so it stays on one line.
+* **About.** The three art-directed quote lines flow as one statement below 1120, with
+  the bolt inline, because each line wrapped separately below the desktop measure and
+  produced a stair-step rag. The quote block carries the display size so the word space
+  joining the lines is not inherited at the 16 pixel body size. The portrait keeps its
+  258 by 344 ratio and stays right aligned. The superpower statements drop their 515 and
+  481 pixel measures for a 20 to 24 character measure at `clamp(22px, 5.4vw, 40px)`,
+  which holds every statement to two lines, as the approved decision requires a
+  recomposition rather than a narrowed measure. Overview rows stack below 600.
+* **Footer.** CATCHY OUTRO keeps its proportional bleed. The callout becomes flow layout
+  with the button below the word. The purple contact field keeps its details low in the
+  band rather than at the top, matching the accepted placement, and stacks below 600.
+* **Full-screen menu.** Reuses the case-row grammar already on the page: hairline rows,
+  a label and the same arrow asset. It locks page scroll, traps focus in both
+  directions, closes on Escape and on choosing a destination, returns focus to its
+  trigger, respects the safe-area insets and closes itself if the viewport grows back to
+  the desktop navigation.
+
+### Defects corrected in the accepted baseline
+
+* **The sticky header did not stick.** `overflow: hidden` on the canvas made it a scroll
+  container, so at 1440 the header moved from top 32 to top -2968 after a 3000 pixel
+  scroll. The canvas now uses `overflow: clip`, which still crops the display-word bleed
+  but does not create a scroll container.
+* **The footer contact links were below the interaction target floor.** A trimmed 14
+  pixel text box with 15 pixels of padding measured 40.1 pixels tall against the stated
+  44 pixel minimum.
+
+### Verification evidence
+
+Automated, all re-run after the last change, via `node scripts/responsive-check.mjs`:
+
+| Check | Result |
+| --- | --- |
+| `regress` | 42 probes at 1440, 1512, 1600, 1728, 1920 and 2048 match the accepted study within 0.6 pixels |
+| `sweep` | 35 widths from 320 to 2048 plus 14 device viewports, no overflow, clipping, distortion, broken image, small target or overlapping target |
+| `a11y` | Tab order matches DOM order and every control shows a focus ring at 390, 768 and 1440 |
+| `menu` | Eleven assertions covering open, trap, scroll lock, Escape, focus return, link dismiss and the desktop swap |
+| `zoom` | 1280, 1440, 1024 and 390 at 200 percent, clean |
+| `sticky` | Header holds position at 390, 768, 1440 and 1920 |
+
+Full-page pixel comparison against the study: identical page heights at 1440 and 1920,
+1106 differing pixels at 1440 which is 0.0093 percent, confined to the navigation glyphs
+between x 977 and 1370 and y 33 and 44. The cause is antialiasing mode. A header that
+genuinely sticks is promoted to its own compositing layer, so its text renders with
+greyscale rather than subpixel antialiasing. Navigation geometry, size, weight, letter
+spacing and colour measured identical on both pages.
+
+Captures viewed, not merely written: full pages at 320, 390, 768 and 1440, section
+detail for hero, both work cards, the Mondai index, the About opening, the footer and
+the open menu, the Superpowers word at 390 and 1440, the navigation at 1440, and the
+hero at 844 by 390 landscape.
+
+Browser coverage: Chromium 141 only. Safari, Firefox and real iOS and Android devices
+are not available in this environment, so cross-browser smoke testing is recorded as not
+verified.
+
+### Still open after this task
+
+* The footer button copy and its destination remain owner decisions and are unchanged.
+* The LinkedIn profile URL is still text rather than a link because no verified profile
+  URL exists in the project.
+* Case study destinations are still same-page fragments because no approved routes exist.
+* Current personal copy is still temporary layout content and is not approved for
+  shipping.
+* No motion is in scope. Any later motion must respect reduced-motion preferences.
+* The MENU and CLOSE trigger labels are the agent's choice from the open variables list
+  and can be changed without affecting the composition.
 
 ## Section decision template
 

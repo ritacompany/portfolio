@@ -162,3 +162,39 @@ review loop, fixes every material defect and reports once when the full responsi
 ## Existing design direction
 
 The portfolio should use an asymmetric, editorial and evidence-led layout grammar. Figma is the visual source of truth. The existing Haven and Mondai WIP frames are protected from direct edits unless explicitly approved.
+
+## 2026-09-13: Responsive homepage implemented, canonical source moved
+
+The canonical homepage is `site/index.html`, `site/styles.css` and `site/main.js`. The wide
+study files stay in the repository as the accepted desktop evidence the implementation was
+measured against, and are no longer the source of truth.
+
+The mobile composition is the base stylesheet and compact and desktop behaviour is added with
+min-width queries. Three structural boundaries were derived from measured content failures
+rather than device presets: 600 pixels where the card metadata, Mondai header and footer
+contact pairs stop holding a two-group line, 1120 pixels where the four fixed-anchor hero
+groups stop fitting because the relocation note and the navigation overlap from 1110 pixels
+down, and 1440 pixels as the accepted desktop reference.
+
+Each display word now derives its bleed and its layer width from one size value using the exact
+Figma ratios, so the art-directed overlap is preserved proportionally at every width instead of
+being re-specified per breakpoint. The approved 1440 and 1920 values are reproduced exactly.
+
+Below the desktop boundary the three navigation links are replaced by a full-screen menu. Its
+trigger reuses the accepted CONTACT pill and its rows reuse the case-row grammar already on the
+page, so no new component is introduced. The MENU and CLOSE labels are interface copy chosen by
+the agent from the open variables list, not personal brand copy, and remain changeable.
+
+Two defects in the accepted baseline were corrected. The sticky header did not stick, because
+`overflow: hidden` on the canvas made it a scroll container; the canvas now uses `overflow: clip`,
+which still crops the display-word bleed. The footer contact links measured 40.1 pixels tall
+against the stated 44 pixel interaction floor.
+
+The three art-directed quote lines flow as one statement below the desktop boundary, because each
+line wrapped separately below the desktop measure and produced a stair-step rag with the bolt
+orphaned. The superpower statements drop their 515 and 481 pixel measures below that boundary for
+a 20 to 24 character measure, which is the recomposition the 10 Sep decision requires rather than
+a narrowed measure.
+
+Verification is reproducible with `node scripts/responsive-check.mjs <check>`. Cross-browser smoke
+testing is recorded as not verified: only Chromium was available.

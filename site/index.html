@@ -2,115 +2,178 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Chadwick Fenner, Product Designer</title>
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+    <link rel="preload" href="assets/satoshi-medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
   </head>
   <body>
-    <main class="homepage">
-      <section class="hero" aria-labelledby="page-title" data-figma-node="3461:27850">
-        <div class="hero-background" data-figma-node="3461:27853"></div>
-        <img class="logo" src="assets/logo.svg" alt="CF" data-figma-node="3461:27858">
-        <p class="bio figma-text" data-figma-node="3461:27860"><span class="bio-muted" data-figma-segment="0">I’m a</span><span data-figma-segment="1"> </span><strong data-figma-segment="2">Product Designer</strong><span data-figma-segment="3">, </span><span class="bio-muted" data-figma-segment="4">currently from Chicago. I’m dedicated to uncovering the patterns within the noise. </span></p>
-        <p class="relocation figma-text" data-figma-node="3461:27862">*looking to relocate to NYC</p>
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a class="nav-home figma-text" href="#home" data-figma-node="3461:27864">HOME</a>
-          <a class="nav-about figma-text" href="#about" data-figma-node="3461:27865">ABOUT</a>
-          <a class="nav-contact figma-text" href="#contact" data-figma-node="3461:27866">contact</a>
+    <div class="canvas">
+      <header class="site-header" data-figma-node="3461:27855">
+        <img class="site-logo" src="assets/logo.svg" alt="CF" width="61" height="18" data-figma-node="3461:27858">
+        <nav class="site-navigation" aria-label="Primary navigation" data-figma-node="3461:27863">
+          <a href="#home" data-figma-node="3461:27864">HOME</a>
+          <a href="#about" data-figma-node="3461:27865">ABOUT</a>
+          <a class="nav-contact" href="#contact" data-figma-node="3461:27866"><span>CONTACT</span></a>
         </nav>
-        <h1 class="figma-text" id="page-title" data-figma-node="3461:27854">CHADWICK</h1>
-      </section>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">MENU</button>
+      </header>
 
-      <section class="work" id="home" aria-label="Selected work" data-figma-node="3461:26549">
-        <article class="project-card project-mondai" data-figma-node="3461:26551">
-          <img class="project-image" src="assets/mondai-card.png" alt="Mondai action hub interface" data-figma-node="3461:26552">
-          <h2 class="project-title figma-text" data-figma-node="3461:26822">Mondai</h2>
-          <div class="project-label" aria-label="case study collection">
-            <img class="label-bracket-left" src="assets/bracket-left.svg" alt="">
-            <p class="label-text figma-text" data-figma-node="3461:26819">case study<br>collection</p>
-            <img class="label-bracket-right" src="assets/bracket-right.svg" alt="">
+      <main class="homepage" id="home">
+        <section class="hero" aria-labelledby="page-title" data-figma-node="3461:27853">
+          <div class="hero-copy">
+            <p class="hero-bio figma-text" data-figma-node="3461:27860"><span class="muted">I’m a</span> <strong>Product Designer</strong><span class="muted">, currently from Chicago. I’m dedicated to uncovering the patterns within the noise. </span></p>
+            <p class="hero-relocation figma-text" data-figma-node="3461:27862">*looking to relocate to NYC</p>
           </div>
-          <p class="project-description figma-text" data-figma-node="3461:26823">The tech career navigation tool for the next generation of hustlers</p>
-          <img class="project-star" src="assets/star.svg" alt="">
-          <p class="project-tags figma-text" data-figma-node="3461:26827">Leadership CS, Framework CS and Design system CS</p>
-          <span class="project-view figma-text" data-figma-node="3501:7913">[ View ]</span>
-        </article>
+          <h1 class="figma-text" id="page-title" data-figma-node="3461:27854"><span class="track-07">C</span><span class="track-05">HA</span><span class="track-07">D</span><span class="track-05">W</span><span class="track-08">I</span><span class="track-07">C</span><span>K</span></h1>
+        </section>
 
-        <article class="project-card project-haven" data-figma-node="3501:7915">
-          <img class="project-image" src="assets/haven-card.png" alt="Haven mobile product interface" data-figma-node="3501:8476">
-          <h2 class="project-title figma-text" data-figma-node="3501:8051">Haven</h2>
-          <p class="project-description figma-text" data-figma-node="3501:8057">A product designed to help LGBTQIA+ teens gain access to affirming environments</p>
-          <img class="project-star" src="assets/star.svg" alt="">
-          <p class="project-tags figma-text" data-figma-node="3501:8061">Design, strategy and research.</p>
-          <span class="project-view figma-text" data-figma-node="3501:8063">[ View ]</span>
-        </article>
-      </section>
+        <section class="work" aria-label="Selected work" data-figma-node="3461:26549">
+          <article class="project-card project-mondai" id="mondai-card" data-figma-node="3600:8148">
+            <a class="card-link" href="#mondai-index" aria-label="View Mondai case study collection">
+              <img class="project-image" src="assets/mondai-card-wide.png" alt="Mondai career navigation interface" width="1124" height="464" data-figma-node="3600:8149">
+              <div class="project-meta">
+                <div class="meta-row meta-primary">
+                  <div class="project-heading">
+                    <h2 class="project-title figma-text" data-figma-node="3461:26822">Mondai</h2>
+                    <div class="project-label" aria-label="case study collection">
+                      <img src="assets/bracket-left.svg" alt="" width="7" height="29">
+                      <span class="label-text figma-text" data-figma-node="3461:26819">case study<br>collection</span>
+                      <img src="assets/bracket-right.svg" alt="" width="7" height="29">
+                    </div>
+                  </div>
+                  <p class="project-description figma-text" data-figma-node="3461:26823">The tech career navigation tool for the next generation of hustlers</p>
+                </div>
+                <div class="meta-row meta-secondary">
+                  <div class="project-tags">
+                    <img src="assets/star.svg" alt="" width="13" height="13">
+                    <p class="figma-text" data-figma-node="3461:26827">Leadership CS, Framework CS and Design system CS</p>
+                  </div>
+                  <span class="project-view figma-text" data-figma-node="3501:7913">[ View ]</span>
+                </div>
+              </div>
+            </a>
+          </article>
 
-      <section class="mondai-index" aria-labelledby="mondai-title" data-figma-node="3461:27892">
-        <h2 class="mondai-title figma-text" id="mondai-title" data-figma-node="3461:27898">Mondai</h2>
-        <div class="mondai-label" aria-label="case study collection">
-          <img class="label-bracket-left" src="assets/bracket-left.svg" alt="">
-          <p class="label-text figma-text" data-figma-node="3501:8491">case study<br>collection</p>
-          <img class="label-bracket-right" src="assets/bracket-right.svg" alt="">
-        </div>
-        <p class="mondai-description figma-text" data-figma-node="3461:27905">An AI powered tech career navigator designed for the next generation of hustlers.</p>
-        <ol class="case-list">
-          <li data-figma-node="3461:27908">
-            <span class="case-number figma-text" data-figma-node="3461:27911">1</span>
-            <span class="case-title figma-text" data-figma-node="3461:27912">Leadership CS</span>
-            <img src="assets/arrow.svg" alt="" data-figma-node="3461:27913">
-          </li>
-          <li data-figma-node="3461:27914">
-            <span class="case-number figma-text" data-figma-node="3461:27917">2</span>
-            <span class="case-title figma-text" data-figma-node="3461:27918">Framework CS</span>
-            <img src="assets/arrow.svg" alt="" data-figma-node="3461:27919">
-          </li>
-          <li data-figma-node="3461:27920">
-            <span class="case-number figma-text" data-figma-node="3461:27923">3</span>
-            <span class="case-title figma-text" data-figma-node="3461:27924">Design system CS</span>
-            <img src="assets/arrow.svg" alt="" data-figma-node="3461:27925">
-          </li>
-        </ol>
-      </section>
+          <article class="project-card project-haven" id="haven-card" data-figma-node="3501:7915">
+            <a class="card-link" href="#haven-card" aria-label="View Haven case study">
+              <img class="project-image" src="assets/haven-card-wide.png" alt="Haven mobile product interface" width="1124" height="464" data-figma-node="3594:4117">
+              <div class="project-meta">
+                <div class="meta-row meta-primary">
+                  <h2 class="project-title figma-text" data-figma-node="3501:8051">Haven</h2>
+                  <p class="project-description figma-text" data-figma-node="3501:8057">A product designed to help LGBTQIA+ teens gain access to affirming environments</p>
+                </div>
+                <div class="meta-row meta-secondary">
+                  <div class="project-tags">
+                    <img src="assets/star.svg" alt="" width="13" height="13">
+                    <p class="figma-text" data-figma-node="3501:8061">Design, strategy and research.</p>
+                  </div>
+                  <span class="project-view figma-text" data-figma-node="3501:8063">[ View ]</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        </section>
 
-      <section class="about" id="about" aria-labelledby="superpowers-title" data-figma-node="3461:27984">
-        <p class="quote-line quote-one figma-text" data-figma-node="3461:27987">I’m convinced that people would be </p>
-        <p class="quote-line quote-two figma-text" data-figma-node="3461:27988">happier if we encouraged one another</p>
-        <p class="quote-line quote-three figma-text" data-figma-node="3461:27990">to figure out our superpowers.</p>
-        <img class="bolt" src="assets/bolt.svg" alt="" data-figma-node="3461:27991">
-        <p class="about-intro figma-text" data-figma-node="3500:6966">I’ve been lucky enough to have the right people around me to help me discover some of mine.</p>
-        <img class="portrait" src="assets/portrait.png" alt="Portrait of Chadwick Fenner" data-figma-node="3461:27995">
-        <h2 class="superpowers-title figma-text" id="superpowers-title" data-figma-node="3461:27999">Superpowers</h2>
-        <p class="superpower power-one figma-text" data-figma-node="3461:28002">An eye for what's quietly moving the outcome.</p>
-        <p class="superpower power-two figma-text" data-figma-node="3461:28004">The natural tendency to think in systems.</p>
-        <p class="superpower power-three figma-text" data-figma-node="3461:28006">The kind of energy that pulls people in.</p>
-        <div class="overview-row overview-main" data-figma-node="3461:28008">
-          <h3 class="overview-label figma-text" data-figma-node="3461:28010">Overview</h3>
-          <div class="overview-copy figma-text" data-figma-node="3461:28011">
-            <p>In my work, I'm drawn to the problem underneath the problem, the structural part that a surface request is usually pointing to.</p>
-            <p>I studied psychology before I studied design, and the thing that stuck was that a cause and an effect are never a fixed pair. Whether two variables stay connected, flip or quietly stop mattering changes depending on what else is in the room.</p>
-            <p>No problem is the same, and neither is one person. I’m a verbal processor that thrives in environments that foster collaboration. Most of what I know about my own work came from someone else saying it out loud first. So I try to keep a room where no voice feels less than another.</p>
+        <section class="mondai" id="mondai-index" aria-labelledby="mondai-title" data-figma-node="3461:27892">
+          <header class="mondai-header">
+            <h2 class="mondai-title figma-text" id="mondai-title" data-figma-node="3461:27898"><span class="track-m">M</span><span>ond</span><span class="track-a">a</span><span>i</span></h2>
+            <div class="mondai-details">
+              <div class="mondai-label" aria-label="case study collection">
+                <img src="assets/bracket-left.svg" alt="" width="7" height="29">
+                <span class="label-text figma-text" data-figma-node="3501:8491">case study<br>collection</span>
+                <img src="assets/bracket-right.svg" alt="" width="7" height="29">
+              </div>
+              <p class="mondai-description figma-text" data-figma-node="3461:27905">An AI powered tech career navigator designed for the next generation of hustlers.</p>
+            </div>
+          </header>
+          <ol class="case-list">
+            <li id="leadership-case">
+              <a href="#leadership-case" aria-label="View Leadership case study"><span class="case-number figma-text">1</span><span class="case-title figma-text">Leadership CS</span><img class="case-arrow" src="assets/arrow.svg" alt="" width="33" height="33"></a>
+            </li>
+            <li id="framework-case">
+              <a href="#framework-case" aria-label="View Framework case study"><span class="case-number figma-text">2</span><span class="case-title figma-text">Framework CS</span><img class="case-arrow" src="assets/arrow.svg" alt="" width="33" height="33"></a>
+            </li>
+            <li id="design-system-case">
+              <a href="#design-system-case" aria-label="View Design system case study"><span class="case-number figma-text">3</span><span class="case-title figma-text">Design system CS</span><img class="case-arrow" src="assets/arrow.svg" alt="" width="33" height="33"></a>
+            </li>
+          </ol>
+        </section>
+
+        <section class="about" id="about" aria-labelledby="superpowers-title" data-figma-node="3461:27984">
+          <div class="about-opening" data-figma-node="3461:27985">
+            <div class="quote-block">
+              <p class="quote-line figma-text" data-figma-node="3461:27987">I’m convinced that people would be</p>
+              <p class="quote-line figma-text" data-figma-node="3461:27988">happier if we encouraged one another</p>
+              <p class="quote-line quote-last figma-text" data-figma-node="3461:27990"><span>to figure out our superpowers.</span><img src="assets/bolt.svg" alt="" width="58" height="58" data-figma-node="3461:27991"></p>
+            </div>
+            <p class="about-intro figma-text" data-figma-node="3500:6966">I’ve been lucky enough to have the right people around me to help me discover some of mine.</p>
+            <div class="portrait-row">
+              <img class="portrait" src="assets/portrait.png" alt="Portrait of Chadwick Fenner" width="258" height="339" data-figma-node="3461:27995">
+            </div>
           </div>
-        </div>
-        <div class="overview-row role-row" data-figma-node="3461:28012">
-          <h3 class="overview-label figma-text" data-figma-node="3461:28014">Current role</h3>
-          <p class="role-copy figma-text" data-figma-node="3461:28015">I lead design at Mondai, a tech career tool that the industry forgot to map. Two years, unpaid, one of four people deciding what it becomes. I met the founder when he was my mentor. Now I'm one of the voices he argues with.</p>
-        </div>
-      </section>
+
+          <div class="superpowers" data-figma-node="3461:27996">
+            <div class="superpowers-heading-frame">
+              <h2 class="figma-text" id="superpowers-title" data-figma-node="3461:27999"><span class="super-s">S</span><span class="super-u">u</span><span class="super-p">p</span><span>e</span><span class="super-r">r</span><span class="super-p">p</span><span class="super-ow">ow</span><span>e</span><span class="super-r2">r</span><span>s</span></h2>
+            </div>
+            <div class="power-list">
+              <div class="power-row"><p class="figma-text" data-figma-node="3461:28002">An eye for what's quietly moving the outcome.</p></div>
+              <div class="power-row"><p class="figma-text" data-figma-node="3588:34818">A proclivity for pattern recognition</p></div>
+              <div class="power-row"><p class="figma-text" data-figma-node="3588:34820">The kind of energy that pulls people in.</p></div>
+            </div>
+            <div class="overview">
+              <div class="overview-row overview-main" data-figma-node="3461:28008">
+                <h3 class="overview-label figma-text" data-figma-node="3461:28010">Overview</h3>
+                <div class="overview-copy figma-text" data-figma-node="3461:28011">
+                  <p>In my work, I'm drawn to the problem underneath the problem, the structural part that a surface request is usually pointing to.</p>
+                  <p>I studied psychology before I studied design, and the thing that stuck was that a cause and an effect are never a fixed pair. Whether two variables stay connected, flip or quietly stop mattering changes depending on what else is in the room.</p>
+                  <p>No problem is the same, and neither is one person. I’m a verbal processor that thrives in environments that foster collaboration. Most of what I know about my own work came from someone else saying it out loud first. So I try to keep a room where no voice feels less than another.</p>
+                </div>
+              </div>
+              <div class="overview-row role-row" data-figma-node="3461:28012">
+                <h3 class="overview-label figma-text" data-figma-node="3461:28014">Current role</h3>
+                <p class="overview-copy figma-text" data-figma-node="3461:28015">I lead design at Mondai, a tech career tool that the industry forgot to map. Two years, unpaid, one of four people deciding what it becomes. I met the founder when he was my mentor. Now I'm one of the voices he argues with.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <footer class="site-footer" id="contact" data-figma-node="3461:7986">
         <section class="footer-callout" aria-label="Contact callout">
-          <h2 class="footer-title figma-text" data-figma-node="3461:7988">CATCHY OUTRO</h2>
+          <h2 class="figma-text" data-figma-node="3461:7988"><span class="outro-c">C</span><span class="outro-a">A</span><span>T</span><span class="outro-c2">C</span><span class="outro-h">H</span><span>Y </span><span class="outro-o">O</span><span class="outro-ut">UT</span><span>RO</span></h2>
           <button type="button" data-figma-node="3501:9672"><span class="figma-text" data-figma-node="3501:9673">Button</span></button>
         </section>
-        <section class="footer-contact" data-figma-node="3501:9658">
-          <p class="location-city figma-text" data-figma-node="3501:9668">Chicago, IL</p>
-          <p class="location-time figma-text" data-figma-node="3501:9669">10:24pm</p>
-          <span class="linkedin figma-text" data-figma-node="3501:9670">linkedin</span>
-          <span class="email figma-text" data-figma-node="3501:9675">fenner@chadwickfenner.com</span>
+        <section class="footer-contact" aria-label="Location and contact details" data-figma-node="3501:9658">
+          <div class="footer-location">
+            <p class="figma-text" data-figma-node="3501:9668">Chicago, IL</p>
+            <time class="figma-text" id="chicago-time" aria-live="off" data-figma-node="3501:9669">10:24pm</time>
+          </div>
+          <div class="contact-links">
+            <span class="figma-text" data-figma-node="3501:9670">linkedin</span>
+            <a class="figma-text" href="mailto:fenner@chadwickfenner.com" data-figma-node="3501:9675">fenner@chadwickfenner.com</a>
+          </div>
         </section>
       </footer>
-    </main>
+    </div>
+
+    <div class="site-menu" id="site-menu" hidden>
+      <div class="menu-head">
+        <img class="menu-logo" src="assets/logo.svg" alt="CF" width="61" height="18">
+        <button class="menu-close" type="button">CLOSE</button>
+      </div>
+      <nav class="menu-nav" aria-label="Menu">
+        <a href="#home"><span class="menu-label figma-text">HOME</span><img class="menu-arrow" src="assets/arrow.svg" alt="" width="33" height="33"></a>
+        <a href="#about"><span class="menu-label figma-text">ABOUT</span><img class="menu-arrow" src="assets/arrow.svg" alt="" width="33" height="33"></a>
+        <a href="#contact"><span class="menu-label figma-text">CONTACT</span><img class="menu-arrow" src="assets/arrow.svg" alt="" width="33" height="33"></a>
+      </nav>
+      <div class="menu-foot">
+        <p class="figma-text">Chicago, IL</p>
+        <a class="figma-text" href="mailto:fenner@chadwickfenner.com">fenner@chadwickfenner.com</a>
+      </div>
+    </div>
   </body>
 </html>
