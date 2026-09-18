@@ -18,3 +18,5 @@ dist/
 # personal conversation corpus, do not publish
 docs/about-source/HUMAN_CORPUS.txt
 docs/about-source/CHADWICK_ONLY.txt
+docs/about-source/_evidence/codex_user_turns.txt
+docs/about-source/_evidence/codex_chadwick.txt
