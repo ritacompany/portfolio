@@ -4,6 +4,13 @@ Written 30 Sep 2026 from the Claude Code session that built this. It is the refe
 any chat that continues the case study page motion. Everything below was measured or read
 from source, not remembered. Where something is inference it says so.
 
+## Scope
+
+The deliverable here is the journey flow animation: the circles, the straight shuffle and
+its timing. The text reveal rules are recorded as context because they were read from the
+Metalab source in the same session. Page wide text motion is owned by the case study page
+work, not by this folder.
+
 ## What is here
 
 | File | What it is |
