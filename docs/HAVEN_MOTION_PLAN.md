@@ -270,3 +270,22 @@ the Scheduling eyebrow 3530:4896 has no text style. Both are built as Figma show
 **Not yet done.** The Confidante profile scroll loop and the other inside media loops, the ending (its
 direction is still open in the `site/haven-ending-*` studies) and linking the homepage Haven card to this
 page, which belongs to the homepage branch.
+
+## Revision, 30 Sep 2026 evening
+
+From Chadwick's review of the first build.
+- **Slower.** Text fades over 1.4 s with a 0.15 s stagger. Frames reveal over 1.2 s, pairs 0.3 s apart. Blocks on
+  screen at load wait 0.35 s so the arrival is not rushed. These replace the Metalab source values, which read
+  as too fast here.
+- **Smoother.** Frames reveal through the Web Animations API on the compositor and wait for their images to decode,
+  so nothing pops in mid reveal. That was the jump in the security frames.
+- **Scroll.** Lenis now uses `lerp: 0.1` and only smooths mouse wheels. Trackpad gestures go to native scroll,
+  because smoothing their own momentum a second time was the jumpy feel.
+- **No hover effects.** Insight cards all use the bright style. Insight pills are plain labels, no tooltips.
+- **Sticky nav** with a dark scrim so it reads over the light feedback block.
+- **Feedback block** fills the screen.
+- **Stats** share one center line: the cross, the 6, the arrow and the 5 key insights title.
+- **Flow.** Select a Confidante is green from the start. The prototype README rule is updated to match.
+- **Quiz parallax.** The phone and the pillars are separate layers. The phone rises about 28 percent of the frame
+  height as the section scrolls, so it covers the icons. Both exports had a #050407 background that showed as a
+  faint box against the page; it is knocked out to transparent.

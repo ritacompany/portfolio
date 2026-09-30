@@ -69,12 +69,12 @@
         <img class="stats__cross tb-item" src="assets/stats-cross.svg" width="128" height="124.75" alt="">
         <p class="stat tb-item"><span class="stat__num">3</span><span class="stat__label stat__label-narrow">LGBTQIA+ college students</span></p>
       </div>
-      <p class="stat stat-total tb-item"><span class="stat__num">6</span><span class="stat__label stat__label-total">Total interviews</span></p>
+      <p class="stat stat-total tb-item"><span></span><span class="stat__num">6</span><span class="stat__label stat__label-total">Total interviews</span></p>
       <img class="stats__arrow tb-item" src="assets/stats-arrow.svg" width="120" height="124.75" alt="">
     </div>
     <h3 class="h40 access__insights-title" data-tb><span class="tb-item">5 key insights</span></h3>
     <ol class="cards cards-research" data-tb>
-      <li class="card is-lit tb-item"><p class="card__label">Insight 1</p><p class="card__title">Humanizing experts</p><p class="card__body">When choosing between experts they value elements that humanize them. Users want to know that experts will understand them.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 1</p><p class="card__title">Humanizing experts</p><p class="card__body">When choosing between experts they value elements that humanize them. Users want to know that experts will understand them.</p></li>
       <li class="card tb-item"><p class="card__label">Insight 2</p><p class="card__title">Sensitive conversations</p><p class="card__body">Users were uncomfortable discussing sensitive identity topics aloud, especially when someone nearby could overhear.</p></li>
       <li class="card tb-item"><p class="card__label">Insight 3</p><p class="card__title">Unique identities</p><p class="card__body">A one size fits all identity model could flatten the demographic differences that shape each user’s unique experience.</p></li>
       <li class="card tb-item"><p class="card__label">Insight 4</p><p class="card__title">Scheduling concerns</p><p class="card__body">Users need to choose a time when they could be alone. A time that they will feel safe to engage with an expert.</p></li>
@@ -137,7 +137,7 @@
       </div>
       <h4 class="visually-hidden">Key insights from testing</h4>
       <ol class="cards cards-testing" data-tb>
-        <li class="tcard is-lit tb-item"><p class="tcard__label">Insight 1</p><p class="tcard__body">Users were unsure of what mode of communication they would be chatting with the expert through.</p></li>
+        <li class="tcard tb-item"><p class="tcard__label">Insight 1</p><p class="tcard__body">Users were unsure of what mode of communication they would be chatting with the expert through.</p></li>
         <li class="tcard tb-item"><p class="tcard__label">Insight 2</p><p class="tcard__body">Users had trouble understanding the duration section of the scheduling page.</p></li>
         <li class="tcard tb-item"><p class="tcard__label">Insight 3</p><p class="tcard__body">Users were concerned that the design lacked enough security features.</p></li>
         <li class="tcard tb-item"><p class="tcard__label">Insight 4</p><p class="tcard__body">Users wanted to know more about the Confidante in order to determine the right choice.</p></li>
@@ -173,15 +173,18 @@
       <h2 class="eyebrow tb-item" id="quiz-title">Primary identity quiz</h2>
       <p class="h40 quiz__lead tb-item">Identity shapes what safe, relevant support looks like. The quiz makes room for the experiences behind each match.</p>
       <ul class="pills tb-item">
-        <li><button class="pill" type="button" data-insight="i1">Interview insight 1</button></li>
-        <li><button class="pill" type="button" data-insight="i3">Interview insight 3</button></li>
-        <li><button class="pill" type="button" data-insight="r1">Confidante role 1</button></li>
+        <li><span class="pill">Interview insight 1</span></li>
+        <li><span class="pill">Interview insight 3</span></li>
+        <li><span class="pill">Confidante role 1</span></li>
       </ul>
     </div>
     <div class="quiz__row">
       <p class="body body-400 quiz__body" data-tb><span class="tb-item">The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Users pick the experiences that matter to them. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.</span></p>
       <figure class="mask mask-clear quiz__media" data-mask>
-        <div class="mask__scale"><img src="assets/quiz-media.webp" width="880" height="1096" loading="lazy" alt="Five pillars labelled attraction, gender identity, belonging, race and ethnicity and upbringing, each topped with an icon, behind a phone showing quiz question 16 of 30."></div>
+        <div class="mask__scale">
+          <img class="quiz__pillars" src="assets/quiz-pillars.webp" width="881" height="1001" loading="lazy" alt="Five pillars labelled attraction, gender identity, belonging, race and ethnicity and upbringing, each topped with an icon.">
+          <img class="quiz__phone" src="assets/quiz-phone.webp" width="307" height="637" loading="lazy" alt="A phone showing quiz question 16 of 30, with an answer selected.">
+        </div>
       </figure>
     </div>
   </section>
@@ -190,8 +193,8 @@
       <h2 class="eyebrow tb-item" id="journey-title">Testing synthesis</h2>
       <p class="h40 journey__lead tb-item">Haven’s early flow asked people to choose a Confidante before they could have an introductory chat.</p>
       <ul class="pills tb-item">
-        <li><button class="pill" type="button" data-insight="i1">Interview insight 1</button></li>
-        <li><button class="pill" type="button" data-insight="t4">Testing insight 4</button></li>
+        <li><span class="pill">Interview insight 1</span></li>
+        <li><span class="pill">Testing insight 4</span></li>
       </ul>
     </div>
     <div class="journey__row" data-tb id="journey-row">
@@ -224,9 +227,9 @@ a chat</span></li>
     </div>
     <div class="profile__block">
       <ul class="pills" data-tb>
-        <li class="tb-item"><button class="pill" type="button" data-insight="i1">Interview insight 1</button></li>
-        <li class="tb-item"><button class="pill" type="button" data-insight="i3">Interview insight 3</button></li>
-        <li class="tb-item"><button class="pill" type="button" data-insight="t4">Testing insight 4</button></li>
+        <li class="tb-item"><span class="pill">Interview insight 1</span></li>
+        <li class="tb-item"><span class="pill">Interview insight 3</span></li>
+        <li class="tb-item"><span class="pill">Testing insight 4</span></li>
       </ul>
       <div class="profile__row">
         <figure class="mask profile__phone" data-mask>
@@ -250,9 +253,9 @@ a chat</span></li>
       <p class="body body-400 schedule__body" data-tb><span class="tb-item">Testing showed confusion about how chats would work. The scheduling screen explains that they happen by text, last 30 minutes and can end early, so people can choose a private time. With selection moved after the chats, users can book introductions with different Confidantes. Your events lists each upcoming chat with the Confidante’s name and time.</span></p>
       <div class="schedule__media-col">
         <ul class="pills" data-tb>
-          <li class="tb-item"><button class="pill" type="button" data-insight="i4">Interview insight 4</button></li>
-          <li class="tb-item"><button class="pill" type="button" data-insight="t1">Testing insight 1</button></li>
-          <li class="tb-item"><button class="pill" type="button" data-insight="t2">Testing insight 2</button></li>
+          <li class="tb-item"><span class="pill">Interview insight 4</span></li>
+          <li class="tb-item"><span class="pill">Testing insight 1</span></li>
+          <li class="tb-item"><span class="pill">Testing insight 2</span></li>
         </ul>
         <figure class="mask schedule__media" data-mask>
           <div class="mask__scale"><img src="assets/scheduling-media.webp" width="1047" height="457" loading="lazy" alt="Two phones on a violet fingerprint texture: Your events listing two introduction chats, and Schedule a chat with a date picker and time slots."></div>
@@ -267,7 +270,7 @@ a chat</span></li>
     </div>
     <div class="chat__block">
       <ul class="pills chat__pills" data-tb>
-        <li class="tb-item"><button class="pill" type="button" data-insight="i2">Interview insight 2</button></li>
+        <li class="tb-item"><span class="pill">Interview insight 2</span></li>
       </ul>
       <figure class="mask chat__media" data-mask>
         <div class="mask__scale"><img src="assets/chat-media.webp" width="1047" height="749" loading="lazy" alt="A phone showing an introduction chat by text with a Confidante, surrounded by chrome liquid shapes on red orange."></div>
@@ -282,8 +285,8 @@ a chat</span></li>
     </div>
     <div class="security__block">
       <ul class="pills security__pills" data-tb>
-        <li class="tb-item"><button class="pill" type="button" data-insight="i5">Interview insight 5</button></li>
-        <li class="tb-item"><button class="pill" type="button" data-insight="t3">Testing insight 3</button></li>
+        <li class="tb-item"><span class="pill">Interview insight 5</span></li>
+        <li class="tb-item"><span class="pill">Testing insight 3</span></li>
       </ul>
       <div class="security__row">
         <div class="security__media">
@@ -304,7 +307,6 @@ a chat</span></li>
 
 </main>
 
-<div class="insight-tip" id="insight-tip" role="tooltip" hidden></div>
 
 <script src="vendor/lenis.min.js"></script>
 <script src="vendor/gsap.min.js"></script>

@@ -62,8 +62,13 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
     const hiddenText = [...document.querySelectorAll(".tb-item")].filter((e) => getComputedStyle(e).visibility === "hidden").length;
     const fonts = [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.weight).sort().join(",");
     const smallTargets = [...document.querySelectorAll("a, button")].filter((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && (r.height < 24 || r.width < 24); }).map((e) => e.textContent.trim()).slice(0, 5);
-    return { sw: doc.scrollWidth, cw: doc.clientWidth, over, hiddenText, fonts, smallTargets, h: doc.scrollHeight };
+    const cx = (el) => { const r = el.getBoundingClientRect(); return r.left + r.width / 2; };
+    const axis = [cx(document.querySelector(".stats__cross")) , cx(document.querySelector(".stat-total .stat__num")), cx(document.querySelector(".stats__arrow")), cx(document.querySelector(".access__insights-title"))].map((v) => Math.round(v * 10) / 10);
+    const bridge = document.querySelector(".bridge").getBoundingClientRect().height;
+    return { sw: doc.scrollWidth, cw: doc.clientWidth, over, hiddenText, fonts, smallTargets, h: doc.scrollHeight, axis, bridge, vh: innerHeight };
   });
+  pass(`${w}: cross, 6, arrow and 5 key insights share one center line`, Math.max(...m.axis) - Math.min(...m.axis) <= 2, m.axis.join(", "));
+  pass(`${w}: feedback block fills the screen`, m.bridge >= m.vh - 1, `${Math.round(m.bridge)} vs ${m.vh}`);
   pass(`${w}: no horizontal page overflow`, m.sw <= m.cw, `${m.sw} vs ${m.cw}`);
   pass(`${w}: no element escapes the viewport`, m.over.length === 0, m.over.join(" | "));
   pass(`${w}: all text blocks visible after reveal`, m.hiddenText === 0, String(m.hiddenText));
@@ -71,6 +76,10 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
   pass(`${w}: every request succeeded`, failed.length === 0, failed.join(" | "));
   pass(`${w}: no console or page errors`, errors.length === 0, errors.join(" | "));
   pass(`${w}: interactive targets at least 24px`, m.smallTargets.length === 0, m.smallTargets.join(" | "));
+  await page.evaluate(() => window.scrollTo(0, 6000)); await page.waitForTimeout(100);
+  const nav = await page.evaluate(() => { const n = document.querySelector(".site-nav"), r = n.getBoundingClientRect(); return { pos: getComputedStyle(n).position, top: Math.round(r.top) }; });
+  pass(`${w}: nav stays pinned while scrolling`, nav.pos === "fixed" && nav.top === 0, JSON.stringify(nav));
+  await page.evaluate(() => window.scrollTo(0, 0));
   const broken = await page.evaluate(() => [...document.images].filter((i) => !i.complete || i.naturalWidth === 0).map((i) => i.src.split("/").pop()));
   pass(`${w}: every image decoded`, broken.length === 0, broken.join(" | "));
   await page.screenshot({ path: path.join(outDir, `haven-${w}.png`), fullPage: true });
@@ -88,20 +97,22 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
   await page.waitForTimeout(1500);
   const heroShown = await page.evaluate(() => getComputedStyle(document.querySelector(".hero .tb-item")).opacity === "1" && document.querySelector(".hero__media").dataset.revealed === "true");
   pass("motion: hero text and media reveal on arrival", heroShown);
-  const before = await page.evaluate(() => { const pm = document.querySelector(".problem__media"); return { ly: getComputedStyle(pm).getPropertyValue("--left-y").trim(), sc: getComputedStyle(pm.firstElementChild).transform, vis: getComputedStyle(document.querySelector(".problem .tb-item")).visibility }; });
-  pass("motion: below the fold starts hidden, mask closed at scale 1.3", before.ly === "0%" && before.sc.startsWith("matrix(1.3") && before.vis === "hidden", JSON.stringify(before));
+  const clipOpen = (c) => { const m = /inset\(\S+ \S+ ([\d.]+)%/.exec(c); return c === "none" ? 100 : m ? 100 - parseFloat(m[1]) : (/inset\(0px 0px 0px/.test(c) ? 100 : NaN); };
+  const before = await page.evaluate(() => { const pm = document.querySelector(".problem__media"); return { clip: getComputedStyle(pm).clipPath, sc: getComputedStyle(pm.firstElementChild).transform, vis: getComputedStyle(document.querySelector(".problem .tb-item")).visibility }; });
+  pass("motion: below the fold starts hidden, mask closed at scale 1.3", clipOpen(before.clip) === 0 && before.sc.startsWith("matrix(1.3") && before.vis === "hidden", JSON.stringify(before));
   // Wheel until the problem media top enters the screen
   for (let i = 0; i < 40; i++) {
     const top = await page.evaluate(() => document.querySelector(".problem__media").getBoundingClientRect().top);
     if (top < 880) break;
     await page.mouse.wheel(0, 120); await page.waitForTimeout(60);
   }
-  await page.waitForTimeout(380);
-  const mid = await page.evaluate(() => { const pm = document.querySelector(".problem__media"); return { ly: parseFloat(getComputedStyle(pm).getPropertyValue("--left-y")), sc: new DOMMatrix(getComputedStyle(pm.firstElementChild).transform).a }; });
-  pass("motion: mask mid tween opens and scale settles together", mid.ly > 0 && mid.ly < 100 && mid.sc > 1 && mid.sc < 1.3, JSON.stringify(mid));
-  await page.waitForTimeout(1200);
-  const end = await page.evaluate(() => { const pm = document.querySelector(".problem__media"); return { ly: getComputedStyle(pm).getPropertyValue("--left-y").trim(), sc: new DOMMatrix(getComputedStyle(pm.firstElementChild).transform).a, op: getComputedStyle(document.querySelector(".problem .tb-item")).opacity }; });
-  pass("motion: mask ends fully open at scale 1, text at full opacity", end.ly === "100%" && end.sc === 1 && end.op === "1", JSON.stringify(end));
+  await page.waitForTimeout(650);
+  const mid = await page.evaluate(() => { const pm = document.querySelector(".problem__media"); return { clip: getComputedStyle(pm).clipPath, sc: new DOMMatrix(getComputedStyle(pm.firstElementChild).transform).a }; });
+  const midOpen = clipOpen(mid.clip);
+  pass("motion: mask mid reveal opens and scale settles together", midOpen > 0 && midOpen < 100 && mid.sc > 1 && mid.sc < 1.3, JSON.stringify(mid));
+  await page.waitForTimeout(1800);
+  const end = await page.evaluate(() => { const pm = document.querySelector(".problem__media"); const t = getComputedStyle(pm.firstElementChild).transform; return { clip: getComputedStyle(pm).clipPath, sc: t === "none" ? 1 : new DOMMatrix(t).a, op: getComputedStyle(document.querySelector(".problem .tb-item")).opacity }; });
+  pass("motion: mask ends fully open at scale 1, text at full opacity", end.clip === "none" && end.sc === 1 && end.op === "1", JSON.stringify(end));
 
   // Journey flow
   await page.evaluate(() => { const r = document.getElementById("flow-map").getBoundingClientRect(); window.__haven.lenis.scrollTo(r.top + scrollY - innerHeight * 0.6, { immediate: true }); });
@@ -114,16 +125,25 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
     return { order, bg: getComputedStyle(stage.querySelector('[data-id="select"]')).backgroundColor };
   });
   pass("motion: flow ends quiz, review, intro, schedule, select", flowEnd.order === "quiz,review,intro,schedule,select", flowEnd.order);
-  pass("motion: Select a Confidante turns green only after landing", startOrder === "rgb(4, 4, 5)" && flowEnd.bg === "rgb(120, 183, 101)", `${startOrder} then ${flowEnd.bg}`);
+  pass("motion: Select a Confidante is green before and after the move", startOrder === "rgb(120, 183, 101)" && flowEnd.bg === "rgb(120, 183, 101)", `${startOrder} then ${flowEnd.bg}`);
 
-  // Insight tooltip
-  await page.evaluate(() => { const p = document.querySelector(".profile .pill"); p.scrollIntoView({ block: "center" }); });
-  await page.waitForTimeout(300);
-  await page.focus(".profile .pill");
-  const tip = await page.evaluate(() => { const t = document.getElementById("insight-tip"), p = document.querySelector(".profile .pill"); return { shown: !t.hidden, text: t.textContent.slice(0, 40), described: p.getAttribute("aria-describedby") }; });
-  await page.keyboard.press("Escape");
-  const tipGone = await page.evaluate(() => document.getElementById("insight-tip").hidden);
-  pass("tooltip: focus shows the insight, Escape hides it", tip.shown && tip.described === "insight-tip" && tipGone, JSON.stringify(tip));
+  // No hover effects: cards keep one style and pills are plain labels
+  const hov = await page.evaluate(() => ({ pillButtons: document.querySelectorAll("button.pill").length, tip: !!document.getElementById("insight-tip") }));
+  const card = page.locator(".card").nth(2);
+  await card.scrollIntoViewIfNeeded();
+  const cardBefore = await card.evaluate((e) => getComputedStyle(e).borderColor + getComputedStyle(e.querySelector(".card__title")).color);
+  await card.hover(); await page.waitForTimeout(400);
+  const cardAfter = await card.evaluate((e) => getComputedStyle(e).borderColor + getComputedStyle(e.querySelector(".card__title")).color);
+  pass("no hover: cards stay bright and pills are static", hov.pillButtons === 0 && !hov.tip && cardBefore === cardAfter && cardBefore.includes("rgb(174, 174, 180)"), cardBefore + " / " + cardAfter);
+
+  // Quiz parallax: the phone rises as the section scrolls
+  await page.evaluate(() => { const r = document.querySelector(".quiz__media").getBoundingClientRect(); window.__haven.lenis.scrollTo(r.top + scrollY - innerHeight * 0.8, { immediate: true }); });
+  await page.waitForTimeout(400);
+  const y1 = await page.evaluate(() => new DOMMatrix(getComputedStyle(document.querySelector(".quiz__phone")).transform).f);
+  await page.evaluate(() => window.__haven.lenis.scrollTo(scrollY + 600, { immediate: true }));
+  await page.waitForTimeout(400);
+  const y2 = await page.evaluate(() => new DOMMatrix(getComputedStyle(document.querySelector(".quiz__phone")).transform).f);
+  pass("parallax: quiz phone rises over the pillars on scroll", y2 < y1 - 50, `${y1.toFixed(0)} to ${y2.toFixed(0)}`);
   await ctx.close();
 }
 

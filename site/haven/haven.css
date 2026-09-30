@@ -86,11 +86,13 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .mask { position: relative; overflow: hidden; background-color: var(--plate); }
 .mask-clear { background-color: transparent; }
 .mask__scale { position: relative; width: 100%; height: 100%; }
-.js-motion [data-mask] { --left-y: 0%; --right-y: 0%; clip-path: polygon(0 0, 100% 0, 100% var(--left-y), 0 var(--right-y)); }
+.js-motion [data-mask] { clip-path: inset(0 0 100% 0); }
 .js-motion [data-mask] > .mask__scale { transform: scale(1.3); }
+.js-motion [data-mask], .js-motion [data-mask] > .mask__scale { will-change: clip-path, transform; }
 
 /* ---------- Navigation ---------- */
-.site-nav { position: absolute; left: 0; right: 0; top: 24px; z-index: 5; display: flex; align-items: center; justify-content: space-between; padding-inline: var(--m); }
+.site-nav { position: fixed; left: 0; right: 0; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 24px var(--m) 40px; background: linear-gradient(to bottom, rgb(4 4 5 / 0.92) 0%, rgb(4 4 5 / 0.72) 45%, rgb(4 4 5 / 0) 100%); pointer-events: none; }
+.site-nav a { pointer-events: auto; }
 .site-nav__logo { display: block; width: 60.458px; padding-block: 13px; margin-block: -13px; }
 .site-nav__links { display: flex; gap: 76px; }
 .site-nav__links a { display: inline-block; padding-block: 15px; margin-block: -15px; font-size: 14px; line-height: 1; letter-spacing: 0.02em; font-weight: 400; text-transform: uppercase; color: var(--n100); }
@@ -98,10 +100,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 
 /* ---------- Pills and insight tooltips ---------- */
 .pills { display: flex; flex-wrap: wrap; gap: 14px; }
-.pill { height: 40px; padding: 0 20px; border: 1px solid var(--n550); border-radius: 48px; background: transparent; display: inline-flex; align-items: center; font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; font-weight: 400; text-transform: uppercase; color: var(--n100); white-space: nowrap; cursor: help; transition: border-color 0.2s ease, background-color 0.2s ease; }
-.pill:hover, .pill[aria-expanded="true"] { border-color: var(--n200); background: var(--n800); }
-.insight-tip { position: absolute; z-index: 20; width: 306px; max-width: calc(100vw - 32px); padding: 20px 20px 28px; border-radius: 6px; background: var(--n800); color: var(--n200); font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 400; pointer-events: none; }
-.insight-tip[hidden] { display: none; }
+.pill { height: 40px; padding: 0 20px; border: 1px solid var(--n550); border-radius: 48px; display: inline-flex; align-items: center; font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; font-weight: 400; text-transform: uppercase; color: var(--n100); white-space: nowrap; }
 
 /* ---------- Hero, 3558:22720 ---------- */
 .hero { position: relative; padding: 131px var(--m) 184px; border-bottom: 1px solid var(--n675); }
@@ -129,7 +128,9 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .access { padding: 133px 0 141px; display: flex; flex-direction: column; align-items: center; }
 .access__text { width: calc(892 * var(--g)); display: flex; flex-direction: column; gap: 48px; }
 .stats { margin-top: 102px; display: flex; flex-direction: column; align-items: center; }
-.stats__row { display: flex; align-items: center; justify-content: center; gap: calc(86 * var(--g)); }
+.stats__row, .stat.stat-total { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; column-gap: calc(86 * var(--g)); }
+.stats__row > :first-child { justify-self: end; }
+.stats__row > :last-child { justify-self: start; }
 .stat { display: flex; align-items: center; gap: 32px; }
 .stat-left { justify-content: flex-end; }
 .stat__num { font-size: 137.54px; line-height: 1; font-weight: 700; letter-spacing: 0.08em; color: var(--n300); text-align: center; }
@@ -137,20 +138,16 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .stat__label-narrow { white-space: normal; width: 113px; }
 .stat__label-total { white-space: normal; width: 68px; }
 .stats__cross { width: 128px; height: auto; }
-.stat-total { margin-top: 86px; }
+.stat-total { margin-top: 86px; column-gap: 32px; }
+.stat-total .stat__label { justify-self: start; }
 .stats__arrow { width: 120px; margin-top: 44px; }
 .access__insights-title { margin-top: 86px; color: var(--n200); text-align: center; }
 .cards { width: 100%; }
 .cards-research { margin-top: 56px; padding-inline: var(--m); display: flex; flex-wrap: wrap; justify-content: center; gap: 40px calc(32 * var(--g)); }
-.card { width: calc((100% - 64 * var(--g)) / 3); min-height: 279px; padding: 32px; border: 1px solid var(--n675); border-radius: 16px; background: var(--n900); display: flex; flex-direction: column; justify-content: flex-end; transition: border-color 0.3s ease; }
-.card__label { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 400; color: var(--n575); transition: color 0.3s ease; }
-.card__title { margin-top: 16px; font-size: 20px; line-height: 1.32; font-weight: 700; color: var(--n525); transition: color 0.3s ease; }
-.card__body { margin-top: 24px; max-width: 330px; font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; color: var(--n550); transition: color 0.3s ease; }
-/* Figma lights one card at a time. The first is lit at rest; hover moves the light. */
-.cards-research:not(:hover) .card.is-lit, .card:hover { border-color: var(--n500); }
-.cards-research:not(:hover) .card.is-lit .card__label, .card:hover .card__label { color: var(--n525); }
-.cards-research:not(:hover) .card.is-lit .card__title, .card:hover .card__title { color: var(--n100); }
-.cards-research:not(:hover) .card.is-lit .card__body, .card:hover .card__body { color: var(--n400); }
+.card { width: calc((100% - 64 * var(--g)) / 3); min-height: 279px; padding: 32px; border: 1px solid var(--n500); border-radius: 16px; background: var(--n900); display: flex; flex-direction: column; justify-content: flex-end; }
+.card__label { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 400; color: var(--n525); }
+.card__title { margin-top: 16px; font-size: 20px; line-height: 1.32; font-weight: 700; color: var(--n100); }
+.card__body { margin-top: 24px; max-width: 330px; font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; color: var(--n400); }
 
 /* ---------- Designing an MVP, 3300:12718 ---------- */
 .mvp { padding: 147px 0; }
@@ -194,9 +191,8 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .cards-testing { display: flex; gap: calc(28 * var(--g)); padding: 48px var(--m) 50px; }
 .tcard { flex: 1; display: flex; flex-direction: column; gap: 20px; }
 .tcard__label { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; color: var(--n200); }
-.tcard__body { min-height: 124px; padding: 34px 24px 32px 25px; border: 1px solid var(--n675); border-radius: 10px; font-size: 16px; line-height: 1.4; color: var(--n550); transition: border-color 0.3s ease, color 0.3s ease; }
-.cards-testing:not(:hover) .tcard.is-lit .tcard__body, .tcard:hover .tcard__body { border-color: var(--n500); color: var(--n200); }
-.bridge { background: var(--bridge); min-height: 637px; padding: 236px calc(155 * var(--g)) 72px; }
+.tcard__body { min-height: 124px; padding: 34px 24px 32px 25px; border: 1px solid var(--n500); border-radius: 10px; font-size: 16px; line-height: 1.4; color: var(--n200); }
+.bridge { background: var(--bridge); min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 72px calc(155 * var(--g)); }
 .bridge__text { border-left: 4px solid var(--n900); padding: 36px 0 36px 32px; color: var(--n900); font-weight: 700; }
 /* Figma 3300:13311 overrides Heading/64 with Satoshi Bold. Recorded as a detached style in the build notes. */
 .bridge__text .tb-item { max-width: calc(1081 * var(--g)); }
@@ -224,7 +220,10 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .quiz__row { display: flex; gap: calc(53 * var(--g)); }
 .quiz__body { width: calc(434 * var(--g)); flex: none; padding-top: 121px; }
 .quiz__body .tb-item { max-width: 372px; }
-.quiz__media { width: calc(880 * var(--g)); aspect-ratio: 880 / 1096; flex: none; }
+.quiz__media { width: calc(881.15 * var(--g)); aspect-ratio: 881.15 / 1096; flex: none; overflow: visible; }
+.quiz__pillars { position: absolute; left: 0; top: 0; width: 100%; }
+/* Figma 3558:22264 sits at 287.5, 459 in the 881.15 by 1096 render box. haven.js moves it on scroll. */
+.quiz__phone { position: absolute; left: 32.627%; top: 41.88%; width: 34.841%; will-change: transform; }
 
 /* ---------- Journey flow, 3878:3068, motion from prototypes/journey-map ---------- */
 .journey { padding: 54px 0; display: flex; flex-direction: column; gap: 132px; }
@@ -241,7 +240,8 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .flow__num { position: absolute; top: 0; width: 137px; text-align: center; font-size: 16px; line-height: 1.4; font-weight: 700; color: var(--n050); font-variant-numeric: tabular-nums; }
 .flow__step { position: absolute; left: 0; top: 40px; width: 137px; height: 137px; border-radius: 50%; background: var(--n900); border: 1px solid var(--n500); display: flex; align-items: center; justify-content: center; z-index: 1; }
 .flow__step span { font-size: 16px; line-height: 1.16; text-align: center; color: var(--n050); white-space: pre; }
-.flow__step-key { z-index: 2; }
+.flow__step-key { z-index: 2; background: var(--flow-key); border-color: var(--flow-key); }
+.flow__step-key span { color: var(--n900); }
 .flow__step-key span { font-weight: 900; }
 
 /* ---------- Confidante profile, 3516:28205 ---------- */
@@ -313,7 +313,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 
   .access { padding: 112px 0; }
   .access__text { width: auto; padding-inline: var(--m); max-width: calc(720px + 2 * var(--m)); }
-  .stats__row { gap: 40px; }
+  .stats__row { column-gap: 40px; }
   .card { width: calc((100% - 24px) / 2); }
   .cards-research { gap: 24px; }
 
@@ -335,7 +335,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .task { width: auto; flex: 1; min-height: 220px; }
   .cards-testing { flex-wrap: wrap; gap: 24px; }
   .tcard { flex: 1 1 calc((100% - 24px) / 2); }
-  .bridge { min-height: 0; padding: 120px var(--m) 96px; }
+  .bridge { padding: 96px var(--m); }
   .bridge__text .tb-item { max-width: 760px; }
   .section-rule { width: calc(100% - 2 * var(--m)); }
 
@@ -424,12 +424,14 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .access { padding: 88px 0; }
   .stats { margin-top: 64px; }
   .stat__num { font-size: 88px; letter-spacing: 0.06em; }
-  .stats__row { gap: 16px; }
+  .stats__row { column-gap: 16px; }
+  .stat-total { column-gap: 16px; }
   .stats__cross { width: 72px; }
   .stat { gap: 16px; }
   .stat-left { flex-direction: column-reverse; gap: 12px; }
   .stats__row .stat:last-child { flex-direction: column; gap: 12px; }
-  .stat__label { white-space: normal; text-align: center; max-width: 120px; }
+  .stat__label, .stat__label-narrow { white-space: normal; text-align: center; width: auto; max-width: min(120px, 100%); }
+  .stats__row .stat { min-width: 0; }
   .stat-total { margin-top: 48px; }
   .stats__arrow { width: 80px; margin-top: 32px; }
   .access__insights-title { margin-top: 56px; }
@@ -445,7 +447,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .tasks { flex-direction: column; gap: 12px; }
   .task { min-height: 120px; }
   .tcard { flex-basis: 100%; }
-  .bridge { padding: 88px var(--m) 72px; }
+  .bridge { padding: 72px var(--m); }
   .bridge__text { padding: 24px 0 24px 20px; }
 
   .program, .quiz, .journey, .profile, .schedule, .chat, .security, .ending { margin-top: 64px; }

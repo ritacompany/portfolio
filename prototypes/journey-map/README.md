@@ -116,7 +116,8 @@ is a different pattern and was not used for the case study text.
 
 ## Decisions that are settled, do not reopen
 
-- Select turns green only on landing, never during the move. Chadwick asked for this.
+- Select is green from the start and stays green while it moves. Chadwick changed this on 30 Sep 2026;
+  it replaces the earlier rule that it turned green only on landing.
 - Label on the moving step is Satoshi Black (900) the whole time, not bold.
 - Numbers are white, 16px on the stage, no leading zeros, fixed to the slots.
 - Text reveals are the Metalab block fade. Line splits, masked rises, tilt, blur, word

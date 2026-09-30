@@ -9,39 +9,65 @@
   // If GSAP failed to load, never leave content hidden.
   if (!G) document.documentElement.classList.remove("js-motion");
 
-  // ---- Smooth scroll: Lenis duration 1.2, driven by the GSAP ticker ----
-  var lenis = null;
+  // ---- Smooth scroll. Mouse wheels get Lenis smoothing; trackpads already carry their own momentum,
+  // so their events go straight to native scroll instead of being smoothed twice, which read as jumpy. ----
+  var lenis = null, lastTrackpad = 0;
+  function isTrackpad(e) {
+    if (!e || e.type !== "wheel") return false;
+    var now = performance.now();
+    // A gesture that looked like a trackpad stays native for its whole momentum tail
+    if (now - lastTrackpad < 250) { lastTrackpad = now; return true; }
+    var d = Math.abs(e.deltaY);
+    if (e.deltaMode === 0 && (e.deltaX !== 0 || d < 40 || d % 1 !== 0)) { lastTrackpad = now; return true; }
+    return false;
+  }
   if (motion && window.Lenis) {
-    lenis = new window.Lenis({ duration: 1.2 });
+    lenis = new window.Lenis({ lerp: 0.1, wheelMultiplier: 1, virtualScroll: function (data) { return !isTrackpad(data.event); } });
     G.ticker.add(function (t) { lenis.raf(t * 1000); });
     G.ticker.lagSmoothing(0);
   }
 
+  // Timing. Metalab's source values (text 1s, mask 0.8s) read as too fast here, so both are slowed.
+  var TEXT_DUR = 1.4, TEXT_STAGGER = 0.15, MASK_DUR = 1200, PAIR_DELAY = 300, ARRIVAL_DELAY = 350;
+  var MASK_EASE = "cubic-bezier(0.76, 0, 0.24, 1)"; // Power3.easeInOut
+
   // ---- Text blocks: fade when the block top is 100px inside the screen, 1s, 0.1s stagger, once ----
-  function revealText(block, instant) {
+  function revealText(block, instant, delay) {
     var items = block.querySelectorAll(".tb-item");
     block.dataset.revealed = "true";
     if (!motion || instant) { if (G) G.set(items, { autoAlpha: 1 }); return; }
-    G.to(items, { autoAlpha: 1, duration: 1, stagger: 0.1 });
+    G.to(items, { autoAlpha: 1, duration: TEXT_DUR, stagger: TEXT_STAGGER, ease: "power1.out", delay: delay || 0 });
   }
 
   // ---- Media frames: MaskReveal from the top with the content settling from 1.3, 0.8s Power3.easeInOut, once ----
-  function revealMask(el, instant) {
+  // Runs on the compositor through the Web Animations API, and waits for its images to decode so
+  // nothing pops in halfway through the reveal.
+  function openMask(el, inner) { el.style.clipPath = "none"; inner.style.transform = "none"; el.style.willChange = inner.style.willChange = "auto"; }
+  function revealMask(el, instant, extraDelay) {
     var inner = el.querySelector(".mask__scale");
-    var delay = parseFloat(el.dataset.delay || "0");
     el.dataset.revealed = "true";
-    if (!motion || instant) { if (G) { G.set(el, { "--left-y": "100%", "--right-y": "100%" }); G.set(inner, { scale: 1 }); } return; }
-    G.to(el, { "--left-y": "100%", "--right-y": "100%", duration: 0.8, ease: "power3.inOut", delay: delay });
-    G.to(inner, { scale: 1, duration: 0.8, ease: "power3.inOut", delay: delay });
+    if (!motion || instant || !el.animate) { openMask(el, inner); return; }
+    var delay = (el.dataset.delay ? PAIR_DELAY : 0) + (extraDelay || 0);
+    var imgs = [].slice.call(el.querySelectorAll("img"));
+    imgs.forEach(function (i) { i.loading = "eager"; });
+    Promise.all(imgs.map(function (i) { return i.decode ? i.decode().catch(function () {}) : null; })).then(function () {
+      var opts = { duration: MASK_DUR, easing: MASK_EASE, delay: delay, fill: "both" };
+      var a = el.animate([{ clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)" }], opts);
+      inner.animate([{ transform: "scale(1.3)" }, { transform: "scale(1)" }], opts);
+      a.finished.then(function () { openMask(el, inner); el.getAnimations().concat(inner.getAnimations()).forEach(function (x) { x.cancel(); }); });
+    });
   }
 
   var blocks = [].slice.call(document.querySelectorAll("[data-tb]"));
   var masks = [].slice.call(document.querySelectorAll("[data-mask]"));
 
   if (motion && "IntersectionObserver" in window) {
+    // Blocks already on screen at load wait a beat for the first paint, so the arrival is not rushed
+    var arrived = performance.now() + 150;
+    function arrivalDelay() { return performance.now() < arrived ? ARRIVAL_DELAY : 0; }
     var textIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { revealText(e.target); textIO.unobserve(e.target); }
+        if (e.isIntersecting) { revealText(e.target, false, arrivalDelay() / 1000); textIO.unobserve(e.target); }
         else if (e.boundingClientRect.bottom < 0) { revealText(e.target, true); textIO.unobserve(e.target); }
       });
     }, { rootMargin: "0px 0px -100px 0px" });
@@ -49,7 +75,7 @@
 
     var maskIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { revealMask(e.target); maskIO.unobserve(e.target); }
+        if (e.isIntersecting) { revealMask(e.target, false, arrivalDelay()); maskIO.unobserve(e.target); }
         else if (e.boundingClientRect.bottom < 0) { revealMask(e.target, true); maskIO.unobserve(e.target); }
       });
     }, { rootMargin: "0px" });
@@ -75,7 +101,7 @@
       n.className = "flow__num"; n.setAttribute("aria-hidden", "true"); n.textContent = String(q + 1);
       stage.appendChild(n); nums.push(n);
     }
-    var sel = by.select, label = sel.querySelector("span"), box = stage.parentNode;
+    var sel = by.select, box = stage.parentNode;
     var start = { quiz: 0, review: 1, select: 2, intro: 3, schedule: 4 };
     var vertical = null, anims = [], started = false, timer = null, played = false;
 
@@ -88,10 +114,7 @@
     function slide(el, from, t, dur) {
       A(el, [{ offset: 0, transform: X(from) }, { offset: at(t), transform: X(from), easing: IO }, { offset: at(t + dur), transform: X(from - 1) }, { offset: 1, transform: X(from - 1) }]);
     }
-    function endState() {
-      sel.style.transform = X(4); sel.style.backgroundColor = "var(--flow-key)"; sel.style.borderColor = "var(--flow-key)";
-      label.style.color = "var(--n900)"; by.intro.style.transform = X(2); by.schedule.style.transform = X(3);
-    }
+    function endState() { sel.style.transform = X(4); by.intro.style.transform = X(2); by.schedule.style.transform = X(3); }
     function build() {
       anims.forEach(function (a) { a.cancel(); }); anims = [];
       map.classList.toggle("is-vertical", vertical);
@@ -103,8 +126,6 @@
       if (!motion || !stage.animate) { endState(); return; }
       A(sel, [{ offset: 0, transform: X(2), easing: OUT }, { offset: at(224), transform: X(2, 1.06), easing: IO }, { offset: at(1184), transform: X(4, 1.06), easing: OUT }, { offset: at(R), transform: X(4) },
         { offset: at(R + 20), transform: X(4), easing: OUT }, { offset: at(R + 130), transform: X(4, 1.06), easing: OUT }, { offset: at(R + 280), transform: X(4) }, { offset: 1, transform: X(4) }]);
-      A(sel, [{ offset: 0, backgroundColor: "#040405", borderColor: "#aeaeb4" }, { offset: at(R), backgroundColor: "#040405", borderColor: "#aeaeb4" }, { offset: at(R + 130), backgroundColor: "#78b765", borderColor: "#78b765" }, { offset: 1, backgroundColor: "#78b765", borderColor: "#78b765" }]);
-      A(label, [{ offset: 0, color: "#f2f1f8" }, { offset: at(R), color: "#f2f1f8" }, { offset: at(R + 130), color: "#040405" }, { offset: 1, color: "#040405" }]);
       slide(by.intro, 3, 300, 560);
       slide(by.schedule, 4, 360, 560);
       // A flow that already played stays at its end while the layout changes
@@ -131,49 +152,18 @@
     });
   })();
 
-  // ---- Insight pills: each names a research or testing insight; hover or focus shows it ----
-  var INSIGHTS = {
-    i1: "Interview insight 1. When choosing between experts they value elements that humanize them. Users want to know that experts will understand them.",
-    i2: "Interview insight 2. Users were uncomfortable discussing sensitive identity topics aloud, especially when someone nearby could overhear.",
-    i3: "Interview insight 3. A one size fits all identity model could flatten the demographic differences that shape each user’s unique experience.",
-    i4: "Interview insight 4. Users need to choose a time when they could be alone. A time that they will feel safe to engage with an expert.",
-    i5: "Interview insight 5. Users are concerned with using an LGBTQIA+ product in case disapproving guardians or peers may find out.",
-    t1: "Testing insight 1. Users were unsure of what mode of communication they would be chatting with the expert through.",
-    t2: "Testing insight 2. Users had trouble understanding the duration section of the scheduling page.",
-    t3: "Testing insight 3. Users were concerned that the design lacked enough security features.",
-    t4: "Testing insight 4. Users wanted to know more about the Confidante in order to determine the right choice.",
-    r1: "Confidante role 1. A community liaison that connects the user to different people and communities."
-  };
-  var tip = document.getElementById("insight-tip"), openPill = null;
-  function place(pill) {
-    var r = pill.getBoundingClientRect();
-    var left = Math.min(Math.max(16, r.left + scrollX), scrollX + document.documentElement.clientWidth - tip.offsetWidth - 16);
-    var top = r.top + scrollY - tip.offsetHeight - 8;
-    if (r.top - tip.offsetHeight - 8 < 8) top = r.bottom + scrollY + 8;
-    tip.style.left = left + "px"; tip.style.top = top + "px";
-  }
-  function show(pill) {
-    var text = INSIGHTS[pill.dataset.insight]; if (!text) return;
-    if (openPill && openPill !== pill) hide();
-    tip.textContent = text; tip.hidden = false; openPill = pill;
-    pill.setAttribute("aria-describedby", "insight-tip"); pill.setAttribute("aria-expanded", "true");
-    place(pill);
-  }
-  function hide() {
-    if (!openPill) return;
-    openPill.removeAttribute("aria-describedby"); openPill.setAttribute("aria-expanded", "false");
-    tip.hidden = true; openPill = null;
-  }
-  document.querySelectorAll(".pill[data-insight]").forEach(function (p) {
-    p.setAttribute("aria-expanded", "false");
-    p.addEventListener("mouseenter", function () { show(p); });
-    p.addEventListener("mouseleave", function () { if (document.activeElement !== p) hide(); });
-    p.addEventListener("focus", function () { show(p); });
-    p.addEventListener("blur", hide);
-    p.addEventListener("click", function () { if (openPill === p && p.matches(":hover") === false) hide(); else show(p); });
-  });
-  addEventListener("keydown", function (e) { if (e.key === "Escape") hide(); });
-  addEventListener("scroll", function () { if (openPill) place(openPill); }, { passive: true });
+  // ---- Quiz: the phone rises over the pillars as the section scrolls, so it covers the icons ----
+  (function quizParallax() {
+    var media = document.querySelector(".quiz__media"), phone = document.querySelector(".quiz__phone");
+    if (!media || !phone || !motion) return;
+    var RISE = 0.28; // share of the media height, about 307 pixels at 1440
+    G.ticker.add(function () {
+      var r = media.getBoundingClientRect(), h = innerHeight;
+      if (r.bottom < -200 || r.top > h + 200) return;
+      var p = Math.min(1, Math.max(0, (h * 0.9 - r.top) / (r.height + h * 0.2)));
+      phone.style.transform = "translate3d(0," + (-RISE * r.height * p).toFixed(1) + "px,0)";
+    });
+  })();
 
   window.__haven = { lenis: lenis, revealAll: function () { blocks.forEach(function (b) { revealText(b, true); }); masks.forEach(function (m) { revealMask(m, true); }); } };
 })();
