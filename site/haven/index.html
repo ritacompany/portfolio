@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven case study</title>
+<meta name="description" content="Haven, a UX bootcamp case study: an MVP that helps LGBTQIA+ youth reach affirming environments through a Confidante program.">
+<link rel="preload" href="../assets/satoshi-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="../assets/logo.svg">
+<link rel="stylesheet" href="haven.css">
+<script>
+  // Hidden reveal states apply only when motion will run. Without JS, or with reduced motion, the page is fully visible.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js-motion");
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-nav">
+  <a class="site-nav__logo" href="../" aria-label="Chadwick Fenner, home"><img src="assets/logo.svg" width="60.458" height="17.92" alt=""></a>
+  <nav aria-label="Primary">
+    <ul class="site-nav__links">
+      <li><a href="../">Home</a></li>
+      <li><a href="../#about">About</a></li>
+      <li><a href="../#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section data-node="3558:22720" class="hero" aria-labelledby="haven-title">
+    <div class="hero__top" data-tb>
+      <h1 class="display tb-item" id="haven-title">Haven CS</h1>
+      <dl class="meta tb-item">
+        <div><dt>Scope</dt><dd>Solo project</dd></div>
+        <div><dt>Affiliate</dt><dd>CareerFoundry</dd></div>
+        <div><dt>Focus</dt><dd>Research, strategy, UX</dd></div>
+      </dl>
+    </div>
+    <div class="hero__lead">
+      <p class="h24 hero__tagline" data-tb><span class="tb-item">Designed as a way for LGBTQIA+ youth to gain access to affirming environments</span></p>
+      <figure class="mask hero__media" data-mask>
+        <div class="mask__scale"><img src="assets/hero-media.webp" width="778" height="463" alt="The Haven welcome screen on a phone, on a violet background with soft glass shapes."></div>
+      </figure>
+    </div>
+    <div class="hero__context" data-tb>
+      <h2 class="h24 muted tb-item">Background</h2>
+      <p class="h64 hero__statement tb-item">This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert.</p>
+    </div>
+  </section>
+  <section data-node="3507:9724" class="problem rule-b" aria-labelledby="problem-title">
+    <div class="problem__text" data-tb>
+      <h2 class="eyebrow tb-item" id="problem-title">Identifying the problem</h2>
+      <p class="h40 problem__lead tb-item">For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience.</p>
+      <p class="body problem__body tb-item">Access to affirming environments has a major positive effect on LGBTQIA+ teenagers’ mental health. These environments are often limited or difficult for them to access.</p>
+    </div>
+    <figure class="mask problem__media" data-mask>
+      <div class="mask__scale"><img src="assets/problem-media.webp" width="426" height="506" alt="Chrome liquid shapes on a red orange background." loading="lazy"></div>
+    </figure>
+  </section>
+  <section data-node="3300:12642" class="access rule-b" aria-labelledby="access-title">
+    <div class="access__text" data-tb>
+      <h2 class="eyebrow tb-item" id="access-title">Demographic access</h2>
+      <p class="h40 tb-item">Minors need a guardian’s consent to join a study. Asking would out the teens who need Haven most, so I interviewed two proxy groups instead.</p>
+    </div>
+    <div class="stats" data-tb>
+      <div class="stats__row">
+        <p class="stat stat-left tb-item"><span class="stat__label">Subject matter experts</span><span class="stat__num">3</span></p>
+        <img class="stats__cross tb-item" src="assets/stats-cross.svg" width="128" height="124.75" alt="">
+        <p class="stat tb-item"><span class="stat__num">3</span><span class="stat__label stat__label-narrow">LGBTQIA+ college students</span></p>
+      </div>
+      <p class="stat stat-total tb-item"><span class="stat__num">6</span><span class="stat__label stat__label-total">Total interviews</span></p>
+      <img class="stats__arrow tb-item" src="assets/stats-arrow.svg" width="120" height="124.75" alt="">
+    </div>
+    <h3 class="h40 access__insights-title" data-tb><span class="tb-item">5 key insights</span></h3>
+    <ol class="cards cards-research" data-tb>
+      <li class="card is-lit tb-item"><p class="card__label">Insight 1</p><p class="card__title">Humanizing experts</p><p class="card__body">When choosing between experts they value elements that humanize them. Users want to know that experts will understand them.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 2</p><p class="card__title">Sensitive conversations</p><p class="card__body">Users were uncomfortable discussing sensitive identity topics aloud, especially when someone nearby could overhear.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 3</p><p class="card__title">Unique identities</p><p class="card__body">A one size fits all identity model could flatten the demographic differences that shape each user’s unique experience.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 4</p><p class="card__title">Scheduling concerns</p><p class="card__body">Users need to choose a time when they could be alone. A time that they will feel safe to engage with an expert.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 5</p><p class="card__title">Personal security</p><p class="card__body">Users are concerned with using an LGBTQIA+ product in case disapproving guardians or peers may find out.</p></li>
+    </ol>
+  </section>
+  <section data-node="3300:12718" class="mvp rule-b" aria-labelledby="mvp-title">
+    <div class="mvp__text" data-tb>
+      <h2 class="eyebrow tb-item" id="mvp-title">Designing an MVP</h2>
+      <p class="h40 mvp__lead tb-item">Because of the complicated and sensitive nature of the subject matter, I broke this down as if I were designing it as an MVP.</p>
+      <div class="mvp__row tb-item">
+        <p class="body body-400 mvp__body">I broke the design into two phases. This let me decide which features mattered most now and which could wait until after the MVP.</p>
+        <ul class="legend">
+          <li><span class="legend__phase">Phase 1</span><span class="legend__item"><i class="legend__swatch legend__swatch-identity"></i>Identity</span></li>
+          <li><span class="legend__phase">Phase 2</span><span class="legend__item"><i class="legend__swatch legend__swatch-community"></i>Community</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mvp__timeline" data-tb>
+      <div class="scroll-x tb-item" tabindex="0" role="region" aria-label="Design phase timeline, scrolls sideways on small screens">
+        <img src="assets/mvp-timeline.png" width="1440" height="554" loading="lazy" alt="Timeline of twelve sprints. Phase 1, Identity, runs empathize, define, ideate, prototype and test through sprint 6, ending at the identity launch, which is where this case study ends. Phase 2, Community, repeats the cycle through sprint 12 toward the community launch.">
+      </div>
+    </div>
+  </section>
+
+  <div class="gap-67" aria-hidden="true"></div>
+  <section data-node="3300:12810" class="wires" aria-labelledby="wires-title">
+    <div class="wires__text" data-tb>
+      <h2 class="eyebrow tb-item" id="wires-title">Wireframes</h2>
+      <p class="h40 wires__lead tb-item">With that all settled, it was time to start building the product. I started designing wireframes to test some of the concepts I had designed based on previous insights.</p>
+    </div>
+    <div class="mask mask-clear wires__row" data-mask>
+      <div class="mask__scale">
+        <ul class="wires__list scroll-x" tabindex="0" aria-label="Five wireframes, scrolls sideways on small screens">
+          <li><img src="assets/wire-1-duration.png" width="180" height="374" loading="lazy" alt="Wireframe: set chat duration, with 15, 30, 45 and 60 minute options."></li>
+          <li><img src="assets/wire-2-passcode.png" width="180" height="374" loading="lazy" alt="Wireframe: the original security step, a passcode only."></li>
+          <li><img src="assets/wire-3-quiz.png" width="180" height="374" loading="lazy" alt="Wireframe: identity quiz page on social dynamics, with statements to select."></li>
+          <li><img src="assets/wire-4-matches.png" width="180" height="374" loading="lazy" alt="Wireframe: top three matches, swiped up and down."></li>
+          <li><img src="assets/wire-5-profile.png" width="180" height="374" loading="lazy" alt="Wireframe: Confidante profile with a schedule chat button."></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="testing rule-t rule-b">
+      <div class="testing__row">
+        <div class="testing__text" data-tb>
+          <h3 class="eyebrow tb-item">Usability testing</h3>
+          <p class="h40 testing__lead tb-item">Six participants tested the key flows</p>
+        </div>
+        <ol class="tasks" data-tb>
+          <li class="task tb-item"><span class="task__num">01</span><span class="task__title">Complete Confidante match enrollment</span></li>
+          <li class="task tb-item"><span class="task__num">02</span><span class="task__title">Select a Confidante</span></li>
+          <li class="task tb-item"><span class="task__num">03</span><span class="task__title">Schedule a chat</span></li>
+        </ol>
+      </div>
+      <div class="ticker rule-t rule-b" aria-hidden="true">
+        <div class="ticker__track">
+          <span class="ticker__set"><i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS</span><span class="ticker__set"><i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS</span>
+        </div>
+      </div>
+      <h4 class="visually-hidden">Key insights from testing</h4>
+      <ol class="cards cards-testing" data-tb>
+        <li class="tcard is-lit tb-item"><p class="tcard__label">Insight 1</p><p class="tcard__body">Users were unsure of what mode of communication they would be chatting with the expert through.</p></li>
+        <li class="tcard tb-item"><p class="tcard__label">Insight 2</p><p class="tcard__body">Users had trouble understanding the duration section of the scheduling page.</p></li>
+        <li class="tcard tb-item"><p class="tcard__label">Insight 3</p><p class="tcard__body">Users were concerned that the design lacked enough security features.</p></li>
+        <li class="tcard tb-item"><p class="tcard__label">Insight 4</p><p class="tcard__body">Users wanted to know more about the Confidante in order to determine the right choice.</p></li>
+      </ol>
+    </div>
+
+    <div class="bridge">
+      <p class="h64 bridge__text" data-tb><span class="tb-item">Based on that feedback and information I had already gathered from initial interviews, I built the following solutions.</span></p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+  <section data-node="3515:11603" class="program rule-b" aria-labelledby="program-title">
+    <div class="program__text" data-tb>
+      <h2 class="eyebrow tb-item" id="program-title">The Confidante program</h2>
+      <p class="h40 tb-item">An expert program designed for flexibility, adapting to each user’s unique needs and comfort.</p>
+    </div>
+    <div class="program__row">
+      <p class="h20 program__intro" data-tb><span class="tb-item">Confidantes support the user in two capacities:</span></p>
+      <figure class="mask program__media" data-mask>
+        <div class="mask__scale">
+          <img class="program__texture" src="assets/program-texture.webp" width="893" height="459" loading="lazy" alt="">
+          <ol class="roles">
+            <li class="role"><span class="role__num">01</span><span class="role__text">A community liaison that connects the user to different people and communities.</span></li>
+            <li class="role"><span class="role__num">02</span><span class="role__text">A source of support for users who need guidance or someone to talk to.</span></li>
+          </ol>
+        </div>
+      </figure>
+    </div>
+  </section>
+  <section data-node="3300:13351" class="quiz rule-b" aria-labelledby="quiz-title">
+    <div class="quiz__text" data-tb>
+      <h2 class="eyebrow tb-item" id="quiz-title">Primary identity quiz</h2>
+      <p class="h40 quiz__lead tb-item">Identity shapes what safe, relevant support looks like. The quiz makes room for the experiences behind each match.</p>
+      <ul class="pills tb-item">
+        <li><button class="pill" type="button" data-insight="i1">Interview insight 1</button></li>
+        <li><button class="pill" type="button" data-insight="i3">Interview insight 3</button></li>
+        <li><button class="pill" type="button" data-insight="r1">Confidante role 1</button></li>
+      </ul>
+    </div>
+    <div class="quiz__row">
+      <p class="body body-400 quiz__body" data-tb><span class="tb-item">The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Users pick the experiences that matter to them. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.</span></p>
+      <figure class="mask mask-clear quiz__media" data-mask>
+        <div class="mask__scale"><img src="assets/quiz-media.webp" width="880" height="1096" loading="lazy" alt="Five pillars labelled attraction, gender identity, belonging, race and ethnicity and upbringing, each topped with an icon, behind a phone showing quiz question 16 of 30."></div>
+      </figure>
+    </div>
+  </section>
+  <section data-node="3878:3068" class="journey rule-b" aria-labelledby="journey-title">
+    <div class="journey__head" data-tb>
+      <h2 class="eyebrow tb-item" id="journey-title">Testing synthesis</h2>
+      <p class="h40 journey__lead tb-item">Haven’s early flow asked people to choose a Confidante before they could have an introductory chat.</p>
+      <ul class="pills tb-item">
+        <li><button class="pill" type="button" data-insight="i1">Interview insight 1</button></li>
+        <li><button class="pill" type="button" data-insight="t4">Testing insight 4</button></li>
+      </ul>
+    </div>
+    <div class="journey__row" data-tb id="journey-row">
+      <h3 class="h24 journey__title tb-item">Confidante selection journey flow</h3>
+      <div class="journey__body">
+        <p class="body body-400 journey__copy tb-item">Testing showed users hesitating over which Confidante to pick. They went back and forth between profiles, and some undid their choice after making it. I moved selection after the introductory chat, which exists to help them decide. In the revised flow, people can chat with more than one Confidante before choosing one.</p>
+        <div class="flow tb-item" id="flow-map">
+          <div class="flow__box">
+            <ol class="flow__stage" id="flow-stage" aria-label="Revised flow: identity quiz, review matches, intro chat, schedule a chat, select a Confidante">
+              <li class="flow__step" data-id="quiz"><span>Identity
+quiz</span></li>
+              <li class="flow__step" data-id="review"><span>Review
+matches</span></li>
+              <li class="flow__step flow__step-key" data-id="select"><span>Select
+a Confidante</span></li>
+              <li class="flow__step" data-id="intro"><span>Intro
+chat</span></li>
+              <li class="flow__step" data-id="schedule"><span>Schedule
+a chat</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section data-node="3516:28205" class="profile rule-b" aria-labelledby="profile-title">
+    <div class="profile__text" data-tb>
+      <h2 class="eyebrow tb-item" id="profile-title">Confidante profile</h2>
+      <p class="h40 tb-item">Users need to understand who the Confidante is before making a decision. They need to feel understood, represented and safe.</p>
+    </div>
+    <div class="profile__block">
+      <ul class="pills" data-tb>
+        <li class="tb-item"><button class="pill" type="button" data-insight="i1">Interview insight 1</button></li>
+        <li class="tb-item"><button class="pill" type="button" data-insight="i3">Interview insight 3</button></li>
+        <li class="tb-item"><button class="pill" type="button" data-insight="t4">Testing insight 4</button></li>
+      </ul>
+      <div class="profile__row">
+        <figure class="mask profile__phone" data-mask>
+          <div class="mask__scale"><img src="assets/profile-phone.webp" width="700" height="697" loading="lazy" alt="Penelope’s Confidante profile on a phone: a 94 percent match with shared experiences listed first and suggested Confidantes along the bottom."></div>
+        </figure>
+        <div class="profile__side">
+          <figure class="mask profile__who" data-mask data-delay="0.2">
+            <div class="mask__scale"><img src="assets/profile-who.webp" width="680" height="363" loading="lazy" alt="A green sticky note reading who r u, on a violet background."></div>
+          </figure>
+          <p class="body body-400 profile__body" data-tb><span class="tb-item">Shared experiences, differences and humanized bios help users compare Confidantes and decide whom to schedule a chat with. Testing showed that those details needed more prominence. I made shared experiences the focus of the page and replaced vertical swiping with suggested Confidantes along the bottom, so users could switch between profiles.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section data-node="3555:5990" class="schedule rule-b" aria-labelledby="schedule-title">
+    <div class="schedule__text" data-tb>
+      <h2 class="eyebrow tb-item" id="schedule-title">Scheduling a chat</h2>
+      <p class="h40 tb-item">People needed to know what to expect before booking an introductory chat.</p>
+    </div>
+    <div class="schedule__row">
+      <p class="body body-400 schedule__body" data-tb><span class="tb-item">Testing showed confusion about how chats would work. The scheduling screen explains that they happen by text, last 30 minutes and can end early, so people can choose a private time. With selection moved after the chats, users can book introductions with different Confidantes. Your events lists each upcoming chat with the Confidante’s name and time.</span></p>
+      <div class="schedule__media-col">
+        <ul class="pills" data-tb>
+          <li class="tb-item"><button class="pill" type="button" data-insight="i4">Interview insight 4</button></li>
+          <li class="tb-item"><button class="pill" type="button" data-insight="t1">Testing insight 1</button></li>
+          <li class="tb-item"><button class="pill" type="button" data-insight="t2">Testing insight 2</button></li>
+        </ul>
+        <figure class="mask schedule__media" data-mask>
+          <div class="mask__scale"><img src="assets/scheduling-media.webp" width="1047" height="457" loading="lazy" alt="Two phones on a violet fingerprint texture: Your events listing two introduction chats, and Schedule a chat with a date picker and time slots."></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section data-node="3507:10986" class="chat rule-b" aria-labelledby="chat-title">
+    <div class="chat__text" data-tb>
+      <h2 class="eyebrow tb-item" id="chat-title">Chat-based interactions</h2>
+      <p class="h40 tb-item">When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.</p>
+    </div>
+    <div class="chat__block">
+      <ul class="pills chat__pills" data-tb>
+        <li class="tb-item"><button class="pill" type="button" data-insight="i2">Interview insight 2</button></li>
+      </ul>
+      <figure class="mask chat__media" data-mask>
+        <div class="mask__scale"><img src="assets/chat-media.webp" width="1047" height="749" loading="lazy" alt="A phone showing an introduction chat by text with a Confidante, surrounded by chrome liquid shapes on red orange."></div>
+      </figure>
+      <p class="body body-400 chat__body" data-tb><span class="tb-item">The final concept uses text-based sessions, not voice or video, so users can engage without speaking sensitive information aloud. A bounded chat format gives users more control over when and how much they share, responding directly to concerns about being overheard.</span></p>
+    </div>
+  </section>
+  <section data-node="3300:13477" class="security rule-b" aria-labelledby="security-title">
+    <div class="security__text" data-tb>
+      <h2 class="eyebrow tb-item" id="security-title">Security features</h2>
+      <p class="h40 tb-item">Privacy is a condition for access. Users need safeguards that protect the app before, during and after a conversation.</p>
+    </div>
+    <div class="security__block">
+      <ul class="pills security__pills" data-tb>
+        <li class="tb-item"><button class="pill" type="button" data-insight="i5">Interview insight 5</button></li>
+        <li class="tb-item"><button class="pill" type="button" data-insight="t3">Testing insight 3</button></li>
+      </ul>
+      <div class="security__row">
+        <div class="security__media">
+          <figure class="mask security__a" data-mask>
+            <div class="mask__scale"><img src="assets/security-discreet.webp" width="501" height="651" loading="lazy" alt="Keep Haven discreet: choose a disguise icon, hide Haven in the app switcher and keep notifications off."></div>
+          </figure>
+          <figure class="mask security__b" data-mask data-delay="0.2">
+            <div class="mask__scale"><img src="assets/security-pin.webp" width="464" height="651" loading="lazy" alt="Create a security PIN, with the option to use Face ID."></div>
+          </figure>
+        </div>
+        <p class="body body-400 security__body" data-tb><span class="tb-item">Interviews showed that discovery by guardians or peers could stop someone from using Haven at all, and testing showed the early concepts did not communicate enough protection. The final setup disguises the app icon, hides Haven in the app switcher, keeps notifications off until the user turns them on and adds a security PIN with Face ID. Privacy is visible when users need it, not buried in a later settings screen.</span></p>
+      </div>
+    </div>
+  </section>
+  <section data-node="3558:22800" class="ending" aria-labelledby="ending-title">
+    <h2 class="ending__title" id="ending-title" data-tb><span class="tb-item">Ending</span></h2>
+  </section>
+
+</main>
+
+<div class="insight-tip" id="insight-tip" role="tooltip" hidden></div>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/gsap.min.js"></script>
+<script src="haven.js"></script>
+</body>
+</html>
