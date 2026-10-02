@@ -51,8 +51,10 @@ he is. Mondai product mechanics are background for the case studies and nothing 
   them is Metalab scaffold text kept so section heights stay calibrated. Not shippable.
 - `reference/cs1/` : source material for case study 1, the operation. Verbatim evidence, the
   causal chain, Chadwick's own review notes, and the v5 draft.
-- `reference/cs2/` : source material for case study 2, the framework. Master doc, build pack,
-  transfer doc, and the full draft.
+- `reference/cs2/` : source material for case study 2, the framework, from the 27 Aug
+  restart. Start at `CS2_PLAN.md` and `CS2_COMPREHENSION.md`. Drafts are in `draft/`, the
+  decision reasoning in `reasoning/`. The pre-restart master doc, build pack and full draft are
+  discarded; they are in git history only.
 - `.claude/` : the automation. Standing rules injected every turn, a hook that blocks em
   dashes in new writing, and a hook that blocks edits to the verbatim evidence files.
 
