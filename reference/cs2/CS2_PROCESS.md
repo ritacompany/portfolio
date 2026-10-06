@@ -115,26 +115,44 @@ Learned the hard way in the 6 Oct process chat. Each of these happened once and 
 - **Answer the question asked.** When he asks whether the approach is right, the answer is about the
   approach, not the contents of the next step.
 - **Separate what he designed from what he inherited.** The route (Pathways, their order, Focus Areas)
-  came from Michael and the curriculum. The time layer is where the reasoning is his. Never present
+  came from Michael. The time layer is where the reasoning is his. Never present
   inherited structure as his design, and never present reasoning from the archive as his argument unless
   the record shows him making it (`reasoning/pathways-and-hierarchy.md` section 6).
 - **Unsourced claims get asked, not used.** Example: the old Figma frame says the original direction was
   fixed scheduling and keep pace accountability. Nothing in the reference files backs it. Still open.
+- **His memory against the record.** His recollection moves something from inherited to designed only if
+  the record shows him originating it. Otherwise it is marked as his recollection and he is asked for one
+  specific: what he argued, what he changed. Hold every credit claim to the same bar, including ones that
+  flatter him.
+- **Archive claims.** The archive is lossy and sometimes invents reasons. An archive only claim can go in
+  as a product premise, marked as such, never as his reasoning.
+- **Never spin.** When he says a line makes him look bad, fix or cut it. Do not reframe it as a strength.
+- **Short replies.** Lead with the answer, one question at most, no narration of what was read or what
+  will be committed. Detail only when he asks for it.
+- **Creative levels do not apply to CS2.** `.claude/portfolio-rules.md` asks for one at the top of each
+  reply; that system was retired on 24 Sep 2026 and this process replaces it here.
 
 ## Section 1 starting notes
 
 What the 6 Oct chat established for "Where it started", to build on rather than redo:
 
 - Purpose: what he walked into and the problems the framework had to solve. Background, not a feature.
-- Inherited: Michael's five Pathways and their order, the curriculum's linear Focus Areas. Little in the
+- Inherited: Michael's five Pathways and their order, the linear Focus Areas. Little in the
   record before March 2026 (`reasoning/THROUGHLINES.md`).
 - Settled early: the AI surfaces, researched in March. Neither shipped at MVP (`CHADWICK_ANSWERS`).
 - Existed but unconnected: onboarding quiz, an intent to use the calendar, career screens. Nothing said
   what a person does week to week.
-- Missing: anything about time. How much of the route a person gets, when and what happens when a week
-  goes badly.
-- Rollover existed by 24 March, not May (see Timeline and framing).
-- Problems that belong here: a fixed route with no system for time; people whose weeks are irregular.
+- Missing: not "anything about time". By 24 March a Sunday rollover modal with a moving pace date and
+  flex points was on screen (`reasoning/carry-over.md`), so a dated pace system already existed. What
+  nothing decided was how much of the route a week should hold. Whether he originated the modal or built
+  on something handed to him is open; the record shows him building and critiquing it.
+- Open question for him: the Pathway order. The archive and his 18 March message say Discovery,
+  Cognition, Branding, Networking, Opportunity. The 20 Sep desktop export of the Growth Journey screen
+  (`mondai/reference/desktop-screens/growth-journey/growth-journey.png` in the Mondai repo) shows
+  Networking at 03 and Branding at 04. The live Figma frame could not be found on 6 Oct.
+- Problems that belong here: a fixed route with nothing deciding how much of it a week holds; people
+  whose weeks are irregular (an archive premise, `PRODUCT_KNOWLEDGE_ARCHIVE.md` weekly scheduling model,
+  not a research finding).
   Everything below that waits for its own section.
 - Open question for him: the fixed scheduling claim above.
 - Reference pull not yet done for this section.
@@ -147,18 +165,31 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    what connects to what. Claude asks questions and goes and finds the things he mentions in the
    archive, Figma, Notion or the record, and brings back what it found with where it found it.
 3. **Draft.** Claude writes the section from the conversation. Every claim traces to a source.
-   Nothing is asserted that came from neither Chadwick nor a source.
+   Nothing is asserted that came from neither Chadwick nor a source. ASSUMED claims never go in copy;
+   they go on the open list until he confirms or cuts them. If he asks for a draft before the talk is
+   finished, draft, and list what the talk has not covered yet.
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Then the house
    copy rules: no em or en dashes, no hyphen pair as a dash, no Oxford commas, sentence case.
 5. **Layout and visuals.** Pick the template that fits what the section has to show. The large image
    slots take the real desktop screens. The smaller slots carry the map state for that section or a
    diagram that makes the decision clear. Claude builds the visuals and the section in Figma, on the
-   portfolio grid. Screens are read from the Mondai Figma, never redrawn from memory.
-6. **Review.** Chadwick reads it. Changes go back to step 2 or 3, not patched on top.
-7. **Save.** On approval, the section goes in `draft/`, the status table below is updated and the
-   change is committed and pushed to GitHub in the same step. Nothing approved lives only on one
-   machine.
+   portfolio grid. This follows the voice pass without waiting for copy approval, so copy and layout are
+   reviewed together. Screens are read from the Mondai Figma, never redrawn from memory. If the live
+   frame is missing, use the desktop export, flag it and ask him where the current frame is. Diagrams
+   follow the Haven CS Master's diagram style, not Mondai's UI. Template names are decoded in
+   `LEDGER.md`.
+6. **Review.** Chadwick reads copy and layout together. Small wording fixes he asks for are made in
+   place. Changes to what the section says go back to step 2 or 3.
+7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
+   at the top. On approval, the status table is updated and the change is committed and pushed to
+   GitHub in the same step. Nothing approved lives only on one machine.
+
+Status values, used in the table and the section file: talking, drafted, built, approved. Where a
+section stopped goes in a "Where section N stopped" list under its notes, in loop order.
+
+When saving, the session also updates anything the work proved wrong: a starting note, the map plan for
+the section, a stale line in the section file. Evidence overrides notes.
 
 A section is done when its copy, layout and visuals are all approved. No second pass.
 
@@ -171,7 +202,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route and the week, simplest form | Provisional draft, `draft/CS2-rungs-0-2.md` |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Provisional draft, `draft/CS2-rungs-0-2.md` |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Provisional draft, `draft/CS2-rung-3.md` |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Not started |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
