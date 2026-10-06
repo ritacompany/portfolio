@@ -36,10 +36,14 @@ because that shapes the section and invites citing things wrongly.
 
 ## The map
 
-One system diagram carries the reader through the whole piece. It is designed before section 1,
-because every section uses it. It shows the two halves of the framework from the start: the route
-(Growth Journey, Pathways, Action Items) and the week that delivers it, sized by capacity. Each
-section fills in its own part and marks where the reader is. It works as a still; motion comes later.
+The build up diagram in `CS2_COMPREHENSION.md` is the map. It is drawn once, before section 1, in all
+its states, because every section uses it. It starts as the route only (one line, five marks) and gains
+a layer as each section needs it: the week brackets, the two dates, the calendar running underneath.
+Nothing is shown before the section that explains it, so the reader is never handed the whole system
+at once.
+
+Added 2026-10-06: the map appears in every section, not only the four that add a layer, as the small
+image beside the real screen, marking where the reader is. It works as a still; motion comes later.
 
 ## Layouts
 
@@ -76,19 +80,22 @@ saying where the conversation stopped.
 
 ## Order
 
-| # | Section | Ladder rung | Status | File | Where it stopped |
-|---|---|---|---|---|---|
-| 0 | The map, designed once | all | Not started | | |
-| 1 | The route: Growth Journey and Pathways | 2 | Provisional draft | `draft/CS2-rungs-0-2.md` | Not yet talked through under this process |
-| 2 | The week and Action Items | 3 | Provisional draft | `draft/CS2-rung-3.md` | Not yet talked through under this process |
-| 3 | Capacity and target date | 4 | Not started | | |
-| 4 | Pace | 5 | Not started | | |
-| 5 | Scheduling and rollover | 6 | Not started | | |
-| 6 | Recalibration | 7 | Not started | | |
-| 7 | The generated content | 8 | Not started | | |
-| 8 | Handoff and the team | 9 | Not started | | |
-| 9 | Intro: who it is for and the situation | 0 and 1 | Last | | |
-| 10 | The story that ties it together | all | Last | | |
+The outline. Worked top to bottom. "Map" is the state of the build up diagram in that section.
 
-The order follows the ladder because each section leans on the terms of the one before. Chadwick can
-reorder it.
+| # | Section | What the reader comes away with | Map | Status |
+|---|---|---|---|---|
+| 0 | The map | Not a section. All states of the diagram, drawn once | All states | Not started |
+| 1 | The route | Mondai turns the lack of a defined path into an ordered route: the Growth Journey and its five Pathways | One line, five marks, then nested | Provisional draft, `draft/CS2-rungs-0-2.md` |
+| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Provisional draft, `draft/CS2-rung-3.md` |
+| 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Not started |
+| 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
+| 5 | Scheduling and rollover | The calendar is where it nearly broke | Calendar timeline underneath | Not started |
+| 6 | Recalibration | Falling behind cannot mean failing | Calendar and route brought back together | Not started |
+| 7 | The generated content | None of the words are written by a person | Own visual: the typography slot with generated copy | Not started |
+| 8 | Handoff and the team | What it took for other people to hold it | To decide | Not started |
+| 9 | Intro | Who it is for and the situation they are in. Written last | None | Last |
+| 10 | The story | What ties it together, found from the sections. Written last | None | Last |
+
+"What the reader comes away with" is the job of the section, not its content. The content comes from
+the conversation. Every section gets a layout from the templates, the real screens and the map. Chadwick
+can reorder any of it. Where a section stopped mid conversation is noted in its status.
