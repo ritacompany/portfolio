@@ -34,6 +34,21 @@ Research and caveats are not assigned to sections in advance. They come up in th
 section when they matter there. Claude does not decide ahead of time which finding a section is about,
 because that shapes the section and invites citing things wrongly.
 
+## The map
+
+One system diagram carries the reader through the whole piece. It is designed before section 1,
+because every section uses it. It shows the two halves of the framework from the start: the route
+(Growth Journey, Pathways, Action Items) and the week that delivers it, sized by capacity. Each
+section fills in its own part and marks where the reader is. It works as a still; motion comes later.
+
+## Layouts
+
+Each section is laid out from the templates in the Figma file Portfolio Design, page `VC`, section
+`Case study layouts` (node 3461:5685), adapted to the portfolio grid and following the Haven CS Master
+(3300:12596) for type, motion and reveals. The CS2 page is built in Figma on the `VC` page, section by
+section, as a Mondai CS Master. The older frame `WIP Mondai growth journey case study` (3238:22519)
+predates the 27 Aug restart and is not the starting point.
+
 ## The loop, per section
 
 1. **Open.** Claude names the section and what it covers in one or two lines. Nothing else prepared.
@@ -45,10 +60,16 @@ because that shapes the section and invites citing things wrongly.
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Then the house
    copy rules: no em or en dashes, no hyphen pair as a dash, no Oxford commas, sentence case.
-5. **Review.** Chadwick reads it. Changes go back to step 2 or 3, not patched on top.
-6. **Save.** On approval, the section goes in `draft/`, the status table below is updated and the
+5. **Layout and visuals.** Pick the template that fits what the section has to show. The large image
+   slots take the real desktop screens. The smaller slots carry the map state for that section or a
+   diagram that makes the decision clear. Claude builds the visuals and the section in Figma, on the
+   portfolio grid. Screens are read from the Mondai Figma, never redrawn from memory.
+6. **Review.** Chadwick reads it. Changes go back to step 2 or 3, not patched on top.
+7. **Save.** On approval, the section goes in `draft/`, the status table below is updated and the
    change is committed and pushed to GitHub in the same step. Nothing approved lives only on one
    machine.
+
+A section is done when its copy, layout and visuals are all approved. No second pass.
 
 Also commit and push at the end of every working session, even mid section, with the status table
 saying where the conversation stopped.
@@ -57,6 +78,7 @@ saying where the conversation stopped.
 
 | # | Section | Ladder rung | Status | File | Where it stopped |
 |---|---|---|---|---|---|
+| 0 | The map, designed once | all | Not started | | |
 | 1 | The route: Growth Journey and Pathways | 2 | Provisional draft | `draft/CS2-rungs-0-2.md` | Not yet talked through under this process |
 | 2 | The week and Action Items | 3 | Provisional draft | `draft/CS2-rung-3.md` | Not yet talked through under this process |
 | 3 | Capacity and target date | 4 | Not started | | |
