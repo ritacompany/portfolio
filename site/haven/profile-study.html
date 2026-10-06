@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile scroll study</title>
+<link rel="stylesheet" href="haven.css">
+<style>
+  body { padding: 40px 0 120px; }
+  .study { width: min(100% - 32px, 1440px); margin: 0 auto; }
+  .study__intro { max-width: 760px; display: flex; flex-direction: column; gap: 16px; }
+  .study__row { margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+  .study__item { display: flex; flex-direction: column; gap: 16px; }
+  .study__item .body { color: #c9c9d4; }
+
+  /* Figma 3556:22214: a 680 by 677 frame, collage behind, the phone on top */
+  .pframe { position: relative; width: 100%; aspect-ratio: 680 / 677; overflow: hidden; background: #171717; }
+  .pframe__collage { position: absolute; left: 0; top: 0; width: 102.94%; height: 100%; object-fit: cover; }
+  /* The straightened mockup, 298 by 614 in Figma, cropped from the source image with the Figma crop */
+  .phone { position: absolute; width: 43.824%; aspect-ratio: 298 / 614; }
+  .phone__case { position: absolute; inset: 0; width: 100%; height: 100%; }
+  /* Measured on the source: the screen body is a true rectangle, 812 by 1228 of the 879 by 1811 crop */
+  .phone__screen { position: absolute; left: 3.868%; top: 1.546%; width: 92.38%; height: 96.9%; overflow: hidden; border-radius: 11.5% / 5.3%; background: #ececf4; }
+  .phone__content { position: absolute; left: 0; top: 0; width: 100%; will-change: transform; }
+  .phone__header { position: absolute; left: 0; top: 0; width: 100%; }
+  .phone__footer { position: absolute; left: 0; bottom: 0; width: 100%; }
+  /* B: exactly as Figma places it, rotated 11.25 degrees about its top left corner */
+  .phone-b { left: 23.971%; top: 9.795%; transform-origin: 0 0; transform: rotate(-11.2527deg); }
+  /* A: straightened, then tilted back slightly about its center */
+  .phone-a { left: 28.088%; top: 4.653%; transform: rotate(-4deg); }
+</style>
+</head>
+<body>
+<main class="study">
+  <div class="study__intro">
+    <h1 class="h40">Confidante profile scroll</h1>
+    <p class="body">Both use your existing mockup. The phone image is the Mokker render straightened from your source file, so the case matches the rest of the page. The screen is a live layer cut to the exact screen area: the header and the Confidante row stay fixed while the shared experiences scroll, slowly, with pauses on each pair of cards.</p>
+  </div>
+  <div class="study__row">
+    <section class="study__item">
+      <p class="eyebrow">A. Straightened, then tilted 4 degrees</p>
+      <div class="pframe">
+        <img class="pframe__collage" src="assets/profile-collage.webp" alt="">
+        <div class="phone phone-a">
+          <img class="phone__case" src="assets/profile-phone-straight.webp" alt="">
+          <div class="phone__screen">
+            <img class="phone__content" src="assets/profile-screen-expanded.webp" alt="Penelope’s Confidante profile scrolling through her shared experiences.">
+            <img class="phone__header" src="assets/profile-screen-header.webp" alt="">
+            <img class="phone__footer" src="assets/profile-screen-footer.webp" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="study__item">
+      <p class="eyebrow">B. Your current tilt, 11.25 degrees</p>
+      <div class="pframe">
+        <img class="pframe__collage" src="assets/profile-collage.webp" alt="">
+        <div class="phone phone-b">
+          <img class="phone__case" src="assets/profile-phone-straight.webp" alt="">
+          <div class="phone__screen">
+            <img class="phone__content" src="assets/profile-screen-expanded.webp" alt="Penelope’s Confidante profile scrolling through her shared experiences.">
+            <img class="phone__header" src="assets/profile-screen-header.webp" alt="">
+            <img class="phone__footer" src="assets/profile-screen-footer.webp" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+  // Slow scroll loop, in Figma pixels of the 440 wide screen. The expanded screen is 1870 tall and the
+  // phone shows 956, so the content can travel 914. Holds let each pair of shared experience cards read.
+  (function () {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var H = 1870, ease = "cubic-bezier(0.65, 0, 0.35, 1)";
+    var stops = [[0, 0], [1.6, 0], [4.0, 330], [5.6, 330], [8.0, 660], [9.6, 660], [11.4, 914], [13.2, 914], [16.4, 0]];
+    var total = stops[stops.length - 1][0];
+    var frames = stops.map(function (s) { return { offset: s[0] / total, transform: "translateY(" + (-s[1] / H * 100).toFixed(3) + "%)", easing: ease }; });
+    document.querySelectorAll(".phone__content").forEach(function (img) {
+      var a = img.animate(frames, { duration: total * 1000, iterations: Infinity });
+      a.pause();
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) a.play(); else a.pause(); }); }, { threshold: 0.3 }).observe(img.closest(".pframe"));
+    });
+  })();
+</script>
+</body>
+</html>
