@@ -1,3 +1,5 @@
+> Superseded 2026-10-06 by `CS2_PROCESS.md`. Kept for history only.
+
 # CS2 method
 
 Agreed 2026-08-27. This is the structure. It does not change without Chadwick saying so.

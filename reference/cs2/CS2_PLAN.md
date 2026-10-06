@@ -1,3 +1,5 @@
+> Superseded 2026-10-06 by `CS2_PROCESS.md`. Kept for history only.
+
 # CS2 plan, after the reset
 
 Agreed 2026-08-27. Replaces `CS2_SPINE.md`, which was built from my own synthesis before the
