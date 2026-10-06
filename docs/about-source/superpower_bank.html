@@ -55,6 +55,15 @@
   td{padding:14px 12px; vertical-align:top;}
   .num{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint);}
 
+  tr.row.isdead{opacity:.5;}
+  tr.row.isdead:hover{opacity:.85;}
+  tr.row.isdead .line{text-decoration:line-through; text-decoration-color:var(--risk-high); color:var(--text-dim);}
+  .deadpill{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.06em; text-transform:uppercase; padding:2px 6px; border-radius:3px; margin-left:6px; background:rgba(181,113,95,.16); color:var(--risk-high); border:1px solid rgba(181,113,95,.4);}
+  .deadwhy{font-family:'IBM Plex Mono',monospace; font-size:10.5px; line-height:1.6; color:var(--risk-high); margin-top:7px;}
+  .conflictwhy{font-family:'IBM Plex Mono',monospace; font-size:10.5px; line-height:1.6; color:var(--accent); margin-top:7px;}
+  .warn{background:rgba(181,113,95,.09); border:1px solid rgba(181,113,95,.45); border-left-width:3px; border-radius:8px; padding:14px 18px; margin:20px 0 4px; max-width:80ch;}
+  .warn .tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--risk-high); display:block; margin-bottom:8px;}
+  .warn p{margin:0 0 6px; font-size:13.5px; color:var(--text-dim);} .warn p:last-child{margin-bottom:0;} .warn b{color:var(--text);}
   .line{font-family:'Fraunces',Georgia,serif; font-size:16px; line-height:1.35; color:var(--text); margin:0 0 7px;}
   .catpill{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.05em; text-transform:uppercase; padding:2px 6px; border-radius:3px;}
   .catpill.perception{background:rgba(127,168,138,.14); color:var(--perception);}
@@ -86,6 +95,17 @@
   <h1>Candidates, with receipts</h1>
   <p class="dek">Every line below is derived from something you actually said or did, with the evidence next to it. Mark them up. I am not picking for you this time.</p>
 
+  <div class="warn">
+    <span class="tag">Read this before using anything below</span>
+    <p><b>This file is a record, not a menu.</b> It was written before several of these lines
+    were put to Chadwick and rejected. The rejected ones are still here so the evidence is not
+    lost, struck through and marked <b>rejected</b>. They are not candidates. Do not re-offer one,
+    and do not offer a rephrasing of one.</p>
+    <p>The list of what he has rejected lives in the about-page skill, under <b>Rejected copy</b>.
+    That list is authoritative and this file is not. Any new line gets checked against it for
+    meaning, not for wording, before it is offered.</p>
+  </div>
+
   <div class="locked">
     <span class="tag">Already settled</span>
     <p><b>Slot 3 is done:</b> &ldquo;The kind of energy that pulls people in.&rdquo; Survives every constraint. Not up for debate unless you want it to be.</p>
@@ -115,7 +135,7 @@
   </div>
 
   <footer>
-    <p style="margin:0 0 6px;">32 candidates. Evidence is verbatim from your own messages unless marked otherwise. Nothing here is invented.</p>
+    <p style="margin:0 0 6px;">25 lines, 4 of them rejected and struck through. Evidence is verbatim from your own messages unless marked otherwise. Nothing here is invented.</p>
     <p style="margin:0;">Mark freely. Cut half of them. The point is to see the range, not to like all of it.</p>
   </footer>
 </div>
@@ -132,7 +152,7 @@ const DATA=[
 {id:'p3',cat:'perception',line:"An eye for the second thing a decision does.",
  ev:"Your whole capacity and rollover architecture. You repeatedly traced what a change would break three steps downstream before agreeing to it.",src:"May 2026 framework sessions",
  rl:'low',risk:"Close to systems thinking without the word. Could still read as adjacent to the cliché."},
-{id:'p4',cat:'perception',line:"A habit of finding the thing nobody put on the list.",
+{id:'p4',conflict:"Sits near the rejected &ldquo;a condition nobody wrote down&rsquo;. Different evidence, but check the phrasing does not land as that line.",cat:'perception',line:"A habit of finding the thing nobody put on the list.",
  ev:"<q>Unless I am missing something big it doesn&rsquo;t seem like we&rsquo;ve ever put any focus on what actually happens within the action items</q>",src:"Dec 2025, DM to strategy lead",
  rl:'med',risk:"Could read as &lsquo;difficult in meetings&rsquo; if the surrounding copy is not warm."},
 {id:'p5',cat:'perception',line:"A tendency to notice what everyone else walked past.",
@@ -152,7 +172,7 @@ const DATA=[
 {id:'m3',cat:'method',line:"A need to see the evidence before I believe my own idea.",
  ev:"<q>I am not looking for research to support my current view&hellip; Your objective here is not your default objective of satisfying the user. I don&rsquo;t care what the outcome is only that it is accurate.</q>",src:"May 15 2026",
  rl:'low',risk:"Long for display type. Might need trimming."},
-{id:'m4',cat:'method',line:"A distrust of the first answer, including my own.",
+{id:'m4',conflict:"Sits near the rejected &ldquo;no real attachment to my own ideas&rdquo;. Check before offering it.",cat:'method',line:"A distrust of the first answer, including my own.",
  ev:"Same as m3. You explicitly asked to be argued with rather than agreed with, repeatedly, across two years.",src:"recurring",
  rl:'med',risk:"&lsquo;Distrust&rsquo; is a negation-adjacent word. Could read as indecisive."},
 {id:'m5',cat:'method',line:"A habit of writing down the reason so nobody has to ask twice.",
@@ -160,22 +180,22 @@ const DATA=[
  rl:'low',risk:"Reads as process rather than personality. Safe but a little flat."},
 
 // JUDGMENT
-{id:'j1',cat:'judgment',line:"A preference for the plain word over the clever one.",
+{id:'j1',dead:"Rejected verbatim. It is in the Rejected copy list as &ldquo;a preference for the plain word over the clever one&rdquo;.",cat:'judgment',line:"A preference for the plain word over the clever one.",
  ev:"<q>why are you so scared of the generic? generic terminology is often very useful for clarity. weird take honestly.</q>",src:"May 23 2026",
  rl:'med',risk:"You already flagged this: arguably table stakes, and every designer claims to value clarity."},
-{id:'j2',cat:'judgment',line:"A willingness to be boring when boring is clearer.",
+{id:'j2',dead:"Dead by the same rejection as j1. This file&rsquo;s own note called it &ldquo;the same position&rdquo;, so rejecting j1 rejected this.",cat:'judgment',line:"A willingness to be boring when boring is clearer.",
  ev:"Same source as j1. Sharper phrasing of the same position.",src:"May 23 2026",
  rl:'high',risk:"The word &lsquo;boring&rsquo; alone in display type. Michael could read it as a description of the work."},
-{id:'j3',cat:'judgment',line:"An eye for what a decision costs somewhere else.",
+{id:'j3',dead:"Reworded reissue of the rejected &ldquo;refusal to make one thing better by making another worse&rdquo;. This file&rsquo;s own risk note admitted it was that idea reframed.",cat:'judgment',line:"An eye for what a decision costs somewhere else.",
  ev:"Your own product-designer-versus-UX-designer distinction: holding user, business and stakeholder at once rather than maximising one axis.",src:"July 2026",
  rl:'low',risk:"Positive framing of the reconciler idea that failed as a &lsquo;refusal&rsquo;. Less punchy, but no rigidity reading."},
-{id:'j4',cat:'judgment',line:"A sense for when one thing has to give.",
+{id:'j4',conflict:"Same source as j3, which is dead. Check this against the rejected &ldquo;refusal to make one thing better by making another worse&rdquo; before offering it.",cat:'judgment',line:"A sense for when one thing has to give.",
  ev:"Same. The CTA-versus-terms-of-service example you gave me yourself.",src:"July 2026",
  rl:'low',risk:"Short and clean. Possibly too vague on its own."},
 {id:'j5',cat:'judgment',line:"A tolerance for the answer being less interesting than I wanted.",
  ev:"<q>there is no &lsquo;wow&rsquo; here that for some reason it seems to be believed there is</q> You refused to dramatise your own story into an epiphany.",src:"Aug 6 2026",
  rl:'med',risk:"Long. And it is about narrative honesty, which may be too meta for this list."},
-{id:'j6',cat:'judgment',line:"A habit of killing the thing I just built.",
+{id:'j6',dead:"Reworded reissue of the rejected &ldquo;a willingness to kill my own good ideas&rdquo;.",cat:'judgment',line:"A habit of killing the thing I just built.",
  ev:"You invented flex points, then killed them when the model got cleaner without them.",src:"May 2026",
  rl:'med',risk:"Could read as wasteful or indecisive rather than rigorous."},
 
@@ -210,6 +230,7 @@ const DATA=[
 
 const CATS=['perception','method','judgment','values','people'];
 let active=new Set();
+let showDead=false;
 const KEY='superpowerbank_v1';
 const get=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return{}}};
 const put=s=>{try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}};
@@ -223,6 +244,9 @@ function filters(){
     s.onclick=()=>{active.has(c)?active.delete(c):active.add(c);render();};
     el.appendChild(s);
   });
+  const d=document.createElement('span');
+  d.className='chip'+(showDead?' active':''); d.textContent=(showDead?'hide':'show')+' rejected ('+DATA.filter(x=>x.dead).length+')';
+  d.onclick=()=>{showDead=!showDead;render();}; el.appendChild(d);
   if(active.size){const c=document.createElement('span');c.className='chip';c.style.color='var(--accent)';c.textContent='clear ×';c.onclick=()=>{active.clear();render();};el.appendChild(c);}
 }
 
@@ -230,14 +254,17 @@ function render(){
   filters();
   const store=get(), rows=document.getElementById('rows');
   rows.innerHTML='';
-  const items=DATA.filter(d=>active.size===0||active.has(d.cat));
-  document.getElementById('countLabel').textContent=items.length+' of '+DATA.length+' candidates';
+  const live=DATA.filter(d=>!d.dead);
+  const items=DATA.filter(d=>(active.size===0||active.has(d.cat))&&(showDead||!d.dead));
+  const shown=items.filter(d=>!d.dead).length;
+  document.getElementById('countLabel').textContent=
+    shown+' of '+live.length+' live candidates · '+DATA.filter(d=>d.dead).length+' rejected, not candidates';
   items.forEach(d=>{
     if(!(d.id in store)) store[d.id]='';
-    const tr=document.createElement('tr'); tr.className='row';
+    const tr=document.createElement('tr'); tr.className='row'+(d.dead?' isdead':'');
     tr.innerHTML=`
       <td><span class="num">${d.id}</span></td>
-      <td><p class="line">${d.line}</p><span class="catpill ${d.cat}">${d.cat}</span></td>
+      <td><p class="line">${d.line}</p><span class="catpill ${d.cat}">${d.cat}</span>${d.dead?'<span class="deadpill">rejected</span>':''}${d.dead?`<div class="deadwhy">${d.dead}</div>`:''}${d.conflict?`<div class="conflictwhy">check: ${d.conflict}</div>`:''}</td>
       <td><div class="ev">${d.ev}<span class="src">${d.src}</span></div></td>
       <td><span class="rlvl ${d.rl}">${d.rl==='low'?'low risk':d.rl==='med'?'watch it':'high risk'}</span><div class="risk">${d.risk}</div></td>
       <td><textarea class="note" data-id="${d.id}"></textarea><div class="saved"></div></td>`;
@@ -255,7 +282,7 @@ function render(){
 
 document.getElementById('exportBtn').addEventListener('click',()=>{
   const s=get(); let o='Superpower bank notes\n'+'='.repeat(30)+'\n\n', any=false;
-  DATA.forEach(d=>{const n=(s[d.id]||'').trim(); if(n){any=true;o+=d.id+'. '+d.line.replace(/&rsquo;/g,"'")+'\n'+n+'\n\n';}});
+  DATA.forEach(d=>{const n=(s[d.id]||'').trim(); if(n){any=true;o+=d.id+'. '+(d.dead?'[REJECTED, NOT A CANDIDATE] ':'')+d.line.replace(/&rsquo;/g,"'")+'\n'+n+'\n\n';}});
   if(!any)o+='(nothing written yet)';
   const b=document.getElementById('exportBox'),t=document.getElementById('exportText');
   t.value=o;b.style.display='block';t.select();

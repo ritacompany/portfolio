@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven ending prototype</title>
+<style>
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --bg: #040405;
+  --n050: #f2f1f8;
+  --n100: #e8e7ee;
+  --n400: #c9c9d4;
+  --n500: #aeaeb4;
+  --n675: #28282b;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --grow: 650ms;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); }
+body { color: var(--n400); font-family: "Satoshi", system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; font-synthesis: none; }
+img { display: block; }
+
+.section { max-width: 1440px; margin: 0 auto; padding-top: 148px; }
+.label { padding-left: 125px; font-size: 20px; line-height: 1.32; color: var(--n500); }
+.statement { padding: 0 96px 0 125px; margin-top: 40px; font-size: clamp(48px, 6.67vw, 96px); line-height: 0.94; letter-spacing: -0.04em; color: var(--n050); }
+.needs { padding-left: 253px; margin-top: 64px; font-size: clamp(28px, 2.78vw, 40px); line-height: 1.1; letter-spacing: -0.02em; color: var(--n100); }
+
+/* The row: five cards, equal at rest, one grows on hover, focus or tap */
+.row { display: flex; gap: 24px; height: 560px; margin-top: 104px; }
+.card {
+  position: relative; flex: 1 1 0; min-width: 0; overflow: hidden;
+  outline: none; cursor: default;
+  transition: flex-grow var(--grow) var(--ease), filter 400ms var(--ease);
+}
+.row.has-active .card { filter: saturate(0.55) brightness(0.62); }
+.row.has-active .card.is-active { flex-grow: 2.3; filter: none; }
+.card:focus-visible { box-shadow: inset 0 0 0 2px var(--n050); }
+
+.card:nth-child(1) { background: #6854ec; }
+.card:nth-child(2) { background: #d080fc; }
+.card:nth-child(3) { background: #d2401f; }
+.card:nth-child(4) { background: #78b765; }
+.card:nth-child(5) { background: #ac54db; }
+
+/* Phone: never cropped, always centered, grows a little with its card */
+.phone {
+  position: absolute; left: 50%; top: 46%;
+  height: 340px; width: auto; max-width: none;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform var(--grow) var(--ease), top var(--grow) var(--ease);
+  filter: drop-shadow(0 24px 40px rgba(4, 4, 5, 0.35));
+}
+.card.is-active .phone { transform: translate(-50%, -50%) scale(1.14); top: 42%; }
+
+/* Caption: rises softly from the bottom once the card has grown */
+.caption {
+  position: absolute; left: 28px; right: 28px; bottom: 26px;
+  display: flex; flex-direction: column; gap: 8px;
+  min-width: 380px; max-width: 420px;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 160ms ease-out, transform 160ms ease-out;
+  pointer-events: none;
+}
+.card.is-active .caption {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 360ms var(--ease) 260ms, transform 520ms var(--ease) 260ms;
+}
+.caption .need { font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; color: rgba(4, 4, 5, 0.72); }
+.caption p { font-size: 18px; line-height: 1.35; color: var(--bg); }
+
+/* Closing line with room on both sides */
+.close { padding-left: 289px; margin-top: 200px; font-size: clamp(28px, 2.78vw, 40px); line-height: 1.1; letter-spacing: -0.02em; color: var(--n400); }
+.close b { font-weight: 700; color: var(--n100); }
+.after { height: 300px; }
+.foot { max-width: 1440px; margin: 0 auto; display: flex; justify-content: space-between; padding: 32px 40px 40px; border-top: 1px solid var(--n675); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; color: #65656e; }
+
+/* Touch and narrow screens: no hover, so every caption shows */
+@media (max-width: 900px) {
+  .label { padding-left: 16px; }
+  .statement { padding: 0 16px; }
+  .needs { padding-left: 16px; }
+  .row { height: auto; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 16px 8px; gap: 12px; }
+  .card { flex: 0 0 78%; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; padding: 28px 20px 24px; }
+  .row.has-active .card { filter: none; }
+  .row.has-active .card.is-active { flex-grow: 0; }
+  .phone, .card.is-active .phone { position: static; height: 300px; transform: none; }
+  .caption, .card.is-active .caption { position: static; align-self: stretch; margin-top: 24px; opacity: 1; transform: none; min-width: 0; max-width: none; transition: none; }
+  .close { padding-left: 16px; margin-top: 120px; }
+  .after { height: 180px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .phone { transition: filter 150ms linear; }
+  .caption, .card.is-active .caption { transform: none; transition: opacity 150ms linear; }
+}
+</style>
+</head>
+<body>
+
+<section class="section" aria-labelledby="end-title">
+  <p class="label">Where things stand</p>
+  <h2 class="statement" id="end-title">Haven’s initial MVP phase was built around two needs:</h2>
+  <p class="needs">To be understood and to be safe.</p>
+
+  <div class="row" id="row">
+    <article class="card" tabindex="0" aria-label="Identity quiz">
+      <img class="phone" src="assets/haven-end/p1-quiz.png" alt="Identity quiz question screen" width="576" height="1179">
+      <div class="caption"><span class="need">Understood</span><p>A short identity quiz matches a teen with Confidantes who share the experiences that shape them.</p></div>
+    </article>
+    <article class="card" tabindex="0" aria-label="Confidante profile">
+      <img class="phone" src="assets/haven-end/p2-profile.png" alt="Confidante profile with shared experiences" width="576" height="1176">
+      <div class="caption"><span class="need">Understood</span><p>Each Confidante’s profile shows those shared experiences first.</p></div>
+    </article>
+    <article class="card" tabindex="0" aria-label="Your events">
+      <img class="phone" src="assets/haven-end/p3-events.png" alt="Your events screen with two introduction chats" width="578" height="1185">
+      <div class="caption"><span class="need">Safe</span><p>Intro chats are text only, booked for a time the teen can be alone.</p></div>
+    </article>
+    <article class="card" tabindex="0" aria-label="Introduction chat">
+      <img class="phone" src="assets/haven-end/p4-intro.png" alt="Introduction chat with a Confidante" width="576" height="1185">
+      <div class="caption"><span class="need">Understood</span><p>The intro chat comes before choosing, so the teen can see if it feels right.</p></div>
+    </article>
+    <article class="card" tabindex="0" aria-label="Security setup">
+      <img class="phone" src="assets/haven-end/p5-security.png" alt="Keep Haven discreet setup with disguise icons" width="577" height="1191">
+      <div class="caption"><span class="need">Safe</span><p>Haven can hide behind a different icon on the teen’s phone.</p></div>
+    </article>
+  </div>
+
+  <p class="close"><b>Identity</b> was the first phase.<br><b>Community</b> is next.</p>
+  <div class="after"></div>
+</section>
+<div class="foot"><span>Footer</span><span>All work</span></div>
+
+<script>
+// One active card at a time. Mouse waits briefly before opening, keyboard and tap open at once.
+const row = document.getElementById('row');
+const cards = [...row.querySelectorAll('.card')];
+let openTimer, closeTimer;
+
+function setActive(card) {
+  clearTimeout(openTimer); clearTimeout(closeTimer);
+  cards.forEach(c => c.classList.toggle('is-active', c === card));
+  row.classList.toggle('has-active', !!card);
+}
+
+cards.forEach((card, i) => {
+  card.addEventListener('pointerenter', e => {
+    if (e.pointerType !== 'mouse') return;
+    clearTimeout(closeTimer); clearTimeout(openTimer);
+    const delay = row.classList.contains('has-active') ? 120 : 220;
+    openTimer = setTimeout(() => setActive(card), delay);
+  });
+  card.addEventListener('click', () => setActive(card.classList.contains('is-active') ? null : card));
+  card.addEventListener('focus', () => setActive(card));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const next = cards[(i + (e.key === 'ArrowRight' ? 1 : cards.length - 1)) % cards.length];
+      next.focus();
+    }
+    if (e.key === 'Escape') { setActive(null); card.blur(); }
+  });
+});
+
+row.addEventListener('pointerleave', e => {
+  if (e.pointerType !== 'mouse') return;
+  clearTimeout(openTimer);
+  closeTimer = setTimeout(() => setActive(null), 400);
+});
+row.addEventListener('focusout', e => { if (!row.contains(e.relatedTarget)) setActive(null); });
+</script>
+</body>
+</html>

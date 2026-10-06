@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mondai square pattern lab</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { color-scheme: dark; }
+    body { margin: 0; background: #101213; color: #e9eeec; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1570px; padding: 28px clamp(16px, 2.8vw, 42px) 64px; margin: auto; }
+    .masthead { display: flex; justify-content: space-between; gap: 24px; align-items: start; margin-bottom: 24px; }
+    .eyebrow { margin: 0 0 8px; color: #929d9b; font-size: 11px; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(26px, 2.6vw, 36px); font-weight: 650; letter-spacing: -.045em; line-height: 1.12; }
+    .subtitle { margin: 8px 0 0; color: #a4afac; font-size: 13px; line-height: 1.5; }
+    .source-link { color: #c2cfca; font-size: 12px; text-decoration: none; white-space: nowrap; padding-top: 8px; }
+    .source-link:hover { color: #f0f4f1; text-decoration: underline; text-underline-offset: 4px; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid #303636; border-radius: 17px; background: #191c1d; padding: 8px; margin-bottom: 18px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 3px; }
+    .tab { color: #9eaaa7; background: transparent; border: 0; border-radius: 11px; padding: 10px 13px; font-size: 12px; font-weight: 570; min-height: 40px; }
+    .tab:hover { color: #e9efeb; background: #252b2a; }
+    .tab[aria-pressed="true"] { color: #111715; background: #d8e1dc; }
+    .randomize { background: #2a302f; border: 1px solid #444f4b; color: #e8efeb; border-radius: 11px; padding: 10px 15px; min-height: 40px; font-size: 12px; font-weight: 630; }
+    .randomize:hover { background: #36403c; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 25px; align-items: start; }
+    .canvas-header { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 3px 1px 11px; font-size: 12px; color: #929e9a; }
+    .canvas-header strong { color: #d5dfda; font-weight: 570; }
+    .stage { position: relative; width: 100%; aspect-ratio: 1440 / 1423; overflow: hidden; background: #080a09; border: 1px solid #353d39; border-radius: 13px; touch-action: none; }
+    .stage:focus-visible { outline: 2px solid #d8e1dc; outline-offset: 3px; }
+    .stage-base { position: absolute; inset: 0; display: block; width: 100%; height: 100%; user-select: none; pointer-events: none; }
+    .overlay { position: absolute; inset: 0; z-index: 2; }
+    .overlay svg { display: block; width: 100%; height: 100%; }
+    .browser-layer { position: absolute; left: 10.0694%; width: 79.8611%; height: auto; z-index: 3; pointer-events: none; user-select: none; }
+    .motif { cursor: grab; }
+    .motif:active { cursor: grabbing; }
+    .motif:hover .motif-hit { stroke: #aab6b0; }
+    .canvas-foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: #929d99; font-size: 11px; line-height: 1.5; padding: 11px 2px 0; }
+    .inspector { position: sticky; top: 20px; }
+    .section { padding: 0 0 22px; border-bottom: 1px solid #303636; margin-bottom: 22px; }
+    .section-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 2px 0 15px; color: #e2eae5; font-size: 12px; font-weight: 650; }
+    .section-title small { color: #8f9b96; font-size: 11px; font-weight: 450; }
+    .control { display: block; margin: 0 0 17px; color: #aeb9b4; font-size: 12px; }
+    .control:last-child { margin-bottom: 0; }
+    .control-line { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 8px; }
+    output { color: #e1e8e4; font-variant-numeric: tabular-nums; }
+    input[type="range"] { width: 100%; margin: 0; accent-color: #cbd8d0; }
+    .motif-list { display: grid; gap: 7px; }
+    .motif-row { width: 100%; min-height: 32px; display: flex; gap: 10px; align-items: center; text-align: left; border: 1px solid #353f3b; border-radius: 8px; background: #202524; color: #cbd6cf; padding: 5px 9px; font-size: 12px; }
+    .motif-row[aria-pressed="true"] { border-color: #97a79f; background: #2b3430; color: #f0f5f1; }
+    .motif-index { color: #89968f; font-size: 10px; font-variant-numeric: tabular-nums; }
+    .palette-label { margin: 18px 0 9px; color: #919e97; font-size: 11px; }
+    .motif-palette { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+    .swatch { min-width: 0; border: 1px solid #35403b; border-radius: 9px; background: #202524; color: #aebbb3; padding: 7px 4px 6px; font-size: 10px; }
+    .swatch:hover, .swatch[aria-pressed="true"] { border-color: #9aaba0; color: #eff5f0; background: #2a332e; }
+    .swatch svg { display: block; width: 100%; height: 38px; margin-bottom: 3px; }
+    .hint { margin: 12px 0 0; color: #8f9c96; font-size: 11px; line-height: 1.5; }
+    .switchline { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #b2bdb7; font-size: 12px; margin: 0 0 14px; }
+    .switchline input { accent-color: #cbd8d0; width: 16px; height: 16px; }
+    details { border-bottom: 1px solid #303636; padding-bottom: 18px; margin-bottom: 21px; }
+    summary { list-style: none; cursor: pointer; color: #c7d2cb; font-size: 12px; font-weight: 620; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; float: right; color: #8d9b93; font-size: 16px; font-weight: 400; line-height: 12px; }
+    details[open] summary::after { content: '−'; }
+    .advanced { padding-top: 20px; }
+    .download { width: 100%; border: 0; border-radius: 11px; background: #d8e1dc; color: #111715; min-height: 44px; font-size: 12px; font-weight: 700; }
+    .download:hover { background: #edf3ef; }
+    .export-note { margin: 11px 0 0; color: #8d9a93; font-size: 11px; line-height: 1.5; }
+    button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid #d8e1dc; outline-offset: 3px; }
+    @media (max-width: 1020px) { .workspace { grid-template-columns: minmax(0, 1fr); } .inspector { position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 22px; } .section, details { margin-bottom: 18px; } .export { grid-column: 1 / -1; max-width: 320px; } }
+    @media (max-width: 620px) { .shell { padding: 20px 14px 48px; } .masthead { display: block; } .source-link { display: inline-block; margin-top: 9px; } .toolbar { border-radius: 13px; } .tabs { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); } .tab { width: 100%; } .randomize { width: 100%; } .inspector { display: block; } .canvas-foot { display: block; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Mondai website study</p>
+        <h1>Square pattern lab</h1>
+        <p class="subtitle">Arrange small square motifs around the hero structure.</p>
+      </div>
+      <a class="source-link" href="https://www.figma.com/design/IarvWaqjIwrZ2afQmMxKm6/Portfolio-Design?node-id=4143-7423" target="_blank" rel="noreferrer">Source in Figma ↗</a>
+    </header>
+
+    <div class="toolbar">
+      <div class="tabs" role="group" aria-label="Composition">
+        <button class="tab" type="button" data-style="sporadic" aria-pressed="true">Sporadic</button>
+        <button class="tab" type="button" data-style="grouped" aria-pressed="false">Grouped</button>
+        <button class="tab" type="button" data-style="structure" aria-pressed="false">Across the lines</button>
+        <button class="tab" type="button" data-style="beneath" aria-pressed="false">Under the browser</button>
+      </div>
+      <button class="randomize" id="randomize" type="button">↻ &nbsp; Randomize</button>
+    </div>
+
+    <div class="workspace">
+      <section class="canvas-column" aria-label="Pattern preview">
+        <div class="canvas-header"><strong id="compositionName">Sporadic composition</strong><span id="countText">0 squares</span></div>
+        <div class="stage" id="stage" tabindex="0" aria-label="Mondai hero preview. Select and drag a square block, or use arrow keys after selecting it.">
+          <img class="stage-base" src="mondai-hero-base.png" alt="Current Mondai hero with support frame">
+          <div class="overlay" id="overlay" aria-hidden="true"></div>
+          <img class="browser-layer" id="browserLayer" src="mondai-browser-layer.png" alt="">
+        </div>
+        <div class="canvas-foot"><span>Drag a block to place it. The browser stays in front of the pattern.</span><span>1440 × 1423 Figma frame</span></div>
+      </section>
+
+      <aside class="inspector" aria-label="Pattern controls">
+        <div class="section">
+          <div class="section-title">Composition <small id="variationText">Variation 1</small></div>
+          <label class="control"><span class="control-line"><span>Blocks</span><output id="blocksValue">3</output></span><input id="blocks" type="range" min="1" max="5" step="1" value="3"></label>
+          <label class="control"><span class="control-line"><span>Pattern scale</span><output id="scaleValue">100%</output></span><input id="scale" type="range" min="60" max="140" step="5" value="100"></label>
+          <label class="control"><span class="control-line"><span>Square spacing</span><output id="pitchValue">5 px</output></span><input id="pitch" type="range" min="3" max="9" step="0.5" value="5"></label>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Square motifs</div>
+          <div class="motif-list" id="motifList"></div>
+          <p class="palette-label">Motif library</p>
+          <div class="motif-palette" id="motifPalette" role="group" aria-label="Source motif types"></div>
+          <p class="hint">These groupings come from the square reference. Select a block, then choose a motif. Drag it or use arrow keys to place it.</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Page context</div>
+          <label class="control"><span class="control-line"><span>Browser lift</span><output id="liftValue">58 px</output></span><input id="lift" type="range" min="0" max="110" step="2" value="58"></label>
+          <label class="switchline"><span>Show browser layer</span><input id="showBrowser" type="checkbox" checked></label>
+        </div>
+
+        <details>
+          <summary>Fine tuning</summary>
+          <div class="advanced">
+            <label class="control"><span class="control-line"><span>Square size</span><output id="tileValue">82%</output></span><input id="tile" type="range" min="45" max="96" step="1" value="82"></label>
+            <label class="control"><span class="control-line"><span>Brightness</span><output id="opacityValue">78%</output></span><input id="opacity" type="range" min="20" max="100" step="2" value="78"></label>
+            <label class="switchline"><span>Fine grid</span><input id="grid" type="checkbox"></label>
+          </div>
+        </details>
+
+        <div class="export">
+          <button class="download" id="download" type="button">Download pattern SVG</button>
+          <p class="export-note">Place the SVG at x 0, y 0 in the hero frame, below the browser layer. This study does not change the Figma file.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <script src="reference-grid.js"></script>
+  <script src="pattern.js"></script>
+  <script>
+    const controls = Object.fromEntries(['blocks', 'scale', 'pitch', 'lift', 'showBrowser', 'tile', 'opacity', 'grid'].map(id => [id, document.getElementById(id)]));
+    const names = { sporadic: 'Sporadic', grouped: 'Grouped', structure: 'Across the lines', beneath: 'Under the browser' };
+    const stage = document.getElementById('stage');
+    const overlay = document.getElementById('overlay');
+    let style = 'sporadic';
+    let seed = 1;
+    let layout = [];
+    let selected = null;
+    let drag = null;
+
+    function options() {
+      return {
+        pitch: Number(controls.pitch.value), scale: Number(controls.scale.value) / 100,
+        tile: Number(controls.tile.value) / 100, opacity: Number(controls.opacity.value) / 100,
+        grid: controls.grid.checked
+      };
+    }
+
+    function rebuild() {
+      layout = MondaiPattern.compose({ style, seed, count: Number(controls.blocks.value) });
+      selected = null;
+      render();
+    }
+
+    function renderMotifList() {
+      const list = document.getElementById('motifList');
+      list.replaceChildren();
+      layout.forEach((module, index) => {
+        const row = document.createElement('button');
+        row.className = 'motif-row';
+        row.type = 'button';
+        row.innerHTML = '<span class="motif-index">' + String(index + 1).padStart(2, '0') + '</span><span>' + MondaiPattern.motifs[module.type].label + '</span>';
+        row.setAttribute('aria-pressed', String(selected === index));
+        row.addEventListener('click', () => { selected = index; stage.focus(); render(); });
+        list.appendChild(row);
+      });
+      const palette = document.getElementById('motifPalette');
+      palette.replaceChildren();
+      Object.entries(MondaiPattern.motifs).forEach(([key, motif]) => {
+        const button = document.createElement('button');
+        button.className = 'swatch';
+        button.type = 'button';
+        button.setAttribute('aria-label', 'Use ' + motif.label + ' motif');
+        button.setAttribute('aria-pressed', String(selected !== null && layout[selected].type === key));
+        const squares = motif.cells.map(([x, y]) => '<rect x="' + x + '" y="' + y + '" width="0.82" height="0.82"/>').join('');
+        button.innerHTML = '<svg viewBox="0 0 ' + motif.cols + ' ' + motif.rows + '" aria-hidden="true"><g fill="#e6eee8">' + squares + '</g></svg><span>' + motif.label + '</span>';
+        button.addEventListener('click', () => {
+          if (selected === null) selected = 0;
+          layout[selected].type = key;
+          render();
+          palette.querySelectorAll('.swatch')[Object.keys(MondaiPattern.motifs).indexOf(key)].focus();
+        });
+        palette.appendChild(button);
+      });
+    }
+
+    function render() {
+      const values = options();
+      const preview = MondaiPattern.render(layout, { ...values, interactive: true, selected });
+      overlay.innerHTML = preview.svg;
+      document.getElementById('countText').textContent = preview.count + ' squares';
+      document.getElementById('compositionName').textContent = names[style] + ' composition';
+      document.getElementById('variationText').textContent = 'Variation ' + seed;
+      document.getElementById('blocksValue').textContent = controls.blocks.value;
+      document.getElementById('scaleValue').textContent = controls.scale.value + '%';
+      document.getElementById('pitchValue').textContent = controls.pitch.value + ' px';
+      document.getElementById('tileValue').textContent = controls.tile.value + '%';
+      document.getElementById('opacityValue').textContent = controls.opacity.value + '%';
+      document.getElementById('liftValue').textContent = controls.lift.value + ' px';
+      const browser = document.getElementById('browserLayer');
+      browser.style.top = ((595 - Number(controls.lift.value)) / 1423 * 100) + '%';
+      browser.style.display = controls.showBrowser.checked ? 'block' : 'none';
+      renderMotifList();
+    }
+
+    function svgPoint(event) {
+      const svg = overlay.querySelector('svg');
+      const point = svg.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      return point.matrixTransform(svg.getScreenCTM().inverse());
+    }
+
+    stage.addEventListener('pointerdown', event => {
+      const group = event.target.closest('.motif');
+      if (!group) return;
+      const index = Number(group.dataset.index);
+      const point = svgPoint(event);
+      selected = index;
+      drag = { pointerId: event.pointerId, index, x: point.x, y: point.y, startX: layout[index].x, startY: layout[index].y, group };
+      stage.setPointerCapture(event.pointerId);
+      stage.focus();
+      overlay.querySelectorAll('.motif-hit').forEach(hit => hit.setAttribute('stroke', 'transparent'));
+      group.querySelector('.motif-hit').setAttribute('stroke', '#b9c5bf');
+      renderMotifList();
+    });
+    stage.addEventListener('pointermove', event => {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      const point = svgPoint(event);
+      const module = layout[drag.index];
+      module.x = Math.round(drag.startX + point.x - drag.x);
+      module.y = Math.round(drag.startY + point.y - drag.y);
+      drag.group.setAttribute('transform', 'translate(' + module.x + ' ' + module.y + ')');
+    });
+    function finishDrag(event) {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      drag = null;
+      render();
+    }
+    stage.addEventListener('pointerup', finishDrag);
+    stage.addEventListener('pointercancel', finishDrag);
+    stage.addEventListener('keydown', event => {
+      if (selected === null || !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+      event.preventDefault();
+      const delta = event.shiftKey ? 1 : 10;
+      if (event.key === 'ArrowLeft') layout[selected].x -= delta;
+      if (event.key === 'ArrowRight') layout[selected].x += delta;
+      if (event.key === 'ArrowUp') layout[selected].y -= delta;
+      if (event.key === 'ArrowDown') layout[selected].y += delta;
+      render();
+    });
+
+    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+      style = tab.dataset.style;
+      document.querySelectorAll('.tab').forEach(item => item.setAttribute('aria-pressed', String(item === tab)));
+      rebuild();
+    }));
+    document.getElementById('randomize').addEventListener('click', () => { seed += 1; rebuild(); });
+    controls.blocks.addEventListener('input', rebuild);
+    Object.entries(controls).filter(([id]) => id !== 'blocks').forEach(([, control]) => control.addEventListener('input', render));
+    document.getElementById('download').addEventListener('click', () => {
+      const svg = MondaiPattern.render(layout, options()).svg;
+      const url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'mondai-' + style + '-squares.svg';
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    rebuild();
+  </script>
+</body>
+</html>

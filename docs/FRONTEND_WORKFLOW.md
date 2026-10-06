@@ -27,21 +27,31 @@ Before implementation:
    specification.
 2. Identify fixed constraints, open design decisions and expected behavior. Resolve any conflict in
    favor of the current request and approved project records before writing tests.
-3. Capture the current reference state when the change could affect an accepted visual baseline.
+3. For Figma-led work, fetch the current target node, its screenshot, variable definitions and the
+   text-style and color-style assignments used by that node. Record the source node ids and map reusable
+   values to named code tokens before styling components.
+4. Treat a reusable text node with no assigned Figma text style as a design-system defect. Resolve it in
+   the source and implementation before accepting its raw size. Limit detached typography to documented
+   art-directed display lettering.
+5. Capture the current reference state when the change could affect an accepted visual baseline.
 
 After implementation:
 
-1. Run deterministic checks for structure, computed geometry, overflow, clipping, console errors and
+1. Load the exact review URL and fail the pass if a production stylesheet, script, font or image does
+   not return successfully. Confirm in the browser that the stylesheet is applied, not merely linked.
+2. Run deterministic checks for structure, computed geometry, overflow, clipping, console errors and
    the specific requirements changed in the turn.
-2. Exercise the page in a real browser at the reference width, every relevant boundary width and at
+3. Exercise the page in a real browser at the reference width, every relevant boundary width and at
    least one width between each boundary. Add the width where the content first becomes visibly weak,
    even when it is not a named breakpoint.
-3. Test applicable interaction states, keyboard order, focus visibility, touch target size, content
+4. Test applicable interaction states, keyboard order, focus visibility, touch target size, content
    wrapping and 200 percent browser zoom.
-4. Capture screenshots at every tested width. Actually view the captures and compare the reference
+5. Capture screenshots at every tested width. Actually view the captures and compare the reference
    width with Figma or the accepted browser baseline. Review the full responsive set for hierarchy,
    rhythm, alignment, readable measure, image treatment and accidental empty space.
-5. Record each material defect found, fix it and repeat the complete affected check. Continue until a
+6. Verify that computed colors and shared text styles still resolve through the recorded design-token
+   contract. Raw values are allowed only for documented node-specific Figma exceptions.
+7. Record each material defect found, fix it and repeat the complete affected check. Continue until a
    full visual and behavioral pass finds no material defect.
 
 ## Honest evidence

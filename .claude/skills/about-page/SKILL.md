@@ -34,7 +34,12 @@ Only he changes any of this.
 - Attribution line: "the right people around me to help me discover some of mine."
 - Chicago out of the hero, into contact. If it appears sooner, New York leads and Chicago is the aside.
 - Three superpower lines.
-- Slot one is free for pattern recognition.
+- Slot one was free for pattern recognition during earlier exploration. The current three lines are now fixed for this review.
+- For the current VC Master review, settle how the rest of the page communicates who he is as a designer before revising the short hero introduction. The hero is a brief overview that draws readers in; they learn more as they move through the page.
+- Keep the assembled About content close to its current length. Replace or cut material rather than substantially lengthening it.
+- The current `VC` Master superpowers statement, star attribution and three lines are not being changed in this review. Earlier wording rulings do not authorize correcting the current star without a new decision from Chadwick.
+- The hero gives a short glimpse of who he is; the superpowers identify selected strengths; the psychology paragraph adds depth and shows where his systems thinking comes from. Pattern recognition, systems thinking and an eye for what quietly moves an outcome are related but distinct.
+- The verbal processor material is meant to show how he understands and works with people who think and work differently. The About opener about the problem underneath the problem is open to review as a transition, not automatically a repetition to cut.
 
 ### He reversed these
 
@@ -56,6 +61,21 @@ reversal sentences, meaning state a thing then negate it
 
 The parenthetical reasons that used to sit beside each of these were a mix of his words and
 inferences, so they are gone. The rejections stand on their own.
+
+**A rejection is of the idea, not the wording.** Before any superpower line or About sentence is
+offered, check it against this list for meaning. A rephrasing of a rejected line is the rejected
+line. This is the failure that kept happening: the same idea came back in new clothes and walked
+straight through a string match. Three lines in the superpower bank were reissues of rejections
+that the bank itself had noted and offered anyway.
+
+**The superpower bank is not a source of live candidates.** `docs/about-source/superpower_bank.html`
+was written before several of its lines were put to him and rejected. The rejected ones are struck
+through and marked there now, but the authority is this list, not that file. The same goes for any
+other options document. If a line is not recorded here as settled, it is not settled.
+
+Every quoted line above is compiled into a check that refuses to let a response finish while
+asserting one. That happens automatically, so rejecting something here is the whole of the work.
+Nothing needs to be copied anywhere.
 
 ### Claims
 
@@ -109,15 +129,14 @@ as settled.
 
 **Open, in order:**
 
-1. Band and hero, written together. They sit before the work and must not say the same thing.
-2. Superpower slots one and two.
-3. What else section 3 carries. He cut every candidate so far, so this needs new material.
-4. Tactics pass, once, across the whole assembled page. Never run.
+1. Review the current `VC` Master as one assembled page, preserving the distinct job of each section and the protected superpowers content.
+2. Test the About opener as a transition and clarify the intended meaning of the verbal processor material without substantially lengthening the page. Earlier candidates are not live by default.
+3. Revise the short hero introduction after the rest of the page is clear.
+4. Run the tactics pass once across the assembled page. Never run.
 
 **His call, any time:** which WIP layout, and where the Mondai role paragraph lives.
 
-**Live step:** band and hero. Not started. He has options in hand from an earlier session and has
-not reacted to them. Done when he picks a direction for each.
+**Live step:** review the nonlocked About body in the current `VC` Master. The superpowers content stays as it is and the hero is last.
 
 ## Keeping this current
 
@@ -126,6 +145,8 @@ something, it goes in part two or it goes in the conversation. Never file an inf
 ruling.
 
 This is not left to memory. A check refuses any line added to part one that does not trace to
-something he said in the same session. Part two is unrestricted, and a blockquote of his words
+something he said in the same session, and a second check refuses any response that asserts
+something quoted under Rejected copy or Killed. That second list is generated from this file, so
+a rejection recorded here starts blocking immediately and nothing is maintained in parallel. Part two is unrestricted, and a blockquote of his words
 is never questioned. If it fires on you, the answer is almost always that the line is your
 reasoning and belongs in part two, not that the check is wrong.

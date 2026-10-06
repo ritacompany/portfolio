@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven ending animation</title>
+<style>
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-medium.woff2") format("woff2"); font-weight: 500; font-display: block; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-bold.woff2") format("woff2"); font-weight: 700; font-display: block; }
+
+:root {
+  --bg: #040405;
+  --n050: #f2f1f8;
+  --n100: #e8e7ee;
+  --n400: #c9c9d4;
+  --n500: #aeaeb4;
+  --ease: cubic-bezier(0.22, 0.8, 0.25, 1);
+  --t: 600ms;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+h2 { font-weight: inherit; } /* the statement is Medium in Figma; browsers default h2 to bold */
+html, body { background: var(--bg); overflow-x: hidden; }
+body { color: var(--n400); font-family: "Satoshi", system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; font-synthesis: none; }
+img { display: block; }
+
+/* Text, matched to the Ending animation frame (4083:3969) and the site's type rules.
+   Like site/styles.css, text boxes are trimmed to cap height and baseline so the spacing
+   below equals the gaps measured in Figma. */
+.section { --edge: 40px; max-width: 1440px; margin: 0 auto; padding-top: 148px; container-type: inline-size; }
+.label, .statement, .needs, .close { text-box: trim-both cap alphabetic; }
+.label { padding-left: 125px; font-size: 20px; line-height: 1.32; color: var(--n500); }                         /* Heading/20 */
+/* The first line is 12.34 times the font size wide, so the size follows the space available
+   and the statement keeps the same two lines down to tablet. */
+.statement { padding: 0 96px 0 125px; margin-top: 53px; font-size: min(96px, calc((100cqw - 221px) / 12.45)); line-height: 0.94; letter-spacing: -0.04em; color: var(--n050); } /* detached 96 in Figma */
+.needs { padding-left: 253px; margin-top: 78px; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; color: var(--n100); }        /* Heading/40 */
+.close { position: relative; padding-left: 253px; margin-top: 66px; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; color: var(--n400); } /* Heading/40 */
+.close b { font-weight: 700; color: var(--n100); }
+.after { height: 300px; }
+
+/* Site breakpoints: page edge 40 to 24 below 1160, 16 below 680. Heading/40 holds at 40
+   until 680, then follows the site's phone rule. */
+@media (max-width: 1159px) {
+  .section { --edge: 24px; }
+  .label, .statement { padding-left: 24px; padding-right: 24px; }
+  /* Indent shrinks before "To be understood and to be safe." (568px at 40) would wrap */
+  .needs, .close { padding-left: min(152px, calc(100cqw - 600px)); }
+  .statement { font-size: min(96px, calc((100cqw - 48px) / 12.45)); }
+}
+@media (max-width: 679px) {
+  .section { --edge: 16px; padding-top: 104px; }
+  .label, .statement, .needs, .close { padding-left: 16px; padding-right: 16px; }
+  .statement { margin-top: 32px; font-size: clamp(40px, 12vw, 56px); }
+  .statement .hold { display: none; }
+  .needs { margin-top: 40px; }
+  .needs, .close { font-size: clamp(27px, 8.2vw, 40px); }
+}
+
+/* Stage: a 1497 x 604 drawing, scaled to the screen. Base cards are 269 x 336 with 38 gaps. */
+.stage-wrap { position: relative; height: calc(604px * var(--s)); margin-top: 66px; }
+.stage {
+  position: absolute; left: 50%; top: 0; width: 1497px; height: 604px;
+  transform: translateX(-50%) scale(var(--s)); transform-origin: top center;
+  clip-path: inset(0 -100vw 0 -100vw);
+}
+.track { position: absolute; inset: 0; transform: translateX(var(--shift, 0px)); transition: transform var(--t) var(--ease); will-change: transform; }
+
+/* Each card is a 386 x 604 slot. Everything inside moves with transforms only. */
+.card { position: absolute; top: 0; width: 386px; height: 604px; pointer-events: none; outline: none; z-index: 1; transition: transform var(--t) var(--ease), z-index 0s linear var(--t); will-change: transform; }
+.card:nth-child(1) { left: -58.5px; --c: #6854ec; }
+.card:nth-child(2) { left: 248.5px; --c: #d080fc; }
+.card:nth-child(3) { left: 555.5px; --c: #d2401f; }
+.card:nth-child(4) { left: 862.5px; --c: #78b765; }
+.card:nth-child(5) { left: 1169.5px; --c: #ac54db; }
+.card.is-left { transform: translateX(-58.5px); }
+.card.is-right { transform: translateX(58.5px); }
+/* The open card sits on top at once, and a closing card stays on top until it has shrunk,
+   so no neighbor's cover can cut into it mid-animation. */
+.card.is-active { z-index: 3; transition: transform var(--t) var(--ease), z-index 0s; }
+
+/* Color panel: 269 x 336 at rest, scales from its center to 386 x 604 */
+.bg {
+  position: absolute; left: 58.5px; top: 134px; width: 269px; height: 336px;
+  background: var(--c); pointer-events: auto; cursor: default;
+  transform: scale(1); transition: transform var(--t) var(--ease); will-change: transform;
+}
+.card.is-active .bg { transform: scale(1.43494, 1.79762); }
+.card:focus-visible .bg { box-shadow: inset 0 0 0 2px var(--n050); }
+
+/* Phone: 192 wide at rest, 227 wide and whole when open, always centered */
+.phone {
+  position: absolute; left: 96.5px; top: 162px; width: 192px; height: auto;
+  transform-origin: top center; transform: none;
+  transition: transform var(--t) var(--ease); will-change: transform; pointer-events: none;
+}
+.card.is-active .phone { transform: translateY(-129px) scale(1.18229); }
+
+/* Caption: Bold 16, never moves. The cover below hides it and the cropped phone at rest,
+   and slides away at the same speed the panel grows, so the text is wiped into view. */
+.caption {
+  position: absolute; bottom: 22px;
+  /* Always 273px wide and 16px on screen, whatever the row's scale, so it wraps the same way. */
+  width: calc(273px / var(--s)); left: calc((386px - 273px / var(--s)) / 2);
+  font-weight: 700; font-size: calc(16px / var(--s)); line-height: 1.4; color: var(--bg); pointer-events: none;
+}
+.cover {
+  position: absolute; left: 48px; top: 470px; width: 290px; height: 240px;
+  background: var(--bg); pointer-events: none;
+  transform: translateY(0); transition: transform var(--t) var(--ease); will-change: transform;
+}
+.card.is-active .cover { transform: translateY(134px); }
+
+/* Dim the cards that are not open */
+.dim {
+  position: absolute; left: 58.5px; top: 134px; width: 269px; height: 336px;
+  background: var(--bg); opacity: 0; pointer-events: none;
+  transform: scale(1);
+  transition: opacity var(--t) var(--ease), transform var(--t) var(--ease); will-change: transform, opacity;
+}
+/* The dim layer grows and shrinks with the color panel, so it always matches the card. */
+.card.is-active .dim { transform: scale(1.43494, 1.79762); }
+.track.has-active .card:not(.is-active) .dim { opacity: 0.42; }
+/* The card being opened clears its dimming quickly. */
+.card.is-active .dim { opacity: 0; transition: opacity 120ms linear, transform var(--t) var(--ease); }
+
+/* Tablets and phones: the row scrolls sideways and the open card is brought to the middle.
+   Tablets keep the cards at full 1440 size, so cards, phones and captions match desktop exactly. */
+@media (max-width: 1159px) {
+  .stage-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .stage-wrap::-webkit-scrollbar { display: none; }
+  .stage { left: var(--edge); transform: scale(var(--s)); transform-origin: top left; }
+  .stage-size { width: calc(1497px * var(--s) + var(--edge) * 2); height: 1px; }
+}
+/* Phones: too narrow for a 273px caption inside a card, so the row scales down and the caption
+   is set wider and at 15px on screen. */
+@media (max-width: 679px) {
+  .stage-wrap { margin-top: 48px; }
+  .caption { left: 43px; width: 300px; font-size: calc(15px / var(--s)); }
+  .card.is-active .phone { transform: translateY(-129px) scale(1.08); }
+  .close { margin-top: 48px; }
+  .after { height: 180px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track, .card, .bg, .phone, .cover { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<section class="section" aria-labelledby="end-title">
+  <p class="label">Where things stand</p>
+  <h2 class="statement" id="end-title">Haven’s initial MVP phase was<br class="hold"> built around two needs:</h2>
+  <p class="needs">To be understood and to be safe.</p>
+
+  <div class="stage-wrap" id="wrap">
+    <div class="stage-size"></div>
+    <div class="stage">
+      <div class="track" id="track">
+        <article class="card" tabindex="0" aria-label="Identity quiz">
+          <div class="bg"></div>
+          <img class="phone" src="assets/haven-end/w-p1-quiz.webp" alt="Identity quiz question screen" width="454" height="929" decoding="sync">
+          <p class="caption">A quiz pairs users with Confidantes who share their experiences.</p>
+          <div class="cover"></div><div class="dim"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Confidante profile">
+          <div class="bg"></div>
+          <img class="phone" src="assets/haven-end/w-p2-profile.webp" alt="Confidante profile with shared experiences" width="454" height="927" decoding="sync">
+          <p class="caption">Profiles lead with the experiences a user and Confidante share.</p>
+          <div class="cover"></div><div class="dim"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Your events">
+          <div class="bg"></div>
+          <img class="phone" src="assets/haven-end/w-p3-events.webp" alt="Your events screen with two introduction chats" width="454" height="931" decoding="sync">
+          <p class="caption">Intro chats are text based only. Built for a time the user can be alone.</p>
+          <div class="cover"></div><div class="dim"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Introduction chat">
+          <div class="bg"></div>
+          <img class="phone" src="assets/haven-end/w-p4-intro.webp" alt="Introduction chat with a Confidante" width="454" height="934" decoding="sync">
+          <p class="caption">An intro chat comes first, so users can see if it feels right.</p>
+          <div class="cover"></div><div class="dim"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Security setup">
+          <div class="bg"></div>
+          <img class="phone" src="assets/haven-end/w-p5-security.webp" alt="Keep Haven discreet setup with disguise icons" width="454" height="937" decoding="sync">
+          <p class="caption">Haven can hide behind a different icon on the user’s phone.</p>
+          <div class="cover"></div><div class="dim"></div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <p class="close"><b>Identity</b> was the first phase.<br><b>Community</b> is next.</p>
+  <div class="after"></div>
+</section>
+
+<script>
+const root = document.documentElement;
+const wrap = document.getElementById('wrap');
+const track = document.getElementById('track');
+const cards = [...track.querySelectorAll('.card')];
+const narrow = matchMedia('(max-width: 1159px)');
+const phone = matchMedia('(max-width: 679px)');
+let active = null, openTimer, closeTimer;
+
+// Desktop scales the 1440 row to the screen; tablets keep it at full size; phones size an open card to 80% of the width.
+function scale() { return phone.matches ? (innerWidth * 0.8) / 386 : narrow.matches ? 1 : Math.min(1, innerWidth / 1440); }
+function fit() { root.style.setProperty('--s', scale()); setActive(active, true); }
+
+// On desktop, slide the row just enough to keep an edge card on screen with a 40px margin.
+function shiftFor(i) {
+  if (i === null || narrow.matches) return 0;
+  const s = scale(), stageLeft = (innerWidth - 1497 * s) / 2;
+  const x0 = -stageLeft / s + 40, x1 = (innerWidth - stageLeft) / s - 40;
+  const left = -58.5 + i * 307, right = left + 386;
+  return left < x0 ? x0 - left : right > x1 ? x1 - right : 0;
+}
+
+function setActive(i, quiet) {
+  clearTimeout(openTimer); clearTimeout(closeTimer);
+  active = i;
+  track.style.setProperty('--shift', shiftFor(i) + 'px');
+  track.classList.toggle('has-active', i !== null);
+  cards.forEach((c, j) => {
+    c.classList.toggle('is-active', j === i);
+    c.classList.toggle('is-left', i !== null && j < i);
+    c.classList.toggle('is-right', i !== null && j > i);
+  });
+  // On phones, bring the open card to the middle of the row.
+  if (narrow.matches && i !== null && !quiet) {
+    const edge = parseFloat(getComputedStyle(wrap).getPropertyValue('--edge')) || 16;
+    const s = scale(), center = edge + (-58.5 + i * 307 + 193) * s;
+    wrap.scrollTo({ left: center - wrap.clientWidth / 2, behavior: 'smooth' });
+  }
+}
+
+cards.forEach((card, i) => {
+  const bg = card.querySelector('.bg');
+  bg.addEventListener('pointerenter', e => {
+    if (e.pointerType !== 'mouse') return;
+    clearTimeout(closeTimer); clearTimeout(openTimer);
+    setActive(i, true);
+  });
+  bg.addEventListener('click', () => setActive(active === i ? null : i));
+  card.addEventListener('focus', () => setActive(i));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      cards[(i + (e.key === 'ArrowRight' ? 1 : cards.length - 1)) % cards.length].focus();
+    }
+    if (e.key === 'Escape') { setActive(null); card.blur(); }
+  });
+});
+
+wrap.addEventListener('pointerleave', e => {
+  if (e.pointerType !== 'mouse') return;
+  clearTimeout(openTimer);
+  setActive(null);
+});
+track.addEventListener('focusout', e => { if (!track.contains(e.relatedTarget)) setActive(null); });
+// A tap outside the row on a phone closes the open card.
+document.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && !wrap.contains(e.target)) setActive(null); });
+
+fit();
+addEventListener('resize', fit);
+narrow.addEventListener('change', fit);
+phone.addEventListener('change', fit);
+</script>
+</body>
+</html>

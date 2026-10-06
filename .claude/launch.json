@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio-site",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/serve-site.mjs"
+      ],
+      "port": 4174,
+      "autoPort": true
+    },
+    {
+      "name": "haven-worktree",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "../portfolio-haven/scripts/serve-site.mjs",
+        "4175"
+      ],
+      "port": 4175
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven ending round three</title>
+<style>
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --bg: #040405;
+  --n050: #f2f1f8;
+  --n100: #e8e7ee;
+  --n300: #d2d2db;
+  --n400: #c9c9d4;
+  --n500: #aeaeb4;
+  --n550: #7b7b86;
+  --n575: #65656e;
+  --n675: #28282b;
+  --lav: #a2a2d4;
+  --gutter: 40px;
+  --col: 232px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); }
+body { color: var(--n400); font-family: "Satoshi", system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; font-synthesis: none; }
+
+/* Haven type roles */
+.h20 { font-size: 20px; line-height: 1.32; }
+.h24 { font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; }
+.h40 { font-size: clamp(28px, 2.78vw, 40px); line-height: 1.1; letter-spacing: -0.02em; }
+.b16 { font-size: 16px; line-height: 1.4; }
+.l14 { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; }
+.l12 { font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+.head { font-size: clamp(44px, 4.45vw, 64px); line-height: 1.05; letter-spacing: -0.02em; color: var(--n050); }
+
+/* Study chrome, not part of the design */
+.intro { max-width: 1440px; margin: 0 auto; padding: 64px var(--gutter) 40px; }
+.intro .h24 { color: var(--n050); }
+.intro .b16 { color: var(--n550); margin-top: 12px; max-width: 72ch; }
+.option { max-width: 1440px; margin: 0 auto 160px; }
+.tag { padding: 0 var(--gutter) 16px; color: var(--lav); }
+.frame { border-top: 1px solid var(--n675); border-bottom: 1px solid var(--n675); padding: 180px var(--gutter) 0; }
+.indent { padding-left: var(--col); }
+
+/* Handoff: the only interactive element in each ending */
+.next { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-top: 120px; padding: 40px 0; border-top: 1px solid var(--n675); color: var(--n050); text-decoration: none; }
+.next .l12 { color: var(--n550); }
+.next .name { display: block; margin-top: 12px; }
+.next .arrow { font-size: 28px; line-height: 1; color: var(--n550); transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), color 300ms cubic-bezier(0.22, 1, 0.36, 1); }
+.next:hover .arrow, .next:focus-visible .arrow { transform: translateX(8px); color: var(--n050); }
+.next:focus-visible { outline: 1px solid var(--lav); outline-offset: 8px; }
+.foot { display: flex; justify-content: space-between; padding: 32px 0 40px; border-top: 1px solid var(--n675); color: var(--n575); }
+
+/* 1. Full circle */
+.fc-statement { margin-top: 64px; max-width: calc(var(--col) + 860px); color: var(--n050); }
+.fc-body { margin-top: 48px; max-width: calc(var(--col) + 640px); color: var(--n400); }
+.fc-body + .fc-body { margin-top: 20px; }
+
+/* 2. Tally */
+.t-label { margin-top: 64px; color: var(--n500); }
+.t-row { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; max-width: calc(var(--col) + 1000px); }
+.t-num { font-weight: 700; font-size: clamp(56px, 6.1vw, 88px); line-height: 1; letter-spacing: 0.02em; color: var(--n300); }
+.t-cap { margin-top: 16px; color: var(--n400); max-width: 26ch; }
+.t-next { margin-top: 72px; max-width: calc(var(--col) + 640px); color: var(--n400); }
+
+/* 3. Closing note */
+.cn { margin-top: 64px; max-width: calc(var(--col) + 880px); }
+.cn b { font-weight: 500; color: var(--n050); }
+.cn-reason { margin-top: 32px; max-width: calc(var(--col) + 680px); color: var(--n550); }
+
+/* Rationale, not part of the design */
+.why { margin: 32px var(--gutter) 0; border: 1px solid var(--n675); border-radius: 16px; padding: 32px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 0 40px; }
+.why .l12 { color: var(--n550); padding-top: 3px; }
+.why .l14 { color: var(--n400); max-width: 80ch; }
+.why .l14 + .l14 { margin-top: 12px; }
+.why b { font-weight: 500; color: var(--n100); }
+
+@media (max-width: 900px) {
+  :root { --gutter: 16px; --col: 0px; }
+  .frame { padding-top: 120px; }
+  .t-row { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .next { margin-top: 88px; }
+  .why { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .next .arrow { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="h24">Haven ending, round three</p>
+  <p class="b16">Three endings built from the research on how studio and senior designer case studies close. Each is one short beat under "What happens next", then a single handoff to the next case study, which is the only thing you can click. The boxed notes are rationale only.</p>
+</header>
+
+<section class="option" data-option="1">
+  <p class="tag l12">Option 1 · Full circle</p>
+  <div class="frame">
+    <h2 class="head">What happens next</h2>
+    <p class="h40 indent fc-statement">Nine findings changed the design. None came from the teens Haven is for.</p>
+    <p class="h20 indent fc-body">That was the constraint from the start. Studying minors needs a guardian’s consent, and asking would out the people Haven exists to protect. So the next test gets as close as the rules allow: 18 and 19 year olds who still live with family, using Haven at home in the moment instead of from memory.</p>
+    <p class="h20 indent fc-body">Before that, I’d retest the revised selection flow and count how often people still go back and change their pick. Community, Phase 2, comes after.</p>
+    <a class="next" href="#"><span><span class="l12">Next case study</span><span class="h24 name">Mondai</span></span><span class="arrow" aria-hidden="true">→</span></a>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="why">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> end where the story started. The page opens its research on the consent problem, so the ending returns to it and shows the plan answers it. Editors call this circling back, and it's the most common strong close in longform writing.</p>
+      <p class="l14"><b>One statement at 40, then two short paragraphs.</b> Matches what studios do: one beat, about 7 to 9 elements, prose no bigger than the page's section statements.</p>
+      <p class="l14"><b>Status, next step, one specific observation.</b> The three things the strongest concept case studies end on, in under 200 words.</p>
+      <p class="l14"><b>One handoff right after.</b> Hiring manager advice is to end on "read another case study". It's the only clickable thing, so nothing static reads as a link.</p>
+    </div>
+  </aside>
+</section>
+
+<section class="option" data-option="2">
+  <p class="tag l12">Option 2 · Tally</p>
+  <div class="frame">
+    <h2 class="head">What happens next</h2>
+    <p class="h20 indent t-label">Where Haven stands</p>
+    <div class="t-row indent">
+      <div><p class="t-num">6</p><p class="h20 t-cap">Interviews with two proxy groups</p></div>
+      <div><p class="t-num">6</p><p class="h20 t-cap">Usability test sessions</p></div>
+      <div><p class="t-num">9</p><p class="h20 t-cap">Findings, and each one changed the design</p></div>
+    </div>
+    <p class="h20 indent t-next">Next, I’d retest the revised selection flow. Then I’d test at home with 18 and 19 year olds who still live with family, in the moment instead of from memory. Community follows as Phase 2.</p>
+    <a class="next" href="#"><span><span class="l12">Next case study</span><span class="h24 name">Mondai</span></span><span class="arrow" aria-hidden="true">→</span></a>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="why">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> the Metalab ending your layout comes from. A short title, three numbers, one line of next steps.</p>
+      <p class="l14"><b>Counts of the work, not results.</b> When results aren't public, studios count the work itself (Metalab's Ro study counts 654 components). These three numbers are all true and all on the page already.</p>
+      <p class="l14"><b>Digits in your Satoshi Bold, no dividers.</b> Same treatment as the "3 + 3 = 6" numbers in Demographic access, with no hairlines so they don't read as more of the page's rows.</p>
+      <p class="l14"><b>Tradeoff.</b> It's the most scannable ending. It also partly repeats numbers the reader has already seen, and editors warn against summary endings.</p>
+    </div>
+  </aside>
+</section>
+
+<section class="option" data-option="3">
+  <p class="tag l12">Option 3 · Closing note</p>
+  <div class="frame">
+    <h2 class="head">What happens next</h2>
+    <p class="h40 indent cn"><b>Haven stops at the Identity launch. Next I’d retest the new flow, then test at home with 18 and 19 year olds still living with family.</b></p>
+    <p class="h24 indent cn-reason">At home and in the moment, so the results don’t lean on memory. I’d also measure less than usual, on purpose. For someone who isn’t out, a usage log is a record of who they are.</p>
+    <a class="next" href="#"><span><span class="l12">Next case study</span><span class="h24 name">Mondai</span></span><span class="arrow" aria-hidden="true">→</span></a>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="why">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> your voice, cut down. The last round put about 80 words at 40. No studio sets more than about 30 words at display size, so the plan stays at 40 and the reasoning drops to 24.</p>
+      <p class="l14"><b>Measure less, on purpose.</b> Reviewers say to describe what success would look like and how you'd measure it. This line shows that judgment in one sentence instead of a metrics block.</p>
+      <p class="l14"><b>Fewest elements of the three.</b> Working memory holds about four chunks, and this ending has three before the handoff.</p>
+    </div>
+  </aside>
+</section>
+
+</body>
+</html>

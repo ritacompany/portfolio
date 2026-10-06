@@ -8,11 +8,15 @@ Build a personal portfolio that presents work with an editorial, art-directed an
 
 - Figma file: https://www.figma.com/design/IarvWaqjIwrZ2afQmMxKm6/Portfolio-Design?node-id=2672-35
 - Figma page: `VC`
+- Current homepage source: `Master` frame `3461:7711`, inspected on 19 Sep 2026
 - Existing Haven and Mondai WIP frames must not be overwritten.
 
 ## Current work
 
-The immediate design task is to inspect the Haven, Mondai and reference frames, then explore two or three real-content directions for Haven's Demographic Access section. Final copy, motion and asset production are later phases.
+The current homepage task is the final Figma fidelity and responsive audit. The implementation maps the current
+Portfolio color variables and shared text styles to named CSS tokens, uses the 19 Sep work and footer nodes and
+rejects detached reusable text values. The responsive work rules and 1160 pixel compact header remain in force.
+Temporary Figma holding frames are excluded until explicitly approved. Motion and final copy remain later phases.
 
 ## Important guardrails
 

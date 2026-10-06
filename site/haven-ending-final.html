@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven ending directions</title>
+<style>
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+:root {
+  --bg: #040405;
+  --n050: #f2f1f8;
+  --n100: #e8e7ee;
+  --n400: #c9c9d4;
+  --n500: #aeaeb4;
+  --n550: #7b7b86;
+  --n575: #65656e;
+  --n675: #28282b;
+  --n700: #1d1d21;
+  --lav: #a2a2d4;
+  --gutter: 40px;
+  --col: 232px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); }
+body { color: var(--n400); font-family: "Satoshi", system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; font-synthesis: none; }
+img { display: block; max-width: 100%; }
+
+.h20 { font-size: 20px; line-height: 1.32; }
+.h24 { font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; }
+.h64 { font-size: clamp(36px, 4.45vw, 64px); line-height: 1.06; letter-spacing: -0.02em; color: var(--n050); }
+.b16 { font-size: 16px; line-height: 1.4; }
+.l14 { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; }
+.l12 { font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+
+/* Study chrome, not part of the design */
+.intro { max-width: 1440px; margin: 0 auto; padding: 64px var(--gutter) 40px; }
+.intro .h24 { color: var(--n050); }
+.intro .b16 { color: var(--n550); margin-top: 12px; max-width: 72ch; }
+.option { max-width: 1440px; margin: 0 auto 160px; }
+.tag { padding: 0 var(--gutter) 16px; color: var(--lav); }
+.frame { border-top: 1px solid var(--n675); border-bottom: 1px solid var(--n675); padding: 180px var(--gutter) 0; }
+.indent { padding-left: var(--col); }
+.label { color: var(--n500); }
+
+/* Handoff, the only interactive element */
+.next { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-top: 160px; padding: 40px 0; border-top: 1px solid var(--n675); color: var(--n050); text-decoration: none; }
+.next .l12 { color: var(--n550); }
+.next .name { display: block; margin-top: 12px; }
+.next .arrow { font-size: 28px; line-height: 1; color: var(--n550); transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), color 300ms cubic-bezier(0.22, 1, 0.36, 1); }
+.next:hover .arrow, .next:focus-visible .arrow { transform: translateX(8px); color: var(--n050); }
+.next:focus-visible { outline: 1px solid var(--lav); outline-offset: 8px; }
+.foot { display: flex; justify-content: space-between; padding: 32px 0 40px; border-top: 1px solid var(--n675); color: var(--n575); }
+
+/* 1. Two sides */
+.s-statement { margin-top: 40px; max-width: calc(var(--col) + 940px); }
+.s-cols { margin-top: 96px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; max-width: calc(var(--col) + 1000px); }
+.s-cols .need { color: var(--lav); }
+.s-cols .b16 { margin-top: 20px; color: var(--n400); max-width: 46ch; font-size: 20px; line-height: 1.4; }
+.s-close { margin-top: 72px; color: var(--n500); }
+
+/* 2. The path in screens */
+.p-statement { margin-top: 40px; max-width: calc(var(--col) + 940px); }
+.p-strip { margin-top: 112px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
+.p-shot { aspect-ratio: 3 / 4; background: var(--n700); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.p-shot img { width: 100%; height: 100%; object-fit: contain; }
+.p-cap { margin-top: 16px; color: var(--n400); max-width: 30ch; }
+.p-close { margin-top: 72px; color: var(--n500); }
+
+/* 3. Quiet type */
+.q-statement { margin-top: 40px; max-width: calc(var(--col) + 980px); }
+.q-statement span { color: var(--lav); }
+.q-body { margin-top: 56px; max-width: calc(var(--col) + 700px); color: var(--n400); }
+.q-close { margin-top: 32px; color: var(--n050); }
+
+/* Rationale, not part of the design */
+.why { margin: 32px var(--gutter) 0; border: 1px solid var(--n675); border-radius: 16px; padding: 32px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 0 40px; }
+.why .l12 { color: var(--n550); padding-top: 3px; }
+.why .l14 { color: var(--n400); max-width: 80ch; }
+.why .l14 + .l14 { margin-top: 12px; }
+.why b { font-weight: 500; color: var(--n100); }
+
+@media (max-width: 900px) {
+  :root { --gutter: 16px; --col: 0px; }
+  .frame { padding-top: 120px; }
+  .s-cols { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .p-strip { grid-template-columns: repeat(5, 72%); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .p-strip > div { scroll-snap-align: start; }
+  .next { margin-top: 112px; }
+  .why { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .next .arrow { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="h24">Haven ending directions</p>
+  <p class="b16">Three ways to lay out the approved ending copy. Same words in each: the two needs, the teen's path through Haven in order, then Identity and Community. Each closes on the next case study, the only thing you can click. The boxed notes are rationale only.</p>
+</header>
+
+<section class="option" data-option="1">
+  <p class="tag l12">Direction 1 · Two sides</p>
+  <div class="frame">
+    <p class="h20 indent label">The whole picture</p>
+    <h2 class="h64 indent s-statement">Haven was built around two needs from the research: to be understood and to stay unseen.</h2>
+    <div class="s-cols indent">
+      <div>
+        <p class="h24 need">To be understood</p>
+        <p class="b16">A teen starts with a short identity quiz, so Haven can match them with Confidantes who share the experiences that shape them. Each Confidante’s profile shows those shared experiences first. Before choosing one, the teen can have an intro chat to see if it feels right.</p>
+      </div>
+      <div>
+        <p class="h24 need">To stay unseen</p>
+        <p class="b16">Every session happens over text at a time they pick, when they can be alone. The app itself can hide behind a different icon.</p>
+      </div>
+    </div>
+    <p class="h24 indent s-close">Identity was the first phase. Community is next.</p>
+    <a class="next" href="#"><span><span class="l12">Next case study</span><span class="h24 name">Mondai</span></span><span class="arrow" aria-hidden="true">→</span></a>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="why">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> the two needs are the frame, so the layout makes them the frame. Everything the teen does sits under the need it answers.</p>
+      <p class="l14"><b>Two text blocks, read left then right.</b> Gestalt proximity groups each step with its need, and the path still reads in order. They are paragraphs, not rows, so nothing looks clickable.</p>
+      <p class="l14"><b>Memorable moment:</b> the two needs in lavender, the only color in the section, so the reader leaves with them.</p>
+    </div>
+  </aside>
+</section>
+
+<section class="option" data-option="2">
+  <p class="tag l12">Direction 2 · The path in screens</p>
+  <div class="frame">
+    <p class="h20 indent label">The whole picture</p>
+    <h2 class="h64 indent p-statement">Haven was built around two needs from the research: to be understood and to stay unseen.</h2>
+    <div class="p-strip">
+      <div><div class="p-shot"><img src="assets/haven-end/quiz.png" alt="Identity quiz question screen"></div><p class="l14 p-cap">A short identity quiz matches a teen with Confidantes who share the experiences that shape them.</p></div>
+      <div><div class="p-shot"><img src="assets/haven-end/profile.png" alt="Confidante profile with shared experiences"></div><p class="l14 p-cap">Each Confidante’s profile shows those shared experiences first.</p></div>
+      <div><div class="p-shot"><img src="assets/haven-end/chat.png" alt="Introduction chat screen"></div><p class="l14 p-cap">An intro chat comes before choosing, to see if it feels right.</p></div>
+      <div><div class="p-shot"><img src="assets/haven-end/schedule.png" alt="Schedule a chat screen"></div><p class="l14 p-cap">Every session is over text, at a time they pick when they can be alone.</p></div>
+      <div><div class="p-shot"><img src="assets/haven-end/security.png" alt="Keep Haven discreet setup with disguise icons"></div><p class="l14 p-cap">The app itself can hide behind a different icon.</p></div>
+    </div>
+    <p class="h24 indent p-close">Identity was the first phase. Community is next.</p>
+    <a class="next" href="#"><span><span class="l12">Next case study</span><span class="h24 name">Mondai</span></span><span class="arrow" aria-hidden="true">→</span></a>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="why">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> the finished Identity phase in one glance. The teen's path runs left to right in the order they'd use it, each screen with the sentence that explains it.</p>
+      <p class="l14"><b>The image finale.</b> A common studio ending: the work itself is the last beat. It also rewards the skimmer who jumped to the bottom, since they see the whole product without scrolling back.</p>
+      <p class="l14"><b>Note.</b> The exports are mixed (one tilted, one cropped, one on a texture). Shipping this needs five matching straight-on screens.</p>
+    </div>
+  </aside>
+</section>
+
+<section class="option" data-option="3">
+  <p class="tag l12">Direction 3 · Quiet type</p>
+  <div class="frame">
+    <p class="h20 indent label">The whole picture</p>
+    <h2 class="h64 indent q-statement">Haven was built around two needs from the research: <span>to be understood</span> and <span>to stay unseen</span>.</h2>
+    <p class="h24 indent q-body">A teen starts with a short identity quiz, so Haven can match them with Confidantes who share the experiences that shape them. Each Confidante’s profile shows those shared experiences first. Before choosing one, the teen can have an intro chat to see if it feels right. Every session happens over text at a time they pick, when they can be alone. The app itself can hide behind a different icon.</p>
+    <p class="h24 indent q-close">Identity was the first phase. Community is next.</p>
+    <a class="next" href="#"><span><span class="l12">Next case study</span><span class="h24 name">Mondai</span></span><span class="arrow" aria-hidden="true">→</span></a>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="why">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> after a page full of screens and diagrams, end on type alone. The statement carries the idea and one paragraph walks the path.</p>
+      <p class="l14"><b>Color only on the two needs.</b> Von Restorff effect: the only lavender in the section is the thing remembered.</p>
+      <p class="l14"><b>Closing line brighter than the paragraph.</b> It is the last thing read before the handoff, so it gets the emphasis.</p>
+    </div>
+  </aside>
+</section>
+
+</body>
+</html>

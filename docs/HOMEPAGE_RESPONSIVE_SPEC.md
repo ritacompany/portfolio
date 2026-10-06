@@ -1,8 +1,94 @@
 # Homepage responsive and behavior specification
 
-Status: ready for single-task responsive implementation
+Status: verified responsive implementation
 
 This file is the working source of truth for homepage responsiveness and non-motion behavior. It exists so Codex, Claude Code and future tasks can continue without reconstructing decisions from chat history.
+
+## Current VC Master revision, 19 Sep 2026
+
+The current desktop reference is the Figma `VC` page `Master` frame at node `3461:7711`, measured at 1440 by
+7827.230 pixels. This revision supersedes older geometry in the historical planning sections below whenever the two
+conflict. The canonical implementation remains `site/index.html`, `site/styles.css` and `site/homepage.js`.
+
+At 1440 pixels the hero is 800 pixels tall. Work begins after a 169 pixel pause, then uses an 852.242 pixel band
+with 93 pixels of top space and 126 pixels of bottom space. Figma node `3623:6385` defines the updated work section.
+Its asymmetric grid pairs an 895 by 590 pixel Mondai frame with a 426 pixel square Haven frame at a 39 pixel
+gap. The downloaded local exports are exactly 895 by 590 and 426 by 426 pixels. Their media bottoms and metadata
+baselines align. Tags and separate view cues are no longer part of either card.
+
+About begins 11 pixels after work. Its opening is 683 pixels tall, followed by the Superpowers display heading,
+the 882 pixel Mondai index, the three superpower statements and the 1100 pixel overview. This order supersedes the
+older sequence in which the Mondai index preceded About.
+
+The footer is 805.988 pixels tall. It contains a two-row equalizer, a left-aligned Chicago-to-NYC callout, the
+current LET'S plug CONNECT vector lockup and location, clock, LinkedIn label and email details at the bottom. The
+red contact control from the 16 Sep revision has been removed. The exact current copy is retained from node
+`3664:5149`.
+
+Responsive behavior retains one semantic document, the content-driven 680 and 1160 pixel structural boundaries,
+sticky desktop navigation and the accessible full screen compact menu. The updated composition has been verified
+from 320 through 2048 CSS pixels in Chrome, Firefox and WebKit.
+
+### Updated responsive work section
+
+From 680 pixels upward, the two cards preserve the 895 to 426 width relationship while the grid width and gap
+respond to the available canvas. Mondai keeps its 895 to 590 media ratio, Haven remains square and CSS subgrid
+gives them one shared media bottom and metadata baseline. Below 680 pixels the cards become one column with a
+72 pixel gap. Both exports use their intrinsic proportions and all metadata stays visible.
+
+The work-card titles use Heading/24 in Satoshi Medium at a fixed 24 pixels. Mondai uses Neutral/050 and Haven uses
+Neutral/100. Support copy uses Label/14 in Neutral/200. Mondai support has a 332.098 pixel maximum measure and Haven
+support has a 343 pixel maximum measure. The current two-line parenthesized Mondai marker is Metadata/Mono/12 in
+Neutral/100 with exact 5 by 24 pixel bracket vectors.
+At 1200 pixels and above, each title group stays at the leading edge while its support copy stays at the trailing
+edge with no less than 24 pixels between them. Below 1200 pixels both cards switch together to a 14 pixel vertical
+metadata gap. Every group then aligns to the image's left edge. This synchronized change prevents the narrower
+Haven card from taking on a different metadata structure than Mondai.
+
+### Figma fidelity repair
+
+The footer follows the 19 Sep node `3664:5053` at the 1440 reference. Its metadata uses Metadata/Mono/14 with Neutral/100
+and 12 pixel row gaps. The Chicago-to-NYC message uses Heading/20, Neutral/500 and Neutral/050 emphasis. The current
+lockup uses a 381.183 by 122.583 pixel LET’S vector, a 164.491 by 230.988 pixel plug and a 728 by 178.746 pixel
+CONNECT vector. The vectors preserve Figma's custom letter geometry directly instead of approximating it with CSS.
+
+The Mondai section header uses a 24 pixel title-to-details gap from 680 pixels upward. Its collection marker stays
+Metadata/12 with fixed bracket geometry. Mobile retains the marker beside the title and moves only the description
+below. CHADWICK, Superpowers, Mondai and LET'S CONNECT preserve their Figma-specific per-character tracking at all
+sizes. Superpowers keeps its left crop proportional to the canvas.
+
+The 8 to 12 pixel mobile page margin is a 50 percent reduction from the previous compact range. It applies to the
+header, hero copy, work, About content, Mondai section, overview and footer metadata without changing tablet or
+desktop spacing.
+
+### Owner review counterpart rules
+
+The 16 Sep owner review supersedes the Figma card-link bottom alignment where it conflicts with counterpart
+alignment. From 680 pixels upward, the Mondai and Haven media bottoms share one baseline. Both metadata frames
+begin 24 pixels below that baseline. At 1200 pixels and above each support description aligns to the top of its
+project title, not to the taller Mondai collection marker. Below 1200 pixels both metadata groups still switch
+together to a left-aligned stack. Project-title hover states do not add underlines.
+
+CHADWICK, Superpowers, the large Mondai heading and LET'S CONNECT scale in constant proportion to the active
+canvas from 320 pixels through the 1920 pixel ceiling. This replaces breakpoint-specific minimum sizes that made
+the same display word occupy a different percentage of the viewport.
+
+In the Mondai index, the collection marker's top edge aligns with the title's top edge at every width. At the
+compact boundary the description moves below Mondai while the marker remains to its right with a 24 pixel gap.
+Above that boundary, marker and description share the right column with at least 24 pixels between that column
+and the title. From 768 through 1159 pixels, the description uses 14 pixel type with 132 percent leading and
+starts 24 pixels below the marker. This keeps its final line within the visible bottom of the Mondai title instead
+of letting the support copy hang below it.
+
+The footer opportunity copy, LET'S lockup and metadata share one responsive left inset. Contact rows wrap their
+trimmed text height and keep a 12 pixel text-to-text gap. Their 13 pixel arrow icons are positioned independently so
+they do not enlarge the row. Footer opportunity copy stays on Heading/20 at every viewport. Metadata remains
+Metadata/Mono/14. The LET'S plug CONNECT lockup uses the current 381.183, 164.491 and 728 pixel item widths at 1440.
+LET'S and CONNECT remain exact Figma vector exports.
+
+The current Figma page also contains an alternate hero holding frame and a raw section order that conflicts with the
+approved production order. The owner identified temporary holding screens in this revision. These are excluded from
+the production comparison until they are explicitly approved.
 
 ## Authority
 
@@ -149,7 +235,7 @@ Status: approved for wide desktop
 * Elements and reading order: Mondai card followed by Haven card. Each card contains media, title, optional collection label, description, tags and view cue.
 * Alignment anchors: both cards center their media and metadata at 78.055556 percent of the canvas, which is 1124 pixels at 1440. Titles and tags align to the media leading edge. Descriptions and view cues align to the media trailing edge. Mondai uses the black card composition.
 * Fluid values: both media containers preserve their 281 by 116 aspect ratio, derived from 1124 by 464 pixels, so their height grows with the card width through the 1920 pixel canvas ceiling. The new flattened Figma renders are stored locally and cover the containers.
-* Fixed values: title remains 24 pixels, collection label remains 12 pixels and all descriptions, tags and view cues remain 14 pixels. The 24 pixel media-to-metadata gap and 103 pixel inter-card gap remain fixed in the wide range. Work begins 11 pixels after the hero.
+* Fixed values: title remains 24 pixels, collection label remains 12 pixels and all descriptions, tags and view cues remain 14 pixels. The 24 pixel media-to-metadata gap and 103 pixel inter-card gap remain fixed in the wide range. The implemented desktop composition restores the explicitly requested 518 pixel pause between the hero and work section, superseding the 11 pixel Figma auto-layout gap for this transition.
 * Reflow rules: none in this wide-desktop study. The two metadata rows retain their leading and trailing groups.
 * Visibility or replacement rules: no card content is hidden or replaced in the wide range.
 * Breakpoint triggers: 1920 pixels is the growth ceiling. The first metadata reflow breakpoint remains open until the cards are tested below the wide range.
@@ -220,7 +306,7 @@ Status: committed wide baseline for responsive work
 
 ## Compact, tablet and mobile execution plan
 
-Status: execution plan approved, no compact or mobile layout implemented
+Status: implemented and verified on 16 Sep 2026
 
 ### Recommendation
 
@@ -506,6 +592,104 @@ Start the next task with this instruction:
 > behavior and verification evidence. Do not create a branch or commit. Report only when the complete responsive
 > homepage is ready for my review. Only stop and ask if finishing requires changing one of the locked design or copy
 > decisions above or requires information that does not exist in the project.
+
+## Responsive implementation record
+
+Status: verified responsive implementation
+
+The accepted wide study is now the canonical homepage in `site/index.html`, `site/styles.css` and
+`site/homepage.js`. The implementation keeps one semantic document across every width. It preserves the
+accepted 1440 through 1920 composition, the centered 1920 pixel canvas ceiling and the intentional display
+word bleed above that ceiling.
+
+### Actual boundaries and failure causes
+
+* **1160 pixels:** the desktop header stops fitting cleanly before this width because its fixed biography,
+  relocation note, navigation gaps and contact control compete for the same top row. Below 1160 pixels the
+  desktop links become one 44 pixel menu trigger. The page uses an eight-column compact grid, fluid margins
+  from 24 to 40 pixels and fluid gutters from 18 to 28 pixels.
+* **680 pixels:** the compact two-column overview, card metadata and Mondai support layout become too narrow
+  below this width. Below 680 pixels the page uses a four-column mobile composition, margins from 16 to 24
+  pixels and gutters from 12 to 16 pixels. Metadata and overview content stack in source order.
+* **320 pixels:** this is the verified support floor. The 320 pixel composition retains a visible portion of
+  the final K in CHADWICK, keeps every supporting text block inside the viewport and wraps the case titles
+  without reducing their approved 40 pixel size.
+
+### Implemented section behavior
+
+* **Hero and navigation:** the wide logo and navigation remain sticky at their accepted top inset while the
+  biography and relocation copy scroll away with the hero. Compact layouts use a sticky logo plus menu trigger.
+  From 680 through 1159 pixels, biography and relocation copy align to the same top field as those controls while
+  occupying separate grid columns. They stack below the controls only on mobile. CHADWICK remains bottom anchored
+  with the original proportional tablet edge bleed. Short landscape layouts use a 520 pixel minimum hero so
+  browser chrome cannot collapse the composition.
+* **Full screen menu:** the compact menu is a modal navigation surface with a dedicated close control, scroll
+  lock, inert page content, trapped focus, Escape dismissal, link dismissal and focus restoration. It has no
+  motion.
+* **Work cards:** the current asymmetric media proportions persist from 680 pixels upward and the cards stack below
+  680 pixels. Metadata remains a leading and trailing row at 1200 pixels and above. Both cards switch together to
+  a fully left-aligned stack below 1200 pixels when the narrower Haven card can no longer preserve the 24 pixel
+  separation. Each complete card remains one link. Card-title underlines are desktop pointer feedback only, so
+  tablet resizing and touch hover persistence cannot leave titles underlined.
+* **Mondai index:** compact keeps the heading and support content paired. On mobile, the collection label remains
+  beside Mondai and the product description moves to the next row. The case list uses a number, title and arrow
+  row. Case titles step down with the supporting type system and remain on one line at every supported width.
+* **About:** the quote is one semantic paragraph with a shared line box, balanced wrapping and protected phrase
+  pairs that prevent isolated words at the verified widths. The portrait keeps its 258 by 344 ratio and moves to a
+  trailing mobile position. Superpowers retains its edge relationship while scaling enough to remain legible.
+  The statements use a smaller display treatment on mobile so their measures remain useful. Overview rows use
+  two columns on compact layouts and stack on mobile.
+* **Footer:** CATCHY OUTRO keeps controlled edge bleed, the call to action remains centered and the purple
+  contact field becomes an intrinsic mobile grid. The long email address can wrap without overflow. Placeholder
+  button copy, its destination and the unverified LinkedIn destination remain unchanged.
+
+### Responsive typography recommendation
+
+The homepage now uses role-based tiers instead of one modular scale. The About statement uses
+**64 / 40 / 32 pixels** across desktop, tablet and mobile. It keeps 1.09 line height and negative 4 percent
+tracking at every tier. The 40 pixel tablet tier is the recommended middle size because it is clearly subordinate
+to Superpowers while retaining the statement's display character. The 32 pixel mobile tier preserves that
+hierarchy and gives the protected phrase pairs enough width to avoid isolated one-word lines.
+
+Mondai case rows use **40 / 32 / 24 pixels** across desktop, tablet and mobile. Numbers and titles stay at the
+same size within each tier, with 1.1 line height and negative 2 percent tracking. Arrows scale with those rows at
+25 / 22 / 20 pixels. Titles never wrap. The collection label uses a fixed centered text column inside its brackets
+so optical centering does not depend on an arbitrary top margin.
+
+CHADWICK, Superpowers, Mondai and LET'S CONNECT are art-directed display words, not reusable body-scale tokens.
+They keep their Figma-specific character tracking and intentional edge clipping. CHADWICK and Mondai already
+matched the current Master. Superpowers and LET'S CONNECT required tracking corrections in this pass. The footer
+lockup also scales from the 1440 reference through the 1920 canvas ceiling so CONNECT remains intentionally clipped
+instead of becoming a smaller centered wordmark on wide desktop viewports.
+
+### Verification evidence, 16 Sep 2026
+
+Automated checks in `scripts/verify-responsive-homepage.mjs` cover semantic structure, accepted wide geometry,
+continuous overflow and clipping, section geometry, menu behavior, interaction targets, keyboard order, hover,
+pressed and focus states, orientation resilience, font failure, forced colors, text spacing and browser errors.
+The complete sweep passed at 320, 360, 390, 430, 640, 679, 680, 834, 1024, 1159, 1160, 1199, 1440, 1920 and
+2048 pixels. Boundary screenshots also cover 681 and 1161 pixels.
+
+Fresh full-page screenshots were captured and viewed at 320 by 844, 360 by 800, 390 by 844, 430 by 932,
+679 by 900, 680 by 900, 681 by 900, 768 by 1024, 834 by 1112, 844 by 390, 1024 by 768, 1159 by 900,
+1160 by 900, 1161 by 900, 1440 by 900, 1920 by 1080 and 2048 by 1080. The open 430 pixel menu was also
+viewed. The 1440 result matches the accepted geometry: 1124 pixel cards, 464 pixel media, 302 pixel CHADWICK
+and 212 pixel Mondai.
+
+Actual Chrome zoom at 200 percent reduced the CSS viewport from 1363 to 681 pixels, doubled the device pixel
+ratio and produced no accidental horizontal overflow. Chrome, Firefox 155 and WebKit 26.6 passed the browser
+smoke check. Real iOS Safari and Android Chrome devices were not available, so those remain unverified device
+coverage rather than a known interface defect.
+
+The visual repair pass corrected over-clipped mobile display words, shallow mobile card media and a skip link
+target below 44 pixels. A complete pass after those corrections found no remaining material visual defect.
+
+The owner correction pass on 16 Sep restored the 518 pixel desktop hero-to-work pause and fixed sticky navigation
+by removing the unintended scrolling ancestor. It also restored proportional tablet CHADWICK bleed, returned
+tablet hero copy to the header field, rebuilt the About statement as one balanced paragraph, kept the mobile
+Mondai collection label beside its title and removed compact card hover underlines. Automated checks now verify
+those rules at their breakpoint boundaries, including sticky behavior in Chrome, Firefox and WebKit. Fresh
+correction captures cover 320, 430, 679, 680, 768, 1024, 1159, 1160, 1440 and 1920 pixels.
 
 ## Section decision template
 

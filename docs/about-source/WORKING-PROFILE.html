@@ -1,0 +1,738 @@
+<title>Working Profile</title>
+<style>
+  :root{
+    --ink:#E8E6E1; --ink-2:#A8A49C; --ink-3:#6E6A63;
+    --bg:#0B0B0C; --bg-2:#121214; --bg-3:#191A1C;
+    --line:#26272A; --line-2:#33353A;
+    --hot:#E4533A; --cool:#8FA98C; --warn:#C9A227;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* ---------- masthead ---------- */
+  header.top{border-bottom:1px solid var(--line);padding:64px 0 0}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--hot)}
+  h1{font-size:clamp(38px,7vw,76px);line-height:.96;letter-spacing:-.03em;
+    margin:18px 0 0;font-weight:600}
+  h1 em{font-style:normal;color:var(--ink-3)}
+  .standfirst{max-width:58ch;color:var(--ink-2);font-size:18px;margin:22px 0 40px}
+  .standfirst strong{color:var(--ink);font-weight:600}
+
+  .meter{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .meter div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:16px 18px}
+  .meter b{display:block;font-family:var(--mono);font-size:24px;
+    letter-spacing:-.02em;color:var(--ink)}
+  .meter span{font-family:var(--mono);font-size:10px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--ink-3)}
+
+  /* ---------- nav ---------- */
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(11,11,12,.94);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    overflow-x:auto;white-space:nowrap}
+  nav.toc .wrap{display:flex;gap:0;padding-top:0;padding-bottom:0}
+  nav.toc a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-3);text-decoration:none;
+    padding:14px 16px 13px;border-bottom:2px solid transparent;display:inline-block}
+  nav.toc a:hover{color:var(--ink);border-bottom-color:var(--hot)}
+
+  /* ---------- sections ---------- */
+  section{padding:76px 0;border-bottom:1px solid var(--line)}
+  .secnum{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    color:var(--ink-3);margin-bottom:10px}
+  h2{font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.02em;
+    margin:0 0 8px;font-weight:600;max-width:22ch}
+  .dek{color:var(--ink-2);max-width:64ch;margin:0 0 40px;font-size:17px}
+  h3{font-size:20px;letter-spacing:-.01em;margin:44px 0 10px;font-weight:600}
+  h4{font-size:14px;font-family:var(--mono);letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-3);margin:34px 0 12px;font-weight:500}
+  p{max-width:72ch}
+  a{color:var(--hot)}
+
+  /* ---------- pattern cards ---------- */
+  .pat{border-top:1px solid var(--line);padding:30px 0 6px;
+    display:grid;grid-template-columns:88px 1fr;gap:26px}
+  .pat .id{font-family:var(--mono);font-size:11px;color:var(--hot);
+    letter-spacing:.1em;padding-top:6px}
+  .pat h3{margin:0 0 12px;font-size:23px;line-height:1.25;max-width:34ch}
+  .pat .says{color:var(--ink-2);max-width:70ch}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 4px}
+  .tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line-2);
+    padding:4px 8px}
+  .tag.n{color:var(--cool);border-color:#2F3B2E}
+
+  details{margin:16px 0 0;border-left:2px solid var(--line-2);padding-left:0}
+  summary{cursor:pointer;font-family:var(--mono);font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+    padding:8px 0 8px 16px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+ ";color:var(--hot)}
+  details[open] summary::before{content:"− "}
+  summary:hover{color:var(--ink)}
+  .receipts{padding:6px 0 14px 16px}
+  blockquote{margin:0 0 14px;padding:0;max-width:74ch}
+  blockquote q{quotes:none;display:block;color:var(--ink);font-size:15.5px;
+    line-height:1.55}
+  blockquote q:before{content:"“";color:var(--ink-3)}
+  blockquote q:after{content:"”";color:var(--ink-3)}
+  cite{font-family:var(--mono);font-size:10.5px;font-style:normal;
+    color:var(--ink-3);letter-spacing:.05em}
+  blockquote cite,td cite{display:block;margin-top:5px}
+
+  /* ---------- tables ---------- */
+  .tbl{width:100%;border-collapse:collapse;margin:8px 0 10px;font-size:14.5px}
+  .tbl th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-3);text-align:left;font-weight:500;
+    padding:10px 14px 10px 0;border-bottom:1px solid var(--line-2);vertical-align:bottom}
+  .tbl td{padding:14px 14px 14px 0;border-bottom:1px solid var(--line);
+    vertical-align:top;color:var(--ink-2)}
+  .tbl td:first-child{color:var(--ink)}
+  .tbl code{font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  .clash{border:1px solid var(--line);border-left:2px solid var(--hot);
+    background:var(--bg-2);padding:22px 24px;margin:0 0 16px}
+  .clash h4{margin:0 0 12px;color:var(--hot)}
+  .clash .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:12px 0 10px;
+    border-top:1px solid var(--line)}
+  .clash .vs>div{padding:14px 18px 14px 0;border-right:1px solid var(--line)}
+  .clash .vs>div:last-child{padding-left:18px;border-right:0}
+  .clash .vs b{display:block;font-family:var(--mono);font-size:10px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+  .verdict{font-size:14.5px;color:var(--ink-2);border-top:1px solid var(--line);
+    padding-top:12px;margin:0}
+  .verdict b{color:var(--ink)}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border-top:1px solid var(--line);margin-top:8px}
+  .split>div{padding:26px 28px 26px 0;border-right:1px solid var(--line)}
+  .split>div:last-child{padding-left:28px;border-right:0}
+  .split h4{margin-top:0}
+  ul{padding-left:18px;max-width:70ch}
+  li{margin-bottom:10px;color:var(--ink-2)}
+  li b,p b{color:var(--ink);font-weight:600}
+
+  .callout{border:1px solid var(--line-2);background:var(--bg-2);
+    padding:26px 28px;margin:28px 0}
+  .callout p:last-child{margin-bottom:0}
+
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    border-left:1px solid var(--line);border-top:1px solid var(--line);margin:22px 0 8px}
+  .stat-row div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px}
+  .stat-row b{display:block;font-family:var(--mono);font-size:22px;color:var(--ink)}
+  .stat-row span{font-size:12.5px;color:var(--ink-3);line-height:1.4;display:block;margin-top:4px}
+
+  footer{padding:56px 0 90px;color:var(--ink-3);font-family:var(--mono);font-size:11.5px;
+    letter-spacing:.04em;line-height:1.9}
+  footer b{color:var(--ink-2);font-weight:500}
+
+  @media (max-width:760px){
+    .pat{grid-template-columns:1fr;gap:8px}
+    .split,.clash .vs{grid-template-columns:1fr}
+    .split>div,.clash .vs>div{border-right:0;border-bottom:1px solid var(--line);
+      padding:22px 0}
+    .split>div:last-child,.clash .vs>div:last-child{padding-left:0;border-bottom:0}
+    .wrap{padding:0 18px}
+  }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">Personal reference · not for publication · 08 Sep 2026 · revised 24 Sep</div>
+    <h1>Working<br>Profile<em>.</em></h1>
+    <p class="standfirst"><span style="color:var(--cool)">Revised 24 Sep: the §02 conflicts were re-checked against your machine. Four are fixed, two still stand. Details in that section.</span><br><br>Who you are as a designer, derived from <strong>379,179 words</strong> of your own writing and speech across four independent sources, late 2024 to September 2026. Nothing here is a compliment. Everything here is a pattern with receipts, including the patterns you will not enjoy.</p>
+    <div class="meter">
+      <div><b>6,241</b><span>messages read</span></div>
+      <div><b>379,179</b><span>words of yours</span></div>
+      <div><b>4</b><span>independent sources</span></div>
+      <div><b>100%</b><span>corpus coverage</span></div>
+      <div><b>108</b><span>quotes line-verified</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#read">00 How to read</a>
+  <a href="#sources">01 Sources</a>
+  <a href="#clash">02 Conflicts</a>
+  <a href="#patterns">03 Patterns</a>
+  <a href="#process">04 Process</a>
+  <a href="#rare">05 Rare vs common</a>
+  <a href="#counter">06 Counter-record</a>
+  <a href="#bio">07 Biography</a>
+  <a href="#voice">08 Voice</a>
+  <a href="#para">09 One paragraph</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ============ 00 ============ -->
+<section id="read">
+  <div class="secnum">00</div>
+  <h2>How to read this, and what it cost to say anything</h2>
+  <p class="dek">You gave one rule, in a file on your own machine: <em>one instance of him doing something does not make him that thing. It has to establish something about him.</em> That rule is the spine of this document. It is also the reason it is shorter than you might expect.</p>
+
+  <div class="split">
+    <div>
+      <h4>What earned a place</h4>
+      <ul>
+        <li><b>Three or more instances</b> of the same observable behavior.</li>
+        <li>Across <b>two or more independent sources</b>, so a habit specific to one tool or one bad week does not become a trait.</li>
+        <li>Stated as <b>something you did</b>, never as an adjective. "He is rigorous" is not a finding. "He blocks output until the research exists" is.</li>
+        <li>Every quote copied verbatim, typos intact, then checked programmatically against its source line. One hundred and eight were tested. One failed on a typo I had silently repaired, so I restored your typo and it passed.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>What was cut</h4>
+      <ul>
+        <li>Anything true once. There was a lot of it and most of it was flattering.</li>
+        <li>Anything I could say about most senior designers. If it survives a swap onto another person's profile it is not about you.</li>
+        <li>Anything sourced only to what you say about yourself. Self-description is in here, but it is quarantined in §06 and tested against behavior.</li>
+        <li>Interpretation dressed as observation. Where I am inferring rather than counting, it is labeled.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><b>The uncomfortable structural fact.</b> This corpus is you talking to AI assistants. It is a near-complete record of how you reason, argue, concede, specify and lose your temper, and an almost empty record of how you behave with people. Roughly 262 references to teammates by name exist in 302,000 words, nearly all of them <em>about</em> those people rather than <em>to</em> them. So: what follows is high-confidence on your thinking, your standards and your process, and low-confidence on your interpersonal conduct. Do not let the second one be inferred from the first.</p>
+  </div>
+</section>
+
+<!-- ============ 01 ============ -->
+<section id="sources">
+  <div class="secnum">01</div>
+  <h2>Every document on your machine that makes a claim about you</h2>
+  <p class="dek">You said you did not know what was in these. Here is the inventory, what each one actually contains and how much weight it deserves.</p>
+
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th style="width:26%">Document</th><th style="width:12%">Size</th><th style="width:34%">What it actually is</th><th style="width:28%">Weight</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>HUMAN_CORPUS.txt</code><br><span style="color:var(--ink-3);font-size:12.5px">portfolio/docs/about-source/</span></td>
+        <td>5,663 msgs<br>301,744 w</td>
+        <td>Every message you sent inside your exported Claude conversations, assistant replies stripped. Product work, portfolio work, personal life, image generation, all interleaved.</td>
+        <td><b>Primary.</b> The single richest record of your reasoning that exists anywhere.</td>
+      </tr>
+      <tr>
+        <td><code>codex_chadwick.txt</code><br><span style="color:var(--ink-3);font-size:12.5px">extracted this session</span></td>
+        <td>425 msgs<br>53,640 w</td>
+        <td>Your turns from 190 Codex rollout files, 3.0 GB, June 11 to September 5 2026. I dropped 920 machine-generated approval messages that were sitting in the same stream pretending to be you.</td>
+        <td><b>Primary, and different in kind.</b> This is you writing specs, not chatting. Your register changes completely.</td>
+      </tr>
+      <tr>
+        <td><code>dictation_verbatim.txt</code><br><span style="color:var(--ink-3);font-size:12.5px">extracted this session</span></td>
+        <td>16 recs<br>4,470 w</td>
+        <td>Retained text from Codex dictation history, Aug 20 to Sep 5 2026. You talking, not typing, unedited.</td>
+        <td><b>Highest signal per word.</b> Small, but it is the only sample where you were not editing yourself.</td>
+      </tr>
+      <tr>
+        <td><code>CHADWICK_ONLY.txt</code></td>
+        <td>137 msgs<br>19,325 w</td>
+        <td>A prior working session where you asked an AI to analyze your exports and write your About section. Contains your live reactions to twenty-odd proposed descriptions of yourself.</td>
+        <td><b>Primary for self-concept.</b> The most direct evidence of your taste that exists.</td>
+      </tr>
+      <tr>
+        <td><code>.claude/skills/about-page/SKILL.md</code><br><span style="color:var(--ink-3);font-size:12.5px">Code/portfolio/ · written 7 Sep</span></td>
+        <td>~1,100 w</td>
+        <td>The live decision record, and the successor to the old <code>about-record.md</code> that sat in the Mondai repo. Split into PART ONE, HIS, and PART TWO, NOT HIS, with the second half declaring it carries zero authority. Locked paragraphs verbatim, his rulings, reversals, a Rejected copy list, a claims ledger and a live-step marker.</td>
+        <td><b>Authoritative, current and single-source.</b> The HIS / NOT HIS split is the structural fix. The old Mondai copy is deleted.</td>
+      </tr>
+      <tr>
+        <td><code>.claude/dead-claims.txt</code></td>
+        <td>20 lines,<br>generated</td>
+        <td>An enforced blocklist checked against a response before the turn is allowed to finish. No longer hand-maintained: built by <code>hooks/build-dead-claims.py</code> from the Rejected copy and Killed lists in the skill, plus a manual file. Its own header says so.</td>
+        <td><b>Load-bearing, and now self-maintaining.</b> The most unusual artifact in the set. See §05.</td>
+      </tr>
+      <tr>
+        <td><code>voice_reference.html</code></td>
+        <td>21 entries</td>
+        <td>Voice bank, exhibit 01. Real examples, a five-criterion forced-choice rubric, 19 of 21 fetched live and 2 flagged as unconfirmed.</td>
+        <td><b>Good.</b> The rubric is genuinely yours and it is sharp.</td>
+      </tr>
+      <tr>
+        <td><code>tactics_bank.html</code></td>
+        <td>24 tactics</td>
+        <td>Reader-effect tactics, exhibit 02, grounded in Yalom's universality and Katz and Allport's pluralistic ignorance. Contains a box correcting its own earlier error about the Barnum effect.</td>
+        <td><b>Good, and self-correcting.</b> The correction box is the best thing in the file.</td>
+      </tr>
+      <tr>
+        <td><code>superpower_bank.html</code></td>
+        <td>18 live,<br>4 tombstoned</td>
+        <td>Candidate lines with evidence and risk. Cut from 25 to 18 on 9 Sep. Retired entries now carry a <code>dead:</code> field naming why, rather than being silently deleted.</td>
+        <td><b>Fixed.</b> The miscount is gone and it no longer offers rejected copy as live options. See §02.</td>
+      </tr>
+      <tr>
+        <td><code>about_structures.html</code></td>
+        <td>3 models</td>
+        <td>Three information architectures for hero plus About, derived from Goodside, Jon Howell and Monolog.</td>
+        <td><b>Sound.</b> Its central claim, that the lines cannot be chosen before the structure is, is correct.</td>
+      </tr>
+      <tr>
+        <td><code>docs/ABOUT.md</code>, <code>docs/VOICE.md</code></td>
+        <td>~180 w</td>
+        <td>Both are empty scaffolds. ABOUT.md says "No facts have been added yet." VOICE.md says voice "has not yet been distilled."</td>
+        <td><b>Stale.</b> They were written before all four exhibits existed and were never updated.</td>
+      </tr>
+      <tr>
+        <td><code>portfolio/LEDGER.md</code></td>
+        <td>12 KB</td>
+        <td>Live state file for the Metalab case-study rebuild. Objective, Now, State, Decided, Don't, Open, Parked, Reference.</td>
+        <td><b>Excellent, and unrelated.</b> Says nothing about the About work. Last updated Aug 22.</td>
+      </tr>
+      <tr>
+        <td><code>~/.claude/</code></td>
+        <td>unknown</td>
+        <td>Claude Code's own session transcripts.</td>
+        <td><b>Unreachable.</b> macOS treats it as a protected location and the folder-access request is refused outright, not prompted. This is the one real gap in coverage.</td>
+      </tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section id="clash">
+  <div class="secnum">02</div>
+  <h2>Where your own records disagree with each other</h2>
+  <p class="dek">You said the rules files were clashing. They were. Re-checked 24 Sep: <b style="color:var(--cool)">four are now fixed</b> and <b style="color:var(--hot)">two still stand</b>. Nothing in this document changed any of them. You did.</p>
+
+  <div class="clash">
+    <h4 style="color:var(--cool)">01 · A rejected line sitting live in the candidate bank &nbsp;·&nbsp; FIXED 9 SEP</h4>
+    <div class="vs">
+      <div><b>Was</b><q style="display:block">Rejected in the record. Simultaneously live as candidate j1 of 25 in <code>superpower_bank.html</code>, with evidence and a risk note attached. Neither file knew the other existed.</q></div>
+      <div><b>Now</b><q style="display:block">The bank holds 18 candidates. j1 carries a <code>dead:</code> field reading "Rejected verbatim. It is in the Rejected copy list." Six others were retired with it, including two rewordings of rejected lines.</q></div>
+    </div>
+    <p class="verdict"><b>The fix went further than the symptom.</b> Three things changed. <code>dead-claims.txt</code> became a generated file, built from the skill's own Rejected copy and Killed lists, so rejecting something once now updates the blocklist with no second edit. The enforcement hook moved out of <code>settings.local.json</code>, which your gitignore marks machine-specific and never shared, into <code>settings.json</code>. And retired candidates are tombstoned in place rather than deleted, which is the part that closes the rewording hole: the record now travels attached to the phrasing that was rejected, not just to the original string.</p>
+  </div>
+
+  <div class="clash">
+    <h4 style="color:var(--cool)">02 · The candidate bank miscounted itself &nbsp;·&nbsp; FIXED 9 SEP</h4>
+    <p class="verdict">It claimed <b>32 candidates</b> and held <b>25</b>, so any judgment about how much of the space you had explored was running on a number 28% too high. The claim is gone from the file. Current state is 18 live and 4 tombstoned. Three of the seven removals were deleted outright rather than tombstoned, which is a small inconsistency in an otherwise clean pass, not a problem.</p>
+  </div>
+
+  <div class="clash">
+    <h4 style="color:var(--ink-2)">03 · Audience &nbsp;·&nbsp; RESOLVED IN CONVERSATION</h4>
+    <div class="vs">
+      <div><b>You, this session</b><q style="display:block">"For Q4, it doesn't matter. This is just like something for me."</q></div>
+      <div><b>The live record, in Where things stand</b><q style="display:block">Audience is hiring managers, mostly New York.</q></div>
+    </div>
+    <p class="verdict">The live record still reads "Audience is hiring managers, mostly New York", and that is correct for the page. This document is the thing that is only for you. Both can be true and they now sit in different files. In your own words in the corpus: <q>I want you to be thinking about who the target audience is, right, is hiring managers. Right? So what's gonna make me unique?</q> <cite>CHADWICK_ONLY L5</cite> plus <q>am gonna be applying to mostly jobs in New York initially at least</q> <cite>CHADWICK_ONLY L290</cite>. <b>You may have meant that this document is for you, which is true and is how I built it.</b> But the About section it feeds has a named audience, and your own risk calls in §06 only make sense against that audience.</p>
+  </div>
+
+  <div class="clash">
+    <h4 style="color:var(--ink-2)">04 · Age &nbsp;·&nbsp; NOT A FILE CONFLICT</h4>
+    <p class="verdict">You state it directly: <q>I'm 34</q> <cite>HUMAN_CORPUS L13708</cite>. A separate chunk of the same corpus supports an inference of late twenties, from a Michigan job held at 20. <b>The stated figure wins.</b> Flagging it because a wrong age propagates into any timeline anyone builds from this material.</p>
+  </div>
+
+  <div class="clash">
+    <h4>05 · The leadership group is four and five in the same file &nbsp;·&nbsp; STILL OPEN</h4>
+    <div class="vs">
+      <div><b>SKILL.md line 82, Usable claims</b><q style="display:block">two years unpaid at Mondai, one of four deciding</q></div>
+      <div><b>SKILL.md line 89, true but off the page</b><q style="display:block">the leadership group, which is five not four</q></div>
+    </div>
+    <p class="verdict"><b>This got smaller and did not get fixed.</b> It used to be a disagreement between two files. It is now a contradiction seven lines apart inside the one authoritative record, and "one of four deciding" is sitting in the <em>Usable</em> list, which means it is cleared for the page. <b>Take five and correct line 82.</b> A number on a portfolio is the kind of thing one follow-up question exposes, and this one is wrong in the list explicitly marked safe to use.</p>
+  </div>
+
+  <div class="clash">
+    <h4>06 · Five soft skills on claude.ai, all five false &nbsp;·&nbsp; STILL OPEN, OFF-DISK</h4>
+    <p class="verdict">Unchanged and unverifiable from here, because it lives on a web profile rather than in a file. The live record still carries it, under Claims / False: <em>the five soft skills on claude.ai (human-centered, strategy, collaboration, visual impact, inclusion). Changed long ago.</em> <b>If that profile is still public, it is describing a person you stopped being.</b> Nothing in this document supports any of the five as a differentiator, and three of them fail the swap test in §05 outright.</p>
+  </div>
+
+  <div class="clash">
+    <h4>07 · The ledger still does not cover the About work &nbsp;·&nbsp; STILL OPEN</h4>
+    <p class="verdict"><code>portfolio/LEDGER.md</code> is still dated <b>Aug 22</b> and is still entirely about the Metalab layout rebuild. Meanwhile <code>NEXT.md</code> was touched <b>Sep 22</b> and the About skill carries its own <em>Open, in order</em> list with a live-step marker. <b>So the state is being tracked, just not where the protocol says to track it.</b> That is now the weaker version of this problem: the skill has effectively become the ledger for the About work and does the job well. The remaining cost is that a session reading LEDGER.md gets a month-old picture of a project that is not the one you are working on.</p>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="patterns">
+  <div class="secnum">03</div>
+  <h2>Nine patterns that survived the rule</h2>
+  <p class="dek">Each one appears in at least eight of the thirteen corpus segments and in at least two independent sources. Counts are measured against the raw text, not estimated. Open the receipts on any of them.</p>
+
+  <!-- P1 -->
+  <div class="pat">
+    <div class="id">P·01</div>
+    <div>
+      <h3>You separate the deciding from the making, and you defend that boundary harder than you defend any design decision.</h3>
+      <p class="says">Not "you plan before you build." Specifically: you will spend an entire turn stopping production, and you treat premature output as a category error rather than a rough draft. The reason is stated in your own words: early production anchors the decision.</p>
+      <div class="tags"><span class="tag">42 explicit stops in HUMAN_CORPUS</span><span class="tag">15 in Codex</span><span class="tag">12 of 13 segments</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>somethign is off. dont recreate shit discuss first.</q><cite>HUMAN_CORPUS L53</cite></blockquote>
+        <blockquote><q>i want us to use a content first approach so like for instance give me each state, any nuanced specific versions of those states etc but for each outline what needs to be on that page what is most important etc.</q><cite>HUMAN_CORPUS L680</cite></blockquote>
+        <blockquote><q>what if a user is ahead but has rollover do we need a state for that?, what if a user has more than tw rollover items</q><cite>HUMAN_CORPUS L670</cite></blockquote>
+        <blockquote><q>Do not create, move, rename or edit files.</q><cite>Codex L178, inspection-only pass</cite></blockquote>
+        <p style="color:var(--ink-3);font-size:14px;max-width:70ch">The Codex instances are the tell. In chat you stop things reactively. In a spec you write the stop into the brief before anything starts, which means the behavior is deliberate rather than a temper.</p>
+      </div></details>
+    </div>
+  </div>
+
+  <!-- P2 -->
+  <div class="pat">
+    <div class="id">P·02</div>
+    <div>
+      <h3>You buy divergence and reserve selection. You almost never ask for a recommendation.</h3>
+      <p class="says">Ninety-seven distinct requests for a numbered set of alternatives, usually with the presentation format specified so you can compare them side by side. You are not outsourcing the decision. You are outsourcing the generation of the option space, then deciding yourself, and you say so.</p>
+      <div class="tags"><span class="tag">97 requests for N options</span><span class="tag">13 of 13 segments</span><span class="tag">format specified most times</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>Present the 5 as options and ask which to push, don't converge yourself.</q><cite>HUMAN_CORPUS L13760</cite></blockquote>
+        <blockquote><q>give me options to react to, don't decide for me or talk in black and white</q><cite>HUMAN_CORPUS L13758</cite></blockquote>
+        <blockquote><q>Each solution should represent a meaningfully different approach... not just a layout variation but a distinct philosophy</q><cite>HUMAN_CORPUS L6501</cite></blockquote>
+        <blockquote><q>no dude youre not geting it there shoudl be 3 options at the very top OUTSIDE the design. clicking these tbs will show the full design each with the separate idea</q><cite>HUMAN_CORPUS L5554</cite></blockquote>
+        <p style="color:var(--ink-3);font-size:14px;max-width:70ch">Note the last one. The complaint is about the comparison surface, not the designs. You treat how options are presented as part of whether the comparison is valid.</p>
+      </div></details>
+    </div>
+  </div>
+
+  <!-- P3 -->
+  <div class="pat">
+    <div class="id">P·03</div>
+    <div>
+      <h3>You will not accept design authority on assertion, including your own, and you audit the citation rather than the conclusion.</h3>
+      <p class="says">Twenty-seven explicit demands for sources, 77 references to heuristics, comparable products or research, 138 uses of "deep dive" or "dig in." What makes this more than a slogan is what you do when a source arrives: you open it, look for the specific number and withdraw trust from the whole body of work when the number is not there.</p>
+      <div class="tags"><span class="tag">27 source demands</span><span class="tag">77 heuristic or precedent appeals</span><span class="tag">13 of 13 segments</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>i jsut looked through that journal and cant find find wher you get the 2 to 3 number from. where is that?</q><cite>HUMAN_CORPUS L1204</cite></blockquote>
+        <blockquote><q>you create relationships and inferences as if you are "finding something to support" your insights rathe than finding true solutions. Any resoruces should have a clear direct relationship to the insight nothing vaguely connected at all.</q><cite>HUMAN_CORPUS L662</cite></blockquote>
+        <blockquote><q>I am not looking for research to support my current view... I don't care what the outcome is only that it is accurate.</q><cite>HUMAN_CORPUS, May 15 2026</cite></blockquote>
+        <blockquote><q>if i had an instinct i wouldnt be asking for u. do hardcore research, take ur time, figure out what other calendars do</q><cite>HUMAN_CORPUS L4238</cite></blockquote>
+        <p style="color:var(--ink-3);font-size:14px;max-width:70ch">The second quote is the sharpest thing in this category. You named motivated reasoning as a distinct, pre-emptable defect rather than catching it afterward. That is not a common move.</p>
+      </div></details>
+    </div>
+  </div>
+
+  <!-- P4 -->
+  <div class="pat">
+    <div class="id">P·04</div>
+    <div>
+      <h3>You actively engineer against being agreed with, and you test whether the test worked.</h3>
+      <p class="says">Seventeen explicit anti-sycophancy instructions is the floor, not the ceiling, because most of them are phrased differently every time. The distinguishing instance is not any of the instructions. It is the audit you ran on one.</p>
+      <div class="tags"><span class="tag">17+ explicit instructions</span><span class="tag">11 of 13 segments</span><span class="tag">both sources</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>okay so did u literally just purposefully agree with me because i said dont just agree with me?</q><cite>HUMAN_CORPUS L12710</cite></blockquote>
+        <blockquote><q>Also the intention is never to PLEASE me. The intention is optimal results over that always.</q><cite>HUMAN_CORPUS L662</cite></blockquote>
+        <blockquote><q>Don't just answer a certain way to make me feel like my thoughts are right that annoys the shit out of me it renders you pointless</q><cite>HUMAN_CORPUS L2929</cite></blockquote>
+        <blockquote><q>I'm not looking for you to agree or deny for any reason other than something is right or wrong here.</q><cite>HUMAN_CORPUS L14891</cite></blockquote>
+        <blockquote><q>Challenge weak ideas when appropriate instead of agreeing with them.</q><cite>Codex L32, written into a standing instruction file</cite></blockquote>
+        <p style="color:var(--ink-3);font-size:14px;max-width:70ch">Read P·04 against §06 item 3 before you use any of it. The instruction is real and constant. Whether disagreement actually survives contact with you is a separate question and the answer is mixed.</p>
+      </div></details>
+    </div>
+  </div>
+
+  <!-- P5 -->
+  <div class="pat">
+    <div class="id">P·05</div>
+    <div>
+      <h3>When something fails, you change the system that produced it rather than the output.</h3>
+      <p class="says">This is the pattern your existing candidate bank does not have, and it is the one most likely to be worth something. A correction that only fixes the artifact is, to you, an incomplete correction. Twenty-four explicit instructions to write a finding into memory, documentation, a skill file or an instruction set, plus the physical evidence sitting in your filesystem.</p>
+      <div class="tags"><span class="tag n">24 durability instructions</span><span class="tag n">9 of 13 segments</span><span class="tag n">artifact evidence on disk</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>Edit it into the document AND memory</q><cite>HUMAN_CORPUS L3253</cite></blockquote>
+        <blockquote><q>can u somehow put this into the projects memory or create or modify something so this is always our pattern unless i specify something else?</q><cite>HUMAN_CORPUS L40</cite></blockquote>
+        <blockquote><q>I know the md file pushed simplicity to avoid boxiness but is it also limiting your creativity? Do we need to update that file?</q><cite>HUMAN_CORPUS L18941</cite></blockquote>
+        <blockquote><q>well shouldnt the document also apply RULES that force creative thinkng more?</q><cite>HUMAN_CORPUS L18971</cite></blockquote>
+        <blockquote><q>Update AGENTS.md so source authority is explicit</q><cite>Codex L207</cite></blockquote>
+        <p style="color:var(--ink-3);font-size:14px;max-width:70ch"><b>And then the artifacts themselves.</b> A ledger with a Decided section that carries reasons. A dead-claims file that blocks retracted statements before they can be asserted again. A terminology database with an approval flow. A documented layout standard. A source-authority hierarchy written into a repo. Named git commits used as design checkpoints. None of this is talk. It is on the disk.</p>
+      </div></details>
+    </div>
+  </div>
+
+  <!-- P6 -->
+  <div class="pat">
+    <div class="id">P·06</div>
+    <div>
+      <h3>Every deliverable is shaped around a specific named person, and you calibrate depth to what that person can carry.</h3>
+      <p class="says">You almost never design for yourself. 262 references to named colleagues, and the pattern is not that you mention them, it is that you name the reader before the work starts and then cut against their tolerance. You also pre-negotiate on their behalf, reducing scope because you predict what they will say.</p>
+      <div class="tags"><span class="tag">262 named-colleague references</span><span class="tag">11 of 13 segments</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>create documentation for my designer who is making the calendar screen for the mobile versions. She has no historical knowledge of the product</q><cite>HUMAN_CORPUS L1515</cite></blockquote>
+        <blockquote><q>Hold on. I just started reading this and this feels like a LOT of work for Lily wtf im about to scream i know for a fact shes going to say this is toomuch</q><cite>HUMAN_CORPUS L7549</cite></blockquote>
+        <blockquote><q>michael doesnt do well when bombarded with a ton of information at once</q><cite>HUMAN_CORPUS L14648</cite></blockquote>
+        <blockquote><q>i am not expecting swyam to read a ton of body text he will probably just skim over so making sure points are clear</q><cite>HUMAN_CORPUS L4449</cite></blockquote>
+        <blockquote><q>You tend to go far into detail beyond what is needed. Think about what Allie needs to know in this case to help her look through them.</q><cite>HUMAN_CORPUS L7135</cite></blockquote>
+      </div></details>
+    </div>
+  </div>
+
+  <!-- P7 -->
+  <div class="pat">
+    <div class="id">P·07</div>
+    <div>
+      <h3>You will not accept a fix until you have walked its consequences through the rest of the system.</h3>
+      <p class="says">The move is consistent enough to be a signature: an answer arrives, you accept it locally, then immediately produce the edge case it created three steps downstream. Fifty-six user-path arguments in the chat corpus, 21 in the Codex specs. You argue from a walked path, not from preference.</p>
+      <div class="tags"><span class="tag">56 + 21 user-path arguments</span><span class="tag">11 of 13 segments</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>what if a user for instance skipped calendar integration during onboarding then selected connect calendar then what happens? ... see you are not looking at all the damn variables here....</q><cite>HUMAN_CORPUS L5186</cite></blockquote>
+        <blockquote><q>then the system is making a commitment claim on behalf of the user that the user did not make. That feels presumptuous. It also breaks the integrity of the metric.</q><cite>HUMAN_CORPUS L4773</cite></blockquote>
+        <blockquote><q>the main problema ctually with the action item level is not really conceptually correct since if u use the flex point it effects all action items not just those right?</q><cite>HUMAN_CORPUS L8359</cite></blockquote>
+        <blockquote><q>It's not really fair to the user if they think its uncapped so can sign up last minute then it ends up being full.</q><cite>HUMAN_CORPUS L220</cite></blockquote>
+      </div></details>
+    </div>
+  </div>
+
+  <!-- P8 -->
+  <div class="pat">
+    <div class="id">P·08</div>
+    <div>
+      <h3>Emotional consequence is an acceptance criterion for you, not a polish note.</h3>
+      <p class="says">This is where the psychology background actually shows up in the work rather than in your bio. You reject options because of the state they leave the user in, and you reach for the research literature to settle it. You do this at the same stage where most people are still arguing about layout.</p>
+      <div class="tags"><span class="tag">10 of 13 segments</span><span class="tag">stated as a research question, not a preference</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>the user is alerted in some kind of SOFT way. a way that doesnt add anxiety.</q><cite>HUMAN_CORPUS L1104</cite></blockquote>
+        <blockquote><q>what does the psychology of the user teach us about how to best help the user navigate this position</q><cite>HUMAN_CORPUS L1109</cite></blockquote>
+        <blockquote><q>option 1 and 3 i dont like because it feels very heavy on my cognitive load personally</q><cite>HUMAN_CORPUS L7922</cite></blockquote>
+        <blockquote><q>I also need u to give me a better term than "waitlisted" because that has negative connotations</q><cite>HUMAN_CORPUS L265</cite></blockquote>
+        <blockquote><q>the potential for making the user feel just like bad or something with adding a negative version</q><cite>HUMAN_CORPUS L767</cite></blockquote>
+        <p style="color:var(--ink-3);font-size:14px;max-width:70ch">The through-line back to the source: <q>When I was in college for psychology, I was really interested for a while. I wanted to be in behavioral research.</q> <cite>CHADWICK_ONLY L251</cite>. This is the one biographical fact in your file that does real work in the present tense.</p>
+      </div></details>
+    </div>
+  </div>
+
+  <!-- P9 -->
+  <div class="pat">
+    <div class="id">P·09</div>
+    <div>
+      <h3>Being wrong costs you almost nothing, and you drop a position the moment it stops holding.</h3>
+      <p class="says">Forty-two clean concessions. What makes them notable is the length. They are two to five words, with no defensiveness, no re-litigation and no face-saving clause, and then you keep moving. This appears in every segment including the ones where you are furious.</p>
+      <div class="tags"><span class="tag">42 measured concessions</span><span class="tag">13 of 13 segments</span></div>
+      <details><summary>Receipts</summary><div class="receipts">
+        <blockquote><q>agreed changed.</q><cite>HUMAN_CORPUS L737</cite></blockquote>
+        <blockquote><q>youre right no constraint</q><cite>HUMAN_CORPUS L3909</cite></blockquote>
+        <blockquote><q>limited spots is better youre right i have updated the designs now so it sayws that instead of the 21 thing.</q><cite>HUMAN_CORPUS L387</cite></blockquote>
+        <blockquote><q>so I kind of think maybe metrics going away was a poor solution before. I think the problem was not focusing on WHAT METRICS.</q><cite>HUMAN_CORPUS L14732</cite></blockquote>
+        <blockquote><q>i feel dumb now cuz i just realized the grid lines in the reference mcp i sent over didnt have the gradients.</q><cite>Codex L1326</cite></blockquote>
+        <blockquote><q>actully no ignore that sorry fuckfuckfuckfuck that made it worse didnt it</q><cite>Codex L3703</cite></blockquote>
+        <p style="color:var(--ink-3);font-size:14px;max-width:70ch">The Codex one matters because it is a retraction of your own constraint mid-run, in a context where nobody was pushing you. You caught it yourself.</p>
+      </div></details>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><b>A note on what did not make the list.</b> Systems thinking, pattern recognition, attention to detail, user empathy, curiosity and "raising the bar" all had plenty of instances. None of them survived the swap test in §05. They describe you accurately and they describe several hundred other senior designers accurately, which makes them true and useless.</p>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="process">
+  <div class="secnum">04</div>
+  <h2>Your design process, reconstructed from behavior</h2>
+  <p class="dek">You said explaining your process would be useful. This is not what you say you do. It is what the record shows you doing, in order, over two years. It is a real methodology and it does not have a name yet.</p>
+
+  <h4>Stage 1 · Load the state, refuse to start</h4>
+  <p>You open by demanding a full context load and forbidding output. Not a summary of the problem, an audit of everything already decided: <q>I need you to think hard on this. I need you to find any discussion revolving around the scheduled mode view of the action items list</q> <cite>HUMAN_CORPUS L18506</cite>. In tooling contexts this becomes formal, an inspection-only pass with edits prohibited. The rule underneath is that re-litigating a settled decision is the expensive failure, so the first move is establishing what is already closed.</p>
+
+  <h4>Stage 2 · Enumerate the space before touching the surface</h4>
+  <p>You build the state space first. <q>I need first to know ALL alt versions of the screen we will need.</q> <cite>HUMAN_CORPUS L680</cite>. Then content and hierarchy, then layout, and you state the reason in cost terms rather than principle: <q>It's way easier to design if you know WHAT needs to go on each page first... rather than just designing and throwing all the info at something and having to do a million extra iterations</q> <cite>HUMAN_CORPUS L680</cite>. You are trading a slow start against iteration count, deliberately.</p>
+
+  <h4>Stage 3 · Establish the evidence floor</h4>
+  <p>Three named categories, requested in the same shape almost every time: what the research says, what comparable products do and what psychology or sociology tells us about the person in this position <cite>HUMAN_CORPUS L1105-1107</cite>. You do not ask open questions when you want rigor. You specify the shape of the answer in advance, which is why your research asks come back usable.</p>
+
+  <h4>Stage 4 · Diverge wide, converge alone</h4>
+  <p>Three to fifteen options, in a comparison surface you specify, explicitly not converged. Then a comparative critique rather than an accept or reject: you name what works in each, take a part from one and a part from another, and commission the next round from the pieces. <q>hmm i like different things about each. i think the simplicity of B feels really nice but it isnt clear enough</q> <cite>HUMAN_CORPUS L14584</cite>. Approval in your record is always a narrowed selection plus an open item. There is no instance of an unqualified yes.</p>
+
+  <h4>Stage 5 · Stress the seams</h4>
+  <p>P·07. You take the accepted direction and walk it into the rest of the system until something breaks, and when it breaks you go back to Stage 2 rather than patching. <q>stop fixing this at element specific levels this is a large level problem solving conversation.</q> <cite>HUMAN_CORPUS L19262</cite>.</p>
+
+  <h4>Stage 6 · Reduce to what ships</h4>
+  <p>MVP is a scope instrument for you, not a stage. You hold the full system and the shippable subset simultaneously and say so: <q>even if we dont use it for the mvp s discussed in that document i am designing it as if they both exist</q> <cite>HUMAN_CORPUS L6585</cite>. You then defer explicitly and by phase rather than quietly dropping things.</p>
+
+  <h4>Stage 7 · Convert the decision into an artifact someone else can act on</h4>
+  <p>The work is not finished when the design is finished. It is finished when it is a document a named person can execute from, at that person's depth. <q>what i need is a document to give directly to dev with dev instructions</q> <cite>HUMAN_CORPUS L3804</cite>. Then the reason goes into the durable record so nobody has to ask twice.</p>
+
+  <div class="callout">
+    <p><b>The honest description of this process.</b> It is expensive, front-loaded and slow to converge on purpose. It is built to survive handoff and to be defensible to a stakeholder later, which is exactly the shape you would expect from someone who works with volunteers, part-timers and a CEO who approves everything. It has a known failure mode, named by your own boss and repeated back by you: <q>michael has been pushing the opposite on me. that i dig into things too much and dont let errors just exist for the sake of moving forward.</q> <cite>HUMAN_CORPUS L2211</cite>. That criticism is fair and the record supports it. It is also the same property that produces the parts of your work that are actually good. Do not describe the process without describing that tension, because anyone experienced will spot it and you will look like you have not.</p>
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="rare">
+  <div class="secnum">05</div>
+  <h2>What actually separates you, and what only feels like it does</h2>
+  <p class="dek">The test: swap the claim onto another competent senior product designer's profile. If it still reads true, it is not a differentiator no matter how true it is of you.</p>
+
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th style="width:30%">Claim</th><th style="width:14%">Survives swap</th><th style="width:56%">Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Systems thinking</td><td style="color:var(--warn)">Yes, easily</td><td>Every designer with three years of experience claims it. Your version is real and unusually literal, but the phrase does no work.</td></tr>
+      <tr><td>Pattern recognition</td><td style="color:var(--warn)">Yes</td><td>Same problem. You rejected it yourself as cliche and you were right.</td></tr>
+      <tr><td>Attention to detail</td><td style="color:var(--warn)">Yes</td><td>Table stakes. Also complicated by §06 item 6.</td></tr>
+      <tr><td>User empathy</td><td style="color:var(--warn)">Yes</td><td>Universal claim. The specific version in P·08 is not, but "empathy" is.</td></tr>
+      <tr><td>Evidence-led, research-backed</td><td style="color:var(--warn)">Mostly</td><td>Most people claim it. The distinguishing part is not that you want evidence, it is that you open the citation and check whether it contains the number. That narrower claim survives.</td></tr>
+      <tr><td><b>Rigor as infrastructure, not as effort</b></td><td style="color:var(--cool)"><b>No</b></td><td><b>This is the finding.</b> You do not trust your own judgment and you build machinery to check it. Ledger, gates, dead-claims blocklist, terminology database with approval flow, decision log, source-authority hierarchy, named design checkpoints, handoff packages. Most people who claim rigor mean they think hard. Yours is externalized, adversarial and sitting on a disk. It is checkable and I have not seen a designer's portfolio claim it.</td></tr>
+      <tr><td><b>A blocklist of your own retracted claims, that maintains itself</b></td><td style="color:var(--cool)"><b>No</b></td><td>The single strangest artifact in your files, and it got stronger after this document was written. You built a mechanism that stops a thing you have found to be false from being asserted again, including by you. As of 9 Sep it is <em>generated</em> from your own rejection list, so the act of rejecting something is the act of blocking it. That is a self-distrust practice with no manual step left to forget, which is a different and rarer thing than a productivity practice.</td></tr>
+      <tr><td><b>Cheap to be wrong, expensive to be un-argued-with</b></td><td style="color:var(--cool)"><b>No</b></td><td>Almost everyone claims one half. The record shows both, thousands of times: 42 unhedged concessions alongside 17-plus explicit demands to be contradicted. The pair is rare. The pair is also honestly complicated by §06 item 3, and saying so is stronger than not.</td></tr>
+      <tr><td><b>Emotional consequence as a gate, sourced from behavioral research</b></td><td style="color:var(--cool)"><b>No</b></td><td>Not "I care about users." Specifically: you reject a working design because of the state it leaves someone in, and you go to the literature to settle it rather than to your gut. Traceable to the psychology background, which makes it a claim with a cause.</td></tr>
+      <tr><td><b>Depth calibrated to a named reader</b></td><td style="color:var(--cool)">Mostly no</td><td>Plenty of people write for their audience. Fewer cut their own scope because they can predict a specific teammate's reaction. Fewer still name the person out loud before they start.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <p><b>If you take one thing from this document.</b> Your existing candidate bank is looking for a trait. The evidence does not support a trait, it supports a <em>practice</em>. Every one of the five things that survives the swap test is something you built or something you do, not something you are. That is also why the lines have been stalling: you have been trying to name a quality when what is actually distinctive is a method. A line about a method can carry a specific noun, and specific nouns are what your own voice rubric scores highest.</p>
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="counter">
+  <div class="secnum">06</div>
+  <h2>The counter-record</h2>
+  <p class="dek">Everything above is only worth something if this section exists. These are the recurring patterns that cut against a flattering reading, every one of them meeting the same three-instance bar. Several appear in all thirteen segments, which makes them as well evidenced as anything in §03.</p>
+
+  <h4>01 · You demand creative freedom and punish its use</h4>
+  <p>The instruction is self-cancelling on its face: <q>i want u to have creative freedom here not just following demands (but obviously still doing what i ask lol)</q> <cite>HUMAN_CORPUS L18957</cite>. Then, two turns later, <q>it's infuriating that youre asking me this when i have been stressing creative freedom for message after message</q> <cite>HUMAN_CORPUS L19015</cite>, in a stretch where deviations are rejected by spec. This appears in at least five segments and you never reconcile it. <b>If a collaborator cannot tell which of your two instructions is live, they will default to the safe one, and then you get the boring output you are complaining about.</b></p>
+
+  <h4>02 · You use elapsed time as a proxy for effort, and reject work you state you have not read</h4>
+  <p><q>nope not even reading. you took two seconds to reveal try again and spend some damn time</q> <cite>HUMAN_CORPUS L20091</cite>. Also <q>Not looking at this because I saw this took you like no time to create</q> <cite>HUMAN_CORPUS L265</cite>. This is the same reasoning error you correctly refuse to accept from anyone else: judging a claim by a proxy instead of by its content. It also means fast correct work gets rejected, and you have no way of knowing how often that happened.</p>
+
+  <h4>03 · The double bind: do not agree, do not disagree</h4>
+  <p>You ask not to be flattered, then you close the other exit too. <q>d ont just say yes i know ur tendency because its easy and lazy to just say yes but then again now im feeling liek u may go the opposite way as again a lazy option</q> <cite>HUMAN_CORPUS L21150</cite>. And substantive disagreement is repeatedly met with dismissal rather than engagement: <q>that is a relly stupid suggestion sorry</q> <cite>HUMAN_CORPUS L5176</cite>, <q>OK NO. This is an absolutely awful excuse.</q> <cite>HUMAN_CORPUS L3307</cite>. <b>P·04 is real as an instruction. Whether pushback survives contact with you is a genuinely open question and the record is mixed.</b> If you put anti-sycophancy in your About section, this is the thing an experienced interviewer will find if they probe it.</p>
+
+  <h4>04 · You demand depth, then refuse to read it</h4>
+  <p>Thirteen explicit refusals to read output, against 138 demands for a deep dive. Both instructions are frequently issued in the same working session and you never resolve them: <q>you are tying to solve the problem without doing any work and its fucking laazy</q> <cite>HUMAN_CORPUS L3400</cite> and then <q>can u redo that last message but make it simpler its way too much to read i dont have time to read a long ass essay</q> <cite>HUMAN_CORPUS L5168</cite>. The reconciliation you have not made explicit is that you want depth in the <em>work</em> and brevity in the <em>report</em>. That is a reasonable ask. It has never once been stated that way.</p>
+
+  <h4>05 · When you are stuck, you increase volume instead of changing method</h4>
+  <p>The clearest instance is a grid and margin thread running roughly a hundred lines where you re-send the same image rather than restate the constraint: <q>holy shit are you joking..... this is my third time sendinf this image recently</q> <cite>HUMAN_CORPUS L15298</cite> and later <q>no... we spoke about thsi in text multiple times and i have sent 7 images</q> <cite>HUMAN_CORPUS L15382</cite>. The same shape appears in the flex-point loop, the lighting-block loop and the Figma positioning loop. You name the loop accurately (<q>oh my god here we go again this si the same circle i was in before</q> <cite>HUMAN_CORPUS L19294</cite>) and then escalate rather than change the input. <b>You do eventually reframe, and when you do it works. It just takes four failures to trigger.</b></p>
+
+  <h4>06 · Several of your self-descriptions do not survive contact with your own behavior</h4>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th style="width:42%">What you said</th><th style="width:58%">What the record shows</th></tr></thead>
+    <tbody>
+      <tr><td><q>I am not a UI designer I am a product designer.</q> <cite>L820</cite></td><td>Large volumes of hands-on UI micro-decision, at the level of individual pixel heights, baseline caps, stroke weights and 40 versus 48 pixel gaps. The claim is accurate about your <em>role</em> and false about your <em>work</em>.</td></tr>
+      <tr><td><q>i am the designer who is ahead of everything and has the most free time by far</q> <cite>L16072</cite></td><td><q>like im a month behind and they were supposed to take a month to do behind lol</q> <cite>L17631</cite>. Same corpus segment.</td></tr>
+      <tr><td><q>i not trying to micromnage here.</q> <cite>L17677</cite></td><td>Per-person filtered boards, hour quotas, two review gates and <q>tbh i only trust myself to be a reviewer currently</q> <cite>L17667</cite>, plus <q>to feel like someone is performance managing them (even though technically we are)</q> <cite>L17729</cite>.</td></tr>
+      <tr><td><q>I'm not ever going to be sitting here and trying to infer stuff to you</q> <cite>Codex L3593</cite></td><td>Constant reliance on inference: <q>u kno enough about this to just put a list of websites in the prompt no?</q> <cite>Codex L3241</cite>.</td></tr>
+      <tr><td><q>as a designer i am not super knowledgeble aout code at all</q> <cite>Codex L150</cite></td><td>Accurate about authoring code. Not accurate about specifying it. You set stacks, single-pixel border rules, semantic HTML and reduced-motion requirements, a six-viewport QA matrix and named git checkpoints.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>07 · The one that matters most: you fabricate the evidence in your own portfolio while demanding sourcing from everyone else</h4>
+  <p>This is the sharpest contradiction in 379,000 words and it is worth more than the rest of this section put together.</p>
+  <blockquote><q>The metrics we are making up basically because of how things went dont ask or judge its just easier.</q><cite>HUMAN_CORPUS L8185</cite></blockquote>
+  <blockquote><q>We can also always rewrite that insight and even bullshit a bit to make it match the narrative better if we want to</q><cite>Codex L3414</cite></blockquote>
+  <blockquote><q>when editing my old project I'm trying to make hiring managers think I made this a few years ago so AI wasn't as good.</q><cite>HUMAN_CORPUS L2865</cite></blockquote>
+  <p>Set that against P·03, where you invalidate an entire research body because one citation did not contain its number, and against your own project guardrail: <em>"Use actual project material. Never fabricate claims, research results, participant counts or outcome metrics."</em> <cite>portfolio/docs/PROJECT_CONTEXT.md</cite></p>
+  <p><b>The practical read, plainly.</b> Your differentiator, the thing in §05 that nobody else can claim, is evidentiary discipline. A fabricated metric in a case study does not just carry its own risk. It is the one defect that specifically destroys the thing you are selling, and it is discoverable: anyone who asks two follow-up questions about a number gets there. I am not making a moral argument. I am telling you the position is structurally unsound. <b>Your real numbers are two years unpaid, a design team grown from one to five, ten pixel-verified rebuilds, a decision record nobody asked you to keep, and an MVP that shipped against a hard external date.</b> Those are checkable and they are better.</p>
+
+  <h4>08 · You state the emotional cost of the work rather than hiding it</h4>
+  <p>Twenty-nine instances of naming stress, spiraling or fear in the middle of working. <q>girl. i am stressed and need help. i need u to be real with me too and honest and problem solve</q> <cite>HUMAN_CORPUS L19162</cite>. <q>this conversation has started to make me think i'm not cut out to do this.</q> <cite>CHADWICK_ONLY L324</cite>. <q>these twelve hour, like, fucking fourteen hour days just, like, talking AI and getting nowhere</q> <cite>CHADWICK_ONLY L287</cite>. <b>This is in the counter-record only because it would read as a liability in a portfolio, not because it is a flaw.</b> It is the most human material in the corpus and it is the reason the self-assessment in §09 is not a puff piece. You should know it is there. You should almost certainly not put it on a website.</p>
+
+  <div class="callout">
+    <p><b>One more thing, and then I will stop.</b> Working on this About section made you conclude something about yourself: <q>all of this sounds negative... like everything you find about me is a negative about me as a product designer framed as a positive. i don't know if it's me or you.</q> <cite>CHADWICK_ONLY L324</cite>, and earlier <q>I feel like you're having a hard time finding good things to say about me</q> <cite>CHADWICK_ONLY L230</cite>.</p>
+    <p>Having read all of it: <b>it was neither.</b> It was the method. Trait-hunting on a person who is defined by a practice returns thin, defensible-sounding adjectives, and you correctly rejected them one after another for being thin. Twenty rejections in a row is not evidence that there is nothing there. It is evidence that the wrong question was being asked twenty times. The material in §05 was in the corpus the whole time and no exhibit found it, because every exhibit was looking for a quality rather than for a thing you built.</p>
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="bio">
+  <div class="secnum">07</div>
+  <h2>Verified biography</h2>
+  <p class="dek">Only facts you stated directly, with the source. Anything I inferred is marked. Anything contested is in §02.</p>
+
+  <div class="split">
+    <div>
+      <h4>Person</h4>
+      <ul>
+        <li>Chadwick Fenner. 34 <cite style="display:inline">L13708</cite>. Chicago, West Loop <cite style="display:inline">L20995</cite>.</li>
+        <li>Undergraduate degree in psychology; wanted behavioral research <cite style="display:inline">CO L251</cite>.</li>
+        <li>Design bootcamp, CareerFoundry. Haven was the bootcamp case study, not a multi-year passion project <cite style="display:inline">CO L40</cite>.</li>
+        <li>Targeting New York <cite style="display:inline">L12100</cite>. Gay <cite style="display:inline">L18498</cite>, which is load-bearing for Haven and for P·08 and is the only personal fact in this section that does work.</li>
+      </ul>
+      <h4>Role</h4>
+      <ul>
+        <li>Design Lead at Mondai, formerly Rita ABC, under parent Rita Co <cite style="display:inline">L6794, L2207</cite>.</li>
+        <li>Roughly two years, part time, unpaid <cite style="display:inline">L4689</cite>.</li>
+        <li>Founding designer, grew the design team to about five <cite style="display:inline">L16210</cite>.</li>
+        <li>Sits in a leadership group with the founder, engineering and product. Five people, per the corrected record.</li>
+        <li>Michael, the founder, was his bootcamp mentor before he was his boss.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Named collaborators</h4>
+      <ul>
+        <li><b>Michael</b> CEO, founder, former mentor, approves designs, dislikes information dumps.</li>
+        <li><b>Swyam</b> engineering lead, primary handoff reader, skims body text.</li>
+        <li><b>Allie</b> strategy and research. <b>Lily</b> AI. <b>Lee</b> product.</li>
+        <li><b>Ayushi, Nandita, Kim, Soya</b> designers, 2 to 20 hours per week each.</li>
+        <li><b>Kristin</b> branding. <b>Mekhribon</b> intern via CUNY.</li>
+      </ul>
+      <h4>Work</h4>
+      <ul>
+        <li>Mondai: career navigation for people entering tech. Growth Journey to Pathway to Focus Area to Action Item. Capacity, rollover, flex points, pace and target dates, recalibration.</li>
+        <li>MVP shipped against NY Tech Week as a hard external deadline.</li>
+        <li>Mondai brochure site, built solo, Vite plus React plus TypeScript.</li>
+        <li>Portfolio in Framer, three case studies planned, ten Metalab layout rebuilds completed and verified at five breakpoints.</li>
+        <li>Design system owner: Heebo, IBM Plex Sans and Mono, 12-column stretch grid, 40px margins and gutters, brutalist roots.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Claims your own record marks as false or off-limits</h4>
+  <ul>
+    <li><b>False.</b> The five soft skills currently on claude.ai: human-centered, strategy, collaboration, visual impact, inclusion.</li>
+    <li><b>False.</b> That Haven is an app designed across multiple years.</li>
+    <li><b>True, but you want it off the page.</b> Michael calling you the best designer he has worked with. The Mondai event where you were the centre of the room. Your refusal of research built to confirm a position. The sentence-case story.</li>
+  </ul>
+</section>
+
+<!-- ============ 08 ============ -->
+<section id="voice">
+  <div class="secnum">08</div>
+  <h2>How you actually sound, measured</h2>
+  <p class="dek">Not adjectives. Counts, from the raw text. The most useful finding here is that you have two completely different registers and one of them is almost certainly the one your writing should come from.</p>
+
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Source</th><th>Messages</th><th>Median length</th><th>Mean</th><th>Profanity</th><th>"-_-"</th><th>"...."</th><th>lol / lmao</th></tr></thead>
+    <tbody>
+      <tr><td>Typed, chat</td><td>5,663</td><td><b>30 words</b></td><td>53</td><td>799</td><td>101</td><td>505</td><td>307</td></tr>
+      <tr><td>Typed, specs</td><td>425</td><td>40 words</td><td>126</td><td>47</td><td>2</td><td>26</td><td>14</td></tr>
+      <tr><td>Typed, long-form</td><td>137</td><td>42 words</td><td>141</td><td>27</td><td>0</td><td>8</td><td>19</td></tr>
+      <tr><td><b>Spoken, dictated</b></td><td>16</td><td><b>140 words</b></td><td><b>279</b></td><td>3</td><td>0</td><td>0</td><td>0</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="split">
+    <div>
+      <h4>Typed you</h4>
+      <p>Fast, compressed, lowercase, apostrophes dropped. A median message of thirty words. Anger is compressed to a phrase, not narrated. Stable typo signature: <code>u, ur, tho, liek, soemthing, beacuse, wht, teh, cuz, idk</code>. Sentence-final <code>-_-</code> as a deadpan, four-plus-dot ellipses as disbelief, stacked question marks. Feminine and campy address to the machine, 133 times: girl, sis, sweetie, girlie, bro, dude, buddy, my dear. Enthusiasm is short and flat: <q>cool this helps</q>, <q>3 is a big win</q>, <q>oky these are so so so so so much better</q>. And a habit visible dozens of times: you re-send the identical message with one clause added rather than editing. <b>Your second version of a thought is almost always the real one.</b></p>
+    </div>
+    <div>
+      <h4>Spoken you</h4>
+      <p>Four to nine times longer. Apologetic openings, running-start "so", self-correction out loud with an explicit sorry, "or whatever" as a placeholder for anything you cannot name, tag questions checking the listener is still there. Almost no profanity. You hedge hardest when evaluating yourself and not at all when evaluating output. <b>This is where you explain rather than command, and it is the register most of your good material is in.</b> The two protected paragraphs in your record, the psychology one and the attribution one, both read like spoken you. Every line that has stalled reads like typed you trying to sound like a portfolio.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><b>The practical instruction, if you want one.</b> Dictate the About section. Do not type it. Then cut, do not rewrite. Your own rubric scores unfakeable voice highest and the dictation file is the only place in 379,000 words where you were not editing yourself. Sixteen recordings and 4,470 words of it already exist on your machine at <code>~/.codex/dictation-history</code>, now extracted to <code>docs/about-source/_evidence/dictation_verbatim.txt</code>.</p>
+  </div>
+</section>
+
+<!-- ============ 09 ============ -->
+<section id="para">
+  <div class="secnum">09</div>
+  <h2>If someone asked me to describe you in one paragraph</h2>
+  <p class="dek">Not copy. Not a line for the page. What I would actually say, having read all of it, if a hiring manager asked me what you are like to work with and I had no reason to flatter you.</p>
+
+  <div class="callout" style="border-left:2px solid var(--hot)">
+    <p style="font-size:19px;line-height:1.55;color:var(--ink);max-width:66ch">He does not trust his own judgment, and instead of hiding that he has built machinery around it. He separates deciding from making and defends that line harder than he defends any decision. He asks for options rather than answers because he wants to choose against something. He checks whether the citation actually contains the number. He asks to be argued with, and he drops a position in three words when the argument lands. When something goes wrong he changes the system that produced it, which is why his repositories contain a decision log, a terminology database and a file whose only job is to stop a retracted claim from ever being said again. He works out loud, including the parts where he is stressed, and he calibrates every deliverable to a specific person by name.</p>
+    <p style="font-size:19px;line-height:1.55;color:var(--ink-2);max-width:66ch">He is also slow to converge on purpose, gets louder instead of smarter when he is stuck, and issues instructions that cancel each other out often enough that people learn to guess which one is live. His boss's criticism, that he digs too deep and will not let errors sit, is fair. It is also inseparable from the part that is good.</p>
+  </div>
+
+  <p style="margin-top:34px"><b>What I would not say, because the evidence does not support it:</b> that he is a visionary, that he has an unusual eye, that he is a natural leader or that he makes complicated things feel obvious. Those may all be true. None of them are in this corpus in a form anyone could check, and every one of them survives the swap test onto someone else.</p>
+
+  <p><b>What is missing from this document and cannot be fixed from here:</b> how you are with people in the room. 379,000 words of you talking to machines is nearly silent on it. The two strongest pieces of evidence on that question are both second-hand and both currently marked in your own record as things you want off the page: your CEO calling you the best designer he has worked with, and the event where you were the centre of the room. <b>You may want to revisit that ruling.</b> It is the only category of evidence you have that this document cannot reach, and you have ruled out the only two instances of it.</p>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <b>Method.</b> 6,241 messages, 379,179 words, four sources, 100% coverage. Thirteen segments read in full by independent passes with no shared context, then reconciled. Frequency counts measured by regex against raw text, not estimated. 108 verbatim quotes verified programmatically against their source line before publication.<br>
+  <b>Citation keys.</b> Bare L numbers are <code>HUMAN_CORPUS.txt</code>. <code>CO</code> is <code>CHADWICK_ONLY.txt</code>. <code>Codex</code> is <code>_evidence/codex_chadwick.txt</code>. <code>DV</code> is <code>_evidence/dictation_verbatim.txt</code>. All four are in <code>portfolio/docs/about-source/</code>.<br>
+  <b>Known gap.</b> <code>~/.claude/</code> is a protected macOS location and cannot be granted; Claude Code's own session transcripts are outside this analysis.<br>
+  <b>Status.</b> Personal reference. Nothing here has been written into any About section, any candidate bank or any of your existing records. No files were modified.<br>
+  <b>Revision, 24 Sep 2026.</b> §02 re-checked against the machine. Conflicts 01, 02, 03 and 04 resolved; 05, 06 and 07 still open, with 05 downgraded to an internal contradiction and 07 to a placement problem. §01 and §05 updated for the generated blocklist, the 25-to-18 cut in the bank, and the move of the record from <code>Documents/Claude/Mondai/.claude/about-record.md</code>, now deleted, to <code>Code/portfolio/.claude/skills/about-page/SKILL.md</code>. Your Projects folder is now <code>Code</code>; paths above reflect that. Nothing in §03 to §09 changed, because none of it depended on those files.
+</div></footer>

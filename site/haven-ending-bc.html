@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven ending B and C</title>
+<style>
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+:root {
+  --bg: #040405;
+  --n050: #f2f1f8;
+  --n100: #e8e7ee;
+  --n400: #c9c9d4;
+  --n500: #aeaeb4;
+  --n550: #7b7b86;
+  --n575: #65656e;
+  --n600: #38383d;
+  --n675: #28282b;
+  --lav: #a2a2d4;
+  --plan: #482cff;
+  --gutter: 40px;
+  --col: 232px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); }
+body { color: var(--n400); font-family: "Satoshi", system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; font-synthesis: none; }
+
+.h24 { font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; }
+.h40 { font-size: clamp(28px, 2.78vw, 40px); line-height: 1.1; letter-spacing: -0.02em; }
+.b16 { font-size: 16px; line-height: 1.4; }
+.l14 { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; }
+.l12 { font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+.head { font-size: clamp(44px, 4.45vw, 64px); line-height: 1.05; letter-spacing: -0.02em; color: var(--n050); }
+
+.intro { max-width: 1440px; margin: 0 auto; padding: 64px var(--gutter) 40px; }
+.intro .h24 { color: var(--n050); }
+.intro .b16 { color: var(--n550); margin-top: 12px; max-width: 70ch; }
+.option { max-width: 1440px; margin: 0 auto 160px; }
+.tag { padding: 0 var(--gutter) 16px; color: var(--lav); }
+.frame { border-top: 1px solid var(--n675); border-bottom: 1px solid var(--n675); padding: 180px var(--gutter) 0; }
+.indent { padding-left: var(--col); }
+.foot { display: flex; justify-content: space-between; margin-top: 180px; padding: 32px 0 40px; border-top: 1px solid var(--n675); color: var(--n575); }
+
+/* Option B: a light path, not the MVP timeline again */
+.b-lead { margin-top: 48px; max-width: calc(var(--col) + 620px); color: var(--n400); }
+.path { margin-top: 112px; position: relative; display: flex; justify-content: space-between; }
+.path::before { content: ""; position: absolute; left: 0; right: 0; top: 5px; height: 1px; background: var(--plan); }
+.stop { position: relative; display: flex; flex-direction: column; gap: 16px; padding-top: 0; min-width: 0; }
+.stop:not(:first-child) { align-items: center; text-align: center; }
+.stop:last-child { align-items: flex-end; text-align: right; }
+.dot { width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 1px solid var(--plan); }
+.stop.done .dot { background: var(--n600); border-color: var(--n600); }
+.stop .l12 { color: var(--n550); }
+.stop .l14 { color: var(--n100); white-space: nowrap; }
+.stop.done .l14 { color: var(--n575); }
+.b-body { margin-top: 72px; max-width: calc(var(--col) + 620px); color: var(--n400); }
+
+/* Option C: closing note */
+.c-note { margin-top: 64px; max-width: calc(var(--col) + 920px); }
+.c-note span { color: var(--n550); }
+.c-note b { font-weight: 500; color: var(--n050); }
+
+/* Rationale, not part of the design */
+.why { margin: 32px var(--gutter) 0; border: 1px solid var(--n675); border-radius: 16px; padding: 32px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 0 40px; }
+.why .l12 { color: var(--n550); padding-top: 3px; }
+.why .l14 { color: var(--n400); max-width: 78ch; }
+.why .l14 + .l14 { margin-top: 12px; }
+.why b { font-weight: 500; color: var(--n100); }
+
+@media (max-width: 900px) {
+  :root { --gutter: 16px; --col: 0px; }
+  .frame { padding-top: 120px; }
+  .path { flex-direction: column; gap: 28px; padding-left: 28px; }
+  .path::before { left: 5px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; background: var(--plan); }
+  .stop, .stop:not(:first-child), .stop:last-child { flex-direction: row; align-items: center; text-align: left; gap: 12px; }
+  .stop .dot { position: absolute; left: -28px; }
+  .why { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .foot { margin-top: 120px; }
+}
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <p class="h24">Haven ending, B and C</p>
+  <p class="b16">Both drop the teen study that would need a waiver and replace it with an at-home test for 18 and 19 year olds. B points back to the MVP timeline without redrawing it. C says it all in a short note. The boxed notes are rationale only.</p>
+</header>
+
+<section class="option" data-option="B">
+  <p class="tag l12">Option B · A light path</p>
+  <div class="frame">
+    <h2 class="head">What happens next</h2>
+    <p class="h24 indent b-lead">The case study stops at the Identity launch. Three steps would take Haven the rest of the way.</p>
+    <div class="path" aria-label="Path from the case study end point to Community">
+      <div class="stop done"><span class="dot"></span><span class="l12">Case study end point</span><span class="l14">Identity</span></div>
+      <div class="stop"><span class="dot"></span><span class="l12">Next</span><span class="l14">Retest</span></div>
+      <div class="stop"><span class="dot"></span><span class="l12">Then</span><span class="l14">Test at home</span></div>
+      <div class="stop"><span class="dot"></span><span class="l12">Phase 2</span><span class="l14">Community</span></div>
+    </div>
+    <p class="b16 indent b-body">First, retest the revised flow with new participants and count how often people still change their pick. Then test at home with 18 and 19 year olds who still live with family. They’d use Haven where they live, in the moment, so the results don’t lean on memory. Community follows as Phase 2.</p>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="why">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> a pointer, not a repeat. The reader already knows the MVP timeline, so one thin line with four stops is enough to say where Haven is and where it goes.</p>
+      <p class="l14"><b>Four stops, labels only.</b> Recognition over recall. The line borrows the timeline's blue so it reads as the same plan, without the grid, pills or months.</p>
+      <p class="l14"><b>Detail in one paragraph below.</b> Progressive disclosure. The line gives the shape in a second and the paragraph explains it for anyone who keeps reading.</p>
+    </div>
+  </aside>
+</section>
+
+<section class="option" data-option="C">
+  <p class="tag l12">Option C · Closing note</p>
+  <div class="frame">
+    <h2 class="head">What happens next</h2>
+    <p class="h40 indent c-note"><b>Haven stops at the Identity launch, before anyone has used it at home.</b> <span>That’s where it gets proven.</span> <b>First I’d retest the new flow and see if people still change their pick.</b> <span>Then I’d test at home with 18 and 19 year olds who still live with family, in the moment, so nothing depends on memory.</span> <b>And I’d measure less than usual, on purpose.</b> <span>For someone who isn’t out, a usage log is a record of who they are.</span></p>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="why">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> end in your own voice. A short first person note at headline size, with no visuals.</p>
+      <p class="l14"><b>Two tones.</b> Scannability. The bright sentences carry the plan and the gray ones carry the reasoning, so a skimmer reading only the bright lines still gets the ending.</p>
+      <p class="l14"><b>Measure less, on purpose.</b> Shows measurement judgment in one line instead of a metrics block.</p>
+      <p class="l14"><b>No visuals.</b> After a page of screens and diagrams, a quiet block of type reads as the conclusion.</p>
+    </div>
+  </aside>
+</section>
+
+</body>
+</html>

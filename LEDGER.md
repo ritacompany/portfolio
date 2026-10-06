@@ -1,5 +1,5 @@
 # LEDGER / Portfolio case studies
-Updated: 2026-08-22
+Updated: 2026-09-27
 
 ## Objective
 Rebuild Metalab case-study layouts as own HTML, driven by the Satoshi type system, imagery replaced by #040405 placeholder blocks at true container sizes.
@@ -16,6 +16,12 @@ All 10 case studies built and verified in build/: midjourney, robinhood, uber, s
 - Files are NOT uniformly lean — some later pages (e.g. headspace.html, ro.html) still carry a leftover unused `.t3i` base ruleset copied forward from an earlier page's template that this particular page doesn't use. Harmless (dead CSS, no visual effect) but not cleaned up. Low-priority; would take a pass across all 10 files to fix.
 - Discovered while pulling Robinhood's live DOM: metalab.com's nav lists 9 case studies beyond Midjourney, not the 7 originally logged (`ro` and `windsurf` weren't in the original scope list). Chadwick approved both — done.
 - Discovered while pulling Atoms/Calvin Klein/Headspace/Ro's live DOM: their "next case study" links point to 4 pages not in the nav and not built here — **Genies** (from Atoms), **Pitch** (from Calvin Klein), **The Athletic** (from Headspace), **Upwork** (from Ro). These may be archived/delisted case studies rather than current scope — Windsurf's own "next" link points back to Suno, i.e. closes the loop within the known 10, which is a point toward the 4 strays being stale leftovers rather than missing scope. Not investigated further. See Open.
+
+## Figma transfer
+
+The `VC` page's `Case study layouts` section (`3461:5685`) now contains all 10 approved MetaLab layout studies. Midjourney, Robinhood and Uber were already present. Suno, Atoms, The Atlantic, Calvin Klein, Headspace, Ro and Windsurf were added on 2026-09-27 as editable 1440 pixel content stacks beside them. Each new stack follows the corresponding `build/*.html` section order, source geometry, Satoshi typography and neutral media placeholders. The seven new stacks were checked against their source section counts, text, media bounds and frame positions. Full-stack renders and a focused quote-card and outcomes review were inspected. Text was checked for hidden overflow, and the seven frames do not overlap or extend outside the section. The missing "The vision" section was restored in the existing Midjourney stack after comparison with its HTML source. Robinhood and Uber were not changed in this pass.
+
+The Figma text remains MetaLab scaffold copy, not approved portfolio case-study content. These frames are working layout references, not publication-ready pages. The seven new frames contain content stacks only, with no navigation or footer.
 
 ## Decided
 - Metalab grid replicated exactly: 6-col modules, 12-col StatRows, gutter 16px mobile / 24px desktop, vertical gutter 140/180, single breakpoint at 967px (carousel padding breakpoint at 768px). Why: their whole layout derives from it.

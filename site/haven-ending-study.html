@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven ending study</title>
+<style>
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("assets/satoshi-bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --bg: #040405;
+  --n050: #f2f1f8;
+  --n100: #e8e7ee;
+  --n300: #d2d2db;
+  --n400: #c9c9d4;
+  --n500: #aeaeb4;
+  --n525: #90909d;
+  --n550: #7b7b86;
+  --n575: #65656e;
+  --n600: #38383d;
+  --n675: #28282b;
+  --n700: #1d1d21;
+  --lav: #a2a2d4;
+  --plan: #482cff;
+  --head: 64px;
+  --gutter: 40px;
+  --col: 232px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); }
+body { color: var(--n400); font-family: "Satoshi", system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; font-synthesis: none; }
+
+/* Haven type roles, matched to the Figma text styles */
+.h20 { font-size: 20px; line-height: 1.32; color: var(--n500); }
+.h24 { font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; }
+.h40 { font-size: clamp(28px, 2.78vw, 40px); line-height: 1.1; letter-spacing: -0.02em; }
+.b16 { font-size: 16px; line-height: 1.4; }
+.l14 { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; }
+.l12 { font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+.end-head { font-size: clamp(44px, 4.45vw, var(--head)); line-height: 1.05; letter-spacing: -0.02em; color: var(--n050); font-weight: 500; }
+
+/* Study chrome, not part of the design */
+.study-intro { max-width: 1440px; margin: 0 auto; padding: 64px var(--gutter) 40px; }
+.study-intro .h24 { color: var(--n050); }
+.study-intro .b16 { color: var(--n525); margin-top: 12px; max-width: 72ch; }
+.option { max-width: 1440px; margin: 0 auto 160px; }
+.option-tag { padding: 0 var(--gutter) 16px; color: var(--lav); }
+
+.frame { background: var(--bg); border-top: 1px solid var(--n675); border-bottom: 1px solid var(--n675); padding: 180px var(--gutter) 0; overflow: hidden; }
+.indent { padding-left: var(--col); }
+.foot { display: flex; justify-content: space-between; margin-top: 180px; padding: 32px 0 40px; border-top: 1px solid var(--n675); color: var(--n575); }
+
+/* Option A: bookend band */
+.a-lead { margin-top: 48px; max-width: calc(var(--col) + 700px); color: var(--n400); }
+.a-band { margin: 160px calc(var(--gutter) * -1) 0; background: var(--n400); padding: 72px 155px; }
+.a-band-inner { display: flex; gap: 36px; align-items: stretch; }
+.a-band-rule { width: 1px; background: var(--bg); flex: none; }
+.a-band p { font-weight: 700; font-size: clamp(34px, 4.45vw, 64px); line-height: 1.09; letter-spacing: -0.04em; color: var(--bg); max-width: 1081px; }
+.a-band + .foot { margin-top: 0; border-top: 0; }
+
+/* Option B: the timeline resumes */
+.b-lead { margin-top: 48px; max-width: calc(var(--col) + 620px); color: var(--n400); }
+.tl { margin-top: 120px; position: relative; }
+.tl-marks { position: relative; height: 72px; }
+.tl-mark { position: absolute; bottom: 12px; transform: translateX(-50%); text-align: center; color: var(--n100); white-space: nowrap; }
+.tl-mark.dim { color: var(--n575); }
+.tl-mark .arrow { display: block; color: var(--n550); font-size: 14px; }
+.tl-grid { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: 36px; row-gap: 26px; padding: 56px 0 40px; }
+.tl-lines { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); pointer-events: none; }
+.tl-lines span { border-left: 1px solid var(--n600); position: relative; }
+.tl-lines span:last-child { border-right: 1px solid var(--n600); }
+.tl-lines span i { position: absolute; top: 14px; left: 12px; font-style: normal; font-size: 16px; color: var(--n575); }
+.tl-lines span.now { border-left-color: var(--n400); }
+.tl-lines span.now i { color: var(--n100); }
+.pill { position: relative; height: 36px; background: var(--bg); border: 1px solid var(--plan); border-radius: 0 999px 999px 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 20px; font-weight: 700; font-size: 14px; color: var(--n100); white-space: nowrap; }
+.pill.done { border-color: var(--n600); color: var(--n550); }
+
+/* Option C: closing note */
+.c-note { margin-top: 64px; max-width: calc(var(--col) + 920px); }
+.c-note .h40 span { color: var(--n550); }
+.c-note .h40 b { font-weight: 500; color: var(--n050); }
+
+/* Rationale, not part of the design */
+.rationale { margin: 32px var(--gutter) 0; border: 1px solid var(--n675); border-radius: 16px; padding: 32px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 0 40px; }
+.rationale .l12 { color: var(--n550); padding-top: 3px; }
+.rationale .l14 { color: var(--n400); max-width: 78ch; }
+.rationale .l14 + .l14 { margin-top: 12px; }
+.rationale b { font-weight: 500; color: var(--n100); }
+
+@media (max-width: 900px) {
+  :root { --gutter: 16px; --col: 0px; }
+  .frame { padding-top: 120px; }
+  .a-band { padding: 48px 24px; }
+  .tl { overflow-x: auto; }
+  .tl-inner { min-width: 760px; }
+  .rationale { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .foot { margin-top: 120px; }
+}
+</style>
+</head>
+<body>
+
+<header class="study-intro">
+  <p class="h24">Haven ending study, round two</p>
+  <p class="b16">Three ways to close the case study. Each opens with a plain "What happens next" at Heading/64 and avoids list rows, since lists on the Haven page are interactive. Everything inside the dark frames is the design. The boxed notes underneath are rationale only.</p>
+</header>
+
+<section class="option" data-option="1">
+  <p class="option-tag l12">Option A · Bookend</p>
+  <div class="frame">
+    <h2 class="end-head">What happens next</h2>
+    <p class="h24 indent a-lead">The case study stops at the Identity launch. Next I’d retest the revised flow with new participants, then run a study teens can join without a parent’s permission, then build Phase 2, Community.</p>
+    <div class="a-band">
+      <div class="a-band-inner">
+        <span class="a-band-rule" aria-hidden="true"></span>
+        <p>A profile gives people information.<br>A conversation gives them trust.</p>
+      </div>
+    </div>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="rationale">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> close the story the way the page turned it. The gray band that introduced the solutions comes back once to deliver the lesson, so the case study ends on a bookend.</p>
+      <p class="l14"><b>Plain header, one sentence of plan.</b> Inverted pyramid. The next steps are written as a single sentence, so they read as a plan without looking like the page's interactive lists.</p>
+      <p class="l14"><b>The band.</b> Peak end rule and repetition. People remember the peak and the end of an experience. Repeating a pattern the reader has already seen signals a deliberate close, not another section.</p>
+      <p class="l14"><b>Band runs into the footer.</b> Closure. Nothing sits between the lesson and the end of the page.</p>
+    </div>
+  </aside>
+</section>
+
+<section class="option" data-option="2">
+  <p class="option-tag l12">Option B · The timeline resumes</p>
+  <div class="frame">
+    <h2 class="end-head">What happens next</h2>
+    <p class="h24 indent b-lead">The MVP timeline stopped at the Identity launch. This is the rest of it.</p>
+    <div class="tl">
+      <div class="tl-inner">
+        <div class="tl-marks">
+          <span class="tl-mark l14 dim" style="left: calc(100% / 12 * 6)"><span>Case study end point</span><span class="arrow">↓</span></span>
+          <span class="tl-mark l14" style="left: calc(100% / 12 * 12 - 60px)"><span>Community launch</span><span class="arrow">↓</span></span>
+        </div>
+        <div class="tl-grid">
+          <div class="tl-lines" aria-hidden="true">
+            <span><i>01</i></span><span><i>02</i></span><span><i>03</i></span><span><i>04</i></span><span><i>05</i></span><span><i>06</i></span>
+            <span class="now"><i>07</i></span><span><i>08</i></span><span><i>09</i></span><span><i>10</i></span><span><i>11</i></span><span><i>12</i></span>
+          </div>
+          <div class="pill done" style="grid-column: 1 / 7; grid-row: 2">Identity</div>
+          <div class="pill" style="grid-column: 7 / 9; grid-row: 3">Retest</div>
+          <div class="pill" style="grid-column: 8 / 11; grid-row: 4">Teen study</div>
+          <div class="pill" style="grid-column: 10 / 13; grid-row: 5">Community</div>
+        </div>
+      </div>
+    </div>
+    <p class="b16 indent b-lead">Retest the revised flow and count how often people still change their pick. Then run a study teens can join without a parent’s permission, so the ones who aren’t out can take part. Community launches at month 12, where the original plan put it.</p>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="rationale">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> the case study already promised a timeline with an end point. The ending picks it up where the reader left it.</p>
+      <p class="l14"><b>Same pills, same grid.</b> Consistency and recognition over recall. The reader learned this visual in the MVP section, so there is nothing new to decode.</p>
+      <p class="l14"><b>Finished work dimmed, plan in blue.</b> Hierarchy through contrast. What's done recedes and the eye lands on what's next.</p>
+      <p class="l14"><b>One paragraph under the chart.</b> Progressive disclosure. The chart gives the shape at a glance and the paragraph gives the reason for the reader who stays.</p>
+    </div>
+  </aside>
+</section>
+
+<section class="option" data-option="3">
+  <p class="option-tag l12">Option C · Closing note</p>
+  <div class="frame">
+    <h2 class="end-head">What happens next</h2>
+    <div class="c-note indent">
+      <p class="h40"><b>Haven stops at the Identity launch, before anyone has used it at home.</b> <span>That’s where it gets proven.</span> <b>First I’d retest the new flow and see if people still change their pick.</b> <span>Then I’d study teens directly, without needing a parent’s permission.</span> <b>And I’d measure less than usual, on purpose.</b> <span>For someone who isn’t out, a usage log is a record of who they are.</span></p>
+    </div>
+    <div class="foot l12"><span>Footer</span><span>All work</span></div>
+  </div>
+  <aside class="rationale">
+    <p class="l12">Rationale</p>
+    <div>
+      <p class="l14"><b>Concept:</b> end in your own voice. A short first person note at headline size, the way a good essay ends.</p>
+      <p class="l14"><b>Two tones.</b> Scannability. The bright sentences carry the plan, and the gray ones carry the reasoning. A skimmer reading only the bright lines still gets the whole ending.</p>
+      <p class="l14"><b>Measure less, on purpose.</b> Shows measurement judgment in a single line instead of a metrics block, which is the senior signal the research pointed to.</p>
+      <p class="l14"><b>No visuals.</b> Contrast with everything above it. After a page of screens and diagrams, a quiet block of type reads as the conclusion.</p>
+    </div>
+  </aside>
+</section>
+
+</body>
+</html>
