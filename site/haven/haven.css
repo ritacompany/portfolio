@@ -278,7 +278,18 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .profile__block { margin-top: 206px; display: flex; flex-direction: column; gap: 44px; }
 .profile__row { display: flex; gap: calc(40 * var(--g)); align-items: flex-start; }
 .profile__phone { width: calc(680 * var(--g)); aspect-ratio: 680 / 677; flex: none; }
-.profile__phone img { width: 102.94%; max-width: none; }
+.profile__phone .mask__scale { overflow: hidden; }
+/* Live mockup, Figma 3556:22214: collage behind, the straightened Mokker phone centered on top.
+   The screen layer is cut to the measured screen area of the render, 812 by 1228 of 879 by 1811. */
+.pframe { position: relative; width: 100%; height: 100%; }
+.pframe__collage { position: absolute; left: 0; top: 0; width: 102.94%; max-width: none; height: 100%; }
+.phone { position: absolute; left: 28.088%; top: 4.653%; width: 43.824%; aspect-ratio: 298 / 614; }
+.phone__case { position: absolute; inset: 0; width: 100%; height: 100%; }
+.phone__screen { position: absolute; left: 3.868%; top: 1.546%; width: 92.38%; height: 96.9%; overflow: hidden; border-radius: 11.5% / 5.3%; background: #ececf4; }
+.phone__content { position: absolute; left: 0; top: 0; width: 100%; will-change: transform; }
+.phone__header { position: absolute; left: 0; top: 0; width: 100%; }
+.phone__footer { position: absolute; left: 0; bottom: 0; width: 100%; }
+.touch { position: absolute; left: 0; top: 0; width: 13%; aspect-ratio: 1; margin: -6.5% 0 0 -6.5%; border-radius: 50%; background: rgb(36 34 60 / 0.28); box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.75), 0 6px 20px rgb(0 0 0 / 0.22); opacity: 0; pointer-events: none; will-change: transform, opacity; }
 .profile__side { width: calc(680 * var(--g)); flex: none; display: flex; flex-direction: column; gap: 54px; }
 .profile__who { width: 100%; aspect-ratio: 680 / 363; }
 .profile__body .tb-item { max-width: 484px; }

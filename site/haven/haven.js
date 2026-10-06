@@ -33,7 +33,7 @@
   // ---- Media frames: MaskReveal from the top with the content settling from 1.3, 0.8s Power3.easeInOut, once ----
   // Runs on the compositor through the Web Animations API, and waits for its images to decode so
   // nothing pops in halfway through the reveal.
-  function openMask(el, inner) { el.style.clipPath = "none"; inner.style.transform = "none"; el.style.willChange = inner.style.willChange = "auto"; }
+  function openMask(el, inner) { el.style.clipPath = "none"; inner.style.transform = "none"; el.style.willChange = inner.style.willChange = "auto"; el.dataset.revealDone = "true"; el.dispatchEvent(new Event("revealdone")); }
   function revealMask(el, instant, extraDelay) {
     var inner = el.querySelector(".mask__scale");
     el.dataset.revealed = "true";

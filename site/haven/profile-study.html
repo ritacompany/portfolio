@@ -12,22 +12,8 @@
   .study__row { margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
   .study__item { display: flex; flex-direction: column; gap: 16px; }
   .study__item .body { color: #c9c9d4; }
+  .pframe-study { aspect-ratio: 680 / 677; height: auto; overflow: hidden; background: #171717; }
 
-  /* Figma 3556:22214: a 680 by 677 frame, collage behind, the phone on top */
-  .pframe { position: relative; width: 100%; aspect-ratio: 680 / 677; overflow: hidden; background: #171717; }
-  .pframe__collage { position: absolute; left: 0; top: 0; width: 102.94%; height: 100%; object-fit: cover; }
-  /* The straightened mockup, 298 by 614 in Figma, cropped from the source image with the Figma crop */
-  .phone { position: absolute; width: 43.824%; aspect-ratio: 298 / 614; }
-  .phone__case { position: absolute; inset: 0; width: 100%; height: 100%; }
-  /* Measured on the source: the screen body is a true rectangle, 812 by 1228 of the 879 by 1811 crop */
-  .phone__screen { position: absolute; left: 3.868%; top: 1.546%; width: 92.38%; height: 96.9%; overflow: hidden; border-radius: 11.5% / 5.3%; background: #ececf4; }
-  .phone__content { position: absolute; left: 0; top: 0; width: 100%; will-change: transform; }
-  .phone__header { position: absolute; left: 0; top: 0; width: 100%; }
-  .phone__footer { position: absolute; left: 0; bottom: 0; width: 100%; }
-  /* Straight, centered in the 680 by 677 frame */
-  .phone-a, .phone-b { left: 28.088%; top: 4.653%; }
-  /* Fingertip marker for the touch version */
-  .touch { position: absolute; left: 0; top: 0; width: 13%; aspect-ratio: 1; margin: -6.5% 0 0 -6.5%; border-radius: 50%; background: rgb(36 34 60 / 0.28); box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.75), 0 6px 20px rgb(0 0 0 / 0.22); opacity: 0; pointer-events: none; will-change: transform, opacity; }
 </style>
 </head>
 <body>
@@ -39,9 +25,9 @@
   <div class="study__row">
     <section class="study__item">
       <p class="eyebrow">A. Scroll physics only</p>
-      <div class="pframe">
+      <div class="pframe pframe-study" data-pscroll>
         <img class="pframe__collage" src="assets/profile-collage.webp" alt="">
-        <div class="phone phone-a">
+        <div class="phone">
           <img class="phone__case" src="assets/profile-phone-straight.webp" alt="">
           <div class="phone__screen">
             <img class="phone__content" src="assets/profile-screen-expanded.webp" alt="Penelope’s Confidante profile scrolling through her shared experiences.">
@@ -53,9 +39,9 @@
     </section>
     <section class="study__item">
       <p class="eyebrow">B. Scroll physics with a fingertip</p>
-      <div class="pframe">
+      <div class="pframe pframe-study" data-pscroll>
         <img class="pframe__collage" src="assets/profile-collage.webp" alt="">
-        <div class="phone phone-b">
+        <div class="phone">
           <img class="phone__case" src="assets/profile-phone-straight.webp" alt="">
           <div class="phone__screen">
             <img class="phone__content" src="assets/profile-screen-expanded.webp" alt="Penelope’s Confidante profile scrolling through her shared experiences.">
@@ -68,76 +54,6 @@
     </section>
   </div>
 </main>
-<script>
-  // A scripted thumb. Units are Figma pixels on the 440 wide screen; positive offset scrolls content up.
-  // Drag: content tracks the finger. Release: velocity decays exponentially with a 0.5 s time constant,
-  // the iOS normal rate. Past the top edge the content rubber bands, then springs back.
-  (function () {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var TAU = 0.5, HZ = 120, W = 440, H = 1870;
-    // [type, value...]: wait s | drag distance(px, + scrolls down the page) duration(s) fingerY | flickTop
-    var script = [
-      ["wait", 1.8],
-      ["drag", 80, 0.22, 640], ["coast"], ["wait", 1.7],
-      ["drag", 62, 0.2, 610], ["coast"], ["wait", 2.2],
-      ["drag", -40, 0.24, 470], ["coast"], ["wait", 1.6],
-      ["flickTop", 0.12, 380], ["wait", 2.4]
-    ];
-    var pos = [], touch = [], y = 0, v = 0, fx = 330;
-    function push(n, fn) { for (var i = 0; i < n; i++) fn(i); }
-    function rubber(x) { var c = 0.55, d = 956; return (1 - 1 / (x * c / d + 1)) * d; }
-    script.forEach(function (st) {
-      var n;
-      if (st[0] === "wait") { n = Math.round(st[1] * HZ); push(n, function () { pos.push(y); touch.push(null); }); }
-      else if (st[0] === "drag") {
-        var dist = st[1], dur = st[2], y0 = y, fy0 = st[3]; n = Math.round(dur * HZ);
-        // touch down: finger rests briefly, then moves with a slight ease in
-        push(Math.round(0.08 * HZ), function () { pos.push(y); touch.push([fx, fy0, 1]); });
-        push(n, function (i) { var k = (i + 1) / n, e = k * k * (3 - 2 * k) * 0.35 + k * 0.65; y = y0 + dist * e; pos.push(y); touch.push([fx, fy0 - dist * e, 1]); });
-        v = dist / dur * 0.9; // release velocity: the thumb eases off slightly before lifting
-        touch.push([fx, fy0 - dist, 0]);
-      } else if (st[0] === "coast") {
-        var t = 0; while (Math.abs(v) * Math.exp(-t / TAU) > 6) { t += 1 / HZ; y += v * Math.exp(-t / TAU) / HZ; pos.push(y); touch.push(null); }
-      } else if (st[0] === "flickTop") {
-        var dur2 = st[1], fyS = st[2], ys = y; n = Math.round(dur2 * HZ);
-        push(Math.round(0.06 * HZ), function () { pos.push(y); touch.push([fx, fyS, 1]); });
-        push(n, function (i) { var k = (i + 1) / n; y = ys - 90 * k; pos.push(y); touch.push([fx, fyS + 90 * k, 1]); });
-        touch.push([fx, fyS + 90, 0]);
-        // fast coast up past the top, rubber band against the edge, spring back
-        v = -2600; var t2 = 0, over = 0;
-        while (y > 0) { t2 += 1 / HZ; y += v * Math.exp(-t2 / TAU) / HZ; pos.push(Math.max(y, 0)); touch.push(null); }
-        var vOver = Math.abs(v * Math.exp(-t2 / TAU)), peak = rubber(vOver * 0.03);
-        push(Math.round(0.16 * HZ), function (i) { var k = (i + 1) / Math.round(0.16 * HZ); pos.push(-peak * Math.sin(k * Math.PI / 2)); touch.push(null); });
-        push(Math.round(0.45 * HZ), function (i) { var k = (i + 1) / Math.round(0.45 * HZ); pos.push(-peak * Math.pow(1 - k, 3)); touch.push(null); });
-        y = 0;
-      }
-    });
-    var total = pos.length / HZ;
-    document.querySelectorAll(".pframe").forEach(function (frame) {
-      var img = frame.querySelector(".phone__content"), dot = frame.querySelector(".touch"), screen = frame.querySelector(".phone__screen");
-      var running = false, start = 0, lastDot = 0;
-      function frameFn(now) {
-        if (!running) return;
-        var i = Math.floor(((now - start) / 1000 % total) * HZ);
-        img.style.transform = "translateY(" + (-pos[i] / H * 100).toFixed(3) + "%)";
-        if (dot) {
-          var tch = touch[i], sw = screen.clientWidth / W;
-          var on = tch && tch[2] ? 1 : 0;
-          lastDot += (on - lastDot) * 0.25;
-          if (tch) dot.style.transform = "translate(" + (tch[0] * sw).toFixed(1) + "px," + (tch[1] * sw).toFixed(1) + "px) scale(" + (0.85 + 0.15 * lastDot).toFixed(3) + ")";
-          dot.style.opacity = lastDot.toFixed(3);
-        }
-        requestAnimationFrame(frameFn);
-      }
-      new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          if (e.isIntersecting && !running) { running = true; start = performance.now(); requestAnimationFrame(frameFn); }
-          else if (!e.isIntersecting) running = false;
-        });
-      }, { threshold: 0.3 }).observe(frame);
-    });
-    window.__study = { pos: pos, touch: touch, hz: HZ };
-  })();
-</script>
+<script src="profile-scroll.js"></script>
 </body>
 </html>

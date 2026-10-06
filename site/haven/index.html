@@ -274,7 +274,19 @@ a chat</span></li>
       </ul>
       <div class="profile__row">
         <figure class="mask profile__phone" data-mask>
-          <div class="mask__scale"><img src="assets/profile-phone.webp" width="700" height="697" loading="lazy" alt="Penelope’s Confidante profile on a phone: a 94 percent match with shared experiences listed first and suggested Confidantes along the bottom."></div>
+          <div class="mask__scale">
+          <div class="pframe" data-pscroll>
+            <img class="pframe__collage" src="assets/profile-collage.webp" width="700" height="677" loading="lazy" alt="">
+            <div class="phone">
+              <img class="phone__case" src="assets/profile-phone-straight.webp" width="298" height="614" loading="lazy" alt="">
+              <div class="phone__screen">
+                <img class="phone__content" src="assets/profile-screen-expanded.webp" width="440" height="1870" loading="lazy" alt="Penelope’s Confidante profile, scrolling through her shared experiences.">
+                <img class="phone__header" src="assets/profile-screen-header.webp" width="440" height="128" loading="lazy" alt="">
+                <img class="phone__footer" src="assets/profile-screen-footer.webp" width="440" height="235" loading="lazy" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
         </figure>
         <div class="profile__side">
           <figure class="mask profile__who" data-mask data-delay="0.2">
@@ -354,5 +366,6 @@ a chat</span></li>
 <script src="vendor/lenis.min.js"></script>
 <script src="vendor/gsap.min.js"></script>
 <script src="haven.js"></script>
+<script src="profile-scroll.js"></script>
 </body>
 </html>
