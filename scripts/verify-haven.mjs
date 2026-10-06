@@ -141,7 +141,7 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
     return { order, bg: getComputedStyle(stage.querySelector('[data-id="select"]')).backgroundColor };
   });
   pass("motion: flow ends quiz, review, intro, schedule, select", flowEnd.order === "quiz,review,intro,schedule,select", flowEnd.order);
-  pass("motion: Select a Confidante is green before and after the move", startOrder === "rgb(120, 183, 101)" && flowEnd.bg === "rgb(120, 183, 101)", `${startOrder} then ${flowEnd.bg}`);
+  pass("motion: Select a Confidante is green before and after the move", startOrder === "rgb(92, 196, 60)" && flowEnd.bg === "rgb(92, 196, 60)", `${startOrder} then ${flowEnd.bg}`);
 
   // No hover effects: cards keep one style and pills are plain labels
   const hov = await page.evaluate(() => ({ pillButtons: document.querySelectorAll("button.pill").length, tip: !!document.getElementById("insight-tip") }));
@@ -155,18 +155,20 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
   // Quiz: labels wipe and decode, phone rises then holds at screen center
   const stageTop = await page.evaluate(() => document.getElementById("quiz-stage").getBoundingClientRect().top + scrollY);
   await page.evaluate((y) => window.__haven.lenis.scrollTo(y - innerHeight * 0.55, { immediate: true }), stageTop);
-  await page.waitForTimeout(650);
+  await page.waitForTimeout(1300);
   const midLabel = await page.evaluate(() => { const t = document.querySelector('.qcol:nth-child(3) .qcol__text'); return { txt: t.textContent, op: getComputedStyle(t).opacity }; });
   await page.waitForTimeout(2200);
   const endLabels = await page.evaluate(() => [...document.querySelectorAll(".qcol")].filter((c) => c.querySelector(".qcol__label").getBoundingClientRect().top < innerHeight * 0.85).map((c) => c.querySelector(".qcol__text").textContent === c.querySelector(".qcol__text").dataset.text && getComputedStyle(c.querySelector(".qcol__bar")).transform === "matrix(1, 0, 0, 1, 0, 0)"));
   pass("quiz: labels scramble then settle on their text with the bar fully drawn", endLabels.length > 0 && endLabels.every(Boolean) && midLabel.txt !== "BELONGING" && midLabel.op === "1", JSON.stringify({ mid: midLabel.txt, end: endLabels }));
-  const centers = [];
-  for (const k of [0.2, 0.0, -0.15, -0.3]) {
-    await page.evaluate(([y, k]) => window.__haven.lenis.scrollTo(y + innerHeight * (0 - k), { immediate: true }), [stageTop, k]);
+  const pins = [];
+  const phoneAbs = await page.evaluate(() => { const st = document.getElementById("quiz-stage"); return st.getBoundingClientRect().top + scrollY + document.querySelector(".quiz__phone").offsetTop; });
+  for (const d of [20, 150, 300]) {
+    await page.evaluate(([y, d]) => window.__haven.lenis.scrollTo(y - 100 + d, { immediate: true }), [phoneAbs, d]);
     await page.waitForTimeout(150);
-    centers.push(await page.evaluate(() => { const r = document.querySelector(".quiz__phone").getBoundingClientRect(); return Math.round(r.top + r.height / 2 - innerHeight / 2); }));
+    pins.push(await page.evaluate(() => Math.round(document.querySelector(".quiz__phone").getBoundingClientRect().top)));
   }
-  pass("quiz: phone holds at screen center for a stretch of scroll", centers.filter((c) => Math.abs(c) <= 3).length >= 2, centers.join(", "));
+  const endGap = await page.evaluate(async () => { const q = document.querySelector(".quiz"); window.__haven.lenis.scrollTo(q.getBoundingClientRect().bottom + scrollY - innerHeight * 0.5, { immediate: true }); await new Promise((r) => setTimeout(r, 200)); return Math.round(q.getBoundingClientRect().bottom - document.querySelector(".quiz__phone").getBoundingClientRect().bottom); });
+  pass("quiz: phone pins on screen, never rises, and stops 100px above the section rule", new Set(pins).size === 1 && Math.abs(endGap - 100) <= 2, JSON.stringify({ pins, endGap }));
   await ctx.close();
 }
 
@@ -183,7 +185,7 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
     return { vertical: map.classList.contains("is-vertical"), order, inView, bg: getComputedStyle(stage.querySelector('[data-id="select"]')).backgroundColor };
   });
   pass("390: flow runs vertically, every step inside the screen", v.vertical && v.inView, JSON.stringify(v));
-  pass("390: vertical flow ends with select last and green", v.order === "quiz,review,intro,schedule,select" && v.bg === "rgb(120, 183, 101)", v.order + " " + v.bg);
+  pass("390: vertical flow ends with select last and green", v.order === "quiz,review,intro,schedule,select" && v.bg === "rgb(92, 196, 60)", v.order + " " + v.bg);
   await page.screenshot({ path: path.join(outDir, "flow-390.png") });
   await ctx.close();
 }
@@ -199,7 +201,7 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
     flow: getComputedStyle(document.querySelector('[data-id="select"]')).backgroundColor
   }));
   pass("reduced motion: everything visible without scrolling, no clip, no ticker", !r.cls.includes("js-motion") && r.hidden === 0 && r.clipped === 0 && r.ticker === "none", JSON.stringify(r));
-  pass("reduced motion: flow shows its final state", r.flow === "rgb(120, 183, 101)", r.flow);
+  pass("reduced motion: flow shows its final state", r.flow === "rgb(92, 196, 60)", r.flow);
   await ctx.close();
 }
 

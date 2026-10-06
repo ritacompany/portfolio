@@ -9,20 +9,11 @@
   // If GSAP failed to load, never leave content hidden.
   if (!G) document.documentElement.classList.remove("js-motion");
 
-  // ---- Smooth scroll. Mouse wheels get Lenis smoothing; trackpads already carry their own momentum,
-  // so their events go straight to native scroll instead of being smoothed twice, which read as jumpy. ----
-  var lenis = null, lastTrackpad = 0;
-  function isTrackpad(e) {
-    if (!e || e.type !== "wheel") return false;
-    var now = performance.now();
-    // A gesture that looked like a trackpad stays native for its whole momentum tail
-    if (now - lastTrackpad < 250) { lastTrackpad = now; return true; }
-    var d = Math.abs(e.deltaY);
-    if (e.deltaMode === 0 && (e.deltaX !== 0 || d < 40 || d % 1 !== 0)) { lastTrackpad = now; return true; }
-    return false;
-  }
+  // ---- Smooth scroll: one Lenis lerp for every wheel and trackpad, slightly slower than default.
+  // An earlier version handed trackpads to native scroll; switching mid gesture read as stopping. ----
+  var lenis = null;
   if (motion && window.Lenis) {
-    lenis = new window.Lenis({ lerp: 0.1, wheelMultiplier: 1, virtualScroll: function (data) { return !isTrackpad(data.event); } });
+    lenis = new window.Lenis({ lerp: 0.075, wheelMultiplier: 0.9 });
     G.ticker.add(function (t) { lenis.raf(t * 1000); });
     G.ticker.lagSmoothing(0);
   }
@@ -177,7 +168,7 @@
   function rnd(not) { var c; do { c = SCRAMBLE[Math.floor(Math.random() * SCRAMBLE.length)]; } while (c === not); return c; }
   function scramble(el, done) {
     var text = el.dataset.text, n = text.length, step = 0, phase = 1;
-    var ms = Math.max(12, Math.min(22, 700 / (n * 4)));
+    var ms = Math.max(28, Math.min(45, 1500 / (n * 4))); // about 1.5 s per label
     var label = el.parentNode; label.style.width = label.offsetWidth + "px";
     el.style.opacity = 1;
     var t = setInterval(function () {
@@ -207,29 +198,41 @@
         if (!e.isIntersecting) return;
         colIO.unobserve(e.target);
         var c = e.target.closest(".qcol"), path = c.querySelector("path"), bar = c.querySelector(".qcol__bar"), text = c.querySelector(".qcol__text"), icon = c.querySelector(".qcol__icon");
-        path.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 1100, easing: "cubic-bezier(0.65, 0, 0.35, 1)", fill: "forwards" });
-        bar.animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], { duration: 500, delay: 150, easing: "cubic-bezier(0.87, 0, 0.13, 1)", fill: "forwards" });
-        setTimeout(function () { scramble(text); }, 400);
-        icon.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 800, delay: 450, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" });
+        path.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 1600, easing: "cubic-bezier(0.65, 0, 0.35, 1)", fill: "forwards" });
+        bar.animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], { duration: 900, delay: 300, easing: "cubic-bezier(0.87, 0, 0.13, 1)", fill: "forwards" });
+        setTimeout(function () { scramble(text); }, 850);
+        icon.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 1000, delay: 1300, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" });
       });
     }, { rootMargin: "0px 0px -12% 0px" });
     // Each column triggers from its label, so the tallest pillar reads first as the section scrolls in
     cols.forEach(function (c) { colIO.observe(c.querySelector(".qcol__label")); });
 
-    // Phone: rises faster than the page until its center reaches the middle of the screen, covering the icons,
-    // then holds there for a stretch of scroll before travelling on with the page.
-    var shown = false, RISE = 0.4, HOLD_SHARE = 0.31; // hold length as a share of the stage height, about 350px at 1440
+    // Phone: once in view it holds its place on screen, centered, until its bottom is 100px above the
+    // section's bottom rule, then it travels on with the page.
+    var shown = false, section = stage.closest("section"), STOP = 100;
     G.ticker.add(function () {
       var r = stage.getBoundingClientRect(), vh = innerHeight;
-      if (r.bottom < -400 || r.top > vh + 400) return;
-      if (!shown && r.top < vh * 0.85) { shown = true; phone.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, fill: "forwards" }); }
-      var y0 = phone.offsetTop, h = phone.offsetHeight, hold = HOLD_SHARE * r.height;
-      var topA = (vh / 2 + RISE * vh - y0 - h / 2) / (1 + RISE);
-      var oA = -RISE * (vh - topA), o;
-      if (r.top >= topA) o = -RISE * Math.max(0, vh - r.top);
-      else o = Math.min(oA + hold, vh / 2 - r.top - y0 - h / 2);
+      if (r.bottom < -600 || r.top > vh + 400) return;
+      if (!shown && r.top < vh * 0.85) { shown = true; phone.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, fill: "forwards" }); }
+      var y0 = phone.offsetTop, h = phone.offsetHeight;
+      var pin = Math.max(72, (vh - h) / 2);
+      var natural = r.top + y0;
+      var maxO = section.getBoundingClientRect().bottom - STOP - (r.top + y0 + h);
+      var o = Math.max(0, Math.min(pin - natural, maxO));
       phone.style.transform = "translate3d(0," + o.toFixed(1) + "px,0)";
     });
+  })();
+
+  // ---- Nav reads over the light feedback block by switching to dark ----
+  (function navOnLight() {
+    var nav = document.querySelector(".site-nav"), bridge = document.getElementById("bridge"), after = document.querySelector(".after-bridge");
+    if (!nav || !bridge) return;
+    function check() {
+      var n = nav.getBoundingClientRect().bottom - 12, b = bridge.getBoundingClientRect(), a = after.getBoundingClientRect();
+      nav.classList.toggle("is-on-light", b.top <= n && b.bottom > n && a.top > n);
+    }
+    if (G) G.ticker.add(check); else addEventListener("scroll", check, { passive: true });
+    check();
   })();
 
   window.__haven = { lenis: lenis, revealAll: function () { blocks.forEach(function (b) { revealText(b, true); }); masks.forEach(function (m) { revealMask(m, true); }); document.querySelectorAll(".bridge__line").forEach(function (l) { l.style.transform = "none"; }); } };

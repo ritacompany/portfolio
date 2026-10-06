@@ -315,3 +315,13 @@ Sources for the label effects: the block wipe from `text-block-animation` by dai
 from `special-text` by tom_ui on 21st.dev, both read from their published code and rebuilt without React.
 
 Not yet built: the new "Ending base" and footer frames. The hero is 15 px shorter in Figma than on the page.
+
+## Revision, 6 Oct 2026, second pass
+- Quiz phone no longer rises. Once in view it pins centered on screen and releases when its bottom is 100 px
+  above the section rule.
+- Quiz labels slowed: outline 1.6 s, white bar 0.9 s from 0.3 s, scramble from 0.85 s over about 1.5 s,
+  icon from 1.3 s.
+- Smooth scroll: one Lenis lerp of 0.075 with a 0.9 wheel multiplier for every input. The trackpad handoff
+  to native scroll is removed; switching mid gesture read as stopping.
+- Flow: "Select a" over "Confidante" and green #5cc43c, both from Figma I4027:5586;4027:4583.
+- Nav: no gradient. It switches to dark over the light feedback block.

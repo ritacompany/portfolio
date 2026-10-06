@@ -25,7 +25,7 @@
   --lavender: #a2a2d4;
   --phase-identity: #482cff;
   --phase-community: #aa21f4;
-  --flow-key: #78b765;
+  --flow-key: #5cc43c;
   --plate: #171717;
   --program-plate: #d2d2db;
   --bridge: #c9c9d4;
@@ -91,7 +91,11 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .js-motion [data-mask], .js-motion [data-mask] > .mask__scale { will-change: clip-path, transform; }
 
 /* ---------- Navigation ---------- */
-.site-nav { position: fixed; left: 0; right: 0; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 24px var(--m) 40px; background: linear-gradient(to bottom, rgb(4 4 5 / 0.92) 0%, rgb(4 4 5 / 0.72) 45%, rgb(4 4 5 / 0) 100%); pointer-events: none; }
+.site-nav { position: fixed; left: 0; right: 0; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 24px var(--m) 24px; pointer-events: none; transition: color 0.3s ease; }
+/* Over the light feedback block the nav turns dark instead of carrying a scrim */
+.site-nav.is-on-light .site-nav__links a { color: var(--n900); }
+.site-nav.is-on-light .site-nav__logo img { filter: invert(1); }
+.site-nav__links a, .site-nav__logo img { transition: color 0.3s ease, filter 0.3s ease; }
 .site-nav a { pointer-events: auto; }
 .site-nav__logo { display: block; width: 60.458px; padding-block: 13px; margin-block: -13px; }
 .site-nav__links { display: flex; gap: 76px; }
@@ -265,7 +269,8 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .flow__step span { font-size: 16px; line-height: 1.16; text-align: center; color: var(--n050); white-space: pre; }
 .flow__step-key { z-index: 2; background: var(--flow-key); border-color: var(--flow-key); }
 .flow__step-key span { color: var(--n900); }
-.flow__step-key span { font-weight: 900; }
+.flow__step-key span { font-weight: 900; transform: translateY(-3px); }
+/* Figma I4027:5586;4027:4583 pads this step 33 top and 39 bottom, so its label sits 3px high */
 
 /* ---------- Confidante profile, 3516:28205 ---------- */
 .profile { padding: 64px 0 155px var(--m); }
