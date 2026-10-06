@@ -49,9 +49,45 @@ Each section is laid out from the templates in the Figma file Portfolio Design, 
 section, as a Mondai CS Master. The older frame `WIP Mondai growth journey case study` (3238:22519)
 predates the 27 Aug restart and is not the starting point.
 
+## Timeline and framing
+
+Dates and how close anything was to launch stay out of the copy until Chadwick decides how the piece
+handles time. Development delays were outside design and must not read as design decisions made late.
+Never frame a decision as last minute.
+
+Correction to `reasoning/THROUGHLINES.md` section 1: rollover did not start in May. It was on screen by
+2026-03-24, with Chadwick already calling it a "weird decision making point" and moving flex to the week
+level (`reasoning/carry-over.md`). May revised a mechanic that had existed since March.
+
+## Reference material, and how it gets used
+
+The writing craft sources, separate from the evidence about Mondai:
+
+- `docs/about-source/CASE-STUDY-WRITING-PROTOCOL.md`: when to make which move, and the checks before handing
+  anything back
+- `docs/about-source/READER-EFFECT-TACTICS.md` and `tactics_bank.html`: the reader effect tactics, built for
+  the About page; the structure, evidence and pacing tactics carry over to case studies
+- `docs/about-source/CASE-STUDY-TACTICS-BRIEF.md`: the brief for a case study tactics bank. No built bank
+  has been found in the repo
+- `reports/` and `research_notes/`: How case studies end, Case study results without metrics, What gets
+  designers interviewed, Expanding card gallery components
+- `.claude/case-study-rules.md`: evidence and scope rules
+
+How they are used, so nothing gets skimmed and nothing gets read in full every time:
+
+1. **Once: the index.** Every source above read in full, one line per tactic or principle in
+   `CS2_REFERENCE_INDEX.md`: its name, what it does, when it fits and where it lives. A script checks that
+   every heading in every source has a line, so coverage is proven rather than claimed.
+2. **Before each section: the pull.** Read the index, pick the entries that fit what the section has to
+   do, open those in full and bring them into the conversation as moves we could use. Different sections
+   will pull different things.
+3. **While drafting and at review: the check.** The draft notes which moves it uses. Review checks it
+   against those entries and the protocol's final checks.
+
 ## The loop, per section
 
-1. **Open.** Claude names the section and what it covers in one or two lines. Nothing else prepared.
+1. **Open.** Claude names the section and what it covers in one or two lines, and brings the reference
+   pull for it.
 2. **Talk it through.** Chadwick talks about it conversationally: what happened, what was decided,
    what connects to what. Claude asks questions and goes and finds the things he mentions in the
    archive, Figma, Notion or the record, and brings back what it found with where it found it.
