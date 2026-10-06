@@ -20,8 +20,13 @@ failed. Here the material comes first. The story is found at the end, not impose
 
 - **The concept ladder** in `CS2_COMPREHENSION.md` is kept as an ordering rule only: the order the
   sections are worked in, and the rule that no product term appears before the reader needs it.
-  It does not decide what goes in a section. The conversation does.
-- **The drafts** in `draft/` for rungs 0 to 3 are provisional. Rung 3 gets revisited when its
+  It does not decide what goes in a section. The conversation does. Its visual plan (the diagram only at
+  rungs 2, 3, 5 and 6) and its "not a task to build the layout" scope note are replaced by The map and
+  step 5 below.
+- **The drafts** in `draft/` for rungs 0 to 3 are provisional. For section 1, only the "The route" and
+  "What existed" parts are material, and the route is credited as inherited. The draft's opening and
+  promise are the intro, written last. Its Visual A2 spends terms that belong to section 2, and "once the
+  build got serious" is timing language the timeline rule keeps out. Rung 3 gets revisited when its
   section comes up. Rungs 0 and 1 are the intro and get rewritten last.
 - **The reasoning files** in `reasoning/` are reference to search, not a script to follow.
 - **The corrections** recorded in `CS2_COMPREHENSION.md` still stand: audience, no unsourced hiring
@@ -57,7 +62,9 @@ Never frame a decision as last minute.
 
 Correction to `reasoning/THROUGHLINES.md` section 1: rollover did not start in May. It was on screen by
 2026-03-24, with Chadwick already calling it a "weird decision making point" and moving flex to the week
-level (`reasoning/carry-over.md`). May revised a mechanic that had existed since March.
+level (`reasoning/carry-over.md`). May revised a mechanic that had existed since March. The same correction applies to the
+"late and compressed" and "three weeks before launch" framing in that section: use THROUGHLINES for what
+was inherited versus designed, never for timing.
 
 ## Storage
 
@@ -90,6 +97,47 @@ How they are used, so nothing gets skimmed and nothing gets read in full every t
    will pull different things.
 3. **While drafting and at review: the check.** The draft notes which moves it uses. Review checks it
    against those entries and the protocol's final checks.
+
+## How to run the conversation
+
+Learned the hard way in the 6 Oct process chat. Each of these happened once and was corrected.
+
+- **Bring the material, do not interview.** Claude has the archive, the reasoning files and the record.
+  Open a section with what the record holds for it, then ask only what the record cannot answer. Never
+  open with questions he would expect Claude to already know ("where did the Growth Journey come from").
+- **Think, do not list.** A dump of facts about the product is not help. Say what the material means for
+  this section: what the reader needs from it, what is his and what was handed to him, what the honest
+  framing is. Then show the supporting facts.
+- **Stay inside the section.** Material that belongs to a later section (the two zones, gating, capacity,
+  rollover detail) is named at most in one line and left for its own section.
+- **Do not get ahead.** No drawing, building or structuring for sections that have not been talked
+  through. Nothing is designed in advance "because every section uses it".
+- **Answer the question asked.** When he asks whether the approach is right, the answer is about the
+  approach, not the contents of the next step.
+- **Separate what he designed from what he inherited.** The route (Pathways, their order, Focus Areas)
+  came from Michael and the curriculum. The time layer is where the reasoning is his. Never present
+  inherited structure as his design, and never present reasoning from the archive as his argument unless
+  the record shows him making it (`reasoning/pathways-and-hierarchy.md` section 6).
+- **Unsourced claims get asked, not used.** Example: the old Figma frame says the original direction was
+  fixed scheduling and keep pace accountability. Nothing in the reference files backs it. Still open.
+
+## Section 1 starting notes
+
+What the 6 Oct chat established for "Where it started", to build on rather than redo:
+
+- Purpose: what he walked into and the problems the framework had to solve. Background, not a feature.
+- Inherited: Michael's five Pathways and their order, the curriculum's linear Focus Areas. Little in the
+  record before March 2026 (`reasoning/THROUGHLINES.md`).
+- Settled early: the AI surfaces, researched in March. Neither shipped at MVP (`CHADWICK_ANSWERS`).
+- Existed but unconnected: onboarding quiz, an intent to use the calendar, career screens. Nothing said
+  what a person does week to week.
+- Missing: anything about time. How much of the route a person gets, when and what happens when a week
+  goes badly.
+- Rollover existed by 24 March, not May (see Timeline and framing).
+- Problems that belong here: a fixed route with no system for time; people whose weeks are irregular.
+  Everything below that waits for its own section.
+- Open question for him: the fixed scheduling claim above.
+- Reference pull not yet done for this section.
 
 ## The loop, per section
 
