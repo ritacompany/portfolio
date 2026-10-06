@@ -289,3 +289,29 @@ From Chadwick's review of the first build.
 - **Quiz parallax.** The phone and the pillars are separate layers. The phone rises about 28 percent of the frame
   height as the section scrolls, so it covers the icons. Both exports had a #050407 background that showed as a
   faint box against the page; it is knocked out to transparent.
+
+## Revision, 6 Oct 2026
+
+From Chadwick's scroll through and his Figma updates the same day.
+- **MVP timeline.** The chart image stays at 1160 and up. Below that it becomes a phase summary with no
+  sideways scroll: each phase shows its column range on a twelve step track, its stages in order as the
+  same outlined pills and its launch point.
+- **Feedback block.** Matches 3300:13307: the line runs the block height at 40 and the statement sits in the
+  lower half at 76. It fills the screen and pins while the next sections slide over it. On entry the line
+  draws down over 1.4 s and the statement fades in after it.
+- **Journey flow.** Uses the new 777 stage on a 160 pitch, copy 310 wide and padding 64 and 54.
+- **Confidante program.** The frame keeps its locked 893 by 459 proportions down to 768 and the cards scale
+  with it, centered. On phones the frame grows taller and the texture stretches with it so the cards stay
+  readable and inside the purple.
+- **Quiz.** Rebuilt from live layers: five pillar outlines, five icons, live text labels and the phone. No
+  curtain, since the composition has no frame. Each pillar draws its outline, its white label tag wipes in
+  from the left, the label decodes from scrambled characters, then the icon settles. The phone rises over the
+  icons until it reaches the middle of the screen, holds there for about 350 px of scroll, then travels on.
+  The section keeps the 1865 Figma height for that room.
+- **Spacing.** Frame two no longer has gaps between sections, and the program, quiz, profile and scheduling
+  sections start 64 from the top, as in Figma.
+
+Sources for the label effects: the block wipe from `text-block-animation` by daiwiikharihar and the scramble
+from `special-text` by tom_ui on 21st.dev, both read from their published code and rebuilt without React.
+
+Not yet built: the new "Ending base" and footer frames. The hero is 15 px shorter in Figma than on the page.

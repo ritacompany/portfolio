@@ -36,7 +36,7 @@
     var items = block.querySelectorAll(".tb-item");
     block.dataset.revealed = "true";
     if (!motion || instant) { if (G) G.set(items, { autoAlpha: 1 }); return; }
-    G.to(items, { autoAlpha: 1, duration: TEXT_DUR, stagger: TEXT_STAGGER, ease: "power1.out", delay: delay || 0 });
+    G.to(items, { autoAlpha: 1, duration: TEXT_DUR, stagger: TEXT_STAGGER, ease: "power1.out", delay: (delay || 0) + parseFloat(block.dataset.delay || "0") });
   }
 
   // ---- Media frames: MaskReveal from the top with the content settling from 1.3, 0.8s Power3.easeInOut, once ----
@@ -92,7 +92,7 @@
     var map = document.getElementById("flow-map");
     var row = document.getElementById("journey-row");
     if (!stage || !map) return;
-    var P = 165, DT = 1700, R = 1376, RATE = 0.85, HOLD = 450, AT = 0.8, VERTICAL_BELOW = 560;
+    var P = 160, DT = 1700, R = 1376, RATE = 0.85, HOLD = 450, AT = 0.8, VERTICAL_BELOW = 560;
     var IO = "cubic-bezier(.65,0,.35,1)", OUT = "cubic-bezier(.22,1,.36,1)";
     var by = {}, nums = [];
     stage.querySelectorAll(".flow__step").forEach(function (el) { by[el.dataset.id] = el; });
@@ -134,7 +134,7 @@
     function fit() {
       var w = map.clientWidth, v = w < VERTICAL_BELOW;
       if (v !== vertical) { vertical = v; build(); }
-      stage.style.setProperty("--flow-scale", String(vertical ? 0.75 : box.clientWidth / 797));
+      stage.style.setProperty("--flow-scale", String(vertical ? 0.75 : box.clientWidth / 777));
       map.style.setProperty("--flow-scale", "0.75");
     }
     fit();
@@ -152,18 +152,85 @@
     });
   })();
 
-  // ---- Quiz: the phone rises over the pillars as the section scrolls, so it covers the icons ----
-  (function quizParallax() {
-    var media = document.querySelector(".quiz__media"), phone = document.querySelector(".quiz__phone");
-    if (!media || !phone || !motion) return;
-    var RISE = 0.28; // share of the media height, about 307 pixels at 1440
+  // ---- Feedback block: the line draws down the full height, then the statement fades in.
+  // The block stays pinned while the next sections slide over it, so the turn to the solutions lands.
+  (function bridge() {
+    var el = document.getElementById("bridge"); if (!el) return;
+    var line = el.querySelector(".bridge__line"), copy = el.querySelector(".bridge__copy");
+    if (!motion) return;
+    copy.dataset.delay = "0.55";
+    line.style.transform = "scaleY(0)";
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting && e.boundingClientRect.top > 0) return;
+        io.disconnect();
+        line.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }], { duration: 1400, easing: MASK_EASE, fill: "forwards" })
+          .finished.then(function () { line.style.transform = "none"; });
+      });
+    }, { rootMargin: "0px 0px -20% 0px" });
+    io.observe(el);
+  })();
+
+  // ---- Quiz: a frameless composition, so no curtain. Each pillar draws its outline, its label tag wipes in
+  // as a white bar and the label decodes from scrambled characters, then the icon settles on top. ----
+  var SCRAMBLE = "_!X$0-+*#";
+  function rnd(not) { var c; do { c = SCRAMBLE[Math.floor(Math.random() * SCRAMBLE.length)]; } while (c === not); return c; }
+  function scramble(el, done) {
+    var text = el.dataset.text, n = text.length, step = 0, phase = 1;
+    var ms = Math.max(12, Math.min(22, 700 / (n * 4)));
+    var label = el.parentNode; label.style.width = label.offsetWidth + "px";
+    el.style.opacity = 1;
+    var t = setInterval(function () {
+      var out = [], i;
+      if (phase === 1) {
+        var shown = Math.min(step + 1, n);
+        for (i = 0; i < shown; i++) out.push(text[i] === " " ? " " : rnd(out[i - 1]));
+        for (i = shown; i < n; i++) out.push(" ");
+        if (++step >= n * 2) { phase = 2; step = 0; }
+      } else {
+        var fixed = Math.floor(step / 2);
+        for (i = 0; i < fixed && i < n; i++) out.push(text[i]);
+        if (fixed < n) out.push(text[fixed] === " " ? " " : (step % 2 === 0 ? "_" : rnd()));
+        for (i = out.length; i < n; i++) out.push(text[i] === " " ? " " : rnd());
+        if (++step >= n * 2) { clearInterval(t); el.textContent = text; label.style.width = ""; if (done) done(); return; }
+      }
+      el.textContent = out.join("");
+    }, ms);
+  }
+  (function quiz() {
+    var stage = document.getElementById("quiz-stage"); if (!stage) return;
+    var phone = stage.querySelector(".quiz__phone");
+    var cols = [].slice.call(stage.querySelectorAll(".qcol"));
+    if (!motion) return;
+    var colIO = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        colIO.unobserve(e.target);
+        var c = e.target.closest(".qcol"), path = c.querySelector("path"), bar = c.querySelector(".qcol__bar"), text = c.querySelector(".qcol__text"), icon = c.querySelector(".qcol__icon");
+        path.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 1100, easing: "cubic-bezier(0.65, 0, 0.35, 1)", fill: "forwards" });
+        bar.animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], { duration: 500, delay: 150, easing: "cubic-bezier(0.87, 0, 0.13, 1)", fill: "forwards" });
+        setTimeout(function () { scramble(text); }, 400);
+        icon.animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 800, delay: 450, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" });
+      });
+    }, { rootMargin: "0px 0px -12% 0px" });
+    // Each column triggers from its label, so the tallest pillar reads first as the section scrolls in
+    cols.forEach(function (c) { colIO.observe(c.querySelector(".qcol__label")); });
+
+    // Phone: rises faster than the page until its center reaches the middle of the screen, covering the icons,
+    // then holds there for a stretch of scroll before travelling on with the page.
+    var shown = false, RISE = 0.4, HOLD_SHARE = 0.31; // hold length as a share of the stage height, about 350px at 1440
     G.ticker.add(function () {
-      var r = media.getBoundingClientRect(), h = innerHeight;
-      if (r.bottom < -200 || r.top > h + 200) return;
-      var p = Math.min(1, Math.max(0, (h * 0.9 - r.top) / (r.height + h * 0.2)));
-      phone.style.transform = "translate3d(0," + (-RISE * r.height * p).toFixed(1) + "px,0)";
+      var r = stage.getBoundingClientRect(), vh = innerHeight;
+      if (r.bottom < -400 || r.top > vh + 400) return;
+      if (!shown && r.top < vh * 0.85) { shown = true; phone.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, fill: "forwards" }); }
+      var y0 = phone.offsetTop, h = phone.offsetHeight, hold = HOLD_SHARE * r.height;
+      var topA = (vh / 2 + RISE * vh - y0 - h / 2) / (1 + RISE);
+      var oA = -RISE * (vh - topA), o;
+      if (r.top >= topA) o = -RISE * Math.max(0, vh - r.top);
+      else o = Math.min(oA + hold, vh / 2 - r.top - y0 - h / 2);
+      phone.style.transform = "translate3d(0," + o.toFixed(1) + "px,0)";
     });
   })();
 
-  window.__haven = { lenis: lenis, revealAll: function () { blocks.forEach(function (b) { revealText(b, true); }); masks.forEach(function (m) { revealMask(m, true); }); } };
+  window.__haven = { lenis: lenis, revealAll: function () { blocks.forEach(function (b) { revealText(b, true); }); masks.forEach(function (m) { revealMask(m, true); }); document.querySelectorAll(".bridge__line").forEach(function (l) { l.style.transform = "none"; }); } };
 })();

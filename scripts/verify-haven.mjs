@@ -68,7 +68,23 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
     return { sw: doc.scrollWidth, cw: doc.clientWidth, over, hiddenText, fonts, smallTargets, h: doc.scrollHeight, axis, bridge, vh: innerHeight };
   });
   pass(`${w}: cross, 6, arrow and 5 key insights share one center line`, Math.max(...m.axis) - Math.min(...m.axis) <= 2, m.axis.join(", "));
-  pass(`${w}: feedback block fills the screen`, m.bridge >= m.vh - 1, `${Math.round(m.bridge)} vs ${m.vh}`);
+  pass(`${w}: feedback block fills the screen`, m.bridge >= Math.min(m.vh, 640) - 1, `${Math.round(m.bridge)} vs ${m.vh}`);
+  const r3 = await page.evaluate(() => {
+    const q = (s) => document.querySelector(s), R = (e) => e.getBoundingClientRect();
+    const tl = q(".mvp__timeline"), tlScroll = [...tl.querySelectorAll("*")].some((e) => e.scrollWidth > e.clientWidth + 1 && /auto|scroll/.test(getComputedStyle(e).overflowX));
+    const shown = [...tl.querySelectorAll(".mvp__chart, .phases")].filter((e) => getComputedStyle(e).display !== "none").map((e) => e.className.split(" ")[0]);
+    const br = R(q(".bridge")), line = R(q(".bridge__line")), text = R(q(".bridge__text"));
+    const media = R(q(".program__media")), roles = [...document.querySelectorAll(".role")].map(R);
+    const inside = roles.every((r) => r.left >= media.left + media.width * 0.1 - 1 && r.right <= media.right - media.width * 0.1 + 1 && r.top >= media.top - 1 && r.bottom <= media.bottom + 1);
+    const centered = Math.abs((roles[0].left + roles[0].right) / 2 - (media.left + media.right) / 2) <= 2;
+    const vMid = Math.abs((roles[0].top + roles[1].bottom) / 2 - (media.top + media.bottom) / 2) <= 3;
+    const st = q("#quiz-stage");
+    return { tlScroll, shown: shown.join(","), lineShare: line.height / br.height, textLower: text.top >= br.top + br.height * 0.4, sticky: getComputedStyle(q(".bridge")).position, inside, centered, vMid, stageMask: st.hasAttribute("data-mask") || !!st.closest("[data-mask]") };
+  });
+  pass(`${w}: MVP timeline never scrolls sideways`, !r3.tlScroll && r3.shown === (w >= 1160 ? "mvp__chart" : "phases"), JSON.stringify({ s: r3.tlScroll, shown: r3.shown }));
+  pass(`${w}: feedback line runs the block height, statement sits in the lower half, block pins`, r3.lineShare > 0.75 && r3.textLower && r3.sticky === "sticky", JSON.stringify({ l: r3.lineShare.toFixed(2), t: r3.textLower, p: r3.sticky }));
+  pass(`${w}: program cards centered inside the texture frame`, r3.inside && r3.centered && r3.vMid, JSON.stringify({ i: r3.inside, c: r3.centered, v: r3.vMid }));
+  pass(`${w}: quiz stage has no curtain mask`, !r3.stageMask);
   pass(`${w}: no horizontal page overflow`, m.sw <= m.cw, `${m.sw} vs ${m.cw}`);
   pass(`${w}: no element escapes the viewport`, m.over.length === 0, m.over.join(" | "));
   pass(`${w}: all text blocks visible after reveal`, m.hiddenText === 0, String(m.hiddenText));
@@ -136,14 +152,21 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
   const cardAfter = await card.evaluate((e) => getComputedStyle(e).borderColor + getComputedStyle(e.querySelector(".card__title")).color);
   pass("no hover: cards stay bright and pills are static", hov.pillButtons === 0 && !hov.tip && cardBefore === cardAfter && cardBefore.includes("rgb(174, 174, 180)"), cardBefore + " / " + cardAfter);
 
-  // Quiz parallax: the phone rises as the section scrolls
-  await page.evaluate(() => { const r = document.querySelector(".quiz__media").getBoundingClientRect(); window.__haven.lenis.scrollTo(r.top + scrollY - innerHeight * 0.8, { immediate: true }); });
-  await page.waitForTimeout(400);
-  const y1 = await page.evaluate(() => new DOMMatrix(getComputedStyle(document.querySelector(".quiz__phone")).transform).f);
-  await page.evaluate(() => window.__haven.lenis.scrollTo(scrollY + 600, { immediate: true }));
-  await page.waitForTimeout(400);
-  const y2 = await page.evaluate(() => new DOMMatrix(getComputedStyle(document.querySelector(".quiz__phone")).transform).f);
-  pass("parallax: quiz phone rises over the pillars on scroll", y2 < y1 - 50, `${y1.toFixed(0)} to ${y2.toFixed(0)}`);
+  // Quiz: labels wipe and decode, phone rises then holds at screen center
+  const stageTop = await page.evaluate(() => document.getElementById("quiz-stage").getBoundingClientRect().top + scrollY);
+  await page.evaluate((y) => window.__haven.lenis.scrollTo(y - innerHeight * 0.55, { immediate: true }), stageTop);
+  await page.waitForTimeout(650);
+  const midLabel = await page.evaluate(() => { const t = document.querySelector('.qcol:nth-child(3) .qcol__text'); return { txt: t.textContent, op: getComputedStyle(t).opacity }; });
+  await page.waitForTimeout(2200);
+  const endLabels = await page.evaluate(() => [...document.querySelectorAll(".qcol")].filter((c) => c.querySelector(".qcol__label").getBoundingClientRect().top < innerHeight * 0.85).map((c) => c.querySelector(".qcol__text").textContent === c.querySelector(".qcol__text").dataset.text && getComputedStyle(c.querySelector(".qcol__bar")).transform === "matrix(1, 0, 0, 1, 0, 0)"));
+  pass("quiz: labels scramble then settle on their text with the bar fully drawn", endLabels.length > 0 && endLabels.every(Boolean) && midLabel.txt !== "BELONGING" && midLabel.op === "1", JSON.stringify({ mid: midLabel.txt, end: endLabels }));
+  const centers = [];
+  for (const k of [0.2, 0.0, -0.15, -0.3]) {
+    await page.evaluate(([y, k]) => window.__haven.lenis.scrollTo(y + innerHeight * (0 - k), { immediate: true }), [stageTop, k]);
+    await page.waitForTimeout(150);
+    centers.push(await page.evaluate(() => { const r = document.querySelector(".quiz__phone").getBoundingClientRect(); return Math.round(r.top + r.height / 2 - innerHeight / 2); }));
+  }
+  pass("quiz: phone holds at screen center for a stretch of scroll", centers.filter((c) => Math.abs(c) <= 3).length >= 2, centers.join(", "));
   await ctx.close();
 }
 

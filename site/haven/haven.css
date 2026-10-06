@@ -167,6 +167,19 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .mvp__timeline { margin-top: 80px; }
 .scroll-x { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--n600) transparent; }
 .mvp__timeline img { width: 100%; }
+.phases { display: none; }
+.phase { display: flex; flex-direction: column; gap: 16px; }
+.phase__head { display: flex; align-items: center; gap: 12px; font-size: 16px; line-height: 1.4; color: var(--n100); text-box: trim-both cap alphabetic; }
+.phase__range { margin-left: auto; font-size: 12px; letter-spacing: 0.04em; font-weight: 400; color: var(--n500); }
+.phase__track { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; }
+.phase__track i { height: 6px; border-radius: 3px; background: var(--n675); }
+.phase__track-identity i.on { background: var(--phase-identity); }
+.phase__track-community i.on { background: var(--phase-community); }
+.phase__stages { display: flex; flex-wrap: wrap; gap: 8px; }
+.phase__stage { padding: 10px 16px 10px 12px; border: 1px solid; border-radius: 0 1000px 1000px 0; font-size: 14px; line-height: 1; letter-spacing: 0.01em; font-weight: 700; color: var(--n100); text-box: trim-both cap alphabetic; }
+.stage-identity { border-color: var(--phase-identity); }
+.stage-community { border-color: var(--phase-community); }
+.phase__end { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; color: var(--n500); }
 .gap-67 { height: 67px; }
 
 /* ---------- Wireframes and usability testing, 3300:12810 ---------- */
@@ -192,51 +205,61 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .tcard { flex: 1; display: flex; flex-direction: column; gap: 20px; }
 .tcard__label { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; color: var(--n200); }
 .tcard__body { min-height: 124px; padding: 34px 24px 32px 25px; border: 1px solid var(--n500); border-radius: 10px; font-size: 16px; line-height: 1.4; color: var(--n200); }
-.bridge { background: var(--bridge); min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 72px calc(155 * var(--g)); }
-.bridge__text { border-left: 4px solid var(--n900); padding: 36px 0 36px 32px; color: var(--n900); font-weight: 700; }
+.bridge-stack { position: relative; }
+.bridge { position: sticky; top: 0; z-index: 0; height: 100vh; height: 100svh; min-height: 640px; background: var(--bridge); padding: 72px calc(155 * var(--g)) 72px var(--m); display: flex; align-items: stretch; gap: 36px; overflow: hidden; }
+.bridge__line { width: 4px; flex: none; background: var(--n900); transform-origin: 50% 0; }
+.bridge__copy { display: flex; align-items: flex-end; padding-bottom: 98px; }
+.bridge__text { max-width: calc(1081 * var(--g)); color: var(--n900); font-weight: 700; }
 /* Figma 3300:13311 overrides Heading/64 with Satoshi Bold. Recorded as a detached style in the build notes. */
-.bridge__text .tb-item { max-width: calc(1081 * var(--g)); }
-.section-rule { margin: 105px auto 0; width: calc(1437 * var(--g)); max-width: 100%; border: 0; border-top: 1px solid var(--n675); }
+.after-bridge { position: relative; z-index: 1; background: var(--n900); }
+.section-rule { margin: 0 auto; width: calc(1437 * var(--g)); max-width: 100%; border: 0; border-top: 1px solid var(--n675); }
 
 /* Frame two stacks its sections 105 apart, Figma 3300:12803 */
-.program, .quiz, .journey, .profile, .schedule, .chat, .security, .ending { margin-top: 105px; }
 
 /* ---------- The Confidante program, 3515:11603 ---------- */
-.program { padding: 13px 0 173px var(--m); }
+.program { padding: 64px 0 173px var(--m); }
 .program__text { width: calc(646 * var(--g)); display: flex; flex-direction: column; gap: 39px; }
 .program__row { margin-top: 281px; display: flex; justify-content: flex-end; gap: calc(87 * var(--g)); }
 .program__intro { width: 266px; flex: none; }
-.program__media { width: calc(893 * var(--g)); aspect-ratio: 893 / 459; background: var(--program-plate); flex: none; }
-.program__texture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.roles { position: absolute; left: 21.837%; top: 20.261%; width: 56.327%; display: flex; flex-direction: column; gap: calc(33 * var(--g)); }
-.role { min-height: calc(120 * var(--g)); padding: 18px 26px 28px; border-radius: 24px; background: var(--n900); display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
-.role__num { font-size: 20px; line-height: 1.32; color: var(--n100); }
-.role__text { font-size: 16px; line-height: 1.4; color: var(--n200); }
+.program__media { width: calc(893 * var(--g)); aspect-ratio: 893 / 459; background: var(--program-plate); flex: none; container-type: inline-size; }
+.program__texture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
+/* Figma 3528:4887 and 3528:4890: 503 by 120 cards, 33 apart, centered in the 893 by 459 frame */
+.roles { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3.695cqw; }
+.role { width: 56.327cqw; min-height: 13.438cqw; padding: 2.016cqw 2.912cqw 3.135cqw; border-radius: 2.688cqw; background: var(--n900); display: flex; flex-direction: column; justify-content: space-between; gap: 1.2cqw; }
+.role__num { font-size: max(12px, 2.24cqw); line-height: 1.32; color: var(--n100); }
+.role__text { font-size: max(11px, 1.792cqw); line-height: 1.4; color: var(--n200); }
 
 /* ---------- Primary identity quiz, 3300:13351 ---------- */
-.quiz { padding: 98px calc(30 * var(--g)) 180px; }
+.quiz { padding: 64px calc(30 * var(--g)) 0; min-height: 1865px; }
 .quiz__text { display: flex; flex-direction: column; gap: 39px; }
 .quiz__lead { max-width: 819px; }
 .quiz__row { display: flex; gap: calc(53 * var(--g)); }
 .quiz__body { width: calc(434 * var(--g)); flex: none; padding-top: 121px; }
 .quiz__body .tb-item { max-width: 372px; }
-.quiz__media { width: calc(881.15 * var(--g)); aspect-ratio: 881.15 / 1096; flex: none; overflow: visible; }
-.quiz__pillars { position: absolute; left: 0; top: 0; width: 100%; }
-/* Figma 3558:22264 sits at 287.5, 459 in the 881.15 by 1096 render box. haven.js moves it on scroll. */
-.quiz__phone { position: absolute; left: 32.627%; top: 41.88%; width: 34.841%; will-change: transform; }
+/* Figma 3558:22506 render box, 881 by 1134 including the phone's overhang */
+.quiz__stage { position: relative; width: calc(881 * var(--g)); aspect-ratio: 881 / 1134; flex: none; }
+.qcol__pillar { position: absolute; width: 15.562%; height: auto; overflow: visible; fill: none; stroke: var(--n675); stroke-width: 1; }
+.qcol__icon { position: absolute; height: auto; }
+.qcol__label { position: absolute; transform: translateX(-50%); display: inline-flex; padding: 6px; white-space: nowrap; }
+.qcol__bar { position: absolute; inset: 0; background: var(--n050); transform-origin: 0 50%; }
+.qcol__text { position: relative; font-size: 12px; line-height: 1; letter-spacing: 0.08em; font-weight: 700; color: var(--n900); text-box: trim-both cap alphabetic; }
+.quiz__phone { position: absolute; height: auto; z-index: 2; will-change: transform; }
+.js-motion .qcol__pillar path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.js-motion .qcol__bar { transform: scaleX(0); }
+.js-motion .qcol__text, .js-motion .qcol__icon, .js-motion .quiz__phone { opacity: 0; }
 
 /* ---------- Journey flow, 3878:3068, motion from prototypes/journey-map ---------- */
-.journey { padding: 54px 0; display: flex; flex-direction: column; gap: 132px; }
+.journey { padding: 64px 0 54px; display: flex; flex-direction: column; gap: 132px; }
 .journey__head { padding: 0 calc(277 * var(--g)) 0 calc(274 * var(--g)); display: flex; flex-direction: column; }
 .journey__lead { margin-top: 64px; width: calc(842 * var(--g)); max-width: 100%; }
 .journey__head .pills { margin-top: 48px; }
 .journey__row { padding-inline: var(--m); display: flex; flex-direction: column; gap: 40px; }
-.journey__title { margin-left: calc(344 * var(--g)); width: calc(1010 * var(--g)); text-align: center; color: var(--n200); }
+.journey__title { margin-left: calc(350 * var(--g)); width: calc(1010 * var(--g)); text-align: center; color: var(--n200); }
 .journey__body { display: flex; align-items: center; gap: calc(40 * var(--g)); }
-.journey__copy { width: calc(304 * var(--g)); flex: none; }
+.journey__copy { width: calc(310 * var(--g)); flex: none; }
 .flow { width: calc(1010 * var(--g)); height: calc(276 * var(--g)); flex: none; display: flex; align-items: center; justify-content: center; }
-.flow__box { position: relative; width: calc(797 * var(--g)); height: calc(177 * var(--g)); flex: none; }
-.flow__stage { position: absolute; left: 0; top: 0; width: 797px; height: 177px; transform-origin: 0 0; transform: scale(var(--flow-scale, 1)); }
+.flow__box { position: relative; width: calc(777 * var(--g)); height: calc(177 * var(--g)); flex: none; }
+.flow__stage { position: absolute; left: 0; top: 0; width: 777px; height: 177px; transform-origin: 0 0; transform: scale(var(--flow-scale, 1)); }
 .flow__num { position: absolute; top: 0; width: 137px; text-align: center; font-size: 16px; line-height: 1.4; font-weight: 700; color: var(--n050); font-variant-numeric: tabular-nums; }
 .flow__step { position: absolute; left: 0; top: 40px; width: 137px; height: 137px; border-radius: 50%; background: var(--n900); border: 1px solid var(--n500); display: flex; align-items: center; justify-content: center; z-index: 1; }
 .flow__step span { font-size: 16px; line-height: 1.16; text-align: center; color: var(--n050); white-space: pre; }
@@ -245,7 +268,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .flow__step-key span { font-weight: 900; }
 
 /* ---------- Confidante profile, 3516:28205 ---------- */
-.profile { padding: 133px 0 155px var(--m); }
+.profile { padding: 64px 0 155px var(--m); }
 .profile__text { width: calc(809 * var(--g)); display: flex; flex-direction: column; gap: 48px; }
 .profile__block { margin-top: 206px; display: flex; flex-direction: column; gap: 44px; }
 .profile__row { display: flex; gap: calc(40 * var(--g)); align-items: flex-start; }
@@ -256,7 +279,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .profile__body .tb-item { max-width: 484px; }
 
 /* ---------- Scheduling a chat, 3555:5990 ---------- */
-.schedule { padding: 112px 0 114px; }
+.schedule { padding: 64px 0 114px; }
 .schedule__text { padding-left: calc(275 * var(--g)); width: calc(1013 * var(--g)); display: flex; flex-direction: column; gap: 39px; }
 .schedule__row { margin-top: 205px; padding-left: var(--m); display: flex; gap: calc(48 * var(--g)); }
 .schedule__body { width: calc(305 * var(--g)); flex: none; padding-top: 119px; }
@@ -322,8 +345,9 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .mvp__lead { width: auto; max-width: 720px; }
   .mvp__row { flex-direction: column; gap: 40px; }
   .mvp__row .mvp__body { width: auto; padding-right: 0; max-width: 420px; }
-  .mvp__timeline .scroll-x { padding-bottom: 12px; }
-  .mvp__timeline img { width: 1100px; max-width: none; }
+  .mvp__chart { display: none; }
+  .phases { display: flex; flex-direction: column; gap: 48px; padding-inline: var(--m); }
+  .phase { max-width: 720px; }
 
   .wires__text { padding: 56px var(--m) 0; }
   .wires__lead { width: auto; max-width: 720px; }
@@ -335,23 +359,21 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .task { width: auto; flex: 1; min-height: 220px; }
   .cards-testing { flex-wrap: wrap; gap: 24px; }
   .tcard { flex: 1 1 calc((100% - 24px) / 2); }
-  .bridge { padding: 96px var(--m); }
-  .bridge__text .tb-item { max-width: 760px; }
+  .bridge { padding: 72px var(--m); gap: 28px; }
+  .bridge__copy { padding-bottom: 72px; }
+  .bridge__text { max-width: 760px; }
   .section-rule { width: calc(100% - 2 * var(--m)); }
 
-  .program, .quiz, .journey, .profile, .schedule, .chat, .security, .ending { margin-top: 80px; }
-  .program { padding: 13px var(--m) 112px; }
+  .program { padding: 64px var(--m) 112px; }
   .program__text { width: auto; max-width: 646px; }
   .program__row { margin-top: 96px; flex-direction: column; gap: 32px; }
-  .program__media { width: 100%; aspect-ratio: auto; padding: 48px 12%; }
-  .roles { position: relative; left: auto; top: auto; width: auto; gap: 24px; }
-  .role { min-height: 120px; }
+  .program__media { width: 100%; }
 
-  .quiz { padding: 98px var(--m) 112px; }
+  .quiz { padding: 64px var(--m) 160px; min-height: 0; }
   .quiz__row { margin-top: 56px; flex-direction: column; gap: 40px; }
   .quiz__body { width: auto; padding-top: 0; }
   .quiz__body .tb-item { max-width: 520px; }
-  .quiz__media { width: 100%; max-width: 880px; align-self: center; }
+  .quiz__stage { width: 100%; max-width: 881px; align-self: center; }
 
   .journey { gap: 96px; }
   .journey__head { padding-inline: var(--m); }
@@ -360,9 +382,9 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .journey__body { flex-direction: column; align-items: stretch; gap: 48px; }
   .journey__copy { width: auto; max-width: 520px; }
   .flow { width: 100%; height: auto; }
-  .flow__box { width: 100%; aspect-ratio: 797 / 177; height: auto; }
+  .flow__box { width: 100%; aspect-ratio: 777 / 177; height: auto; }
 
-  .profile { padding: 112px var(--m) 112px; }
+  .profile { padding: 64px var(--m) 112px; }
   .mvp__text { min-height: 0; }
   .profile__text { width: auto; max-width: 720px; }
   .profile__block { margin-top: 96px; }
@@ -370,7 +392,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .profile__phone, .profile__side { width: 100%; }
   .profile__side { gap: 40px; }
 
-  .schedule { padding: 112px var(--m); }
+  .schedule { padding: 64px var(--m) 112px; }
   .schedule__text { padding-left: 0; width: auto; max-width: 738px; }
   .schedule__row { margin-top: 96px; padding-left: 0; flex-direction: column-reverse; gap: 40px; }
   .schedule__body { width: auto; padding-top: 0; }
@@ -439,7 +461,6 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .card { width: 100%; min-height: 0; padding: 88px 24px 24px; }
 
   .mvp { padding: 88px 0; }
-  .mvp__timeline img { width: 960px; }
 
   .wires__row { margin-top: 48px; }
   .wires__list { scroll-snap-type: x mandatory; scroll-padding-inline: var(--m); padding-bottom: 12px; }
@@ -447,16 +468,22 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .tasks { flex-direction: column; gap: 12px; }
   .task { min-height: 120px; }
   .tcard { flex-basis: 100%; }
-  .bridge { padding: 72px var(--m); }
-  .bridge__text { padding: 24px 0 24px 20px; }
+  .bridge { padding: 64px var(--m); gap: 20px; min-height: 0; }
+  .bridge__copy { padding-bottom: 48px; }
 
-  .program, .quiz, .journey, .profile, .schedule, .chat, .security, .ending { margin-top: 64px; }
   .program { padding-bottom: 88px; }
   .program__row { margin-top: 64px; }
-  .program__media { padding: 56px 28px; }
-  .role { padding: 16px 20px 20px; border-radius: 20px; min-height: 0; }
+  /* Phones: the frame grows taller so the cards stay readable; the texture stretches with it and the cards stay centered on it */
+  .program__media { aspect-ratio: auto; }
+  .program__media .mask__scale { padding: 14% 17%; }
+  .roles { position: relative; inset: auto; gap: 16px; }
+  .role { width: 100%; min-height: 0; padding: 16px 20px 20px; border-radius: 20px; gap: 12px; }
+  .role__num { font-size: 18px; }
+  .role__text { font-size: 15px; }
 
-  .quiz { padding: 72px var(--m) 88px; }
+  .quiz { padding: 56px var(--m) 120px; }
+  .qcol__text { font-size: 9px; }
+  .qcol__label { padding: 4px; }
   .quiz__text { gap: 28px; }
   .pills { gap: 8px; }
   .pill { padding: 0 14px; letter-spacing: 0.06em; }
@@ -465,10 +492,10 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .journey__head .pills { margin-top: 32px; }
   .flow__box { max-width: 480px; margin-inline: auto; }
 
-  .profile { padding-top: 88px; }
+  .profile { padding-top: 56px; }
   .profile__block { margin-top: 64px; gap: 32px; }
 
-  .schedule { padding: 88px var(--m); }
+  .schedule { padding: 56px var(--m) 88px; }
   .schedule__row { margin-top: 64px; }
   .schedule__media { aspect-ratio: auto; }
 
@@ -485,8 +512,8 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 }
 
 /* Journey flow on a phone turns vertical so the whole shuffle stays on screen. haven.js swaps the axis below 560 */
-.flow.is-vertical .flow__box { width: calc(177px * var(--flow-scale)); height: calc(797px * var(--flow-scale)); aspect-ratio: auto; max-width: none; }
-.flow.is-vertical .flow__stage { width: 177px; height: 797px; }
+.flow.is-vertical .flow__box { width: calc(177px * var(--flow-scale)); height: calc(777px * var(--flow-scale)); aspect-ratio: auto; max-width: none; }
+.flow.is-vertical .flow__stage { width: 177px; height: 777px; }
 .flow.is-vertical .flow__step { left: 40px; top: 0; }
 .flow.is-vertical .flow__num { top: auto; width: 24px; text-align: right; }
 

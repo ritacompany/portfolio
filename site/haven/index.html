@@ -94,8 +94,22 @@
       </div>
     </div>
     <div class="mvp__timeline" data-tb>
-      <div class="scroll-x tb-item" tabindex="0" role="region" aria-label="Design phase timeline, scrolls sideways on small screens">
-        <img src="assets/mvp-timeline.png" width="1440" height="554" loading="lazy" alt="Timeline of twelve sprints. Phase 1, Identity, runs empathize, define, ideate, prototype and test through sprint 6, ending at the identity launch, which is where this case study ends. Phase 2, Community, repeats the cycle through sprint 12 toward the community launch.">
+      <div class="mvp__chart tb-item">
+        <img src="assets/mvp-timeline.png" width="1440" height="554" loading="lazy" alt="Timeline of twelve columns. Phase 1, Identity, runs empathize, define, ideate, prototype and test through column 7, ending at the identity launch, which is where this case study ends. Phase 2, Community, starts at column 5 and repeats the cycle through column 12 toward the community launch.">
+      </div>
+      <div class="phases tb-item">
+        <div class="phase">
+          <p class="phase__head"><i class="legend__swatch legend__swatch-identity"></i>Phase 1, Identity<span class="phase__range">01 to 07</span></p>
+          <span class="phase__track phase__track-identity" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+          <ol class="phase__stages"><li class="phase__stage stage-identity">Empathize</li><li class="phase__stage stage-identity">Define</li><li class="phase__stage stage-identity">Ideate</li><li class="phase__stage stage-identity">Prototype</li><li class="phase__stage stage-identity">Test</li><li class="phase__stage stage-identity">Empathize</li><li class="phase__stage stage-identity">Ideate</li><li class="phase__stage stage-identity">Prototype</li></ol>
+          <p class="phase__end">Identity launch, where this case study ends</p>
+        </div>
+        <div class="phase">
+          <p class="phase__head"><i class="legend__swatch legend__swatch-community"></i>Phase 2, Community<span class="phase__range">05 to 12</span></p>
+          <span class="phase__track phase__track-community" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+          <ol class="phase__stages"><li class="phase__stage stage-community">Empathize</li><li class="phase__stage stage-community">Ideate</li><li class="phase__stage stage-community">Empathize</li><li class="phase__stage stage-community">Define</li><li class="phase__stage stage-community">Ideate</li><li class="phase__stage stage-community">Prototype</li><li class="phase__stage stage-community">Prototype</li><li class="phase__stage stage-community">Prototype</li></ol>
+          <p class="phase__end">Community launch</p>
+        </div>
       </div>
     </div>
   </section>
@@ -144,11 +158,16 @@
       </ol>
     </div>
 
-    <div class="bridge">
-      <p class="h64 bridge__text" data-tb><span class="tb-item">Based on that feedback and information I had already gathered from initial interviews, I built the following solutions.</span></p>
-    </div>
   </section>
 
+  <div class="bridge-stack">
+    <div class="bridge" id="bridge">
+      <span class="bridge__line" aria-hidden="true"></span>
+      <div class="bridge__copy" data-tb>
+        <p class="h64 bridge__text tb-item">Based on that feedback and information I had already gathered from initial interviews, I built the following solutions.</p>
+      </div>
+    </div>
+    <div class="after-bridge">
   <hr class="section-rule">
   <section data-node="3515:11603" class="program rule-b" aria-labelledby="program-title">
     <div class="program__text" data-tb>
@@ -179,13 +198,35 @@
       </ul>
     </div>
     <div class="quiz__row">
-      <p class="body body-400 quiz__body" data-tb><span class="tb-item">The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Users pick the experiences that matter to them. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.</span></p>
-      <figure class="mask mask-clear quiz__media" data-mask>
-        <div class="mask__scale">
-          <img class="quiz__pillars" src="assets/quiz-pillars.webp" width="881" height="1001" loading="lazy" alt="Five pillars labelled attraction, gender identity, belonging, race and ethnicity and upbringing, each topped with an icon.">
-          <img class="quiz__phone" src="assets/quiz-phone.webp" width="307" height="637" loading="lazy" alt="A phone showing quiz question 16 of 30, with an answer selected.">
+      <p class="body quiz__body" data-tb><span class="tb-item">The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Users pick the experiences that matter to them. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.</span></p>
+      <div class="quiz__stage" id="quiz-stage">
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:0.000%;top:37.822%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:3.632%;top:33.686%;width:8.286%" src="assets/icon-magnet.webp" alt="A red magnet" loading="lazy">
+          <span class="qcol__label" style="left:7.781%;top:28.307%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="ATTRACTION">ATTRACTION</span></span>
         </div>
-      </figure>
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:21.090%;top:25.132%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:25.494%;top:18.871%;width:6.856%" src="assets/icon-mirror.webp" alt="A hand mirror" loading="lazy">
+          <span class="qcol__label" style="left:28.871%;top:13.492%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="GENDER IDENTITY">GENDER IDENTITY</span></span>
+        </div>
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:42.202%;top:12.081%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:45.721%;top:5.644%;width:8.627%" src="assets/icon-lock.webp" alt="A padlock" loading="lazy">
+          <span class="qcol__label" style="left:49.983%;top:0.265%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="BELONGING">BELONGING</span></span>
+        </div>
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:63.326%;top:25.132%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:66.572%;top:21.869%;width:9.194%" src="assets/icon-yarn.webp" alt="A ball of yarn" loading="lazy">
+          <span class="qcol__label" style="left:71.107%;top:16.490%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="RACE & ETHNICITY">RACE &amp; ETHNICITY</span></span>
+        </div>
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:84.449%;top:38.183%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:88.059%;top:30.864%;width:8.854%" src="assets/icon-flower.webp" alt="A flower growing from a die" loading="lazy">
+          <span class="qcol__label" style="left:92.230%;top:25.485%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="UPBRINGING">UPBRINGING</span></span>
+        </div>
+        <img class="quiz__phone" style="left:30.704%;top:38.289%;width:38.649%" src="assets/quiz-phone.webp" width="341" height="700" loading="lazy" alt="A phone showing quiz question 16 of 30, with an answer selected.">
+      </div>
     </div>
   </section>
   <section data-node="3878:3068" class="journey rule-b" aria-labelledby="journey-title">
@@ -200,7 +241,7 @@
     <div class="journey__row" data-tb id="journey-row">
       <h3 class="h24 journey__title tb-item">Confidante selection journey flow</h3>
       <div class="journey__body">
-        <p class="body body-400 journey__copy tb-item">Testing showed users hesitating over which Confidante to pick. They went back and forth between profiles, and some undid their choice after making it. I moved selection after the introductory chat, which exists to help them decide. In the revised flow, people can chat with more than one Confidante before choosing one.</p>
+        <p class="body journey__copy tb-item">Testing showed users hesitating over which Confidante to pick. They went back and forth between profiles, and some undid their choice after making it. I moved selection after the introductory chat, which exists to help them decide. In the revised flow, people can chat with more than one Confidante before choosing one.</p>
         <div class="flow tb-item" id="flow-map">
           <div class="flow__box">
             <ol class="flow__stage" id="flow-stage" aria-label="Revised flow: identity quiz, review matches, intro chat, schedule a chat, select a Confidante">
@@ -305,6 +346,8 @@ a chat</span></li>
     <h2 class="ending__title" id="ending-title" data-tb><span class="tb-item">Ending</span></h2>
   </section>
 
+    </div>
+  </div>
 </main>
 
 
