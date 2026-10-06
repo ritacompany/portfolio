@@ -167,7 +167,7 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 3. **Draft.** Claude writes the section from the conversation. Every claim traces to a source.
    Nothing is asserted that came from neither Chadwick nor a source. ASSUMED claims never go in copy;
    they go on the open list until he confirms or cuts them. If he asks for a draft before the talk is
-   finished, draft, and list what the talk has not covered yet.
+   finished, draft and list what the talk has not covered yet.
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Then the house
    copy rules: no em or en dashes, no hyphen pair as a dash, no Oxford commas, sentence case.
