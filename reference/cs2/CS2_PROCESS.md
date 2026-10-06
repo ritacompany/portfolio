@@ -129,6 +129,12 @@ Learned the hard way in the 6 Oct process chat. Each of these happened once and 
 - **Never spin.** When he says a line makes him look bad, fix or cut it. Do not reframe it as a strength.
 - **Short replies.** Lead with the answer, one question at most, no narration of what was read or what
   will be committed. Detail only when he asks for it.
+- **Search CS1 evidence too.** `reference/cs1/CS1-PRIMARY-EVIDENCE-VERBATIM.md` holds pre March 2026
+  material (for example his 13 Feb 2025 message on variance in how people schedule their lives). Cite it
+  for facts CS2 needs; the story of the argument stays in CS1. "Where it started" means where the
+  framework work started, not when he joined Mondai.
+- **The two zones** means the Action Hub against the Pathway pages, which is what the record's quotes
+  are about. It belongs to section 2.
 - **Creative levels do not apply to CS2.** `.claude/portfolio-rules.md` asks for one at the top of each
   reply; that system was retired on 24 Sep 2026 and this process replaces it here.
 
@@ -151,8 +157,8 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
   (`mondai/reference/desktop-screens/growth-journey/growth-journey.png` in the Mondai repo) shows
   Networking at 03 and Branding at 04. The live Figma frame could not be found on 6 Oct.
 - Problems that belong here: a fixed route with nothing deciding how much of it a week holds; people
-  whose weeks are irregular (an archive premise, `PRODUCT_KNOWLEDGE_ARCHIVE.md` weekly scheduling model,
-  not a research finding).
+  whose weeks are irregular (his own argument to Michael, 13 Feb 2025, in CS1 evidence; not a research
+  finding).
   Everything below that waits for its own section.
 - Open question for him: the fixed scheduling claim above.
 - Reference pull not yet done for this section.
