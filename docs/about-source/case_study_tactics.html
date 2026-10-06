@@ -1,0 +1,571 @@
+<title>Case Study Tactics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    color-scheme:dark;
+    --bg:#08090b; --surface:#12141a; --surface-2:#181b23; --border:#282d38; --border-soft:#20242c;
+    --text:#e8ebf0; --text-dim:#9aa2b1; --text-faint:#6b7383;
+    --accent:#5b8fb0; --accent-soft:#152430;
+    --warn:#c07a66; --warn-soft:#241612;
+    --ok:#7fa88a; --lore:#bea078;
+    --c-argument:#8ca0be; --c-evidence:#78afa0; --c-sequencing:#af96b9; --c-tension:#c08a5e;
+    --c-honesty:#8b8ac0; --c-compression:#5f9ba3; --c-reader:#b07f96; --c-anti:#c07a66;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Archivo',system-ui,-apple-system,sans-serif;
+    line-height:1.5; font-size:14px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1280px; margin:0 auto; padding-block:44px 100px; padding-inline:24px;}
+  @media (max-width:600px){ .wrap{padding-inline:16px; padding-block:28px 72px;} }
+
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:12px;}
+  .headline-row{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  h1{font-family:'Fraunces',Georgia,serif; font-weight:600; font-style:italic; font-size:clamp(28px,4.2vw,42px); line-height:1.04; letter-spacing:-.015em; margin:0 0 16px; text-wrap:balance;}
+  .idx{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint); letter-spacing:.06em;}
+  .dek{color:var(--text-dim); font-size:13.5px; max-width:78ch; margin:0 0 8px;}
+
+  .sample{
+    background:var(--warn-soft); border:1px solid var(--warn); border-radius:8px;
+    padding:14px 16px; margin:20px 0 14px; max-width:84ch;
+  }
+  .tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:8px;}
+  .sample .tag{color:var(--warn);}
+  .sample p{margin:0 0 8px; font-size:13.5px; color:var(--text-dim);}
+  .sample p:last-child{margin:0;}
+  .sample b{color:var(--text); font-weight:600;}
+
+  .frame{background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px 18px; margin:0 0 10px; max-width:84ch;}
+  .frame .tag{color:var(--accent);}
+  .frame p{margin:0 0 10px; font-size:14px; line-height:1.55;}
+  .frame p:last-child{margin:0;}
+
+  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:24px; flex-wrap:wrap;}
+  .exportBtn{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.03em; text-transform:uppercase; padding:7px 14px; border-radius:6px; border:1px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer;}
+  .exportBtn:hover,.exportBtn:focus-visible{background:var(--accent-soft); outline:none;}
+  #exportText{width:100%; min-height:200px; margin-top:14px; background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:14px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; line-height:1.6;}
+
+  .filterbar{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px; align-items:center;}
+  .flabel{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-right:2px;}
+  .chip{font-family:'IBM Plex Mono',monospace; font-size:10.5px; padding:4px 9px; border-radius:4px; background:var(--surface-2); color:var(--text-dim); border:1px solid var(--border-soft); white-space:nowrap; cursor:pointer;}
+  .chip:hover,.chip:focus-visible{border-color:var(--text-faint); color:var(--text); outline:none;}
+  .chip.active{background:var(--accent-soft); border-color:var(--accent); color:var(--text);}
+  .chip.empty{opacity:.45; cursor:default;}
+  .chip .ct{color:var(--text-faint); margin-left:5px;}
+
+  .table-scroll{overflow-x:auto; margin-top:20px; padding-bottom:4px;}
+  table{width:100%; border-collapse:collapse; table-layout:fixed; min-width:1120px;}
+  th{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); text-align:left; padding:0 12px 10px; font-weight:400; border-bottom:1px solid var(--border);}
+  th.th-risk{color:var(--warn);}
+  col.c-n{width:4%;} col.c-name{width:15%;} col.c-mech{width:25%;} col.c-ex{width:17%;} col.c-risk{width:22%;} col.c-note{width:17%;}
+  tr.row{border-bottom:1px solid var(--border-soft);}
+  tr.row:hover{background:var(--surface);}
+  td{padding:14px 12px; vertical-align:top;}
+  .num{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-faint);}
+  .tname{font-weight:600; font-size:13.5px; margin:0 0 6px; line-height:1.25;}
+  .catpill{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.05em; text-transform:uppercase; padding:2px 6px; border-radius:3px; margin:0 4px 6px 0; border:1px solid currentColor;}
+  .src{font-size:11.5px; color:var(--text-dim); display:block; line-height:1.4;}
+  .ground{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.04em; text-transform:uppercase; margin-top:6px;}
+  .ground.research{color:var(--ok);} .ground.lore{color:var(--lore);} .ground.unverified{color:var(--warn);}
+  .mech{font-size:12.5px; color:var(--text-dim); line-height:1.55;}
+  .mech b{color:var(--text); font-weight:500;}
+  .ex{font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:13px; line-height:1.45; border-left:2px solid var(--border); padding-left:10px;}
+  .risk{font-size:12.5px; color:var(--text); line-height:1.55; border-left:2px solid var(--warn); padding-left:10px;}
+  .risk b{color:var(--warn); font-weight:600;}
+  .notewrap label{display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-faint); margin-bottom:5px;}
+  textarea.note{width:100%; resize:vertical; min-height:72px; max-height:260px; background:var(--surface-2); color:var(--text); border:1px solid var(--border-soft); border-radius:6px; padding:8px 10px; font-family:'Archivo',sans-serif; font-size:12.5px; line-height:1.45;}
+  textarea.note:focus{outline:none; border-color:var(--accent);}
+  .saved{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--ok); height:12px; margin-top:3px; opacity:0; transition:opacity .3s;}
+  .saved.show{opacity:1;}
+  @media (prefers-reduced-motion:reduce){ .saved{transition:none;} }
+
+  footer{margin-top:40px; font-size:12px; color:var(--text-faint); line-height:1.6; max-width:92ch;}
+  footer h2{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); font-weight:400; margin:22px 0 8px;}
+  footer ul{margin:0; padding-left:18px;}
+  footer li{margin-bottom:4px;}
+  footer a{color:var(--text-dim);}
+</style>
+
+<style>
+  .ground.secondhand{color:var(--lore);}
+  .ground.lore{color:#a4a9b6;}
+  .ground.contested{color:var(--warn);}
+  .ground.survey{color:var(--lore);}
+  .howto{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px; max-width:1060px; margin:20px 0 10px;}
+  .howto .frame{margin:0; max-width:none;}
+  .legend{display:flex; flex-wrap:wrap; gap:6px 18px; margin:0; padding:0; list-style:none; font-size:12.5px; color:var(--text-dim);}
+  .legend .ground{margin:0 6px 0 0;}
+  .xr{color:var(--accent); white-space:nowrap;}
+  footer ol{margin:0; padding-left:18px;}
+  footer .rev li{margin-bottom:8px;}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Companion to the reader-effect bank</div>
+  <div class="headline-row">
+    <h1>Where the judgment shows</h1>
+    <span class="idx">EXHIBIT&nbsp;03</span>
+  </div>
+  <p class="dek">Tactics for making a reader believe a design decision was sound, and enjoy watching it get made. Forty-nine of them across eight categories, each with the mechanic, a worked example and the way it fails.</p>
+
+  <div class="howto">
+    <div class="frame">
+      <span class="tag">The failure every tactic answers</span>
+      <p>An About page fails by being generic. A case study fails by being a <b>process recital</b>: research, then wireframes, then testing, then final designs, with no decision visible and nothing at stake.</p>
+      <p>Every entry answers one of three questions. Where is the judgment? How is it made visible? Why should a stranger believe it happened the way you say?</p>
+    </div>
+    <div class="frame">
+      <span class="tag">How the evidence is labelled</span>
+      <ul class="legend">
+        <li><span class="ground research">research</span>a study I read at abstract level or better, with its sample size where the source gives one</li>
+        <li><span class="ground secondhand">secondhand</span>real research or a real book, but I only saw it through someone else&rsquo;s summary</li>
+        <li><span class="ground survey">survey</span>practitioner data, self reported, not peer reviewed</li>
+        <li><span class="ground contested">contested</span>failed or mixed replication, included as a correction</li>
+        <li><span class="ground lore">craft lore</span>a practitioner rule with no empirical test behind it</li>
+      </ul>
+    </div>
+    <div class="frame">
+      <span class="tag">Using it with the protocol</span>
+      <p>This is the bank for pass 3. One deliberate move per section, written down with the reason. Anti-tactics are for pass 2 and pass 5: read them against a finished draft, not before one.</p>
+      <p>Where a tactic also appears in the reader-effect bank, it has a different justification here.</p>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <span class="dek" style="margin:0;" id="countLabel"></span>
+    <button class="exportBtn" id="exportBtn" type="button">copy my notes for Claude</button>
+  </div>
+  <div class="filterbar" id="filterbar"><span class="flabel">Filter</span></div>
+  <textarea id="exportText" readonly hidden aria-label="Compiled notes"></textarea>
+
+  <div class="table-scroll">
+  <table>
+    <colgroup><col class="c-n"><col class="c-name"><col class="c-mech"><col class="c-ex"><col class="c-risk"><col class="c-note"></colgroup>
+    <thead><tr><th>#</th><th>Tactic</th><th>The mechanic</th><th>Worked example</th><th class="th-risk">How it fails</th><th>Your notes</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  </div>
+
+  <footer>
+    <h2>What the research does and does not cover</h2>
+    <p style="margin:0 0 8px;">Almost none of the research here was run on hiring managers reading portfolios. It was run on mock jurors, students, negotiators, readers of short stories and online panels. Where a finding is carried into case study writing, the entry says the transfer is an inference. Only one source (entry 35) measured design hiring directly, and it is a self report survey.</p>
+    <p style="margin:0 0 8px;">Tally for this build: 40 sources below. 21 I read directly at abstract level or better. 16 I saw only through someone else&rsquo;s summary, quote or table of contents. Those entries are labelled secondhand or lore. 3 are search listings only. Pages that would not load: a portfolio newsletter and Poynter&rsquo;s nut graf article (both rate limited), the Oppenheimer paper and three PubMed abstracts (security checks) and a Google Books search. For Baron and Hershey, Green and Brock and Jerez-Fernandez I found other copies. Oppenheimer rests on a press summary, and the nut graf entry is labelled lore for that reason. One claim often repeated in writing advice, that concrete wording makes statements seem truer, failed its preregistered replication and is entered as a correction (entry 13).</p>
+
+    <h2>Sources</h2>
+    <ul>
+      <li>Allen, M. (1991). One-sided and two-sided messages, meta-analysis. <i>Western Journal of Speech Communication</i> 55(4). Listing only.</li>
+      <li>Banas, J. A. and Rains, S. A. (2010). A meta-analysis of research on inoculation theory. <a href="http://www.communicationcache.com/uploads/1/0/8/8/10887248/a_meta-analysis_of_research_on_inocultion_theory.pdf" target="_blank" rel="noopener">PDF</a>, abstract read.</li>
+      <li>Baron, J. and Hershey, J. C. (1988). Outcome bias in decision evaluation. <i>JPSP</i> 54. <a href="https://www.sas.upenn.edu/~baron/papers/outcomebias.pdf" target="_blank" rel="noopener">Paper</a>. Replication: <a href="https://rips-irsp.com/articles/10.5334/irsp.751" target="_blank" rel="noopener">IRSP</a>.</li>
+      <li>Barratt, D. et al. (2016). Does the Kuleshov effect really exist? <i>Perception</i>. Via <a href="https://en.wikipedia.org/wiki/Kuleshov_effect" target="_blank" rel="noopener">Wikipedia</a> summary, with Prince and Hensley (1992) and Mobbs et al. (2006).</li>
+      <li>Chekhov, A. Letter to A. S. Lazarev (Gruzinsky), 1 November 1889. Via <a href="https://en.wikipedia.org/wiki/Chekhov's_gun" target="_blank" rel="noopener">Wikipedia</a>.</li>
+      <li>Engstrom, G. How recruiters look at your design portfolio. <a href="https://uxdesign.cc/ever-wonder-how-recruiters-look-at-your-design-portfolio-cc8dd1ecb698" target="_blank" rel="noopener">UX Collective</a>. Self report survey.</li>
+      <li>Fausey, C. M. and Boroditsky, L. (2010). Subtle linguistic cues influence perceived blame and financial liability. <i>Psychonomic Bulletin and Review</i> 17. <a href="http://language.ucsd.edu/papers/wardrobe-malfunction.pdf" target="_blank" rel="noopener">Paper</a>.</li>
+      <li>Federal Rules of Appellate Procedure, Rule 28(a)(8)(A) and (B). <a href="https://www.ca4.uscourts.gov/rules/rule28.html" target="_blank" rel="noopener">Text</a>.</li>
+      <li>Fischhoff, B. (1975). Hindsight bias. Via <a href="https://en.wikipedia.org/wiki/Hindsight_bias" target="_blank" rel="noopener">Wikipedia</a>. Secondhand.</li>
+      <li>Franklin, J. (1986). <i>Writing for Story</i>. Via <a href="https://bertwagner.net/2018/08/29/book-notes-writing-for-story-by-jon-franklin/" target="_blank" rel="noopener">book notes</a>. Secondhand.</li>
+      <li>Freeman, R. A. (1912). <i>The Singing Bone</i>, preface. Via <a href="https://en.wikipedia.org/wiki/Inverted_detective_story" target="_blank" rel="noopener">Wikipedia</a>.</li>
+      <li>Garner, B. A. <i>The Winning Brief</i>, 3rd ed. Via <a href="https://www.sfbar.org/blog/legal-writing-tip-start-your-brief-with-the-deep-issue/" target="_blank" rel="noopener">Bar Association of San Francisco</a>.</li>
+      <li>Gerrig, R. J. (1989). Suspense in the absence of uncertainty. <i>Journal of Memory and Language</i>. <a href="https://www.sciencedirect.com/science/article/pii/0749596X89900016" target="_blank" rel="noopener">Abstract</a>.</li>
+      <li>Gopen, G. D. and Swan, J. A. (1990). The science of scientific writing. <i>American Scientist</i>. <a href="https://www.gatsby.ucl.ac.uk/~pel/misc/gopen_swan.pdf" target="_blank" rel="noopener">Article</a>.</li>
+      <li>Green, M. C. and Brock, T. C. (2000). The role of transportation in the persuasiveness of public narratives. <i>JPSP</i> 79. <a href="http://www.communicationcache.com/uploads/1/0/8/8/10887248/the_role_of_transportation_in_the_persuasiveness_of_public_narratives.pdf" target="_blank" rel="noopener">Paper</a>.</li>
+      <li>Greever, T. (2015). <i>Articulating Design Decisions</i>. <a href="https://www.oreilly.com/library/view/articulating-design-decisions/9781491921555/toc.html" target="_blank" rel="noopener">Table of contents</a> read. Content via two summaries: <a href="https://medium.com/design-bootcamp/key-takeaways-from-tom-greevers-articulating-design-decisions-68ec95d68241" target="_blank" rel="noopener">one</a>, <a href="https://medium.com/@productandrew/articulating-design-decisions-tom-greever-2015-fdae61adade7" target="_blank" rel="noopener">two</a>.</li>
+      <li>Hansen, J. and Wänke, M. (2010). Truth from language and truth from fit. <i>PSPB</i>. Preregistered replication: <a href="https://online.ucpress.edu/collabra/article/5/1/19/112979/The-Effect-of-Concrete-Wording-on-Truth-Judgements" target="_blank" rel="noopener">Collabra 2019</a>.</li>
+      <li>Harp, S. F. and Mayer, R. E. (1998). How seductive details do their damage. <i>Journal of Educational Psychology</i>. Listing. Rey, G. D. (2012) meta-analysis, <a href="https://www.sciencedirect.com/science/article/abs/pii/S1747938X12000413" target="_blank" rel="noopener">abstract</a>.</li>
+      <li>Hitchcock, A., as reported by Leonard Lyons, 1956. <a href="https://quoteinvestigator.com/2018/09/19/drama/" target="_blank" rel="noopener">Quote Investigator</a>.</li>
+      <li>Hyland, K. (1998). <i>Hedging in Scientific Research Articles</i>. Via a <a href="https://www.academia.edu/77811581/Hedging_in_Scientific_Research_Articles_Positive_and_Negative_Consequences" target="_blank" rel="noopener">review paper</a>. Secondhand.</li>
+      <li>Jerez-Fernandez, A., Angulo, A. N. and Oppenheimer, D. M. (2014). Show me the numbers. <i>Psychological Science</i>. <a href="https://www.psychologicalscience.org/news/releases/new-research-from-psychological-science-76.html" target="_blank" rel="noopener">APS summary</a>.</li>
+      <li>Knox, R. (1929). Detective fiction decalogue. Rule 8 quoted at <a href="https://theinvisibleevent.com/2021/07/06/knox-decalogue-declaration-of-clues/" target="_blank" rel="noopener">The Invisible Event</a>.</li>
+      <li>Latin, M. Only 30 seconds to reject your portfolio. <a href="https://adplist.substack.com/p/only-30-seconds-to-reject-your-portfolio" target="_blank" rel="noopener">Substack</a>.</li>
+      <li>Loschelder, D. D. et al. (2016). The too-much-precision effect. <i>Psychological Science</i>. <a href="https://journals.sagepub.com/doi/10.1177/0956797616666074" target="_blank" rel="noopener">Abstract</a>.</li>
+      <li>Minto, B. <i>The Pyramid Principle</i>. Search listings only; stated as craft lore.</li>
+      <li>Murch, W. <i>In the Blink of an Eye</i>. Via <a href="https://www.studiobinder.com/blog/walter-murch-rule-of-six/" target="_blank" rel="noopener">StudioBinder</a>. Secondhand.</li>
+      <li>Newman, E. J. et al. (2012). Nonprobative photographs (or words) inflate truthiness. <i>Psychonomic Bulletin and Review</i>. <a href="https://link.springer.com/article/10.3758/s13423-012-0292-0" target="_blank" rel="noopener">Abstract</a>.</li>
+      <li>Newton, E. (1990). Stanford dissertation, unpublished. Figures via <a href="https://law.temple.edu/aer/2021/03/02/brain-lessons-tappers-and-the-curse-of-knowledge/" target="_blank" rel="noopener">Temple Law</a>. Secondhand.</li>
+      <li>Nichols, B. Documentary modes. Via <a href="https://en.wikipedia.org/wiki/Documentary_mode" target="_blank" rel="noopener">Wikipedia</a>.</li>
+      <li>Nielsen Norman Group. <a href="https://www.nngroup.com/articles/layer-cake-pattern-scanning/" target="_blank" rel="noopener">The layer-cake pattern of scanning</a>.</li>
+      <li>Nisbett, R. E., Zukier, H. and Lemley, R. E. (1981). The dilution effect. <i>Cognitive Psychology</i> 13. <a href="https://www.sciencedirect.com/science/article/abs/pii/0010028581900104" target="_blank" rel="noopener">Abstract</a>.</li>
+      <li>O&rsquo;Keefe, D. J. (1999). How to handle opposing arguments in persuasive messages. <i>Communication Yearbook</i> 22. <a href="https://dokeefe.net/pub/OKeefe99AICA.pdf" target="_blank" rel="noopener">PDF</a>.</li>
+      <li>Oppenheimer, D. M. (2006). Consequences of erudite vernacular utilized irrespective of necessity. <i>Applied Cognitive Psychology</i>. Via <a href="https://www.sciencedaily.com/releases/2005/10/051031075447.htm" target="_blank" rel="noopener">ScienceDaily</a>; the paper PDF would not load.</li>
+      <li>Pennington, N. and Hastie, R. Story model, order of presentation experiment. <a href="https://www.marcellodibello.com/legal-probabilism/readings/Hastie-story-model.pdf" target="_blank" rel="noopener">Chapter</a>, table 8.1.</li>
+      <li>Sezer, O., Gino, F. and Norton, M. I. (2018). Humblebragging. <i>JPSP</i>. <a href="https://www.hbs.edu/ris/Publication%20Files/Sezer%20Gino%20Norton%20Humblebragging_0533fa02-7fcd-4585-91c9-b7281174edf9.pdf" target="_blank" rel="noopener">Paper</a>.</li>
+      <li>Toulmin, S. (1958). <i>The Uses of Argument</i>. Via <a href="https://pressbooks.calstate.edu/writingargumentsinstem/chapter/toulmin-argument-model/" target="_blank" rel="noopener">Cal State textbook</a>.</li>
+      <li>Van Dine, S. S. (1928). Twenty rules for writing detective stories. <a href="https://www.staff.u-szeged.hu/~gnovak/vandine.htm" target="_blank" rel="noopener">Text</a>.</li>
+      <li>Weaver, K., Garcia, S. M. and Schwarz, N. (2012). The presenter&rsquo;s paradox. <i>Journal of Consumer Research</i> 39. <a href="https://dornsife.usc.edu/norbert-schwarz/wp-content/uploads/sites/231/2023/11/12_jcr_weaver_et_al_presenter_s_paradox.pdf" target="_blank" rel="noopener">Paper</a>.</li>
+      <li>Williams, K. D., Bourgeois, M. J. and Croyle, R. T. (1993). The effects of stealing thunder. <i>Law and Human Behavior</i>. <a href="https://link.springer.com/article/10.1007/BF01044684" target="_blank" rel="noopener">Abstract</a>.</li>
+      <li>Frankenbite: <a href="https://slate.com/news-and-politics/2004/09/a-reality-tv-lexicon.html" target="_blank" rel="noopener">Slate reality TV lexicon</a> (2004); Becker, <i>Creating Reality in Factual Television</i> (Routledge). Listings only.</li>
+    </ul>
+
+    <h2>Revision notes</h2>
+    <ol class="rev">
+      <li><b>The sample was too thin and I have replaced it.</b> Version 1 had nine entries, six categories and twelve sources, four of them secondhand. This version has forty-nine entries across all eight categories. Its source tally is at the top of this footer.</li>
+      <li><b>Garner&rsquo;s deep issue was labelled research in the sample.</b> It is a practitioner rule from legal writing with no empirical test. Relabelled craft lore.</li>
+      <li><b>The sample&rsquo;s deep issue example invented a detail about the Mondai work</b> (&ldquo;each handoff lost the reasons behind the components&rdquo;). That fact was not in the brief. Replaced with a neutral example. All examples in this version are checked against the brief: unpaid, part time, rotating volunteers and no outcome metrics yet are the only Mondai facts used.</li>
+      <li><b>Greever was cited from two blog summaries only.</b> I have now checked the book&rsquo;s table of contents. It confirms chapter headings used in entries 22 and 47. The three questions in entry 07 still come from the summaries, and the entry says so.</li>
+      <li><b>Fischhoff was attributed without a source read.</b> Now read at summary level, which covers method and the Nixon trip study. The label stays secondhand.</li>
+    </ol>
+    <p style="margin:14px 0 0;">Examples show how each move works. They are not claims about the Mondai work and not copy proposals.</p>
+  </footer>
+</div>
+
+<script>
+const CATS = [
+  {k:'argument', label:'argument', color:'var(--c-argument)'},
+  {k:'evidence', label:'evidence', color:'var(--c-evidence)'},
+  {k:'sequencing', label:'sequencing', color:'var(--c-sequencing)'},
+  {k:'tension', label:'tension', color:'var(--c-tension)'},
+  {k:'honesty', label:'honesty', color:'var(--c-honesty)'},
+  {k:'compression', label:'compression', color:'var(--c-compression)'},
+  {k:'reader', label:'reader state', color:'var(--c-reader)'},
+  {k:'anti', label:'anti-tactic', color:'var(--c-anti)'}
+];
+const GROUND = {research:'research', secondhand:'secondhand', survey:'survey', contested:'contested', lore:'craft lore'};
+
+const DATA = [
+/* ARGUMENT */
+{id:'t01', cat:'argument', name:'The deep issue', ground:'lore', src:'Bryan Garner, <i>The Winning Brief</i>. Legal writing',
+ mech:'Before any answer, state the decision as a short syllogism: the goal that governed it, the fact that complicated it, then the question it forced. Garner caps it at <b>75 words</b> and puts it first. The reader now holds the problem in the shape you held it, so your answer lands as a response rather than an announcement.',
+ ex:'&ldquo;Support tickets doubled after launch. The team could not grow. Could the product answer its own most common question?&rdquo;',
+ risk:'<b>Fails when</b> the question has one sane answer. Then it is a description with a question mark on it. A competent designer must be able to answer it the other way. Past 75 words it stops being the issue and becomes the case study.'},
+
+{id:'t02', cat:'argument', name:'State the warrant', ground:'lore', src:'Stephen Toulmin, <i>The Uses of Argument</i>, 1958',
+ mech:'Toulmin splits an argument into grounds, claim and <b>warrant</b>: the reason the grounds support the claim. Case studies give grounds (&ldquo;users dropped off at step four&rdquo;) and claims (&ldquo;so we cut to three steps&rdquo;) and skip the warrant, the reason fewer steps would fix that drop. The warrant is where design knowledge lives. It is the sentence a non-designer could not have written.',
+ ex:'&ldquo;People did not leave because step four was long. They left because it asked for something they did not have yet.&rdquo;',
+ risk:'<b>Fails when</b> every link gets one. Obvious warrants read as padding and slide into the rationale recital (<span class="xr">entry 48</span>). Spend warrants on the inferences a smart outsider would get wrong.'},
+
+{id:'t03', cat:'argument', name:'Qualify the scope, keep the commitment', ground:'secondhand', src:'Toulmin&rsquo;s qualifier; Ken Hyland, <i>Hedging in Scientific Research Articles</i>, 1998',
+ mech:'A qualifier narrows where a claim holds: &ldquo;for first-time users&rdquo;, &ldquo;in the five sessions we ran&rdquo;. Hyland&rsquo;s analysis of scientific articles separates hedges that make a claim <b>more accurate</b> from hedges that <b>lower the writer&rsquo;s commitment</b>. The first reads as precision. The second reads as cover.',
+ ex:'&ldquo;It worked for people who arrived from a referral. We never tested anyone else.&rdquo; Not: &ldquo;It seemed to generally help.&rdquo;',
+ risk:'<b>Fails as blanket softening.</b> &ldquo;Arguably&rdquo;, &ldquo;somewhat&rdquo; and &ldquo;we felt&rdquo; on every claim read as not believing your own work. Evidence note: Hyland&rsquo;s work analyses how published articles hedge. It is not an experiment on how readers respond, and I read it through a review paper.'},
+
+{id:'t04', cat:'argument', name:'Grade the decision on the day it was made', ground:'research', src:'Baron and Hershey 1988, <i>JPSP</i>; replicated',
+ mech:'Readers judge a decision by its outcome, even when they hold everything the decision maker held. Baron and Hershey ran five experiments of <b>20 to 111 people</b>; a replication with <b>692</b> found a larger effect. With no outcome metrics you cannot win on outcome, so change the ground: what was known then, what was not and what the decision had to survive.',
+ ex:'A subhead that reads &ldquo;What we knew in March&rdquo;, three items under it and the one thing nobody could know yet.',
+ risk:'<b>Fails as an excuse.</b> If the outcome is known and bad, this frame reads as dodging it. Name the outcome first, then argue the decision. And you cannot argue readers out of the bias: subjects who said outcomes should not count still showed it. The frame helps. It does not neutralise.'},
+
+{id:'t05', cat:'argument', name:'Name the standard of review', ground:'lore', src:'Federal Rules of Appellate Procedure 28(a)(8)(B)',
+ mech:'A federal appellate brief must give, for each issue, &ldquo;a concise statement of the applicable standard of review&rdquo;: how much deference the decision gets. Tell the reader which bar your decision should clear. &ldquo;Was this the best possible system&rdquo; and &ldquo;was this a reasonable call for this team at this time&rdquo; are different questions, and only one is fair.',
+ ex:'&ldquo;The question is not whether this was ideal. It is whether it was right for a team that could not maintain anything custom.&rdquo;',
+ risk:'<b>Fails when</b> the bar is lowered until nothing could fail it. That reads as pleading. Readers pick their own standard anyway; if yours looks self-serving they will pick a harsher one.'},
+
+{id:'t06', cat:'argument', name:'Answer first', ground:'lore', src:'Barbara Minto, <i>The Pyramid Principle</i>. Consulting',
+ mech:'Minto&rsquo;s rule for business writing: give the governing conclusion first, then group the supporting reasons under it. Her opening runs situation, complication, question, answer. For a case study, the first screen says what you decided and why it was hard. Everything below supports it. The skimmer gets the argument and the reader gets the proof.',
+ ex:'Opening line: the decision and the constraint that made it hard, in one sentence. The headings below are its reasons.',
+ risk:'<b>Fails when</b> the answer is a deliverable (&ldquo;I built a design system&rdquo;). An answer is a decision someone could disagree with. It does not conflict with the howcatchem (<span class="xr">entry 19</span>) as long as the derivation follows: lead with the answer, then earn it.'},
+
+{id:'t07', cat:'argument', name:'Greever&rsquo;s third question', ground:'secondhand', src:'Tom Greever, <i>Articulating Design Decisions</i>, 2015',
+ mech:'Two independent summaries of Greever&rsquo;s book give the same three questions for any design decision: what problem it solves, how it affects the user and <b>why it is better than the alternative</b>. Most drafts answer the first two. Use the three as an audit behind the page, not as structure on it.',
+ ex:'Check each decision against all three. Any that cannot answer the third gets its alternative shown (<span class="xr">entry 24</span>) or gets cut.',
+ risk:'<b>Fails as headings.</b> Three questions times four decisions is a twelve-part rationale recital. Keep it as a checklist. And check the book before quoting it: I confirmed its table of contents, not this passage.'},
+
+/* EVIDENCE */
+{id:'t08', cat:'evidence', name:'Cite the record', ground:'lore', src:'Federal Rules of Appellate Procedure 28(a)(8)(A)',
+ mech:'Appellate rules require an argument to cite &ldquo;the parts of the record on which the appellant relies&rdquo;. Treat every factual sentence the same way: it points to an artifact on the page, such as a message, a version or a changelog line. A claim with no pointer is an assertion, and your protocol&rsquo;s evidence pass deletes it.',
+ ex:'&ldquo;Engineering asked for fewer variants (message, left).&rdquo; The parenthesis is the citation.',
+ risk:'<b>Fails when</b> the citation points at something unreadable. A thumbnail nobody can read cites nothing. It also fails as clutter: cite what a sceptic would question, not every sentence.'},
+
+{id:'t09', cat:'evidence', name:'Date and author on every artifact', ground:'lore', src:'Chain of custody, legal evidence; documentary practice',
+ mech:'Courtroom evidence needs a chain of custody: who made it, when and that it was not changed. Give every artifact a date and an author in its caption. It costs one line, and it turns a picture into a record. It also keeps you honest, because dated artifacts make a reordered timeline visible (<span class="xr">entry 49</span>).',
+ ex:'Caption: &ldquo;Component audit, my notes, 14 March.&rdquo; Beside it: &ldquo;Revised after review, 2 April.&rdquo;',
+ risk:'<b>Fails when</b> the dates tell a story you did not plan, such as eleven months between problem and fix. That is a reason to explain the gap, not to drop the dates. Also fails when someone else&rsquo;s work appears without their name.'},
+
+{id:'t10', cat:'evidence', name:'Only evidence that tells the options apart', ground:'research', src:'Nisbett, Zukier and Lemley 1981, dilution effect',
+ mech:'Irrelevant detail weakens relevant detail. In the dilution studies, adding nondiagnostic facts about a person made predictions drawn from the diagnostic facts <b>less extreme</b>. The abstract I read gives no sample sizes, so none are stated here. Apply it to design evidence: a quote that would support any decision dilutes the one that supports only yours. Ask of every artifact whether it would look the same if you had chosen the alternative.',
+ ex:'Keep the clip of people failing the old flow. Cut the clip of people calling the product &ldquo;clean&rdquo;.',
+ risk:'<b>Fails when</b> the cut removes context the reader needs to read the diagnostic piece. Evidence note: the studies are about predicting people&rsquo;s behaviour, and later work reports the effect depends on how typical the extra details are. Carrying it to design evidence is my inference.'},
+
+{id:'t11', cat:'evidence', name:'Precision with its derivation', ground:'research', src:'Jerez-Fernandez, Angulo and Oppenheimer 2014; Loschelder et al. 2016',
+ mech:'People read precise numbers as confidence and prefer advisors who give them. But across <b>five experiments with 1,320 people</b>, experts read too much precision as incompetence, unless a rationale came with it. Design managers are the experts here. A real count helps. A real count with where it came from helps more.',
+ ex:'&ldquo;[N] components, down from [M]. Most of the [M] were one-off variants of the same few.&rdquo; Brackets because the real count has to be yours.',
+ risk:'<b>Fails when</b> the number is not real or not yours. Invented precision loses an expert reader fastest. And precision about trivia (&ldquo;312 frames&rdquo;) signals busyness, not judgment.'},
+
+{id:'t12', cat:'evidence', name:'Before and after asserts a cause', ground:'contested', src:'Kuleshov effect: Prince and Hensley 1992; Mobbs 2006; Barratt 2016',
+ mech:'Film editors know two shots side by side are read as related. Kuleshov&rsquo;s neutral face was said to look hungry beside soup. A before and after pair works the same way: the reader infers your change caused the difference. Use it when you can back that causal claim, and say so when you cannot.',
+ ex:'Same crop and same task, with one line underneath: &ldquo;Five people each time. The after group also had the new onboarding.&rdquo;',
+ risk:'<b>Fails when</b> the after is better for reasons that are not yours: a rebrand, a new engineer, a later stage. The pair makes the causal claim for you. Evidence note: a 1992 recreation with <b>137 people</b> found no effect. Later within-subject studies (one with <b>36 people</b>) found it. Real, but smaller than film lore says.'},
+
+{id:'t13', cat:'evidence', name:'Concrete wording is not proof', ground:'contested', src:'Hansen and Wänke 2010; failed preregistered replication, 2019',
+ mech:'Writing advice often claims concrete wording makes statements more believable, citing Hansen and Wänke (<b>46 people</b>). A preregistered replication with roughly ten times the sample found effects near zero (d of 0.08 and 0.11, against 0.48). Use concrete language because it is clearer and checkable (<span class="xr">entry 08</span>), not because it makes readers believe you.',
+ ex:'&ldquo;Cut settings from four tabs to one&rdquo; beats &ldquo;streamlined settings&rdquo;. Clearer, not magically more credible.',
+ risk:'<b>This entry corrects a tactic.</b> It fails if read as &ldquo;concreteness does not matter&rdquo;. It matters for comprehension and checking. Only the shortcut, concrete therefore believed, failed.'},
+
+/* SEQUENCING */
+{id:'t14', cat:'sequencing', name:'Clues before the reveal', ground:'lore', src:'Ronald Knox 1929, rule 8; S. S. Van Dine 1928, rule 1',
+ mech:'Van Dine: &ldquo;The reader must have equal opportunity with the detective for solving the mystery.&rdquo; Knox: the detective may not use a clue the reader has not seen. Put the inputs that drove the decision on the page <b>before</b> the decision. The reader half derives it, and a conclusion they reached with you is one they believe.',
+ ex:'A user quote, a constraint and a failed test, in that order. The decision arrives a section later and feels owed.',
+ risk:'<b>Fails when</b> a decisive input shows up only after the reveal (&ldquo;it turned out leadership wanted this all along&rdquo;). Knox would call that a cheat. It also fails when the clues are so leading the reveal is redundant, which collapses into <span class="xr">entry 40</span>.'},
+
+{id:'t15', cat:'sequencing', name:'Order by cause, not by deliverable', ground:'research', src:'Pennington and Hastie, story model, order of presentation study',
+ mech:'<b>130</b> mock jurors heard the same evidence in story order (the sequence of events) or witness order (grouped by who testified). With the prosecution in story order and the defence in witness order, <b>78 percent</b> convicted. Reversed, <b>31 percent</b>. Case studies default to witness order: a research section, a persona section, a wireframe section. Grouped by deliverable, the causal chain is left for the reader to rebuild. Most will not.',
+ ex:'Not &ldquo;Research, Ideation, Design&rdquo;. Instead: what broke, what we tried, why it failed, what replaced it.',
+ risk:'<b>Fails when</b> story order turns into a diary. Chronology is not causation. Each step needs a &ldquo;because&rdquo; linking it to the last, or it is the process recital with dates on. Evidence note: jurors choosing a verdict, not readers judging design.'},
+
+{id:'t16', cat:'sequencing', name:'Put the decision in the stress position', ground:'lore', src:'Gopen and Swan 1990, <i>American Scientist</i>',
+ mech:'Readers weight what arrives at the end of a sentence. Gopen and Swan call it the <b>stress position</b>: new, important information goes there, and old, linking information goes at the start. Case study sentences routinely end on process, &ldquo;which we validated through several rounds of testing&rdquo;, and bury the decision in the middle.',
+ ex:'Weak: &ldquo;The tab bar was removed, which we decided after three rounds of testing.&rdquo; Strong: &ldquo;After three rounds of testing, we removed the tab bar.&rdquo;',
+ risk:'<b>Fails when</b> every sentence ends on a punch. Emphasis on everything is emphasis on nothing. Evidence note: the article argues from reader expectation and worked examples, not experiments.'},
+
+{id:'t17', cat:'sequencing', name:'The nut graf', ground:'lore', src:'Newsroom feature convention',
+ mech:'Feature writers open on a scene, then within a few paragraphs give the nut graf: why this story, why now and what it is really about. It is the contract with the reader. A case study that opens on an image or a moment needs one before the reader leaves, covering the decision, the stakes and what the page will prove.',
+ ex:'One screen of the problem, then: &ldquo;This is about why we built less than anyone asked for, and what that cost.&rdquo;',
+ risk:'<b>Fails when</b> it summarises process (&ldquo;this case study walks through my research, design and testing&rdquo;). That is a table of contents, not a reason to read. Evidence note: Poynter&rsquo;s article on the form would not load for me. This is standard newsroom usage, stated as lore.'},
+
+{id:'t18', cat:'sequencing', name:'Chekhov&rsquo;s rifle', ground:'lore', src:'Chekhov, letter to Lazarev, 1 November 1889',
+ mech:'&ldquo;One must never place a loaded rifle on the stage if it isn&rsquo;t going to go off.&rdquo; Chekhov was talking about a superfluous monologue. Every constraint you name should go off. If you say the team rotated, a later decision must hinge on it. Constraints listed as scenery teach the reader to skim your context.',
+ ex:'Paragraph one names the constraint: the team rotated every few months. Section three pays it off: &ldquo;So every component had to make sense without me in the room.&rdquo;',
+ risk:'<b>Fails in reverse.</b> If you plant only the constraints that happen to justify what you did, it reads as reverse engineered. Include one that made things harder and never got resolved.'},
+
+/* TENSION */
+{id:'t19', cat:'tension', name:'The howcatchem', ground:'research', src:'R. Austin Freeman 1912; Gerrig 1989',
+ mech:'Freeman invented the inverted detective story: show the crime first, and the pleasure moves from who to how. A case study reader already knows the ending, because it shipped and it is in a portfolio. Stop hiding it. State the outcome early and make the derivation the story. Across <b>three experiments</b>, Gerrig found obstacles in a story made readers slower to confirm outcomes they already knew for certain.',
+ ex:'The first line names what shipped. Everything after is how it nearly did not.',
+ risk:'<b>Fails without obstacles.</b> A known ending with a smooth path is a process recital with the conclusion moved up. In Gerrig&rsquo;s third experiment the effect disappeared when the story resolved its obstacle. Evidence note: he measured slower fact checking, an indirect proxy for suspense.'},
+
+{id:'t20', cat:'tension', name:'Complication, then resolution by your own hand', ground:'secondhand', src:'Jon Franklin, <i>Writing for Story</i>, 1986',
+ mech:'Franklin outlines every story as a complication and a resolution, about three words each, with strong verbs: &ldquo;Cancer strikes Joe&rdquo;, &ldquo;Joe overcomes cancer&rdquo;. His rule is that the resolution must come from the protagonist&rsquo;s own effort or it does not satisfy. Outline each decision this way before writing. If you cannot be the subject of the resolution, you have not found your part in it.',
+ ex:'&ldquo;Volunteers keep leaving.&rdquo; &ldquo;System explains itself.&rdquo; Then ask whose verb made the second one true.',
+ risk:'<b>Fails as copy.</b> The three-word lines are an outline tool, not headings. It also fails when you claim the resolution. If the fix came from someone else, your honest story is how you saw it and got it adopted.'},
+
+{id:'t21', cat:'tension', name:'Name what it cost', ground:'lore', src:'Opportunity cost; your protocol, section 2',
+ mech:'A decision with no cost was an observation. Name what the choice gave up: the feature that did not ship, the users you disappointed, the flexibility you traded for consistency. The cost proves the alternative was real. It is also what a senior reader looks for, because weighing costs is the job.',
+ ex:'&ldquo;One navigation pattern meant power users lost their shortcuts. Two of them told us so.&rdquo;',
+ risk:'<b>Fails when</b> the cost is a disguised virtue (&ldquo;it cost me my weekends&rdquo;). That is a humblebrag (<span class="xr">entry 43</span>). The cost falls on the product or its users, not on your dedication.'},
+
+{id:'t22', cat:'tension', name:'The call you lost', ground:'secondhand', src:'Greever 2015, ch. 11: &ldquo;Making changes you disagree with&rdquo;',
+ mech:'Greever&rsquo;s chapter on recovering from disaster includes making changes you disagree with and trust as a bank account you draw down. Show one decision that went against you and what you did next. It proves two things a win cannot: that you argued a position, and that you work well when you lose. It is the most credible tension available because you did not choose it.',
+ ex:'&ldquo;I argued for a single entry point. We shipped three. Here is what I changed so three could work.&rdquo;',
+ risk:'<b>Fails as grievance.</b> If the section implies you were right and they were wrong, the reader, often a stakeholder themselves, sides with the room (<span class="xr">entry 47</span>). Tell it as a trade, not a defeat.'},
+
+{id:'t23', cat:'tension', name:'Scene at the hardest moment', ground:'research', src:'Green and Brock 2000, <i>JPSP</i>, transportation',
+ mech:'Across <b>four experiments with 699 people</b>, readers more absorbed in a story adopted more story-consistent beliefs and circled fewer false notes in it. A real scene at the hardest decision, such as the test that failed or the message that changed the plan, pulls the reader in. An absorbed reader argues back less.',
+ ex:'The two minutes where a test participant gave up, told as a scene, before any analysis.',
+ risk:'<b>Fails ethically and practically</b> if used to slide a weak claim past the reader. One false note found after absorption costs more than it would in plain prose. Put scene where the evidence is strongest, never where it is thinnest.'},
+
+/* HONESTY */
+{id:'t24', cat:'honesty', name:'Refute the rejected option', ground:'research', src:'O&rsquo;Keefe 1999, meta-analysis; Allen 1991',
+ mech:'Showing the option you did not pick raises credibility only if you then say why it lost. O&rsquo;Keefe pooled <b>107 effect sizes from 20,111 people</b>. Two-sided messages that refute the other side beat one-sided ones. Two-sided messages that only mention it did <b>worse than saying nothing</b>. A road not taken, left open, is a doubt you planted yourself.',
+ ex:'The rejected version at full size, then one sentence on what it would have cost.',
+ risk:'<b>Fails half done</b>, which is the common version: &ldquo;We also explored X&rdquo;, with no reason. The effect is small (r of about .08) and did not hold for advertising. A tilt, not a lever.'},
+
+{id:'t25', cat:'honesty', name:'Steal the thunder', ground:'research', src:'Williams, Bourgeois and Croyle 1993, <i>Law and Human Behavior</i>',
+ mech:'When the defence disclosed damaging information before the prosecution raised it, mock jurors (<b>257</b> in one study, <b>148</b> in another) weighed it less. The benefit ran through credibility. A case study has predictable damaging facts: no metrics, an unpaid team, a product not yet at scale. Say them first, in your frame, before the reader finds them.',
+ ex:'&ldquo;There are no outcome metrics here yet. What follows is the reasoning, and the artifacts that show it happened.&rdquo;',
+ risk:'<b>Fails when</b> the reader would never have found it. In a trial the damaging fact is certain to come out; the tactic transfers only to facts that will. Volunteering a weakness nobody would notice plants a doubt for free.'},
+
+{id:'t26', cat:'honesty', name:'Inoculate against the interview question', ground:'research', src:'McGuire 1961; Banas and Rains 2010, meta-analysis',
+ mech:'Exposure to a weakened argument plus its refutation makes people resist the full argument later. Across <b>41 studies with 10,660 people</b>, inoculation beat no treatment (d = .43) and beat plain supportive messages (d = .22). The hiring manager will meet the objection later, from a colleague or in the interview. Raise the strongest one now and answer it.',
+ ex:'&ldquo;A fair objection is that a system this small is barely a system. It is small because a rotating volunteer team had to maintain it.&rdquo;',
+ risk:'<b>Fails if the weakened version is a straw man.</b> Experts spot one, and then they are inoculated against you. Evidence note: this research is about resisting attacks on beliefs; carrying it to hiring is my inference.'},
+
+{id:'t27', cat:'honesty', name:'Put the agent in the sentence', ground:'research', src:'Fausey and Boroditsky 2010, <i>Psychonomic Bulletin and Review</i>',
+ mech:'In three studies (<b>236, 179 and 589 people</b>), agentive phrasing (&ldquo;she ignited the napkin&rdquo;) instead of nonagentive (&ldquo;the napkin ignited&rdquo;) raised blame and raised fines by <b>26 to 53 percent</b>, even when people also watched video of the event. Grammar assigns authorship. &ldquo;The navigation was simplified&rdquo; hides who decided. Use yourself as the subject for your decisions and name others as the subject for theirs.',
+ ex:'&ldquo;I cut the second tab. The engineer&rsquo;s estimate is why.&rdquo;',
+ risk:'<b>Fails as a credit grab.</b> The grammar that assigns blame assigns credit too: &ldquo;I&rdquo; for team work misattributes it, and colleagues read portfolios. Evidence note: the studies measure blame; applying them to credit is my inference.'},
+
+{id:'t28', cat:'honesty', name:'The limitations paragraph', ground:'lore', src:'Scientific paper convention',
+ mech:'Papers carry a limitations section: what the work cannot show, and why. The case study version is one short paragraph near the end: the sample sizes of any testing, what was never measured, what might not hold at scale. It lets every earlier claim stand at full strength, because its scope is already set.',
+ ex:'&ldquo;Five usability sessions, all with people already interested in the product. None of this tells us about people who never signed up.&rdquo;',
+ risk:'<b>Fails as a disclaimer</b> that disowns everything. A limitation names a specific gap; &ldquo;results may vary&rdquo; names none. It also fails placed first, where scope conditions before the argument read as defensive.'},
+
+{id:'t29', cat:'honesty', name:'The wrong turn and the signal you missed', ground:'lore', src:'Blameless postmortem practice, software engineering',
+ mech:'Blameless postmortems record what happened, what signal was available and what changes, without assigning fault. Apply the format to your own mistake. Say what you would do differently, and also what information existed at the time that should have told you. That shows how you learn, which is what the reader is hiring.',
+ ex:'&ldquo;The first navigation assumed people came to browse. The signup survey already said they came for one task. I read it after the build.&rdquo;',
+ risk:'<b>Fails as a performed mistake</b>, a trivial error confessed to look humble. It also fails with a recovery clause that turns the error into a win (&ldquo;which taught me the value of research&rdquo;). Name the signal and the change, then stop.'},
+
+/* COMPRESSION */
+{id:'t30', cat:'compression', name:'Cut between decisions, never inside one', ground:'lore', src:'Hitchcock, as reported by Leonard Lyons, 1956',
+ mech:'&ldquo;Drama is life with the dull bits cut out&rdquo; is a cutting rule. Keep the moments where something was decided and cut the transit between them. Two years compress to minutes if every cut falls between decisions. The inside of a decision, meaning the options, the doubt and the fact that tipped it, is what the reader came for.',
+ ex:'Cut &ldquo;over the next few weeks we iterated on the flow&rdquo;. Keep the one iteration where the direction changed.',
+ risk:'<b>Fails when</b> the cuts remove the scale a senior reader needs to calibrate. One line of summary for the months you cut (&ldquo;eleven weeks and four versions later&rdquo;) keeps scale honest.'},
+
+{id:'t31', cat:'compression', name:'Scene for minutes, summary for months', ground:'lore', src:'Narrative nonfiction craft',
+ mech:'Narrative writers alternate scene (moment by moment) with summary (weeks in a sentence). The ratio signals importance: whatever gets a scene, the reader treats as the point. Most case studies give every phase equal weight. Summarise the phases in a line each and give one or two decisions a full scene.',
+ ex:'&ldquo;Six weeks of interviews&rdquo; gets one sentence. The afternoon the plan changed gets three paragraphs.',
+ risk:'<b>Fails when</b> the scene goes to the wrong moment: the kickoff, the workshop, the launch. A scene has to contain a decision. This is an allocation rule; the reader-effect bank&rsquo;s &ldquo;scene, not summary&rdquo; is about characterisation.'},
+
+{id:'t32', cat:'compression', name:'Cut for the emotion', ground:'secondhand', src:'Walter Murch, <i>In the Blink of an Eye</i>. Film editing',
+ mech:'Murch ranks six criteria for a cut and puts emotion first, above story, rhythm and spatial continuity. If a cut is emotionally true he will give up the lower criteria. In a case study the emotional truth is usually the moment of uncertainty or pressure. Compress everything else, but keep the one moment where you did not know if it would work.',
+ ex:'Keep: &ldquo;I did not know whether anyone would use it, and the demo was in a week.&rdquo; Cut the list of tools.',
+ risk:'<b>Fails as melodrama.</b> Manufactured stakes are obvious on a professional page. The emotion must be one the facts support, stated flatly.'},
+
+{id:'t33', cat:'compression', name:'One instance, flagged as typical', ground:'lore', src:'Feature journalism',
+ mech:'Feature writers let one person or case stand for a trend, and say that it does. Pick one decision that shows how you work across many, tell it fully and state that it is typical. The reader gets depth and breadth for the price of one story.',
+ ex:'&ldquo;This is one of dozens of component decisions. Most went through the same test: could a new volunteer use it without asking?&rdquo;',
+ risk:'<b>Fails when</b> the instance is your best, not your typical. Presenting the exception as the rule is cherry picking, and an interviewer will ask for a second example.'},
+
+{id:'t34', cat:'compression', name:'Fewer, stronger', ground:'research', src:'Weaver, Garcia and Schwarz 2012, presenter&rsquo;s paradox',
+ mech:'Presenters add; evaluators average. Across <b>seven studies</b>, adding a mildly positive item to a strongly positive one lowered the value of the whole. In the first study (<b>54 people</b>), evaluators paid about <b>$242</b> for an iPod alone and <b>$177</b> for the same iPod with a free song. An extra decision, artifact or case study of middling quality lowers the average of the rest.',
+ ex:'Three decisions that each hold up beat five where two are merely fine.',
+ risk:'<b>Fails when</b> the cut removes range the role requires. The effect holds when items are judged as one package. If a reviewer is scanning for a specific skill, the missing piece costs more than the dilution.'},
+
+/* READER STATE */
+{id:'t35', cat:'reader', name:'Two readers, two budgets', ground:'survey', src:'Garron Engstrom, UX Collective. Survey of 100+ recruiters and design managers',
+ mech:'In one practitioner survey of just over a hundred people, <b>80 percent of recruiters</b> said they spend 3 minutes or less on a portfolio. <b>54 percent of design managers</b> said 5 to 10 minutes, and 11 percent said more. These are two readers with two jobs: one decides whether to forward you, the other whether to interview you. Build a skim path for the first and a read path for the second, each complete on its own.',
+ ex:'Headings, first lines and captions alone state the argument. The body proves it.',
+ risk:'<b>Fails if the numbers are treated as fact.</b> The survey was self-selected and self-reported, and it was not reviewed; the author says he is not a data scientist. Use its shape (two readers), not its minutes.'},
+
+{id:'t36', cat:'reader', name:'Headings that argue', ground:'research', src:'Nielsen Norman Group eyetracking, layer-cake pattern',
+ mech:'NN/g&rsquo;s eyetracking found a layer-cake pattern: people fixate on headings and skip much of the body between them, and it is one of the more effective scanning patterns when headings are descriptive. Case study headings are usually phases, Research then Ideation then Testing, and carry nothing. A heading that states a decision carries the argument to a skimmer on its own.',
+ ex:'Not &ldquo;Research&rdquo;. Instead: &ldquo;Nobody wanted another dashboard.&rdquo;',
+ risk:'<b>Fails when</b> headings get clever instead of informative. NN/g&rsquo;s guidance is headings that describe their section succinctly. A pun or teaser breaks the skim path it was meant to serve. Evidence note: NN/g publishes findings, not sample sizes, in this article.'},
+
+{id:'t37', cat:'reader', name:'The six-second number is folklore', ground:'survey', src:'Checked: three sources for portfolio review time',
+ mech:'Portfolio advice cites review times of six or thirty seconds. I tried three sources. One would not load. One wrote of its thirty seconds, &ldquo;I didn&rsquo;t make that number up&rdquo;, then cited nothing; its six-second figure came from resume advice, not portfolios. The third is the self report survey in <span class="xr">entry 35</span>. Design for a scan because readers scan, not because of a number nobody measured.',
+ ex:'Test it directly: give the page to someone for sixty seconds and ask what they would repeat.',
+ risk:'<b>Fails if it becomes an excuse</b> to ignore skimmers. The number is unfounded. The scanning is real (<span class="xr">entry 36</span>).'},
+
+{id:'t38', cat:'reader', name:'The curse of knowledge', ground:'secondhand', src:'Elizabeth Newton 1990, Stanford dissertation',
+ mech:'Newton had people tap the rhythm of well-known songs and predict how many listeners would name them. They predicted half. Listeners named <b>3 of 120</b>. You know your product&rsquo;s names, history and shorthand so well you cannot hear them as a stranger does. Internal product names and team shorthand feel self-explanatory. They are not.',
+ ex:'Give the draft to someone outside the project and mark every noun they ask about.',
+ risk:'<b>Fails if the fix is glossing everything</b>, which slows the skim and talks down to experts. Gloss the terms the argument depends on. Evidence note: the dissertation is unpublished; figures come from secondary sources.'},
+
+{id:'t39', cat:'reader', name:'Announce the count', ground:'lore', src:'Classical rhetoric, the partitio',
+ mech:'Classical orators set out the parts of their case before arguing them. &ldquo;Three decisions shaped this system&rdquo; lets the reader budget attention, know where they are and notice when you have finished. It also forces you to decide how many decisions there really were.',
+ ex:'&ldquo;Three decisions shaped this. I got the third one wrong.&rdquo;',
+ risk:'<b>Fails when</b> the count does not match the page, or is inflated to look thorough. If every case study uses the same count, three becomes a template.'},
+
+/* ANTI-TACTICS */
+{id:'t40', cat:'anti', name:'The inevitable decision', ground:'secondhand', src:'Fischhoff 1975, hindsight bias',
+ mech:'Once people know an outcome, they rate it as more predictable than they did beforehand. Fischhoff called it creeping determinism. Writers do it to their own work, narrating the finished decision as the obvious result of the research. It feels rigorous. It erases the judgment, because if the answer was obvious, nobody needed a designer.',
+ ex:'&ldquo;Research made it clear that users needed X.&rdquo; Clear to whom, and when?',
+ risk:'<b>This is the failure.</b> Put the uncertainty back: what else it could plausibly have been, and what tipped it. Overcorrecting fails too. Agonised doubt you did not have reads as theatre.'},
+
+{id:'t41', cat:'anti', name:'The seductive artifact', ground:'research', src:'Harp and Mayer 1998; Rey 2012 meta-analysis',
+ mech:'Interesting but irrelevant material reduces what readers retain and can apply. Rey&rsquo;s meta-analysis of <b>39 effects</b> found small to medium harm to recall and medium harm to transfer. The usual case study offender is the process photo: the sticky note wall, the workshop, the whiteboard. Interesting, and proof of nothing about a decision.',
+ ex:'A sticky note wall captioned &ldquo;synthesis&rdquo;. Replace it with the one cluster that changed the plan.',
+ risk:'<b>This is the failure.</b> Evidence note: the research is on learning from instructional material, not judging a candidate. Carrying it to hiring managers is my inference.'},
+
+{id:'t42', cat:'anti', name:'The truthiness screenshot', ground:'research', src:'Newman, Garry and colleagues 2012, <i>Psychonomic Bulletin and Review</i>',
+ mech:'In <b>four experiments</b>, a photo that said nothing about whether a claim was true still made people more likely to call it true, and descriptive words did the same. A polished screen beside &ldquo;users loved the new flow&rdquo; makes the claim feel truer without supporting it. It works on readers, which is the problem: a reader who notices feels handled.',
+ ex:'A hero mockup next to &ldquo;engagement improved&rdquo;. The mockup is not evidence of engagement.',
+ risk:'<b>This is the failure.</b> Put each image beside the claim it actually supports. The effect was strongest for unfamiliar and difficult judgments. Design readers are experts, so the lift may be smaller and the backlash larger.'},
+
+{id:'t43', cat:'anti', name:'The humblebrag', ground:'research', src:'Sezer, Gino and Norton 2018, <i>JPSP</i>',
+ mech:'Across <b>nine studies</b> (the largest over 600 people), humblebraggers were liked less than people who bragged outright and rated less competent. Complaint-based humblebrags did worse than plain complaining, and perceived insincerity explained it. Case studies humblebrag by braiding constraint and achievement into one sentence.',
+ ex:'&ldquo;I had to single-handedly build the whole system with no budget.&rdquo; Split it: the team was unpaid and rotated. Separately: what got built.',
+ risk:'<b>This is the failure.</b> The fix is not hiding either half. State the constraint flat, state the result flat and let the reader do the arithmetic.'},
+
+{id:'t44', cat:'anti', name:'Metric theatre', ground:'lore', src:'Your protocol, section 5',
+ mech:'Real numbers dressed as outcomes: &ldquo;80 percent preferred&rdquo; from five people, time on page with no baseline, a percentage with no denominator. Your rule bans invented metrics. Metric theatre gets past that rule, because every number in it is real. Experts read unexplained precision as incompetence (<span class="xr">entry 11</span>).',
+ ex:'Write &ldquo;four of five participants&rdquo;, never &ldquo;80 percent&rdquo;. The denominator goes in every time.',
+ risk:'<b>This is the failure.</b> A number that cannot answer &ldquo;compared to what?&rdquo; should become a sentence of reasoning.'},
+
+{id:'t45', cat:'anti', name:'Erudite vernacular', ground:'secondhand', src:'Oppenheimer 2006, <i>Applied Cognitive Psychology</i>',
+ mech:'In <b>five experiments</b>, text with needlessly complex words, and even text set in a hard-to-read font, led readers to rate the author as less intelligent. The materials included application essays and dissertation abstracts. Case studies inflate vocabulary to sound senior, and it lowers the reader&rsquo;s estimate of the writer.',
+ ex:'&ldquo;Operationalised research insights via a holistic framework&rdquo; becomes &ldquo;turned what we learned into three rules&rdquo;.',
+ risk:'<b>This is the failure.</b> A technical term that names something precisely is fine. The finding is about needless complexity. Evidence note: read through a press summary; the paper would not load.'},
+
+{id:'t46', cat:'anti', name:'The textbook process diagram', ground:'lore', src:'Portfolio convention, read through the dilution effect (<span class="xr">entry 10</span>)',
+ mech:'The double diamond or the five-stage design thinking loop signals that you know a method, which every applicant can signal. It is nondiagnostic: it would look identical whatever you decided. By the dilution logic it weakens the evidence around it, and it spends the skimmer&rsquo;s attention on nothing.',
+ ex:'Replace it with the real sequence of your decisions, including the loop back the textbook diagram does not have.',
+ risk:'<b>This is the failure.</b> A diagram of your actual process, detours included, is evidence. The textbook one is wallpaper.'},
+
+{id:'t47', cat:'anti', name:'The villain stakeholder', ground:'lore', src:'Craft; Greever 2015, ch. 3: &ldquo;See their perspective&rdquo;',
+ mech:'Tension is easy to fake by casting a colleague as the obstacle: the executive who wanted it changed, the engineer who said no. It reads as blame. Your reader is a manager, often the person designers argue with, and will side with the absent party. Greever opens his stakeholder chapter on seeing their perspective.',
+ ex:'Not &ldquo;leadership pushed back&rdquo;. Instead: &ldquo;Leadership needed it demo ready in a week, which ruled out the version I wanted.&rdquo;',
+ risk:'<b>This is the failure.</b> State the other person&rsquo;s constraint as legitimately as your own. The real disagreement stays and the villain goes.'},
+
+{id:'t48', cat:'anti', name:'The rationale recital', ground:'lore', src:'Your protocol, section 5; presenter&rsquo;s paradox (<span class="xr">entry 34</span>)',
+ mech:'Every sentence is a claim plus its justification, all evenly weighted and equally confident. It reads as competent and lands flat, because nothing is allowed to matter more than anything else. The presenter&rsquo;s paradox explains part of it: evenly justified minor decisions pull the average of the major ones down.',
+ ex:'Six decisions, each with a &ldquo;because&rdquo; paragraph of the same length.',
+ risk:'<b>This is the failure.</b> The fix is choosing which two moments matter and letting the rest be quieter: one line each, or cut.'},
+
+{id:'t49', cat:'anti', name:'The frankenbite', ground:'lore', src:'Reality TV editing term; Slate 2004',
+ mech:'Editors&rsquo; name for a line spliced from separate takes, so someone seems to say what they never said in one breath. The case study version compresses two moments into one scene, so feedback from month two and the fix from month nine are told as one meeting. Each piece is true. The sequence is not, and it overstates how fast and cleanly you responded.',
+ ex:'&ldquo;After testing, we pivoted.&rdquo; Testing was in spring. The pivot came the following winter.',
+ risk:'<b>This is the failure.</b> Compression is required; a fabricated sequence is not. &ldquo;Nine months later&rdquo; costs three words and buys trust in every other sentence. Dated artifacts (<span class="xr">entry 09</span>) prevent it.'}
+];
+
+const STORAGE_KEY = 'casestudy_tactics_v2';
+function getStore(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }catch(e){ return {}; } }
+function saveStore(s){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }catch(e){} }
+let activeCats = new Set();
+const catOf = k => CATS.find(c=>c.k===k);
+const plain = h => { const d=document.createElement('div'); d.innerHTML=h; return d.textContent; };
+
+function renderFilters(){
+  const el = document.getElementById('filterbar');
+  el.querySelectorAll('.chip').forEach(c=>c.remove());
+  CATS.forEach(c=>{
+    const n = DATA.filter(d=>d.cat===c.k).length;
+    const chip = document.createElement('button');
+    chip.type='button';
+    chip.className = 'chip' + (activeCats.has(c.k)?' active':'');
+    chip.setAttribute('aria-pressed', activeCats.has(c.k));
+    chip.innerHTML = c.label + '<span class="ct">' + n + '</span>';
+    chip.onclick = ()=>{ activeCats.has(c.k)?activeCats.delete(c.k):activeCats.add(c.k); render(); };
+    el.appendChild(chip);
+  });
+  if(activeCats.size){
+    const clr = document.createElement('button');
+    clr.type='button'; clr.className='chip'; clr.style.color='var(--accent)'; clr.textContent='clear';
+    clr.onclick=()=>{ activeCats.clear(); render(); };
+    el.appendChild(clr);
+  }
+}
+
+function render(){
+  renderFilters();
+  const store = getStore();
+  const rows = document.getElementById('rows');
+  rows.innerHTML='';
+  const items = DATA.filter(d=> activeCats.size===0 || activeCats.has(d.cat));
+  document.getElementById('countLabel').textContent = items.length + ' of ' + DATA.length + ' tactics';
+  items.forEach(d=>{
+    const c = catOf(d.cat);
+    const tr=document.createElement('tr');
+    tr.className='row';
+    tr.id = 'entry-' + d.id.slice(1);
+    tr.innerHTML = `
+      <td><span class="num">${d.id.slice(1)}</span></td>
+      <td>
+        <span class="catpill" style="color:${c.color}">${c.label}</span>
+        <p class="tname">${d.name}</p>
+        <span class="src">${d.src}</span>
+        <span class="ground ${d.ground}">${GROUND[d.ground]}</span>
+      </td>
+      <td><div class="mech">${d.mech}</div></td>
+      <td><div class="ex">${d.ex}</div></td>
+      <td><div class="risk">${d.risk}</div></td>
+      <td class="notewrap">
+        <label for="note-${d.id}">Your notes</label>
+        <textarea class="note" id="note-${d.id}" data-id="${d.id}"></textarea>
+        <div class="saved"></div>
+      </td>`;
+    rows.appendChild(tr);
+    tr.querySelector('.note').value = store[d.id]||'';
+  });
+  document.querySelectorAll('.note').forEach(ta=>{
+    let t;
+    ta.addEventListener('input',()=>{
+      clearTimeout(t);
+      t=setTimeout(()=>{
+        const s=getStore(); s[ta.dataset.id]=ta.value; saveStore(s);
+        const ind=ta.closest('td').querySelector('.saved');
+        ind.textContent='saved'; ind.classList.add('show');
+        clearTimeout(ind._t); ind._t=setTimeout(()=>ind.classList.remove('show'),1200);
+      },400);
+    });
+  });
+}
+
+document.getElementById('exportBtn').addEventListener('click',()=>{
+  const store=getStore();
+  document.querySelectorAll('.note').forEach(ta=>{ store[ta.dataset.id]=ta.value; });
+  let out='Case study tactics, my notes\n\n';
+  let any=false;
+  DATA.forEach(d=>{
+    const n=(store[d.id]||'').trim();
+    if(n){ any=true; out += d.id.slice(1)+'. '+plain(d.name)+' ['+catOf(d.cat).label+']\n'+n+'\n\n'; }
+  });
+  if(!any) out+='(nothing written yet)';
+  const ta=document.getElementById('exportText');
+  ta.value=out; ta.hidden=false;
+  const b=document.getElementById('exportBtn');
+  const done=()=>{ b.textContent='copied'; setTimeout(()=>{b.textContent='copy my notes for Claude';},1800); };
+  try{ navigator.clipboard.writeText(out).then(done).catch(()=>{ ta.select(); }); }catch(e){ ta.select(); }
+});
+
+render();
+</script>

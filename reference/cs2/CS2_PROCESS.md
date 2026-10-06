@@ -59,6 +59,12 @@ Correction to `reasoning/THROUGHLINES.md` section 1: rollover did not start in M
 2026-03-24, with Chadwick already calling it a "weird decision making point" and moving flex to the week
 level (`reasoning/carry-over.md`). May revised a mechanic that had existed since March.
 
+## Storage
+
+Everything CS2 depends on lives in this repo and is pushed to GitHub, so any account or machine can pick
+it up. Anything found elsewhere (iCloud, Documents, a claude.ai chat, a local branch) is copied in, committed
+and pushed the same session it turns up, and its origin noted where it is listed.
+
 ## Reference material, and how it gets used
 
 The writing craft sources, separate from the evidence about Mondai:
@@ -67,17 +73,18 @@ The writing craft sources, separate from the evidence about Mondai:
   anything back
 - `docs/about-source/READER-EFFECT-TACTICS.md` and `tactics_bank.html`: the reader effect tactics, built for
   the About page; the structure, evidence and pacing tactics carry over to case studies
-- `docs/about-source/CASE-STUDY-TACTICS-BRIEF.md`: the brief for a case study tactics bank. No built bank
-  has been found in the repo
+- `docs/about-source/case_study_tactics.html`: the case study tactics bank, 49 tactics, built 22 Sep from
+  that brief. Recovered from iCloud on 2026-10-06
+- `docs/about-source/CASE-STUDY-TACTICS-BRIEF.md`: the brief the bank was built from
 - `reports/` and `research_notes/`: How case studies end, Case study results without metrics, What gets
   designers interviewed, Expanding card gallery components
 - `.claude/case-study-rules.md`: evidence and scope rules
 
 How they are used, so nothing gets skimmed and nothing gets read in full every time:
 
-1. **Once: the index.** Every source above read in full, one line per tactic or principle in
-   `CS2_REFERENCE_INDEX.md`: its name, what it does, when it fits and where it lives. A script checks that
-   every heading in every source has a line, so coverage is proven rather than claimed.
+1. **Once: the index.** Done 2026-10-06. `CS2_REFERENCE_INDEX.md` has one line per tactic or principle
+   from every source above. `check-reference-index.py` fails if any entry is missing; run it whenever a
+   source changes.
 2. **Before each section: the pull.** Read the index, pick the entries that fit what the section has to
    do, open those in full and bring them into the conversation as moves we could use. Different sections
    will pull different things.
