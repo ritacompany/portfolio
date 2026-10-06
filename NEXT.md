@@ -1,6 +1,6 @@
 # Next
 
-Current chess portrait task: review the corrected six-role overview and full 32-piece inventory in `output/chess-portrait/04-piece-forms/03-classic-rounded-smooth-bishop.png` and `output/chess-portrait/05-complete-set/`. The current gallery uses the smooth bishop only. Resolve side colors and clean sprite edges before final placement on the preferred reflective wave board. Check every base against the curved cells and the person overlap.
+Current chess portrait task: establish the preferred reflective wave board's playable grid, scale and crop before recoloring pieces or restoring the person. Use the composition comparison in `output/chess-portrait/06-composition-reference/`: the pink-coat photo is the original inspiration, but its piece map is not a placement template. Keep one reachable piece under the provisional hand, then review the other five proxy positions against the board's actual curved cell centers. Use only a selected subset of the complete 32-piece asset library in the portrait. After placement, resolve side colors, restore the likeness and person layer, then finish hand overlap, shadows and reflections.
 
 Other portfolio work remains queued:
 

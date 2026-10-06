@@ -80,7 +80,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
-| 1 | The route | Mondai turns the lack of a defined path into an ordered route: the Growth Journey and its five Pathways | One line, five marks, then nested | Provisional draft, `draft/CS2-rungs-0-2.md` |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route and the week, simplest form | Provisional draft, `draft/CS2-rungs-0-2.md` |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Provisional draft, `draft/CS2-rung-3.md` |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Not started |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
@@ -90,6 +90,8 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 | 8 | Handoff and the team | What it took for other people to hold it | To decide | Not started |
 | 9 | Intro | Who it is for and the situation they are in. Written last | None | Last |
 | 10 | The story | What ties it together, found from the sections. Written last | None | Last |
+
+Section names are working labels, not the eyebrows on the page. The page can label and split them however reads best.
 
 "What the reader comes away with" is the job of the section, not its content. The content comes from
 the conversation. Every section gets a layout from the templates, the real screens and the map. Chadwick
