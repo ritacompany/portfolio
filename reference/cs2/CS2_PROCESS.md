@@ -152,10 +152,10 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
   flex points was on screen (`reasoning/carry-over.md`), so a dated pace system already existed. What
   nothing decided was how much of the route a week should hold. Whether he originated the modal or built
   on something handed to him is open; the record shows him building and critiquing it.
-- Open question for him: the Pathway order. The archive and his 18 March message say Discovery,
-  Cognition, Branding, Networking, Opportunity. The 20 Sep desktop export of the Growth Journey screen
-  (`mondai/reference/desktop-screens/growth-journey/growth-journey.png` in the Mondai repo) shows
-  Networking at 03 and Branding at 04. The live Figma frame could not be found on 6 Oct.
+- Pathway order, confirmed by Chadwick 2026-10-06 and matching the shipped designs: Discovery,
+  Cognition, Networking, Branding, Opportunity. The Mondai archive, his 18 March 2026 message and the
+  provisional draft `draft/CS2-rungs-0-2.md` have Branding before Networking and are stale on this. Use the
+  designs. An archive correction is drafted only with his approval.
 - Problems that belong here: a fixed route with nothing deciding how much of it a week holds; people
   whose weeks are irregular (his own argument to Michael, 13 Feb 2025, in CS1 evidence; not a research
   finding).
