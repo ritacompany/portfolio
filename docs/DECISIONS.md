@@ -1,5 +1,9 @@
 # Portfolio decisions
 
+## 2026-10-06: Classic rounded resin forms for the chess portrait
+
+Chadwick chose the top, classic rounded pink piece study as the preferred form direction. The study showed one of each of the six standard roles. The complete inventory study in `output/chess-portrait/05-complete-set/` repeats them at the standard counts for two sides of 16 pieces. Chadwick then pointed out that the bishop slit remained in later versions after a smooth correction was shown. The current overview and current gallery use only a smooth, uncut bishop. Final side colors and production-ready individual assets remain open.
+
 ## 2026-08-31: Shared project record
 
 The repository will be the shared working record for Codex and Claude Code. Both should consult `AGENTS.md`, the core context files and Git history before beginning a task.

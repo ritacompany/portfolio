@@ -36,14 +36,10 @@ because that shapes the section and invites citing things wrongly.
 
 ## The map
 
-The build up diagram in `CS2_COMPREHENSION.md` is the map. It is drawn once, before section 1, in all
-its states, because every section uses it. It starts as the route only (one line, five marks) and gains
-a layer as each section needs it: the week brackets, the two dates, the calendar running underneath.
-Nothing is shown before the section that explains it, so the reader is never handed the whole system
-at once.
-
-Added 2026-10-06: the map appears in every section, not only the four that add a layer, as the small
-image beside the real screen, marking where the reader is. It works as a still; motion comes later.
+The build up diagram in `CS2_COMPREHENSION.md` is the map. It is not drawn in advance. Each section
+draws only the state it needs, inside that section's layout step, so the diagram is shaped by what the
+sections turn out to be rather than fixed up front. It appears in every section as the small image
+beside the real screen, marking where the reader is. It works as a still; motion comes later.
 
 ## Layouts
 
@@ -80,11 +76,10 @@ saying where the conversation stopped.
 
 ## Order
 
-The outline. Worked top to bottom. "Map" is the state of the build up diagram in that section.
+The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that section and can change when the section is worked.
 
-| # | Section | What the reader comes away with | Map | Status |
+| # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
-| 0 | The map | Not a section. All states of the diagram, drawn once | All states | Not started |
 | 1 | The route | Mondai turns the lack of a defined path into an ordered route: the Growth Journey and its five Pathways | One line, five marks, then nested | Provisional draft, `draft/CS2-rungs-0-2.md` |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Provisional draft, `draft/CS2-rung-3.md` |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Not started |
