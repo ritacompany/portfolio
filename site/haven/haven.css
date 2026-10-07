@@ -283,13 +283,15 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 /* Live mockup, Figma 3556:22214: collage behind, the straightened Mokker phone centered on top.
    The screen layer is cut to the measured screen area of the render, 812 by 1228 of 879 by 1811. */
 .pframe { position: relative; width: 100%; height: 100%; }
-.pframe__collage { position: absolute; left: 0; top: 0; width: 102.94%; max-width: none; height: 100%; }
+.pframe__collage { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
 .phone { position: absolute; left: 28.088%; top: 4.653%; width: 43.824%; aspect-ratio: 298 / 614; }
 .phone__case { position: absolute; inset: 0; width: 100%; height: 100%; }
-.phone__screen { position: absolute; left: 3.868%; top: 1.546%; width: 92.38%; height: 96.9%; overflow: hidden; border-radius: 11.5% / 5.3%; background: #ececf4; }
+.phone__screen { container-type: inline-size; position: absolute; left: 3.868%; top: 1.546%; width: 92.38%; height: 96.9%; overflow: hidden; border-radius: 11.5% / 5.3%; background: #ececf4; }
 .phone__content { position: absolute; left: 0; top: 0; width: 100%; will-change: transform; }
 .phone__header { position: absolute; left: 0; top: 0; width: 100%; }
 .phone__footer { position: absolute; left: 0; bottom: 0; width: 100%; }
+/* Figma "Next · chip": 206 by 48 at 210, 729 of the 440 by 956 screen, with its two drop shadows */
+.phone__chip { position: absolute; left: 47.727%; top: 76.234%; width: 46.818%; border-radius: 999px; box-shadow: 0 0.4545cqw 0 rgb(6 6 12 / 0.6), 0 1.818cqw 4.091cqw -0.4545cqw rgb(32 62 168 / 0.34); }
 .touch { position: absolute; left: 0; top: 0; width: 13%; aspect-ratio: 1; margin: -6.5% 0 0 -6.5%; border-radius: 50%; background: rgb(36 34 60 / 0.28); box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.75), 0 6px 20px rgb(0 0 0 / 0.22); opacity: 0; pointer-events: none; will-change: transform, opacity; }
 .profile__side { width: calc(680 * var(--g)); flex: none; display: flex; flex-direction: column; gap: 54px; }
 .profile__who { width: 100%; aspect-ratio: 680 / 363; }
@@ -325,9 +327,25 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .security__b { width: calc(464 * var(--g)); aspect-ratio: 464 / 651; }
 .security__body { width: calc(260 * var(--g)); flex: none; padding-top: 77px; }
 
-/* ---------- Ending, 3558:22800. Direction still open ---------- */
-.ending { height: 1032px; overflow: clip; position: relative; }
-.ending__title { position: absolute; top: 440px; left: calc(-28 * var(--g)); font-size: 212px; line-height: 1; letter-spacing: -0.02em; font-weight: 500; color: var(--lavender); white-space: nowrap; text-box: trim-both cap alphabetic; }
+/* ---------- Ending, Figma 4079:3848 ---------- */
+.ending { position: relative; min-height: 1236px; padding: 148px 0 137px; overflow: clip; }
+.ending__head { padding-left: calc(125 * var(--g)); display: flex; flex-direction: column; }
+.ending__title { margin-top: 53px; max-width: calc(1344 * var(--g)); font-size: 96px; line-height: 1.09; letter-spacing: -0.04em; font-weight: 500; color: var(--n050); text-box: trim-both cap alphabetic; }
+.ending__needs { margin-top: 80px; margin-left: calc(128 * var(--g)); color: var(--n100); }
+.ending__cards { margin-top: 120px; width: 100%; aspect-ratio: 1440 / 336; background: transparent; }
+.ending__close { margin: 84px 0 0 calc(253 * var(--g)); color: var(--n400); }
+.ending__close b { font-weight: 700; color: var(--n100); }
+
+/* ---------- Footer, Figma 4076:3827 ---------- */
+.case-footer { padding: 306px var(--m) 24px; }
+.case-footer__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.case-footer__where, .case-footer__links { display: flex; flex-direction: column; gap: 12px; }
+.case-footer__where span, .case-footer__link { font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; font-weight: 400; text-transform: uppercase; color: var(--n100); text-box: trim-both cap alphabetic; }
+.case-footer__links { align-items: flex-end; }
+.case-footer__link { display: inline-flex; align-items: center; gap: 8px; padding-block: 6px; margin-block: -6px; }
+.case-footer__link img { width: 13px; height: 13px; transform: scaleY(-1); }
+/* Figma 4076:3837 flips the arrow vertically, as on the homepage footer */
+a.case-footer__link:hover { color: var(--n050); text-decoration: underline; text-underline-offset: 4px; }
 
 /* ================= Tablet, 768 to 1159: one column story, media at full measure ================= */
 @media (max-width: 1159px) {
@@ -335,7 +353,6 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .display { font-size: clamp(56px, 18vw, 180px); }
   .h64 { font-size: 44px; }
   .h40 { font-size: 32px; }
-  .ending__title { font-size: clamp(56px, 18vw, 180px); left: calc(var(--m) * -0.5); }
 
   .hero { padding-top: 112px; padding-bottom: 120px; }
   .hero__top .display { margin-left: -0.06em; }
@@ -433,8 +450,13 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .security__body { width: auto; padding-top: 0; }
   .security__body .tb-item { max-width: 520px; }
 
-  .ending { height: 640px; }
-  .ending__title { top: 240px; }
+  .ending { min-height: 0; padding: 112px 0; }
+  .ending__head { padding-inline: var(--m); }
+  .ending__title { font-size: clamp(44px, 7vw, 72px); }
+  .ending__needs { margin-left: 0; margin-top: 40px; }
+  .ending__cards { margin-top: 64px; }
+  .ending__close { margin: 56px var(--m) 0; }
+  .case-footer { padding-top: 160px; }
 }
 
 /* ================= Mobile, up to 767 ================= */
@@ -524,8 +546,12 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
   .security__media { flex-direction: column; gap: 16px; }
   .security__a, .security__b { width: 100%; flex: none; }
 
-  .ending { height: 420px; }
-  .ending__title { top: 160px; }
+  .ending { padding: 88px 0; }
+  .ending__cards { width: 100%; overflow-x: auto; aspect-ratio: auto; }
+  .ending__cards .mask__scale { width: 900px; }
+  .case-footer { padding-top: 120px; }
+  .case-footer__row { flex-direction: column; align-items: flex-start; }
+  .case-footer__links { align-items: flex-start; }
 }
 
 /* Journey flow on a phone turns vertical so the whole shuffle stays on screen. haven.js swaps the axis below 560 */

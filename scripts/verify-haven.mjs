@@ -143,11 +143,14 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
   pass("motion: flow ends quiz, review, intro, schedule, select", flowEnd.order === "quiz,review,intro,schedule,select", flowEnd.order);
   pass("motion: Select a Confidante is green before and after the move", startOrder === "rgb(92, 196, 60)" && flowEnd.bg === "rgb(92, 196, 60)", `${startOrder} then ${flowEnd.bg}`);
 
-  // Soft snap: a small nudge near the journey flow settles it centred
-  await page.evaluate(() => { const r = document.querySelector("#journey-row").getBoundingClientRect(); window.__haven.lenis.scrollTo(r.top + scrollY - innerHeight * 0.62, { immediate: true }); });
-  await page.waitForTimeout(200); await page.mouse.wheel(0, 60); await page.waitForTimeout(1800);
-  const snapOff = await page.evaluate(() => { const r = document.querySelector("#journey-row").getBoundingClientRect(); return Math.round(r.top + r.height / 2 - innerHeight / 2); });
-  pass("scroll: stopping near the journey flow settles it where the eye is", Math.abs(snapOff - 24) <= 3, String(snapOff));
+  // Profile: the page scroll drives the phone screen
+  const prof = [];
+  for (const k of [0.9, 0.3, -0.2, -0.6]) {
+    await page.evaluate((k) => { const r = document.getElementById("profile-frame").getBoundingClientRect(); window.__haven.lenis.scrollTo(r.top + scrollY - innerHeight * k, { immediate: true }); }, k);
+    await page.waitForTimeout(700);
+    prof.push(await page.evaluate(() => { const t = getComputedStyle(document.querySelector("#profile-frame .phone__content")).transform; return t === "none" ? 0 : Math.round(new DOMMatrix(t).f); }));
+  }
+  pass("profile: screen rests at the top, then scrolls up inside the phone as the page scrolls past", prof[0] === 0 && prof[1] > -40 && prof[2] < prof[1] && prof[3] < prof[2], prof.join(", "));
 
   // No hover effects: cards keep one style and pills are plain labels
   const hov = await page.evaluate(() => ({ pillButtons: document.querySelectorAll("button.pill").length, tip: !!document.getElementById("insight-tip") }));
@@ -174,7 +177,7 @@ for (const w of [1920, 1440, 1280, 1159, 1024, 768, 767, 600, 390, 320]) {
     pins.push(await page.evaluate(() => Math.round(document.querySelector(".quiz__phone").getBoundingClientRect().top)));
   }
   const exit = await page.evaluate(async () => { const q = document.querySelector(".quiz"); window.__haven.lenis.scrollTo(q.getBoundingClientRect().bottom + scrollY - innerHeight * 0.25, { immediate: true }); await new Promise((r) => setTimeout(r, 200)); const ph = document.querySelector(".quiz__phone"); return { gap: Math.round(q.getBoundingClientRect().bottom - ph.getBoundingClientRect().bottom), op: +getComputedStyle(ph).opacity }; });
-  pass("quiz: phone pins on screen, then releases and eases out of the way", pins[0] === pins[1] && exit.gap >= 100 && exit.op < 0.9, JSON.stringify({ pins, exit }));
+  pass("quiz: phone pins on screen, then releases and eases out of the way", pins[0] === pins[1] && exit.gap >= 200, JSON.stringify({ pins, exit }));
   await ctx.close();
 }
 

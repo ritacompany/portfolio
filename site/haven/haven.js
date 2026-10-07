@@ -223,44 +223,38 @@
       // Soft release: the pin hands over to the page over 180px instead of snapping from still to moving
       if (raw <= maxO - K) o = raw; else if (raw >= maxO + K) o = maxO; else o = raw - Math.pow(raw - (maxO - K), 2) / (4 * K);
       o = Math.max(0, o);
-      // Exit: once released, the phone lifts a little, settles back in scale and dims as the next section arrives
-      var past = Math.max(0, raw - maxO), e = Math.min(1, past / (vh * 0.55)), ee = e * e * (3 - 2 * e);
-      phone.style.opacity = shown ? String(1 - 0.55 * ee) : "";
-      phone.style.transform = "translate3d(0," + (o - 70 * ee).toFixed(1) + "px,0) scale(" + (1 - 0.06 * ee).toFixed(4) + ")";
+      // Exit: once released, the phone rises faster than the page and clears the screen quickly,
+      // so the next section arrives on its own
+      var past = Math.max(0, raw - maxO);
+      phone.style.transform = "translate3d(0," + (o - past * 0.9).toFixed(1) + "px,0)";
     });
   })();
 
-  // ---- Soft snap: when the reader stops scrolling near a section's key visual, the page eases the last
-  // few pixels so that visual sits where the eye is. It only acts after input stops, only within a short
-  // reach, and any new input cancels it, so it settles rather than pulls. ----
-  (function softSnap() {
-    if (!lenis) return;
-    var targets = [].slice.call(document.querySelectorAll("[data-snap]"));
-    var lastInput = performance.now(), checked = true, snapping = false;
-    lenis.on("virtual-scroll", function () { lastInput = performance.now(); checked = false; snapping = false; });
-    addEventListener("touchend", function () { lastInput = performance.now(); checked = false; }, { passive: true });
-    var after = document.querySelector(".after-bridge");
-    function desired(el, vh) {
-      // The feedback block stays pinned behind the rest of the page; it is only a target while uncovered
-      if (el.id === "bridge" && after && after.getBoundingClientRect().top < vh * 0.98) return Infinity;
-      var r = el.getBoundingClientRect();
-      if (el.dataset.snap === "top") return r.top;                       // full screen blocks
-      if (r.height > vh - 140) return r.top - 96;                          // tall visuals: top under the nav
-      return r.top + r.height / 2 - (vh / 2 + 24);                         // otherwise centred, a touch low
-    }
+  // ---- Confidante profile: the page scroll drives the phone. The reader first sees the profile at rest;
+  // as they keep scrolling past it, the shared experiences scroll up inside the phone, with a little inertia. ----
+  (function profileScrub() {
+    var frame = document.getElementById("profile-frame"); if (!frame || !motion) return;
+    var img = frame.querySelector(".phone__content"), MAX = 620, H = 1870, cur = 0;
     G.ticker.add(function () {
-      if (checked || snapping || lenis.isScrolling) return;
-      if (performance.now() - lastInput < 140) return;
-      checked = true;
-      var vh = innerHeight, best = null;
-      targets.forEach(function (el) {
-        var d = desired(el, vh);
-        if (Math.abs(d) <= vh * 0.28 && (best === null || Math.abs(d) < Math.abs(best))) best = d;
-      });
-      if (best === null || Math.abs(best) < 6) return;
-      snapping = true;
-      lenis.scrollTo(scrollY + best, { duration: 0.9, easing: function (t) { return 1 - Math.pow(1 - t, 3); }, onComplete: function () { snapping = false; } });
+      var r = frame.getBoundingClientRect(), vh = innerHeight;
+      if (r.bottom < -200 || r.top > vh) return;
+      // starts once the whole phone has been in view; runs over most of a screen of scrolling
+      var p = Math.min(1, Math.max(0, (vh * 0.42 - r.top) / (vh * 0.85)));
+      var target = MAX * p * p * (3 - 2 * p);
+      cur += (target - cur) * 0.14;
+      img.style.transform = "translateY(" + (-cur / H * 100).toFixed(3) + "%)";
     });
+  })();
+
+  // ---- Footer clock, Chicago time ----
+  (function clock() {
+    var el = document.getElementById("chicago-time"); if (!el) return;
+    function tick() {
+      var t = new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", hour: "numeric", minute: "2-digit", timeZoneName: "short" }).formatToParts(new Date());
+      var g = function (k) { return (t.find(function (x) { return x.type === k; }) || {}).value || ""; };
+      el.textContent = g("hour") + ":" + g("minute") + g("dayPeriod").toLowerCase() + " " + g("timeZoneName");
+    }
+    tick(); setInterval(tick, 30000);
   })();
 
   // ---- Nav reads over the light feedback block by switching to dark ----
