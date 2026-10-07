@@ -13,7 +13,7 @@
   // An earlier version handed trackpads to native scroll; switching mid gesture read as stopping. ----
   var lenis = null;
   if (motion && window.Lenis) {
-    lenis = new window.Lenis({ lerp: 0.075, wheelMultiplier: 0.9 });
+    lenis = new window.Lenis({ lerp: 0.1, wheelMultiplier: 1 });
     G.ticker.add(function (t) { lenis.raf(t * 1000); });
     G.ticker.lagSmoothing(0);
   }
@@ -214,31 +214,52 @@
     G.ticker.add(function () {
       var r = stage.getBoundingClientRect(), vh = innerHeight;
       if (r.bottom < -600 || r.top > vh + 400) return;
-      if (!shown && r.top < vh * 0.85) { shown = true; phone.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, fill: "forwards" }); }
+      if (!shown && r.top < vh * 0.85) { shown = true; phone.style.opacity = "1"; phone.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900 }); }
       var y0 = phone.offsetTop, h = phone.offsetHeight;
       var pin = Math.max(72, (vh - h) / 2);
       var natural = r.top + y0;
       var maxO = section.getBoundingClientRect().bottom - STOP - (r.top + y0 + h);
-      var o = Math.max(0, Math.min(pin - natural, maxO));
-      phone.style.transform = "translate3d(0," + o.toFixed(1) + "px,0)";
+      var raw = pin - natural, K = 90, o;
+      // Soft release: the pin hands over to the page over 180px instead of snapping from still to moving
+      if (raw <= maxO - K) o = raw; else if (raw >= maxO + K) o = maxO; else o = raw - Math.pow(raw - (maxO - K), 2) / (4 * K);
+      o = Math.max(0, o);
+      // Exit: once released, the phone lifts a little, settles back in scale and dims as the next section arrives
+      var past = Math.max(0, raw - maxO), e = Math.min(1, past / (vh * 0.55)), ee = e * e * (3 - 2 * e);
+      phone.style.opacity = shown ? String(1 - 0.55 * ee) : "";
+      phone.style.transform = "translate3d(0," + (o - 70 * ee).toFixed(1) + "px,0) scale(" + (1 - 0.06 * ee).toFixed(4) + ")";
     });
   })();
 
-  // ---- Speed bump: scrolling gets heavy while a key animation is centred and still playing, so the
-  // reader slows down and sees it. It never stops the page; it eases back to normal once the animation is done.
-  (function speedBumps() {
-    if (!lenis || !lenis.virtualScroll) return;
-    var NORMAL = 0.9, bumps = [].slice.call(document.querySelectorAll("[data-speedbump]")), current = NORMAL;
+  // ---- Soft snap: when the reader stops scrolling near a section's key visual, the page eases the last
+  // few pixels so that visual sits where the eye is. It only acts after input stops, only within a short
+  // reach, and any new input cancels it, so it settles rather than pulls. ----
+  (function softSnap() {
+    if (!lenis) return;
+    var targets = [].slice.call(document.querySelectorAll("[data-snap]"));
+    var lastInput = performance.now(), checked = true, snapping = false;
+    lenis.on("virtual-scroll", function () { lastInput = performance.now(); checked = false; snapping = false; });
+    addEventListener("touchend", function () { lastInput = performance.now(); checked = false; }, { passive: true });
+    var after = document.querySelector(".after-bridge");
+    function desired(el, vh) {
+      // The feedback block stays pinned behind the rest of the page; it is only a target while uncovered
+      if (el.id === "bridge" && after && after.getBoundingClientRect().top < vh * 0.98) return Infinity;
+      var r = el.getBoundingClientRect();
+      if (el.dataset.snap === "top") return r.top;                       // full screen blocks
+      if (r.height > vh - 140) return r.top - 96;                          // tall visuals: top under the nav
+      return r.top + r.height / 2 - (vh / 2 + 24);                         // otherwise centred, a touch low
+    }
     G.ticker.add(function () {
-      var vh = innerHeight, target = NORMAL;
-      bumps.forEach(function (el) {
-        if (el.dataset.bumpDone === "true") return;
-        var r = el.getBoundingClientRect(), c = r.top + r.height / 2;
-        if (c > vh * 0.3 && c < vh * 0.7) target = Math.min(target, parseFloat(el.dataset.speedbump));
+      if (checked || snapping || lenis.isScrolling) return;
+      if (performance.now() - lastInput < 140) return;
+      checked = true;
+      var vh = innerHeight, best = null;
+      targets.forEach(function (el) {
+        var d = desired(el, vh);
+        if (Math.abs(d) <= vh * 0.28 && (best === null || Math.abs(d) < Math.abs(best))) best = d;
       });
-      current += (target - current) * 0.12;
-      lenis.virtualScroll.options.wheelMultiplier = current;
-      lenis.virtualScroll.options.touchMultiplier = current / NORMAL;
+      if (best === null || Math.abs(best) < 6) return;
+      snapping = true;
+      lenis.scrollTo(scrollY + best, { duration: 0.9, easing: function (t) { return 1 - Math.pow(1 - t, 3); }, onComplete: function () { snapping = false; } });
     });
   })();
 

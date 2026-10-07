@@ -54,7 +54,7 @@
       <p class="h40 problem__lead tb-item">For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience.</p>
       <p class="body problem__body tb-item">Access to affirming environments has a major positive effect on LGBTQIA+ teenagers’ mental health. These environments are often limited or difficult for them to access.</p>
     </div>
-    <figure class="mask problem__media" data-mask>
+    <figure class="mask problem__media" data-mask data-snap>
       <div class="mask__scale"><img src="assets/problem-media.webp" width="426" height="506" alt="Chrome liquid shapes on a red orange background." loading="lazy"></div>
     </figure>
   </section>
@@ -63,7 +63,7 @@
       <h2 class="eyebrow tb-item" id="access-title">Demographic access</h2>
       <p class="h40 tb-item">Minors need a guardian’s consent to join a study. Asking would out the teens who need Haven most, so I interviewed two proxy groups instead.</p>
     </div>
-    <div class="stats" data-tb>
+    <div class="stats" data-tb data-snap>
       <div class="stats__row">
         <p class="stat stat-left tb-item"><span class="stat__label">Subject matter experts</span><span class="stat__num">3</span></p>
         <img class="stats__cross tb-item" src="assets/stats-cross.svg" width="128" height="124.75" alt="">
@@ -93,7 +93,7 @@
         </ul>
       </div>
     </div>
-    <div class="mvp__timeline" data-tb>
+    <div class="mvp__timeline" data-tb data-snap>
       <div class="mvp__chart tb-item">
         <img src="assets/mvp-timeline.png" width="1440" height="554" loading="lazy" alt="Timeline of twelve columns. Phase 1, Identity, runs empathize, define, ideate, prototype and test through column 7, ending at the identity launch, which is where this case study ends. Phase 2, Community, starts at column 5 and repeats the cycle through column 12 toward the community launch.">
       </div>
@@ -120,7 +120,7 @@
       <h2 class="eyebrow tb-item" id="wires-title">Wireframes</h2>
       <p class="h40 wires__lead tb-item">With that all settled, it was time to start building the product. I started designing wireframes to test some of the concepts I had designed based on previous insights.</p>
     </div>
-    <div class="mask mask-clear wires__row" data-mask>
+    <div class="mask mask-clear wires__row" data-mask data-snap>
       <div class="mask__scale">
         <ul class="wires__list scroll-x" tabindex="0" aria-label="Five wireframes, scrolls sideways on small screens">
           <li><img src="assets/wire-1-duration.png" width="180" height="374" loading="lazy" alt="Wireframe: set chat duration, with 15, 30, 45 and 60 minute options."></li>
@@ -133,7 +133,7 @@
     </div>
 
     <div class="testing rule-t rule-b">
-      <div class="testing__row">
+      <div class="testing__row" data-snap>
         <div class="testing__text" data-tb>
           <h3 class="eyebrow tb-item">Usability testing</h3>
           <p class="h40 testing__lead tb-item">Six participants tested the key flows</p>
@@ -161,12 +161,13 @@
   </section>
 
   <div class="bridge-stack">
-    <div class="bridge" id="bridge">
+    <div class="bridge" id="bridge" data-snap="top">
       <span class="bridge__line" aria-hidden="true"></span>
       <div class="bridge__copy" data-tb>
         <p class="h64 bridge__text tb-item">Based on that feedback and information I had already gathered from initial interviews, I built the following solutions.</p>
       </div>
     </div>
+    <div class="bridge-hold" aria-hidden="true"></div>
     <div class="after-bridge">
   <hr class="section-rule">
   <section data-node="3515:11603" class="program rule-b" aria-labelledby="program-title">
@@ -174,7 +175,7 @@
       <h2 class="eyebrow tb-item" id="program-title">The Confidante program</h2>
       <p class="h40 tb-item">An expert program designed for flexibility, adapting to each user’s unique needs and comfort.</p>
     </div>
-    <div class="program__row">
+    <div class="program__row" data-snap>
       <p class="h20 program__intro" data-tb><span class="tb-item">Confidantes support the user in two capacities:</span></p>
       <figure class="mask program__media" data-mask>
         <div class="mask__scale">
@@ -199,7 +200,7 @@
     </div>
     <div class="quiz__row">
       <p class="body quiz__body" data-tb><span class="tb-item">The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Users pick the experiences that matter to them. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.</span></p>
-      <div class="quiz__stage" id="quiz-stage">
+      <div class="quiz__stage" id="quiz-stage" data-snap>
         <div class="qcol">
           <svg class="qcol__pillar" style="left:0.000%;top:37.822%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
           <img class="qcol__icon" style="left:3.632%;top:33.686%;width:8.286%" src="assets/icon-magnet.webp" alt="A red magnet" loading="lazy">
@@ -238,11 +239,11 @@
         <li><span class="pill">Testing insight 4</span></li>
       </ul>
     </div>
-    <div class="journey__row" data-tb id="journey-row">
+    <div class="journey__row" data-tb id="journey-row" data-snap>
       <h3 class="h24 journey__title tb-item">Confidante selection journey flow</h3>
       <div class="journey__body">
         <p class="body journey__copy tb-item">Testing showed users hesitating over which Confidante to pick. They went back and forth between profiles, and some undid their choice after making it. I moved selection after the introductory chat, which exists to help them decide. In the revised flow, people can chat with more than one Confidante before choosing one.</p>
-        <div class="flow tb-item" id="flow-map" data-speedbump="0.28">
+        <div class="flow tb-item" id="flow-map">
           <div class="flow__box">
             <ol class="flow__stage" id="flow-stage" aria-label="Revised flow: identity quiz, review matches, intro chat, schedule a chat, select a Confidante">
               <li class="flow__step" data-id="quiz"><span>Identity
@@ -272,7 +273,7 @@ a chat</span></li>
         <li class="tb-item"><span class="pill">Interview insight 3</span></li>
         <li class="tb-item"><span class="pill">Testing insight 4</span></li>
       </ul>
-      <div class="profile__row">
+      <div class="profile__row" data-snap>
         <figure class="mask profile__phone" data-mask>
           <div class="mask__scale">
           <div class="pframe" data-pscroll>
@@ -302,7 +303,7 @@ a chat</span></li>
       <h2 class="eyebrow tb-item" id="schedule-title">Scheduling a chat</h2>
       <p class="h40 tb-item">People needed to know what to expect before booking an introductory chat.</p>
     </div>
-    <div class="schedule__row">
+    <div class="schedule__row" data-snap>
       <p class="body body-400 schedule__body" data-tb><span class="tb-item">Testing showed confusion about how chats would work. The scheduling screen explains that they happen by text, last 30 minutes and can end early, so people can choose a private time. With selection moved after the chats, users can book introductions with different Confidantes. Your events lists each upcoming chat with the Confidante’s name and time.</span></p>
       <div class="schedule__media-col">
         <ul class="pills" data-tb>
@@ -325,7 +326,7 @@ a chat</span></li>
       <ul class="pills chat__pills" data-tb>
         <li class="tb-item"><span class="pill">Interview insight 2</span></li>
       </ul>
-      <figure class="mask chat__media" data-mask>
+      <figure class="mask chat__media" data-mask data-snap>
         <div class="mask__scale"><img src="assets/chat-media.webp" width="1047" height="749" loading="lazy" alt="A phone showing an introduction chat by text with a Confidante, surrounded by chrome liquid shapes on red orange."></div>
       </figure>
       <p class="body body-400 chat__body" data-tb><span class="tb-item">The final concept uses text-based sessions, not voice or video, so users can engage without speaking sensitive information aloud. A bounded chat format gives users more control over when and how much they share, responding directly to concerns about being overheard.</span></p>
@@ -341,7 +342,7 @@ a chat</span></li>
         <li class="tb-item"><span class="pill">Interview insight 5</span></li>
         <li class="tb-item"><span class="pill">Testing insight 3</span></li>
       </ul>
-      <div class="security__row">
+      <div class="security__row" data-snap>
         <div class="security__media">
           <figure class="mask security__a" data-mask>
             <div class="mask__scale"><img src="assets/security-discreet.webp" width="501" height="651" loading="lazy" alt="Keep Haven discreet: choose a disguise icon, hide Haven in the app switcher and keep notifications off."></div>

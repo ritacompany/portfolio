@@ -215,6 +215,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .bridge__copy { display: flex; align-items: flex-end; padding-bottom: 98px; }
 .bridge__text { max-width: calc(1081 * var(--g)); color: var(--n900); font-weight: 700; }
 /* Figma 3300:13311 overrides Heading/64 with Satoshi Bold. Recorded as a detached style in the build notes. */
+.bridge-hold { height: 70vh; height: 70svh; }
 .after-bridge { position: relative; z-index: 1; background: var(--n900); }
 .section-rule { margin: 0 auto; width: calc(1437 * var(--g)); max-width: 100%; border: 0; border-top: 1px solid var(--n675); }
 

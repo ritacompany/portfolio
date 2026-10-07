@@ -1,21 +1,19 @@
 // Confidante profile scroll: a scripted thumb on the straightened mockup.
 // Drag tracks the finger, release coasts with iOS's exponential decay (0.5 s time constant),
-// the flick back to the top rubber bands (UIScrollView constant 0.55) and springs back.
+// the flick back to the top coasts in with just enough speed to land at the top.
 // Every loop starts and ends with a hold at the top so the screen reads before it moves.
 (function () {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var TAU = 0.5, HZ = 120, W = 440, H = 1870, TOP_HOLD = 1.8;
+  var TAU = 0.5, HZ = 120, W = 440, H = 1870, TOP_HOLD = 1.0;
   var script = [
     ["wait", TOP_HOLD],
-    ["drag", 80, 0.18, 640], ["coast"], ["wait", 1.3],
-    ["drag", 62, 0.16, 610], ["coast"], ["wait", 1.7],
-    ["drag", -40, 0.2, 470], ["coast"], ["wait", 1.2],
-    ["flickTop", 0.11, 380], ["wait", TOP_HOLD]
+    ["drag", 90, 0.16, 640], ["coast"], ["wait", 1.0],
+    ["drag", 80, 0.15, 620], ["coast"], ["wait", 1.2],
+    ["flickTop", 0.1, 380], ["wait", TOP_HOLD + 0.6]
   ];
 
   var pos = [], touch = [], y = 0, v = 0, fx = 330;
   function push(n, fn) { for (var i = 0; i < n; i++) fn(i); }
-  function rubber(x) { var c = 0.55, d = 956; return (1 - 1 / (x * c / d + 1)) * d; }
   script.forEach(function (st) {
     var n;
     if (st[0] === "wait") { n = Math.round(st[1] * HZ); push(n, function () { pos.push(y); touch.push(null); }); }
@@ -32,12 +30,9 @@
       push(Math.round(0.05 * HZ), function () { pos.push(y); touch.push([fx, fyS, 1]); });
       push(n, function (i) { var k = (i + 1) / n; y = ys - 90 * k; pos.push(y); touch.push([fx, fyS + 90 * k, 1]); });
       touch.push([fx, fyS + 90, 0]);
-      v = -2600; var t2 = 0;
-      while (y > 0) { t2 += 1 / HZ; y += v * Math.exp(-t2 / TAU) / HZ; pos.push(Math.max(y, 0)); touch.push(null); }
-      var peak = rubber(Math.abs(v * Math.exp(-t2 / TAU)) * 0.03);
-      var up = Math.round(0.16 * HZ), back = Math.round(0.45 * HZ);
-      push(up, function (i) { pos.push(-peak * Math.sin((i + 1) / up * Math.PI / 2)); touch.push(null); });
-      push(back, function (i) { pos.push(-peak * Math.pow(1 - (i + 1) / back, 3)); touch.push(null); });
+      // Flick up with exactly the velocity that coasts back to the top, so it lands at 0 and settles
+      v = -(y) / TAU; var t2 = 0;
+      while (y > 0.5) { t2 += 1 / HZ; y += v * Math.exp(-t2 / TAU) / HZ; pos.push(Math.max(y, 0)); touch.push(null); if (t2 > 3) break; }
       y = 0;
     }
   });
