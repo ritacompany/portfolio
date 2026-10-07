@@ -4,7 +4,7 @@
 // Every loop starts and ends with a hold at the top so the screen reads before it moves.
 (function () {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var TAU = 0.5, HZ = 120, W = 440, H = 1870, TOP_HOLD = 2.6;
+  var TAU = 0.5, HZ = 120, W = 440, H = 1870, TOP_HOLD = 1.8;
   var script = [
     ["wait", TOP_HOLD],
     ["drag", 80, 0.18, 640], ["coast"], ["wait", 1.3],

@@ -132,8 +132,9 @@
     if ("ResizeObserver" in window) new ResizeObserver(fit).observe(map); else addEventListener("resize", fit);
     if (!motion || !stage.animate) return;
 
-    function reset() { clearTimeout(timer); played = false; anims.forEach(function (a) { a.pause(); a.currentTime = 0; }); }
-    function play() { clearTimeout(timer); timer = setTimeout(function () { played = true; anims.forEach(function (a) { a.currentTime = 0; a.playbackRate = RATE; a.play(); }); }, HOLD); }
+    var doneTimer = null;
+    function reset() { clearTimeout(timer); clearTimeout(doneTimer); played = false; map.dataset.bumpDone = "false"; anims.forEach(function (a) { a.pause(); a.currentTime = 0; }); }
+    function play() { clearTimeout(timer); timer = setTimeout(function () { played = true; anims.forEach(function (a) { a.currentTime = 0; a.playbackRate = RATE; a.play(); }); doneTimer = setTimeout(function () { map.dataset.bumpDone = "true"; }, DT / RATE + 350); }, HOLD); }
 
     // Plays once the row has revealed and the map top is 80% up the screen. Replays after the map leaves below.
     G.ticker.add(function () {
@@ -220,6 +221,24 @@
       var maxO = section.getBoundingClientRect().bottom - STOP - (r.top + y0 + h);
       var o = Math.max(0, Math.min(pin - natural, maxO));
       phone.style.transform = "translate3d(0," + o.toFixed(1) + "px,0)";
+    });
+  })();
+
+  // ---- Speed bump: scrolling gets heavy while a key animation is centred and still playing, so the
+  // reader slows down and sees it. It never stops the page; it eases back to normal once the animation is done.
+  (function speedBumps() {
+    if (!lenis || !lenis.virtualScroll) return;
+    var NORMAL = 0.9, bumps = [].slice.call(document.querySelectorAll("[data-speedbump]")), current = NORMAL;
+    G.ticker.add(function () {
+      var vh = innerHeight, target = NORMAL;
+      bumps.forEach(function (el) {
+        if (el.dataset.bumpDone === "true") return;
+        var r = el.getBoundingClientRect(), c = r.top + r.height / 2;
+        if (c > vh * 0.3 && c < vh * 0.7) target = Math.min(target, parseFloat(el.dataset.speedbump));
+      });
+      current += (target - current) * 0.12;
+      lenis.virtualScroll.options.wheelMultiplier = current;
+      lenis.virtualScroll.options.touchMultiplier = current / NORMAL;
     });
   })();
 
