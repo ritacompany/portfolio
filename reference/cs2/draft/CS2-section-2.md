@@ -57,10 +57,13 @@ The record backs this as his reasoning, so it is CONFIRMED:
 ## Draft written in the section 1 chat (2026-10-07), not reconciled
 
 Written in a parallel chat on his request before this file's talk was seen. It overwrote this file and
-the talk above was restored from the section 2 chat. Two conflicts with the talk above, to resolve here:
-- It leads with structure and Michael's pressure as the reasons for the week. His point of view above
-  puts near term focus first and the deadline second.
-- It includes the near cut, which the talk above keeps out of the copy.
+the talk above was restored from the section 2 chat. The reasons do not conflict (his correction,
+2026-10-07): the 18 Mar 2025 reasons (works with or without a calendar, gives the structure Michael
+wanted) and his near term focus point are layers of the same decision. Near term focus is his reason
+and leads; structure is built into the edge of the week.
+One error in this draft: "nearly cut" overstates the record. On 6 Apr 2026 Michael said it might have to
+be dropped for MVP [bac4a8ff #0000]; it was raised, not nearly cut. The talk above keeps it out of the
+copy anyway.
 Usable from it: the daily model that came before the week (Discord, 8 Oct 2024), the 18 Mar 2025 weekly
 decision with its two reasons (Discord [1351372169598210049]), and the two modes sharing one week.
 
@@ -76,9 +79,6 @@ The first version counted tasks per day, worked back from a goal date. We settle
 two reasons. A week works whether or not someone connects a calendar. And it gives people structure.
 Michael wanted them to feel a little pressure to get things done, and a week is a container that
 pressure can live in.
-
-At one point the weekly structure was nearly cut. I argued to keep it, because the Hub, the calendar and
-the rest of the product were built on it.
 
 ### One week, two ways to hold it
 
@@ -107,8 +107,7 @@ What the week did not say yet was how much it should hold.
 - Weekly, two reasons, Michael's pressure: Discord, DM Soya 18 Mar 2025 [1351372169598210049]. CONFIRMED.
   "We": his message says "we are thinking weekly". "A container that pressure can live in" is my
   wording of his reason 2. PARAPHRASE; flag for him.
-- Nearly cut, argued to keep: transcript [bac4a8ff #0000], "this IS our structure", calendar "lives or
-  dies with the weekly framework". CONFIRMED that he argued it and that it stayed.
+- Dropping it for MVP was raised by Michael, not nearly done [bac4a8ff #0000]. Removed from this draft.
 - Two modes: Discord casual and synced (6 Oct 2024 [1292297945605079091]); flex and scheduled with Betsy
   (19 Sep 2025 [1418677071093305385]). Calendar placement in open blocks: archive, Action Hub reschedule.
   CONFIRMED.
