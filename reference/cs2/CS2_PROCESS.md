@@ -68,9 +68,10 @@ was inherited versus designed, never for timing.
 
 ## Storage
 
-Everything CS2 depends on lives in this repo and is pushed to GitHub, so any account or machine can pick
-it up. Anything found elsewhere (iCloud, Documents, a claude.ai chat, a local branch) is copied in, committed
-and pushed the same session it turns up, and its origin noted where it is listed.
+Corrected 2026-10-07, his rule: Mondai source material (transcripts, chats, his decks and notes, anything
+quoting them) never goes into git, in any repo. It stays on his Mac outside git, for example
+`~/Documents/CS2-research/`, and repo files only point to where it lives. What is committed here is the
+case study's own working files (process, section drafts, status), and only when he approves.
 
 ## Reference material, and how it gets used
 
@@ -161,7 +162,15 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
   finding).
   Everything below that waits for its own section.
 - Open question for him: the fixed scheduling claim above.
-- Reference pull not yet done for this section.
+- Reference pull done 2026-10-06.
+- Corrected 2026-10-07. A section is a stretch of the page in order, built from several layout modules,
+  not one idea picked from options. Section 1 runs: what existed and what it did not do (the gap), then
+  what the product had to do at once (the demands), then why nothing could be copied, with the research
+  and reference products that informed the framework.
+- Corrected 2026-10-07. The rule on separating inherited from designed is for accuracy, not the
+  subject of any section. Never make credit the point of a section or build a structure around it.
+- "The framework" in this case study means the product framework. Do not split it into two frameworks
+  on the page.
 
 ## The loop, per section
 
@@ -208,7 +217,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Provisional draft, `draft/CS2-rungs-0-2.md` |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Next: layout, then his review of copy and layout |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Provisional draft, `draft/CS2-rung-3.md` |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Not started |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
