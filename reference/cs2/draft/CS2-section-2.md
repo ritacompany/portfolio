@@ -1,17 +1,70 @@
 # CS2 section 2: The week
 
-Status: drafted 2026-10-07. Layout not built yet. Not yet reviewed by him.
+Status: talking, opened 2026-10-07.
 
-Job: the route arrives a week at a time, as Action Items in the Action Hub. One line that the content is
-generated. Map state: the route bracketed into weeks.
-
-Sources: Discord trail `~/Documents/CS2-research/discord-framework-trail.md`, transcript trail
-`~/Documents/CS2-research/weekly-framework-trail.md` (both outside git), `reasoning/pathways-and-hierarchy.md`,
-`reasoning/calendar-and-schedule.md`, the provisional `draft/CS2-rung-3.md`.
+Job: the route arrives a week at a time, as Action Items in the Action Hub. One line that the content
+is generated.
 
 ---
 
-## Draft 1 (2026-10-07)
+## His point of view (2026-10-07, in the talk)
+
+The week keeps the user's focus on the near term, not the long term goal. The weekly target is
+the main thing they work toward. One level up, the Pathway target and pace still sit well short of the whole
+Growth Journey and show whether they are ahead or behind. The journey is kept furthest away. It works
+twice over: the week and then the Pathway both keep attention on what is happening now, which is
+where progress and motivation come from. The week as a deadline with room inside it is part of how it
+works, not the reason for it.
+
+The record backs this as his reasoning, so it is CONFIRMED:
+- Handover he brought in, 8 Mar [81cda2a5 #0002]: macro progress goes on a separate high level page.
+  The hub names only the current Pathway and keeps task counts next to the tasks.
+- 23 Mar [f059e097 #0028]: Michael asked for clearer journey position. He answered with the current
+  Pathway and its target and pace, "without giving them too much info on progress at the journey level".
+- 28 Apr [46ecb816 #0002]: Pathway level target and pace are needed for the weekly framework to work.
+- 28 Apr [8a6cbc5a #0058]: "I have scrapped the idea of a target and pace at the journey level so its
+  less confusing to the user".
+- 17 May [95ea5c56 #0008]: journey level pace kept passive, "the user has to go to the growth journey
+  page to see it".
+
+## Material from the record
+
+- End of week is the deadline. Calendar slots are suggestions [db6cdec6 #0002] [8a6cbc5a #0050]
+  [3dd43c15 #0002].
+- Two zones. "the Action Hub is where the weekly framework exists" [f906a86d #0078]. Pathway page:
+  "where am i at tasks wise in this pool of tasks and what is coming up next" [1289d949 #0028]. No
+  state changes there [#0056]. He did not highlight the current week on it [clarifying-pathway-page-sorting
+  #0006].
+- Load, not count [4b322696 #0088]. One line, then on to section 3.
+- Target and pace mechanics belong to section 4. Here they are named only as the second horizon.
+- `draft/CS2-rung-3.md`: material only.
+
+## Open
+
+1. Where the weekly format came from predates the transcript (ChatGPT, before March 2026). Drafted
+   around and marked open. Search the ChatGPT and Discord exports by subject when they arrive.
+2. The near cut on 6 Apr [bac4a8ff #0000] stays out of the copy. Michael's alternative is not in the
+   record and he does not recall one beyond more rigid due dates.
+
+## Where section 2 stopped
+
+1. Open: record brought, three part run proposed.
+2. Talk: "look" for the Journey corrected to where you are and what is next. His point of view on near
+   term focus recorded above.
+
+---
+
+## Draft written in the section 1 chat (2026-10-07), not reconciled
+
+Written in a parallel chat on his request before this file's talk was seen. It overwrote this file and
+the talk above was restored from the section 2 chat. Two conflicts with the talk above, to resolve here:
+- It leads with structure and Michael's pressure as the reasons for the week. His point of view above
+  puts near term focus first and the deadline second.
+- It includes the near cut, which the talk above keeps out of the copy.
+Usable from it: the daily model that came before the week (Discord, 8 Oct 2024), the 18 Mar 2025 weekly
+decision with its two reasons (Discord [1351372169598210049]), and the two modes sharing one week.
+
+### Draft text
 
 Voice pass: humanizer, then no-ai-slop detect, then house rules. Moves used: cs-t14 (the last line plants
 section 3), cs-t21 (what keeping the Pathway pages read only cost), cs-t47 (Michael's reason stated as his
@@ -47,7 +100,7 @@ What the week did not say yet was how much it should hold.
 
 ---
 
-## Sources per claim
+### Sources for that draft
 
 - Daily model worked back from a goal date: Discord, DM Teresa 8 Oct 2024 [1293015625307783229],
   [1293016854092185651]. CONFIRMED.
@@ -67,12 +120,3 @@ What the week did not say yet was how much it should hold.
 - Generated from onboarding answers: his words in `draft/CS2-rung-3.md` decisions. CONFIRMED.
 - Last line: plants section 3. Not a claim.
 
-## Open
-
-1. "A container that pressure can live in": my phrasing. Keep, change or cut.
-2. Whether to name the daily model at all, or open on the week.
-3. The research behind the March 2025 decision may be in the ChatGPT export.
-
-## Where section 2 stopped
-
-1. Drafted in the section 1 chat on his request, from both trails. Next: his review, then layout.

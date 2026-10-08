@@ -230,7 +230,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
 | 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Next: layout, then his review of copy and layout |
-| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Talking, opened 2026-10-07. `draft/CS2-rung-3.md` is material only. Origin of the weekly format open, waits on ChatGPT and Discord exports |
+| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Talking, opened 2026-10-07. `draft/CS2-rung-3.md` is material only. Origin of the weekly format open, waits on ChatGPT and Discord exports. A parallel draft from the section 1 chat sits in the file, not reconciled |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Not started |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
 | 5 | Scheduling and rollover | The calendar is where it nearly broke | Calendar timeline underneath | Not started |
