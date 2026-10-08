@@ -54,6 +54,12 @@ Each section is laid out from the templates in the Figma file Portfolio Design, 
 section, as a Mondai CS Master. The older frame `WIP Mondai growth journey case study` (3238:22519)
 predates the 27 Aug restart and is not the starting point.
 
+Corrected 2026-10-07: the source of truth for layout, type and diagram style is the Figma, read
+properly (structure, text styles, spacing), never thumbnails. The HTML in `build/` is Metalab scaffold
+and is not a layout source for CS2; `LEDGER.md` only decodes template names. Build the section in
+Figma directly. If a quick preview is wanted first, it is still built from the Figma, and it is said
+plainly what is real and what is placeholder.
+
 ## Timeline and framing
 
 Dates and how close anything was to launch stay out of the copy until Chadwick decides how the piece
@@ -115,8 +121,8 @@ Learned the hard way in the 6 Oct process chat. Each of these happened once and 
   through. Nothing is designed in advance "because every section uses it".
 - **Answer the question asked.** When he asks whether the approach is right, the answer is about the
   approach, not the contents of the next step.
-- **Separate what he designed from what he inherited.** The route (Pathways, their order, Focus Areas)
-  came from Michael. The time layer is where the reasoning is his. Never present
+- **Separate what he designed from what he inherited.** The Pathways curriculum came from Betsy and
+  Michael; the journey structure before it was his. The time layer is where the reasoning is his. Never present
   inherited structure as his design, and never present reasoning from the archive as his argument unless
   the record shows him making it (`reasoning/pathways-and-hierarchy.md` section 6).
 - **Unsourced claims get asked, not used.** Example: the old Figma frame says the original direction was
@@ -144,8 +150,13 @@ Learned the hard way in the 6 Oct process chat. Each of these happened once and 
 What the 6 Oct chat established for "Where it started", to build on rather than redo:
 
 - Purpose: what he walked into and the problems the framework had to solve. Background, not a feature.
-- Inherited: Michael's five Pathways and their order, the linear Focus Areas. Little in the
-  record before March 2026 (`reasoning/THROUGHLINES.md`).
+- Inherited: the curriculum. Betsy and Michael built it together (both have education backgrounds); its
+  content is AI generated. Confirmed by Chadwick 2026-10-07. Not Michael alone.
+- Corrected 2026-10-07 from his Discord record (`~/Documents/CS2-research/discord-framework-trail.md`,
+  outside git): the framework work started before the Pathways existed. From 2024 he designed his own
+  journey structure (milestones, focus areas, tasks; four milestones: learn, build, connect, pursue),
+  first with daily task targets, then weekly from March 2025. The Pathways arrived from Betsy's
+  curriculum in September 2025 and replaced his milestones.
 - Settled early: the AI surfaces, researched in March. Neither shipped at MVP (`CHADWICK_ANSWERS`).
 - Existed but unconnected: onboarding quiz, an intent to use the calendar, career screens. Nothing said
   what a person does week to week.
@@ -193,7 +204,8 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    reviewed together. Screens are read from the Mondai Figma, never redrawn from memory. If the live
    frame is missing, use the desktop export, flag it and ask him where the current frame is. Diagrams
    follow the Haven CS Master's diagram style, not Mondai's UI. Template names are decoded in
-   `LEDGER.md`.
+   `LEDGER.md`, but layout comes from the Figma templates, not `build/` (see Layouts). Share the
+   concept and template choice per part before building (his global design rule), then build.
 6. **Review.** Chadwick reads copy and layout together. Small wording fixes he asks for are made in
    place. Changes to what the section says go back to step 2 or 3.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
@@ -218,7 +230,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
 | 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Next: layout, then his review of copy and layout |
-| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Provisional draft, `draft/CS2-rung-3.md` |
+| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Talking, opened 2026-10-07. `draft/CS2-rung-3.md` is material only. Origin of the weekly format open, waits on ChatGPT and Discord exports |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Not started |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
 | 5 | Scheduling and rollover | The calendar is where it nearly broke | Calendar timeline underneath | Not started |

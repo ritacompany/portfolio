@@ -1,6 +1,9 @@
 # CS2 section 1: Where it started
 
-Status: drafted 2026-10-07. Layout not built yet.
+Status: drafted 2026-10-07, needs revision before layout. Draft 1 opens on "Mondai already had a
+curriculum", which is true only from September 2025. The Discord record shows the framework work started
+earlier, with his own milestone structure, before the Pathways existed. Revise from
+`~/Documents/CS2-research/discord-framework-trail.md`. Curriculum credit: Betsy and Michael together.
 
 Job: what he walked into and the problems the framework had to solve. Background, not a feature.
 
@@ -166,3 +169,8 @@ Weekly format, for section 2 and the credit record:
 4. Draft 1 written and voice passed 2026-10-07. Not yet reviewed by him.
 5. Next: build the layout (portfolio Figma case study layouts, real Mondai screens, the route map), then
    he reviews copy and layout together. Section 1 does not wait on the ChatGPT or Discord exports.
+6. Layout plan agreed in concept 2026-10-07: gap (start journey screen, calendar permission, route
+   map as separate tiles), demands (text only), nothing to copy (structure against flexibility, upper
+   right empty, placements from outline slide 4). First preview was built from `build/` HTML by
+   mistake; rebuilding in Figma from the Case study layouts and Haven CS Master. Open: cut the
+   bracketed Pathway list from copy since the map shows it (recommended).
