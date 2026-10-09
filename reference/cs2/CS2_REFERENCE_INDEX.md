@@ -209,6 +209,15 @@ CS2; the Haven specific recommendations do not.
 ### Expanding card gallery components
 - rp-gal-1 · Interaction research for the Haven ending row. Relevant to CS2 only for layout: hover hidden text is invisible to touch and many keyboard users, so load bearing text is never hover gated.
 
+### Visual storytelling per beat (written for CS2, drives loop step 5)
+- rp-vis-1 · Walls of text come from picking the layout first. Every newsroom and paper studied goes reader's point, then form, then layout.
+- rp-vis-2 · Text only is a real form when a sentence says it as well (Reuters). Choose it on purpose, not by default.
+- rp-vis-3 · Qualitative beats take diagram catalogues (Lengler and Eppler, Evergreen qualitative chooser, Bach data comics), not chart choosers.
+- rp-vis-4 · The still test: readers rarely hover or click (NYT), and animation has not beaten good static diagrams. The figure alone carries the claim.
+- rp-vis-5 · Change one thing between neighbouring figures; parallel parts get the same internal pattern (Hullman et al. 2013).
+- rp-vis-6 · Body text at 5 or 6 of 12 columns, never wider than 7 (measure arithmetic, an inference, not a published rule).
+- rp-vis-7 · Strong design posts give each claim one isolating figure: Linear, Figma UI3, Stripe, Duolingo, Basecamp hill charts.
+
 ---
 
 ## 5. Repo rules
