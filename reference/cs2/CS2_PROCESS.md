@@ -260,7 +260,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Next: his review, then the section 1 beat list under the new step 5 (visual storytelling research done 9 Oct) |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Beat list written 9 Oct under the new step 5. Next: his review of copy and beat list, then build |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Drafted, `draft/CS2-section-2.md`. Draft 2 voice passed and fresh reviewed 8 Oct. Next: his review, then layout. What first led to the week may be in ChatGPT, still open |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Talking, opened 8 Oct, `draft/CS2-section-3.md`. Three questions for him |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |

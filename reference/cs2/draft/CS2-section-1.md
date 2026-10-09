@@ -167,6 +167,31 @@ what someone sees first, and what happens next.
 - His four milestone names (learn, build, connect, pursue) left out of copy: true [1412573340807204946]
   but detail the reader does not need.
 
+## Beat list (2026-10-09, for his review, nothing built)
+
+Loop step 5 applied to Draft 2's opening plus Draft 1's other two parts. References are in
+`reports/Visual storytelling per beat.md`. Image slots name what could go there; he chooses the imagery.
+
+| # | What the reader must understand | Beat type | Form and reference | Still test | Template and Haven spans |
+|---|---|---|---|---|---|
+| 1 | The pieces existed, and nothing said how a person moves through them | Separate pieces with nothing linking them | Partitioned poster: three tiles, no arrows between them, so the missing link is what the reader sees (Segel and Heer; Bach multiple facets) | Passes only if the headline states the gap; three bare tiles read as a gallery | TextAnd3Images layout 1: tiles cols 1 to 6, 7 to 12 and 1 to 6, text cols 7 to 12 |
+| 2 | It needed structure and room to move in the same system | A point a sentence carries as well | Text only, the four demands kept as parallel lines with the same pattern (Reuters; Hullman parallel structure) | Not a figure; checked instead that it is not the same width as a neighbouring text block | TitleAndText: text cols 4 to 9 |
+| 3 | No existing product sat where this one needed to be | Positioning between two forces | Two by two, structure against flexibility, the upper right empty and shaded as a region (Lengler and Eppler strategy group; Stripe constraint region). Product labels and what was kept or left sit on the plot, not in a legend (Corum) | Passes if the empty quadrant is the loudest mark and the headline says nothing sat there | TextAnd1Image layout 2: figure cols 1 to 7, text cols 8 to 12 |
+
+Slots for beat 1, his choice: candidates from the 7 Oct concept are the start journey screen, the
+calendar permission screen and the map's first state (the route). The map tile is what lets the
+bracketed Pathway list stay cut from the copy.
+
+Across beats: tiles, then text, then one figure, so each step changes one thing. Widths alternate (12,
+6, 12), so no two text blocks match.
+
+Differs from the 8 Oct two beat proposal: that one had no beat for "what it had to hold". Keeping it as
+its own text beat gives the reader a breath between the two figures, and its copy is already short.
+If he prefers two beats, it folds into beat 3's text column.
+
+Option for beat 3, his call on copy: with kept and left on the plot, the "Nothing to copy" paragraph
+could drop its product by product sentences. No copy changed here.
+
 ## From the transcript (`~/Code/mondai/corpus/`, read 2026-10-07)
 
 Part 3, nothing to copy:
@@ -225,3 +250,5 @@ Weekly format, for section 2 and the credit record:
 9. 2026-10-09: research done (`reports/Visual storytelling per beat.md`) and loop step 5 rewritten to
    work beat by beat. Next: the section 1 beat list (claim, form and reference, still test, template
    and spans) for his review. The report's section 1 illustration is a starting point, not a decision.
+10. 2026-10-09: beat list written (three beats, see Beat list). Next: his yes or corrections on the
+    beat list, then build in Figma on the Haven grid with image slots empty.
