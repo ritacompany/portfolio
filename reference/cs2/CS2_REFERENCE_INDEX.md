@@ -209,6 +209,15 @@ CS2; the Haven specific recommendations do not.
 ### Expanding card gallery components
 - rp-gal-1 · Interaction research for the Haven ending row. Relevant to CS2 only for layout: hover hidden text is invisible to touch and many keyboard users, so load bearing text is never hover gated.
 
+### Near term goal focus evidence (written for CS2, cited by section 2)
+- rp-near-1 · A distant goal alone did no better than no goal; near goals added to it raised progress and self-efficacy (Bandura and Schunk 1981, Latham and Seijts 1999).
+- rp-near-2 · At scale, weekly subgoals raised volunteering about 7 to 8 percent over 12 weeks (Rai et al. 2022, 9,108 people).
+- rp-near-3 · Frequent, visible progress monitoring is the active ingredient (Harkin et al. 2016, 138 studies).
+- rp-near-4 · Pace tracks rate against an expected rate, not position alone (Carver and Scheier 1990).
+- rp-near-5 · Make behind recoverable and task focused; broken streaks cut engagement unless repair exists. Analogies, untested in a learning product.
+- rp-near-6 · Do not cite Ariely and Wertenbroch 2002 or construal level theory; both are contested.
+- rp-near-7 · Single design choices have modest effects at scale (Kizilcec et al. 2020).
+
 ### Visual storytelling per beat (written for CS2, drives loop step 5)
 - rp-vis-1 · Walls of text come from picking the layout first. Every newsroom and paper studied goes reader's point, then form, then layout.
 - rp-vis-2 · Text only is a real form when a sentence says it as well (Reuters). Choose it on purpose, not by default.

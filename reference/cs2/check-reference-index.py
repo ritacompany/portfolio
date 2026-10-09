@@ -19,7 +19,8 @@ for n in re.findall(r"^## (\d+)\.", proto, re.M):
     if f"wp-{n} " not in index: missing.append(f"protocol section {n}")
 reports = {"How case studies end.md": "rp-end", "Case study results without metrics.md": "rp-met",
            "What gets designers interviewed.md": "rp-int", "Expanding card gallery components.md": "rp-gal",
-           "Visual storytelling per beat.md": "rp-vis"}
+           "Visual storytelling per beat.md": "rp-vis",
+           "Near term goal focus evidence.md": "rp-near"}
 for f, tag in reports.items():
     if not (root / "reports" / f).exists(): missing.append(f"report file {f}")
     if f"{tag}-1 " not in index: missing.append(f"report {f}")
