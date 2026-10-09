@@ -1,9 +1,7 @@
 # CS2 section 1: Where it started
 
-Status: drafted 2026-10-07, needs revision before layout. Draft 1 opens on "Mondai already had a
-curriculum", which is true only from September 2025. The Discord record shows the framework work started
-earlier, with his own milestone structure, before the Pathways existed. Revise from
-`~/Documents/CS2-research/discord-framework-trail.md`. Curriculum credit: Betsy and Michael together.
+Status: drafted. Draft 2 (2026-10-08) revises the opening from the Discord record, under fresh review.
+Layout on hold until the visual storytelling research. Curriculum credit: Betsy and Michael together.
 
 Job: what he walked into and the problems the framework had to solve. Background, not a feature.
 
@@ -130,6 +128,44 @@ framework had to be reasoned out piece by piece.
 - CareerFoundry, Duolingo, Notion and Todoist, what was kept and left: 11 May outline slide 4; research in
   [6bea79a8 #0001] and [6bea79a8 #0043]. CONFIRMED.
 - "Reasoned out piece by piece": outline slide 4, "reasoned from first principles". PARAPHRASE.
+
+## Draft 2 (2026-10-08): revised opening from the Discord record
+
+Only the first part changes. Draft 1 opened on "Mondai already had a curriculum", which reads as if the
+framework work began once the curriculum existed. The Discord record shows his own journey structure
+came first and the curriculum replaced its top level. "What it had to hold" and "Nothing to copy" carry
+over from Draft 1 unchanged. No dates in the copy (timeline rule); the order of events is kept. Credit is
+stated once as setup, not made the point. The daily then weekly history stays in section 2. Voice pass
+done (humanizer, no-ai-slop detect, house rules). The bracketed Pathway list is cut, pending his yes,
+since the map shows the route.
+
+### The pieces came first
+
+I'd started on how someone moves through a career change inside the product before there was a
+curriculum: a journey of milestones, each broken into focus areas and tasks. Then Betsy and Michael's
+curriculum arrived, and its Pathways took the place of my milestones. Each Pathway breaks into Action
+Items, and together they make the Growth Journey. Around it sat an onboarding quiz, career
+selection and a plan to connect people's calendars.
+
+So the pieces existed. What hadn't been worked out was how they fit together for the person using them:
+what someone sees first, and what happens next.
+
+### Sources for Draft 2's opening
+
+- His own structure first, milestones, focus areas, tasks: Discord 7 Nov 2024 [1304212145998790687]
+  ("Milestone -> Focus -> Tasks"); 18 Jun 2025 [1384980035353448601]. CONFIRMED.
+- Pathways from Betsy's curriculum replaced his milestones: Discord 2 Sep 2025 [1412573340807204946]
+  ("What you are calling pathways are the things I would have previously called milestones").
+  CONFIRMED.
+- Curriculum by Betsy and Michael together: his confirmation 2026-10-07 (`CS2_PROCESS.md`, section 1
+  starting notes); Discord 21 Aug 2025 [1408198783249940583]. CONFIRMED.
+- Pathways, Action Items, Growth Journey: designs, confirmed 2026-10-06. CONFIRMED. "Five" cut from this
+  sentence (fresh review): the number was his call on 18 Oct 2025 [1429125642041032775], not part of what
+  arrived. The map shows all five.
+- Quiz, career selection, calendar plan: as Draft 1. CONFIRMED.
+- What someone sees first, what happens next: his provisional rung 2 draft. PARAPHRASE, as Draft 1.
+- His four milestone names (learn, build, connect, pursue) left out of copy: true [1412573340807204946]
+  but detail the reader does not need.
 
 ## From the transcript (`~/Code/mondai/corpus/`, read 2026-10-07)
 

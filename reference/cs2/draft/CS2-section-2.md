@@ -1,6 +1,6 @@
 # CS2 section 2: The week
 
-Status: drafted 2026-10-07 (Draft 1). Voice pass and layout not done yet.
+Status: drafted. Draft 2 (voice pass) 2026-10-08, under fresh review. Layout not done yet.
 
 Job: the route arrives a week at a time, as Action Items in the Action Hub. One line that the content
 is generated.
@@ -143,6 +143,55 @@ so the week someone opens was put together for them.
 
 A week holds a load, not a fixed number of items. What it didn't know yet was how much time someone
 actually had.
+
+## Draft 2, voice pass (2026-10-08)
+
+Humanizer, then no-ai-slop detect, then house rules. Changes from Draft 1: "steps back" to "sits a step
+back"; the duplicate "A slot is a suggestion" cut (the slot is already called suggested); "One step out"
+folded into the Hub sentence; "on purpose" to "when you want to look"; the generated line made active;
+"a load, not a fixed number" (binary contrast) rewritten plainly. Flagged, kept: the research sentence
+fails the portability test on its own (it could sit in any product's case study). It stays because it is
+the evidence line he chose; a layout that ties it to the map may carry it better. Claims and sources are
+unchanged from Draft 1, so the source list below still applies.
+
+Fresh review fixes, 2026-10-08: research line no longer claims weekly steps specifically (Rai tested
+weekly and fortnightly; fortnightly held better) and is stated as a tendency, no names, per the copy rule;
+"had no weeks" cut ([1293016755266130033] mentions a weekly total); the clarity clause cut (it joined
+9 Apr #0056 and 30 Apr #0006, and he declined the separation rather than trading clarity); "Nobody
+writes them by hand" cut (templates exist, [1479541418958651515]).
+
+### Built around this week
+
+It started as a home page. The first ideas for it were an overview of everything: progress, upcoming
+work, recommended content, news.
+
+A career change takes months, and the end of it is a long way off. So the home page became this week.
+You open the product onto the work that's live now, and everything further out sits a step back.
+
+The first plan worked back from a goal date to a number of tasks per day. We moved to a week, with the bigger picture one step away. A week works whether or not someone connects a
+calendar, and it gives the work structure.
+
+Research on long goals points the same way: nearer steps and seeing your own progress tend to help
+people keep going.
+
+### One week, with or without a calendar
+
+Each week holds a set of Action Items, each one a piece of work. With a calendar connected, each item
+gets a suggested slot. Without one, the week is a plain list. Either way it's the same week. The work is
+due when the week ends on Saturday night, so a missed slot isn't a missed item.
+
+### How far ahead you can see
+
+The Action Hub is the week, and the one place work gets done. It also shows the current Pathway and
+whether you're ahead of it or behind. The whole Growth Journey sits on its own pages, which show where
+you are on the route and what comes next. You go there when you want to look. I kept progress controls
+off those pages, so the overview never became a second place to work.
+
+The AI builds each person's Action Items from their onboarding answers, so the week someone opens was
+put together for them.
+
+A week fills up by how much work its items take. What the product didn't know yet was how much time
+someone actually had.
 
 ### Sources per claim
 
