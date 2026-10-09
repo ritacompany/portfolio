@@ -54,6 +54,12 @@ Each section is laid out from the templates in the Figma file Portfolio Design, 
 section, as a Mondai CS Master. The older frame `WIP Mondai growth journey case study` (3238:22519)
 predates the 27 Aug restart and is not the starting point.
 
+Corrected 2026-10-07, his rule: the Case study layouts section already holds finished, laid-out
+sections (titles, T1I, T2I, T3I, carousels and so on inside each WIP case study). Pick the existing
+section that best matches each part's content, duplicate it into the CS2 master and fill it. Never
+draw a block from scratch. Then adapt it to the Haven grid (12 columns, 40 margins and gutters) and
+Haven text styles.
+
 Corrected 2026-10-07: the source of truth for layout, type and diagram style is the Figma, read
 properly (structure, text styles, spacing), never thumbnails. The HTML in `build/` is Metalab scaffold
 and is not a layout source for CS2; `LEDGER.md` only decodes template names. Build the section in
@@ -230,7 +236,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
 | 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Next: layout, then his review of copy and layout |
-| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Talking, opened 2026-10-07. `draft/CS2-rung-3.md` is material only. Origin of the weekly format open, waits on ChatGPT and Discord exports. A parallel draft from the section 1 chat sits in the file, not reconciled |
+| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Drafted 2026-10-07, `draft/CS2-section-2.md` (Draft 1, parallel draft reconciled). Next: voice pass, layout, then his review. What first led to the week may be in ChatGPT, still open |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Not started |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
 | 5 | Scheduling and rollover | The calendar is where it nearly broke | Calendar timeline underneath | Not started |

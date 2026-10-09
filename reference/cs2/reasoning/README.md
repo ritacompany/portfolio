@@ -32,6 +32,11 @@ Source transcripts are the filtered Mondai conversation corpus, 154 conversation
 contains full unredacted conversation text. Citations are stable regardless: filename plus turn
 index.
 
+On Chadwick's Mac the corpus lives at `~/Code/mondai/corpus/` (rebuilt 2026-10-08 from a fresh
+export, 177 conversations), linked here as `corpus/`. Start from `corpus/INDEX.md`; transcripts are in
+`corpus/conversations/`, one file per conversation, turns headed `### [NNNN]`. The raw export is in
+`~/Code/mondai/export/`.
+
 ## Reading order
 
 Start with `THROUGHLINES.md`. It carries the patterns that cross topics and the summary of where the

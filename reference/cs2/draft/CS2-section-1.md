@@ -174,3 +174,15 @@ Weekly format, for section 2 and the credit record:
    right empty, placements from outline slide 4). First preview was built from `build/` HTML by
    mistake; rebuilding in Figma from the Case study layouts and Haven CS Master. Open: cut the
    bracketed Pathway list from copy since the map shows it (recommended).
+7. Built in Figma 2026-10-07: `Mondai CS Master` (4194:6596) in the VC page's Mondai case studies
+   section, section 1 frame 4194:6597. Haven pattern: Heading/20 eyebrow, Heading/40 claim, Body/16
+   left column, media right. Each Heading/40 is an existing draft sentence moved up, no new copy.
+   Rebuilt same day from duplicated template sections: Robinhood "03 The vision" title (x3, one with
+   body added), Midjourney "05 T3I three media+body" for the gap, Robinhood "04 T1I l2" for the chart.
+   The bracketed Pathway list is cut in the build only, pending his yes. The build uses draft 1 copy,
+   which the status line says needs revision (Discord record); block 1 copy is stale until revised.
+8. 2026-10-08: build rejected. Images removed, slots left empty (he chooses imagery). Proposed two
+   beats from the Case study layouts: Robinhood 03 The vision + Midjourney 03 T1I media+body, then
+   Windsurf 03 THE VISION + Suno 17 t1i l2. On hold until the visual storytelling research (separate
+   session: unlazy, deep-research, resource-sourcing with skill-shortlist) proposes a step for
+   choosing a visual form per beat before choosing the layout.
