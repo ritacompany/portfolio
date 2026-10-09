@@ -197,15 +197,43 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Then the house
    copy rules: no em or en dashes, no hyphen pair as a dash, no Oxford commas, sentence case.
-5. **Layout and visuals.** Pick the template that fits what the section has to show. The large image
-   slots take the real desktop screens. The smaller slots carry the map state for that section or a
+5. **Layout and visuals.** Added 2026-10-08, approved by Chadwick: before any template is opened, write
+   the beat sheet for the section. A beat is one point the reader must leave with; a section usually
+   holds two to four. For each beat, in this order:
+
+   1. **What the reader must understand.** The reader's question at this point and its answer as one
+      complete sentence that says what is at stake. That sentence becomes the beat's Heading/40 claim.
+      If it cannot be written, the beat is not ready and no layout will fix it.
+   2. **The relationship.** What the sentence rests on: a gap, a change, a comparison, a sequence, a
+      structure, a position, a cause, a decision, a part of a whole or nothing with a shape. Nothing
+      with a shape means prose, and that is a valid answer.
+   3. **The essential test.** Would the reader miss the point without a visual? If not, the beat stays
+      text, set as a title block with the claim.
+   4. **The visual form, with its reference.** The least elaborate form in that relationship's row of
+      the index in `reports/Visual form per beat.md`, named with its source (for example "position in a
+      landscape: 2x2, Periodic Table of Visualization Methods, strategy group"). A real Mondai screen
+      with one annotation beats a new diagram whenever the screen already holds the evidence. The map
+      is a form too: bring it back with one change rather than drawing a new picture.
+   5. **The layout.** Only now pick the section from Case study layouts (node 3461:5685) whose geometry
+      fits that form, using the form to template table in `reports/Visual form per beat, step 5
+      proposal.md`. It is a starting point, not a standard: duplicate it, then adapt it to the Haven
+      grid (12 columns, 40 margins and gutters) and Haven text styles. Words sit beside the visual they
+      describe. The carousel never carries a sequence the argument depends on.
+   6. **The still test.** Each visual has to make sense cropped out and seen alone, and the section has
+      to make its point read as headings plus visuals only. Note which transitions are real change
+      over time or movement; those are the candidates for motion later.
+
+   The beat sheet is shared as one table per section (beat, what the reader must understand,
+   relationship, form and its reference, template) and agreed with Chadwick before anything is built.
+   Layout is worked out with him a step at a time from there.
+
+   The large image slots take the real desktop screens. The smaller slots carry the map state for that section or a
    diagram that makes the decision clear. Claude builds the visuals and the section in Figma, on the
    portfolio grid. This follows the voice pass without waiting for copy approval, so copy and layout are
    reviewed together. Screens are read from the Mondai Figma, never redrawn from memory. If the live
    frame is missing, use the desktop export, flag it and ask him where the current frame is. Diagrams
    follow the Haven CS Master's diagram style, not Mondai's UI. Template names are decoded in
-   `LEDGER.md`, but layout comes from the Figma templates, not `build/` (see Layouts). Share the
-   concept and template choice per part before building (his global design rule), then build.
+   `LEDGER.md`, but layout comes from the Figma templates, not `build/` (see Layouts).
 6. **Review.** Chadwick reads copy and layout together. Small wording fixes he asks for are made in
    place. Changes to what the section says go back to step 2 or 3.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
