@@ -175,23 +175,14 @@ Loop step 5 applied to Draft 2's opening plus Draft 1's other two parts. Referen
 | # | What the reader must understand | Beat type | Form and reference | Still test | Template and Haven spans |
 |---|---|---|---|---|---|
 | 1 | The pieces existed, and nothing said how a person moves through them | Separate pieces with nothing linking them | Partitioned poster: three tiles, no arrows between them, so the missing link is what the reader sees (Segel and Heer; Bach multiple facets) | Passes only if the headline states the gap; three bare tiles read as a gallery | TextAnd3Images layout 1: tiles cols 1 to 6, 7 to 12 and 1 to 6, text cols 7 to 12 |
-| 2 | It needed structure and room to move in the same system | A point a sentence carries as well | Text only, the four demands kept as parallel lines with the same pattern (Reuters; Hullman parallel structure) | Not a figure; checked instead that it is not the same width as a neighbouring text block | TitleAndText: text cols 4 to 9 |
-| 3 | No existing product sat where this one needed to be | Options compared, pieces taken | Three product cards, each with what was kept and what was left (left struck through), feeding one line: only the kept pieces, put together (Evergreen comparison; Bach contrast). Not a two by two: Haven already has a matrix (his call, 9 Oct) | Passes if the kept lines are the loudest marks and the headline says no product had all three | TextAnd3Images layout 1 reworked as a row: cards cols 1 to 4, 5 to 8 and 9 to 12, text cols 1 to 6 below |
+| 2 | It needed structure and room to move, and nothing existing already did that | A point a sentence carries as well | Text only: "What it had to hold" then "Nothing to copy", each under its own small heading. No figure: the products were references, not parts Mondai was assembled from, and the draft already says it was reasoned out piece by piece (his call, 9 Oct). A two by two was also ruled out because Haven has one | Not a figure | TitleAndText: text cols 4 to 9 |
 
 Slots for beat 1, his choice: candidates from the 7 Oct concept are the start journey screen, the
 calendar permission screen and the map's first state (the route). The map tile is what lets the
 bracketed Pathway list stay cut from the copy.
 
-Across beats: tiles, then text, then cards, so each step changes one thing. Widths alternate (12, 6,
-12), so no two text blocks match.
-
-Differs from the 8 Oct two beat proposal: that one had no beat for "what it had to hold". Keeping it as
-its own text beat gives the reader a breath between the two figures, and its copy is already short.
-If he prefers two beats, it folds into beat 3's text column.
-
-Option for beat 3, his call on copy: with kept and left on the cards, the "Nothing to copy" paragraph
-could drop its product by product sentences. No copy changed here. Open: what was left from Duolingo is
-not in the draft; ask him, do not invent it.
+Section 1 has one visual beat. Not every beat needs a figure; the old beats 2 and 3 merged so two text
+blocks do not sit back to back.
 
 ## From the transcript (`~/Code/mondai/corpus/`, read 2026-10-07)
 
@@ -251,5 +242,6 @@ Weekly format, for section 2 and the credit record:
 9. 2026-10-09: research done (`reports/Visual storytelling per beat.md`) and loop step 5 rewritten to
    work beat by beat. Next: the section 1 beat list (claim, form and reference, still test, template
    and spans) for his review. The report's section 1 illustration is a starting point, not a decision.
-10. 2026-10-09: beat list written (three beats, see Beat list). Next: his yes or corrections on the
+10. 2026-10-09: beat list written, revised the same day to two beats (tiles, then text). Matrix and
+    kept and left cards both rejected. Next: his yes or corrections on the
     beat list, then build in Figma on the Haven grid with image slots empty.
