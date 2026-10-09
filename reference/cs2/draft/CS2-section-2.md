@@ -94,7 +94,7 @@ plainly. Source lists stay in these notes for the evidence trail and never reach
    when the export arrives.
 2. The near cut on 6 Apr 2026 [bac4a8ff #0000] stays out of the copy. His decision, 2026-10-07. It is in
    the record and in this file only so nobody reintroduces it by accident.
-3. Voice pass on Draft 1: house rules checked; humanizer and no-ai-slop not yet run.
+3. Voice pass: done in Draft 2 (2026-10-08).
 
 ## Where section 2 stopped
 
@@ -103,6 +103,8 @@ plainly. Source lists stay in these notes for the evidence trail and never reach
    term focus recorded above.
 3. Research gathered. Discord trail read. Parallel draft reconciled.
 4. Draft 1 written 2026-10-07. Next: voice pass. Layout is worked out step by step with him, no visuals built, while the visual storytelling research runs. Waiting on the Notion notes sort.
+5. Draft 2 voice passed and fresh reviewed 2026-10-08. Next (2026-10-09): his edit pass and the layout
+   together, under the new loop step 5. Open item 1 (ChatGPT) does not block it.
 
 ## Draft 1 (2026-10-07)
 

@@ -243,5 +243,7 @@ Weekly format, for section 2 and the credit record:
    work beat by beat. Next: the section 1 beat list (claim, form and reference, still test, template
    and spans) for his review. The report's section 1 illustration is a starting point, not a decision.
 10. 2026-10-09: beat list written, revised the same day to two beats (tiles, then text). Matrix and
-    kept and left cards both rejected. Next: his yes or corrections on the
+    kept and left cards both rejected.
+11. 2026-10-09: on hold. Part 1 is not final until the ChatGPT export is searched (his call). Build
+    waits for that, then copy and layout are done together. Next: his yes or corrections on the
     beat list, then build in Figma on the Haven grid with image slots empty.
