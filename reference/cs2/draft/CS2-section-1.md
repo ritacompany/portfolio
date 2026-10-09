@@ -186,3 +186,6 @@ Weekly format, for section 2 and the credit record:
    Windsurf 03 THE VISION + Suno 17 t1i l2. On hold until the visual storytelling research (separate
    session: unlazy, deep-research, resource-sourcing with skill-shortlist) proposes a step for
    choosing a visual form per beat before choosing the layout.
+9. 2026-10-09: research done (`reports/Visual storytelling per beat.md`) and loop step 5 rewritten to
+   work beat by beat. Next: the section 1 beat list (claim, form and reference, still test, template
+   and spans) for his review. The report's section 1 illustration is a starting point, not a decision.

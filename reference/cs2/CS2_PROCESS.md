@@ -203,15 +203,40 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Then the house
    copy rules: no em or en dashes, no hyphen pair as a dash, no Oxford commas, sentence case.
-5. **Layout and visuals.** Pick the template that fits what the section has to show. The large image
-   slots take the real desktop screens. The smaller slots carry the map state for that section or a
-   diagram that makes the decision clear. Claude builds the visuals and the section in Figma, on the
-   portfolio grid. This follows the voice pass without waiting for copy approval, so copy and layout are
-   reviewed together. Screens are read from the Mondai Figma, never redrawn from memory. If the live
-   frame is missing, use the desktop export, flag it and ask him where the current frame is. Diagrams
-   follow the Haven CS Master's diagram style, not Mondai's UI. Template names are decoded in
-   `LEDGER.md`, but layout comes from the Figma templates, not `build/` (see Layouts). Share the
-   concept and template choice per part before building (his global design rule), then build.
+5. **Layout and visuals.** Worked beat by beat, so the form is chosen before the layout. Rewritten
+   2026-10-09 because layouts kept coming out as walls of text: the template was picked first and filled
+   with the copy. This follows the voice pass without waiting for copy approval, so copy and layout are
+   reviewed together. A beat is one point the reader has to come away with; a section usually has two to
+   four. The research behind this step, with the beat type to form to template table and every
+   reference, is `reports/Visual storytelling per beat.md`. For each beat, in this order:
+   - **What the reader must understand.** One sentence written as a claim, not a topic. Read in order,
+     a section's claims should tell the section on their own. Two beats making the same point merge.
+   - **Form, with its reference.** First ask whether a sentence says it as well. If yes, the beat is
+     text only, and that is a real choice. Otherwise classify the beat with the table in the report and
+     write the form with its reference beside it (for example "options: labelled options grid, Figma
+     UI3"). One figure per claim. Draw the difference, not both whole states. Label every arrow or
+     leave it out. A single number is a stat, not a chart.
+   - **Still test.** The figure alone, as a flat image with no copy around it, must show the point. Its
+     headline states the claim, labels sit on the figure, it changes one thing from the previous beat's
+     figure and it reads at phone width. Nothing the reader needs lives in a hover, a later carousel
+     slide or an animation. Motion comes later and only animates the change between two approved stills.
+   - **Template and spans.** Pick the Case study layouts family that fits the form, then state it on
+     the Haven grid as column spans (for example "text cols 1 to 5, figure cols 7 to 12"). Body text sits
+     at 5 or 6 columns, never wider than 7. Template names are decoded in `LEDGER.md`, but layout comes
+     from the Figma templates, not `build/` (see Layouts).
+   - **Share, then build.** Bring the section as a short beat list: claim, beat type, form and
+     reference, still test result, template and spans. He corrects it there (his global design rule).
+     Nothing is built before his yes, and a correction goes back to the claim for that beat, not to the
+     last build. After his yes, Claude builds the section in Figma on the Haven grid.
+
+   Across beats, change one thing between neighbouring figures, default to time order, give parallel
+   parts the same internal pattern and never put two text only blocks of the same width back to back.
+   The map state for the section is the previous state plus one element, the new element loudest.
+
+   Imagery is his to choose (corrected 2026-10-08). Image slots stay empty until he picks. Real screens
+   are read from the Mondai Figma, never redrawn from memory. If the live frame is missing, use the
+   desktop export, flag it and ask him where the current frame is. Diagrams follow the Haven CS Master's
+   diagram style, not Mondai's UI.
 6. **Review.** Chadwick reads copy and layout together. Small wording fixes he asks for are made in
    place. Changes to what the section says go back to step 2 or 3.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
