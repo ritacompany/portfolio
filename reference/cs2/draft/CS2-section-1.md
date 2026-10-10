@@ -1,8 +1,7 @@
 # CS2 section 1: Where it started
 
-Status: drafted. ChatGPT export searched 2026-10-10; findings below change parts 1 and 2. Next: talk
-through the findings, then Draft 3 of parts 1 and 2, then copy and layout together.
-Layout on hold until the visual storytelling research. Curriculum credit: Betsy and Michael together.
+Status: built. Draft 3 (2026-10-10) in Figma, Workstation section, node 4228:6859. Awaiting his review
+of copy and layout together. Image slots empty for his pick.
 
 Job: what he walked into and the problems the framework had to solve. Background, not a feature.
 
@@ -185,6 +184,59 @@ bracketed Pathway list stay cut from the copy.
 Section 1 has one visual beat. Not every beat needs a figure; the old beats 2 and 3 merged so two text
 blocks do not sit back to back.
 
+## Draft 3 (2026-10-10): part 2 rewritten, no attribution
+
+Part 1 is Draft 2's opening, last sentence tightened. Part 2 drops the line naming Michael and names the
+questions the framework had to answer instead; nobody is quoted or cited on the page (his rule). The
+questions recur across the material (Feb 2025 sprint list, May 2025 kickoff, Feb 2026 problem write
+up), so they are written from the accumulation, not one source. Part 3 loses the sentence that pointed
+at the rejected matrix. Voice pass: house rules checked by hand (no dashes, no Oxford commas, sentence
+case); humanizer and no-ai-slop not run on this draft.
+
+### Where it started
+**The pieces existed. What hadn't been worked out was how they fit together.**
+
+I'd started on how someone moves through a career change inside the product before there was a
+curriculum: a journey of milestones, each broken into focus areas and tasks. Then Betsy and Michael's
+curriculum arrived, and its Pathways took the place of my milestones. Each Pathway breaks into Action
+Items, and together they make the Growth Journey. Around it sat an onboarding quiz, career selection
+and a plan to connect people's calendars.
+
+What hadn't been worked out was how they fit together for the person using them: what someone sees
+first and what happens next.
+
+### What it had to answer
+**It needed structure and room to move in the same system.**
+
+It had to carry a curriculum that runs in order and still work like a guide that fits around someone's
+life, not a course that holds them to its schedule. That left a few questions to answer before anything
+could be laid out. How much of the route fits in one week? What happens when someone falls behind or
+gets ahead? What does it do for someone who doesn't plan their week in a calendar, or doesn't want to
+connect one?
+
+The people using it don't have regular weeks either. Some have a predictable schedule and some don't,
+and the same person can move between the two.
+
+### Nothing to copy
+**I looked at the products closest to it, and each solved one piece.**
+
+CareerFoundry runs a fixed curriculum at a fixed pace. Fall behind and the curriculum doesn't move for
+you. I kept its order of prerequisites and left the pacing. Duolingo makes a missed day visible without
+punishing it. Your streak resets and you carry on. I kept that. Notion and Todoist are flexible with no
+structure at all. I took the calendar as a planning layer and left the blank page.
+
+None of them sat where Mondai needed to be. The framework had to be reasoned out piece by piece.
+
+### Sources for Draft 3's changes
+- The three questions: [67a41ae1 #0000], [682baa8a #0012], [698e28e9 #0012] in
+  `~/Documents/CS2-research/chatgpt-findings.md`. CONFIRMED as the open questions; PARAPHRASE.
+- Guide not a course: as Draft 1. CONFIRMED.
+- Calendar as optional ("doesn't want to connect one"): [67a41ae1 #0000]; [67ce07fd #0002]. CONFIRMED.
+
+### Layout as built
+Beat 1: Robinhood 03 title, then Midjourney 05 T3I (two empty image slots, the route map tile, body
+text). Beat 2: two Robinhood 03 title plus body blocks, text only. The matrix block is removed.
+
 ## From the ChatGPT export (searched 2026-10-10)
 
 Findings with citations live outside git: `~/Documents/CS2-research/chatgpt-findings.md`. Raw and
@@ -273,3 +325,5 @@ Weekly format, for section 2 and the credit record:
     beat list, then build in Figma on the Haven grid with image slots empty.
 12. 2026-10-10: ChatGPT export searched (1,582 conversations). Findings for parts 1 to 3 above.
     Next: talk them through with him, then Draft 3 of parts 1 and 2, then copy and layout together.
+13. 2026-10-10: Draft 3 written and built in Figma (Workstation, 4228:6859), above section 2.
+    Next: his review of copy and layout together.

@@ -54,6 +54,11 @@ Each section is laid out from the templates in the Figma file Portfolio Design, 
 section, as a Mondai CS Master. The older frame `WIP Mondai growth journey case study` (3238:22519)
 predates the 27 Aug restart and is not the starting point.
 
+Corrected 2026-10-10, his rule: CS2 sections are built in the Portfolio Design file, VC page, section
+`Mondai case studies`, inside its `Workstation` section (4105:7096), at the lower end, in reading order
+top to bottom. Section 1 is 4228:6859, section 2 is 4228:6731. The older `Mondai CS Master` (4194:6596)
+is superseded.
+
 Corrected 2026-10-07, his rule: the Case study layouts section already holds finished, laid-out
 sections (titles, T1I, T2I, T3I, carousels and so on inside each WIP case study). Pick the existing
 section that best matches each part's content, duplicate it into the CS2 master and fill it. Never
@@ -270,7 +275,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Beat list written 9 Oct under the new step 5. ChatGPT export searched 10 Oct, findings in the section file. Next: talk through, Draft 3 of parts 1 and 2 |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Beat list written 9 Oct under the new step 5. Built 10 Oct: Draft 3 copy with the two beat layout, Figma 4228:6859 in Workstation. Image slots empty for his pick. Next: his review of copy and layout together |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Drafted, `draft/CS2-section-2.md`. Draft 2 voice passed and fresh reviewed 8 Oct. Next: his edit pass and layout together, under step 5. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Talking, opened 8 Oct, `draft/CS2-section-3.md`. Three questions for him |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
