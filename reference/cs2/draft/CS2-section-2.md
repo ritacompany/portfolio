@@ -1,6 +1,7 @@
 # CS2 section 2: The week
 
-Status: drafted. Draft 2 (voice pass) 2026-10-08, under fresh review. Layout not done yet.
+Status: built. Draft 3 (edit pass) and layout built 2026-10-10 in Figma, VC page, Mondai case studies,
+Workstation, frame 4228:6731. Waiting on his review and on imagery for three empty slots.
 
 Job: the route arrives a week at a time, as Action Items in the Action Hub. One line that the content
 is generated.
@@ -105,6 +106,64 @@ plainly. Source lists stay in these notes for the evidence trail and never reach
 4. Draft 1 written 2026-10-07. Next: voice pass. Layout is worked out step by step with him, no visuals built, while the visual storytelling research runs. Waiting on the Notion notes sort.
 5. Draft 2 voice passed and fresh reviewed 2026-10-08. Next (2026-10-09): his edit pass and the layout
    together, under the new loop step 5. Open item 1 (ChatGPT) does not block it.
+6. 2026-10-10: Draft 3 and beat list below. Built in Figma at the lower end of Workstation (his call
+   on placement). Next: his review of copy and layout together, then imagery for the three slots.
+
+
+## Draft 3, edit pass, and beat list (2026-10-10, built)
+
+Changes from Draft 2: part 1's two "first"s merged (first ideas, then the plan behind it); "ahead of it
+or behind" to "ahead or behind on it"; "I kept progress controls off those pages" to "Nothing can be
+checked off on those pages" (same source, no state changes there). Each beat's headline is a sentence
+lifted from its own copy. Claims and sources unchanged from Draft 2.
+
+| # | What the reader must understand | Form and reference | Template and Haven spans |
+|---|---|---|---|
+| 1 | You open the product onto this week; the long goal sits a step back | Annotated real Action Hub screen, this week marked (Linear inverted L; Bach exposé) | T1I l1: text cols 1 to 5, screen cols 6 to 12 |
+| 2 | Calendar and list are the same week; the deadline is the week's end, not the slot | Paired stills, one change, "due Saturday night" on both (Bach before/after; Tufte parallelism) | T2I l1: stills cols 1 to 6 and 7 to 12, text cols 1 to 6 below |
+| 3 | Three distances: the week is where work happens, the Pathway shows pace, the Journey is for looking | Map state 2: the route plus brackets, this week loudest (Tversky boxes contain) | T1I l2: map cols 1 to 7, text cols 8 to 12 |
+| Close | Generated line, then the plant for section 3 | Text only, after a figure | TitleAndText at section 1's text column |
+
+Empty slots, his choice: the Action Hub screen (beat 1), the week with a calendar and the same week as a
+list (beat 2).
+
+### Built around this week
+
+Headline: You open the product onto the work that's live now.
+
+It started as a home page, and the first ideas for it were an overview of everything: progress, upcoming
+work, recommended content, news. The plan behind it worked back from a goal date to a number of tasks
+per day.
+
+A career change takes months, and the end of it is a long way off. So the home page became this week,
+and everything further out sits a step back. A week also works whether or not someone connects a
+calendar, and it gives the work structure.
+
+Research on long goals points the same way: nearer steps and seeing your own progress tend to help
+people keep going.
+
+### One week, with or without a calendar
+
+Headline: Either way it's the same week.
+
+Each week holds a set of Action Items, each one a piece of work. With a calendar connected, each item
+gets a suggested slot. Without one, the week is a plain list. The work is due when the week ends on
+Saturday night, so a missed slot isn't a missed item.
+
+### How far ahead you can see
+
+Headline: The Action Hub is the week, and the one place work gets done.
+
+It also shows the current Pathway and whether you're ahead or behind on it. The whole Growth Journey
+sits on its own pages, which show where you are on the route and what comes next. You go there when you
+want to look. Nothing can be checked off on those pages, so the overview never became a second place to
+work.
+
+The AI builds each person's Action Items from their onboarding answers, so the week someone opens was
+put together for them.
+
+A week fills up by how much work its items take. What the product didn't know yet was how much time
+someone actually had.
 
 ## Draft 1 (2026-10-07)
 
