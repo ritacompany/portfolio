@@ -24,6 +24,9 @@ hero or brand work and every line of it would otherwise compete for attention th
   touching anything in `build/`.
 - Body copy in those files is Metalab scaffold text, sized so section heights are right.
   Not shippable. It gets replaced before publishing.
+- Every case study, before any layout is chosen: run loop step 5 in `reference/cs2/CS2_PROCESS.md`
+  (what the reader must understand, then the visual form with its reference, then the template). The
+  research is in `reports/Visual storytelling per beat.md`.
 
 ## COPY, case study specific
 - No vanity metrics. Results precise and matched to the problem they answer.

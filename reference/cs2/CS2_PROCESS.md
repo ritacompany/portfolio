@@ -210,16 +210,22 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    four. The research behind this step, with the beat type to form to template table and every
    reference, is `reports/Visual storytelling per beat.md`. For each beat, in this order:
    - **What the reader must understand.** One sentence written as a claim, not a topic. Read in order,
-     a section's claims should tell the section on their own. Two beats making the same point merge.
+     a section's claims should tell the section on their own. The sentence becomes the beat's Heading/40
+     claim. If it cannot be written, the beat is not ready and no layout will fix it. Two beats making the
+     same point merge.
    - **Form, with its reference.** First ask whether a sentence says it as well. If yes, the beat is
      text only, and that is a real choice. Otherwise classify the beat with the table in the report and
      write the form with its reference beside it (for example "options: labelled options grid, Figma
-     UI3"). One figure per claim. Draw the difference, not both whole states. Label every arrow or
+     UI3"). A real Mondai screen with one annotation beats a new diagram whenever the screen already holds
+     the evidence. The map is a form too: bring it back with one change rather than a new picture. No form
+     another case study already leans on (Haven has the two by two). One figure per claim. Draw the difference, not both whole states. Label every arrow or
      leave it out. A single number is a stat, not a chart.
    - **Still test.** The figure alone, as a flat image with no copy around it, must show the point. Its
      headline states the claim, labels sit on the figure, it changes one thing from the previous beat's
      figure and it reads at phone width. Nothing the reader needs lives in a hover, a later carousel
-     slide or an animation. Motion comes later and only animates the change between two approved stills.
+     slide or an animation; the carousel never carries a sequence the argument depends on. Read as
+     headings plus visuals only, the section still makes its point. Motion comes later and only animates
+     the change between two approved stills.
    - **Template and spans.** Pick the Case study layouts family that fits the form, then state it on
      the Haven grid as column spans (for example "text cols 1 to 5, figure cols 7 to 12"). Body text sits
      at 5 or 6 columns, never wider than 7. Template names are decoded in `LEDGER.md`, but layout comes
@@ -237,6 +243,10 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    are read from the Mondai Figma, never redrawn from memory. If the live frame is missing, use the
    desktop export, flag it and ask him where the current frame is. Diagrams follow the Haven CS Master's
    diagram style, not Mondai's UI.
+
+   This step was run twice in parallel (8 and 9 Oct). The 8 Oct version on branch
+   `claude/confident-poincare-b10757` was never merged; its extra rules are folded in above and its
+   report is superseded by this one.
 6. **Review.** Chadwick reads copy and layout together. Small wording fixes he asks for are made in
    place. Changes to what the section says go back to step 2 or 3.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
