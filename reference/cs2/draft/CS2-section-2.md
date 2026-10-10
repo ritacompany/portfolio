@@ -1,7 +1,7 @@
 # CS2 section 2: The week
 
-Status: built. Draft 3 (edit pass) and layout built 2026-10-10 in Figma, VC page, Mondai case studies,
-Workstation, frame 4228:6731. Waiting on his review and on imagery for three empty slots.
+Status: drafted. Draft 4 (10 Oct) rebuilt on decisions after his correction that Draft 3 explained the
+product. The Figma frame 4228:6731 in Workstation shows Draft 3 and gets rebuilt after his yes on Draft 4.
 
 Job: the route arrives a week at a time, as Action Items in the Action Hub. One line that the content
 is generated.
@@ -109,6 +109,110 @@ plainly. Source lists stay in these notes for the evidence trail and never reach
 6. 2026-10-10: Draft 3 and beat list below. Built in Figma at the lower end of Workstation (his call
    on placement). Next: his review of copy and layout together, then imagery for the three slots.
 
+
+## Draft 4, rebuilt on decisions with both tactic banks (2026-10-10)
+
+His correction, 10 Oct: Draft 3 explained the product and showed no thinking. Draft 4 goes back to the
+concept. The record is raw material; the shape comes from what shows how he decides.
+
+### Frame (wp-1)
+
+- Reader: a hiring manager deciding whether he can own a product level decision that has no template.
+- Contestable argument: the week is a decision about where pressure sits, not a calendar feature.
+- The repeatable thing: he prices decisions other people treat as free (THROUGHLINES 3).
+- Stake: structure that turns into failure makes people with irregular lives quit.
+- CS2 throughline, working answer: every section is the same question at a different scale, how much
+  structure keeps someone going before it makes them quit.
+
+### Decisions (wp-2), compressed to two (cs-t34, cs-t48)
+
+| Decision | Stake | Alternative that lost, and why | Reason | Cost |
+|---|---|---|---|---|
+| A. The week is the boundary for pressure and for sequence | Structure without failure for irregular lives | Tasks per day; a calendar led direction (too rigid, not every life runs on a calendar); locking every item not yet available (cut back to the week) | Works with or without a calendar; gives the pressure Michael wanted at the edge; only completion follows order | None sourced for the week itself. Not invented |
+| B. One level up, never the top | Progress that motivates, not distance that discourages | Journey level target and pace (Michael's ask for clearer journey position; later cut as confusing) | A whole journey pace mostly shows how far is left | A clearer Pathway page, given up so the overview never became a second work surface. He hesitated |
+
+The home page decision is quieted to one transit line (cs-t30). The research line moves to an aside
+(case study rules: principles go in captions or asides).
+
+### Tactics used, one deliberate move per part plus support
+
+| Part | Lead tactic | Support |
+|---|---|---|
+| A | cs-t14 clues before the reveal: rigid options and Michael's need on the page before the week | cs-t24 rejected option with its reason (lock everything); cs-t20 his verb resolves it ("I cut that back"); re-t07 one turn; cs-t47 Michael's need stated as legitimate; cs-t36 heading argues |
+| B | cs-t21 name what it cost | cs-t32 the one moment of real uncertainty, stated flatly ("I hesitated"); re-t14 costly admission, no recovery clause; cs-t18 the last line plants section 3; cs-t38 Pathway glossed |
+
+Anti tactic audit (cs-t40 to cs-t49): inevitable decision fixed by the losing options and the
+hesitation; no humblebrag; no metrics; plain words; no process diagram; Michael never the obstacle;
+two moments carry the weight, the rest is quiet; no frankenbite (the lock decision is not presented as
+the same moment as the week decision, only the same line).
+
+### Copy
+
+#### Pressure at the edge of the week, freedom inside it
+
+The first model counted tasks per day, worked back from a goal date. An early direction leaned on
+calendar integration, and that was too rigid. Not every life runs on a calendar, and the people this is
+for don't have regular weeks. Michael wanted the other risk covered: people should feel a little
+pressure to get things done.
+
+So the week became the unit, and I put the pressure at its edge. Everything is due Saturday night.
+Inside the week, the work happens whenever life allows. Connect a calendar and each Action Item, one
+piece of work, gets a suggested slot. Don't, and the week is a list. A missed slot isn't a missed item.
+
+The same line decided what gets locked. The curriculum runs in order, so the first proposal was to lock
+every Action Item that wasn't available yet. I cut that back to the week. Anything past this week stays
+locked. Everything inside it is visible and can be moved, and the order only controls what can be
+marked done. The product opens on that week, and the rest of the journey sits a step back.
+
+Aside: Research on long goals points the same way. Nearer steps and seeing your own progress tend to
+help people keep going.
+
+#### One level up, never the top
+
+Michael asked for a clearer sense of where people stood in the whole journey. I gave them one level up
+instead: the current Pathway, one of the five stages, with its target date and whether they're ahead or
+behind. A pace for the whole journey would mostly show people how far they still had to go. Later I cut
+the journey level target and pace altogether, because it made the picture more confusing, not less.
+
+The whole journey still has its own pages, for looking. Nothing can be checked off there, and that cost
+something. Pulling this week's items out on the Pathway page would have made it clearer, and I
+hesitated. I left it, because the week is the one place work gets done and I wanted to keep it that
+way.
+
+The AI builds each person's Action Items from their onboarding answers, so the week someone opens was
+put together for them. What the week didn't know yet was how much time someone actually had.
+
+### Sources per claim
+
+- Tasks per day from a goal date: Discord [1293015625307783229] [1293016854092185651]. CONFIRMED.
+- Calendar led direction too rigid, not every lifestyle suits it: ChatGPT [67ce07fd #0002]. CONFIRMED.
+- People don't have regular weeks: his argument, section 1 copy; no research behind it (ChatGPT
+  findings, Not found). CONFIRMED as his argument.
+- Michael wanted a little pressure; week works with or without a calendar: Discord
+  [1351372169598210049]. CONFIRMED.
+- Due Saturday night; slot is a suggestion: [3dd43c15 #0002] [7ad9f71b #0000]. CONFIRMED.
+- Calendar or list, same week: Discord [1292297945605079091] [1418677071093305385]. CONFIRMED.
+- Lock scoped to the week; order controls completion only: [2026-05-04 action-hub-schedule-view
+  #0002 #0004], `reasoning/pathways-and-hierarchy.md` section 4. CONFIRMED. "The first proposal" is
+  not attributed to a person on purpose.
+- Opens on the week: [7224289a #0074] [81cda2a5 #0002]. CONFIRMED.
+- Research aside: `reports/Near term goal focus evidence.md`. CONFIRMED as literature.
+- Michael's ask and the Pathway level answer: [f059e097 #0028]. CONFIRMED.
+- Whole journey pace shows distance: [a8baa619 #0008]. PARAPHRASE of his reason.
+- Journey level target and pace cut as confusing: [8a6cbc5a #0058]. CONFIRMED.
+- Journey pages for looking, no state changes: 2026-04-09 #0028 #0056. CONFIRMED.
+- The clarity trade and the hesitation: [2026-04-30 clarifying-pathway-page-sorting #0006],
+  THROUGHLINES 3, `reasoning/pathways-and-hierarchy.md` section 3. CONFIRMED. This reverses the
+  8 Oct fresh review cut; the reasoning file and THROUGHLINES both read it as a cost he took.
+- Hub is the one place work gets done: [f906a86d #0078]. CONFIRMED.
+- Generated from onboarding answers: `draft/CS2-rung-3.md`. CONFIRMED.
+- Last line plants section 3.
+
+### Layout consequence, not built yet
+
+Beat A's figure becomes the week boundary drawn as a region: items past this week locked, items
+inside free to move (constraint, Stripe; Tversky boxes contain). Beat B keeps the map with brackets.
+The paired calendar and list stills drop to a small detail or go. The Figma frame waits for his yes.
 
 ## Draft 3, edit pass, and beat list (2026-10-10, built)
 
