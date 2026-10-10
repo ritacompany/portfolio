@@ -1,6 +1,7 @@
 # CS2 section 1: Where it started
 
-Status: drafted. Draft 2 (2026-10-08) revises the opening from the Discord record, under fresh review.
+Status: drafted. ChatGPT export searched 2026-10-10; findings below change parts 1 and 2. Next: talk
+through the findings, then Draft 3 of parts 1 and 2, then copy and layout together.
 Layout on hold until the visual storytelling research. Curriculum credit: Betsy and Michael together.
 
 Job: what he walked into and the problems the framework had to solve. Background, not a feature.
@@ -184,6 +185,28 @@ bracketed Pathway list stay cut from the copy.
 Section 1 has one visual beat. Not every beat needs a figure; the old beats 2 and 3 merged so two text
 blocks do not sit back to back.
 
+## From the ChatGPT export (searched 2026-10-10)
+
+Findings with citations live outside git: `~/Documents/CS2-research/chatgpt-findings.md`. Raw and
+flattened export beside it. Rita ABC is the product's earlier name. Paraphrased here, never quoted.
+
+- Part 1, the gap. On 10 Oct 2024 he told the product team the features had been designed
+  independently and needed an architecture connecting them before more were added [6708082f]. His
+  diagnosis at the time, not hindsight. Predates his journey structure in Discord. CONFIRMED.
+- Part 2, the demands. Two lists of the questions the framework had to answer: his strategy sprint
+  list with another designer, 5 Feb 2025 [67a41ae1], and Michael's LEX kickoff document, 19 May 2025
+  [682baa8a #0012] (tasks per week, journey length, calendar or no calendar, on time, ahead or behind).
+  The same document credits Chadwick with having thought through the experience so far and names him
+  design lead. CONFIRMED.
+- Part 2, calendar. On 9 Mar 2025 he judged the calendar led direction too complex and rigid for
+  people whose lives do not fit it [67ce07fd #0002]. CONFIRMED, his words.
+- Part 3, nothing to copy. The Feb 2025 team competitor review is the source of the named list in
+  `CS2_ADDED_MATERIAL.md`; he reviewed Google Grow and LinkedIn Learning [67c0c9e0]. On 12 Feb 2026 he
+  wrote why a learning product and a task tracker each miss half of it [698e28e9 #0012]. CONFIRMED.
+- Later sections. The week, the overflow rule that moves the goal date, and three scheduling modes
+  are in his own notes on 9 Mar 2025 [67ce07fd #0003]. This answers section 2's open question and
+  most of the rollover origin question below. Left for sections 2 and 5.
+
 ## From the transcript (`~/Code/mondai/corpus/`, read 2026-10-07)
 
 Part 3, nothing to copy:
@@ -212,7 +235,8 @@ Weekly format, for section 2 and the credit record:
    research was in ChatGPT (he moved to Claude 7 to 8 Mar 2026). He has requested both his ChatGPT export
    and his Discord data package (2026-10-07). Save both outside git; search by subject, not by the words
    week or framework.
-2. The rollover modal: originated by him or handed to him. Section 5.
+2. The rollover modal: the mechanic (unfinished work carried forward, goal date moves) is his, from
+   9 Mar 2025 [67ce07fd #0003]. Who designed the March 2026 modal itself is still not shown. Section 5.
 
 ## Where section 1 stopped
 
@@ -247,3 +271,5 @@ Weekly format, for section 2 and the credit record:
 11. 2026-10-09: on hold. Part 1 is not final until the ChatGPT export is searched (his call). Build
     waits for that, then copy and layout are done together. Next: his yes or corrections on the
     beat list, then build in Figma on the Haven grid with image slots empty.
+12. 2026-10-10: ChatGPT export searched (1,582 conversations). Findings for parts 1 to 3 above.
+    Next: talk them through with him, then Draft 3 of parts 1 and 2, then copy and layout together.

@@ -168,8 +168,8 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
   what a person does week to week.
 - Missing: not "anything about time". By 24 March a Sunday rollover modal with a moving pace date and
   flex points was on screen (`reasoning/carry-over.md`), so a dated pace system already existed. What
-  nothing decided was how much of the route a week should hold. Whether he originated the modal or built
-  on something handed to him is open; the record shows him building and critiquing it.
+  nothing decided was how much of the route a week should hold. The carry forward mechanic is his from 9 Mar
+  2025 (ChatGPT export); who designed the March 2026 modal itself is still open.
 - Pathway order, confirmed by Chadwick 2026-10-06 and matching the shipped designs: Discovery,
   Cognition, Networking, Branding, Opportunity. The Mondai archive, his 18 March 2026 message and the
   provisional draft `draft/CS2-rungs-0-2.md` have Branding before Networking and are stale on this. Use the
@@ -270,8 +270,8 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Beat list written 9 Oct under the new step 5. On hold until the ChatGPT export: part 1 is not final (his call, 9 Oct) |
-| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Drafted, `draft/CS2-section-2.md`. Draft 2 voice passed and fresh reviewed 8 Oct. Next: his edit pass and layout together, under step 5. What first led to the week may be in ChatGPT, still open |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Beat list written 9 Oct under the new step 5. ChatGPT export searched 10 Oct, findings in the section file. Next: talk through, Draft 3 of parts 1 and 2 |
+| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Drafted, `draft/CS2-section-2.md`. Draft 2 voice passed and fresh reviewed 8 Oct. Next: his edit pass and layout together, under step 5. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Talking, opened 8 Oct, `draft/CS2-section-3.md`. Three questions for him |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
 | 5 | Scheduling and rollover | The calendar is where it nearly broke | Calendar timeline underneath | Not started |
