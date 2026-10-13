@@ -229,7 +229,8 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
      write the form with its reference beside it (for example "options: labelled options grid, Figma
      UI3"). A real Mondai screen with one annotation beats a new diagram whenever the screen already holds
      the evidence. The map is a form too: bring it back with one change rather than a new picture. No form
-     another case study already leans on (Haven has the two by two). One figure per claim. Draw the difference, not both whole states. Label every arrow or
+     another case study already leans on (Haven has the two by two). No two by two anywhere in CS2,
+     in a figure or in words (no "nobody sat in the corner" lines). Ruled out twice, 9 and 10 Oct. One figure per claim. Draw the difference, not both whole states. Label every arrow or
      leave it out. A single number is a stat, not a chart.
    - **Still test.** The figure alone, as a flat image with no copy around it, must show the point. Its
      headline states the claim, labels sit on the figure, it changes one thing from the previous beat's

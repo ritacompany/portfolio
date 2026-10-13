@@ -79,8 +79,8 @@ here as the constraint, not the story. The story of the argument stays in CS1.
 3. Nothing to copy: the products it sat between, and the research and reference products that informed
    the framework. Primary source found 2026-10-07: his 11 May 2026 leadership presentation outline,
    iCloud Drive `mondai_framework_outline.md`. Not copied into this repo, on his instruction
-   (2026-10-07). Slide 4 is the landscape: structure against flexibility, no product
-   in the upper right, what was taken from CareerFoundry, Duolingo and Notion or Todoist and what was not.
+   (2026-10-07). Slide 4 says what was taken from CareerFoundry, Duolingo and Notion or Todoist
+   and what was not. Its positioning chart is never used: no two by two in CS2 (Haven has one).
 
 ## Draft 1 (2026-10-07)
 
@@ -113,7 +113,7 @@ left the pacing. Duolingo makes a missed day visible without punishing it. Your 
 on. I kept that. Notion and Todoist are flexible with no structure at all. I took the calendar as a planning
 layer and left the blank page.
 
-Mapped by how structured they are against how flexible, none of them sat where Mondai needed to be. The
+[Matrix sentence cut 2026-10-10: no two by two in CS2.] The
 framework had to be reasoned out piece by piece.
 
 ### Sources per claim
@@ -225,7 +225,7 @@ you. I kept its order of prerequisites and left the pacing. Duolingo makes a mis
 punishing it. Your streak resets and you carry on. I kept that. Notion and Todoist are flexible with no
 structure at all. I took the calendar as a planning layer and left the blank page.
 
-None of them sat where Mondai needed to be. The framework had to be reasoned out piece by piece.
+None of them did both, so the framework had to be worked out piece by piece.
 
 ### Sources for Draft 3's changes
 - The three questions: [67a41ae1 #0000], [682baa8a #0012], [698e28e9 #0012] in
@@ -271,7 +271,7 @@ Part 3, nothing to copy:
 - [2026-05-06 stress-and-serious-life-changes-needed #0002]: his own line, CareerFoundry "have an actual
   curriculim where we are more of a guide". The worry that followed is real but timing laden; not
   section 1 copy.
-- His 11 May 2026 leadership outline (iCloud) turns this into the landscape: no product upper right.
+- His 11 May 2026 leadership outline (iCloud) covers the same products. Its chart is not used (no two by two in CS2).
 
 Weekly format, for section 2 and the credit record:
 - Already in place on 2026-03-08, the first day of the transcript, inside a handover from another tool.
@@ -299,8 +299,8 @@ Weekly format, for section 2 and the credit record:
 5. Next: build the layout (portfolio Figma case study layouts, real Mondai screens, the route map), then
    he reviews copy and layout together. Section 1 does not wait on the ChatGPT or Discord exports.
 6. Layout plan agreed in concept 2026-10-07: gap (start journey screen, calendar permission, route
-   map as separate tiles), demands (text only), nothing to copy (structure against flexibility, upper
-   right empty, placements from outline slide 4). First preview was built from `build/` HTML by
+   map as separate tiles), demands (text only), nothing to copy (a two by two, since rejected: Haven has
+   one). First preview was built from `build/` HTML by
    mistake; rebuilding in Figma from the Case study layouts and Haven CS Master. Open: cut the
    bracketed Pathway list from copy since the map shows it (recommended).
 7. Built in Figma 2026-10-07: `Mondai CS Master` (4194:6596) in the VC page's Mondai case studies
