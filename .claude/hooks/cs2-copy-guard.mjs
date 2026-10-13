@@ -15,7 +15,9 @@ const COPY = /reference\/cs2\/copy\/section-\d+\.md$/;
 
 if (tool === 'Bash') {
   const cmd = input.command || '';
-  if (/reference\/cs2\/copy\//.test(cmd) && /(>|\btee\b|\bsed\s+-i|\bmv\b|\bcp\b|\brm\b|\bperl\s+-[a-z]*i)/.test(cmd)) {
+  const writesCopy = /(?:>>?|\btee\b(?:\s+-a)?)\s*["']?[^\s"';&|]*reference\/cs2\/copy\//.test(cmd)
+    || /\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b[^;&|]*reference\/cs2\/copy\//.test(cmd);
+  if (writesCopy) {
     console.error('Blocked: CS2 copy files are written with Write or Edit only, so the copy check runs on every change.');
     process.exit(2);
   }

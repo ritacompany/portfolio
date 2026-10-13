@@ -9,7 +9,7 @@ const NAMES = ['Betsy', 'Michael']; // colleagues; add any other name that must 
 // Product terms and the section that introduces each (from the concept ladder in CS2_COMPREHENSION.md).
 const TERMS = [
   ['Growth Journey', 1], ['Pathway', 1], ['Action Item', 2], ['Action Hub', 2], ['target date', 3],
-  ['rollover', 5], ['recalibrat', 6], ['curriculum', 7], ['handoff', 8],
+  ['rollover', 5], ['recalibrat', 6], ['handoff', 8],
 ];
 const AI_PATTERNS = [
   [/\btapestry\b/i, 'AI vocabulary: tapestry'], [/\blandscape\b/i, 'AI vocabulary: landscape'],

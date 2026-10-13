@@ -1,5 +1,8 @@
 # Skills map for CS2
 
+Superseded, history only (13 Oct). It dates from August and lists passes and skills the process no
+longer uses. `CS2_PROCESS.md` is the working loop.
+
 Which skill runs at which stage, and what each one is for. Maintained as we go rather than decided
 once. Searched for skills outside the enabled set on 2026-08-27 and found none, so this is the
 working set.

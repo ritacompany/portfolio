@@ -24,8 +24,11 @@ reports = {"How case studies end.md": "rp-end", "Case study results without metr
 for f, tag in reports.items():
     if not (root / "reports" / f).exists(): missing.append(f"report file {f}")
     if f"{tag}-1 " not in index: missing.append(f"report {f}")
+# Reports about how the writing process runs, not craft sources for the copy.
+not_cs2 = {"Designer skill usage patterns.md", "Reliable AI case study writing.md",
+           "Structural fixes for AI writing process.md", "Stop AI rule patching.md"}
 for f in (root / "reports").glob("*.md"):
-    if f.name not in reports: missing.append(f"unindexed report {f.name}")
+    if f.name not in reports and f.name not in not_cs2: missing.append(f"unindexed report {f.name}")
 if missing:
     print("MISSING:\n" + "\n".join(missing)); sys.exit(1)
 print("index covers every source entry")

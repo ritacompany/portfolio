@@ -74,8 +74,7 @@ plainly what is real and what is placeholder.
 Where CS2 sections get built, his rule 2026-10-10: in the VC page, section `Mondai case studies`
 (3461:5391), subsection `Workstation` (4105:7096), at the lower end of it, below the existing frames.
 Each section is its own frame there, named `Mondai CS · Section N · <name>`. Section 2 is 4228:6731 at
-x 2361, y 15800 inside Workstation; put section 3 below it. Section 1 is still in `Mondai CS Master`
-(4194:6596) beside Workstation.
+x 2361, y 15800 inside Workstation; put section 3 below it.
 
 ## Timeline and framing
 

@@ -11,6 +11,9 @@ const cases = [
   ['clean Write', { tool_name: 'Write', tool_input: { file_path: target, content: 'Section: 2\n\nThe week is the deadline.\n' } }, 0],
   ['bad Bash redirect', { tool_name: 'Bash', tool_input: { command: `echo hi > ${target}` } }, 2],
   ['unrelated Bash', { tool_name: 'Bash', tool_input: { command: 'ls reference/cs2' } }, 0],
+  ['read-only check with 2>&1', { tool_name: 'Bash', tool_input: { command: 'node reference/cs2/check-copy.mjs reference/cs2/copy/section-2.md 2>&1 | tail -1' } }, 0],
+  ['bad tee append', { tool_name: 'Bash', tool_input: { command: 'echo hi | tee -a reference/cs2/copy/section-2.md' } }, 2],
+  ['bad sed -i', { tool_name: 'Bash', tool_input: { command: "sed -i '' s/a/b/ reference/cs2/copy/section-2.md" } }, 2],
   ['unrelated Write', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/draft/x.md'), content: 'Michael' } }, 0],
 ];
 let ok = true;
