@@ -138,10 +138,9 @@ Learned the hard way in the 6 Oct process chat. Each of these happened once and 
   through. Nothing is designed in advance "because every section uses it".
 - **Answer the question asked.** When he asks whether the approach is right, the answer is about the
   approach, not the contents of the next step.
-- **Separate what he designed from what he inherited.** The Pathways curriculum came from Betsy and
-  Michael; the journey structure before it was his. The time layer is where the reasoning is his. Never present
-  inherited structure as his design, and never present reasoning from the archive as his argument unless
-  the record shows him making it (`reasoning/pathways-and-hierarchy.md` section 6).
+- **Designed versus inherited is for accuracy, never the subject of copy.** Never present inherited
+  structure as his design, or archive reasoning as his argument unless the record shows him making it
+  (`reasoning/pathways-and-hierarchy.md` section 6). Copy never says who built what.
 - **Unsourced claims get asked, not used.** Example: the old Figma frame says the original direction was
   fixed scheduling and keep pace accountability. Nothing in the reference files backs it. Still open.
 - **His memory against the record.** His recollection moves something from inherited to designed only if
@@ -210,10 +209,12 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 3. **Draft.** Claude writes the section from the conversation. Every claim traces to a source.
    Nothing is asserted that came from neither Chadwick nor a source. ASSUMED claims never go in copy;
    they go on the open list until he confirms or cuts them. If he asks for a draft before the talk is
-   finished, draft and list what the talk has not covered yet.
+   finished, draft and list what the talk has not covered yet. Page copy goes in `copy/section-N.md`
+   (first line `Section: N`); notes and sources stay in the draft file. A hook refuses any copy save
+   that breaks the copy rules, and Figma takes its text from the copy file only.
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
-   check. Both live in `.claude/skills/` in this repo so they work on any account. Then the house
-   copy rules: no em or en dashes, no hyphen pair as a dash, no Oxford commas, sentence case.
+   check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
+   Names, quotes, dashes, Oxford commas and early product terms are caught by `check-copy.mjs`.
 5. **Layout and visuals.** Worked beat by beat, so the form is chosen before the layout. Rewritten
    2026-10-09 because layouts kept coming out as walls of text: the template was picked first and filled
    with the copy. This follows the voice pass without waiting for copy approval, so copy and layout are
@@ -229,8 +230,7 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
      write the form with its reference beside it (for example "options: labelled options grid, Figma
      UI3"). A real Mondai screen with one annotation beats a new diagram whenever the screen already holds
      the evidence. The map is a form too: bring it back with one change rather than a new picture. No form
-     another case study already leans on (Haven has the two by two). No two by two anywhere in CS2,
-     in a figure or in words (no "nobody sat in the corner" lines). Ruled out twice, 9 and 10 Oct. One figure per claim. Draw the difference, not both whole states. Label every arrow or
+     another case study already leans on (Haven has the two by two). One figure per claim. Draw the difference, not both whole states. Label every arrow or
      leave it out. A single number is a stat, not a chart.
    - **Still test.** The figure alone, as a flat image with no copy around it, must show the point. Its
      headline states the claim, labels sit on the figure, it changes one thing from the previous beat's
@@ -282,8 +282,8 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Beat list written 9 Oct under the new step 5. Built 10 Oct: Draft 3 copy with the two beat layout, Figma 4228:6859 in Workstation. Image slots empty for his pick. Next: his review of copy and layout together |
-| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Drafted, `draft/CS2-section-2.md` Draft 4 (10 Oct), rebuilt on two decisions with both tactic banks. Figma 4228:6731 in Workstation still shows Draft 3; rebuild after his yes. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Beat list written 9 Oct under the new step 5. Built 10 Oct: Draft 3 copy with the two beat layout, Figma 4228:6859 in Workstation. Draft 3 fails the copy check (names, early terms), so it is redone into `copy/section-1.md` before his review |
+| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Drafted. Copy Draft 5 (13 Oct) in `copy/section-2.md`, passing the copy check; notes in `draft/CS2-section-2.md`. Figma 4228:6731 in Workstation still shows Draft 3; rebuild from the copy file after his yes. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Talking, opened 8 Oct, `draft/CS2-section-3.md`. Three questions for him |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
 | 5 | Scheduling and rollover | The calendar is where it nearly broke | Calendar timeline underneath | Not started |

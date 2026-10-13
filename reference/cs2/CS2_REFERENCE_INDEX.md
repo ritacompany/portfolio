@@ -50,7 +50,7 @@ bank says so per entry. The bank is for protocol pass 3. Anti tactics are for pa
 - cs-t24 · Refute the rejected option: show the road not taken and say why it lost. Mentioning it without the reason does harm.
 - cs-t25 · Steal the thunder: state damaging facts the reader will certainly find (no metrics, unpaid team) first, in his frame.
 - cs-t26 · Inoculate against the interview question: raise the strongest objection and answer it. Never a straw man.
-- cs-t27 · Put the agent in the sentence: "I" for his decisions, others named for theirs. Fails as a credit grab.
+- cs-t27 · Retired for CS2 (13 Oct): it names colleagues, which his copy rules forbid. "I" for his decisions still holds; nobody else is named.
 - cs-t28 · The limitations paragraph: one specific paragraph near the end on what the work cannot show.
 - cs-t29 · The wrong turn and the signal you missed: what he would do differently and what signal existed at the time. No recovery clause.
 
@@ -76,7 +76,7 @@ bank says so per entry. The bank is for protocol pass 3. Anti tactics are for pa
 - cs-t44 · Metric theatre: real numbers dressed as outcomes. Denominators always.
 - cs-t45 · Erudite vernacular: needless complex words lower the reader's estimate of the writer.
 - cs-t46 · The textbook process diagram: a generic method diagram is wallpaper. Show the real sequence, detours included.
-- cs-t47 · The villain stakeholder: casting a colleague as the obstacle. State their constraint as legitimately as his. Relevant wherever Michael appears.
+- cs-t47 · Retired for CS2 (13 Oct): colleagues do not appear in copy, so there is no stakeholder to cast. A constraint is stated as a fact of the work.
 - cs-t48 · The rationale recital: every claim evenly justified. Choose the two moments that matter and quiet the rest.
 - cs-t49 · The frankenbite: compressing separate moments into one scene misstates the sequence. Relevant to the March and May rollover history.
 

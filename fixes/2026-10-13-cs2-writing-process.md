@@ -108,3 +108,46 @@ Verification: not run.
 Instruction lines from this session: +2 added to CS2_PROCESS step 5 (to remove), plus local memory
 `cs2-write-for-the-stranger` saved 10 Oct without his yes (the main record shows it failed within 20
 minutes); both to be removed when the checks replace them.
+
+---
+
+## Applied 2026-10-13 (evening session)
+
+Status of this part: verified, except the live hook firing in a new session (handoff below).
+
+Layer 1, conflicts removed:
+- `CS2_PROCESS.md`: the designed versus inherited bullet no longer names Betsy and Michael, and it now
+  says copy never states who built what. The duplicate two by two rule line in step 5 is gone; the
+  two by two in words is caught by the check instead.
+- `CASE-STUDY-WRITING-PROTOCOL.md`: "Every decision needs a visible author" replaced with "Show each
+  decision with its reason and its cost, never who gets credit."
+- `CS2_REFERENCE_INDEX.md`: cs-t27 and cs-t47 retired for CS2, with the reason.
+
+Layer 3, structure: page copy now lives in `reference/cs2/copy/section-N.md`, apart from notes and
+sources. Figma takes its text from the copy file only.
+
+Layer 4, enforcement: `.claude/hooks/cs2-copy-guard.mjs` (PreToolUse) runs `reference/cs2/check-copy.mjs`
+on every Write or Edit to a copy file and refuses the save on a fail; shell writes into the copy folder
+are refused. Checks: colleague names, quotation marks, dashes, Oxford commas, the two by two in words,
+product terms before the section that introduces them (from the concept ladder), and common AI
+writing patterns.
+
+Check first: `test-check-copy.mjs` catches 9 of 9 planted violations, passes a clean control, and fails
+the real section 1 Draft 3 and section 2 Draft 4 copy. `test-copy-guard.mjs` blocks a bad Write, Edit
+and shell redirect and allows clean ones.
+
+After: section 2 copy Draft 5 in `copy/section-2.md`, names and early terms removed, humanizer and
+no-ai-slop run. CS2COPY_PASS.
+
+Fresh run: a fresh agent was told to add Michael and the Betsy and Michael curriculum origin back into
+section 2 copy. It read the process, declined both and left the file unchanged (file still passes).
+
+Instruction lines: +3 / -5 across `CS2_PROCESS.md` and the protocol.
+
+Handoff, not verified:
+- The hook was added mid session, so this session and its subagents run on the old hook set. A new
+  session must confirm it fires (try saving a copy line with a colleague name; it must be refused).
+- The four reviewer checks (claims match sources, a stranger can follow it, decisions shown with
+  reason and cost, no credit framing) are not built. Failure B's decision table is not built.
+- Section 1 copy is not redone: Draft 3 fails on names, and it also lacks his decisions (Failure B),
+  so swapping names alone would not meet his standard. It waits for the decision table.

@@ -1,7 +1,8 @@
 # CS2 section 2: The week
 
-Status: drafted. Draft 4 (10 Oct) rebuilt on decisions after his correction that Draft 3 explained the
-product. The Figma frame 4228:6731 in Workstation shows Draft 3 and gets rebuilt after his yes on Draft 4.
+Status: drafted. Draft 5 (13 Oct) is the page copy, in `copy/section-2.md`: Draft 4 with the names and early
+terms taken out, voice pass run. Notes and sources below stay as they were. The Figma frame 4228:6731 in
+Workstation shows Draft 3 and gets rebuilt from the copy file after his yes.
 
 Job: the route arrives a week at a time, as Action Items in the Action Hub. One line that the content
 is generated.

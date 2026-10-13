@@ -118,7 +118,7 @@ be quieter.
 cannot actually claim. Worse than no numbers.
 
 **The invisible designer.** The system is described, the judgment is not. The reader cannot
-tell what he decided versus what was handed to him. Every decision needs a visible author.
+see what was decided. Show each decision with its reason and its cost, never who gets credit.
 
 ---
 
