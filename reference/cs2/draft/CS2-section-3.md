@@ -49,6 +49,29 @@ actually productive to the user" [#0004].
 
 ## Open, for him
 
-1. Declared over observed: was the cold start his reason, or the archive's?
-2. Michael's formula: what did it leave out, in his view?
+1. Declared over observed: was the cold start his reason, or the archive's? Answered by the record,
+   14 Oct: not his. The only cold start argument in the record is the assistant's critique of setting
+   capacity at onboarding [2026-05-19 #0049], which he took up [#0048] and then reversed on scope, not
+   on the argument [2026-05-31 #0010] (`reasoning/capacity.md` section 1). His stated reasons for
+   onboarding are scope and step count [2026-05-07 #0014]. "Declared because observed has a cold start"
+   stays out of copy.
+2. Michael's formula: what did it leave out, in his view? Candidate from his own notes, unconfirmed:
+   free hours are not usable hours. Start from 40, subtract what is booked, and the remainder assumes
+   every unbooked hour is available. His notes ask "when are you available rather than not" with one
+   input box for weekly availability (Notion QN2:85 to 103), and the 18 Mar 2025 breakdown separates
+   free hours (20 to 40) from usable ones (5 to 30 by commitment level) [Discord 1351360818943623278,
+   author not checked]. Asked 14 Oct.
 3. The section's angle: the formula he pushed back on, or the reversal on where capacity is set.
+   Recommendation 14 Oct: both, as the section's two decisions (cs-t34). A: the time comes from the
+   person, asked directly, not subtracted from a 40 hour week; the 4 hour floor is the one hard line.
+   B: asked at onboarding, the number is a guess; it moved to the first start of week and back on scope,
+   and the correction comes later from what people actually do (pays off in section 6, cs-t18). Target
+   date commit over live updating gets one line. Waiting on his yes.
+
+## Where section 3 stopped
+
+1. Opened 8 Oct with the record and three questions.
+2. 14 Oct, reopened after section 2 was approved. Q1 answered from the record, Q3 recommended, Q2 asked.
+   Reference pull: cs-t24 (formula lost, with its reason), cs-t21 and cs-t29 (the guess at onboarding
+   as the cost), cs-t18 (plant for section 6), cs-t34 (two decisions), cs-t38 (gloss capacity),
+   re-t14 (costly admission, no recovery clause). Next: his answer on Q2, then draft.
