@@ -58,6 +58,16 @@
             "timeout": 10
           }
         ]
+      },
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-build-gate.mjs\"",
+            "timeout": 10
+          }
+        ]
       }
     ]
   }

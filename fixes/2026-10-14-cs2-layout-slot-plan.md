@@ -64,4 +64,5 @@ Second case: section 3, SLOTPLAN_PASS (10 slots); reviewer PLAN s3: PASS.
 Enforcement test: `node reference/cs2/test-copy-guard.mjs`: "ok slot plan borrowing from Haven exit=2", "ok clean slot plan exit=0", "ok bad Bash into layout exit=2", "copy guard discrimination passed".
 
 ## Report
-Unverified: none for the slot plan. The build gate (step 8 only when he says) is process text; no hook stops a Figma write. The section 1 and 2 logs that record Haven pattern builds are left as history.
+Added 14 Oct, on his "enforce it": `.claude/hooks/figma-build-gate.mjs` (PreToolUse on MCP tools) refuses every Figma write unless his latest typed message says build or rebuild and does not say not to. Tool results, subagent prompts and pasted text do not count. `node reference/cs2/test-figma-gate.mjs`: 11 cases, "figma gate discrimination passed"; with no hook the same cases fail. Live in this session: a use_figma call after "allow setup edit" was refused with "Blocked: Figma writes wait until Chadwick says to build".
+Unverified: none. The gate covers every Figma write in this project, not only CS2. The section 1 and 2 logs that record Haven pattern builds are left as history.

@@ -248,7 +248,7 @@ A section is done when its copy, layout and visuals are all approved. No second 
 Also commit and push at the end of every working session, even mid section, with the status table
 saying where the conversation stopped.
 
-8. **Build.** Only when he says to build a section. Each section is its own frame in the Portfolio
+8. **Build.** Only when he says to build a section; a hook refuses Figma writes until his latest message does. Each section is its own frame in the Portfolio
    Design file, VC page, `Mondai case studies` (3461:5391), `Workstation` (4105:7096), below the
    existing frames in reading order, named `Mondai CS · Section N · <name>`. Section 2 is 4228:6731
    at x 2089, y 11819 with section 1 (4228:6859) to its right; section 3 goes below section 2. Text
