@@ -74,7 +74,7 @@ plainly what is real and what is placeholder.
 Where CS2 sections get built, his rule 2026-10-10: in the VC page, section `Mondai case studies`
 (3461:5391), subsection `Workstation` (4105:7096), at the lower end of it, below the existing frames.
 Each section is its own frame there, named `Mondai CS · Section N · <name>`. Section 2 is 4228:6731 at
-x 2361, y 15800 inside Workstation; put section 3 below it.
+x 2089, y 11819 inside Workstation, with section 1 to its right; put section 3 below section 2.
 
 ## Timeline and framing
 
@@ -282,7 +282,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 | # | Section | What the reader comes away with | Map, as planned | Status |
 |---|---|---|---|---|
 | 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Drafted, `draft/CS2-section-1.md`. Draft 2 (8 Oct) revises the opening from Discord, fresh reviewed. Beat list written 9 Oct under the new step 5. Built 10 Oct: Draft 3 copy with the two beat layout, Figma 4228:6859 in Workstation. Copy Draft 4 and the three beat list approved 14 Oct; rebuilt in Figma 4228:6859 from `copy/section-1.md` the same day. Waiting on his pick of two screens for the empty slots |
-| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Drafted. Copy Draft 5 (13 Oct) in `copy/section-2.md`, passing the copy check; notes in `draft/CS2-section-2.md`. Figma 4228:6731 in Workstation still shows Draft 3; rebuild from the copy file after his yes. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
+| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Built 14 Oct. Copy Draft 5 in `copy/section-2.md` with his two wording fixes, passing the copy check; notes in `draft/CS2-section-2.md`. Figma 4228:6731 rebuilt from the copy file on the two beat list. Next: his review of the build and his pick for the Action Hub screen slot. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Talking, opened 8 Oct, `draft/CS2-section-3.md`. Three questions for him |
 | 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
 | 5 | Scheduling and rollover | The calendar is where it nearly broke | Calendar timeline underneath | Not started |

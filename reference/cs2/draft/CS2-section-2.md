@@ -1,8 +1,10 @@
 # CS2 section 2: The week
 
-Status: drafted. Draft 5 (13 Oct) is the page copy, in `copy/section-2.md`: Draft 4 with the names and early
-terms taken out, voice pass run. Notes and sources below stay as they were. The Figma frame 4228:6731 in
-Workstation shows Draft 3 and gets rebuilt from the copy file after his yes.
+Status: built. Draft 5 (13 Oct) is the page copy, in `copy/section-2.md`: Draft 4 with the names and early
+terms taken out, voice pass run. Two wording fixes on 14 Oct, his yes: the Pathways are glossed where
+they first appear ("the five stages of the journey"), and "with its target" became "with how far through
+it they should be by now". Notes and sources below stay as they were. The Figma frame 4228:6731 was
+rebuilt from the copy file on 14 Oct.
 
 Job: the route arrives a week at a time, as Action Items in the Action Hub. One line that the content
 is generated.
@@ -109,6 +111,13 @@ plainly. Source lists stay in these notes for the evidence trail and never reach
    together, under the new loop step 5. Open item 1 (ChatGPT) does not block it.
 6. 2026-10-10: Draft 3 and beat list below. Built in Figma at the lower end of Workstation (his call
    on placement). Next: his review of copy and layout together, then imagery for the three slots.
+7. 2026-10-14: Draft 5 copy reviewed, two wording fixes applied. Figma rebuilt on two beats plus a
+   close. Beat A: claim title, part 1 copy in cols 1 to 5, the week drawn as a region in cols 6 to 12
+   (items inside free to move, a heavy edge labelled due Saturday night, locked items past it), with the
+   research aside as its caption. Beat B: claim title, the section 1 map plus week brackets in cols 1 to
+   7, part 2 copy and the empty Action Hub screen slot in cols 8 to 12. Close: text only at section 1's
+   text column. Draft 3's paired calendar and list stills were removed. Figma text matches the copy file
+   paragraph for paragraph. Next: his review of the build and his pick for the screen slot.
 
 
 ## Draft 4, rebuilt on decisions with both tactic banks (2026-10-10)

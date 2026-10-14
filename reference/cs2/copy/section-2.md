@@ -12,7 +12,7 @@ So the week became the unit, and I put the pressure at its edge. Everything is d
 Inside the week, the work happens whenever life allows. Connect a calendar and each Action Item, one
 piece of work, gets a suggested slot. Don't, and the week is a list. A missed slot isn't a missed item.
 
-The same line decided what gets locked. The Pathways run in order, so the first proposal was to lock
+The same line decided what gets locked. The Pathways, the five stages of the journey, run in order, so the first proposal was to lock
 every Action Item that wasn't available yet. I cut that back to the week. Anything past this week stays
 locked. Everything inside it is visible and can be moved, and the order only controls what can be
 marked done. The product opens on that week, and the rest of the journey sits a step back.
@@ -23,8 +23,8 @@ help people keep going.
 ## One level up, never the top
 
 There was a case for showing people where they stood in the whole journey. I gave them one level up
-instead: the current Pathway, one of the five stages, with its target and whether they're ahead or
-behind. A pace for the whole journey would mostly show people how far they still had to go. Later I cut
+instead: the current Pathway, with how far through it they should be by now and whether they're ahead
+or behind. A pace for the whole journey would mostly show people how far they still had to go. Later I cut
 the journey level target and pace altogether, because it made the picture more confusing.
 
 The whole journey still has its own pages, for looking. Nothing can be checked off there, and that cost
