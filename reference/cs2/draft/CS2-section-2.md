@@ -1,6 +1,6 @@
 # CS2 section 2: The week
 
-Status: built 14 Oct, waiting on his review. The 14 Oct approval was sent by mistake and withdrawn. Draft 5 (13 Oct) is the page copy, in `copy/section-2.md`: Draft 4 with the names and early
+Status: drafted again 14 Oct. Draft 6 in `copy/section-2.md` is Draft 5 cut into six blocks (eyebrow, claim headline, figure labels, one short body), no new claims, about 380 body words down to about 210. Slot plan rewritten in `layout/section-2.md`. The Figma frame 4228:6731 still shows Draft 5 and waits on his say to rebuild. Earlier status: built 14 Oct, waiting on his review. The 14 Oct approval was sent by mistake and withdrawn. Draft 5 (13 Oct) is the page copy, in `copy/section-2.md`: Draft 4 with the names and early
 terms taken out, voice pass run. Two wording fixes on 14 Oct, his yes: the Pathways are glossed where
 they first appear ("the five stages of the journey"), and "with its target" became "with how far through
 it they should be by now". Notes and sources below stay as they were. The Figma frame 4228:6731 was
