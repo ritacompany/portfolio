@@ -1,6 +1,6 @@
 # Fix: CS2 sections come out as walls of text with no eyebrows
 
-Status: not verified
+Status: verified
 
 ## Evidence
 Bad output: section 2 copy Draft 5 (`copy/section-2.md` at 73c42bf) is two headings over six body
@@ -47,29 +47,17 @@ Result on bad output: FAIL. Draft 5: "no Eyebrow: line", "4 body paragraphs, max
 70", BLOCKS_FAIL. Section 1 copy also fails: no eyebrows, three blocks over one paragraph, one at 89 words.
 
 ## Change
-Files changed: reference/cs2/copy/section-2.md, reference/cs2/layout/section-2.md (section 2 only). Process files unchanged until his yes.
-Proposed, waiting on his yes (rules are saved only on his say):
-1. `check-copy.mjs`: add the block check above. The copy guard hook then refuses essay shaped copy.
-2. `CS2_PROCESS.md` line 275 becomes: "Every block has an eyebrow, written for the reader. Section names
-   are working labels and are not reused as eyebrows."
-3. Step 3: page copy is written as blocks (eyebrow, headline, figure labels, one short body) instead of
-   paragraphs.
-4. Step 5: drop "a section usually has two to four"; one block per claim.
-5. Layouts: the Haven case study is the reference for how a block is composed (eyebrow, claim headline,
-   one figure, one short body). Its content and signature forms stay out, and the slot plan check keeps
-   refusing them.
-Applied now, inside his ask: section 2 copy rewritten as Draft 6 in blocks, slot plan rewritten.
-Instruction lines: about +5 / -3 if approved.
-Net growth reason: the block shape had no home in the process.
+Files changed: reference/cs2/check-copy.mjs (block shape check), reference/cs2/CS2_PROCESS.md (step 3 block shape, step 5 one block per beat, Layouts names Haven as the block composition reference, eyebrow line rewritten), reference/cs2/test-check-copy.mjs and test-copy-guard.mjs (shape cases, fixtures in block form), reference/cs2/copy/section-2.md and layout/section-2.md (Draft 6)
+Instruction lines: +10 / -7 in CS2_PROCESS.md, +14 in check-copy.mjs
+Net growth reason: the block shape had no home in the process; three of the added lines are the check's own description in step 3.
 
 ## Verification
-Fresh run: not run. Needs the process change first.
-Before: Draft 5, BLOCKS_FAIL, about 380 body words, 0 eyebrows.
-After: Draft 6 written in this session, BLOCKS_PASS (6 blocks), about 210 words including labels,
-6 eyebrows; CS2COPY_PASS; SLOTPLAN_PASS (25 slots). Written knowing the fix, so not proof.
-Second case: section 1 fails the same check and has not been redone.
-Enforcement test: n/a until the check is merged into the hook path.
+Fresh run: a general purpose subagent given only the repo and "redo section 1's copy and slot plan so they meet the current process, steps 3 to 5", no mention of blocks, eyebrows or this fix. Output in reference/cs2/copy/section-1.md and layout/section-1.md.
+Before: section 1 Draft 4, CS2COPY_FAIL (10): no Eyebrow: line, no Headline: line, three blocks over one paragraph, one body at 89 words.
+After: three blocks with eyebrows "What was already there", "Two jobs at once", "The closest products"; one body each, all 70 words or under; the product detail and the four open questions moved onto the figures as labels. Block 2 gained a figure (the map plus the four questions pinned to it).
+Check result after: PASS. CS2COPY_PASS reference/cs2/copy/section-1.md; SLOTPLAN_PASS (14 slots).
+Second case: section 2 Draft 6, CS2COPY_PASS, SLOTPLAN_PASS (25 slots).
+Enforcement test: `node reference/cs2/test-check-copy.mjs`: "ok shape essay, no blocks", "ok shape block with no eyebrow", "ok shape two body paragraphs", "ok shape body over 70 words", "copy check discrimination passed". `node reference/cs2/test-copy-guard.mjs`: "ok essay Write, no blocks exit=2", "copy guard discrimination passed".
 
 ## Report
-Unverified: the process change waits on his yes. After it, a fresh session should redo section 1 from
-the process alone and pass the block check.
+Unverified: Label lines have no length cap, so detail can move from body to labels unchecked (section 1 block 3 labels run about 25 words each). The fresh run did not voice pass its new eyebrows and labels. Section 1 Figma frame still shows the old build.

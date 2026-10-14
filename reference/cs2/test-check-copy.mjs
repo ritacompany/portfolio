@@ -7,9 +7,9 @@ import path from 'node:path';
 
 const here = import.meta.dirname;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'cs2copy-'));
-const run = (body, section = 2) => {
+const run = (body, section = 2, raw = false) => {
   const f = path.join(tmp, `c${Math.random().toString(36).slice(2)}.md`);
-  fs.writeFileSync(f, `Section: ${section}\n\n${body}\n`);
+  fs.writeFileSync(f, raw ? `Section: ${section}\n\n${body}\n` : `Section: ${section}\n\n## 1\n\nEyebrow: The week\n\nHeadline: The week is the unit.\n\n${body}\n`);
   const r = spawnSync('node', [path.join(here, 'check-copy.mjs'), f], { encoding: 'utf8' });
   return { status: r.status, out: r.stdout };
 };
@@ -39,10 +39,21 @@ for (const [label, line, expect] of planted) {
   ok &&= caught;
   console.log(`${caught ? 'ok  ' : 'MISS'} planted ${label}`);
 }
-const clean = run('The week is the deadline. Inside it, the user picks the order.\n\nOne level up, the Pathway target shows whether they are ahead or behind.', 2);
+const clean = run('The week is the deadline. Inside it, the user picks the order.\n\nLabel: One level up. Ahead or behind.', 2);
 const cleanOk = clean.status === 0 && clean.out.includes('CS2COPY_PASS');
 ok &&= cleanOk;
 console.log(`${cleanOk ? 'ok  ' : 'FALSE ALARM'} clean control passes${cleanOk ? '' : '\n' + clean.out}`);
+const shape = [
+  ['essay, no blocks', run('The week is the deadline.\n\nInside it, the user picks the order.', 2, true), 'no "## " blocks'],
+  ['block with no eyebrow', run('## 1\n\nHeadline: The week is the unit.\n\nThe week is the deadline.', 2, true), 'no Eyebrow: line'],
+  ['two body paragraphs', run('The week is the deadline.\n\nInside it, the user picks the order.'), 'body paragraphs, max 1'],
+  ['body over 70 words', run(Array(75).fill('word').join(' ')), 'max 70'],
+];
+for (const [label, r, expect] of shape) {
+  const caught = r.status === 1 && r.out.includes(expect);
+  ok &&= caught;
+  console.log(`${caught ? 'ok  ' : 'MISS'} shape ${label}`);
+}
 const noHeader = spawnSync('node', [path.join(here, 'check-copy.mjs'), (() => { const f = path.join(tmp, 'nh.md'); fs.writeFileSync(f, 'Plain line.\n'); return f; })()], { encoding: 'utf8' });
 ok &&= noHeader.status === 1;
 console.log(`${noHeader.status === 1 ? 'ok  ' : 'MISS'} file without a Section header fails`);

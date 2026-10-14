@@ -384,3 +384,4 @@ Beat list for Draft 4 (for his review, nothing built):
 17. 2026-10-14: an approval was recorded and pushed before he had read the section; corrected the same day.
     Status is built, not yet read. Next: he reads the copy and the Figma frame together, then approves or
     corrects. The calendar screen's week 5 header is part of that read.
+18. 2026-10-14: copy redone as Draft 5 in blocks (eyebrow, claim headline, figure labels, one short body) after the block shape check was added; slot plan written to `layout/section-1.md`. Block 2 now has a figure: the map with the four questions pinned to it. New eyebrows and labels not yet voice passed. Figma frame still shows the old build. Next: his read of copy and slot plan.

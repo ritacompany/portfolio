@@ -2,6 +2,8 @@
 // Checks CS2 page copy against Chadwick's copy rules. Used by the copy guard hook and by hand.
 // Usage: node check-copy.mjs <copy-file> [--section N]
 // A copy file holds page copy only. Its first line is "Section: N". Lines inside <!-- --> are ignored.
+// Copy is written as blocks: each "## " block has an Eyebrow: line, a Headline: line and at most one body
+// paragraph of at most 70 words. Label: and Caption: lines are figure text, not body.
 // Prints CS2COPY_PASS and exits 0, or lists every violation and exits 1.
 import fs from 'node:fs';
 
@@ -48,6 +50,18 @@ lines.forEach((line, i) => {
     if (section < from && new RegExp(`\\b${term}`, 'i').test(line)) problems.push(`line ${n}: product term "${term}" before section ${from} introduces it`);
   for (const [re, label] of AI_PATTERNS) if (re.test(line)) problems.push(`line ${n}: ${label}`);
 });
+
+const blocks = text.split(/^## /m).slice(1);
+if (!blocks.length) problems.push('no "## " blocks: copy is written as blocks (eyebrow, headline, labels, one short body)');
+for (const b of blocks) {
+  const [title, ...rest] = b.split('\n');
+  if (!/^Eyebrow:\s*\S/m.test(b)) problems.push(`block "${title.trim()}": no Eyebrow: line`);
+  if (!/^Headline:\s*\S/m.test(b)) problems.push(`block "${title.trim()}": no Headline: line`);
+  const paras = rest.join('\n').split(/\n\s*\n/).map(p => p.trim())
+    .filter(p => p && !/^(Eyebrow|Headline|Label|Caption):/.test(p));
+  if (paras.length > 1) problems.push(`block "${title.trim()}": ${paras.length} body paragraphs, max 1 (move detail onto the figure as Label: lines)`);
+  for (const p of paras) { const w = p.split(/\s+/).length; if (w > 70) problems.push(`block "${title.trim()}": body ${w} words, max 70`); }
+}
 
 if (problems.length) {
   console.log(`CS2COPY_FAIL ${file} (${problems.length})`);

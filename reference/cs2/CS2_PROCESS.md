@@ -51,8 +51,9 @@ beside the real screen, marking where the reader is. It works as a still; motion
 Layout pieces are the families in `Case study layouts` (Portfolio Design file, page `VC`, node
 3461:5685), decoded by name and slot in `LEDGER.md`, for example TextAnd1Image layout 1. Step 5 plans with
 them by name and slot only. Whatever sits in their slots now (images, diagrams, text) is scaffold and
-never carries into CS2. Neither does anything from another case study. The HTML in `build/` is not a
-layout source. Where and how sections get built is step 8.
+never carries into CS2. Neither does anything from another case study's content or signature forms.
+How a block is composed follows the Haven case study: eyebrow, claim headline, one figure, one short
+body. The HTML in `build/` is not a layout source. Where and how sections get built is step 8.
 
 ## Timeline and framing
 
@@ -187,16 +188,18 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    Nothing is asserted that came from neither Chadwick nor a source. ASSUMED claims never go in copy;
    they go on the open list until he confirms or cuts them. If he asks for a draft before the talk is
    finished, draft and list what the talk has not covered yet. Page copy goes in `copy/section-N.md`
-   (first line `Section: N`); notes and sources stay in the draft file. A hook refuses any copy save
-   that breaks the copy rules, and Figma takes its text from the copy file only.
+   (first line `Section: N`), written as blocks: each `## ` block holds an `Eyebrow:` line, a
+   `Headline:` line that states the claim, `Label:` lines for text that sits on the figure, and one body
+   paragraph of at most 70 words. Notes and sources stay in the draft file. A hook refuses any copy save
+   that breaks the copy rules or the block shape, and Figma takes its text from the copy file only.
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
    Names, quotes, dashes, Oxford commas and early product terms are caught by `check-copy.mjs`.
 5. **Slot plan.** Worked beat by beat, so the form is chosen before the layout. Rewritten
    2026-10-09 because layouts kept coming out as walls of text: the template was picked first and filled
    with the copy. This follows the voice pass without waiting for copy approval, so copy and layout are
-   reviewed together. A beat is one point the reader has to come away with; a section usually has two to
-   four. The research behind this step, with the beat type to form to template table and every
+   reviewed together. A beat is one point the reader has to come away with, and each beat is one block in
+   the copy file. The research behind this step, with the beat type to form to template table and every
    reference, is `reports/Visual storytelling per beat.md`. For each beat, in this order:
    - **What the reader must understand.** One sentence written as a claim, not a topic. Read in order,
      a section's claims should tell the section on their own. The sentence becomes the beat's headline
@@ -272,7 +275,7 @@ The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that
 | 9 | Intro | Who it is for and the situation they are in. Written last | None | Last |
 | 10 | The story | What ties it together, found from the sections. Written last | None | Last |
 
-Section names are working labels, not the eyebrows on the page. The page can label and split them however reads best.
+Every block has an eyebrow, written for the reader. Section names are working labels and are not reused as eyebrows.
 
 "What the reader comes away with" is the job of the section, not its content. The content comes from
 the conversation. Every section gets a layout from the templates, the real screens and the map. Chadwick
