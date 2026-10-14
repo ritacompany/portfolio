@@ -1,7 +1,7 @@
 # CS2 section 1: Where it started
 
-Status: built. Draft 3 (2026-10-10) in Figma, Workstation section, node 4228:6859. Awaiting his review
-of copy and layout together. Image slots empty for his pick.
+Status: drafted. Draft 4 (2026-10-14) copy in `copy/section-1.md`, passing the copy check. Figma
+4228:6859 still shows Draft 3; rebuild from the copy file after his yes on copy and beat list.
 
 Job: what he walked into and the problems the framework had to solve. Background, not a feature.
 
@@ -327,3 +327,46 @@ Weekly format, for section 2 and the credit record:
     Next: talk them through with him, then Draft 3 of parts 1 and 2, then copy and layout together.
 13. 2026-10-10: Draft 3 written and built in Figma (Workstation, 4228:6859), above section 2.
     Next: his review of copy and layout together.
+
+## Draft 4 (2026-10-14): rewritten for the stranger
+
+Copy lives in `copy/section-1.md`. Draft 3 failed the copy check (colleague names, Action Items before
+section 2) and opened on credit history. Draft 4 drops the history of his own milestones being replaced:
+the reader needs the route and the gap, not who made which piece. The irregular weeks line and the
+calendar's rigidity are cut here because section 2 Draft 5 already carries both. Voice pass: humanizer
+(file mode), then no-ai-slop detect; one colon reveal fixed, the guide versus course contrast kept
+because it is the content.
+
+Sources per claim:
+- Growth Journey of five Pathways in fixed order: designs, confirmed 2026-10-06. CONFIRMED.
+- Quiz, career selection, calendar plan: `reasoning/onboarding.md`; CS1 evidence 13 Feb 2025. CONFIRMED.
+- Pieces designed on their own, features bent to fit, each made the next harder: [6708082f #0000 to
+  #0004] in `~/Documents/CS2-research/chatgpt-findings.md`. PARAPHRASE.
+- What someone sees first, what comes after: his provisional rung 2 draft. PARAPHRASE.
+- Carry something like a curriculum, guide not a course: 11 May 2026 outline slide 3; [694b0f3a #0000]
+  ("growth planner (not a course)"). CONFIRMED.
+- The four questions: [67a41ae1 #0000] (incomplete tasks, no calendar, whether they must give it,
+  leaving and coming back); [682baa8a #0012] (tasks per week, on time, ahead, behind). PARAPHRASE.
+- CareerFoundry, Duolingo, Notion and Todoist kept and left: 11 May 2026 outline slide 4 (iCloud
+  `mondai_framework_outline.md`). "How falling behind should feel here too" paraphrases its line on the
+  projected date. CONFIRMED.
+- Task trackers say what is due, not where it leads: [698e28e9 #0012]. PARAPHRASE.
+- Career products, too many paths and courses with no route to a job: his Google Grow and LinkedIn
+  Learning review, [67c0c9e0 #0000]. Products left unnamed on the page. PARAPHRASE.
+- Worked out piece by piece: outline slide 4, "reasoned from first principles". PARAPHRASE.
+
+Open: none of the claims are ASSUMED. Whether to name Google Grow and LinkedIn Learning on the page is
+his call; unnamed now because his review was critical of them.
+
+Beat list for Draft 4 (for his review, nothing built):
+
+| # | Claim | Form | Template and spans |
+|---|---|---|---|
+| 1 | The route existed, but nothing said how to move through it | Separate tiles, no arrows between them: the map's first state (five marks on a line) plus two slots for his picked screens. The missing link is what the reader sees | TextAnd3Images layout 1, as built 10 Oct; text cols 7 to 12 |
+| 2 | It had to keep the order and still fit around a life | Text only. The four questions are the content and a figure would only restate them | TitleAndText, text cols 4 to 9 |
+| 3 | The closest products each solved half of it | Text with a short kept and left list, set at a different width from beat 2 so two text blocks do not sit back to back at the same width. No chart, no two by two | Title plus body, text cols 1 to 6, list cols 8 to 12 |
+
+## Where section 1 stopped (continued)
+
+14. 2026-10-14: Draft 4 written to `copy/section-1.md`, voice passed, check passing. Beat list
+    revised to three beats. Next: his yes on copy and beat list, then rebuild 4228:6859 from the copy file.
