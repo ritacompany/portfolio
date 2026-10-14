@@ -1,6 +1,6 @@
 # CS2 section 2: The week
 
-Status: approved 14 Oct (copy, layout and visuals). Image for the Action Hub screen slot still his pick. Draft 5 (13 Oct) is the page copy, in `copy/section-2.md`: Draft 4 with the names and early
+Status: built 14 Oct, waiting on his review. The 14 Oct approval was sent by mistake and withdrawn. Draft 5 (13 Oct) is the page copy, in `copy/section-2.md`: Draft 4 with the names and early
 terms taken out, voice pass run. Two wording fixes on 14 Oct, his yes: the Pathways are glossed where
 they first appear ("the five stages of the journey"), and "with its target" became "with how far through
 it they should be by now". Notes and sources below stay as they were. The Figma frame 4228:6731 was
@@ -117,7 +117,8 @@ plainly. Source lists stay in these notes for the evidence trail and never reach
    research aside as its caption. Beat B: claim title, the section 1 map plus week brackets in cols 1 to
    7, part 2 copy and the empty Action Hub screen slot in cols 8 to 12. Close: text only at section 1's
    text column. Draft 3's paired calendar and list stills were removed. Figma text matches the copy file
-   paragraph for paragraph. Approved by him the same day. Open: his image pick for the screen slot.
+   paragraph for paragraph. An approval sent the same day was a mistake and is withdrawn. Next: his review
+   of the build and his image pick for the screen slot.
 
 
 ## Draft 4, rebuilt on decisions with both tactic banks (2026-10-10)
