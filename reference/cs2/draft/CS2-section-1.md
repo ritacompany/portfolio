@@ -1,6 +1,6 @@
 # CS2 section 1: Where it started
 
-Status: approved 2026-10-14 (copy, layout and visuals). Draft 4 copy and the three beat list approved 2026-10-14. Rebuilt the same day in Figma
+Status: built, not yet read by him. Draft 4 copy and the three beat list were built 2026-10-14 without his read. Rebuilt the same day in Figma
 4228:6859 from `copy/section-1.md`; text checked word for word against the copy file. Slots filled 2026-10-14 with his pick, exported
 from the Mondai MVP file (5RO0m4bYYrTvbiaOgaU3tI): Onboarding/Question standard/5 buttons (2371:44551)
 and Product onboarding step 1, the calendar sync screen (2941:13664). Each sits 16:9 inside its dark tile.
@@ -372,7 +372,7 @@ Beat list for Draft 4 (for his review, nothing built):
 
 14. 2026-10-14: Draft 4 written to `copy/section-1.md`, voice passed, check passing. Beat list
     revised to three beats. Next: his yes on copy and beat list, then rebuild 4228:6859 from the copy file.
-15. 2026-10-14: copy and beat list approved. Rebuilt 4228:6859 on the Haven grid from duplicated
+15. 2026-10-14: build go ahead given before he had read the copy or beat list. Rebuilt 4228:6859 on the Haven grid from duplicated
     templates: Robinhood 03 for beat titles, Midjourney 05 T3I for beat 1 (map state 1 cols 1 to 6,
     empty slots cols 7 to 12 and 1 to 6, body cols 7 to 12), Robinhood 03 for beat 2 (cols 4 to 9),
     Midjourney 10 stats rows for beat 3 (claim cols 1 to 6, rows cols 8 to 12). Eyebrows dropped:
@@ -381,4 +381,6 @@ Beat list for Draft 4 (for his review, nothing built):
 16. 2026-10-14: his pick placed in the two slots, the onboarding quiz and the calendar connection
     screen. The calendar screen shows its own header (week 5, Discovery Pathway, action items). Screen
     text, not page copy; flagged to him. Next: his review of the built section.
-17. 2026-10-14: section 1 approved as built, calendar screen header included. Done.
+17. 2026-10-14: an approval was recorded and pushed before he had read the section; corrected the same day.
+    Status is built, not yet read. Next: he reads the copy and the Figma frame together, then approves or
+    corrects. The calendar screen's week 5 header is part of that read.
