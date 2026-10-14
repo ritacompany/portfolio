@@ -66,6 +66,9 @@ a framework.
 
 ## The visual that carries it
 
+Retired 14 Oct, his decision: no standing diagram. A route diagram appears only where a block's claim is
+about the route. Kept below as history.
+
 Not a sitemap at the top. **One diagram that gets built up across the piece.** The same figure returns at
 rungs 2, 3, 5 and 6, each time with one more layer added, so the reader assembles the system by watching
 it assemble rather than by memorising it.

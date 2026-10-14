@@ -21,8 +21,7 @@ failed. Here the material comes first. The story is found at the end, not impose
 - **The concept ladder** in `CS2_COMPREHENSION.md` is kept as an ordering rule only: the order the
   sections are worked in, and the rule that no product term appears before the reader needs it.
   It does not decide what goes in a section. The conversation does. Its visual plan (the diagram only at
-  rungs 2, 3, 5 and 6) and its "not a task to build the layout" scope note are replaced by The map and
-  step 5 below.
+  rungs 2, 3, 5 and 6) and its "not a task to build the layout" scope note are replaced by step 5 below.
 - **The drafts** in `draft/` for rungs 0 to 3 are provisional. For section 1, only the "The route" and
   "What existed" parts are material, and the route is credited as inherited. The draft's opening and
   promise are the intro, written last. Its Visual A2 spends terms that belong to section 2, and "once the
@@ -39,12 +38,18 @@ Research and caveats are not assigned to sections in advance. They come up in th
 section when they matter there. Claude does not decide ahead of time which finding a section is about,
 because that shapes the section and invites citing things wrongly.
 
-## The map
+## Keeping the whole framework in view
 
-The build up diagram in `CS2_COMPREHENSION.md` is the map. It is not drawn in advance. Each section's
-slot plan describes in words only the state it needs, so the diagram is shaped by what the
-sections turn out to be rather than fixed up front. It appears in every section as the small image
-beside the real screen, marking where the reader is. It works as a still; motion comes later.
+The goal, his, 14 Oct: at every point the reader knows which piece of the framework they are in and how
+it connects to the pieces they already have. The old way, one diagram repeated in every section with a
+piece added each time, is dropped. The writing carries the connection instead:
+
+- The whole framework is drawn once, in one figure, where the story first needs it.
+- Each section's first block says what the reader already has and what this piece adds to it. Its
+  last block hands over to the question the next section answers.
+- A route diagram appears only where a block's claim is about the route or how its pieces connect,
+  and its slot says what that claim needs from it. The build up plan in `CS2_COMPREHENSION.md` is
+  retired.
 
 ## Layouts
 
@@ -210,7 +215,7 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
      text only, and that is a real choice. Otherwise classify the beat with the table in the report and
      write the form with its reference beside it (for example "options: labelled options grid, Figma
      UI3"). A real Mondai screen with one annotation beats a new diagram whenever the screen already holds
-     the evidence. The map is a form too: bring it back with one change rather than a new picture. No form
+     the evidence. No form
      another case study already leans on (Haven has the two by two). One figure per claim. Draw the difference, not both whole states. Label every arrow or
      leave it out. A single number is a stat, not a chart.
    - **Still test.** The figure as described, alone with no copy around it, must show the point. Its
@@ -221,8 +226,7 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
      the change between two approved stills.
    - **Layout pieces and slots.** Pick the layout piece that fits the form (the report's table, names
      in `LEDGER.md`), then say in words what goes in each of its slots and why. Every slot is filled
-     from this section only: its claim, its copy file, the map's previous state plus one element or a
-     screen he picks. Body text never runs wider than 7 of 12 columns.
+     from this section only: its claim, its copy file or a screen he picks. Body text never runs wider than 7 of 12 columns.
 
    The output is the slot plan, saved as `layout/section-N.md`: first line `Section: N`, then one
    table `| Layout piece | Slot | What goes in it | Why |`, a row per slot, beats in reading order. A
@@ -231,7 +235,6 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 
    Across beats, change one thing between neighbouring figures, default to time order, give parallel
    parts the same internal pattern and never put two text only blocks of the same width back to back.
-   The map state for the section is the previous state plus one element, the new element loudest.
 
    Imagery is his to choose (corrected 2026-10-08). An image slot says what could go there and stays
    unfilled until he picks. Real screens are read from the Mondai Figma, never redrawn from memory.
@@ -244,8 +247,7 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 Status values, used in the table and the section file: talking, drafted, built, approved. Where a
 section stopped goes in a "Where section N stopped" list under its notes, in loop order.
 
-When saving, the session also updates anything the work proved wrong: a starting note, the map plan for
-the section, a stale line in the section file. Evidence overrides notes.
+When saving, the session also updates anything the work proved wrong: a starting note, a stale line in the section file. Evidence overrides notes.
 
 A section is done when its copy, layout and visuals are all approved. No second pass.
 
@@ -261,23 +263,23 @@ saying where the conversation stopped.
 
 ## Order
 
-The outline. Worked top to bottom. "Map, as planned" is the 28 Aug idea for that section and can change when the section is worked.
+The outline. Worked top to bottom.
 
-| # | Section | What the reader comes away with | Map, as planned | Status |
-|---|---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | The route; the week only if the section needs it | Built 14 Oct, not yet read by him. Copy Draft 4 in `copy/section-1.md`, notes and sources in `draft/CS2-section-1.md`, built in Figma 4228:6859 with the onboarding quiz and calendar connection screens |
-| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Week brackets added | Built 14 Oct, not yet reviewed (an approval on 14 Oct was sent by mistake and withdrawn). Copy Draft 5 in `copy/section-2.md` with his two wording fixes; notes in `draft/CS2-section-2.md`. Figma 4228:6731 built from the copy file on the two beat list. Next: his review of the build and his image pick for the Action Hub screen slot. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
-| 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Weeks sized | Talking, opened 8 Oct, reopened 14 Oct, `draft/CS2-section-3.md`. Three questions for him |
-| 4 | Pace | The system checks reality against the estimate without judging | Two dates, one fixed, one moving | Not started |
-| 5 | Scheduling and rollover | The calendar is where it nearly broke | Calendar timeline underneath | Not started |
-| 6 | Recalibration | Falling behind cannot mean failing | Calendar and route brought back together | Not started |
-| 7 | The generated content | None of the words are written by a person | Own visual: the typography slot with generated copy | Not started |
-| 8 | Handoff and the team | What it took for other people to hold it | To decide | Not started |
-| 9 | Intro | Who it is for and the situation they are in. Written last | None | Last |
-| 10 | The story | What ties it together, found from the sections. Written last | None | Last |
+| # | Section | What the reader comes away with | Status |
+|---|---|---|---|
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | Copy in blocks in `copy/section-1.md`, notes and sources in `draft/CS2-section-1.md`. Figma 4228:6859 is stale: built before the block copy and eyebrows, with the route circles and three tiles he rejected 14 Oct. Slot plan to be redone under the trial winner |
+| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Built 14 Oct, not yet reviewed (an approval on 14 Oct was sent by mistake and withdrawn). Copy Draft 5 in `copy/section-2.md` with his two wording fixes; notes in `draft/CS2-section-2.md`. Figma 4228:6731 built from the copy file on the two beat list. Next: his review of the build and his image pick for the Action Hub screen slot. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
+| 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Talking, opened 8 Oct, reopened 14 Oct, `draft/CS2-section-3.md`. Three questions for him |
+| 4 | Pace | The system checks reality against the estimate without judging | Not started |
+| 5 | Scheduling and rollover | The calendar is where it nearly broke | Not started |
+| 6 | Recalibration | Falling behind cannot mean failing | Not started |
+| 7 | The generated content | None of the words are written by a person | Not started |
+| 8 | Handoff and the team | What it took for other people to hold it | Not started |
+| 9 | Intro | Who it is for and the situation they are in. Written last | Last |
+| 10 | The story | What ties it together, found from the sections. Written last | Last |
 
 Every block has an eyebrow, written for the reader. Section names are working labels and are not reused as eyebrows.
 
 "What the reader comes away with" is the job of the section, not its content. The content comes from
-the conversation. Every section gets a layout from the templates, the real screens and the map. Chadwick
+the conversation. Every section gets a layout from the templates and the real screens. Chadwick
 can reorder any of it. Where a section stopped mid conversation is noted in its status.
