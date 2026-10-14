@@ -14,13 +14,14 @@ const { tool_name: tool, tool_input: input = {} } = payload;
 const root = process.env.CLAUDE_PROJECT_DIR || payload.cwd || process.cwd();
 const GUARDED = [
   [/reference\/cs2\/copy\/section-\d+\.md$/, 'check-copy.mjs', 'this CS2 copy breaks his copy rules'],
+  [/reference\/cs2\/message\/section-\d+\.md$/, 'check-message-plan.mjs', 'this CS2 message plan fails its check'],
   [/reference\/cs2\/layout\/section-\d+\.md$/, 'check-slot-plan.mjs', 'this CS2 slot plan fails its check'],
 ];
 
 if (tool === 'Bash') {
   const cmd = input.command || '';
-  const writesCopy = /(?:>>?|\btee\b(?:\s+-a)?)\s*["']?[^\s"';&|]*reference\/cs2\/(?:copy|layout)\//.test(cmd)
-    || /\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b[^;&|]*reference\/cs2\/(?:copy|layout)\//.test(cmd);
+  const writesCopy = /(?:>>?|\btee\b(?:\s+-a)?)\s*["']?[^\s"';&|]*reference\/cs2\/(?:copy|layout|message)\//.test(cmd)
+    || /\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b[^;&|]*reference\/cs2\/(?:copy|layout|message)\//.test(cmd);
   if (writesCopy) {
     console.error('Blocked: CS2 copy and slot plan files are written with Write or Edit only, so their check runs on every change.');
     process.exit(2);
@@ -44,7 +45,7 @@ else if (tool === 'Edit') {
 
 const tmp = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'cs2guard-')), path.basename(file));
 fs.writeFileSync(tmp, next);
-const r = spawnSync('node', [path.join(root, 'reference/cs2', guard[1]), tmp], { encoding: 'utf8' });
+const r = spawnSync('node', [path.join(root, 'reference/cs2', guard[1]), tmp, ...(guard[1] === 'check-slot-plan.mjs' ? [file] : [])], { encoding: 'utf8' });
 fs.rmSync(path.dirname(tmp), { recursive: true, force: true });
 if (r.status === 0) process.exit(0);
 console.error(`Blocked: ${guard[2]}. Rewrite these lines, then save again.\n${(r.stdout || r.stderr).replace(tmp, file)}`);

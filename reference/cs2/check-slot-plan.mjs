@@ -7,6 +7,7 @@
 // The judgment half (is anything taken from Haven or a template rather than from this section) is a
 // yes/no question for a separate reviewer; see step 5 in CS2_PROCESS.md.
 import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 
 const HEADER = ['layout piece', 'slot', 'what goes in it', 'why'];
 const BANNED = [
@@ -19,6 +20,8 @@ const BANNED = [
   [/\b(template'?s?|existing|current) (image|images|diagram|diagrams|illustration|graphic|screenshot)s?\b/i,
     'carries over template imagery'],
   [/\b(as in|from|kept from|keep) the template\b/i, 'carries over template content'],
+  [/\b(five|5)\b[^|.]{0,30}\b(pathway|stage)s?\b|\bpathway (marks|circles|dots|row|line|route)\b|\bacross the (five )?pathways\b|\broute (diagram|line|map)\b|\bthe map\b/i,
+    'route diagram: a row of the five Pathways is not a standing figure; it needs his yes for a claim about their order'],
   [/!\[|<svg|<img|\.(png|svg|jpe?g|gif)\b/i, 'a visual instead of words'],
 ];
 
@@ -44,6 +47,16 @@ lines.forEach((l, i) => {
     else c.forEach((x, k) => { if (!x) problems.push(`line ${i + 1}: empty "${HEADER[k]}" cell`); });
   } else inTable = false;
 });
+// The message plan comes first: a slot plan saved to layout/section-N.md needs a passing message/section-N.md.
+const real = process.argv[3];
+if (real && /layout\/section-(\d+)\.md$/.test(real)) {
+  const msg = real.replace(/layout\/(section-\d+\.md)$/, 'message/$1');
+  if (!fs.existsSync(msg)) problems.unshift(`no message plan at ${msg}: write the claims and what each block must show first`);
+  else {
+    const m = spawnSync('node', [new URL('./check-message-plan.mjs', import.meta.url).pathname, msg], { encoding: 'utf8' });
+    if (m.status !== 0) problems.unshift(`message plan fails: ${m.stdout.trim().split('\n').join('; ')}`);
+  }
+}
 if (rows < 2) problems.unshift(`no slot plan table: needs a table headed | Layout piece | Slot | What goes in it | Why | with a row per slot (found ${rows} rows)`);
 
 if (problems.length) { console.log(problems.join('\n')); console.log('SLOTPLAN_FAIL'); process.exit(1); }

@@ -8,7 +8,7 @@ const target = path.join(root, 'reference/cs2/copy/section-99.md');
 const call = p => spawnSync('node', [hook], { input: JSON.stringify(p), encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: root } });
 const cases = [
   ['bad Write', { tool_name: 'Write', tool_input: { file_path: target, content: 'Section: 2\n\nMichael wanted it.\n' } }, 2],
-  ['clean Write', { tool_name: 'Write', tool_input: { file_path: target, content: 'Section: 2\n\n## 1\n\nEyebrow: The week\n\nHeadline: The week is the deadline.\n\nInside it, the order is yours.\n' } }, 0],
+  ['clean Write', { tool_name: 'Write', tool_input: { file_path: target, content: 'Section: 2\n\n## 1\n\nEyebrow: Due Saturday night\n\nHeadline: The week is the deadline.\n\nInside it, the order is yours.\n' } }, 0],
   ['essay Write, no blocks', { tool_name: 'Write', tool_input: { file_path: target, content: 'Section: 2\n\nThe week is the deadline.\n\nInside it, the order is yours.\n' } }, 2],
   ['bad Bash redirect', { tool_name: 'Bash', tool_input: { command: `echo hi > ${target}` } }, 2],
   ['unrelated Bash', { tool_name: 'Bash', tool_input: { command: 'ls reference/cs2' } }, 0],
@@ -17,7 +17,10 @@ const cases = [
   ['bad sed -i', { tool_name: 'Bash', tool_input: { command: "sed -i '' s/a/b/ reference/cs2/copy/section-2.md" } }, 2],
   ['unrelated Write', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/draft/x.md'), content: 'Michael' } }, 0],
   ['slot plan borrowing from Haven', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/layout/section-99.md'), content: 'Section: 2\n\n| Layout piece | Slot | What goes in it | Why |\n|---|---|---|---|\n| TextAnd1Image layout 1 | Image | Haven circles | Haven has them |\n| TextAnd1Image layout 1 | Text | The claim | It leads |\n' } }, 2],
-  ['clean slot plan', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/layout/section-99.md'), content: 'Section: 2\n\n| Layout piece | Slot | What goes in it | Why |\n|---|---|---|---|\n| TextAnd1Image layout 1 | Image | The Action Hub screen he picks | The screen holds the evidence |\n| TextAnd1Image layout 1 | Text | The claim | It leads |\n' } }, 0],
+  ['slot plan before any message plan', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/layout/section-99.md'), content: 'Section: 2\n\n| Layout piece | Slot | What goes in it | Why |\n|---|---|---|---|\n| TextAnd1Image layout 1 | Image | The Action Hub screen he picks | The screen holds the evidence |\n| TextAnd1Image layout 1 | Text | The claim | It leads |\n' } }, 2],
+  ['clean message plan', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/message/section-99.md'), content: 'Section: 99\n\n## 1\n- Claim: the week is the deadline.\n- What the reader has to see: one edge at Saturday night.\n- Already shown by the copy: no.\n- Figure count: 1, the Action Hub screen he picks.\n' } }, 0],
+  ['message plan naming a layout piece', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/message/section-99.md'), content: 'Section: 99\n\n## 1\n- Claim: the week is the deadline.\n- What the reader has to see: one edge at Saturday night.\n- Already shown by the copy: no.\n- Figure count: 1, the Action Hub screen he picks, TextAnd1Image layout 1.\n' } }, 2],
+  ['bad Bash into message', { tool_name: 'Bash', tool_input: { command: 'echo hi > reference/cs2/' + 'message/section-2.md' } }, 2],
   ['bad Bash into layout', { tool_name: 'Bash', tool_input: { command: 'echo hi > reference/cs2/layout/section-2.md' } }, 2],
 ];
 let ok = true;

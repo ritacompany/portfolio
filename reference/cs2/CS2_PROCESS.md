@@ -201,40 +201,38 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
    Names, quotes, dashes, Oxford commas and early product terms are caught by `check-copy.mjs`.
-5. **Slot plan.** Worked beat by beat, so the form is chosen before the layout. Rewritten
-   2026-10-09 because layouts kept coming out as walls of text: the template was picked first and filled
-   with the copy. This follows the voice pass without waiting for copy approval, so copy and layout are
-   reviewed together. A beat is one point the reader has to come away with, and each beat is one block in
-   the copy file. The research behind this step, with the beat type to form to template table and every
-   reference, is `reports/Visual storytelling per beat.md`. For each beat, in this order:
-   - **What the reader must understand.** One sentence written as a claim, not a topic. Read in order,
-     a section's claims should tell the section on their own. The sentence becomes the beat's headline
-     claim. If it cannot be written, the beat is not ready and no layout will fix it. Two beats making the
-     same point merge.
-   - **Form, with its reference.** First ask whether a sentence says it as well. If yes, the beat is
-     text only, and that is a real choice. Otherwise classify the beat with the table in the report and
-     write the form with its reference beside it (for example "options: labelled options grid, Figma
-     UI3"). A real Mondai screen with one annotation beats a new diagram whenever the screen already holds
-     the evidence. No form
-     another case study already leans on (Haven has the two by two). One figure per claim. Draw the difference, not both whole states. Label every arrow or
-     leave it out. A single number is a stat, not a chart.
-   - **Still test.** The figure as described, alone with no copy around it, must show the point. Its
-     headline states the claim, labels sit on the figure, it changes one thing from the previous beat's
-     figure and it reads at phone width. Nothing the reader needs lives in a hover, a later carousel
-     slide or an animation; the carousel never carries a sequence the argument depends on. Read as
-     headings plus visuals only, the section still makes its point. Motion comes later and only animates
-     the change between two approved stills.
-   - **Layout pieces and slots.** Pick the layout piece that fits the form (the report's table, names
-     in `LEDGER.md`), then say in words what goes in each of its slots and why. Every slot is filled
-     from this section only: its claim, its copy file or a screen he picks. Body text never runs wider than 7 of 12 columns.
+5. **Message plan, then slot plan.** Two passes, message first. Rewritten 14 Oct after a trial of three
+   setups in fresh runs (`fixes/2026-10-14-cs2-visual-before-message.md`); the old single pass picked
+   figures and layout together. Follows the voice pass without waiting for copy approval, so copy and
+   layout are reviewed together. One block in the copy file is one beat. Forms and references are in
+   `reports/Visual storytelling per beat.md`.
 
-   The output is the slot plan, saved as `layout/section-N.md`: first line `Section: N`, then one
-   table `| Layout piece | Slot | What goes in it | Why |`, a row per slot, beats in reading order. A
-   hook runs `check-slot-plan.mjs` on every save and refuses one that fails. Step 5 ends there: no
-   visuals and no Figma. He corrects the plan, and a correction goes back to the claim for that beat.
+   Pass 1 writes `message/section-N.md`: first line `Section: N`, then a `## ` block per copy block with
+   these lines, and no layout piece named anywhere:
+   - `- Claim:` the headline as a claim. Read in order, the claims tell the section on their own.
+   - `- What the reader has to see:` to believe it, in one sentence.
+   - `- Already shown by the copy:` yes or no. Read the headline, body and Label lines as plain text. If
+     they already make the reader see it, the block is text only and the labels stay as text.
+   - If not: the one thing to show and where it comes from, a real Mondai screen he picks or a new
+     figure described in words. A real screen with one annotation beats a new diagram. A second figure
+     only if a named part of the claim is left unproven by both the first figure and the copy.
+   - `- Figure count:` with the reason for each figure.
 
-   Across beats, change one thing between neighbouring figures, default to time order, give parallel
-   parts the same internal pattern and never put two text only blocks of the same width back to back.
+   Pass 2 writes `layout/section-N.md` from the message plan and the `LEDGER.md` decoder: first line
+   `Section: N`, then one table `| Layout piece | Slot | What goes in it | Why |`, a row per slot. Each
+   block's layout piece has exactly as many media slots as its figure count, and each media row's Why
+   names the part of the claim it proves. Body text never runs wider than 7 of 12 columns.
+
+   The guard hook checks both files on every save: a slot plan is refused without a passing message plan,
+   and either is refused if it draws the five Pathways as a row or line. A route figure needs his yes for a
+   claim about their order. Whether each figure is needed is a judgment a separate reviewer answers before
+   he sees it: could the claim be proven with fewer figures?
+
+   No form another case study leans on (Haven has the two by two). Draw the difference, not both whole
+   states. Label every arrow or leave it out. A single number is a stat. Nothing the reader needs lives in
+   a hover, a later carousel slide or an animation. Neighbouring figures change one thing, and two text
+   only blocks of the same width never sit back to back. Step 5 ends with the two files: no visuals and no
+   Figma. A correction goes back to that block's claim in pass 1.
 
    Imagery is his to choose (corrected 2026-10-08). An image slot says what could go there and stays
    unfilled until he picks. Real screens are read from the Mondai Figma, never redrawn from memory.
