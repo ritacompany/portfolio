@@ -41,40 +41,18 @@ because that shapes the section and invites citing things wrongly.
 
 ## The map
 
-The build up diagram in `CS2_COMPREHENSION.md` is the map. It is not drawn in advance. Each section
-draws only the state it needs, inside that section's layout step, so the diagram is shaped by what the
+The build up diagram in `CS2_COMPREHENSION.md` is the map. It is not drawn in advance. Each section's
+slot plan describes in words only the state it needs, so the diagram is shaped by what the
 sections turn out to be rather than fixed up front. It appears in every section as the small image
 beside the real screen, marking where the reader is. It works as a still; motion comes later.
 
 ## Layouts
 
-Each section is laid out from the templates in the Figma file Portfolio Design, page `VC`, section
-`Case study layouts` (node 3461:5685), adapted to the portfolio grid and following the Haven CS Master
-(3300:12596) for type, motion and reveals. The CS2 page is built in Figma on the `VC` page, section by
-section, as a Mondai CS Master. The older frame `WIP Mondai growth journey case study` (3238:22519)
-predates the 27 Aug restart and is not the starting point.
-
-Corrected 2026-10-10, his rule: CS2 sections are built in the Portfolio Design file, VC page, section
-`Mondai case studies`, inside its `Workstation` section (4105:7096), at the lower end, in reading order
-top to bottom. Section 1 is 4228:6859, section 2 is 4228:6731. The older `Mondai CS Master` (4194:6596)
-is superseded.
-
-Corrected 2026-10-07, his rule: the Case study layouts section already holds finished, laid-out
-sections (titles, T1I, T2I, T3I, carousels and so on inside each WIP case study). Pick the existing
-section that best matches each part's content, duplicate it into the CS2 master and fill it. Never
-draw a block from scratch. Then adapt it to the Haven grid (12 columns, 40 margins and gutters) and
-Haven text styles.
-
-Corrected 2026-10-07: the source of truth for layout, type and diagram style is the Figma, read
-properly (structure, text styles, spacing), never thumbnails. The HTML in `build/` is Metalab scaffold
-and is not a layout source for CS2; `LEDGER.md` only decodes template names. Build the section in
-Figma directly. If a quick preview is wanted first, it is still built from the Figma, and it is said
-plainly what is real and what is placeholder.
-
-Where CS2 sections get built, his rule 2026-10-10: in the VC page, section `Mondai case studies`
-(3461:5391), subsection `Workstation` (4105:7096), at the lower end of it, below the existing frames.
-Each section is its own frame there, named `Mondai CS · Section N · <name>`. Section 2 is 4228:6731 at
-x 2089, y 11819 inside Workstation, with section 1 to its right; put section 3 below section 2.
+Layout pieces are the families in `Case study layouts` (Portfolio Design file, page `VC`, node
+3461:5685), decoded by name and slot in `LEDGER.md`, for example TextAnd1Image layout 1. Step 5 plans with
+them by name and slot only. Whatever sits in their slots now (images, diagrams, text) is scaffold and
+never carries into CS2. Neither does anything from another case study. The HTML in `build/` is not a
+layout source. Where and how sections get built is step 8.
 
 ## Timeline and framing
 
@@ -214,14 +192,14 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
    Names, quotes, dashes, Oxford commas and early product terms are caught by `check-copy.mjs`.
-5. **Layout and visuals.** Worked beat by beat, so the form is chosen before the layout. Rewritten
+5. **Slot plan.** Worked beat by beat, so the form is chosen before the layout. Rewritten
    2026-10-09 because layouts kept coming out as walls of text: the template was picked first and filled
    with the copy. This follows the voice pass without waiting for copy approval, so copy and layout are
    reviewed together. A beat is one point the reader has to come away with; a section usually has two to
    four. The research behind this step, with the beat type to form to template table and every
    reference, is `reports/Visual storytelling per beat.md`. For each beat, in this order:
    - **What the reader must understand.** One sentence written as a claim, not a topic. Read in order,
-     a section's claims should tell the section on their own. The sentence becomes the beat's Heading/40
+     a section's claims should tell the section on their own. The sentence becomes the beat's headline
      claim. If it cannot be written, the beat is not ready and no layout will fix it. Two beats making the
      same point merge.
    - **Form, with its reference.** First ask whether a sentence says it as well. If yes, the beat is
@@ -231,34 +209,29 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
      the evidence. The map is a form too: bring it back with one change rather than a new picture. No form
      another case study already leans on (Haven has the two by two). One figure per claim. Draw the difference, not both whole states. Label every arrow or
      leave it out. A single number is a stat, not a chart.
-   - **Still test.** The figure alone, as a flat image with no copy around it, must show the point. Its
+   - **Still test.** The figure as described, alone with no copy around it, must show the point. Its
      headline states the claim, labels sit on the figure, it changes one thing from the previous beat's
      figure and it reads at phone width. Nothing the reader needs lives in a hover, a later carousel
      slide or an animation; the carousel never carries a sequence the argument depends on. Read as
      headings plus visuals only, the section still makes its point. Motion comes later and only animates
      the change between two approved stills.
-   - **Template and spans.** Pick the Case study layouts family that fits the form, then state it on
-     the Haven grid as column spans (for example "text cols 1 to 5, figure cols 7 to 12"). Body text sits
-     at 5 or 6 columns, never wider than 7. Template names are decoded in `LEDGER.md`, but layout comes
-     from the Figma templates, not `build/` (see Layouts).
-   - **Share, then build.** Bring the section as a short beat list: claim, beat type, form and
-     reference, still test result, template and spans. He corrects it there (his global design rule).
-     Nothing is built before his yes, and a correction goes back to the claim for that beat, not to the
-     last build. After his yes, Claude builds the section in Figma on the Haven grid.
+   - **Layout pieces and slots.** Pick the layout piece that fits the form (the report's table, names
+     in `LEDGER.md`), then say in words what goes in each of its slots and why. Every slot is filled
+     from this section only: its claim, its copy file, the map's previous state plus one element or a
+     screen he picks. Body text never runs wider than 7 of 12 columns.
+
+   The output is the slot plan, saved as `layout/section-N.md`: first line `Section: N`, then one
+   table `| Layout piece | Slot | What goes in it | Why |`, a row per slot, beats in reading order. A
+   hook runs `check-slot-plan.mjs` on every save and refuses one that fails. Step 5 ends there: no
+   visuals and no Figma. He corrects the plan, and a correction goes back to the claim for that beat.
 
    Across beats, change one thing between neighbouring figures, default to time order, give parallel
    parts the same internal pattern and never put two text only blocks of the same width back to back.
    The map state for the section is the previous state plus one element, the new element loudest.
 
-   Imagery is his to choose (corrected 2026-10-08). Image slots stay empty until he picks. Real screens
-   are read from the Mondai Figma, never redrawn from memory. If the live frame is missing, use the
-   desktop export, flag it and ask him where the current frame is. Diagrams follow the Haven CS Master's
-   diagram style, not Mondai's UI.
-
-   This step was run twice in parallel (8 and 9 Oct). The 8 Oct version on branch
-   `claude/confident-poincare-b10757` was never merged; its extra rules are folded in above and its
-   report is superseded by this one.
-6. **Review.** Chadwick reads copy and layout together. Small wording fixes he asks for are made in
+   Imagery is his to choose (corrected 2026-10-08). An image slot says what could go there and stays
+   unfilled until he picks. Real screens are read from the Mondai Figma, never redrawn from memory.
+6. **Review.** Chadwick reads the copy and the slot plan together. Small wording fixes he asks for are made in
    place. Changes to what the section says go back to step 2 or 3.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
    at the top. On approval, the status table is updated and the change is committed and pushed to
@@ -274,6 +247,13 @@ A section is done when its copy, layout and visuals are all approved. No second 
 
 Also commit and push at the end of every working session, even mid section, with the status table
 saying where the conversation stopped.
+
+8. **Build.** Only when he says to build a section. Each section is its own frame in the Portfolio
+   Design file, VC page, `Mondai case studies` (3461:5391), `Workstation` (4105:7096), below the
+   existing frames in reading order, named `Mondai CS · Section N · <name>`. Section 2 is 4228:6731
+   at x 2089, y 11819 with section 1 (4228:6859) to its right; section 3 goes below section 2. Text
+   comes from the copy file and slots from the approved slot plan. Each layout piece is set up empty on
+   the portfolio grid (12 columns, 40 margins and gutters); nothing in a template's slots carries over.
 
 ## Order
 

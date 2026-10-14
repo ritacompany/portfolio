@@ -15,6 +15,9 @@ const cases = [
   ['bad tee append', { tool_name: 'Bash', tool_input: { command: 'echo hi | tee -a reference/cs2/copy/section-2.md' } }, 2],
   ['bad sed -i', { tool_name: 'Bash', tool_input: { command: "sed -i '' s/a/b/ reference/cs2/copy/section-2.md" } }, 2],
   ['unrelated Write', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/draft/x.md'), content: 'Michael' } }, 0],
+  ['slot plan borrowing from Haven', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/layout/section-99.md'), content: 'Section: 2\n\n| Layout piece | Slot | What goes in it | Why |\n|---|---|---|---|\n| TextAnd1Image layout 1 | Image | Haven circles | Haven has them |\n| TextAnd1Image layout 1 | Text | The claim | It leads |\n' } }, 2],
+  ['clean slot plan', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/layout/section-99.md'), content: 'Section: 2\n\n| Layout piece | Slot | What goes in it | Why |\n|---|---|---|---|\n| TextAnd1Image layout 1 | Image | The Action Hub screen he picks | The screen holds the evidence |\n| TextAnd1Image layout 1 | Text | The claim | It leads |\n' } }, 0],
+  ['bad Bash into layout', { tool_name: 'Bash', tool_input: { command: 'echo hi > reference/cs2/layout/section-2.md' } }, 2],
 ];
 let ok = true;
 for (const [label, p, want] of cases) { const r = call(p); const pass = r.status === want; ok &&= pass; console.log(`${pass ? 'ok  ' : 'FAIL'} ${label} exit=${r.status} want=${want}`); }
