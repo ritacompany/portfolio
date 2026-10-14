@@ -1,8 +1,9 @@
 # CS2 section 1: Where it started
 
 Status: built. Draft 4 copy and the three beat list approved 2026-10-14. Rebuilt the same day in Figma
-4228:6859 from `copy/section-1.md`; text checked word for word against the copy file. Two image slots
-empty for his pick.
+4228:6859 from `copy/section-1.md`; text checked word for word against the copy file. Slots filled 2026-10-14 with his pick, exported
+from the Mondai MVP file (5RO0m4bYYrTvbiaOgaU3tI): Onboarding/Question standard/5 buttons (2371:44551)
+and Product onboarding step 1, the calendar sync screen (2941:13664). Each sits 16:9 inside its dark tile.
 
 Job: what he walked into and the problems the framework had to solve. Background, not a feature.
 
@@ -377,3 +378,6 @@ Beat list for Draft 4 (for his review, nothing built):
     Midjourney 10 stats rows for beat 3 (claim cols 1 to 6, rows cols 8 to 12). Eyebrows dropped:
     section names are working labels. Map state 1 is section 2's map with the week layers removed and
     all five marks at equal weight. Next: his pick of the two screens for the empty slots.
+16. 2026-10-14: his pick placed in the two slots, the onboarding quiz and the calendar connection
+    screen. The calendar screen shows its own header (week 5, Discovery Pathway, action items). Screen
+    text, not page copy; flagged to him. Next: his review of the built section.
