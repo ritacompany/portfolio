@@ -3,7 +3,9 @@
 // Usage: node check-copy.mjs <copy-file> [--section N]
 // A copy file holds page copy only. Its first line is "Section: N". Lines inside <!-- --> are ignored.
 // Copy is written as blocks: each "## " block has an Eyebrow: line, a Headline: line and at most one body
-// paragraph of at most 70 words. Label: and Caption: lines are figure text, not body.
+// paragraph of at most 70 words. Label: and Caption: lines are figure text, not body. A label is one to three
+// words, as on the Haven case study. Longer figure text is a card: "Card: label | title | body", label and title
+// at most three words each, body at most two sentences. The eyebrow names the topic and never repeats the headline.
 // Prints CS2COPY_PASS and exits 0, or lists every violation and exits 1.
 import fs from 'node:fs';
 
@@ -57,8 +59,22 @@ for (const b of blocks) {
   const [title, ...rest] = b.split('\n');
   if (!/^Eyebrow:\s*\S/m.test(b)) problems.push(`block "${title.trim()}": no Eyebrow: line`);
   if (!/^Headline:\s*\S/m.test(b)) problems.push(`block "${title.trim()}": no Headline: line`);
+  const eyebrow = (b.match(/^Eyebrow:\s*(.+)$/m) || [])[1]?.trim().toLowerCase();
+  const headline = (b.match(/^Headline:\s*(.+)$/m) || [])[1]?.trim().toLowerCase();
+  if (eyebrow && headline && headline.includes(eyebrow)) problems.push(`block "${title.trim()}": eyebrow repeats the headline`);
+  for (const m of b.matchAll(/^Label:\s*(.+)$/gm)) {
+    const w = m[1].trim().replace(/[.]$/, '').split(/\s+/).length;
+    if (w > 3) problems.push(`block "${title.trim()}": label "${m[1].trim().slice(0, 50)}" is ${w} words, max 3 (longer figure text is a Card:)`);
+  }
+  for (const m of b.matchAll(/^Card:\s*(.+)$/gm)) {
+    const parts = m[1].split('|').map(x => x.trim());
+    if (parts.length !== 3 || parts.some(x => !x)) { problems.push(`block "${title.trim()}": card needs "label | title | body"`); continue; }
+    for (const [k, x] of [['label', parts[0]], ['title', parts[1]]]) if (x.split(/\s+/).length > 3) problems.push(`block "${title.trim()}": card ${k} "${x}" over 3 words`);
+    const sentences = parts[2].split(/[.?!](\s|$)/).filter(x => x && x.trim()).length;
+    if (sentences > 2) problems.push(`block "${title.trim()}": card body over 2 sentences`);
+  }
   const paras = rest.join('\n').split(/\n\s*\n/).map(p => p.trim())
-    .filter(p => p && !/^(Eyebrow|Headline|Label|Caption):/.test(p));
+    .filter(p => p && !/^(Eyebrow|Headline|Label|Caption|Card):/.test(p));
   if (paras.length > 1) problems.push(`block "${title.trim()}": ${paras.length} body paragraphs, max 1 (move detail onto the figure as Label: lines)`);
   for (const p of paras) { const w = p.split(/\s+/).length; if (w > 70) problems.push(`block "${title.trim()}": body ${w} words, max 70`); }
 }

@@ -6,9 +6,9 @@ Eyebrow: The unit of time
 
 Headline: Not every life runs on a calendar, so the week became the unit.
 
-Label: Per day. Tasks counted per day, worked back from a goal date.
-Label: Calendar led. Too rigid for the people this is for.
-Label: The week. Room inside it, pressure at its edge.
+Card: 01 | Per day | Tasks counted per day, worked back from a goal date.
+Card: 02 | Calendar led | Too rigid for the people this is for.
+Card: 03 | The week | Room inside it, pressure at its edge.
 
 The people this is for don't have regular weeks. There was an opposite risk too. People need a little
 pressure to get things done.
@@ -19,26 +19,27 @@ Eyebrow: Due Saturday night
 
 Headline: Pressure at the edge of the week, freedom inside it.
 
-Label: This week. The work happens whenever life allows.
-Label: Suggested slot.
-Label: Due Saturday night.
+Label: This week
+Label: Suggested slot
+Label: Due Saturday night
 
-Everything is due Saturday night. Connect a calendar and each Action Item, one piece of work, gets a
-suggested slot. Don't, and the week is a list. A missed slot isn't a missed item.
+Everything is due Saturday night. Inside the week, the work happens whenever life allows. Connect a
+calendar and each Action Item, one piece of work, gets a suggested slot. Don't, and the week is a list. A
+missed slot isn't a missed item.
 
 Caption: Research on long goals points the same way. Nearer steps and seeing your own progress tend to
 help people keep going.
 
 ## Block 3
 
-Eyebrow: What gets locked
+Eyebrow: Locks
 
 Headline: The same line decides what gets locked.
 
-Label: First proposal. Lock every Action Item that isn't available yet.
-Label: 01 Past this week. Locked.
-Label: 02 Inside this week. Visible and can be moved.
-Label: 03 The order. Only controls what can be marked done.
+Label: First proposal
+Card: 01 | Past this week | Locked.
+Card: 02 | Inside this week | Visible and can be moved.
+Card: 03 | The order | Only controls what can be marked done.
 
 The Pathways, the five stages of the journey, run in order, so the first proposal was to lock every
 Action Item that wasn't available yet. I cut that back to the week.
@@ -50,9 +51,9 @@ Eyebrow: One level up
 Headline: The product opens on the week, with one level above it: the current Pathway and whether
 they're ahead or behind.
 
-Label: This week. Where work gets done.
-Label: Current Pathway. How far through it they should be by now.
-Label: The whole journey. Its own pages, for looking.
+Label: This week
+Label: Current Pathway
+Label: Whole journey
 
 There was a case for showing people where they stood in the whole journey. A pace for the whole journey
 would mostly show them how far they still had to go. Later I cut the journey level target and pace
