@@ -1,7 +1,8 @@
 # CS2 section 1: Where it started
 
-Status: drafted. Draft 4 (2026-10-14) copy in `copy/section-1.md`, passing the copy check. Figma
-4228:6859 still shows Draft 3; rebuild from the copy file after his yes on copy and beat list.
+Status: built. Draft 4 copy and the three beat list approved 2026-10-14. Rebuilt the same day in Figma
+4228:6859 from `copy/section-1.md`; text checked word for word against the copy file. Two image slots
+empty for his pick.
 
 Job: what he walked into and the problems the framework had to solve. Background, not a feature.
 
@@ -370,3 +371,9 @@ Beat list for Draft 4 (for his review, nothing built):
 
 14. 2026-10-14: Draft 4 written to `copy/section-1.md`, voice passed, check passing. Beat list
     revised to three beats. Next: his yes on copy and beat list, then rebuild 4228:6859 from the copy file.
+15. 2026-10-14: copy and beat list approved. Rebuilt 4228:6859 on the Haven grid from duplicated
+    templates: Robinhood 03 for beat titles, Midjourney 05 T3I for beat 1 (map state 1 cols 1 to 6,
+    empty slots cols 7 to 12 and 1 to 6, body cols 7 to 12), Robinhood 03 for beat 2 (cols 4 to 9),
+    Midjourney 10 stats rows for beat 3 (claim cols 1 to 6, rows cols 8 to 12). Eyebrows dropped:
+    section names are working labels. Map state 1 is section 2's map with the week layers removed and
+    all five marks at equal weight. Next: his pick of the two screens for the empty slots.
