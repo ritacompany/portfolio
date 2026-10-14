@@ -189,8 +189,9 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    they go on the open list until he confirms or cuts them. If he asks for a draft before the talk is
    finished, draft and list what the talk has not covered yet. Page copy goes in `copy/section-N.md`
    (first line `Section: N`), written as blocks: each `## ` block holds an `Eyebrow:` line, a
-   `Headline:` line that states the claim, `Label:` lines for text that sits on the figure, and one body
-   paragraph of at most 70 words. Notes and sources stay in the draft file. A hook refuses any copy save
+   `Headline:` line that states the claim, `Label:` lines of one to three words and `Card:` lines
+   (label | title | one or two sentences) for text on the figure, and one body paragraph of at most 70
+   words. The eyebrow names the topic and never repeats the headline. Notes and sources stay in the draft file. A hook refuses any copy save
    that breaks the copy rules or the block shape, and Figma takes its text from the copy file only.
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
