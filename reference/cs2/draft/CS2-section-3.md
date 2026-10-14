@@ -64,9 +64,12 @@ actually productive to the user" [#0004].
 3. The section's angle: the formula he pushed back on, or the reversal on where capacity is set.
    Recommendation 14 Oct: both, as the section's two decisions (cs-t34). A: the time comes from the
    person, asked directly, not subtracted from a 40 hour week; the 4 hour floor is the one hard line.
-   B: asked at onboarding, the number is a guess; it moved to the first start of week and back on scope,
-   and the correction comes later from what people actually do (pays off in section 6, cs-t18). Target
-   date commit over live updating gets one line. Waiting on his yes.
+   B withdrawn 14 Oct, his correction: "the number is a guess" is the old critique's framing, not the
+   product. Read from the Desktop 1 (MVP) file: the capacity step (2941:13903) sets hours beside the
+   journey target date they produce, says it can be changed any time from the Growth Journey page, and
+   start of week recalibration (2962:15161) reads back actual average hours and recommends a new number.
+   Capacity is a trade the person sees (hours against finish date) and can change, not a one time guess.
+   The placement reversal stays in these notes and out of copy unless he wants it.
 
 ## Where section 3 stopped
 
