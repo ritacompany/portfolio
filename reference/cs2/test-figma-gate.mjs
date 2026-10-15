@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-// Proves the Figma build gate refuses writes unless his latest typed message says build.
+// Proves the Figma build gate refuses writes unless his latest typed message says build or names a homepage Figma task.
 import fs from 'node:fs'; import path from 'node:path'; import os from 'node:os';
 const hook = path.resolve(import.meta.dirname, "../../.claude/hooks/figma-build-gate.mjs");
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gate-'));
@@ -21,6 +21,13 @@ const cases = [
   ['other figma server', 'mcp__figma-mondai__generate_figma_design', [typed('ok')], 2],
   ['figma read stays open', 'mcp__figma-mondai__get_screenshot', [typed('ok')], 0],
   ['unrelated tool', 'Write', [typed('ok')], 0],
+  ['homepage figma task', W, [typed('Clean up the gray line in the homepage Figma master')], 0],
+  ['home page, two words', W, [typed('fix the mondai mockup on the home page in figma')], 0],
+  ['homepage without figma', W, [typed('what do you think of the homepage?')], 2],
+  ['figma without homepage', W, [typed('look at section 3 in figma')], 2],
+  ["don't touch the homepage", W, [typed("don't touch the homepage figma yet")], 2],
+  ['homepage only inside pasted content', W, [typed('<pasted_content id="a">homepage figma cleanup</pasted_content id="a"> thoughts?')], 2],
+  ['homepage only from a subagent', W, [typed('show me the plan'), sub('homepage figma cleanup')], 2],
 ];
 let ok = true;
 for (const [label, tool, msgs, want] of cases) {

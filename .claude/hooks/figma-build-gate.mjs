@@ -3,11 +3,16 @@
 // A Figma write tool is allowed only if his latest typed message in this session says "build"
 // (build, rebuild, build it, build section 3) and does not say not to. Everything else is refused
 // (exit 2) with a reason that sends the session back to him. Reads stay open.
+// Homepage work has its own pass (his D5, 15 Oct 2026): a message that names homepage Figma work
+// ("homepage" or "home page" plus "figma") lets the write through, unless it says not to.
 import fs from 'node:fs';
 
 const WRITES = /__(use_figma|generate_figma_design|upload_assets|create_new_file|generate_diagram|generate_image|create_shader|update_shader|create_generative_plugin|update_generative_plugin|add_code_connect_map|send_code_connect_mappings)$/;
 const SAYS_BUILD = /\b(re)?build\b/i;
 const SAYS_DONT = /\b(don'?t|do not|not|no|never|before|until|without)\s+(\w+\s+){0,2}(re)?build\b|\bbuild\w*\s+(comes\s+)?later\b/i;
+const NAMES_HOMEPAGE = /\bhome\s?page\b/i;
+const NAMES_FIGMA = /\bfigma\b/i;
+const HOMEPAGE_DONT = /\b(don'?t|do not|not|no|never|before|until|without)\s+(\w+\s+){0,3}home\s?page\b/i;
 
 let payload;
 try { payload = JSON.parse(fs.readFileSync(0, 'utf8')); } catch { process.exit(0); }
@@ -32,5 +37,6 @@ const said = (latestTyped(payload.transcript_path) || '')
   .replace(/<pasted_content[\s\S]*?<\/pasted_content[^>]*>/g, '')
   .replace(/<system-reminder[\s\S]*?<\/system-reminder[^>]*>/g, '');
 if (SAYS_BUILD.test(said) && !SAYS_DONT.test(said)) process.exit(0);
-console.error('Blocked: Figma writes wait until Chadwick says to build (CS2 loop step 8). His latest message does not. Bring him the slot plan and ask; do not build.');
+if (NAMES_HOMEPAGE.test(said) && NAMES_FIGMA.test(said) && !HOMEPAGE_DONT.test(said)) process.exit(0);
+console.error('Blocked: Figma writes wait until Chadwick says to build (CS2 loop step 8), or names a homepage Figma task. His latest message does neither. Bring him the plan and ask; do not build.');
 process.exit(2);

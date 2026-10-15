@@ -50,7 +50,7 @@ The leadership CS is after launch (C4).
 | F3 | The superpower lines differ between frames: "The eye to see" vs "An eye for"; "pulls people in" vs "draws people in"; periods on two of three | Pick one version | C |
 | F4 | Mondai card: the screen graphic sits flat on top of the monitor and overhangs its bezel instead of sitting in the display | Re-place inside the screen, perspective matched; text must stay sharp | AI |
 | F5 | Works section: the cards take 649 of its 1004 height, leaving about 320 of empty black below | Tighten, unless the space is meant for a later item | C decides |
-| F6 | The gray line: a light gradient across the top few pixels of the hero render. Not traced yet; the read tools (get_metadata, get_screenshot) can trace it now, only the removal waits on B1. Suspects: an effect on the hero top bar, or the older "Master" frame at the same position | Trace and remove on a duplicate | AI |
+| F6 | The gray line: a light gradient across the top few pixels of the hero render. Not traced yet; the read tools (get_metadata, get_screenshot) can trace it now, Suspects: an effect on the hero top bar, or the older "Master" frame at the same position | Trace and remove on a duplicate | AI |
 | F7 | Footer transition is a 291 tall gray placeholder | His animated black and white piece goes here | C picks, AI animates |
 | F8 | The superpowers frame is 2068 tall, about 2.3 screens at 900. With the 812 hero above it, work starts near 2,880 down | See D2 | both |
 | F9 | Two layouts exist for the collection page (list and cards) | Pick one | C |
@@ -78,8 +78,8 @@ The leadership CS is after launch (C4).
 | H14 | About becomes a left slide-out panel: no scroll, collapsible, opened from a button in the superpowers section and from the nav | AI build | open, v1 (D2) |
 | H15 | Superpowers section under the hero, one visual and one simple animation each | both | open, v1 (D2) |
 | H16 | Footer finish and the transition (F7) | C picks, AI animates | open |
-| H17 | Gray line (F6): trace now with read tools, remove after D5 | AI | open |
-| H18 | Layer cleanup in the master, on a duplicate he swaps in | AI | blocked (B1) |
+| H17 | Gray line (F6) | AI | open |
+| H18 | Layer cleanup in the master, on a duplicate he swaps in | AI | open |
 | H19 | Final colors | C | open |
 | H20 | Header inspiration: VS Goods narrow creative buttons; his HERO INSPIRATION frame `4238:11292` | reference | open |
 | H21 | Earlier animations and parallax: check what survives the redesign | AI | open |
@@ -110,7 +110,7 @@ The leadership CS is after launch (C4).
 | P1 | Unpushed branches and uncommitted files: what each holds and whether it is current | both | in progress, session "at-risk-triage" |
 | P2 | Usage-aware handoff (below) | AI | done |
 | P3 | Skills (below) | AI | done |
-| B1 | The CS2 Figma build gate (`.claude/hooks/figma-build-gate.mjs`) refuses every `use_figma` call in this repo, read or write, homepage work included, unless his latest message says build | C | decision (D5) |
+| B1 | Figma build gate blocked homepage Figma work | C | done (D5) |
 
 ## Decisions
 
@@ -124,11 +124,11 @@ The leadership CS is after launch (C4).
   pinned motion can carry part of that.
 - **D4 Two working sessions at once, plus the coordinator.** Agreed. Recheck the pace after the
   weekly limit resets on 19 Oct.
-- **D5 Let homepage Figma tasks through the build gate.** The hook only sees the tool name and
-  his latest message, so it cannot tell which frames a script touches. Recommend: the gate also
-  passes when his latest message names a homepage Figma task (for example "homepage figma").
-  Yes means homepage cleanup runs on his word while the framework CS keeps its "build" gate.
-  No means every Figma edit here waits for "build" in his message. His process, his call.
+- **D5 Homepage Figma tasks pass the build gate. Decided by Chadwick, 15 Oct.** The gate lets a
+  Figma write through when his latest typed message names homepage Figma work ("homepage" or
+  "home page" plus "figma") and does not say not to. Framework CS work still needs "build".
+  Proven by `node reference/cs2/test-figma-gate.mjs` (18 cases; the old gate fails the two new
+  pass cases).
 
 ## Skills
 
@@ -156,7 +156,7 @@ At most two at a time besides the coordinator. None edits the master frame.
    reveal (H8), grid options (H9), work card hover (H11) and a first pass of the hero to
    superpowers travel (H7). He reacts to real motion instead of describing it. Needs no Figma
    writes, so B1 does not block it.
-3. **Figma hygiene**, after D5: duplicate the master, trace the gray line, clean layers, fix
+3. **Figma hygiene**, unblocked by D5; starts when his message names it: duplicate the master, trace the gray line, clean layers, fix
    the Mondai mockup, fix F1 and F10.
 
 The framework CS keeps running in its own sessions.
@@ -179,8 +179,7 @@ the protection is small steps, with the meter as an early warning.
 
 One line per running session: session, item, where it stopped, next step.
 
-- Coordinator (15 Oct): tracker rebuilt after reading the Figma file; blind audit found three holes and one wrong number, all fixed. Next: D5, then start the
-  motion lab.
+- Coordinator (15 Oct): tracker rebuilt after reading the Figma file; blind audit found three holes and one wrong number, all fixed. D5 done. Next: start the motion lab.
 - at-risk-triage (15 Oct): `haven/case-study` and the `7bb1556` WIP are now pushed to GitHub, so
   nothing in a branch is local only. Waiting on Chadwick for merge, archive or drop per item; the
   item by item table is in this session's report.
