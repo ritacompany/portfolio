@@ -1,16 +1,39 @@
 # Portfolio launch tracker
 
-Any Claude or Codex session, on any account, starts here. This is the single running list of
-what is left before the portfolio goes up, who owns each item and what is decided. It comes
-from Chadwick's 15 Oct 2026 notes and from reading the Figma file the same day. If an item is
-not here, add it rather than keeping it in a chat.
+Any Claude or Codex session, on any account, starts here. This is the ordered plan for getting
+the portfolio up: what happens in what order, who does it and what it waits on.
 
+The source is his own notes, kept verbatim in `reference/launch/2026-10-15-progress-notes.md`.
+Judge this file against those notes, never the other way round. If something in the notes is
+not here, add it with its Stage and Waits on.
+
+`node scripts/check-tracker-order.mjs` must print "tracker order OK" after any edit: every row
+has a Stage and a Waits on, and nothing waits on something in the same or a later stage.
+
+Owner: C (Chadwick only), AI (Claude or Codex, Chadwick audits), both.
 Status: open, decision (needs Chadwick), in progress (name the session), done.
-Owner: C (Chadwick only), AI (Claude or Codex alone, Chadwick audits), both.
 
-Names: the three Mondai case studies are the **framework CS**, the **design system CS** and the
-**leadership CS**. CS1, CS2 and CS3 are retired as names. Folders on disk still say `cs1` and
-`cs2` (`reference/cs2/` is the framework CS) until someone renames them.
+Names: the Mondai case studies are the **framework CS**, the **design system CS** and the
+**leadership CS**. CS1, CS2 and CS3 are retired as names. `reference/cs2/` is the framework CS.
+
+## The order, in one view
+
+The hero is the hinge. Its elements, three of which become the superpower visuals, decide the
+hero layout, the superpowers section, the grid, the motion and the build. So the first job is
+his: settle the element roster now, then the two superpower concepts that do not exist yet,
+once the cats test is in hand. While he does that, AI works only on things that do not depend on the hero: Figma cleanup, the work and
+collection page foundations, a cats animation test that feeds his decision, and the site setup.
+The case studies run alongside the whole time because they are the longest pole.
+
+| Stage | Chadwick | AI |
+|---|---|---|
+| 1 | Hero element roster (H5); headline and hero copy (H1 with AI help, H3, H4); header style (H23); footer pick (H16); colors (H19); copy fixes (F2, F3); collection layout (F9); framework CS and design system CS content | Cats animation test (H6t); Figma cleanup on a duplicate (H17, H18, F1, F10); Mondai mockup (H12); simple work card states (H11); about panel proposal (H14); audit of earlier animations (H21); site setup (S0) |
+| 2 | Superpower concepts, with the cats test in hand (H6) | Nav (H8); collection page states (H13); footer animation (H16a) |
+| 3 | Make the visuals (H5m); section titles (H10) | Superpowers section layout, shorter (H15a) |
+| 4 | Hero composition (H20); superpowers section with visuals (H15b) | Grid options (H9) |
+| 5 | Approve motion | Hero and element motion (H7) |
+| 6 | Audit | Build in code (S1, S2) |
+| 7 to 8 | Domain access, final review | QA and launch (S3, S4) |
 
 ## Where the design lives
 
@@ -29,8 +52,6 @@ Figma file `IarvWaqjIwrZ2afQmMxKm6`, section "Portfolio home" (`3461:5700`).
 
 ## Launch definition (v1)
 
-The site goes up when all of these are true. Anything else is after launch.
-
 - [ ] L1 Homepage live: hero, superpowers, work, about panel, footer
 - [ ] L2 Mondai collection page live. If the design system CS is not ready, the Mondai card
       goes straight to the framework CS and the collection page waits
@@ -41,159 +62,103 @@ The site goes up when all of these are true. Anything else is after launch.
 
 The leadership CS is after launch (C4).
 
-## What reading the Figma file turned up
-
-| # | Finding | Fix | Owner |
-|---|---|---|---|
-| F1 | Typo "some fo the right people" in the superpowers copy, in both the master About and the superpowers frame | "some of the" | C or AI |
-| F2 | Footer email reads CHADWICK@CHADWICKFENER.COM, missing an N | Fix spelling, and check the real mailbox address | C |
-| F3 | The superpower lines differ between frames: "The eye to see" vs "An eye for"; "pulls people in" vs "draws people in"; periods on two of three | Pick one version | C |
-| F4 | Mondai card: the screen graphic sits flat on top of the monitor and overhangs its bezel instead of sitting in the display | Re-place inside the screen, perspective matched; text must stay sharp | AI |
-| F5 | Works section: the cards take 649 of its 1004 height, leaving about 320 of empty black below | Tighten, unless the space is meant for a later item | C decides |
-| F6 | The gray line: a light gradient across the top few pixels of the hero render. Not traced yet; the read tools (get_metadata, get_screenshot) can trace it now, Suspects: an effect on the hero top bar, or the older "Master" frame at the same position | Trace and remove on a duplicate | AI |
-| F7 | Footer transition is a 291 tall gray placeholder | His animated black and white piece goes here | C picks, AI animates |
-| F8 | The superpowers frame is 2068 tall, about 2.3 screens at 900. With the 812 hero above it, work starts near 2,880 down | See D2 | both |
-| F9 | Two layouts exist for the collection page (list and cards) | Pick one | C |
-| F10 | The collection page still lists the leadership CS | Remove the row for launch | AI |
-
 ## Inventory
 
-### Homepage
-
-| # | Item | Owner | Status |
-|---|---|---|---|
-| H1 | Hero headline. Current: "I'm not really that cool," as a cropped marquee. Candidate: the "convinced that people would be happier" line. Idea: it settles on hover, centered or left at the superpower indent | C copy, AI motion | decision |
-| H2 | Who he is as a designer. The top bar already says [ Product Designer ]; the superpowers section under the hero now carries the rest (D2) | both | open |
-| H3 | "Homosexual 1991 to current" line: keep, tune or cut | C | open |
-| H4 | Chicago. Top bar: [ Seeking roles in NYC ]. Footer: "Chicago, IL", "Looking to relocate to NYC". His earlier ruling (about-page record): Chicago out of the hero, into contact; if it appears sooner, New York leads and Chicago is the aside. Reopening it is his call | C | decision |
-| H5 | Hero elements, seven in total. His canvas plan: one sticker, two 3D, one flat shaped object (CD), two images, one label. Notes: "3d = eye", "3d = alien thing?", "image = pattern recognition (babies?)", "sticker = babies", "image = me, photo of me smiling with new haircut", "label = ?", "all contingent on babies thing", "dont love the look for that". Current placeholders: two cats, magenta block, spiked disco ball (inspiration only, needs his own version), chess photo of him, two gray ellipses | C creates, AI supports | open |
-| H6 | Superpower visuals, one each. Energy that draws people in: welcome mat. Pattern recognition: cats pattern, worried a real photo makes the animation too complex. Quietly moving the needle: kooky red wig (Drag Race España judge wig, blue eye outfit). Slot 01 is empty, 02 and 03 hold cat placeholders | C creates, AI tests animation | open |
-| H7 | Hero to superpowers transition: three hero elements travel into the superpower frames | AI prototype, C approves | open, v1 (D2) |
-| H8 | Navigation: none in the hero; appears after it (cw logo, Work, About, Contact button as in the superpowers frame) | AI | open |
-| H9 | Background grid: hero has one; could continue, stop, or change at the superpowers section. Never behind work or about | AI prototypes, C picks | open |
-| H10 | Section titles for work and about, given the about rows already carry labels | C | decision |
-| H11 | Work cards: links, hover, states. Simple first | AI proposes, C approves | open |
-| H12 | Mondai card mockup (F4) | AI | open |
-| H13 | Collection page interactions, card hover and arrow, components | AI proposes, C approves | open |
-| H14 | About becomes a left slide-out panel: no scroll, collapsible, opened from a button in the superpowers section and from the nav | AI build | open, v1 (D2) |
-| H15 | Superpowers section under the hero, one visual and one simple animation each | both | open, v1 (D2) |
-| H16 | Footer finish and the transition (F7) | C picks, AI animates | open |
-| H17 | Gray line (F6) | AI | open |
-| H18 | Layer cleanup in the master, on a duplicate he swaps in | AI | open |
-| H19 | Final colors | C | open |
-| H20 | Header inspiration: VS Goods narrow creative buttons; his HERO INSPIRATION frame `4238:11292` | reference | open |
-| H21 | Earlier animations and parallax: check what survives the redesign | AI | open |
-| H22 | Something else he meant to add and forgot | C | open |
-
-### Case studies
-
-| # | Item | Owner | Status |
-|---|---|---|---|
-| C1 | Framework CS: sections 3 to 8, then intro and story. Process: `reference/cs2/CS2_PROCESS.md` | both | in progress, framework CS sessions |
-| C2 | Design system CS: no material in the repo yet | both | open |
-| C3 | Haven: on the work section; its branch state is in triage (P1) | C | open |
-| C4 | Leadership CS: after launch. Needs more conversations with Michael; the first approach did not land with him. May become smaller pieces about the organizational and process work, under a name other than case study | C | after launch |
-
-### Site build
-
-| # | Item | Owner | Status |
-|---|---|---|---|
-| S1 | Build the homepage in code from the current master. A Sep responsive homepage exists on older branches against an older design; reuse what holds | AI | open |
-| S2 | Collection page and case study pages in code | AI | open, after designs |
-| S3 | Site wide QA: links, hovers, states, breakpoints | AI, C audits | open |
-| S4 | Vercel deploy and the chadwickfenner.com domain (holding page on `main` is noindex) | AI, C for domain access | open |
-
-### Working setup
-
-| # | Item | Owner | Status |
-|---|---|---|---|
-| P1 | Unpushed branches and uncommitted files: what each holds and whether it is current | both | in progress, session "at-risk-triage" |
-| P2 | Usage-aware handoff (below) | AI | done |
-| P3 | Skills (below) | AI | done |
-| B1 | Figma build gate blocked homepage Figma work | C | done (D5) |
+| # | Item | Owner | Stage | Waits on | Status |
+|---|---|---|---|---|---|
+| H5 | Hero element roster: seven elements, which three carry the superpowers. His canvas plan: one sticker, two 3D, one flat object (CD), two images, one label. Open: the disco ball (loves it, does not map to a superpower, would need his own version), the second 3D element, the photo of him (may go or be fixed), "babies" (his canvas note says all contingent on it) | C | 1 | nothing | decision |
+| H6 | Superpower concepts. Energy that pulls people in: welcome mat. Pattern recognition: no settled idea; cats pattern considered, worried the animation gets too complex on a real photo. Quietly moving the needle: "potentially" a kooky red wig. Two of three still need a settled concept | C | 2 | H6t | open |
+| H6t | Cats animation test: how a cat cutout pattern could move, built from the cat cutouts on the canvas, so he can keep or drop the cats idea on evidence | AI | 1 | nothing | open |
+| H1 | Hero headline: keep "I'm not really that cool," or move to the "convinced that people would be happier" line as a marquee that settles on hover, centered or left at the superpower indent. He asked for help with this messaging | both | 1 | nothing | decision |
+| H3 | "Homosexual 1991 to current" line: keep, tune or cut | C | 1 | nothing | open |
+| H4 | Chicago and New York in the hero. His earlier ruling: Chicago out of the hero, into contact; if it appears sooner, New York leads and Chicago is the aside. Reopening it is his call | C | 1 | nothing | decision |
+| H16 | Footer: pick the black and white animated transition from his options and finish the footer frame (transition and footer in one frame) | C | 1 | nothing | open |
+| H19 | Final colors, including the contact button | C | 1 | nothing | open |
+| F2 | Footer email reads CHADWICK@CHADWICKFENER.COM, missing an N; confirm the real address | C | 1 | nothing | open |
+| F3 | Superpower lines are worded differently in the About section and the superpowers frame; pick one | C | 1 | nothing | open |
+| F9 | Collection page: list layout or card layout | C | 1 | nothing | decision |
+| H17 | Gray line at the top of the master: trace and remove on a duplicate | AI | 1 | nothing | open |
+| H18 | Layer cleanup in the master, on a duplicate he swaps in | AI | 1 | nothing | open |
+| F1 | Typo "some fo the right people" in both frames | AI | 1 | nothing | open |
+| F10 | Collection page still lists the leadership CS; remove the row for launch | AI | 1 | nothing | open |
+| H12 | Mondai card: the screen graphic sits on top of the monitor and overhangs the bezel; place it inside the display, ratio close to the screen, text kept sharp. Source layers in `4282:15444` | AI | 1 | nothing | open |
+| H11 | Work cards: links, hover and states, simple foundation first ("we just need to create our foundation first") | AI proposes, C approves | 1 | nothing | open |
+| H14 | About becomes a left slide-out panel, no scroll, collapsible, opened from a button in the superpowers section and from the nav | AI proposes, C approves | 1 | D2 | open |
+| S0 | Site setup: code base, fonts, deploy pipeline, so the build in stage 6 is assembly, not setup. The Sep homepage code is against an older design; reuse what holds | AI | 1 | nothing | open |
+| C1 | Framework CS: sections 3 to 8, then intro and story. Process: `reference/cs2/CS2_PROCESS.md` | both | 1 | nothing | in progress, framework CS sessions |
+| C2 | Design system CS: no material in the repo yet | both | 1 | nothing | open |
+| C3 | Haven: in the work section; branch state is in triage | C | 1 | nothing | open |
+| H22 | Something else he meant to add about the hero and forgot | C | 1 | nothing | open |
+| H23 | Header style: VS Goods narrow creative buttons with the small background; does it work with this design | both | 1 | nothing | open |
+| H21 | Earlier animations for this page: check which still work after the redesign, before new motion is planned | AI | 1 | nothing | open |
+| H5m | Make the visuals: his own disco ball if it stays, the 3D elements, the superpower visuals, the photo | C | 3 | H5, H6, H6t | open |
+| H8 | Navigation: none in the hero; appears once past it, at the superpowers section (cw logo, Work, About, Contact) | AI | 2 | H14, H23 | open |
+| H15a | Superpowers section layout, shortened so work starts within the third screen (frame is 2068 tall today) | both | 3 | H6, H1, F3 | open |
+| H13 | Collection page: Mondai card hover and arrow, page interactions, components, simple first. If the design system CS misses launch, the card links straight to the framework CS with labels changed to match | AI proposes, C approves | 2 | F9, F10 | open |
+| H16a | Footer transition animation | AI | 2 | H16 | open |
+| F5 | About 320 of empty black below the work cards: tighten or keep for something | C | 2 | H11 | open |
+| H20 | Hero composition in Figma with the real elements and final copy | C | 4 | H5m, H1, H3, H4, H23 | open |
+| H15b | Superpowers section with the real visuals, one simple animation idea each | both | 4 | H5m, H15a, F3 | open |
+| H10 | Section titles for work and about, once the About content has moved into the panel | C | 3 | H14 | decision |
+| H9 | Background grid: continue, stop or change at the superpowers section; never behind work or about. His note: easier once the superpowers section is in place | AI prototypes, C picks | 4 | H15a | open |
+| H7 | Hero to superpowers motion: the three superpower elements travel from the hero into their frames; hero marquee; simple element animations; parallax where it helps; scroll speed tuned so the superpowers step before work feels short | AI, C approves | 5 | H20, H15b, H21, H8 | open |
+| S1 | Build the homepage in code | AI | 6 | S0, H7, H9, H10, H16a, H8, H11, F5, H12, H19, F1, F2, F3 | open |
+| S2 | Build the collection page and the case study pages | AI | 6 | S0, H13, C1 | open |
+| S3 | Site wide QA: links, hovers, states, breakpoints | AI, C audits | 7 | S1, S2 | open |
+| S4 | Deploy to Vercel on chadwickfenner.com, indexing on | AI, C for domain access | 8 | S3 | open |
+| C4 | Leadership CS: after launch. Needs more conversations with Michael; the first approach did not land with him. May become smaller pieces about the organizational and process work, under a name other than case study | C | 9 | S4 | after launch |
 
 ## Decisions
 
-- **D2 Superpowers sit between the hero and work. Decided by Chadwick, 15 Oct.** His reason:
-  the hero does not say who he is, and the superpowers section does that in a step short
-  enough that a hiring manager keeps going, with the about panel a click away. That holds: the
-  hiring research in `reports/What gets designers interviewed.md` says reviewers scan in 10 to
-  30 seconds and spend 81% of viewing time in the first three screens, and both point to
-  keeping the step short, not to removing it. Design input from F8: the superpowers frame is
-  about 2.3 screens tall today (2068 at a 900 screen). Aim for work to start inside the third screen; scroll speed and
-  pinned motion can carry part of that.
-- **D4 Two working sessions at once, plus the coordinator.** Agreed. Recheck the pace after the
-  weekly limit resets on 19 Oct.
+- **D2 Superpowers sit between the hero and work. Decided by Chadwick, 15 Oct.** The hero does
+  not say who he is; the superpowers section does, in a short step, with the about panel a
+  click away. Hiring research (`reports/What gets designers interviewed.md`: 10 to 30 second
+  scans, 81% of viewing in the first three screens) points to keeping that step short, which
+  is H15a.
+- **D4 Two working sessions at once, plus the coordinator.** Recheck the pace after the weekly
+  limit resets on 19 Oct.
 - **D5 Homepage Figma tasks pass the build gate. Decided by Chadwick, 15 Oct.** The gate lets a
   Figma write through when his latest typed message names homepage Figma work ("homepage" or
-  "home page" plus "figma") and does not say not to. Framework CS work still needs "build".
-  Proven by `node reference/cs2/test-figma-gate.mjs` (18 cases; the old gate fails the two new
-  pass cases).
+  "home page" plus "figma"). Framework CS work still needs "build". Proven by
+  `node reference/cs2/test-figma-gate.mjs`.
 
 ## Skills
 
 - **figma-use**: always loaded before any `use_figma` call, no need to ask. Figma edits still
   need a task he gave.
-- **top-design**: the award-site skill. Used for the homepage motion and polish.
-- **gsap-scrolltrigger**: for the scroll choreography (hero to superpowers travel, pinned
-  sections). Fits with top-design, which recommends ScrollTrigger for multi-step sequences and
-  Lenis for weighted scroll. Not motion-framer, which is React; the site is plain HTML and JS.
+- **top-design** (the award-site skill) and **gsap-scrolltrigger**: stage 4 motion. Not
+  motion-framer, which is React; the site is plain HTML and JS.
 - **no-ai-slop** for copy outside the case studies. **humanizer** only when he asks to compare.
-- **deep-research**: not needed for anything open now. Use it when a question needs a
-  multi-source web report that the `reports/` folder does not already answer.
+- **deep-research**: only for a question the `reports/` folder does not already answer.
 - **unlazy**: gates on long builds.
 
-Motion is built in code against the real frames, not in Figma. That is where current models
-are strongest: motion written as code (HTML, canvas, SVG, Three.js) and rendered, then edited
-by changing the code.
+## Sessions
 
-## Parallel sessions
+At most two besides the coordinator, and only on rows whose Waits on is done.
 
-At most two at a time besides the coordinator. None edits the master frame.
-
-1. **at-risk-triage**: running.
-2. **Figma hygiene**, next. Unblocked by D5; starts when his message names it: duplicate the
-   master, trace the gray line, clean layers, fix the Mondai mockup, fix F1 and F10.
-3. **Motion lab**, later. Most of the hero motion depends on things that do not exist yet: his
-   hero elements (H5), superpower visuals (H6) and the headline copy (H1). Animating
-   placeholders would be redone. It starts once those land. The only pieces free of them are
-   the nav reveal (H8), grid options (H9) and work card hover (H11); they are small and can
-   wait for the same session.
-
-The framework CS keeps running in its own sessions.
+1. **Figma hygiene** (H17, H18, F1, F10, H12): starts when his message names homepage Figma
+   work. Duplicate the master; never edit it.
+2. **Foundations** (H6t, H11, H14, H21, S0): the cats test, the simple work card states, the about
+   panel proposal and the site setup.
 
 ## Handoff: never lose work to a usage cutoff
 
-No hook can read the usage meter; only a live session can, and a cutoff can land mid step. So
-the protection is small steps, with the meter as an early warning.
-
 1. Every finished step is committed and pushed to GitHub at once, approved or not;
-   unapproved work says so in its commit message and status. This holds for every account,
-   because memory on one Mac does not travel.
+   unapproved work says so in its commit message and status.
 2. At each step boundary the session reads the usage meter. At 85% of the five hour or weekly
    limit it starts nothing new, writes where it is under "In flight", commits and pushes.
 3. State lives in files on `main`, never only in a branch or a chat.
-4. The other account reads `CLAUDE.md`, then this file, then the area file it picks up
-   (`reference/cs2/CS2_PROCESS.md` for the framework CS).
+4. Another account reads `CLAUDE.md`, then this file, then the notes it came from, then the
+   area file it picks up (`reference/cs2/CS2_PROCESS.md` for the framework CS).
 
 ## In flight
 
-Handoff written 15 Oct 2026 when the five hour limit hit 96%. Another account picks up here.
-
-- **Coordinator:** tracker rebuilt from the Figma file, D2, D4 and D5 decided, gate changed and
-  tested. Not started: Figma hygiene (next) and the motion lab (waits on H1, H5, H6; see Parallel sessions). He
-  held them until usage resets. To start the motion lab: build an HTML prototype in `prototypes/`
-  from screenshots of the master `4226:8899` and superpowers `4270:5765` frames (get_screenshot
-  works on his personal Figma connector), covering H1, H8, H9, H11 and a first pass of H7. Use
-  top-design and gsap-scrolltrigger. To start Figma hygiene: his message must name homepage Figma
-  work; then duplicate the master, never edit it, and fix F1, F4, F6 and F10.
-- **at-risk-triage:** both local-only branches (`haven/case-study`, `codex/homepage-responsive`)
-  are pushed. His keep, merge or drop call on each item is still open.
-- **Uncommitted work in the main checkout** (edits to `NEXT.md`, `docs/DECISIONS.md`,
-  `reference/cs2/layout/section-1.md`, plus untracked `reports/`, `research_notes/`,
-  `.claude/launch.json`) belongs to the framework CS and research sessions. It is backed up,
-  unreviewed, on branch `wip/main-checkout-2026-10-15`. `output/` (298 MB, chess portrait and
-  Figma exports) and `.playwright-cli/` are not backed up; they exist only on this Mac.
-- **Framework CS:** state is in `reference/cs2/CS2_PROCESS.md` (status table) and on `main`.
-- **Open for Chadwick:** H1, H3, H4, H10, F2, F3, F5, F9, the triage calls, and whether to back
-  up `output/` (too large for the repo as is).
+- **Coordinator (15 Oct):** tracker rebuilt as an ordered plan from his verbatim notes, after he
+  flagged that the flat list scheduled motion ahead of the hero elements it depends on. Fix
+  record: `fixes/2026-10-15-tracker-ordering.md`. Next: start the stage 1 AI sessions on his
+  word.
+- **at-risk-triage:** both local-only branches are pushed. His keep, merge or drop call on each
+  item is open.
+- **Uncommitted main-checkout work** belongs to the framework CS and research sessions and is
+  backed up, unreviewed, on branch `wip/main-checkout-2026-10-15`. `output/` (298 MB) and
+  `.playwright-cli/` exist only on this Mac.
