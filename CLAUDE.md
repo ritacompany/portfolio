@@ -3,7 +3,8 @@
 Chadwick's own portfolio. Case study writing, the About page, hero and personal brand copy,
 plus the Metalab layout rebuilds in `build/`.
 
-Before doing any work here, read `LEDGER.md`. It is the current state of the build: what is
+Before doing any work here, read `TRACKER.md`: the launch tracker, with every open item, decision and
+what each running session was doing. Then read `LEDGER.md`. It is the current state of the build: what is
 done, what was decided and why, what is still open. The standing rules that apply to every
 turn are in `.claude/portfolio-rules.md` and are injected automatically, so you do not need
 to open that file to follow it.

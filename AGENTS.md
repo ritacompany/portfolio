@@ -7,6 +7,8 @@ between tools.
 
 Then read, in this order:
 
+0. `TRACKER.md` : the launch tracker. Start here for what is open and what is next
+
 1. `docs/PROJECT_CONTEXT.md` : purpose, the Figma source of truth, current work, guardrails
 2. `docs/ABOUT.md` : approved biography. Empty until facts are approved
 3. `docs/VOICE.md` : approved writing guidance. Empty until distilled

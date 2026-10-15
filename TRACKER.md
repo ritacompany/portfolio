@@ -177,9 +177,22 @@ the protection is small steps, with the meter as an early warning.
 
 ## In flight
 
-One line per running session: session, item, where it stopped, next step.
+Handoff written 15 Oct 2026 when the five hour limit hit 96%. Another account picks up here.
 
-- Coordinator (15 Oct): tracker rebuilt after reading the Figma file; blind audit found three holes and one wrong number, all fixed. D5 done. Next: start the motion lab.
-- at-risk-triage (15 Oct): `haven/case-study` and the `7bb1556` WIP are now pushed to GitHub, so
-  nothing in a branch is local only. Waiting on Chadwick for merge, archive or drop per item; the
-  item by item table is in this session's report.
+- **Coordinator:** tracker rebuilt from the Figma file, D2, D4 and D5 decided, gate changed and
+  tested. Not started: the motion lab and Figma hygiene sessions (Parallel sessions above). He
+  held them until usage resets. To start the motion lab: build an HTML prototype in `prototypes/`
+  from screenshots of the master `4226:8899` and superpowers `4270:5765` frames (get_screenshot
+  works on his personal Figma connector), covering H1, H8, H9, H11 and a first pass of H7. Use
+  top-design and gsap-scrolltrigger. To start Figma hygiene: his message must name homepage Figma
+  work; then duplicate the master, never edit it, and fix F1, F4, F6 and F10.
+- **at-risk-triage:** both local-only branches (`haven/case-study`, `codex/homepage-responsive`)
+  are pushed. His keep, merge or drop call on each item is still open.
+- **Uncommitted work in the main checkout** (edits to `NEXT.md`, `docs/DECISIONS.md`,
+  `reference/cs2/layout/section-1.md`, plus untracked `reports/`, `research_notes/`,
+  `.claude/launch.json`) belongs to the framework CS and research sessions. It is backed up,
+  unreviewed, on branch `wip/main-checkout-2026-10-15`. `output/` (298 MB, chess portrait and
+  Figma exports) and `.playwright-cli/` are not backed up; they exist only on this Mac.
+- **Framework CS:** state is in `reference/cs2/CS2_PROCESS.md` (status table) and on `main`.
+- **Open for Chadwick:** H1, H3, H4, H10, F2, F3, F5, F9, the triage calls, and whether to back
+  up `output/` (too large for the repo as is).
