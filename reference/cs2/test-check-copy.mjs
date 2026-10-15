@@ -30,6 +30,10 @@ const planted = [
   ['early term', 'Each Pathway broke into Action Items.', 'before section'],
   ['AI vocabulary', 'This pivotal shift changed the work.', 'AI vocabulary'],
   ['negative parallelism', "It wasn't just a task; it was a daily burden.", 'negative parallelism'],
+  ['unlisted name', 'Jordan wanted the other risk covered.', 'names a person'],
+  ['single quotes', "The lead called it 'not worth shipping' at kickoff.", 'single quotation marks'],
+  ['curly single quotes', 'The lead called it ‘not worth shipping’ at kickoff.', 'single quotation marks'],
+  ['Oxford, longer items', 'It held the full route, the weekly plan, and the calendar view.', 'Oxford comma'],
 ];
 let ok = true;
 for (const [label, line, expect] of planted) {
@@ -38,6 +42,17 @@ for (const [label, line, expect] of planted) {
   const caught = r.status === 1 && r.out.includes(expect);
   ok &&= caught;
   console.log(`${caught ? 'ok  ' : 'MISS'} planted ${label}`);
+}
+// Sentences that must pass: clause commas, apostrophes, first person.
+for (const [label, line] of [
+  ['clause commas', 'When the week ended, nothing carried over, and nothing failed.'],
+  ['apostrophes', "Don't connect a calendar and the week's work is a list."],
+  ['first person', 'I wanted the pressure at the edge of the week.'],
+]) {
+  const r = run(line, 2);
+  const passed = r.status === 0;
+  ok &&= passed;
+  console.log(`${passed ? 'ok  ' : 'FALSE ALARM'} clean ${label}${passed ? '' : '\n' + r.out}`);
 }
 const clean = run('The week is the deadline. Inside it, the user picks the order.\n\nCard: 01 | Ahead | Shown against the week.', 2);
 const cleanOk = clean.status === 0 && clean.out.includes('CS2COPY_PASS');

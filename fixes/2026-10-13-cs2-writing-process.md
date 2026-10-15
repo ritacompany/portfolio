@@ -151,3 +151,31 @@ Handoff, not verified:
   reason and cost, no credit framing) are not built. Failure B's decision table is not built.
 - Section 1 copy is not redone: Draft 3 fails on names, and it also lacks his decisions (Failure B),
   so swapping names alone would not meet his standard. It waits for the decision table.
+
+---
+
+## Added 2026-10-15: gaps found by probing the copy check
+
+Bad output, probed on purpose: "Jordan wanted the other risk covered." passed (only two names listed);
+'not worth shipping' in single quotes passed; "When the week ended, nothing carried over, and nothing
+failed." was flagged as an Oxford comma; and any text could reach Figma, because the copy guard only
+protects the copy files and the Figma gate only checks that he said build.
+
+Fix:
+- `check-copy.mjs`: a capitalized name followed by a credit or speech verb (wanted, asked, said, built and
+  so on) fails, so unlisted names are caught. Single quotation marks fail; apostrophes do not. A leading
+  subordinate clause is set aside before the Oxford comma test. New `--fragments` mode checks loose text
+  with the word rules only.
+- `.claude/hooks/figma-copy-match.mjs` (PreToolUse, Figma writes): a write that names a CS2 frame (a frame
+  id in this process doc or a "Mondai CS" frame name) has every text string checked with the copy rules,
+  and every string of four or more words must appear in a copy file or a layout plan. Layer names and
+  fonts are skipped.
+
+Check first: before the change all four probes got through. After: `test-check-copy.mjs` (13 planted, 4
+clean controls, both real broken drafts fail), `test-figma-copy-match.mjs` (8 cases, including text held
+in a variable and a write found only by frame id) and a run of all 92 pieces of real copy from both copy
+files through the Figma hook with 0 false alarms. Both copy files still pass.
+
+Not verified: the Figma hook firing on a live build. It loads in new sessions; the first CS2 Figma build
+after this commit is the live test. Claims matching sources, reported speech and credit framing without a
+name still need the reviewer step, which is not built.

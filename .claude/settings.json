@@ -86,6 +86,11 @@
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-build-gate.mjs\"",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-copy-match.mjs\"",
+            "timeout": 10
           }
         ]
       }

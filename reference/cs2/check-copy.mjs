@@ -37,7 +37,9 @@ const sectionLine = raw.match(/^Section:\s*(\d+)/m);
 const section = Number.isFinite(sectionArg) ? sectionArg : sectionLine ? Number(sectionLine[1]) : NaN;
 
 const problems = [];
-if (!Number.isFinite(section)) problems.push('line 1: missing "Section: N" header, so product terms cannot be checked');
+// --fragments: loose text pulled from a Figma write. Word rules only; no header, blocks or term order.
+const fragments = args.includes('--fragments');
+if (!fragments && !Number.isFinite(section)) problems.push('line 1: missing "Section: N" header, so product terms cannot be checked');
 
 const text = raw.replace(/<!--[\s\S]*?-->/g, m => m.replace(/[^\n]/g, ' '));
 const lines = text.split('\n');
@@ -45,17 +47,24 @@ lines.forEach((line, i) => {
   const n = i + 1;
   if (/^Section:\s*\d+/.test(line)) return;
   for (const name of NAMES) if (new RegExp(`\\b${name}\\b`).test(line)) problems.push(`line ${n}: colleague name "${name}"`);
+  // Any capitalized word acting as a person who said, wanted or made something: catches names not on the list.
+  const credit = line.match(/\b([A-Z][a-z]+)(?:'s)? (?:said|asked|wanted|suggested|told|proposed|built|wrote|designed|decided|pushed|insisted|argued|came up with|handed)\b/);
+  if (credit && !/^(I|The|This|That|It|They|We|He|She|Nobody|Everyone|Someone|No|One|Each|Every|Mondai|Research)$/.test(credit[1]))
+    problems.push(`line ${n}: "${credit[0]}" names a person as the one who said or made something`);
   if (/["“”]/.test(line)) problems.push(`line ${n}: quotation marks (no quotes from anyone)`);
+  if (/(^|[\s(])['‘][^'‘’\n]{3,}['’](?=[\s.,;:!?)]|$)/.test(line)) problems.push(`line ${n}: single quotation marks (no quotes from anyone)`);
   if (/[—–]|\s--\s|\w\s-\s\w/.test(line)) problems.push(`line ${n}: dash`);
-  if (/\b[\w'-]+(?: [\w'-]+){0,2}, [\w'-]+(?: [\w'-]+){0,2}, (?:and|or) /i.test(line)) problems.push(`line ${n}: Oxford comma`);
+  // A leading subordinate clause ("When the week ended, ...") is not a list item, so it is set aside first.
+  const listPart = line.split(/(?<=[.!?])\s+/).map(s => s.replace(/^\s*(?:When|If|Because|After|Before|While|Although|Though|Since|Once|As|Until|Unless|Whenever)\b[^,]*,\s*/, '')).join(' ');
+  if (/\b[\w'-]+(?: [\w'-]+){0,2}, [\w'-]+(?: [\w'-]+){0,2}, (?:and|or) /i.test(listPart)) problems.push(`line ${n}: Oxford comma`);
   if (/two by two|\b2 ?x ?2\b|\b2 by 2\b|\bmatrix\b|\bquadrant|upper right|sat where|in the corner/i.test(line)) problems.push(`line ${n}: two by two, in words`);
   if (Number.isFinite(section)) for (const [term, from] of TERMS)
     if (section < from && new RegExp(`\\b${term}`, 'i').test(line)) problems.push(`line ${n}: product term "${term}" before section ${from} introduces it`);
   for (const [re, label] of AI_PATTERNS) if (re.test(line)) problems.push(`line ${n}: ${label}`);
 });
 
-const blocks = text.split(/^## /m).slice(1);
-if (!blocks.length) problems.push('no "## " blocks: copy is written as blocks (eyebrow, headline, cards, one short body)');
+const blocks = fragments ? [] : text.split(/^## /m).slice(1);
+if (!fragments && !blocks.length) problems.push('no "## " blocks: copy is written as blocks (eyebrow, headline, cards, one short body)');
 for (const b of blocks) {
   const [title, ...rest] = b.split('\n');
   if (!/^Eyebrow:\s*\S/m.test(b)) problems.push(`block "${title.trim()}": no Eyebrow: line`);
