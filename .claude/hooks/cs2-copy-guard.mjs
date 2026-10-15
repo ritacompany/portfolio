@@ -4,6 +4,8 @@
 // before it lands; a failing write is refused (exit 2) with the reasons.
 // Shell writes into either folder are refused outright so the check cannot be bypassed.
 // reference/cs2/APPROVALS.md is Chadwick's own file: every write to it from Claude is refused.
+// reference/cs2/review/ holds fewer figures verdicts. Only this hook writes them, in review mode, after
+// a sub-agent answers the exact prompt check-figures-review.mjs builds. Claude's writes there are refused.
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -13,6 +15,18 @@ let payload;
 try { payload = JSON.parse(fs.readFileSync(0, 'utf8')); } catch { process.exit(0); }
 const { tool_name: tool, tool_input: input = {} } = payload;
 const root = process.env.CLAUDE_PROJECT_DIR || payload.cwd || process.cwd();
+
+// Review mode, after an Agent call: record the verdict if the sub-agent got the exact review prompt.
+if (process.argv[2] === 'review') {
+  const texts = [];
+  const walk = v => { if (typeof v === 'string') texts.push(v); else if (v && typeof v === 'object') Object.values(v).forEach(walk); };
+  walk(payload.tool_response);
+  const { record } = await import(path.join(root, 'reference/cs2/check-figures-review.mjs'));
+  const res = record(input.prompt || '', texts.join('\n'));
+  if (res?.refused) { console.error(`CS2 review not recorded for section ${res.section}: ${res.refused}.`); process.exit(2); }
+  if (res) console.log(`CS2 review recorded for section ${res.section}: ${res.verdict}.`);
+  process.exit(0);
+}
 const GUARDED = [
   [/reference\/cs2\/copy\/section-\d+\.md$/, 'check-copy.mjs', 'this CS2 copy breaks his copy rules'],
   [/reference\/cs2\/message\/section-\d+\.md$/, 'check-message-plan.mjs', 'this CS2 message plan fails its check'],
@@ -20,12 +34,13 @@ const GUARDED = [
 ];
 
 const APPROVALS = /reference\/cs2\/APPROVALS\.md/;
-const DIRS = ['copy', 'layout', 'message'].map(d => path.join(root, 'reference/cs2', d));
+const DIRS = ['copy', 'layout', 'message', 'review'].map(d => path.join(root, 'reference/cs2', d));
 const snapshot = () => Object.fromEntries(DIRS.flatMap(d => fs.existsSync(d) ? fs.readdirSync(d).map(f => {
   const full = path.join(d, f); return [full, fs.statSync(full).mtimeMs];
 }) : []));
 const snapPath = () => path.join(os.tmpdir(), `cs2guard-${payload.session_id || 'x'}-${payload.tool_use_id || 'x'}.json`);
 const checkFor = full => {
+  if (/reference\/cs2\/review\//.test(full)) return 'review verdicts are written only by the hook, after a sub-agent review';
   const g = GUARDED.find(([re]) => re.test(full));
   if (!g) return 'files here are named section-N.md only';
   const r = spawnSync('node', [path.join(root, 'reference/cs2', g[1]), full, ...(g[1] === 'check-copy.mjs' ? [] : [full])], { encoding: 'utf8' });
@@ -48,7 +63,7 @@ if (tool === 'Bash') {
     console.error('Blocked: APPROVALS.md is Chadwick\'s file. Ask him to add the line himself.');
     process.exit(2);
   }
-  const F = String.raw`reference\/cs2\/(?:copy|layout|message)`;
+  const F = String.raw`reference\/cs2\/(?:copy|layout|message|review)`;
   const writesCopy = new RegExp(String.raw`(?:>>?|\btee\b(?:\s+-a)?)\s*["']?[^\s"';&|]*${F}\/`).test(cmd)
     || new RegExp(String.raw`\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b[^;&|]*${F}\/`).test(cmd)
     || new RegExp(String.raw`\b(?:node|python3?|ruby|perl)\s+-[ec]\b[^;&|]*${F}`).test(cmd)
@@ -70,6 +85,10 @@ if (APPROVALS.test(file) && ['Write', 'Edit', 'MultiEdit', 'NotebookEdit'].inclu
 }
 if (/reference\/cs2\/(?:copy|layout|message)\/(?!section-\d+\.md$)[^/]+$/.test(file)) {
   console.error('Blocked: files in reference/cs2/copy, layout and message are named section-N.md only, so every one is checked.');
+  process.exit(2);
+}
+if (/reference\/cs2\/review\//.test(file)) {
+  console.error('Blocked: review verdicts are written only by the hook. Run the review with a sub-agent instead.');
   process.exit(2);
 }
 const guard = GUARDED.find(([re]) => re.test(file));

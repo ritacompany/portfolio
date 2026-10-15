@@ -18,12 +18,22 @@
     ],
     "PostToolUse": [
       {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/cs2-copy-guard.mjs\" review",
+            "timeout": 30
+          }
+        ]
+      },
+      {
         "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/cs2-copy-guard.mjs\" post",
-            "timeout": 240
+            "timeout": 60
           }
         ]
       },
@@ -65,7 +75,7 @@
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/cs2-copy-guard.mjs\"",
-            "timeout": 240
+            "timeout": 30
           }
         ]
       },

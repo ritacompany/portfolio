@@ -26,6 +26,8 @@ const cases = [
   ['Claude writes his approvals file', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/APPROVALS.md'), content: '- Section 1 block 1: route figure\n' } }, 2],
   ['Claude appends to his approvals file', { tool_name: 'Bash', tool_input: { command: 'echo x >> reference/cs2/' + 'APPROVALS.md' } }, 2],
   ['reading his approvals file', { tool_name: 'Bash', tool_input: { command: 'cat reference/cs2/APPROVALS.md' } }, 0],
+  ['Claude writes a review verdict', { tool_name: 'Write', tool_input: { file_path: path.join(root, 'reference/cs2/review/section-1.json'), content: '{"verdict":"PASS"}' } }, 2],
+  ['Bash into review', { tool_name: 'Bash', tool_input: { command: 'echo x > reference/cs2/' + 'review/section-1.json' } }, 2],
   ['bad Bash into layout', { tool_name: 'Bash', tool_input: { command: 'echo hi > reference/cs2/layout/section-2.md' } }, 2],
 ];
 let ok = true;

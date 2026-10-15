@@ -233,9 +233,10 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    Enforced by the guard hook on every save, not by the session: the message plan's answers must agree
    (nothing missing means no figure, one figure line per figure, each saying what it proves); a slot plan
    needs a passing message plan and matching image slots; a figure of the Pathways as a row or line needs
-   his line `- Section N block M: route figure` in `APPROVALS.md`, a file only he writes; and a separate
-   headless Claude answers, per block, whether fewer figures would prove the claim. If that reviewer cannot
-   run, the save is refused. Step 5 ends with the two files: no visuals and no Figma. A correction goes back
+   his line `- Section N block M: route figure` in `APPROVALS.md`, a file only he writes; and a slot plan
+   needs a PASS from the fewer figures review. To get one, run `check-figures-review.mjs` in prompt mode for
+   the section (its header comment shows how) and give its output word for word to a foreground sub-agent; the hook records the verdict
+   only if the prompt matches exactly, and only the hook can write it. Step 5 ends with the two files: no visuals and no Figma. A correction goes back
    to that block's claim in pass 1.
 
    Imagery is his to choose (corrected 2026-10-08). An image slot says what could go there and stays
