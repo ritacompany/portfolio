@@ -181,4 +181,6 @@ One line per running session: session, item, where it stopped, next step.
 
 - Coordinator (15 Oct): tracker rebuilt after reading the Figma file; blind audit found three holes and one wrong number, all fixed. Next: D5, then start the
   motion lab.
-- at-risk-triage (15 Oct): started. Records its outcomes here.
+- at-risk-triage (15 Oct): `haven/case-study` and the `7bb1556` WIP are now pushed to GitHub, so
+  nothing in a branch is local only. Waiting on Chadwick for merge, archive or drop per item; the
+  item by item table is in this session's report.
