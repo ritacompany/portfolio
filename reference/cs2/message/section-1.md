@@ -3,11 +3,11 @@ Section: 1
 ## Block 1
 
 - Claim: The route existed, but nothing said how a person moves through it.
-- What the reader has to see: the route as a person first met it, with nothing on it saying where to start or what this week holds.
-- Still missing from the copy: the reader gets the route's name and a one line description but has never seen the product, so they cannot picture it and the missing first step is only asserted.
+- What the reader has to see: what a person met right after onboarding, with nothing telling them what to do first.
+- Still missing from the copy: the copy only says there was no first step; the reader has never seen what someone landed on after onboarding.
 - Figure count: 1
-- Figure 1: a real Mondai screen he picks, the Growth Journey as a person first landed on it, a career's Pathway page with its stages and nothing on it naming a first step or a this week. Proves: the route existed and nothing on it said how to move through it.
-- Labels: The route; No first step
+- Figure 1: a real Mondai screen he picks, the screen someone reached right after onboarding, with nothing on it naming a first step. Proves: nothing said how to move through it. If no such screen exists, the block is text only.
+- Labels: No first step
 
 ## Block 2
 
