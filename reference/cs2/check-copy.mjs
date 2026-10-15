@@ -3,9 +3,10 @@
 // Usage: node check-copy.mjs <copy-file> [--section N]
 // A copy file holds page copy only. Its first line is "Section: N". Lines inside <!-- --> are ignored.
 // Copy is written as blocks: each "## " block has an Eyebrow: line, a Headline: line and at most one body
-// paragraph of at most 70 words. Label: and Caption: lines are figure text, not body. A label is one to three
-// words, as on the Haven case study. Longer figure text is a card: "Card: label | title | body", label and title
-// at most three words each, body at most two sentences. The eyebrow names the topic and never repeats the headline.
+// paragraph of at most 70 words. Card: lines are text items set beside the body, not on a figure:
+// "Card: label | title | body", label and title at most three words each, body at most two sentences.
+// Figure text (labels, captions) is not copy: it is written in the message plan once a figure is chosen,
+// so the copy never decides that a block has a figure. The eyebrow names the topic and never repeats the headline.
 // Prints CS2COPY_PASS and exits 0, or lists every violation and exits 1.
 import fs from 'node:fs';
 
@@ -54,7 +55,7 @@ lines.forEach((line, i) => {
 });
 
 const blocks = text.split(/^## /m).slice(1);
-if (!blocks.length) problems.push('no "## " blocks: copy is written as blocks (eyebrow, headline, labels, one short body)');
+if (!blocks.length) problems.push('no "## " blocks: copy is written as blocks (eyebrow, headline, cards, one short body)');
 for (const b of blocks) {
   const [title, ...rest] = b.split('\n');
   if (!/^Eyebrow:\s*\S/m.test(b)) problems.push(`block "${title.trim()}": no Eyebrow: line`);
@@ -62,10 +63,8 @@ for (const b of blocks) {
   const eyebrow = (b.match(/^Eyebrow:\s*(.+)$/m) || [])[1]?.trim().toLowerCase();
   const headline = (b.match(/^Headline:\s*(.+)$/m) || [])[1]?.trim().toLowerCase();
   if (eyebrow && headline && headline.includes(eyebrow)) problems.push(`block "${title.trim()}": eyebrow repeats the headline`);
-  for (const m of b.matchAll(/^Label:\s*(.+)$/gm)) {
-    const w = m[1].trim().replace(/[.]$/, '').split(/\s+/).length;
-    if (w > 3) problems.push(`block "${title.trim()}": label "${m[1].trim().slice(0, 50)}" is ${w} words, max 3 (longer figure text is a Card:)`);
-  }
+  for (const m of b.matchAll(/^(Label|Caption):\s*(.+)$/gm))
+    problems.push(`block "${title.trim()}": ${m[1]}: "${m[2].trim().slice(0, 40)}" is figure text; it goes in the message plan once a figure is chosen (text items are Card: lines)`);
   for (const m of b.matchAll(/^Card:\s*(.+)$/gm)) {
     const parts = m[1].split('|').map(x => x.trim());
     if (parts.length !== 3 || parts.some(x => !x)) { problems.push(`block "${title.trim()}": card needs "label | title | body"`); continue; }
@@ -75,7 +74,7 @@ for (const b of blocks) {
   }
   const paras = rest.join('\n').split(/\n\s*\n/).map(p => p.trim())
     .filter(p => p && !/^(Eyebrow|Headline|Label|Caption|Card):/.test(p));
-  if (paras.length > 1) problems.push(`block "${title.trim()}": ${paras.length} body paragraphs, max 1 (move detail onto the figure as Label: lines)`);
+  if (paras.length > 1) problems.push(`block "${title.trim()}": ${paras.length} body paragraphs, max 1 (move detail into Card: lines)`);
   for (const p of paras) { const w = p.split(/\s+/).length; if (w > 70) problems.push(`block "${title.trim()}": body ${w} words, max 70`); }
 }
 

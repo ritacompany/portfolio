@@ -9,7 +9,7 @@ const here = import.meta.dirname;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'cs2copy-'));
 const run = (body, section = 2, raw = false) => {
   const f = path.join(tmp, `c${Math.random().toString(36).slice(2)}.md`);
-  fs.writeFileSync(f, raw ? `Section: ${section}\n\n${body}\n` : `Section: ${section}\n\n## 1\n\nEyebrow: The week\n\nHeadline: The week is the unit.\n\n${body}\n`);
+  fs.writeFileSync(f, raw ? `Section: ${section}\n\n${body}\n` : `Section: ${section}\n\n## 1\n\nEyebrow: Unit of time\n\nHeadline: The week is the unit.\n\n${body}\n`);
   const r = spawnSync('node', [path.join(here, 'check-copy.mjs'), f], { encoding: 'utf8' });
   return { status: r.status, out: r.stdout };
 };
@@ -39,7 +39,7 @@ for (const [label, line, expect] of planted) {
   ok &&= caught;
   console.log(`${caught ? 'ok  ' : 'MISS'} planted ${label}`);
 }
-const clean = run('The week is the deadline. Inside it, the user picks the order.\n\nLabel: Ahead or behind', 2);
+const clean = run('The week is the deadline. Inside it, the user picks the order.\n\nCard: 01 | Ahead | Shown against the week.', 2);
 const cleanOk = clean.status === 0 && clean.out.includes('CS2COPY_PASS');
 ok &&= cleanOk;
 console.log(`${cleanOk ? 'ok  ' : 'FALSE ALARM'} clean control passes${cleanOk ? '' : '\n' + clean.out}`);
@@ -48,7 +48,8 @@ const shape = [
   ['block with no eyebrow', run('## 1\n\nHeadline: The week is the unit.\n\nThe week is the deadline.', 2, true), 'no Eyebrow: line'],
   ['two body paragraphs', run('The week is the deadline.\n\nInside it, the user picks the order.'), 'body paragraphs, max 1'],
   ['body over 70 words', run(Array(75).fill('word').join(' ')), 'max 70'],
-  ['long label', run('Label: The week is where the work happens.'), 'max 3'],
+  ['label in copy', run('Label: This week'), 'is figure text'],
+  ['caption in copy', run('Caption: Research points the same way.'), 'is figure text'],
   ['card with no title', run('Card: 01 | Locked past this week.'), 'label | title | body'],
   ['eyebrow repeats headline', run('## 1\n\nEyebrow: The closest products\n\nHeadline: The closest products each solved half of it.\n\nOne line.', 1, true), 'eyebrow repeats the headline'],
 ];

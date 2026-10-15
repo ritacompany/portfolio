@@ -7,8 +7,6 @@ Eyebrow: What was already there
 Headline: The route existed, but nothing said how to move through it.
 
 Card: The route | Growth Journey | Five Pathways, stages that run in a fixed order.
-Label: Onboarding quiz
-Label: Calendar connection
 
 Every career in the product came with this route. Around it sat an onboarding quiz, a way to pick a
 career and a plan to connect people's calendars. Each piece had been designed on its own. None of them

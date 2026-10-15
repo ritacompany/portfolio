@@ -3,6 +3,7 @@
 // checked with check-copy.mjs, a write to reference/cs2/layout/section-N.md with check-slot-plan.mjs,
 // before it lands; a failing write is refused (exit 2) with the reasons.
 // Shell writes into either folder are refused outright so the check cannot be bypassed.
+// reference/cs2/APPROVALS.md is Chadwick's own file: every write to it from Claude is refused.
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -18,10 +19,43 @@ const GUARDED = [
   [/reference\/cs2\/layout\/section-\d+\.md$/, 'check-slot-plan.mjs', 'this CS2 slot plan fails its check'],
 ];
 
+const APPROVALS = /reference\/cs2\/APPROVALS\.md/;
+const DIRS = ['copy', 'layout', 'message'].map(d => path.join(root, 'reference/cs2', d));
+const snapshot = () => Object.fromEntries(DIRS.flatMap(d => fs.existsSync(d) ? fs.readdirSync(d).map(f => {
+  const full = path.join(d, f); return [full, fs.statSync(full).mtimeMs];
+}) : []));
+const snapPath = () => path.join(os.tmpdir(), `cs2guard-${payload.session_id || 'x'}-${payload.tool_use_id || 'x'}.json`);
+const checkFor = full => {
+  const g = GUARDED.find(([re]) => re.test(full));
+  if (!g) return 'files here are named section-N.md only';
+  const r = spawnSync('node', [path.join(root, 'reference/cs2', g[1]), full, ...(g[1] === 'check-copy.mjs' ? [] : [full])], { encoding: 'utf8' });
+  return r.status === 0 ? null : (r.stdout || r.stderr).trim();
+};
+
+// Post mode, after a Bash command: any guarded file it created or changed must pass its check.
+if (process.argv[2] === 'post') {
+  if (tool !== 'Bash' || !fs.existsSync(snapPath())) process.exit(0);
+  const before = JSON.parse(fs.readFileSync(snapPath(), 'utf8'));
+  fs.rmSync(snapPath(), { force: true });
+  const bad = Object.entries(snapshot()).filter(([f, m]) => before[f] !== m).map(f => [f[0], checkFor(f[0])]).filter(([, e]) => e);
+  if (!bad.length) process.exit(0);
+  console.error(`Blocked after the fact: a shell command changed CS2 files that now fail their check. Restore them with git checkout or fix them with Edit.\n${bad.map(([f, e]) => `${path.relative(root, f)}: ${e}`).join('\n')}`);
+  process.exit(2);
+}
 if (tool === 'Bash') {
   const cmd = input.command || '';
-  const writesCopy = /(?:>>?|\btee\b(?:\s+-a)?)\s*["']?[^\s"';&|]*reference\/cs2\/(?:copy|layout|message)\//.test(cmd)
-    || /\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b[^;&|]*reference\/cs2\/(?:copy|layout|message)\//.test(cmd);
+  if (/(?:>>?|\btee\b|\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b)[^;&|]*reference\/cs2\/APPROVALS\.md/.test(cmd)) {
+    console.error('Blocked: APPROVALS.md is Chadwick\'s file. Ask him to add the line himself.');
+    process.exit(2);
+  }
+  const F = String.raw`reference\/cs2\/(?:copy|layout|message)`;
+  const writesCopy = new RegExp(String.raw`(?:>>?|\btee\b(?:\s+-a)?)\s*["']?[^\s"';&|]*${F}\/`).test(cmd)
+    || new RegExp(String.raw`\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b[^;&|]*${F}\/`).test(cmd)
+    || new RegExp(String.raw`\b(?:node|python3?|ruby|perl)\s+-[ec]\b[^;&|]*${F}`).test(cmd)
+    || new RegExp(String.raw`\bcd\s+["']?[^\s;&|]*${F}`).test(cmd);
+  // Anything the patterns miss (a script file, a cd one level up) is caught after the command runs:
+  // snapshot the guarded files now, and the post hook checks whatever changed.
+  fs.writeFileSync(snapPath(), JSON.stringify(snapshot()));
   if (writesCopy) {
     console.error('Blocked: CS2 copy and slot plan files are written with Write or Edit only, so their check runs on every change.');
     process.exit(2);
@@ -30,6 +64,14 @@ if (tool === 'Bash') {
 }
 
 const file = input.file_path || '';
+if (APPROVALS.test(file) && ['Write', 'Edit', 'MultiEdit', 'NotebookEdit'].includes(tool)) {
+  console.error('Blocked: APPROVALS.md is Chadwick\'s file. Ask him to add the line himself.');
+  process.exit(2);
+}
+if (/reference\/cs2\/(?:copy|layout|message)\/(?!section-\d+\.md$)[^/]+$/.test(file)) {
+  console.error('Blocked: files in reference/cs2/copy, layout and message are named section-N.md only, so every one is checked.');
+  process.exit(2);
+}
 const guard = GUARDED.find(([re]) => re.test(file));
 if (!guard) process.exit(0);
 
@@ -45,7 +87,7 @@ else if (tool === 'Edit') {
 
 const tmp = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'cs2guard-')), path.basename(file));
 fs.writeFileSync(tmp, next);
-const r = spawnSync('node', [path.join(root, 'reference/cs2', guard[1]), tmp, ...(guard[1] === 'check-slot-plan.mjs' ? [file] : [])], { encoding: 'utf8' });
+const r = spawnSync('node', [path.join(root, 'reference/cs2', guard[1]), tmp, ...(guard[1] === 'check-copy.mjs' ? [] : [file])], { encoding: 'utf8' });
 fs.rmSync(path.dirname(tmp), { recursive: true, force: true });
 if (r.status === 0) process.exit(0);
 console.error(`Blocked: ${guard[2]}. Rewrite these lines, then save again.\n${(r.stdout || r.stderr).replace(tmp, file)}`);

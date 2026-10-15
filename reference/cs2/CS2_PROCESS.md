@@ -57,8 +57,8 @@ Layout pieces are the families in `Case study layouts` (Portfolio Design file, p
 3461:5685), decoded by name and slot in `LEDGER.md`, for example TextAnd1Image layout 1. Step 5 plans with
 them by name and slot only. Whatever sits in their slots now (images, diagrams, text) is scaffold and
 never carries into CS2. Neither does anything from another case study's content or signature forms.
-How a block is composed follows the Haven case study: eyebrow, claim headline, one figure, one short
-body. The HTML in `build/` is not a layout source. Where and how sections get built is step 8.
+How a block is composed follows the Haven case study: eyebrow, claim headline, a figure only when
+step 5 finds the claim needs one, one short body. The HTML in `build/` is not a layout source. Where and how sections get built is step 8.
 
 ## Timeline and framing
 
@@ -194,9 +194,10 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    they go on the open list until he confirms or cuts them. If he asks for a draft before the talk is
    finished, draft and list what the talk has not covered yet. Page copy goes in `copy/section-N.md`
    (first line `Section: N`), written as blocks: each `## ` block holds an `Eyebrow:` line, a
-   `Headline:` line that states the claim, `Label:` lines of one to three words and `Card:` lines
-   (label | title | one or two sentences) for text on the figure, and one body paragraph of at most 70
-   words. The eyebrow names the topic and never repeats the headline. Notes and sources stay in the draft file. A hook refuses any copy save
+   `Headline:` line that states the claim, optional `Card:` lines (label | title | one or two sentences)
+   that are text items set beside the body, and one body paragraph of at most 70 words. No figure text:
+   labels and captions are written in step 5, only once a figure is chosen, so the copy never decides
+   that a block has a figure. The eyebrow names the topic and never repeats the headline. Notes and sources stay in the draft file. A hook refuses any copy save
    that breaks the copy rules or the block shape, and Figma takes its text from the copy file only.
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
@@ -207,32 +208,35 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    layout are reviewed together. One block in the copy file is one beat. Forms and references are in
    `reports/Visual storytelling per beat.md`.
 
-   Pass 1 writes `message/section-N.md`: first line `Section: N`, then a `## ` block per copy block with
-   these lines, and no layout piece named anywhere:
+   Pass 1 writes `message/section-N.md`: first line `Section: N`, then a `## ` block per copy block, with
+   no layout piece named anywhere:
    - `- Claim:` the headline as a claim. Read in order, the claims tell the section on their own.
    - `- What the reader has to see:` to believe it, in one sentence.
-   - `- Already shown by the copy:` yes or no. Read the headline, body and Label lines as plain text. If
-     they already make the reader see it, the block is text only and the labels stay as text.
-   - If not: the one thing to show and where it comes from, a real Mondai screen he picks or a new
-     figure described in words. A real screen with one annotation beats a new diagram. A second figure
-     only if a named part of the claim is left unproven by both the first figure and the copy.
-   - `- Figure count:` with the reason for each figure.
+   - `- Still missing from the copy:` read the eyebrow, headline, cards and body as plain text and name
+     what the reader still cannot see or believe. If nothing can be named, write `nothing` and the block
+     is text only.
+   - `- Figure count:` 0 when nothing is missing, otherwise 1, or 2 when the first figure and the copy
+     together still leave a named part unproven.
+   - `- Figure N:` one line per figure: what it shows, where it comes from (a real Mondai screen he picks,
+     or a new figure in words) and `Proves:` which part of the claim. A real screen beats a new diagram.
+   - `- Labels:` the words that sit on the figure, only when there is one.
 
    Pass 2 writes `layout/section-N.md` from the message plan and the `LEDGER.md` decoder: first line
-   `Section: N`, then one table `| Layout piece | Slot | What goes in it | Why |`, a row per slot. Each
-   block's layout piece has exactly as many media slots as its figure count, and each media row's Why
-   names the part of the claim it proves. Body text never runs wider than 7 of 12 columns.
+   `Section: N`, then one table `| Layout piece | Slot | What goes in it | Why |`, a row per slot, each
+   "What goes in it" starting `Block N`. A block's image slots equal its figure count.
 
-   The guard hook checks both files on every save: a slot plan is refused without a passing message plan,
-   and either is refused if it draws the five Pathways as a row or line. A route figure needs his yes for a
-   claim about their order. Whether each figure is needed is a judgment a separate reviewer answers before
-   he sees it: could the claim be proven with fewer figures?
+   Fewest figures wins over variety. Two text only blocks in a row are set apart by layout piece or width,
+   never by adding a figure. No form another case study leans on (Haven has the two by two). Draw the
+   difference, not both whole states. Label every arrow or leave it out. A single number is a stat.
+   Nothing the reader needs lives in a hover, a later carousel slide or an animation.
 
-   No form another case study leans on (Haven has the two by two). Draw the difference, not both whole
-   states. Label every arrow or leave it out. A single number is a stat. Nothing the reader needs lives in
-   a hover, a later carousel slide or an animation. Neighbouring figures change one thing, and two text
-   only blocks of the same width never sit back to back. Step 5 ends with the two files: no visuals and no
-   Figma. A correction goes back to that block's claim in pass 1.
+   Enforced by the guard hook on every save, not by the session: the message plan's answers must agree
+   (nothing missing means no figure, one figure line per figure, each saying what it proves); a slot plan
+   needs a passing message plan and matching image slots; a figure of the Pathways as a row or line needs
+   his line `- Section N block M: route figure` in `APPROVALS.md`, a file only he writes; and a separate
+   headless Claude answers, per block, whether fewer figures would prove the claim. If that reviewer cannot
+   run, the save is refused. Step 5 ends with the two files: no visuals and no Figma. A correction goes back
+   to that block's claim in pass 1.
 
    Imagery is his to choose (corrected 2026-10-08). An image slot says what could go there and stays
    unfilled until he picks. Real screens are read from the Mondai Figma, never redrawn from memory.
@@ -257,7 +261,8 @@ saying where the conversation stopped.
    existing frames in reading order, named `Mondai CS · Section N · <name>`. Section 2 is 4228:6731
    at x 2089, y 11819 with section 1 (4228:6859) to its right; section 3 goes below section 2. Text
    comes from the copy file and slots from the approved slot plan. Each layout piece is set up empty on
-   the portfolio grid (12 columns, 40 margins and gutters); nothing in a template's slots carries over.
+   the portfolio grid (12 columns, 40 margins and gutters), body text no wider than 7 columns; nothing in a
+   template's slots carries over.
 
 ## Order
 
