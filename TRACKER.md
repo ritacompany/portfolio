@@ -152,12 +152,13 @@ by changing the code.
 At most two at a time besides the coordinator. None edits the master frame.
 
 1. **at-risk-triage**: running.
-2. **Motion lab**, next: an HTML prototype from the real frames of the hero marquee (H1), nav
-   reveal (H8), grid options (H9), work card hover (H11) and a first pass of the hero to
-   superpowers travel (H7). He reacts to real motion instead of describing it. Needs no Figma
-   writes, so B1 does not block it.
-3. **Figma hygiene**, unblocked by D5; starts when his message names it: duplicate the master, trace the gray line, clean layers, fix
-   the Mondai mockup, fix F1 and F10.
+2. **Figma hygiene**, next. Unblocked by D5; starts when his message names it: duplicate the
+   master, trace the gray line, clean layers, fix the Mondai mockup, fix F1 and F10.
+3. **Motion lab**, later. Most of the hero motion depends on things that do not exist yet: his
+   hero elements (H5), superpower visuals (H6) and the headline copy (H1). Animating
+   placeholders would be redone. It starts once those land. The only pieces free of them are
+   the nav reveal (H8), grid options (H9) and work card hover (H11); they are small and can
+   wait for the same session.
 
 The framework CS keeps running in its own sessions.
 
@@ -180,7 +181,7 @@ the protection is small steps, with the meter as an early warning.
 Handoff written 15 Oct 2026 when the five hour limit hit 96%. Another account picks up here.
 
 - **Coordinator:** tracker rebuilt from the Figma file, D2, D4 and D5 decided, gate changed and
-  tested. Not started: the motion lab and Figma hygiene sessions (Parallel sessions above). He
+  tested. Not started: Figma hygiene (next) and the motion lab (waits on H1, H5, H6; see Parallel sessions). He
   held them until usage resets. To start the motion lab: build an HTML prototype in `prototypes/`
   from screenshots of the master `4226:8899` and superpowers `4270:5765` frames (get_screenshot
   works on his personal Figma connector), covering H1, H8, H9, H11 and a first pass of H7. Use
