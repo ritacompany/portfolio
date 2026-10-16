@@ -3,7 +3,7 @@ Section: 1
 ## Block 1
 
 - Claim: The route existed, but nothing said how a person moves through it.
-- What the reader has to see: the pieces that existed, and that none of them said what someone does week to week.
+- What the reader has to see: the pieces that existed, and that none of them said what someone works on each week or how the weeks add up to the whole journey.
 - Still missing from the copy: nothing. The card names the route and the body names the pieces and the gap. No screen of the gap exists, and the framework is about the week, not a landing screen.
 - Figure count: 0
 

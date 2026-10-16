@@ -241,8 +241,13 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 
    Imagery is his to choose (corrected 2026-10-08). An image slot says what could go there and stays
    unfilled until he picks. Real screens are read from the Mondai Figma, never redrawn from memory.
-6. **Review.** Chadwick reads the copy and the slot plan together. Small wording fixes he asks for are made in
-   place. Changes to what the section says go back to step 2 or 3.
+6. **Review pack.** One per section, sent once, his decision 16 Oct: the copy, a before and after
+   wireframe shown in the chat (never Figma) and one list of every call Claude made, each with its pick
+   and reason. He replies once and flags only what he disagrees with; a line he leaves stands. Claude
+   decides wording trims, layout picks and anything inside a direction he has set, and lists them instead
+   of asking. At most one question per pack, and only for what he alone holds: what existed, taste, what
+   he is comfortable claiming. Small fixes are made in place; changes to what the section says go back to
+   step 2 or 3.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
    at the top. On approval, the status table is updated and the change is committed and pushed to
    GitHub in the same step. Nothing approved lives only on one machine.
