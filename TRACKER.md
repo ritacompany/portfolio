@@ -115,6 +115,18 @@ The leadership CS is after launch (C4).
   click away. Hiring research (`reports/What gets designers interviewed.md`: 10 to 30 second
   scans, 81% of viewing in the first three screens) points to keeping that step short, which
   is H15a.
+- **D6 The superpowers section ships at launch, under the hero. Recommended 16 Oct.** The case
+  studies are the long pole: the framework CS has 5 of 10 sections not started and the design
+  system CS is only gathering sources. The homepage path with superpowers (stages 1 to 6) is
+  shorter than that, so including it does not move the launch date. Fallback, at no cost: if
+  the homepage ever becomes the thing launch waits on, ship the master as it is today, with the
+  superpowers as a row in the About section, and add the section after launch.
+- **D7 Which line goes where (H1), his call.** With the superpowers section under the hero, the
+  "convinced that people would be happier" line can only lead one of them. Recommended: the hero
+  keeps "I'm not really that cool," as the marquee, and the superpowers section opens with the
+  "convinced" line, as the superpowers frame already does. A sentence that long cannot be read in
+  a moving marquee, which is why his note already needed a hover-settle fix for it; the short
+  line can. His note 1 proposed the opposite, which is why it is his call.
 - **D4 Two working sessions at once, plus the coordinator.** Recheck the pace after the weekly
   limit resets on 19 Oct.
 - **D5 Homepage Figma tasks pass the build gate. Decided by Chadwick, 15 Oct.** The gate lets a
