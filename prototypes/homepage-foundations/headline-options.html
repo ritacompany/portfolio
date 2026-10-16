@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Headline options</title>
+<style>
+  /* H1 options. Provisional, awaiting Chadwick's pick. Values from Figma IarvWaqjIwrZ2afQmMxKm6:
+     hero 4308:6177 in the cleanup copy 4308:6176 (Display/212, tracking -5.5px, top bar labels) and the
+     superpowers headline 4250:12064 in 4270:5765 (60.283px, indent 120.565px, left 8.33% + 35px). */
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root { --black: #000; --white: #fff; --n300: #d2d2db; --n500: #aeaeb4; --line: #28282b; --grid: #1a1a1d;
+          --expo-out: cubic-bezier(0.16, 1, 0.3, 1); }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+
+  .intro { max-width: 1360px; margin: 0 auto; padding: 48px 40px 32px; display: grid; grid-template-columns: 1fr 545px; gap: 40px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  .intro h1 { font-size: 20px; line-height: 1.32; margin-top: 12px; }
+  .intro p, .intro li { font-size: 16px; line-height: 1.4; color: var(--n300); }
+  .intro ul { padding-left: 18px; } .intro li + li { margin-top: 8px; } .intro b { color: var(--white); }
+  @media (max-width: 900px) { .intro { grid-template-columns: 1fr; padding: 32px 16px; } }
+
+  .option { border-top: 0.5px solid var(--line); }
+  .bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 20px 40px; }
+  .bar .eyebrow b { color: var(--white); }
+  .toggle { display: flex; gap: 6px; }
+  .toggle button { font: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--white);
+                   background: none; border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; cursor: pointer; }
+  .toggle button[aria-pressed="true"] { background: var(--white); color: #040405; border-color: var(--white); }
+  button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+  /* ---------- Hero stage ---------- */
+  .hero { position: relative; height: min(812px, 92vh); min-height: 560px; overflow: hidden; cursor: default;
+          background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+          background-size: 120px 120px; background-position: -1px -1px; }
+  .topbar { position: absolute; top: 25px; left: 159px; right: 159px; display: flex; justify-content: space-between;
+            font-size: 12px; font-weight: 400; letter-spacing: 0.24px; text-transform: uppercase; }
+  @media (max-width: 900px) { .topbar { left: 16px; right: 16px; font-size: 10px; } .topbar span:nth-child(2) { display: none; } }
+
+  /* The band the marquee lives in. The hover target is the band, not the whole hero, so elements stay clickable later. */
+  .band { position: absolute; left: 0; right: 0; top: 30.9%; height: 212px; }
+  .track { position: absolute; top: 0; left: 0; display: flex; white-space: nowrap; will-change: transform;
+           font-size: 212px; line-height: 1; letter-spacing: -5.5px; transition: opacity 500ms var(--expo-out), filter 500ms var(--expo-out); }
+  .track span { padding-right: 0.32em; }
+
+  .settled { position: absolute; inset: 0; display: flex; align-items: center; pointer-events: none; }
+  .settled p { font-size: 60.283px; line-height: 1.1; letter-spacing: -1.2057px; }
+  .settled .ln { display: block; overflow: hidden; }
+  .settled .ln > span { display: block; transform: translateY(105%); transition: transform 700ms var(--expo-out); }
+  .center .settled { justify-content: center; text-align: center; }
+  .center .settled p { width: min(960px, 90vw); }
+  .left .settled p { margin-left: calc(8.33% + 35px); width: min(960px, 84vw); }
+  .left .settled .ln:first-child > span { padding-left: 120.565px; }
+  /* Option A, the short line, settles at its own size: it already fits on one screen */
+  .short .settled p { font-size: 132px; letter-spacing: -3.4px; line-height: 1; }
+  .short.left .settled .ln:first-child > span { padding-left: 0; }
+
+  .is-settled .track { opacity: 0; filter: blur(6px); }
+  .is-settled .settled .ln > span { transform: none; }
+  .is-settled .settled .ln:nth-child(2) > span { transition-delay: 60ms; }
+  .is-settled .settled .ln:nth-child(3) > span { transition-delay: 120ms; }
+  .is-settled .settled .ln:nth-child(4) > span { transition-delay: 180ms; }
+
+  .hint { position: absolute; left: 40px; bottom: 28px; font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  @media (max-width: 900px) {
+    .band { height: 120px; } .track { font-size: 120px; letter-spacing: -3px; }
+    .settled p, .short .settled p { font-size: 34px; letter-spacing: -0.7px; }
+    .left .settled p { margin-left: 16px; } .left .settled .ln:first-child > span { padding-left: 48px; }
+    .hint { left: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .track, .settled .ln > span { transition: opacity 200ms linear; transform: none; } .settled { opacity: 0; } .is-settled .settled { opacity: 1; } }
+</style>
+</head>
+<body>
+<section class="intro">
+  <div>
+    <p class="eyebrow">H1 · options for your pick · provisional</p>
+    <h1>Hero headline: two lines, two ways to settle</h1>
+  </div>
+  <div>
+    <p>Both lines run as the hero marquee at the 212px display size from the master. Hover the band (or tap it on a phone, or focus it with Tab) and the marquee slows to a stop, then settles into a readable block. Use the toggle on each to switch between centered and left at the superpower indent.</p>
+    <ul style="margin-top:16px">
+      <li><b>A, "I'm not really that cool,"</b> is short enough to read while it moves, so settling is a bonus, not a rescue.</li>
+      <li><b>B, the superpowers line,</b> cannot be read at 212px in motion; nobody holds still for 17 words. Settling is what makes it legible, which is why your hover idea matters more for this one.</li>
+      <li><b>My recommendation: A in the hero, B stays as the superpowers headline right under it, settling left at the indent.</b> B in the hero makes the reader do work in the first two seconds, then repeats in the next section. A buys attention with personality and hands off to B, which says who you are. If you put B in the hero, the superpowers section needs a different headline.</li>
+    </ul>
+    <p style="margin-top:16px">Copy is exactly as in the frames. Nothing new written about you.</p>
+  </div>
+</section>
+
+<section class="option" data-option="a">
+  <div class="bar">
+    <p class="eyebrow"><b>A</b> · the current line, from the hero in 4308:6176</p>
+    <div class="toggle" role="group" aria-label="Settle position for option A">
+      <button type="button" data-mode="center" aria-pressed="true">Settle centered</button>
+      <button type="button" data-mode="left" aria-pressed="false">Settle left at indent</button>
+    </div>
+  </div>
+  <div class="hero short center">
+    <div class="topbar"><span>[ Product Designer ]</span><span>[ chadwickfenner.com ]</span><span>[ Seeking roles in NYC ]</span></div>
+    <div class="band" tabindex="0" aria-label="I’m not really that cool,">
+      <div class="track" aria-hidden="true"></div>
+      <div class="settled" aria-hidden="true"><p><span class="ln"><span>I’m not really</span></span><span class="ln"><span>that cool,</span></span></p></div>
+    </div>
+    <p class="hint">Hover the line</p>
+  </div>
+</section>
+
+<section class="option" data-option="b">
+  <div class="bar">
+    <p class="eyebrow"><b>B</b> · the superpowers line, from 4250:12064 in 4270:5765</p>
+    <div class="toggle" role="group" aria-label="Settle position for option B">
+      <button type="button" data-mode="center" aria-pressed="false">Settle centered</button>
+      <button type="button" data-mode="left" aria-pressed="true">Settle left at indent</button>
+    </div>
+  </div>
+  <div class="hero left">
+    <div class="topbar"><span>[ Product Designer ]</span><span>[ chadwickfenner.com ]</span><span>[ Seeking roles in NYC ]</span></div>
+    <div class="band" tabindex="0" aria-label="I’m convinced that people would be happier if we encouraged one another to discover our superpowers">
+      <div class="track" aria-hidden="true"></div>
+      <div class="settled" aria-hidden="true"><p><span class="ln"><span>I’m convinced that people</span></span><span class="ln"><span>would be happier if we encouraged</span></span><span class="ln"><span>one another to discover our</span></span><span class="ln"><span>superpowers</span></span></p></div>
+    </div>
+    <p class="hint">Hover the line</p>
+  </div>
+</section>
+
+<script>
+const TEXT = {
+  a: 'I’m not really that cool,',
+  b: 'I’m convinced that people would be happier if we encouraged one another to discover our superpowers'
+};
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+document.querySelectorAll('.option').forEach(opt => {
+  const key = opt.dataset.option, hero = opt.querySelector('.hero'), band = opt.querySelector('.band'), track = opt.querySelector('.track');
+  for (let i = 0; i < 4; i++) { const s = document.createElement('span'); s.textContent = TEXT[key]; track.appendChild(s); }
+
+  // Marquee: constant drift, eased to a stop on hover, eased back on leave.
+  const BASE = key === 'a' ? 90 : 140;           // px per second; B is longer so it moves faster to stay alive
+  let x = 0, v = reduce ? 0 : BASE, target = v, last = performance.now(), settleTimer;
+  function tick(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    v += (target - v) * Math.min(1, dt * 4);       // about 600ms to stop
+    const loop = track.children[0].offsetWidth;
+    x = (x - v * dt) % loop;
+    track.style.transform = `translate3d(${x}px,0,0)`;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  const settle = () => { target = 0; clearTimeout(settleTimer); settleTimer = setTimeout(() => hero.classList.add('is-settled'), reduce ? 0 : 280); };
+  const release = () => { clearTimeout(settleTimer); hero.classList.remove('is-settled'); target = reduce ? 0 : BASE; };
+  band.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') settle(); });
+  band.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') release(); });
+  band.addEventListener('click', () => hero.classList.contains('is-settled') ? release() : settle());   // touch
+  band.addEventListener('focus', settle); band.addEventListener('blur', release);
+
+  opt.querySelectorAll('.toggle button').forEach(b => b.addEventListener('click', () => {
+    opt.querySelectorAll('.toggle button').forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+    hero.classList.toggle('center', b.dataset.mode === 'center');
+    hero.classList.toggle('left', b.dataset.mode === 'left');
+  }));
+});
+</script>
+</body>
+</html>
