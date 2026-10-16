@@ -153,6 +153,7 @@ At most two besides the coordinator, and only on rows whose Waits on is done.
 
 ## In flight
 
+- **Foundations (16 Oct):** H6t, H11, H14, H21 and S0 are done and pushed, all awaiting his review. Prototypes in `prototypes/homepage-foundations/` (open with any static server, for example `python3 -m http.server --directory prototypes`). Nothing touched Figma or the deploy.
 - **Coordinator (15 Oct):** tracker rebuilt as an ordered plan from his verbatim notes, after he
   flagged that the flat list scheduled motion ahead of the hero elements it depends on. Fix
   record: `fixes/2026-10-15-tracker-ordering.md`. Next: start the stage 1 AI sessions on his
