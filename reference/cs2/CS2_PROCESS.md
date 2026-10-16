@@ -262,13 +262,15 @@ A section is done when its copy, layout and visuals are all approved. No second 
 Also commit and push at the end of every working session, even mid section, with the status table
 saying where the conversation stopped.
 
-8. **Build.** Only when he says to build a section; a hook refuses Figma writes until his latest message does. Each section is its own frame in the Portfolio
-   Design file, VC page, `Mondai case studies` (3461:5391), `Workstation` (4105:7096), below the
-   existing frames in reading order, named `Mondai CS · Section N · <name>`. Section 2 is 4228:6731
-   at x 2089, y 11819 with section 1 (4228:6859) to its right; section 3 goes below section 2. Text
-   comes from the copy file and slots from the approved slot plan. Each layout piece is set up empty on
-   the portfolio grid (12 columns, 40 margins and gutters), body text no wider than 7 columns; nothing in a
-   template's slots carries over.
+8. **Build.** Only when he says to build a section; a hook refuses Figma writes until his latest message does. Changed 16 Oct,
+   his call: sections are built straight into `WIP Mondai framework case study` (4269:9433) in the Portfolio
+   Design file, under its Background block and in reading order, one after another. The old Workstation
+   frames (section 1 4228:6859, section 2 4228:6731) are superseded. Format and styling follow the Haven
+   case study (3300:12596), the finished one; the leadership case study is out of date and is not a
+   reference. Haven gives the block grammar and type, never its content or signature forms. The Background
+   block's job is the person and their situation; its final words are written with the intro (section 9),
+   and it never states the problem or the thesis, which section 1 opens with. Text comes from the copy
+   file and slots from the approved slot plan, body text no wider than 7 columns.
 
 ## Order
 
