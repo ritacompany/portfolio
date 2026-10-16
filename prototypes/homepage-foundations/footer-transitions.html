@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Footer transitions</title>
+<style>
+  /* H16 options and H16a motion. Provisional, awaiting Chadwick's pick. From Figma IarvWaqjIwrZ2afQmMxKm6:
+     master footer 4294:36562 (transition slot 4226:9850 is 1440 by 291, empty), footer studies in Exploration 3461:5702:
+     A = stripe reference 3744:3426, B = his bar study 3744:3304 (4px bars, 22.63px pitch, 134px tall). */
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root { --black: #000; --surface: #040405; --white: #fff; --n300: #d2d2db; --n500: #aeaeb4; --line: #28282b; --rule: #23232d; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+
+  .intro { max-width: 1360px; margin: 0 auto; padding: 48px 40px 32px; display: grid; grid-template-columns: 1fr 545px; gap: 40px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  .intro h1 { font-size: 20px; line-height: 1.32; margin-top: 12px; }
+  .intro p, .intro li { font-size: 16px; line-height: 1.4; color: var(--n300); }
+  .intro ul { padding-left: 18px; margin-top: 16px; } .intro li + li { margin-top: 8px; } .intro b { color: var(--white); }
+  @media (max-width: 900px) { .intro { grid-template-columns: 1fr; padding: 32px 16px; } }
+
+  .tail { max-width: 1360px; margin: 0 auto; height: 70vh; border-top: 0.5px solid var(--rule); padding: 36px 0; display: grid; grid-template-columns: 1fr 545px; }
+  .tail .eyebrow b { color: var(--white); }
+  .tail p:last-child { font-size: 16px; line-height: 1.32; color: var(--n300); }
+  @media (max-width: 900px) { .tail { grid-template-columns: 1fr; padding: 36px 16px; gap: 16px; } }
+
+  /* The transition zone. Scroll position inside it drives the animation (scrubbed, not timed),
+     so the reader controls the speed and scrolling back reverses it. Sticky so 291px of art plays over 100vh of scroll. */
+  .zone { position: relative; height: 140vh; }
+  .zone .pin { position: sticky; top: calc(50vh - 145px); height: 291px; overflow: hidden; }
+  canvas { display: block; width: 100%; height: 100%; }
+
+  /* ---------- Footer, as in the frame ---------- */
+  .footer { position: relative; height: 595px; max-width: 1440px; margin: 0 auto; }
+  .connect { position: absolute; left: 50%; top: 90px; transform: translateX(-50%); width: 433px; height: 137px; border: 1px solid var(--white); border-radius: 50%;
+             display: grid; place-items: center; font-size: 29px; font-weight: 400; letter-spacing: 0.5px; color: var(--white); text-decoration: none; }
+  .talk { position: absolute; left: 0; right: 0; top: 294px; text-align: center; font-size: 104px; line-height: 1; letter-spacing: -4px; }
+  .row { position: absolute; left: 40px; right: 40px; bottom: 24px; display: flex; justify-content: space-between; align-items: flex-end;
+         font-size: 10px; font-weight: 400; letter-spacing: 0.6px; text-transform: uppercase; }
+  .row .r { text-align: right; line-height: 2; }
+  @media (max-width: 900px) { .connect { width: 300px; height: 96px; font-size: 22px; } .talk { font-size: 52px; letter-spacing: -2px; top: 260px; }
+                              .row { left: 16px; right: 16px; flex-wrap: wrap; gap: 12px; } }
+</style>
+</head>
+<body>
+<section class="intro">
+  <div>
+    <p class="eyebrow">H16 and H16a · options for your pick · provisional</p>
+    <h1>Footer transition: watch each one, then pick</h1>
+  </div>
+  <div>
+    <p>The master has an empty 291px slot between About and the footer. Your footer studies hold two black and white candidates. Each is built below at that size and driven by scroll, so scroll slowly through each one and back up to see it reverse.</p>
+    <ul>
+      <li><b>A, stripes.</b> From the striped footer reference in your studies. Horizontal lines start as hairlines and thicken down the slot until black turns to white, then the footer arrives on black again. It reads as a curtain closing on the page.</li>
+      <li><b>B, bars.</b> Your own study: two rows of thin vertical bars. They grow up from nothing in a wave left to right, the top row first, then the shorter row, like a barcode being printed. It reads as a signature at the end of the page.</li>
+      <li><b>My recommendation: B.</b> It is yours, drawn in your frame, and its thin vertical rhythm echoes the hero grid, so the page opens and closes on the same line work. A is the better known pattern and has the stronger black to white moment, but it is closer to the reference it came from. What would change it: if you want the footer to feel like a hard scene change rather than a sign off, A does that better.</li>
+      <li>Email in the footer row is left out until F2 is answered.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="tail"><p class="eyebrow"><b>A</b> · stripes · end of About</p><p>Scroll down slowly.</p></section>
+<section class="zone" data-kind="stripes"><div class="pin"><canvas></canvas></div></section>
+<footer class="footer">
+  <a class="connect" href="#">CONNECT</a>
+  <p class="talk">Let’s talk about it</p>
+  <div class="row"><span>Chicago, IL // <span data-clock>00:00</span></span><span>Resume</span><span class="r">LinkedIn<br>Email (F2 open)</span></div>
+</footer>
+
+<section class="tail"><p class="eyebrow"><b>B</b> · bars · end of About</p><p>Scroll down slowly.</p></section>
+<section class="zone" data-kind="bars"><div class="pin"><canvas></canvas></div></section>
+<footer class="footer">
+  <a class="connect" href="#">CONNECT</a>
+  <p class="talk">Let’s talk about it</p>
+  <div class="row"><span>Chicago, IL // <span data-clock>00:00</span></span><span>Resume</span><span class="r">LinkedIn<br>Email (F2 open)</span></div>
+</footer>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const easeInOut = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+const zones = [...document.querySelectorAll('.zone')].map(z => ({ el: z, kind: z.dataset.kind, cv: z.querySelector('canvas') }));
+
+function size(z) {
+  const r = z.cv.getBoundingClientRect(), d = devicePixelRatio || 1;
+  z.cv.width = r.width * d; z.cv.height = r.height * d; z.w = r.width; z.h = r.height; z.ctx = z.cv.getContext('2d'); z.ctx.setTransform(d, 0, 0, d, 0, 0);
+}
+
+// A: horizontal stripes. Stripe i has thickness that grows with progress and with its row index,
+// so the bottom fills first and the slot ends fully white, then the last 15% wipes back to black from the top.
+function stripes(z, p) {
+  const { ctx, w, h } = z, n = 26, pitch = h / n;
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = '#fff';
+  const grow = easeInOut(clamp(p / 0.85)), out = easeInOut(clamp((p - 0.85) / 0.15));
+  for (let i = 0; i < n; i++) {
+    const bias = i / (n - 1);                                 // 0 top, 1 bottom
+    const t = clamp(grow * 1.3 - (1 - bias) * 0.3);          // lower rows lead
+    const th = Math.max(0.5, t * pitch);
+    const y = i * pitch + (pitch - th);
+    if (y + th > h * out) ctx.fillRect(0, Math.max(y, h * out), w, th - Math.max(0, h * out - y));
+  }
+}
+
+// B: two rows of 4px bars at a 22.63px pitch from his study, offset 317px from the left like the frame,
+// growing upward from their baselines in a left to right wave.
+function bars(z, p) {
+  const { ctx, w, h } = z, s = Math.min(1, w / 1440);
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = '#fff';
+  const left = 317 * s, pitch = 22.63 * s, bw = Math.max(2, 4 * s);
+  const rows = [{ top: 25, hgt: 134, lag: 0 }, { top: 186, hgt: 60, lag: 0.18 }];
+  const count = Math.ceil((w - left) / pitch);
+  rows.forEach(r => {
+    for (let i = 0; i < count; i++) {
+      const x = left + i * pitch, f = i / count;
+      const t = easeOut(clamp((p - r.lag - f * 0.45) / 0.35));
+      const bh = r.hgt * t;
+      if (bh > 0.5) ctx.fillRect(x, r.top + r.hgt - bh, bw, bh);
+    }
+  });
+}
+
+function frame() {
+  zones.forEach(z => {
+    const r = z.el.getBoundingClientRect(), vh = innerHeight;
+    // 0 when the zone's top reaches the bottom of the viewport, 1 when its bottom reaches the top of the pin
+    const p = reduce ? 1 : clamp((vh - r.top) / (r.height + vh * 0.2));
+    (z.kind === 'stripes' ? stripes : bars)(z, p);
+  });
+  requestAnimationFrame(frame);
+}
+zones.forEach(size);
+addEventListener('resize', () => zones.forEach(size));
+requestAnimationFrame(frame);
+
+// Chicago clock, as in the footer row
+const fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+const tick = () => document.querySelectorAll('[data-clock]').forEach(c => c.textContent = fmt.format(new Date()));
+tick(); setInterval(tick, 30000);
+</script>
+</body>
+</html>

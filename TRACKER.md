@@ -72,7 +72,7 @@ The leadership CS is after launch (C4).
 | H1 | Hero headline: keep "I'm not really that cool," or move to the "convinced that people would be happier" line as a marquee that settles on hover, centered or left at the superpower indent. He asked for help with this messaging | both | 1 | nothing | decision: options ready, awaiting his pick: `prototypes/homepage-foundations/headline-options.html` (both lines as the marquee, settle centered or left at the indent; AI recommends A in the hero, B kept as the superpowers headline) |
 | H3 | "Homosexual 1991 to current" line: keep, tune or cut | C | 1 | nothing | open |
 | H4 | Chicago and New York in the hero. His earlier ruling: Chicago out of the hero, into contact; if it appears sooner, New York leads and Chicago is the aside. Reopening it is his call | C | 1 | nothing | decision |
-| H16 | Footer: pick the black and white animated transition from his options and finish the footer frame (transition and footer in one frame) | C | 1 | nothing | open |
+| H16 | Footer: pick the black and white animated transition from his options and finish the footer frame (transition and footer in one frame) | C | 1 | nothing | decision: options ready, awaiting his pick: `prototypes/homepage-foundations/footer-transitions.html` (A stripes from his reference, B his own bar study 3744:3304; AI recommends B) |
 | H19 | Final colors, including the contact button | C | 1 | nothing | open |
 | F2 | Footer email reads CHADWICK@CHADWICKFENER.COM, missing an N; confirm the real address | C | 1 | nothing | open |
 | F3 | Superpower lines are worded differently in the About section and the superpowers frame; pick one | C | 1 | nothing | open |
@@ -95,7 +95,7 @@ The leadership CS is after launch (C4).
 | H8 | Navigation: none in the hero; appears once past it, at the superpowers section (cw logo, Work, About, Contact) | AI | 2 | H14, H23 | built on default today's header style, provisional: `prototypes/homepage-foundations/nav-scroll.html` (drops in as the hero leaves, About opens the H14 panel; a toggle shows it with H23 take 2) |
 | H15a | Superpowers section layout, shortened so work starts within the third screen (frame is 2068 tall today) | both | 3 | H6, H1, F3 | open |
 | H13 | Collection page: Mondai card hover and arrow, page interactions, components, simple first. If the design system CS misses launch, the card links straight to the framework CS with labels changed to match | AI proposes, C approves | 2 | F9, F10 | open |
-| H16a | Footer transition animation | AI | 2 | H16 | open |
+| H16a | Footer transition animation | AI | 2 | H16 | options ready, awaiting his pick: both H16 options animated and scroll scrubbed in `prototypes/homepage-foundations/footer-transitions.html` |
 | F5 | About 320 of empty black below the work cards: tighten or keep for something | C | 2 | H11 | open |
 | H20 | Hero composition in Figma with the real elements and final copy | C | 4 | H5m, H1, H3, H4, H23 | open |
 | H15b | Superpowers section with the real visuals, one simple animation idea each | both | 4 | H5m, H15a, F3 | open |
