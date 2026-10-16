@@ -1,0 +1,56 @@
+/* Design tokens. Every value is read from Figma file IarvWaqjIwrZ2afQmMxKm6 (master 4226:8899,
+   superpowers 4270:5765) on 16 Oct 2026. Figma wins: when a frame changes, update the value here,
+   never in a component. Names follow the Figma variable names. */
+
+:root {
+  /* Color: Figma variables */
+  --neutral-000: #ffffff;           /* Neutral/000 */
+  --neutral-1000: #000000;          /* Neutral/1000, page background */
+  --neutral-675: #28282b;           /* Neutral/675, container edges */
+  --portfolio-neutral-100: #e8e7ee;
+  --portfolio-neutral-200: #dedee5; /* About labels */
+  --portfolio-neutral-300: #d2d2db; /* About body */
+  --portfolio-neutral-400: #c9c9d4; /* card descriptions */
+  --portfolio-neutral-500: #aeaeb4; /* // and small labels */
+  --portfolio-neutral-900: #040405; /* container fill, CONTACT text */
+
+  /* Color: used in frames without a variable */
+  --rule: #23232d;                  /* 0.5px section dividers in About */
+  --corner: #d9d9d9;                /* superpower container corner squares */
+  --haven-purple: #c25bfa;          /* Haven card fill */
+
+  /* Type: Satoshi, three weights shipped (400, 500, 700) */
+  --font: "Satoshi", system-ui, sans-serif;
+
+  /* Figma text styles as size / line height / tracking */
+  --display-212: 500 212px/1 var(--font);      /* Display/212, tracking -5.5px */
+  --display-212-track: -5.5px;
+  --heading-60: 500 60.283px/1.1 var(--font);  /* superpowers headline, tracking -1.2057px */
+  --heading-60-track: -1.2057px;
+  --heading-40: 500 40px/1.1 var(--font);      /* Heading/40, tracking -2px */
+  --heading-40-track: -2px;
+  --heading-20: 500 20px/1.32 var(--font);     /* Heading/20 */
+  --body-16: 500 16px/1.4 var(--font);         /* Body/16 */
+  --body-16-tight: 500 16px/1.32 var(--font);  /* About paragraphs */
+  --label-14: 500 14px/1.4 var(--font);        /* Label/14, tracking 0.14px on cards */
+  --nav-14: 400 14px/1 var(--font);            /* navbar links, uppercase, tracking 0.28px */
+  --label-12: 700 12px/1.4 var(--font);        /* case study collection, uppercase, tracking 0.96px */
+
+  /* Space */
+  --gutter: 40px;          /* page side padding at 1440 */
+  --card-gap: 24px;        /* between cards, and image to caption */
+  --section-top: 36px;     /* About rows and Works top padding */
+  --section-bottom: 64px;  /* About rows bottom padding */
+  --content: 1360px;       /* 1440 minus two gutters */
+  --about-measure: 545px;  /* About text column */
+
+  /* Motion: shared curves. Durations live with each component. */
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-expo-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+@media (max-width: 640px) {
+  :root { --gutter: 16px; }
+}
