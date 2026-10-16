@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About panel</title>
+<style>
+  /* Values read from Figma IarvWaqjIwrZ2afQmMxKm6: superpowers section 4270:5765 (navbar 4293:36542,
+     headline 4250:12064, sub line 4250:11960, container 4272:13567) and About 4250:11965 in the master. */
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root {
+    --black: #000;
+    --surface: #040405;   /* portfolio-neutral-900 */
+    --line: #28282b;      /* neutral/675 */
+    --corner: #d9d9d9;
+    --white: #fff;
+    --n200: #dedee5;      /* About section labels */
+    --n300: #d2d2db;      /* About section body */
+    --n500: #aeaeb4;
+    --rule: #23232d;
+    --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --expo-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --panel-w: 641px;     /* 545px text column from the frame plus 48px each side */
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: auto; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+  body.locked { overflow: hidden; }
+  a { color: inherit; }
+
+  /* ---------- Navbar, as in the superpowers frame ---------- */
+  .nav { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center;
+         padding: 20px 40px; background: linear-gradient(var(--black) 60%, transparent); }
+  .nav .links { display: flex; align-items: center; gap: 102px; }
+  .nav a, .nav button.link { font: inherit; font-weight: 400; font-size: 14px; line-height: 1; letter-spacing: 0.28px; text-transform: uppercase;
+          color: var(--white); text-decoration: none; background: none; border: 0; cursor: pointer; padding: 0; }
+  .nav .contact { background: var(--white); color: var(--surface); font-weight: 700; padding: 13px 30px; border-radius: 6px; }
+  .nav a:focus-visible, .nav button:focus-visible, .about-btn:focus-visible, .close:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+
+  /* ---------- Superpowers intro, as in the frame ---------- */
+  .super { position: relative; max-width: 1440px; margin: 0 auto; height: 720px; }
+  .super h2 { position: absolute; left: calc(8.33% + 35px); top: 150px; width: 960px; font-weight: 500; font-size: 60.283px;
+              line-height: 1.1; letter-spacing: -1.2057px; text-indent: 120.565px; }
+  .super .bolt { position: absolute; left: calc(33.33% + 35px); top: 207px; width: 44px; height: 56px; }
+  .super .sub { position: absolute; left: calc(8.33% + 35px); top: 488px; width: 454px; font-size: 16px; line-height: 1.32; }
+  .about-btn { position: absolute; left: calc(8.33% + 35px); top: 568px; display: inline-flex; align-items: center; gap: 12px;
+               font: inherit; font-size: 14px; font-weight: 700; letter-spacing: 0.28px; text-transform: uppercase; line-height: 1;
+               color: var(--white); background: none; border: 1px solid var(--line); border-radius: 6px; padding: 13px 20px; cursor: pointer;
+               transition: border-color 300ms var(--expo-out); }
+  .about-btn:hover { border-color: var(--white); }
+  .about-btn svg { transition: transform 400ms var(--expo-out); }
+  .about-btn:hover svg { transform: translateX(-3px); }
+  .why { max-width: 1360px; margin: 0 auto; padding: 36px 40px 160px; border-top: 0.5px solid var(--rule); display: grid; grid-template-columns: 1fr 545px; column-gap: 40px; }
+  .why > * { grid-column: 2; }
+  .why .eyebrow { grid-column: 1; grid-row: 1 / span 3; font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  .why h2 { font-size: 20px; line-height: 1.32; font-weight: 500; color: var(--n200); }
+  .why .lede, .why li { font-size: 16px; line-height: 1.4; color: var(--n300); margin-top: 16px; }
+  .why ul { padding-left: 18px; }
+  .why li + li { margin-top: 10px; }
+  .why b { color: var(--white); font-weight: 700; }
+  @media (max-width: 900px) { .why { grid-template-columns: 1fr; padding: 36px 16px 100px; } .why > *, .why .eyebrow { grid-column: 1; grid-row: auto; } }
+  .placeholder { max-width: 1360px; margin: 0 auto; padding: 0 40px 160px; color: var(--n500); font-size: 12px; letter-spacing: 0.96px; text-transform: uppercase; font-weight: 700; }
+
+  /* ---------- About panel ---------- */
+  .scrim { position: fixed; inset: 0; z-index: 10; background: rgba(0, 0, 0, 0.6); opacity: 0; pointer-events: none;
+           transition: opacity 500ms var(--expo-out); }
+  .panel { position: fixed; z-index: 11; top: 0; left: 0; bottom: 0; width: var(--panel-w); max-width: 100vw;
+           background: var(--surface); border-right: 1px solid var(--line);
+           transform: translateX(-100%); visibility: hidden;
+           transition: transform 420ms var(--expo-in), visibility 0s linear 420ms;
+           display: flex; flex-direction: column; padding: 32px 48px 48px; }
+  .panel i { position: absolute; right: -5px; width: 8px; height: 8px; background: var(--corner); }
+  .panel i.t { top: 24px; } .panel i.b { bottom: 24px; }
+  .open .scrim { opacity: 1; pointer-events: auto; }
+  .open .panel { transform: none; visibility: visible; transition: transform 800ms var(--expo-out), visibility 0s; }
+
+  .panel header { display: flex; justify-content: space-between; align-items: center; }
+  .panel header .tag { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  .close { font: inherit; font-weight: 400; font-size: 14px; line-height: 1; letter-spacing: 0.28px; text-transform: uppercase; color: var(--white);
+           background: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 8px 0; }
+
+  .panel .body { margin-top: auto; margin-bottom: auto; padding-top: 32px; }
+  .block + .block { border-top: 0.5px solid var(--rule); margin-top: 32px; padding-top: 32px; }
+  .block h3 { font-size: 20px; line-height: 1.32; font-weight: 500; color: var(--n200); }
+  .block .text { margin-top: 20px; font-size: 16px; line-height: 1.32; color: var(--n300); }
+  .block .text p + p { margin-top: 1.32em; }
+  .block.role .text { line-height: 1.4; }
+
+  /* Lines arrive after the panel, staggered */
+  .reveal { opacity: 0; transform: translateY(12px); }
+  .open .reveal { opacity: 1; transform: none; transition: opacity 700ms var(--expo-out), transform 900ms var(--expo-out); }
+  .open .reveal:nth-child(1) { transition-delay: 180ms; } .open .reveal:nth-child(2) { transition-delay: 260ms; }
+  .open .block.role .reveal:nth-child(1) { transition-delay: 340ms; } .open .block.role .reveal:nth-child(2) { transition-delay: 420ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel, .open .panel, .scrim, .reveal, .open .reveal { transition: opacity 200ms linear, visibility 0s !important; transform: none !important; }
+    .panel { opacity: 0; } .open .panel { opacity: 1; }
+  }
+  /* Short laptop screens: tighten spacing so the panel still never scrolls */
+  @media (max-height: 760px) {
+    .panel { padding-top: 24px; padding-bottom: 28px; }
+    .block + .block { margin-top: 22px; padding-top: 22px; }
+    .block .text { margin-top: 14px; }
+  }
+  @media (max-width: 900px) {
+    .nav .links { gap: 40px; }
+    .super { height: auto; padding: 120px 16px 80px; }
+    .super h2, .super .sub, .about-btn, .super .bolt { position: static; width: auto; }
+    .super h2 { font-size: 40px; text-indent: 60px; }
+    .super .bolt { display: none; }
+    .super .sub { margin-top: 32px; }
+    .about-btn { margin-top: 32px; }
+  }
+  @media (max-width: 640px) {
+    .nav { padding: 16px; }
+    .panel { width: 100vw; padding: 24px 16px 32px; overflow-y: auto; } /* phones are the one place scrolling is allowed */
+  }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Primary">
+  <a href="#top" aria-label="Home"><img src="assets/logo.svg" alt="" width="47" height="14"></a>
+  <div class="links">
+    <a href="#work">Work</a>
+    <a href="#about" data-open-about aria-controls="about-panel" aria-expanded="false">About</a>
+    <a class="contact" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="super" aria-label="Superpowers">
+  <h2>I’m convinced that people would be happier if we encouraged one another to discover our superpowers</h2>
+  <img class="bolt" src="assets/bolt-large.svg" alt="" width="44" height="56">
+  <p class="sub">I’m lucky enough to have had some fo the right people around to help me discover some of mine.</p>
+  <button class="about-btn" type="button" data-open-about aria-controls="about-panel" aria-expanded="false">
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.2"/></svg>
+    More about me
+  </button>
+</section>
+<section class="why">
+  <p class="eyebrow">H14 · proposal for review · not approved</p>
+  <h2>Why the about panel works this way</h2>
+  <p class="lede">The concept: a side drawer that gives a curious reader the fuller person in one glance, then puts them back exactly where they were. The superpowers step already says who you are in a few seconds; the panel is the optional second layer for the reader who wants more before the work.</p>
+  <ul>
+    <li><b>Slides in from the left, over the page.</b> Your call from the notes. It also sits opposite the nav, so opening it never covers the links that opened it. The page stays visible behind a 60% scrim, which tells the reader they have not left (progressive disclosure, Nielsen's "user control and freedom").</li>
+    <li><b>Two ways in.</b> "More about me" under the superpowers line, where the question comes up, and ABOUT in the nav from anywhere on the page. Both open the same panel. The URL becomes <code>#about</code>, so a link can open it directly.</li>
+    <li><b>Three ways out.</b> Close, Escape or a click on the page behind it. Focus goes back to whichever control opened it, so a keyboard reader keeps their place.</li>
+    <li><b>No scrolling.</b> About and Current role, in the frame's own type (20px labels, 16px body, 545px column), fit a 1280 by 720 laptop with room to spare. Below 760px of height the spacing tightens before anything scrolls. Phones are the one exception, where the panel goes full width and may scroll.</li>
+    <li><b>Visual language from the page, not new.</b> The panel uses the superpower container: the #040405 fill, the #28282b edge and two of its corner squares on the open edge. It reads as part of the same system.</li>
+    <li><b>Motion.</b> Out in 800ms on an expo curve, back in 420ms, faster because closing is a dismissal. The text arrives just after the panel, label then paragraph. Reduced motion swaps all of it for a short fade.</li>
+    <li><b>Accessible by default.</b> A modal dialog with a label, focus held inside while open, page scroll locked behind it.</li>
+  </ul>
+  <p class="lede"><b>Open for you:</b> the button label. "More about me" is a placeholder, not approved copy. ABOUT in the nav is from the frame.</p>
+</section>
+
+<div class="scrim" data-close-about></div>
+<aside class="panel" id="about-panel" role="dialog" aria-modal="true" aria-labelledby="about-title" tabindex="-1">
+  <i class="t"></i><i class="b"></i>
+  <header>
+    <span class="tag">H14 proposal</span>
+    <button class="close" type="button" data-close-about>
+      Close
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+  </header>
+  <div class="body">
+    <section class="block">
+      <h3 class="reveal" id="about-title">About</h3>
+      <div class="text reveal">
+        <p>I studied psychology before I studied design, and the thing that stuck was that a cause and an effect are never a fixed pair. Whether two variables stay connected, flip or quietly stop mattering changes depending on what else is in the room.</p>
+        <p>No problem is the same, and neither is one person. I’m a verbal processor that thrives in environments that foster collaboration. Most of what I know about my own work came from someone else saying it out loud first. So I try to keep a room where no voice feels less than another.</p>
+      </div>
+    </section>
+    <section class="block role">
+      <h3 class="reveal">Current role</h3>
+      <p class="text reveal">I lead design at Mondai, a tech career tool that the industry forgot to map. Two years, one of four people deciding what it becomes. I met the founder when he was my mentor. Now I'm one of the voices he argues with.</p>
+    </section>
+  </div>
+</aside>
+
+<script>
+const panel = document.getElementById('about-panel');
+const openers = document.querySelectorAll('[data-open-about]');
+let returnTo = null;
+
+function open(from) {
+  if (document.documentElement.classList.contains('open')) return;
+  returnTo = from || document.activeElement;
+  document.documentElement.classList.add('open');
+  document.body.classList.add('locked');
+  openers.forEach(o => o.setAttribute('aria-expanded', 'true'));
+  panel.querySelector('.close').focus({ preventScroll: true });
+  if (location.hash !== '#about') history.replaceState(null, '', '#about');
+}
+function close() {
+  if (!document.documentElement.classList.contains('open')) return;
+  document.documentElement.classList.remove('open');
+  document.body.classList.remove('locked');
+  openers.forEach(o => o.setAttribute('aria-expanded', 'false'));
+  history.replaceState(null, '', location.pathname);
+  if (returnTo) returnTo.focus({ preventScroll: true });
+}
+openers.forEach(o => o.addEventListener('click', e => { e.preventDefault(); open(o); }));
+document.querySelectorAll('[data-close-about]').forEach(c => c.addEventListener('click', close));
+document.addEventListener('keydown', e => {
+  if (!document.documentElement.classList.contains('open')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'Tab') {                       // keep focus inside the panel
+    const f = panel.querySelectorAll('button, a[href]');
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+if (location.hash === '#about') open(document.querySelector('.nav [data-open-about]'));
+</script>
+</body>
+</html>

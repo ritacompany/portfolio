@@ -83,7 +83,7 @@ The leadership CS is after launch (C4).
 | F10 | Collection page still lists the leadership CS; remove the row for launch | AI | 1 | nothing | done, awaiting his review: Leadership CS row `4288:36323` hidden in `4288:36293` |
 | H12 | Mondai card: the screen graphic sits on top of the monitor and overhangs the bezel; place it inside the display, ratio close to the screen, text kept sharp. Source layers in `4282:15444` | AI | 1 | nothing | done, awaiting his review: copy `4308:6176`, layers "Display glass" and "Mondai screen" in the Mondai card, perspective warped at 3x from `4282:15444` |
 | H11 | Work cards: links, hover and states, simple foundation first ("we just need to create our foundation first") | AI proposes, C approves | 1 | nothing | done, awaiting his review: `prototypes/homepage-foundations/work-card-states.html` |
-| H14 | About becomes a left slide-out panel, no scroll, collapsible, opened from a button in the superpowers section and from the nav | AI proposes, C approves | 1 | D2 | open |
+| H14 | About becomes a left slide-out panel, no scroll, collapsible, opened from a button in the superpowers section and from the nav | AI proposes, C approves | 1 | D2 | done, awaiting his review: `prototypes/homepage-foundations/about-panel.html` (reasoning on the page; button label is a placeholder) |
 | S0 | Site setup: code base, fonts, deploy pipeline, so the build in stage 6 is assembly, not setup. The Sep homepage code is against an older design; reuse what holds | AI | 1 | nothing | open |
 | C1 | Framework CS: sections 3 to 8, then intro and story. Process: `reference/cs2/CS2_PROCESS.md` | both | 1 | nothing | in progress, framework CS sessions |
 | C2 | Design system CS: no material in the repo yet | both | 1 | nothing | open |
