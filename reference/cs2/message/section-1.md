@@ -3,11 +3,9 @@ Section: 1
 ## Block 1
 
 - Claim: The route existed, but nothing said how a person moves through it.
-- What the reader has to see: what a person met right after onboarding, with nothing telling them what to do first.
-- Still missing from the copy: the copy only says there was no first step; the reader has never seen what someone landed on after onboarding.
-- Figure count: 1
-- Figure 1: a real Mondai screen he picks, the screen someone reached right after onboarding, with nothing on it naming a first step. Proves: nothing said how to move through it. If no such screen exists, the block is text only.
-- Labels: No first step
+- What the reader has to see: the pieces that existed, and that none of them said what someone does week to week.
+- Still missing from the copy: nothing. The card names the route and the body names the pieces and the gap. No screen of the gap exists, and the framework is about the week, not a landing screen.
+- Figure count: 0
 
 ## Block 2
 
