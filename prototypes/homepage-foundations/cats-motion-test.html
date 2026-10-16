@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cats motion test</title>
+<style>
+  /* Values read from Figma IarvWaqjIwrZ2afQmMxKm6, superpowers section 4270:5765,
+     superpower container 4272:13567 and label 4272:13581. */
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root {
+    --black: #000;
+    --surface: #040405;          /* container fill */
+    --line: #28282b;             /* neutral/675, container border */
+    --corner: #d9d9d9;           /* container corner squares */
+    --white: #fff;
+    --n300: #d2d2db;
+    --n500: #aeaeb4;
+    --rule: #23232d;
+    --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1360px; margin: 0 auto; padding: 56px 40px 120px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  h1 { font-size: 20px; line-height: 1.32; margin-top: 16px; }
+  .intro { max-width: 545px; margin-top: 16px; font-size: 16px; line-height: 1.4; color: var(--n300); }
+
+  .study { display: grid; grid-template-columns: 220px 266px 184px 1fr; gap: 40px; align-items: start;
+           border-top: 0.5px solid var(--rule); margin-top: 64px; padding-top: 36px; }
+  .study h2 { font-size: 20px; line-height: 1.32; }
+  .study .kind { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); margin-top: 12px; }
+  .verdict { font-size: 16px; line-height: 1.4; color: var(--n300); max-width: 420px; }
+  .verdict b { color: var(--white); font-weight: 700; }
+  .verdict p + p { margin-top: 12px; }
+  button.replay { margin-top: 20px; background: none; border: 1px solid var(--line); color: var(--white); font: inherit; font-size: 12px;
+                  letter-spacing: 0.96px; text-transform: uppercase; padding: 8px 14px; border-radius: 6px; cursor: pointer; }
+  button.replay:hover { border-color: var(--n500); }
+  button.replay:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+  /* Superpower container, as in the frame */
+  .box { position: relative; width: 266px; height: 322px; border: 1px solid var(--line); background: var(--surface); }
+  .box .stage { position: absolute; inset: 0; overflow: hidden; }
+  .box i { position: absolute; width: 8px; height: 8px; background: var(--corner); }
+  .box i:nth-of-type(1) { left: -6px; top: -6px; } .box i:nth-of-type(2) { right: -6px; top: -6px; }
+  .box i:nth-of-type(3) { right: -6px; bottom: -6px; } .box i:nth-of-type(4) { left: -6px; bottom: -6px; }
+
+  /* Frame label 02. */
+  .label { display: flex; flex-direction: column; gap: 82px; padding-top: 68px; }
+  .label .num { display: flex; gap: 12px; align-items: center; font-size: 20px; line-height: 1.32; }
+  .label .num img { width: 19px; height: 24px; }
+  .label p { font-size: 20px; line-height: 1.04; }
+
+  .cat { position: absolute; left: 0; top: 0; will-change: transform; user-select: none; pointer-events: none; }
+
+  @media (max-width: 1100px) {
+    .study { grid-template-columns: 266px 1fr; }
+    .study .label { display: none; }
+  }
+  @media (max-width: 640px) {
+    .page { padding: 40px 16px 80px; }
+    .study { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <p class="eyebrow">H6t · prototype for review · not approved</p>
+  <h1>Cats animation test</h1>
+  <p class="intro">Three structurally different ways the cat cutouts from the hero could move inside the pattern recognition box. Each runs in the real container at its real size (266 by 322) next to the frame's own label, so you can judge them as they would sit on the page.</p>
+  <p class="intro"><b style="color:#fff">Verdict: the cats idea survives.</b> Real photo cutouts animate well as long as each cat moves as a whole object (travel, scale, a small turn) and only a handful move at once. They fall apart when the photo is deformed or when dozens move together. Multiply is the recommendation, Sort the backup, Ripple is out.</p>
+
+  <section class="study" id="s1">
+    <div><h2>1. Sort</h2><p class="kind">A jumble that resolves into order</p><button class="replay" data-for="s1">Replay</button></div>
+    <div class="box"><div class="stage"></div><i></i><i></i><i></i><i></i></div>
+    <div class="label"><div class="num"><img src="assets/bolt.svg" alt="">02.</div><p>A proclivity for pattern recognition</p></div>
+    <div class="verdict"><p><b>Looks good. Keep as the backup.</b> One idea, one move: chaos settles into a grid, then holds still. The photos only travel and turn, so they never distort.</p><p>Weak spot: at this size the bow cats look only a little different from the collar cats, so "sorted" reads as "tidied". If this one wins, the odd ones out need a more obviously different cutout.</p></div>
+  </section>
+
+  <section class="study" id="s2">
+    <div><h2>2. Ripple</h2><p class="kind">A repeat that shifts, set off by the odd one out</p><button class="replay" data-for="s2">Replay</button></div>
+    <div class="box"><div class="stage"></div><i></i><i></i><i></i><i></i></div>
+    <div class="label"><div class="num"><img src="assets/bolt.svg" alt="">02.</div><p>A proclivity for pattern recognition</p></div>
+    <div class="verdict"><p><b>Overcomplicated. Drop it.</b> This is the version you were worried about. 42 photos moving at once stop reading as cats and become texture. The mirror wave squashes every photo to a sliver halfway through its turn, which exposes them as flat cutouts.</p><p>It reads as a screensaver rather than a thought. A repeat like this only works with flat graphics, not real photos.</p></div>
+  </section>
+
+  <section class="study" id="s3">
+    <div><h2>3. Multiply</h2><p class="kind">One cat divides into a pattern</p><button class="replay" data-for="s3">Replay</button></div>
+    <div class="box"><div class="stage"></div><i></i><i></i><i></i><i></i></div>
+    <div class="label"><div class="num"><img src="assets/bolt.svg" alt="">02.</div><p>A proclivity for pattern recognition</p></div>
+    <div class="verdict"><p><b>Best of the three. Keep.</b> Every pause is a clean picture: one cat, then the mirrored pair already sitting in box 03, then four, then sixteen. The cats only move and scale, so the photo never warps and the fur edges stay crisp.</p><p>It also tells the idea in the plainest way: one thing noticed, then the pattern it belongs to. And it ties box 02 to box 03, which already uses the pair.</p></div>
+  </section>
+</main>
+
+<script>
+const W = 264, H = 320;                       // stage inside the 1px border
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const rand = (a, b) => a + Math.random() * (b - a);
+
+function makeCat(stage, src, size) {
+  const img = new Image();
+  img.src = src; img.alt = ''; img.className = 'cat';
+  img.style.width = size + 'px'; img.style.height = size + 'px';
+  img._size = size;
+  stage.appendChild(img);
+  return img;
+}
+// Place a cat by its centre. flip mirrors it horizontally.
+function place(el, { x, y, r = 0, s = 1, flip = 1, o = 1 }, dur = 0, delay = 0, ease = 'var(--expo-out)') {
+  el.style.transition = dur ? `transform ${dur}ms ${ease} ${delay}ms, opacity ${dur}ms ${ease} ${delay}ms` : 'none';
+  el.style.transform = `translate(${x - el._size / 2}px, ${y - el._size / 2}px) rotate(${r}deg) scale(${s * flip}, ${s})`;
+  el.style.opacity = o;
+}
+
+/* ---------- 1. Sort ---------- */
+function study1(stage) {
+  stage.innerHTML = '';
+  const size = 64, cols = 3, rows = 4;
+  const cats = [];
+  for (let i = 0; i < 12; i++) cats.push(makeCat(stage, i < 9 ? 'assets/cat-collar.png' : 'assets/cat-bow.png', size));
+  // Bow cats are dealt into random slots of the jumble, then sorted to the last row.
+  const order = cats.slice().sort(() => Math.random() - 0.5);
+  const cell = (i) => ({ x: W / cols * (i % cols + 0.5), y: H / rows * (Math.floor(i / cols) + 0.5) });
+  const jumble = () => order.forEach(c => place(c, { x: rand(30, W - 30), y: rand(30, H - 30), r: rand(-45, 45), s: rand(0.8, 1.15) }, 700, rand(0, 120), 'var(--expo-in-out)'));
+  let run = 0;
+  return async function loop() {
+    const id = ++run;
+    order.forEach(c => place(c, { x: rand(30, W - 30), y: rand(30, H - 30), r: rand(-45, 45), s: rand(0.8, 1.15) }));
+    if (reduce) { cats.forEach((c, i) => place(c, cell(i))); return; }
+    while (id === run) {
+      await sleep(700); if (id !== run) return;
+      cats.forEach((c, i) => place(c, { ...cell(i), r: 0, s: 1 }, 1100, i * 45));
+      await sleep(1700); if (id !== run) return;
+      cats.slice(9).forEach((c, k) => place(c, { ...cell(9 + k), s: 1.12 }, 500, k * 60));
+      await sleep(1800); if (id !== run) return;
+      jumble();
+      await sleep(900);
+    }
+  };
+}
+
+/* ---------- 2. Ripple ---------- */
+function study2(stage) {
+  stage.innerHTML = '';
+  const pitch = 52, size = 46, cols = 6, rows = 7;
+  const ox = (W - (cols - 1) * pitch) / 2, oy = (H - (rows - 1) * pitch) / 2 - pitch / 4;
+  const odd = { c: 3, r: 3 };
+  const tiles = [];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+    const isOdd = c === odd.c && r === odd.r;
+    const t = makeCat(stage, isOdd ? 'assets/cat-bow.png' : 'assets/cat-collar.png', size);
+    t._c = c; t._r = r; t._odd = isOdd; tiles.push(t);
+  }
+  const pos = (t, drop) => ({ x: ox + t._c * pitch, y: oy + t._r * pitch + (drop && t._c % 2 ? pitch / 2 : 0) });
+  let run = 0;
+  return async function loop() {
+    const id = ++run;
+    tiles.forEach(t => place(t, pos(t, false)));
+    if (reduce) return;
+    let drop = false, flip = 1;
+    while (id === run) {
+      await sleep(900); if (id !== run) return;
+      // Shift: alternate columns drop half a step, column by column.
+      drop = !drop;
+      tiles.forEach(t => place(t, { ...pos(t, drop), flip: t._odd ? 1 : flip }, 900, t._c * 70));
+      await sleep(1500); if (id !== run) return;
+      // Ripple: every cat mirrors in a wave that starts at the odd one out.
+      flip = -flip;
+      const o = pos(tiles.find(t => t._odd), drop);
+      tiles.forEach(t => {
+        const p = pos(t, drop), d = Math.hypot(p.x - o.x, p.y - o.y);
+        if (t._odd) place(t, { ...p, s: 1.15 }, 600);
+        else place(t, { ...p, flip }, 700, d * 3.2);
+      });
+      await sleep(1600); if (id !== run) return;
+      const odd = tiles.find(t => t._odd); place(odd, pos(odd, drop), 600);
+    }
+  };
+}
+
+/* ---------- 3. Multiply ---------- */
+function study3(stage) {
+  stage.innerHTML = '';
+  const n = 16, cats = [];
+  // Largest size is the frame's single cat (about 125 by 128).
+  for (let i = 0; i < n; i++) cats.push(makeCat(stage, 'assets/cat-collar.png', 128));
+  const stages = [
+    // 1 cat, as placed in the frame: rotate -11.57deg
+    () => cats.map(() => ({ x: W / 2, y: H / 2, r: -11.57, s: 1 })),
+    // 2 cats, mirrored pair (the 03 box uses this pair)
+    () => cats.map((_, i) => { const k = i % 2; return { x: W / 2 + (k ? 52 : -52), y: H / 2, r: k ? 11.57 : -11.57, s: 0.72, flip: k ? -1 : 1 }; }),
+    // 4 cats, 2 by 2
+    () => cats.map((_, i) => { const k = i % 4, c = k % 2, r = k >> 1; return { x: W / 2 + (c ? 60 : -60), y: H / 2 + (r ? 66 : -66), r: (c ? 1 : -1) * 11.57 * (r ? -1 : 1), s: 0.56, flip: c ? -1 : 1 }; }),
+    // 16 cats, 4 by 4, mirrored in alternating columns and rows
+    () => cats.map((_, i) => { const c = i % 4, r = i >> 2; return { x: W / 8 * (c * 2 + 1), y: H / 8 * (r * 2 + 1), r: ((c + r) % 2 ? 1 : -1) * 11.57, s: 0.42, flip: c % 2 ? -1 : 1 }; }),
+  ];
+  // Order within each stage so cats split from their parent position.
+  let run = 0;
+  return async function loop() {
+    const id = ++run;
+    stages[0]().forEach((p, i) => place(cats[i], p));
+    if (reduce) { stages[3]().forEach((p, i) => place(cats[i], p)); return; }
+    while (id === run) {
+      for (let s = 1; s < stages.length; s++) {
+        await sleep(s === 1 ? 1100 : 750); if (id !== run) return;
+        stages[s]().forEach((p, i) => place(cats[i], p, 850, 0));
+      }
+      await sleep(2000); if (id !== run) return;
+      stages[0]().forEach((p, i) => place(cats[i], p, 1000, (15 - i) * 25, 'var(--expo-in-out)'));
+      await sleep(1100);
+    }
+  };
+}
+
+const loops = {
+  s1: study1(document.querySelector('#s1 .stage')),
+  s2: study2(document.querySelector('#s2 .stage')),
+  s3: study3(document.querySelector('#s3 .stage')),
+};
+Object.values(loops).forEach(l => l());
+document.querySelectorAll('.replay').forEach(b => b.addEventListener('click', () => loops[b.dataset.for]()));
+</script>
+</body>
+</html>
