@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nav on scroll</title>
+<style>
+  /* H8, built on default: today's header style. Provisional, awaiting Chadwick's picks on H23 and H14.
+     Nav from Figma IarvWaqjIwrZ2afQmMxKm6 superpowers frame 4270:5765 (navbar 4293:36542); hero top bar 4308:6195 in 4308:6176. */
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root {
+    --black: #000; --surface: #040405; --line: #28282b; --corner: #d9d9d9; --white: #fff;
+    --n200: #dedee5; --n300: #d2d2db; --n500: #aeaeb4; --rule: #23232d; --grid: #1a1a1d; --magenta: #c13bc9;
+    --expo-out: cubic-bezier(0.16, 1, 0.3, 1); --expo-in: cubic-bezier(0.7, 0, 0.84, 0); --panel-w: 641px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+  body.locked { overflow: hidden; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+
+  /* ---------- Review strip ---------- */
+  .review { position: fixed; z-index: 9; left: 16px; bottom: 16px; max-width: 420px; padding: 14px 16px; background: #111113; border: 1px solid var(--line);
+            border-radius: 6px; font-size: 13px; line-height: 1.4; color: var(--n300); }
+  .review b { color: var(--white); }
+  .review .row { display: flex; gap: 6px; margin-top: 10px; }
+  .review button { font: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.9px; text-transform: uppercase; color: var(--white);
+                   background: none; border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; cursor: pointer; }
+  .review button[aria-pressed="true"] { background: var(--white); color: var(--surface); }
+
+  /* ---------- Hero: no nav, only the top bar labels ---------- */
+  .hero { position: relative; height: 100vh; min-height: 620px; overflow: hidden;
+          background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 120px 120px; }
+  .topbar { position: absolute; top: 25px; left: 159px; right: 159px; display: flex; justify-content: space-between;
+            font-size: 12px; font-weight: 400; letter-spacing: 0.24px; text-transform: uppercase; }
+  .hero .big { position: absolute; top: 31%; left: -40px; font-size: 212px; line-height: 1; letter-spacing: -5.5px; white-space: nowrap; }
+  .hero .note { position: absolute; left: 40px; bottom: 28px; font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+
+  /* ---------- Nav: fixed, hidden until the hero has gone ---------- */
+  .nav { position: fixed; z-index: 5; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center;
+         padding: 20px 40px; background: linear-gradient(var(--black) 60%, transparent);
+         transform: translateY(-110%); transition: transform 500ms var(--expo-in); }
+  .show-nav .nav { transform: none; transition: transform 800ms var(--expo-out); }
+  .nav .links { display: flex; align-items: center; gap: 102px; }
+  .nav .links > * { opacity: 0; transform: translateY(-8px); transition: opacity 300ms, transform 300ms; }
+  .show-nav .nav .links > * { opacity: 1; transform: none; transition: opacity 600ms var(--expo-out), transform 700ms var(--expo-out); }
+  .show-nav .nav .links > :nth-child(1) { transition-delay: 120ms; } .show-nav .nav .links > :nth-child(2) { transition-delay: 180ms; } .show-nav .nav .links > :nth-child(3) { transition-delay: 240ms; }
+  .nav .links a, .nav .links button { font: inherit; font-weight: 400; font-size: 14px; line-height: 1; letter-spacing: 0.28px; text-transform: uppercase;
+          color: var(--white); background: none; border: 0; cursor: pointer; padding: 0; }
+  .nav .links .contact { background: var(--white); color: var(--surface); font-weight: 700; padding: 13px 30px; border-radius: 6px; }
+  .nav [aria-current="true"] { text-decoration: underline; text-underline-offset: 6px; }
+
+  /* Narrow buttons variant, H23 take 2: same behavior, different object */
+  .narrow .nav { padding: 18px 24px; background: none; }
+  .narrow .nav .home { display: inline-flex; align-items: center; height: 44px; padding: 0 14px; background: var(--white); border-radius: 3px; }
+  .narrow .nav .home img { filter: invert(1); }
+  .narrow .nav .links { gap: 3px; padding: 3px; background: #161618; border-radius: 4px; }
+  .narrow .nav .links a, .narrow .nav .links button { display: grid; place-items: center; height: 44px; min-width: 58px; padding: 0 12px; background: var(--surface);
+          border-radius: 2px; font-size: 11px; font-weight: 700; letter-spacing: 0.9px; }
+  .narrow .nav .links .contact { background: var(--white); color: var(--surface); }
+  .narrow .nav .links .contact:hover { background: var(--magenta); color: var(--white); }
+
+  /* ---------- Superpowers and below, as in the frame ---------- */
+  .super { position: relative; max-width: 1440px; margin: 0 auto; height: 720px; }
+  .super h2 { position: absolute; left: calc(8.33% + 35px); top: 150px; width: 960px; font-weight: 500; font-size: 60.283px;
+              line-height: 1.1; letter-spacing: -1.2057px; text-indent: 120.565px; }
+  .super .sub { position: absolute; left: calc(8.33% + 35px); top: 488px; width: 454px; font-size: 16px; line-height: 1.32; }
+  .about-btn { position: absolute; left: calc(8.33% + 35px); top: 568px; display: inline-flex; align-items: center; gap: 12px;
+               font: inherit; font-size: 14px; font-weight: 700; letter-spacing: 0.28px; text-transform: uppercase; line-height: 1;
+               color: var(--white); background: none; border: 1px solid var(--line); border-radius: 6px; padding: 13px 20px; cursor: pointer; }
+  .block-ph { max-width: 1360px; margin: 0 auto; height: 900px; border-top: 0.5px solid var(--rule); padding: 36px 0; font-size: 12px; font-weight: 700;
+              letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+
+  /* ---------- About panel ---------- */
+  .scrim { position: fixed; inset: 0; z-index: 10; background: rgba(0, 0, 0, 0.6); opacity: 0; pointer-events: none;
+           transition: opacity 500ms var(--expo-out); }
+  .panel { position: fixed; z-index: 11; top: 0; left: 0; bottom: 0; width: var(--panel-w); max-width: 100vw;
+           background: var(--surface); border-right: 1px solid var(--line);
+           transform: translateX(-100%); visibility: hidden;
+           transition: transform 420ms var(--expo-in), visibility 0s linear 420ms;
+           display: flex; flex-direction: column; padding: 32px 48px 48px; }
+  .panel i { position: absolute; right: -5px; width: 8px; height: 8px; background: var(--corner); }
+  .panel i.t { top: 24px; } .panel i.b { bottom: 24px; }
+  .open .scrim { opacity: 1; pointer-events: auto; }
+  .open .panel { transform: none; visibility: visible; transition: transform 800ms var(--expo-out), visibility 0s; }
+
+  .panel header { display: flex; justify-content: space-between; align-items: center; }
+  .panel header .tag { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  .close { font: inherit; font-weight: 400; font-size: 14px; line-height: 1; letter-spacing: 0.28px; text-transform: uppercase; color: var(--white);
+           background: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 8px 0; }
+
+  .panel .body { margin-top: auto; margin-bottom: auto; padding-top: 32px; }
+  .block + .block { border-top: 0.5px solid var(--rule); margin-top: 32px; padding-top: 32px; }
+  .block h3 { font-size: 20px; line-height: 1.32; font-weight: 500; color: var(--n200); }
+  .block .text { margin-top: 20px; font-size: 16px; line-height: 1.32; color: var(--n300); }
+  .block .text p + p { margin-top: 1.32em; }
+  .block.role .text { line-height: 1.4; }
+
+  /* Lines arrive after the panel, staggered */
+  .reveal { opacity: 0; transform: translateY(12px); }
+  .open .reveal { opacity: 1; transform: none; transition: opacity 700ms var(--expo-out), transform 900ms var(--expo-out); }
+  .open .reveal:nth-child(1) { transition-delay: 180ms; } .open .reveal:nth-child(2) { transition-delay: 260ms; }
+  .open .block.role .reveal:nth-child(1) { transition-delay: 340ms; } .open .block.role .reveal:nth-child(2) { transition-delay: 420ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel, .open .panel, .scrim, .reveal, .open .reveal { transition: opacity 200ms linear, visibility 0s !important; transform: none !important; }
+    .panel { opacity: 0; } .open .panel { opacity: 1; }
+  }
+  /* Short laptop screens: tighten spacing so the panel still never scrolls */
+  @media (max-height: 760px) {
+    .panel { padding-top: 24px; padding-bottom: 28px; }
+    .block + .block { margin-top: 22px; padding-top: 22px; }
+    .block .text { margin-top: 14px; }
+  }
+
+  @media (max-width: 900px) {
+    .topbar { left: 16px; right: 16px; font-size: 10px; } .topbar span:nth-child(2) { display: none; }
+    .hero .big { font-size: 120px; } .nav { padding: 16px; } .nav .links { gap: 28px; }
+    .super { height: auto; padding: 120px 16px 80px; } .super h2, .super .sub, .about-btn { position: static; width: auto; }
+    .super h2 { font-size: 40px; text-indent: 60px; } .super .sub, .about-btn { margin-top: 32px; } .block-ph { padding: 36px 16px; }
+    .review { left: 8px; right: 8px; max-width: none; }
+  }
+  @media (max-width: 640px) { .panel { width: 100vw; padding: 24px 16px 32px; overflow-y: auto; } }
+  @media (prefers-reduced-motion: reduce) { .nav, .show-nav .nav, .nav .links > * { transition: opacity 200ms linear !important; transform: none !important; } .nav { opacity: 0; } .show-nav .nav { opacity: 1; } }
+</style>
+</head>
+<body>
+<aside class="review" aria-label="Review notes">
+  <b>H8 · built on default, provisional.</b> No nav in the hero. Scroll: the nav drops in as the hero leaves and the superpowers section arrives, and lifts away if you scroll back up into the hero. ABOUT opens the H14 panel.
+  <div class="row" role="group" aria-label="Header style">
+    <button type="button" data-style="today" aria-pressed="true">Today's style</button>
+    <button type="button" data-style="narrow" aria-pressed="false">With H23 take 2</button>
+  </div>
+</aside>
+
+<nav class="nav" aria-label="Primary" id="nav">
+  <a class="home" href="#top" aria-label="Home"><img src="assets/logo.svg" alt="" width="47" height="14"></a>
+  <div class="links">
+    <a href="#work">Work</a>
+    <a href="#about" data-open-about aria-controls="about-panel" aria-expanded="false">About</a>
+    <a class="contact" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="topbar"><span>[ Product Designer ]</span><span>[ chadwickfenner.com ]</span><span>[ Seeking roles in NYC ]</span></div>
+  <div class="big" aria-hidden="true">I’m not really that cool,</div>
+  <p class="note">Hero placeholder · scroll down</p>
+</header>
+
+<section class="super" aria-label="Superpowers" id="superpowers">
+  <h2>I’m convinced that people would be happier if we encouraged one another to discover our superpowers</h2>
+  <p class="sub">I’m lucky enough to have had some of the right people around to help me discover some of mine.</p>
+  <button class="about-btn" type="button" data-open-about aria-controls="about-panel" aria-expanded="false">More about me</button>
+</section>
+<section class="block-ph" id="work">Work section placeholder (see work-card-states.html)</section>
+<section class="block-ph" id="contact">Footer placeholder (see footer-transitions.html)</section>
+
+<div class="scrim" data-close-about></div>
+<aside class="panel" id="about-panel" role="dialog" aria-modal="true" aria-labelledby="about-title" tabindex="-1">
+  <i class="t"></i><i class="b"></i>
+  <header>
+    <span class="tag">About</span>
+    <button class="close" type="button" data-close-about>
+      Close
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+  </header>
+  <div class="body">
+    <section class="block">
+      <h3 class="reveal" id="about-title">About</h3>
+      <div class="text reveal">
+        <p>I studied psychology before I studied design, and the thing that stuck was that a cause and an effect are never a fixed pair. Whether two variables stay connected, flip or quietly stop mattering changes depending on what else is in the room.</p>
+        <p>No problem is the same, and neither is one person. I’m a verbal processor that thrives in environments that foster collaboration. Most of what I know about my own work came from someone else saying it out loud first. So I try to keep a room where no voice feels less than another.</p>
+      </div>
+    </section>
+    <section class="block role">
+      <h3 class="reveal">Current role</h3>
+      <p class="text reveal">I lead design at Mondai, a tech career tool that the industry forgot to map. Two years, one of four people deciding what it becomes. I met the founder when he was my mentor. Now I'm one of the voices he argues with.</p>
+    </section>
+  </div>
+</aside>
+
+<script>
+const panel = document.getElementById('about-panel');
+const openers = document.querySelectorAll('[data-open-about]');
+let returnTo = null;
+
+function open(from) {
+  if (document.documentElement.classList.contains('open')) return;
+  returnTo = from || document.activeElement;
+  document.documentElement.classList.add('open');
+  document.body.classList.add('locked');
+  openers.forEach(o => o.setAttribute('aria-expanded', 'true'));
+  panel.querySelector('.close').focus({ preventScroll: true });
+  if (location.hash !== '#about') history.replaceState(null, '', '#about');
+}
+function close() {
+  if (!document.documentElement.classList.contains('open')) return;
+  document.documentElement.classList.remove('open');
+  document.body.classList.remove('locked');
+  openers.forEach(o => o.setAttribute('aria-expanded', 'false'));
+  history.replaceState(null, '', location.pathname);
+  if (returnTo) returnTo.focus({ preventScroll: true });
+}
+openers.forEach(o => o.addEventListener('click', e => { e.preventDefault(); open(o); }));
+document.querySelectorAll('[data-close-about]').forEach(c => c.addEventListener('click', close));
+document.addEventListener('keydown', e => {
+  if (!document.documentElement.classList.contains('open')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'Tab') {                       // keep focus inside the panel
+    const f = panel.querySelectorAll('button, a[href]');
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+if (location.hash === '#about') open(document.querySelector('.nav [data-open-about]'));
+</script>
+<script>
+// Show the nav once the hero's bottom edge passes under where the nav sits (80px), hide it again above that.
+const hero = document.querySelector('.hero');
+new IntersectionObserver(([e]) => document.documentElement.classList.toggle('show-nav', !e.isIntersecting),
+  { rootMargin: '-80px 0px 0px 0px', threshold: 0 }).observe(hero);
+document.querySelectorAll('.review [data-style]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.review [data-style]').forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+  document.documentElement.classList.toggle('narrow', b.dataset.style === 'narrow');
+}));
+</script>
+</body>
+</html>
