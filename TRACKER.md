@@ -77,11 +77,11 @@ The leadership CS is after launch (C4).
 | F2 | Footer email reads CHADWICK@CHADWICKFENER.COM, missing an N; confirm the real address | C | 1 | nothing | open |
 | F3 | Superpower lines are worded differently in the About section and the superpowers frame; pick one | C | 1 | nothing | open |
 | F9 | Collection page: list layout or card layout | C | 1 | nothing | decision |
-| H17 | Gray line at the top of the master: trace and remove on a duplicate | AI | 1 | nothing | open |
-| H18 | Layer cleanup in the master, on a duplicate he swaps in | AI | 1 | nothing | open |
-| F1 | Typo "some fo the right people" in both frames | AI | 1 | nothing | open |
-| F10 | Collection page still lists the leadership CS; remove the row for launch | AI | 1 | nothing | open |
-| H12 | Mondai card: the screen graphic sits on top of the monitor and overhangs the bezel; place it inside the display, ratio close to the screen, text kept sharp. Source layers in `4282:15444` | AI | 1 | nothing | open |
+| H17 | Gray line at the top of the master: trace and remove on a duplicate | AI | 1 | nothing | done, awaiting his review: copy `4308:6176`. Cause: Inner shadow effect (#5C5C61, y 4, blur 4) on master frame `4226:8899`, removed in the copy |
+| H18 | Layer cleanup in the master, on a duplicate he swaps in | AI | 1 | nothing | done, awaiting his review: copy `4308:6176`. Three hidden old superpowers layouts deleted, 25 default-named layers and 13 text layers renamed, nothing visible changed |
+| F1 | Typo "some fo the right people" in both frames | AI | 1 | nothing | done, awaiting his review: copy `4308:6176` (`4308:6238`) and superpowers frame (`4250:11960`) |
+| F10 | Collection page still lists the leadership CS; remove the row for launch | AI | 1 | nothing | done, awaiting his review: Leadership CS row `4288:36323` hidden in `4288:36293` |
+| H12 | Mondai card: the screen graphic sits on top of the monitor and overhangs the bezel; place it inside the display, ratio close to the screen, text kept sharp. Source layers in `4282:15444` | AI | 1 | nothing | done, awaiting his review: copy `4308:6176`, layers "Display glass" and "Mondai screen" in the Mondai card, perspective warped at 3x from `4282:15444` |
 | H11 | Work cards: links, hover and states, simple foundation first ("we just need to create our foundation first") | AI proposes, C approves | 1 | nothing | done, awaiting his review: `prototypes/homepage-foundations/work-card-states.html` |
 | H14 | About becomes a left slide-out panel, no scroll, collapsible, opened from a button in the superpowers section and from the nav | AI proposes, C approves | 1 | D2 | open |
 | S0 | Site setup: code base, fonts, deploy pipeline, so the build in stage 6 is assembly, not setup. The Sep homepage code is against an older design; reuse what holds | AI | 1 | nothing | open |
