@@ -90,7 +90,7 @@ The leadership CS is after launch (C4).
 | C3 | Haven: in the work section; branch state is in triage | C | 1 | nothing | open |
 | H22 | Something else he meant to add about the hero and forgot | C | 1 | nothing | open |
 | H23 | Header style: VS Goods narrow creative buttons with the small background; does it work with this design | both | 1 | nothing | open |
-| H21 | Earlier animations for this page: check which still work after the redesign, before new motion is planned | AI | 1 | nothing | open |
+| H21 | Earlier animations for this page: check which still work after the redesign, before new motion is planned | AI | 1 | nothing | done, awaiting his review: `reports/homepage-animation-audit.md` (little homepage motion existed; Haven scroll and reveal grammar recommended as the base) |
 | H5m | Make the visuals: his own disco ball if it stays, the 3D elements, the superpower visuals, the photo | C | 3 | H5, H6, H6t | open |
 | H8 | Navigation: none in the hero; appears once past it, at the superpowers section (cw logo, Work, About, Contact) | AI | 2 | H14, H23 | open |
 | H15a | Superpowers section layout, shortened so work starts within the third screen (frame is 2068 tall today) | both | 3 | H6, H1, F3 | open |
