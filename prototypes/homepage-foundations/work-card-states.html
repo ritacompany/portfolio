@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work card states</title>
+<style>
+  /* Values read from Figma IarvWaqjIwrZ2afQmMxKm6, Works section 4283:25471 in the master 4226:8899. */
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root {
+    --black: #000;
+    --white: #fff;
+    --n300: #d2d2db;
+    --n400: #c9c9d4;   /* portfolio-neutral-400, card description */
+    --n500: #aeaeb4;   /* portfolio-neutral-500, // and label */
+    --rule: #23232d;
+    --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --quart-out: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+
+  .notes { max-width: 1360px; margin: 0 auto; padding: 56px 40px 0; display: grid; grid-template-columns: 1fr 545px; gap: 40px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  h1 { font-size: 20px; line-height: 1.32; margin-top: 16px; }
+  .notes p, .notes li { font-size: 16px; line-height: 1.4; color: var(--n300); }
+  .notes ul { padding-left: 18px; }
+  .notes li + li { margin-top: 8px; }
+  .notes b { color: var(--white); font-weight: 700; }
+  .force { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+  .force button { background: none; border: 1px solid #28282b; color: var(--white); font: inherit; font-size: 12px; letter-spacing: 0.96px;
+                  text-transform: uppercase; padding: 8px 14px; border-radius: 6px; cursor: pointer; }
+  .force button[aria-pressed="true"] { background: var(--white); color: #040405; border-color: var(--white); }
+  .force button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+  /* ---------- Works section, as in the frame ---------- */
+  .works { padding: 36px 40px 126px; margin-top: 64px; border-top: 0.5px solid var(--rule); }
+  .cards { max-width: 1360px; margin: 0 auto; display: flex; gap: 24px; align-items: flex-start; }
+  .card { display: flex; flex-direction: column; gap: 24px; color: inherit; text-decoration: none; border-radius: 2px; }
+  .card.primary { flex: 895 1 0; }
+  .card.secondary { flex: 441 1 0; }
+  .media { position: relative; overflow: hidden; background: #111; }
+  .primary .media { aspect-ratio: 895 / 590; }
+  .secondary .media { aspect-ratio: 1 / 1; }
+  .media img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1);
+               transition: transform 900ms var(--expo-out); }
+
+  .caption { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+  .title { display: flex; align-items: center; gap: 11.258px; white-space: nowrap; }
+  .name { font-size: 20px; line-height: 1.32; font-weight: 500; display: inline-flex; }
+  .name .br { display: inline-block; transition: transform 500ms var(--expo-out); }
+  .name .word { padding: 0 0.28em; }
+  .slashes { font-size: 24px; line-height: 1.16; letter-spacing: 1.44px; color: var(--n500); }
+  .kind { font-size: 12px; line-height: 1.4; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500);
+          transition: color 400ms var(--quart-out); }
+  .desc { font-size: 14px; line-height: 1.4; letter-spacing: 0.14px; color: var(--n400); text-align: right;
+          transition: color 400ms var(--quart-out); padding-top: 5px; }
+  .primary .desc { width: 332px; }
+  .secondary .desc { max-width: 343px; padding-top: 0; }
+
+  /* ---------- States ---------- */
+  /* Hover, pointer devices only, so touch never needs a second tap */
+  @media (hover: hover) {
+    .card:hover .media img { transform: scale(1.035); }
+    .card:hover .br.l { transform: translateX(-5px); }
+    .card:hover .br.r { transform: translateX(5px); }
+    .card:hover .desc, .card:hover .kind { color: var(--white); }
+  }
+  /* Keyboard focus gets the same feedback plus a visible ring */
+  .card:focus-visible { outline: 2px solid var(--white); outline-offset: 8px; }
+  .card:focus-visible .media img { transform: scale(1.035); }
+  .card:focus-visible .br.l { transform: translateX(-5px); }
+  .card:focus-visible .br.r { transform: translateX(5px); }
+  .card:focus-visible .desc, .card:focus-visible .kind { color: var(--white); }
+  /* Pressed */
+  .card:active .media img { transform: scale(1.01); transition-duration: 150ms; }
+
+  /* Forced states for review */
+  .cards[data-force="hover"] .media img, .cards[data-force="focus"] .media img { transform: scale(1.035); }
+  .cards[data-force="hover"] .br.l, .cards[data-force="focus"] .br.l { transform: translateX(-5px); }
+  .cards[data-force="hover"] .br.r, .cards[data-force="focus"] .br.r { transform: translateX(5px); }
+  .cards[data-force="hover"] .desc, .cards[data-force="hover"] .kind,
+  .cards[data-force="focus"] .desc, .cards[data-force="focus"] .kind { color: var(--white); }
+  .cards[data-force="focus"] .card { outline: 2px solid var(--white); outline-offset: 8px; }
+  .cards[data-force="pressed"] .media img { transform: scale(1.01); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .media img, .name .br { transition: none !important; transform: none !important; }
+  }
+  @media (max-width: 900px) {
+    .notes { grid-template-columns: 1fr; }
+    .cards { flex-direction: column; gap: 56px; }
+    .card.primary, .card.secondary { flex: none; width: 100%; }
+    .caption { flex-direction: column; gap: 12px; }
+    .desc, .primary .desc { text-align: left; width: auto; }
+  }
+  @media (max-width: 640px) { .notes { padding: 40px 16px 0; } .works { padding: 36px 16px 80px; } }
+</style>
+</head>
+<body>
+<header class="notes">
+  <div>
+    <p class="eyebrow">H11 · proposal for review · not approved</p>
+    <h1>Work card states</h1>
+    <div class="force" role="group" aria-label="Show a state on both cards">
+      <button aria-pressed="true" data-state="">Live</button>
+      <button aria-pressed="false" data-state="hover">Hover</button>
+      <button aria-pressed="false" data-state="focus">Focus</button>
+      <button aria-pressed="false" data-state="pressed">Pressed</button>
+    </div>
+  </div>
+  <div>
+    <p>A hiring manager reaches these cards asking one thing: which one do I open? The states only have to say "this opens" and get out of the way of the work. Hover the cards or tab to them.</p>
+    <ul style="margin-top:16px">
+      <li><b>Whole card is the link.</b> Image, title and description are one target, so the click lands wherever the eye is (Fitts's law). One tab stop per card.</li>
+      <li><b>Hover.</b> The image eases in 3.5% inside its frame, the brackets around the name open by 5px, the description and label go white. The brackets are already the signature of these titles, so the cue comes from the design, not from an added arrow.</li>
+      <li><b>Focus.</b> Same feedback plus a 2px white ring 8px out, so keyboard users see exactly what hover shows (WCAG 2.4.7).</li>
+      <li><b>Pressed.</b> The image settles back to 1%, a quick physical confirmation.</li>
+      <li><b>Touch.</b> Hover only runs on devices that hover, so one tap opens the card.</li>
+      <li><b>Link targets.</b> Mondai goes to the case study collection, <code>/mondai</code>. If the design system CS misses launch it points straight at the framework CS (H13). Haven goes to <code>/haven</code>; its state is in triage (C3). Same tab, plain links, no transition yet.</li>
+      <li><b>Reduced motion.</b> Only the color change remains.</li>
+    </ul>
+    <p style="margin-top:16px">The Mondai image is today's master export, so the screen overhang H12 fixes is still visible here.</p>
+  </div>
+</header>
+
+<section class="works" aria-label="Work">
+  <div class="cards">
+    <a class="card primary" href="#mondai" aria-label="Mondai, case study collection. The tech career navigation tool for the next generation of hustlers">
+      <div class="media"><img src="assets/card-mondai.jpg" alt="" width="895" height="590"></div>
+      <div class="caption">
+        <div class="title">
+          <span class="name"><span class="br l">[</span><span class="word">Mondai</span><span class="br r">]</span></span>
+          <span class="slashes">//</span>
+          <span class="kind">case study collection</span>
+        </div>
+        <p class="desc">The tech career navigation tool for the next generation of hustlers</p>
+      </div>
+    </a>
+    <a class="card secondary" href="#haven" aria-label="Haven. A product designed to help LGBTQIA+ teens gain access to affirming environments">
+      <div class="media"><img src="assets/card-haven.jpg" alt="" width="441" height="441"></div>
+      <div class="caption">
+        <span class="name"><span class="br l">[</span><span class="word">Haven</span><span class="br r">]</span></span>
+        <p class="desc">A product designed to help LGBTQIA+ teens<br>gain access to affirming environments</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<script>
+const cards = document.querySelector('.cards');
+document.querySelectorAll('.force button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.force button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  cards.dataset.force = b.dataset.state;
+}));
+</script>
+</body>
+</html>
