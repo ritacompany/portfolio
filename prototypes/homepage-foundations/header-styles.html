@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Header styles</title>
+<style>
+  /* H23 options. Provisional, awaiting Chadwick's pick. Today's style from Figma IarvWaqjIwrZ2afQmMxKm6:
+     hero top bar 4308:6195 in the cleanup copy 4308:6176 and navbar 4293:36542 in the superpowers frame 4270:5765. */
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root { --black: #000; --surface: #040405; --white: #fff; --n300: #d2d2db; --n500: #aeaeb4; --line: #28282b; --grid: #1a1a1d;
+          --magenta: #c13bc9; --expo-out: cubic-bezier(0.16, 1, 0.3, 1); }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+
+  .intro { max-width: 1360px; margin: 0 auto; padding: 48px 40px 32px; display: grid; grid-template-columns: 1fr 545px; gap: 40px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  .intro h1 { font-size: 20px; line-height: 1.32; margin-top: 12px; }
+  .intro p, .intro li { font-size: 16px; line-height: 1.4; color: var(--n300); }
+  .intro ul { padding-left: 18px; margin-top: 16px; } .intro li + li { margin-top: 8px; } .intro b { color: var(--white); }
+  @media (max-width: 900px) { .intro { grid-template-columns: 1fr; padding: 32px 16px; } }
+
+  .take { border-top: 0.5px solid var(--line); padding-bottom: 48px; }
+  .take > .eyebrow { padding: 20px 40px; }
+  .take > .eyebrow b { color: var(--white); }
+  .label { padding: 28px 40px 8px; }
+  .stage { position: relative; height: 240px; overflow: hidden;
+           background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+           background-size: 120px 120px; }
+  .stage.plain { background: var(--black); height: 120px; border-top: 0.5px solid var(--line); border-bottom: 0.5px solid var(--line); }
+  .ghost { position: absolute; left: -40px; top: 92px; font-size: 212px; line-height: 1; letter-spacing: -5.5px; color: #141416; white-space: nowrap; }
+
+  /* ---------- Take 1: today's style ---------- */
+  .t1-top { position: absolute; top: 25px; left: 159px; right: 159px; display: flex; justify-content: space-between;
+            font-size: 12px; font-weight: 400; letter-spacing: 0.24px; text-transform: uppercase; }
+  .t1-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; }
+  .t1-nav .links { display: flex; align-items: center; gap: 102px; }
+  .t1-nav .links a { font-size: 14px; font-weight: 400; line-height: 1; letter-spacing: 0.28px; text-transform: uppercase; position: relative; }
+  .t1-nav .links a:not(.contact)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: currentColor;
+                                           transform: scaleX(0); transform-origin: right; transition: transform 400ms var(--expo-out); }
+  .t1-nav .links a:not(.contact):hover::after { transform: scaleX(1); transform-origin: left; }
+  .t1-nav .contact { background: var(--white); color: var(--surface); font-weight: 700; padding: 13px 30px; border-radius: 6px; transition: background 300ms; }
+  .t1-nav .contact:hover { background: #dedee5; }
+
+  /* ---------- Take 2: narrow creative buttons on a small plate ---------- */
+  /* Structure: everything collapses into one compact cluster at top right, logo alone at left.
+     Each button is narrow and tall, its own small background; hover does one creative thing per button. */
+  .t2 { position: absolute; top: 18px; left: 24px; right: 24px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .t2 .mark { display: inline-flex; align-items: center; height: 44px; padding: 0 14px; background: var(--white); border-radius: 3px; }
+  .t2 .mark img { filter: invert(1); }
+  .plate { display: flex; gap: 3px; padding: 3px; background: #161618; border-radius: 4px; }
+  .nb { position: relative; display: grid; place-items: center; height: 44px; min-width: 58px; padding: 0 12px; overflow: hidden;
+        background: var(--surface); border-radius: 2px; font-size: 11px; font-weight: 700; letter-spacing: 0.9px; text-transform: uppercase; line-height: 1; }
+  .nb .face { display: block; transition: transform 500ms var(--expo-out); }
+  .nb .face + .face { position: absolute; transform: translateY(44px); }
+  .nb:hover .face:first-child, .nb:focus-visible .face:first-child { transform: translateY(-44px); }
+  .nb:hover .face + .face, .nb:focus-visible .face + .face { transform: none; }
+  .nb.meta { font-weight: 400; color: var(--n300); }
+  .nb.meta .face + .face { color: var(--white); }
+  .nb.hot { background: var(--white); color: var(--surface); }
+  .nb.hot::before { content: ""; position: absolute; inset: 0; background: var(--magenta); transform: scaleY(0); transform-origin: bottom; transition: transform 450ms var(--expo-out); }
+  .nb.hot:hover::before, .nb.hot:focus-visible::before { transform: none; }
+  .nb.hot .face { position: relative; z-index: 1; }
+  .nb.hot:hover, .nb.hot:focus-visible { color: var(--white); }
+  .nb .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #3ddc84; margin-right: 6px; vertical-align: 1px; }
+  .t2.inline { position: static; padding: 18px 24px; }
+
+  @media (max-width: 900px) {
+    .t1-top { left: 16px; right: 16px; font-size: 10px; } .t1-top span:nth-child(2) { display: none; }
+    .t1-nav { padding: 16px; } .t1-nav .links { gap: 24px; }
+    .t2 { left: 12px; right: 12px; } .nb.meta { display: none; } .t2 .plate .nb.meta:first-child { display: grid; }
+    .label, .take > .eyebrow { padding-left: 16px; padding-right: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .nb .face, .nb.hot::before, .t1-nav a::after { transition: none !important; } }
+</style>
+</head>
+<body>
+<section class="intro">
+  <div>
+    <p class="eyebrow">H23 · options for your pick · provisional</p>
+    <h1>Header style: today's spread against narrow buttons</h1>
+  </div>
+  <div>
+    <p>Two structures, not one restyled. Each shows the hero top bar and the nav that appears at the superpowers section (H8). Hover the buttons.</p>
+    <ul>
+      <li><b>Take 1, today's style.</b> Labels spread across the full width in brackets; the nav is three plain words and a white Contact button. It is quiet so the hero's collage carries the page.</li>
+      <li><b>Take 2, narrow buttons.</b> Everything gathers into one compact cluster at top right on a small dark plate, logo alone at left on a white tab. Each button is narrow and tall with its own small background and does one thing on hover: the words roll to a second line, Contact fills magenta from the bottom (the hero's magenta block). The hero labels become buttons too, so the top bar and the nav are the same object.</li>
+      <li><b>My recommendation: take 2.</b> The hero is a maximal collage, and take 1's thin labels get lost in it at 1440 (they sit at 12px across 1100px of busy canvas). A tight cluster reads as one deliberate object, gives the hero a second place where your personality shows, and becomes the nav with no change in shape, which makes H8's appear on scroll feel like the same thing arriving, not a new bar. What would change it: if the final hero elements crowd the top right corner, take 1 stays out of their way.</li>
+      <li><b>Open:</b> I could not find the VS Goods screenshot in HERO INSPIRATION or the Notes &amp; assets boards, so take 2 is built from your description (narrow, creative, small background). If you point me at the frame, I will tune it to the reference.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="take">
+  <p class="eyebrow"><b>Take 1</b> · today's style, from the frames</p>
+  <p class="eyebrow label">Hero top bar</p>
+  <div class="stage">
+    <div class="ghost" aria-hidden="true">I’m not really that cool,</div>
+    <div class="t1-top"><span>[ Product Designer ]</span><span>[ chadwickfenner.com ]</span><span>[ Seeking roles in NYC ]</span></div>
+  </div>
+  <p class="eyebrow label">Nav, from the superpowers section on</p>
+  <div class="stage plain">
+    <nav class="t1-nav" aria-label="Take 1 nav">
+      <a href="#" aria-label="Home"><img src="assets/logo.svg" alt="" width="47" height="14"></a>
+      <div class="links"><a href="#">Work</a><a href="#">About</a><a class="contact" href="#">Contact</a></div>
+    </nav>
+  </div>
+</section>
+
+<section class="take">
+  <p class="eyebrow"><b>Take 2</b> · narrow creative buttons on a small plate</p>
+  <p class="eyebrow label">Hero top bar</p>
+  <div class="stage">
+    <div class="ghost" aria-hidden="true">I’m not really that cool,</div>
+    <div class="t2">
+      <a class="mark" href="#" aria-label="Home"><img src="assets/logo.svg" alt="" width="47" height="14"></a>
+      <div class="plate">
+        <span class="nb meta"><span class="face">Product Designer</span><span class="face" aria-hidden="true">Product Designer</span></span>
+        <span class="nb meta"><span class="face">chadwickfenner.com</span><span class="face" aria-hidden="true">chadwickfenner.com</span></span>
+        <span class="nb meta"><span class="face"><i class="dot"></i>Seeking roles in NYC</span><span class="face" aria-hidden="true"><i class="dot"></i>Seeking roles in NYC</span></span>
+      </div>
+    </div>
+  </div>
+  <p class="eyebrow label">Nav, from the superpowers section on</p>
+  <div class="stage plain">
+    <nav class="t2 inline" aria-label="Take 2 nav">
+      <a class="mark" href="#" aria-label="Home"><img src="assets/logo.svg" alt="" width="47" height="14"></a>
+      <div class="plate">
+        <a class="nb" href="#"><span class="face">Work</span><span class="face" aria-hidden="true">Work</span></a>
+        <a class="nb" href="#"><span class="face">About</span><span class="face" aria-hidden="true">About</span></a>
+        <a class="nb hot" href="#"><span class="face">Contact</span></a>
+      </div>
+    </nav>
+  </div>
+</section>
+</body>
+</html>

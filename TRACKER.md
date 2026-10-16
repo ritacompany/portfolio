@@ -89,7 +89,7 @@ The leadership CS is after launch (C4).
 | C2 | Design system CS: sources in `reference/design-system-cs/` (SOURCES.md, GAPS.md) | both | 1 | nothing | sources gathered, awaiting his review |
 | C3 | Haven: in the work section; branch state is in triage | C | 1 | nothing | open |
 | H22 | Something else he meant to add about the hero and forgot | C | 1 | nothing | open |
-| H23 | Header style: VS Goods narrow creative buttons with the small background; does it work with this design | both | 1 | nothing | open |
+| H23 | Header style: VS Goods narrow creative buttons with the small background; does it work with this design | both | 1 | nothing | decision: options ready, awaiting his pick: `prototypes/homepage-foundations/header-styles.html` (take 1 today's spread, take 2 narrow buttons on a plate; AI recommends take 2; VS Goods screenshot not found in the named frames, take 2 built from his description) |
 | H21 | Earlier animations for this page: check which still work after the redesign, before new motion is planned | AI | 1 | nothing | done, awaiting his review: `reports/homepage-animation-audit.md` (little homepage motion existed; Haven scroll and reveal grammar recommended as the base) |
 | H5m | Make the visuals: his own disco ball if it stays, the 3D elements, the superpower visuals, the photo | C | 3 | H5, H6, H6t | open |
 | H8 | Navigation: none in the hero; appears once past it, at the superpowers section (cw logo, Work, About, Contact) | AI | 2 | H14, H23 | open |
