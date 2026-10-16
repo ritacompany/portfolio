@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collection page</title>
+<style>
+  /* F9 recommendation and H13 states, built on the list layout. Provisional, awaiting Chadwick's pick.
+     From Figma IarvWaqjIwrZ2afQmMxKm6: list layout 4288:36293 (leadership row hidden, F10), card layout 4285:34478 for comparison,
+     Mondai card in the cleanup copy 4308:6176 (Link 4308:6205). */
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root { --black: #000; --surface: #040405; --white: #fff; --n200: #dedee5; --n300: #d2d2db; --n400: #c9c9d4; --n500: #aeaeb4;
+          --line: #28282b; --rule: #1c1c22; --row-hover: #0b0b0d; --expo-out: cubic-bezier(0.16, 1, 0.3, 1); --quart-out: cubic-bezier(0.25, 1, 0.5, 1); }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--white); outline-offset: 6px; }
+
+  .intro { max-width: 1360px; margin: 0 auto; padding: 48px 40px 32px; display: grid; grid-template-columns: 1fr 545px; gap: 40px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  .intro h1 { font-size: 20px; line-height: 1.32; margin-top: 12px; }
+  .intro p, .intro li { font-size: 16px; line-height: 1.4; color: var(--n300); }
+  .intro ul { padding-left: 18px; margin-top: 16px; } .intro li + li { margin-top: 8px; } .intro b { color: var(--white); }
+  .switch { display: flex; gap: 6px; margin-top: 20px; flex-wrap: wrap; align-items: center; }
+  .switch button { font: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--white);
+                   background: none; border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; cursor: pointer; }
+  .switch button[aria-pressed="true"] { background: var(--white); color: var(--surface); border-color: var(--white); }
+  @media (max-width: 900px) { .intro { grid-template-columns: 1fr; padding: 32px 16px; } }
+
+  .step { border-top: 0.5px solid var(--line); padding: 20px 40px 64px; }
+  .step > .eyebrow { margin-bottom: 28px; } .step > .eyebrow b { color: var(--white); }
+  @media (max-width: 900px) { .step { padding: 20px 16px 48px; } }
+
+  /* ---------- Homepage Mondai card ---------- */
+  .card { display: flex; flex-direction: column; gap: 24px; max-width: 895px; }
+  .media { position: relative; overflow: hidden; aspect-ratio: 895 / 590; background: #111; }
+  .media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--expo-out); }
+  /* The arrow: hidden at rest, a white disc that rises into the lower right corner on hover */
+  .go { position: absolute; right: 24px; bottom: 24px; width: 56px; height: 56px; border-radius: 50%; background: var(--white); color: var(--surface);
+        display: grid; place-items: center; transform: translateY(16px) scale(0.6); opacity: 0;
+        transition: transform 600ms var(--expo-out), opacity 300ms var(--quart-out); }
+  .go svg { transition: transform 500ms var(--expo-out); }
+  .caption { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+  .title { display: flex; align-items: center; gap: 11px; white-space: nowrap; }
+  .name { font-size: 20px; line-height: 1.32; }
+  .slashes { font-size: 24px; line-height: 1.16; letter-spacing: 1.44px; color: var(--n500); }
+  .kind { font-size: 12px; line-height: 1.4; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); transition: color 400ms var(--quart-out); }
+  .desc { width: 332px; font-size: 14px; line-height: 1.4; letter-spacing: 0.14px; color: var(--n400); text-align: right; padding-top: 5px; transition: color 400ms var(--quart-out); }
+  @media (hover: hover) {
+    .card:hover .media img { transform: scale(1.035); }
+    .card:hover .go { transform: none; opacity: 1; }
+    .card:hover .kind, .card:hover .desc { color: var(--white); }
+  }
+  .card:focus-visible .go { transform: none; opacity: 1; }
+  .card:active .go svg { transform: translateX(4px); }
+  @media (hover: none) { .go { transform: none; opacity: 1; width: 44px; height: 44px; } }   /* touch shows the arrow at rest */
+  @media (max-width: 700px) { .caption { flex-direction: column; } .desc { width: auto; text-align: left; } }
+
+  /* ---------- Collection page, list layout ---------- */
+  .page { max-width: 1360px; margin: 0 auto; }
+  .back { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 400; letter-spacing: 0.28px; text-transform: uppercase; margin-bottom: 28px; }
+  .back svg { transition: transform 400ms var(--expo-out); } .back:hover svg { transform: translateX(-4px); }
+  .brand { display: flex; align-items: center; gap: 20px; }
+  .brand img { width: 40px; height: 40px; }
+  .brand h2 { font-size: 40px; line-height: 1.1; letter-spacing: -0.8px; font-weight: 500; }
+  .lede { margin-top: 26px; max-width: 574px; font-size: 16px; line-height: 1.4; color: var(--n300); }
+  .label { display: flex; align-items: center; gap: 11px; margin-top: 176px; }
+  .list { margin-top: 20px; border-top: 1px solid var(--rule); }
+  .row { position: relative; display: flex; align-items: center; gap: 36px; height: 128px; padding: 0 50px; border-bottom: 1px solid var(--rule);
+         transition: background 400ms var(--quart-out); }
+  .row .t { font-size: 60px; line-height: 1; letter-spacing: -1.5px; transition: transform 600ms var(--expo-out); }
+  .row .arrow { width: 46px; height: 46px; border-radius: 50%; background: var(--n200); color: var(--surface); display: grid; place-items: center; flex: none;
+                transition: transform 600ms var(--expo-out), background 300ms; }
+  .row .pill { flex: none; padding: 0 20px; height: 56px; display: grid; place-items: center; border: 1px solid #5c5c61; border-radius: 28px;
+               font-size: 12px; font-weight: 400; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n300); transition: border-color 300ms, color 300ms; }
+  @media (hover: hover) {
+    .row:hover { background: var(--row-hover); }
+    .row:hover .t { transform: translateX(12px); }
+    .row:hover .arrow { transform: translateX(12px) rotate(-45deg); background: var(--white); }
+    .row:hover .pill { border-color: var(--white); color: var(--white); }
+  }
+  .row:focus-visible { outline-offset: -2px; }
+  .row:focus-visible .arrow { transform: rotate(-45deg); background: var(--white); }
+  .row:active { background: #111114; }
+  /* The design system CS before it is ready: shown, not clickable, honest about it */
+  .row.soon { cursor: default; color: #6d6d73; }
+  .row.soon .arrow { background: #1a1a1d; color: #6d6d73; }
+  .row.soon .pill { border-style: dashed; color: #6d6d73; }
+  .row.soon:hover { background: none; } .row.soon:hover .t, .row.soon:hover .arrow { transform: none; } .row.soon:hover .arrow { background: #1a1a1d; }
+  @media (max-width: 900px) {
+    .row { height: auto; padding: 28px 8px; gap: 16px; flex-wrap: wrap; } .row .t { font-size: 34px; letter-spacing: -0.7px; }
+    .row .arrow { width: 36px; height: 36px; } .row .pill { height: 40px; } .label { margin-top: 96px; } .brand h2 { font-size: 32px; }
+  }
+
+  .skipped { max-width: 1360px; margin: 0 auto; padding: 40px; border: 1px dashed var(--line); border-radius: 6px; color: var(--n300); font-size: 16px; line-height: 1.4; }
+  .skipped b { color: var(--white); }
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 1ms !important; } }
+</style>
+</head>
+<body>
+<section class="intro">
+  <div>
+    <p class="eyebrow">F9 and H13 · built on default list layout · provisional</p>
+    <h1>Collection page: list layout, simple states first</h1>
+  </div>
+  <div>
+    <p><b>F9 recommendation: list.</b> With two case studies at launch the list reads as complete and needs no new imagery, while the card layout needs a cover image per study that does not exist yet and looks unfinished with two cards and an empty third.</p>
+    <ul>
+      <li><b>Mondai card on the homepage.</b> Hover: the image eases in, a white arrow disc rises into the lower right corner and the caption brightens. Touch shows the arrow at rest, since there is no hover. Keyboard focus gets the same as hover.</li>
+      <li><b>Collection rows.</b> Hover: the row lifts slightly off the black, the title and arrow slide 12px right and the arrow turns to point up and out. Pressed darkens the row. Pills keep their "case study 1" and "case study 2" labels from the frame.</li>
+      <li><b>When the design system CS is not ready.</b> Two ways, switch below. "Coming soon" keeps the page and shows the row dimmed and not clickable. "Straight to framework" skips the page: the Mondai card links to the framework CS and its label changes from case study collection to case study. Your note asked for the second; I recommend it too, because a page with one live row is a detour.</li>
+      <li>Hover motion is new to this page and small, same grammar as the work cards (H11).</li>
+    </ul>
+    <div class="switch" role="group" aria-label="Design system CS status">
+      <span class="eyebrow">Design system CS:</span>
+      <button type="button" data-ds="ready" aria-pressed="true">Ready</button>
+      <button type="button" data-ds="soon" aria-pressed="false">Not ready, coming soon row</button>
+      <button type="button" data-ds="skip" aria-pressed="false">Not ready, straight to framework</button>
+    </div>
+  </div>
+</section>
+
+<section class="step">
+  <p class="eyebrow"><b>1</b> · Mondai card on the homepage · <span data-dest>goes to /mondai</span></p>
+  <a class="card" href="#collection" data-card>
+    <div class="media">
+      <img src="assets/card-mondai.jpg" alt="The Mondai product on a desktop monitor">
+      <span class="go" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M11 4l6 6-6 6" stroke="currentColor" stroke-width="1.6"/></svg></span>
+    </div>
+    <div class="caption">
+      <div class="title"><span class="name">[ Mondai ]</span><span class="slashes">//</span><span class="kind" data-kind>Case study collection</span></div>
+      <p class="desc">The tech career navigation tool for the next generation of hustlers</p>
+    </div>
+  </a>
+</section>
+
+<section class="step" id="collection">
+  <p class="eyebrow"><b>2</b> · collection page, /mondai</p>
+  <div class="page" data-page>
+    <a class="back" href="#"><svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.2"/></svg>Home</a>
+    <div class="brand"><img src="assets/mondai-logo.svg" alt="" width="40" height="40"><h2>Mondai</h2></div>
+    <p class="lede">I lead design at Mondai, a tech career tool that the industry forgot to map. Two years, one of four people deciding what it becomes. I met the founder when he was my mentor. Now I'm one of the voices he argues with.</p>
+    <div class="label"><span class="slashes">//</span><span class="kind">Case study collection</span></div>
+    <nav class="list" aria-label="Mondai case studies">
+      <a class="row" href="#framework"><span class="t">Framework CS</span><span class="arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M11 4l6 6-6 6" stroke="currentColor" stroke-width="2"/></svg></span><span class="pill">Case study 1</span></a>
+      <a class="row" href="#design-system" data-ds-row><span class="t">Design system CS</span><span class="arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M11 4l6 6-6 6" stroke="currentColor" stroke-width="2"/></svg></span><span class="pill" data-ds-pill>Case study 2</span></a>
+    </nav>
+  </div>
+  <div class="skipped" data-skipped hidden><b>Skipped at launch.</b> The Mondai card goes straight to the framework CS, so nobody reaches this page. It comes back unchanged once the design system CS ships: flip the card's link and label back.</div>
+</section>
+
+<script>
+const card = document.querySelector('[data-card]'), kind = document.querySelector('[data-kind]'), dest = document.querySelector('[data-dest]');
+const row = document.querySelector('[data-ds-row]'), pill = document.querySelector('[data-ds-pill]');
+const page = document.querySelector('[data-page]'), skipped = document.querySelector('[data-skipped]');
+function setState(s) {
+  document.querySelectorAll('[data-ds]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ds === s)));
+  const skip = s === 'skip', soon = s === 'soon';
+  card.href = skip ? '#framework' : '#collection';
+  kind.textContent = skip ? 'Case study' : 'Case study collection';
+  dest.textContent = skip ? 'goes straight to /mondai/framework' : 'goes to /mondai';
+  page.hidden = skip; skipped.hidden = !skip;
+  row.classList.toggle('soon', soon);
+  pill.textContent = soon ? 'Coming soon' : 'Case study 2';
+  if (soon) { row.removeAttribute('href'); row.setAttribute('aria-disabled', 'true'); }
+  else { row.setAttribute('href', '#design-system'); row.removeAttribute('aria-disabled'); }
+}
+document.querySelectorAll('[data-ds]').forEach(b => b.addEventListener('click', () => setState(b.dataset.ds)));
+</script>
+</body>
+</html>

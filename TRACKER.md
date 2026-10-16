@@ -76,7 +76,7 @@ The leadership CS is after launch (C4).
 | H19 | Final colors, including the contact button | C | 1 | nothing | open |
 | F2 | Footer email reads CHADWICK@CHADWICKFENER.COM, missing an N; confirm the real address | C | 1 | nothing | open |
 | F3 | Superpower lines are worded differently in the About section and the superpowers frame; pick one | C | 1 | nothing | open |
-| F9 | Collection page: list layout or card layout | C | 1 | nothing | decision |
+| F9 | Collection page: list layout or card layout | C | 1 | nothing | decision: AI recommends list (two studies read complete with no new imagery; cards need covers that do not exist and look unfinished at two). Built on list in `prototypes/homepage-foundations/collection-page.html` |
 | H17 | Gray line at the top of the master: trace and remove on a duplicate | AI | 1 | nothing | done, awaiting his review: copy `4308:6176`. Cause: Inner shadow effect (#5C5C61, y 4, blur 4) on master frame `4226:8899`, removed in the copy |
 | H18 | Layer cleanup in the master, on a duplicate he swaps in | AI | 1 | nothing | done, awaiting his review: copy `4308:6176`. Three hidden old superpowers layouts deleted, 25 default-named layers and 13 text layers renamed, nothing visible changed |
 | F1 | Typo "some fo the right people" in both frames | AI | 1 | nothing | done, awaiting his review: copy `4308:6176` (`4308:6238`) and superpowers frame (`4250:11960`) |
@@ -94,7 +94,7 @@ The leadership CS is after launch (C4).
 | H5m | Make the visuals: his own disco ball if it stays, the 3D elements, the superpower visuals, the photo | C | 3 | H5, H6, H6t | open |
 | H8 | Navigation: none in the hero; appears once past it, at the superpowers section (cw logo, Work, About, Contact) | AI | 2 | H14, H23 | built on default today's header style, provisional: `prototypes/homepage-foundations/nav-scroll.html` (drops in as the hero leaves, About opens the H14 panel; a toggle shows it with H23 take 2) |
 | H15a | Superpowers section layout, shortened so work starts within the third screen (frame is 2068 tall today) | both | 3 | H6, H1, F3 | open |
-| H13 | Collection page: Mondai card hover and arrow, page interactions, components, simple first. If the design system CS misses launch, the card links straight to the framework CS with labels changed to match | AI proposes, C approves | 2 | F9, F10 | open |
+| H13 | Collection page: Mondai card hover and arrow, page interactions, components, simple first. If the design system CS misses launch, the card links straight to the framework CS with labels changed to match | AI proposes, C approves | 2 | F9, F10 | built on default list layout, provisional: `prototypes/homepage-foundations/collection-page.html` (Mondai card hover and arrow, row states, design system CS switch: ready, coming soon row, or straight to framework with the card label changed to "Case study"; "Coming soon" pill text is a placeholder) |
 | H16a | Footer transition animation | AI | 2 | H16 | options ready, awaiting his pick: both H16 options animated and scroll scrubbed in `prototypes/homepage-foundations/footer-transitions.html` |
 | F5 | About 320 of empty black below the work cards: tighten or keep for something | C | 2 | H11 | open |
 | H20 | Hero composition in Figma with the real elements and final copy | C | 4 | H5m, H1, H3, H4, H23 | open |
@@ -165,6 +165,7 @@ At most two besides the coordinator, and only on rows whose Waits on is done.
 
 ## In flight
 
+- **Stage 2 options (16 Oct):** H1, H23, H16 and F9 have pick pages; H8, H16a and H13 are built on defaults, all provisional, in `prototypes/homepage-foundations/` (`headline-options`, `header-styles`, `nav-scroll`, `footer-transitions`, `collection-page`). Nothing touched Figma or `site/`. Open: where the VS Goods header reference lives in Figma.
 - **Foundations (16 Oct):** H6t, H11, H14, H21 and S0 are done and pushed, all awaiting his review. Prototypes in `prototypes/homepage-foundations/` (open with any static server, for example `python3 -m http.server --directory prototypes`). Nothing touched Figma or the deploy.
 - **Coordinator (15 Oct):** tracker rebuilt as an ordered plan from his verbatim notes, after he
   flagged that the flat list scheduled motion ahead of the hero elements it depends on. Fix
