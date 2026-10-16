@@ -86,7 +86,7 @@ The leadership CS is after launch (C4).
 | H14 | About becomes a left slide-out panel, no scroll, collapsible, opened from a button in the superpowers section and from the nav | AI proposes, C approves | 1 | D2 | done, awaiting his review: `prototypes/homepage-foundations/about-panel.html` (reasoning on the page; button label is a placeholder) |
 | S0 | Site setup: code base, fonts, deploy pipeline, so the build in stage 6 is assembly, not setup. The Sep homepage code is against an older design; reuse what holds | AI | 1 | nothing | done, awaiting his review: `docs/SITE_SETUP.md`, code in `site/` (deploy unchanged, still the holding page) |
 | C1 | Framework CS: sections 3 to 8, then intro and story. Process: `reference/cs2/CS2_PROCESS.md` | both | 1 | nothing | in progress, framework CS sessions |
-| C2 | Design system CS: no material in the repo yet | both | 1 | nothing | open |
+| C2 | Design system CS: sources in `reference/design-system-cs/` (SOURCES.md, GAPS.md) | both | 1 | nothing | sources gathered, awaiting his review |
 | C3 | Haven: in the work section; branch state is in triage | C | 1 | nothing | open |
 | H22 | Something else he meant to add about the hero and forgot | C | 1 | nothing | open |
 | H23 | Header style: VS Goods narrow creative buttons with the small background; does it work with this design | both | 1 | nothing | open |
