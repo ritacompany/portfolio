@@ -2,7 +2,7 @@
 // replacing __SECTION_ID__ with the section frame's node id. Returns PASS or the failures per check.
 // Conventions it relies on, set by the build: each block frame is named "Block N · <layout piece>" with a
 // layout from his pool; each image slot is a frame named "Image slot" with a dark fill and a TEXT child
-// named "Label" saying what goes there.
+// named "Label" saying what goes there; text sits in frames named "Text column". Grid is checked on those.
 const POOL = /(TitleAndText position [123]|TextAnd1Image layout [1-4]|TextAnd2Images layout [1-5]|TextAnd3Images layout [1246]|MediaSliderAndText|VideoScrollerAndText|StatRows|Quote|MinimalQuote|ReviewCardWithBackground)/;
 const HAVEN_STYLES = /^(Heading\/(20|24|28|40|64|Sans\/28 R|Sans\/88 R)|Body\/16|Label\/(12|14)|Display\/212)$/;
 const DRAWN = ['VECTOR', 'ELLIPSE', 'LINE', 'POLYGON', 'STAR', 'BOOLEAN_OPERATION'];
@@ -21,8 +21,8 @@ for (const b of blocks) {
   if (!POOL.test(b.name)) fails.layouts.push(`${b.name}: not named for a pool layout`);
   for (const n of b.findAll(() => true)) {
     const x = Math.round(n.absoluteTransform[0][2] - sx);
-    if (n.parent === b || n.name === 'Image slot') {
-      if (!colStarts.some(c => Math.abs(c - x) <= 2) && n.type !== 'TEXT') fails.grid.push(`${b.name} > ${n.name} starts at x ${x}, not a column start`);
+    if (n.name === 'Image slot' || n.name === 'Text column') {
+      if (!colStarts.some(c => Math.abs(c - x) <= 2)) fails.grid.push(`${b.name} > ${n.name} starts at x ${x}, not a column start`);
     }
   }
 }
