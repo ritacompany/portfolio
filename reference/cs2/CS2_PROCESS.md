@@ -202,45 +202,28 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
    Names, quotes, dashes, Oxford commas and early product terms are caught by `check-copy.mjs`.
-5. **Message plan, then slot plan.** Two passes, message first. Rewritten 14 Oct after a trial of three
-   setups in fresh runs (`fixes/2026-10-14-cs2-visual-before-message.md`); the old single pass picked
-   figures and layout together. Follows the voice pass without waiting for copy approval, so copy and
-   layout are reviewed together. One block in the copy file is one beat. Forms and references are in
-   `reports/Visual storytelling per beat.md`.
+5. **Story plan, then slot plan.** Rewritten 16 Oct on his notes: the story comes first, the writing uses
+   the tactics and case study books, visuals are image slots he fills from his own screens, layouts come
+   from his pool, and Claude never draws a diagram or chart. Checks agreed with him 16 Oct.
 
-   Pass 1 writes `message/section-N.md`: first line `Section: N`, then a `## ` block per copy block, with
-   no layout piece named anywhere:
-   - `- Claim:` the headline as a claim. Read in order, the claims tell the section on their own.
-   - `- What the reader has to see:` to believe it, in one sentence.
-   - `- Still missing from the copy:` read the eyebrow, headline, cards and body as plain text and name
-     what the reader still cannot see or believe. If nothing can be named, write `nothing` and the block
-     is text only.
-   - `- Figure count:` 0 when nothing is missing, otherwise 1, or 2 when the first figure and the copy
-     together still leave a named part unproven.
-   - `- Figure N:` one line per figure: what it shows, where it comes from (a real Mondai screen he picks,
-     or a new figure in words) and `Proves:` which part of the claim. A real screen beats a new diagram.
-   - `- Labels:` the words that sit on the figure, only when there is one.
+   Pass 1 writes `message/section-N.md`: first line `Section: N`, then a `## ` block per copy block, no
+   layout piece named. Each block has `- Claim:` (the point, plain words), `- What the reader has to see:`,
+   `- Moves:` (ids from `CS2_REFERENCE_INDEX.md` the copy uses; open each entry in full before writing)
+   and `- Images:` with a count, then one `- Image N: <the real thing he supplies> | Supports: <the point>`
+   per slot, for example a Growth Journey page. Image slots are where a real screen backs the point.
 
-   Pass 2 writes `layout/section-N.md` from the message plan and the `LEDGER.md` decoder: first line
-   `Section: N`, then one table `| Layout piece | Slot | What goes in it | Why |`, a row per slot, each
-   "What goes in it" starting `Block N`. A block's image slots equal its figure count.
+   Story review, before anything is designed: run `check-figures-review.mjs` in prompt mode for the section
+   and give its output word for word to a foreground sub-agent. A cold reader checks every block for plain
+   copy, headlines that tell the story alone, a block that earns its place, the person and what is at
+   stake, his reasoning where there is a decision, a section that joins up with the one before and hands
+   to the next, image slots that serve the point, and moves actually used. Only the hook can record the
+   verdict.
 
-   Fewest figures wins over variety. Two text only blocks in a row are set apart by layout piece or width,
-   never by adding a figure. No form another case study leans on (Haven has the two by two). Draw the
-   difference, not both whole states. Label every arrow or leave it out. A single number is a stat.
-   Nothing the reader needs lives in a hover, a later carousel slide or an animation.
+   Pass 2 writes `layout/section-N.md`: one table `| Layout piece | Slot | What goes in it | Why |`, every
+   layout piece from his pool (`LEDGER.md` decoder), each row starting `Block N`, image slots equal to the
+   plan's count. The hook refuses a slot plan without a passing plan, a passing story review, a pool
+   layout, matching slots, or with a drawn visual or a Pathway row (his line in `APPROVALS.md` lifts that).
 
-   Enforced by the guard hook on every save, not by the session: the message plan's answers must agree
-   (nothing missing means no figure, one figure line per figure, each saying what it proves); a slot plan
-   needs a passing message plan and matching image slots; a figure of the Pathways as a row or line needs
-   his line `- Section N block M: route figure` in `APPROVALS.md`, a file only he writes; and a slot plan
-   needs a PASS from the fewer figures review. To get one, run `check-figures-review.mjs` in prompt mode for
-   the section (its header comment shows how) and give its output word for word to a foreground sub-agent; the hook records the verdict
-   only if the prompt matches exactly, and only the hook can write it. Step 5 ends with the two files: no visuals and no Figma. A correction goes back
-   to that block's claim in pass 1.
-
-   Imagery is his to choose (corrected 2026-10-08). An image slot says what could go there and stays
-   unfilled until he picks. Real screens are read from the Mondai Figma, never redrawn from memory.
 6. **Review pack.** One per section, sent once, his decision 16 Oct: the copy, a before and after
    wireframe shown in the chat (never Figma) and one list of every call Claude made, each with its pick
    and reason. He replies once and flags only what he disagrees with; a line he leaves stands. Claude
@@ -248,6 +231,8 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    of asking. At most one question per pack, and only for what he alone holds: what existed, taste, what
    he is comfortable claiming. Small fixes are made in place; changes to what the section says go back to
    step 2 or 3.
+   Before the pack goes to him, a blind audit: run the `blindspot-audit` skill in scoped mode on the
+   section (copy, plan, slot plan, built frame), and list its findings in the pack.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
    at the top. On approval, the status table is updated and the change is committed and pushed to
    GitHub in the same step. Nothing approved lives only on one machine.
@@ -271,6 +256,11 @@ saying where the conversation stopped.
    block's job is the person and their situation; its final words are written with the intro (section 9),
    and it never states the problem or the thesis, which section 1 opens with. Text comes from the copy
    file and slots from the approved slot plan, body text no wider than 7 columns.
+   Each block is built from his pool layout, named `Block N · <layout piece>`, on the 12 column grid, with
+   Haven text styles. Each image slot is a dark frame named `Image slot` with a `Label` text saying what
+   goes there; he supplies the image. After every build, run `figma-audit.js` with use_figma (replace the
+   section id) and fix every failure before showing him: pool layouts, labelled image slots, no drawn
+   visuals, Haven styles only, grid.
 
 ## Order
 

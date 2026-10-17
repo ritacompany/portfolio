@@ -2,7 +2,7 @@
 // Checks a CS2 loop step 5 output (the slot plan) before he sees it.
 // Usage: node check-slot-plan.mjs <plan-file> [real-path]
 // With the real path (the guard hook passes it) it also needs a passing message/section-N.md, matches each
-// block's image slots to that plan's figure count and runs the fewer figures review by a separate model.
+// block's image slots to that plan's figure count and needs a PASS from the story review.
 // Every row's "What goes in it" starts with "Block N" so slots can be matched to the message plan.
 // Passes only when the file holds a slot plan table (layout piece, slot, what goes in it, why) with a
 // filled row per slot, and nothing from Haven, no Figma build work, no carried over template content
@@ -15,6 +15,9 @@ import path from 'node:path';
 import { ROUTE, approved } from './route-rule.mjs';
 
 const HEADER = ['layout piece', 'slot', 'what goes in it', 'why'];
+// His layout pool (Case study layouts, decoded in LEDGER.md). A layout piece outside it is refused.
+const POOL = /^(TitleAndText position [123]|TextAnd1Image layout [1-4]|TextAnd2Images layout [1-5]|TextAnd3Images layout [1246]|MediaSliderAndText|VideoScrollerAndText|StatRows|Quote|MinimalQuote|ReviewCardWithBackground)$/i;
+const DRAWN = /\b(diagram|chart|graph|data vi[sz]\w*|infographic|illustration|drawn|draw|circles?|flow ?chart)\b/i;
 const BANNED = [
   [/\bhaven\b/i, 'Haven named: the plan borrows from or measures against Haven'],
   [/\buse_figma\b|\bduplicat(e|ed|ing)\b/i, 'Figma build work (duplicating or writing to Figma)'],
@@ -50,10 +53,14 @@ lines.forEach((l, i) => {
     rows++;
     if (c.length !== HEADER.length) { problems.push(`line ${i + 1}: row has ${c.length} cells, needs ${HEADER.length}`); return; }
     c.forEach((x, k) => { if (!x) problems.push(`line ${i + 1}: empty "${HEADER[k]}" cell`); });
+    if (!POOL.test(c[0])) problems.push(`line ${i + 1}: "${c[0]}" is not a layout from his pool`);
     const block = Number((c[2].match(/^Block (\d+)\b/i) || [])[1]);
     if (!block) problems.push(`line ${i + 1}: "What goes in it" must start with "Block N"`);
     // Any slot that is not plainly a text slot counts as an image slot, whatever it is called.
-    if (!/^(eyebrow|headline|title|heading|body|text|copy|caption|cards?|list|rows?|items?)\b/i.test(c[1])) media.push({ block, line: i + 1, text: c[2] });
+    if (!/^(eyebrow|headline|title|heading|body|text|copy|caption|cards?|list|rows?|items?)\b/i.test(c[1])) {
+      media.push({ block, line: i + 1, text: c[2] });
+      if (DRAWN.test(c[2])) problems.push(`line ${i + 1}: image slot asks for a drawn visual; it holds a real thing he supplies, shown as a labelled black block`);
+    }
     maxBlock = Math.max(maxBlock, block || 0);
   } else inTable = false;
 });
@@ -72,16 +79,16 @@ if (real && /layout\/section-(\d+)\.md$/.test(real)) {
     const mblocks = mt.split(/^## /m).slice(1);
     if (maxBlock > mblocks.length) problems.push(`a slot names block ${maxBlock} but the message plan has ${mblocks.length} blocks`);
     mblocks.forEach((b, i) => {
-      const want = Number((b.match(/^- Figure count:\s*(\d+)/im) || [])[1] ?? 0);
+      const want = Number((b.match(/^- Images:\s*(\d+)/im) || [])[1] ?? 0);
       const got = media.filter(x => x.block === i + 1).length;
-      if (got !== want) problems.push(`block ${i + 1}: ${got} image slots for a figure count of ${want} in the message plan`);
+      if (got !== want) problems.push(`block ${i + 1}: ${got} image slots for ${want} images in the message plan`);
     });
     for (const x of media) if (ROUTE.test(x.text) && !approved(cs2Dir, section, x.block))
       problems.push(`line ${x.line}: block ${x.block} image slot draws the Pathways as a row or line; only with his line "- Section ${section} block ${x.block}: route figure" in APPROVALS.md`);
     const copy = path.join(cs2Dir, 'copy', `section-${section}.md`);
     if (!problems.length) {
       const rv = spawnSync('node', [path.join(here, 'check-figures-review.mjs'), copy, msg, file], { encoding: 'utf8', env: process.env });
-      if (rv.status !== 0) problems.push(`fewer figures review: ${rv.stdout.trim().split('\n').join('; ')}`);
+      if (rv.status !== 0) problems.push(`story review: ${rv.stdout.trim().split('\n').join('; ')}`);
     }
   }
 }

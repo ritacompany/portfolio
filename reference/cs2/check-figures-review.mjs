@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// The fewer figures review. A sub-agent in the same Claude session answers it, never the session that
+// The story review. A sub-agent in the same Claude session answers it, never the session that
 // wrote the plan, and the guard hook, not Claude, records its verdict. No separate login is needed.
 //
 //   node check-figures-review.mjs --prompt N      prints the exact review prompt for section N. Claude
@@ -19,29 +19,52 @@ const here = path.dirname(new URL(import.meta.url).pathname);
 export const files = n => ({ copy: path.join(here, 'copy', `section-${n}.md`), msg: path.join(here, 'message', `section-${n}.md`), out: path.join(here, 'review', `section-${n}.json`) });
 export const hashOf = (copyText, msgText) => crypto.createHash('sha256').update(copyText + '\n\u0000\n' + msgText).digest('hex').slice(0, 16);
 
-export const buildPrompt = (n, copyText, msgText) => `CS2 FIGURES REVIEW section ${n} hash ${hashOf(copyText, msgText)}
+const movesText = msgText => {
+  const idx = path.join(here, 'CS2_REFERENCE_INDEX.md');
+  if (!fs.existsSync(idx)) return '';
+  const ids = new Set((msgText.match(/^- Moves:.*$/gim) || []).join(' ').match(/[a-z]+-[a-z]*\d+/g) || []);
+  return fs.readFileSync(idx, 'utf8').split('\n').filter(l => { const m = l.match(/^- ([a-z]+-[a-z]*\d+) ·/); return m && ids.has(m[1]); }).join('\n');
+};
+const prevCopy = n => { const f = path.join(here, 'copy', `section-${Number(n) - 1}.md`); return fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : '(none: this is the first section after the Background)'; };
 
-You are a strict reviewer of a figure plan for one section of a portfolio case study. You did not write
-it. Judge only from the text below. Do not open any file or use any tool.
+export const buildPrompt = (n, copyText, msgText) => `CS2 STORY REVIEW section ${n} hash ${hashOf(copyText, msgText)}
 
-For each block, answer:
-1. Could this block's claim be proven with fewer figures than the plan gives it? Read the eyebrow,
-   headline, cards and body as plain text. If they already make the reader see the claim, any figure is
-   one too many. If one figure would do, a second is one too many.
-2. Does any figure show the five Pathways (the stages of the journey) as a row, line or sequence,
-   however it is worded, when the claim is not about their order?
+You are a strict, cold reader of one section of a designer's portfolio case study. You know nothing about
+the product or the people. You did not write it. Judge only from the text below. Do not open any file or
+use any tool.
 
-Reply with one line per block, exactly "Block N: PASS" or "Block N: FAIL because <one short reason>",
-then a last line exactly "VERDICT: PASS" if every block passes, otherwise "VERDICT: FAIL". Nothing else.
+Each block has an eyebrow, a headline, optional cards and a body, plus a plan that lists the writing moves
+it claims to use and the image slots the designer will fill with real screens.
 
-=== COPY ===
+Check each block against all of these:
+1. Plain copy: would a stranger understand the headline in one read, with no product knowledge?
+2. Headlines alone: read only the headlines in order. Does this block's headline follow from the one
+   before and make sense as part of a story?
+3. Earns its place: does the block tell the reader something new that they need for what comes next?
+4. The person: can the reader tell who this is for and what is at stake for them?
+5. His thinking: where the block covers a decision, does it say what was chosen and why?
+6. Joins up: the first block opens from what the reader already has, the last hands over to a question
+   the next section answers, and nothing repeats the previous section.
+7. Images serve the point: each planned image slot backs the block's point and names a real thing,
+   never a drawn diagram or chart, never decoration.
+8. Moves used: does the copy actually do what each named move describes?
+
+Reply with one line per block, exactly "Block N: PASS" or "Block N: FAIL because <check number and one
+short reason>", then a last line exactly "VERDICT: PASS" if every block passes, otherwise
+"VERDICT: FAIL". Nothing else.
+
+=== PREVIOUS SECTION COPY ===
+${prevCopy(n)}
+=== THIS SECTION COPY ===
 ${copyText}
-=== MESSAGE PLAN ===
-${msgText}`;
+=== PLAN ===
+${msgText}
+=== THE NAMED MOVES, FROM THE TACTICS AND CASE STUDY BOOKS ===
+${movesText(msgText)}`;
 
 // Called by the hook with the sub-agent's prompt and answer. Returns what it recorded, or null.
 export const record = (prompt, answer) => {
-  const m = (prompt || '').match(/^CS2 FIGURES REVIEW section (\d+) hash ([0-9a-f]{16})$/m);
+  const m = (prompt || '').match(/^CS2 STORY REVIEW section (\d+) hash ([0-9a-f]{16})$/m);
   if (!m) return null;
   const f = files(m[1]);
   if (!fs.existsSync(f.copy) || !fs.existsSync(f.msg)) return null;
