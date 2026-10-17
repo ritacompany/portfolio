@@ -10,10 +10,11 @@ Section: 1
 
 ## Block 2
 
-- Claim: The steps had to stay in order, but people's weeks don't.
+- Claim: The steps had to stay in order, but people's weeks never look the same.
 - What the reader has to see: the four open questions that came from holding both.
-- Moves: cs-t14 cs-t18 cs-t36
-- Images: 0
+- Moves: cs-t14 cs-t36 cs-t39
+- Images: 1
+- Image 1: a visual he designs, the clash between a set order of steps and weeks that change size from one to the next; form is his call | Supports: the steps had to stay in order, but people's weeks never look the same
 
 ## Block 3
 

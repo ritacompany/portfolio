@@ -1,22 +1,20 @@
 Section: 1
 
-Story review passed 16 Oct. Layouts from his pool; image slots are labelled black blocks he fills.
+Story review passed 17 Oct. Each block is a title section (eyebrow and headline) followed by a media section from his pool, adapted to his grid. Every square is a visual block with small text saying what goes there; he makes what goes in it.
 
 | Layout piece | Slot | What goes in it | Why |
 |---|---|---|---|
-| TextAnd1Image layout 1 | Eyebrow | Block 1 eyebrow: What was already there | Topic before the claim |
-| TextAnd1Image layout 1 | Headline | Block 1 headline: every career had a set path, but nothing said what to do each week | States the point plainly |
-| TextAnd1Image layout 1 | Cards | Block 1 card: the Growth Journey, five ordered stages | Explains the term the point depends on |
-| TextAnd1Image layout 1 | Body | Block 1 body, text column left: the pieces around the path, and someone changing careers seeing the journey but not this week | Names the person and what was missing for them |
-| TextAnd1Image layout 1 | Image | Block 1 image slot, right: a Growth Journey page from before the weekly framework, his pick, nothing weekly on it | The real page shows the path existed with no weekly plan on it |
-| TitleAndText position 2 | Eyebrow | Block 2 eyebrow: Two jobs at once | Topic |
-| TitleAndText position 2 | Headline | Block 2 headline: the steps had to stay in order, but people's weeks don't | The tension the rest of the case study answers |
-| TitleAndText position 2 | List | Block 2 cards as four numbered questions, 01 to 04 | Each question pays off in a later section |
-| TitleAndText position 2 | Body | Block 2 body: a course in order, for a career change around full, uneven weeks | Why the questions exist |
-| TextAnd3Images layout 1 | Image a | Block 3 image slot: a CareerFoundry course screen, his pick | Structure with a fixed pace |
-| TextAnd3Images layout 1 | Image b | Block 3 image slot: a Duolingo streak freeze or repair screen, his pick | Falling behind without punishment |
-| TextAnd3Images layout 1 | Image c | Block 3 image slot: a Notion or Todoist task list, his pick | Flexibility with no path |
-| TextAnd3Images layout 1 | Eyebrow | Block 3 eyebrow: Reference products | Topic |
-| TextAnd3Images layout 1 | Headline | Block 3 headline: similar products each got one piece right, never the whole thing | States the point |
-| TextAnd3Images layout 1 | Cards | Block 3 cards: CareerFoundry, Duolingo, Notion and Todoist, each with what was kept or left | Says why each falls short, beside its screen |
-| TextAnd3Images layout 1 | Body | Block 3 body: career platforms, and the hand over to how much of the path one week holds | Hands to section 2 |
+| TitleAndText position 1 | Eyebrow | Block 1 eyebrow: What was already there | Topic before the claim |
+| TitleAndText position 1 | Headline | Block 1 headline: every career had a set path, but nothing said what to do each week | The point, plain |
+| TextAnd1Image layout 1 | Visual block | Block 1, the large square: a Growth Journey page from before the weekly framework, nothing weekly on it | The real page shows the path with no weekly plan |
+| TextAnd1Image layout 1 | Body | Block 1 text column: the Growth Journey card, then the body about the pieces and the person changing careers | Explains the term and names who it hurt |
+| TitleAndText position 1 | Eyebrow | Block 2 eyebrow: Two jobs at once | Topic |
+| TitleAndText position 1 | Headline | Block 2 headline: the steps had to stay in order, but people's weeks never look the same | The tension the case study answers |
+| TextAnd1Image layout 2 | Visual block | Block 2, the large square on the left: the clash between a set order of steps and weeks that change size; form is his call | The strongest place in the section for a visual, the core tension |
+| TextAnd1Image layout 2 | Body | Block 2 text column on the right: the four numbered questions, then the body that says the rest of the case study answers them | The questions sit beside the tension that raises them |
+| TitleAndText position 1 | Eyebrow | Block 3 eyebrow: Reference products | Topic |
+| TitleAndText position 1 | Headline | Block 3 headline: similar products each got one piece right, never the whole thing | The point |
+| TextAnd3Images layout 1 | Visual block a | Block 3, square top left: a CareerFoundry course screen | Structure with a fixed pace |
+| TextAnd3Images layout 1 | Visual block b | Block 3, square top right: a Duolingo streak freeze or repair screen | Falling behind without punishment |
+| TextAnd3Images layout 1 | Visual block c | Block 3, square bottom left: a Notion or Todoist task list | Flexibility with no path |
+| TextAnd3Images layout 1 | Body | Block 3 text cell bottom right: the three product cards, then the body that hands over to section 2 | Why each falls short, then the hand over |

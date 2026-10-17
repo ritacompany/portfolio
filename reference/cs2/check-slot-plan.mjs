@@ -17,7 +17,7 @@ import { ROUTE, approved } from './route-rule.mjs';
 const HEADER = ['layout piece', 'slot', 'what goes in it', 'why'];
 // His layout pool (Case study layouts, decoded in LEDGER.md). A layout piece outside it is refused.
 const POOL = /^(TitleAndText position [123]|TextAnd1Image layout [1-4]|TextAnd2Images layout [1-5]|TextAnd3Images layout [1246]|MediaSliderAndText|VideoScrollerAndText|StatRows|Quote|MinimalQuote|ReviewCardWithBackground)$/i;
-const DRAWN = /\b(diagram|chart|graph|data vi[sz]\w*|infographic|illustration|drawn|draw|circles?|flow ?chart)\b/i;
+
 const BANNED = [
   [/\bhaven\b/i, 'Haven named: the plan borrows from or measures against Haven'],
   [/\buse_figma\b|\bduplicat(e|ed|ing)\b/i, 'Figma build work (duplicating or writing to Figma)'],
@@ -59,7 +59,6 @@ lines.forEach((l, i) => {
     // Any slot that is not plainly a text slot counts as an image slot, whatever it is called.
     if (!/^(eyebrow|headline|title|heading|body|text|copy|caption|cards?|list|rows?|items?)\b/i.test(c[1])) {
       media.push({ block, line: i + 1, text: c[2] });
-      if (DRAWN.test(c[2])) problems.push(`line ${i + 1}: image slot asks for a drawn visual; it holds a real thing he supplies, shown as a labelled black block`);
     }
     maxBlock = Math.max(maxBlock, block || 0);
   } else inTable = false;

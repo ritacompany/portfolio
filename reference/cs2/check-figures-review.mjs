@@ -34,7 +34,7 @@ the product or the people. You did not write it. Judge only from the text below.
 use any tool.
 
 Each block has an eyebrow, a headline, optional cards and a body, plus a plan that lists the writing moves
-it claims to use and the image slots the designer will fill with real screens.
+it claims to use and the visual blocks the designer will fill.
 
 Check each block against all of these:
 1. Plain copy: would a stranger understand the headline in one read, with no product knowledge?
@@ -45,8 +45,9 @@ Check each block against all of these:
 5. His thinking: where the block covers a decision, does it say what was chosen and why?
 6. Joins up: the first block opens from what the reader already has, the last hands over to a question
    the next section answers, and nothing repeats the previous section.
-7. Images serve the point: each planned image slot backs the block's point and names a real thing,
-   never a drawn diagram or chart, never decoration.
+7. Visual blocks serve the point: each planned visual block (a real screen or a visual the designer
+   makes, such as a data visualization) backs the block's point and sits where the story most needs a
+   visual, never decoration.
 8. Moves used: does the copy actually do what each named move describes?
 
 Reply with one line per block, exactly "Block N: PASS" or "Block N: FAIL because <check number and one

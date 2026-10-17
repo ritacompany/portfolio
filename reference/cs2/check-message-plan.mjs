@@ -7,7 +7,9 @@
 //   - Claim: the point, in plain words.
 //   - What the reader has to see: to believe it.
 //   - Moves: ids from CS2_REFERENCE_INDEX.md that the block's copy uses, at least one.
-//   - Images: a count. Then one "- Image N: <the real thing he supplies> | Supports: <the point it backs>".
+//   - Images: a count of visual blocks. Then one "- Image N: <what the block holds> | Supports: <the point>".
+// A visual block is a square from his layouts; he makes what goes in it (a screen, a data visualization),
+// Claude only labels it and never draws it.
 // No layout piece named (layout is pass 2), no drawn diagram or chart, no Pathway row without his
 // line in APPROVALS.md. Prints MESSAGE_PASS and exits 0, or lists every problem and exits 1.
 import fs from 'node:fs';
@@ -33,7 +35,6 @@ if (/\b(TextAnd\dImages?|TitleAndText|StatRows|MediaSlider\w*|layout \d)\b/i.tes
 
 const indexFile = path.join(path.dirname(new URL(import.meta.url).pathname), 'CS2_REFERENCE_INDEX.md');
 const MOVES = new Set(fs.existsSync(indexFile) ? [...fs.readFileSync(indexFile, 'utf8').matchAll(/^- ([a-z]+-[a-z]*\d+) ·/gm)].map(m => m[1]) : []);
-const DRAWN = /\b(diagram|chart|graph|data vi[sz]\w*|infographic|illustration|drawn|draw|circles?|timeline drawing|flow ?chart|icons?)\b/i;
 
 blocks.forEach((b, i) => {
   const k = i + 1;
@@ -49,7 +50,6 @@ blocks.forEach((b, i) => {
   if (Number.isFinite(count) && imgs.length !== count) problems.push(`block ${k}: Images ${count} but ${imgs.length} "- Image N:" lines`);
   imgs.forEach((f, j) => {
     if (!/\|\s*Supports:\s*\S/i.test(f)) problems.push(`block ${k}: image ${j + 1} does not say "Supports:" which point it backs`);
-    if (DRAWN.test(f.split('|')[0])) problems.push(`block ${k}: image ${j + 1} asks for a drawn visual; image slots hold real things he supplies`);
   });
   if (imgs.some(f => ROUTE.test(f)) && !approved(cs2Dir, n, k))
     problems.push(`block ${k}: an image shows the Pathways as a row or line; only with his line "- Section ${n} block ${k}: route figure" in APPROVALS.md`);

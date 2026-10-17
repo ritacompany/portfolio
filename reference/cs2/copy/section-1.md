@@ -16,7 +16,7 @@ what to work on this week, or how those weeks would add up.
 
 Eyebrow: Two jobs at once
 
-Headline: The steps had to stay in order, but people's weeks don't.
+Headline: The steps had to stay in order, but people's weeks never look the same.
 
 Card: 01 | One week | How much of the path belongs in one week?
 Card: 02 | Behind or ahead | What happens when someone falls behind, or gets ahead?
@@ -25,7 +25,7 @@ Card: 04 | Stepping away | What happens when someone steps away for a while and 
 
 The Pathways run in order, so the product worked a bit like a course. But it was meant to guide people
 through a career change around full, uneven weeks, not hold them to a class schedule. Doing both raised
-these questions.
+these four questions, and the rest of this case study answers them.
 
 ## Block 3
 
