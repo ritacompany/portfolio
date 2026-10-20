@@ -6,9 +6,8 @@ Eyebrow: Before the framework
 
 Headline: The product had pieces, but nothing joined them into a plan.
 
-There was an onboarding quiz, career pages, a journey planner with no settled structure and a plan to
-sync calendars. Lessons were pinned to set days, so missing one pushed everything after it back. Each
-feature had been designed on its own and then made to fit the rest. No part of it showed someone
+There was a curriculum of career paths, an onboarding quiz, career pages and a plan to sync calendars.
+Each piece had been designed on its own and then made to fit the rest. No part of it showed someone
 changing careers what to do this week, or how those weeks would add up.
 
 ## Block 2

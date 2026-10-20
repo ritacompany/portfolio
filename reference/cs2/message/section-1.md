@@ -6,7 +6,7 @@ Section: 1
 - What the reader has to see: the actual pieces next to each other, each complete on its own, with nothing linking them into a week.
 - Moves: cs-t36 re-t39 cs-t14
 - Images: 1
-- Image 1: the existing pieces side by side (onboarding quiz, career pages, journey planner, calendar sync plan, the day by day lesson plan), screens or notes from before the framework, his pick | Supports: the product had pieces but nothing joining them into a plan
+- Image 1: the existing pieces side by side (the curriculum, onboarding quiz, career pages, calendar sync plan), screens from before the framework, his pick | Supports: the product had pieces but nothing joining them into a plan
 
 ## Block 2
 
