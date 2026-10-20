@@ -1,6 +1,6 @@
 # CS2 section 1: Where it started
 
-Status: drafted. Copy, message plan and slot plan rewritten 20 Oct from the approved outline at the end of this file. Block 1 corrected 20 Oct on his note: before the framework there was the curriculum and separate pieces, no plan; the lesson line came from his own notes about a proposal and is cut. Story review passed and recorded. Figma not rebuilt; waits for his build.
+Status: drafted. Copy, message plan and slot plan rewritten 20 Oct from the approved outline at the end of this file. Block 1 corrected 20 Oct on his note: before the framework there was the curriculum and separate pieces, no plan; the lesson line came from his own notes about a proposal and is cut. Story review passed and recorded. Built in Figma 4363:5682 on 20 Oct, audit PASS; the two visual blocks wait for his images.
 
 Job: what he walked into and the problems the framework had to solve. Background, not a feature.
 

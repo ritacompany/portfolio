@@ -271,7 +271,7 @@ saying where the conversation stopped.
   (3461:5685), rebuilt on his 12 column grid. Styling follows Haven (3300:12596).
 - The figma copy match hook only lets text into Figma that appears in the copy or layout plan: write square
   labels in the layout plan first, word for word.
-- If the figma-mondai connection hits its rate limit, the second Figma connection reaches the same file.
+- If the figma-mondai connection hits its rate limit or cannot load Satoshi, the second Figma connection reaches the same file with his local fonts.
 - `blindspot-audit` loads in the main session only; sub-agents cannot load it.
 - The desktop app runs sub-agents in the background, so the story review verdict is recorded on SubagentStop from the reviewer's own transcript (`cs2-copy-guard.mjs subagent`), not when the Agent call returns.
 - Repeat story reviews find new nitpicks each round. Fix real problems, drop a move the copy cannot honestly
@@ -284,7 +284,7 @@ The outline. Worked top to bottom.
 
 | # | Section | What the reader comes away with | Status |
 |---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | Copy, message plan and slot plan rewritten 20 Oct from the approved outline; block 1 corrected the same day to the curriculum and pieces that existed. Story review passed and recorded 20 Oct. Next: rebuild Figma 4363:5682 when he says build |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | Copy, message plan and slot plan rewritten 20 Oct from the approved outline; block 1 corrected the same day to the curriculum and pieces that existed. Story review passed and recorded 20 Oct. Rebuilt in Figma 4363:5682 on 20 Oct (his build), figma-audit.js PASS. Next: he fills the two visual blocks and reviews the built section |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Built 14 Oct, not yet reviewed (an approval on 14 Oct was sent by mistake and withdrawn). Copy Draft 5 in `copy/section-2.md` with his two wording fixes; notes in `draft/CS2-section-2.md`. Figma 4228:6731 built from the copy file on the two beat list. Next: his review of the build and his image pick for the Action Hub screen slot. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Talking, opened 8 Oct, reopened 14 Oct, `draft/CS2-section-3.md`. Three questions for him |
 | 4 | Pace | The system checks reality against the estimate without judging | Not started |
