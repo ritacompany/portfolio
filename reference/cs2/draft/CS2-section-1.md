@@ -385,3 +385,43 @@ Beat list for Draft 4 (for his review, nothing built):
     Status is built, not yet read. Next: he reads the copy and the Figma frame together, then approves or
     corrects. The calendar screen's week 5 header is part of that read.
 18. 2026-10-14: copy redone as Draft 5 in blocks (eyebrow, claim headline, figure labels, one short body) after the block shape check was added; slot plan written to `layout/section-1.md`. Block 2 now has a figure: the map with the four questions pinned to it. New eyebrows and labels not yet voice passed. Figma frame still shows the old build. Next: his read of copy and slot plan.
+
+## Approved outline, 20 Oct (his "this works"). Next session writes copy, plans and build from this.
+
+Research behind it, outside git: `~/Documents/CS2-research/reports/CS2 framework references from record.md`
+and its notes folder. Every point below traces there.
+
+Section job: what existed before the framework, and why nothing outside could be copied. Ends handing to
+section 2. Cut from section 1: the four questions, the calendar decision, Notion (he never used it),
+Duolingo (only one note), the "worked a bit like a course" framing.
+
+1. What was there before the framework. Point: the product had pieces but no framework connecting them.
+   Pieces: onboarding quiz, career pages, a journey feature with no settled structure, a planned calendar
+   sync, a day by day lesson plan. His Oct 2024 diagnosis: features built separately and made to fit, no
+   architecture tying them together (D 1294059170999304232; his own draft line G 6708082f #0002, not the
+   ChatGPT polished one). Do not say the Growth Journey existed then: Pathways arrived Sep 2025 and
+   replaced his milestones; the Growth Journey belongs later as the structure that slotted into his
+   framework. One visual block: the existing pieces side by side.
+2. A product with no direct reference. Point: it was neither a course nor a planner, so nothing fit.
+   His words: more of a guide than CareerFoundry's actual curriculum (4b322696 #0002); differs from a
+   learning product at the task level, a task tracker is a good model but lacks guiding (698e28e9 #0012);
+   too much variance in how people schedule their lives, full time jobs (13 Feb 2025, D 1351360634398179510).
+   No user research backs the variance point: it is his reasoning. Text only.
+3. What I borrowed, and what I left. One visual block, stacked per product: what it does, arrow, what the
+   framework kept and what it left.
+   - CareerFoundry: kept its scheduled versus completion dates as the base for target and pace dates
+     (db6cdec6 #0002, 81cda2a5 #0048), and structure with room to move (13 Feb 2025). Left the fixed
+     curriculum held to an outside standard (92eca2a4 #0000).
+   - Motion and Fantastical: first calendar inspiration (66fb1c90 #0000). Left calendar led scheduling as
+     too complex and rigid (67ce07fd #0002).
+   - Linear: kept its weekly tasks screen as the model for the landing screen (D 1479552621122420847).
+   - Google Grow and LinkedIn Learning: from the Feb 2025 career guidance review (67c0c9e0 #0000). Kept
+     small ideas such as showing skills that carry over. Left long, impersonal course lists. Frame it as
+     career guidance, never as schedule research.
+   Hand over: nothing fit whole, so the framework was worked out from first principles, starting with the
+   unit of time.
+
+Open, his only: who raised Motion in Sep 2024; how CareerFoundry's dates actually worked (only assistant
+research describes them, his recall is hedged). Record fixes waiting on him: the slide 4 kept/left lines
+earlier in this file are Claude's wording, not CONFIRMED; CS1-PRIMARY-EVIDENCE-VERBATIM.md lines 86 to 88
+credit his own 13 Feb 2025 23:42 message (D 1339743618520453201) to the founder (hook protected, needs his yes).

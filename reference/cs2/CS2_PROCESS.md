@@ -209,7 +209,7 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    Pass 1 writes `message/section-N.md`: first line `Section: N`, then a `## ` block per copy block, no
    layout piece named. Each block has `- Claim:` (the point, plain words), `- What the reader has to see:`,
    `- Moves:` (ids from `CS2_REFERENCE_INDEX.md` the copy uses; open each entry in full before writing)
-   and `- Images:` with a count, then one `- Image N: <the real thing he supplies> | Supports: <the point>`
+   and `- Images:` with a count, then one `- Image N: <what the visual block holds> | Supports: <the point>`
    per slot, for example a Growth Journey page. Image slots are where a real screen backs the point.
 
    Story review, before anything is designed: run `check-figures-review.mjs` in prompt mode for the section
@@ -262,13 +262,28 @@ saying where the conversation stopped.
    section id) and fix every failure before showing him: pool layouts, labelled image slots, no drawn
    visuals, Haven styles only, grid.
 
+## Working notes for a new session (16 to 20 Oct)
+
+- A square in his layouts is a visual block: he makes what goes in it (a real screen or a data
+  visualization). Claude only labels it with small text, never draws it, and places visual blocks where the
+  story most needs one, one block where one will do.
+- Each block is a title section (eyebrow and headline) plus a media section from `Case study layouts`
+  (3461:5685), rebuilt on his 12 column grid. Styling follows Haven (3300:12596).
+- The figma copy match hook only lets text into Figma that appears in the copy or layout plan: write square
+  labels in the layout plan first, word for word.
+- If the figma-mondai connection hits its rate limit, the second Figma connection reaches the same file.
+- `blindspot-audit` loads in the main session only; sub-agents cannot load it.
+- Repeat story reviews find new nitpicks each round. Fix real problems, drop a move the copy cannot honestly
+  meet, and stop after a pass rather than chasing the reviewer.
+- Research notes that quote his record live in `~/Documents/CS2-research/`, never in git.
+
 ## Order
 
 The outline. Worked top to bottom.
 
 | # | Section | What the reader comes away with | Status |
 |---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | Rebuilt 17 Oct from his pool sections (title section plus TextAnd1Image layout 1, TextAnd1Image layout 2, TextAnd3Images layout 1) on the 12 column grid, as `Section 1 · Where it started` (4363:5682) in the WIP frame. Five labelled visual blocks he fills. Story review PASS, figma-audit PASS. Not yet approved; the earlier approval was an accident |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | Outline approved 20 Oct, at the end of `draft/CS2-section-1.md` (three blocks: what was there before the framework, a product with no direct reference, what I borrowed and left). Next: rewrite `copy/section-1.md`, `message/section-1.md` and `layout/section-1.md` from it, story review, blind audit, review pack, then rebuild Figma 4363:5682 when he says build. The current copy and Figma frame are the superseded 17 Oct version |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Built 14 Oct, not yet reviewed (an approval on 14 Oct was sent by mistake and withdrawn). Copy Draft 5 in `copy/section-2.md` with his two wording fixes; notes in `draft/CS2-section-2.md`. Figma 4228:6731 built from the copy file on the two beat list. Next: his review of the build and his image pick for the Action Hub screen slot. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Talking, opened 8 Oct, reopened 14 Oct, `draft/CS2-section-3.md`. Three questions for him |
 | 4 | Pace | The system checks reality against the estimate without judging | Not started |
