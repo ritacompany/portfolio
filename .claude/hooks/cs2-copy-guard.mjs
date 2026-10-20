@@ -17,10 +17,34 @@ const { tool_name: tool, tool_input: input = {} } = payload;
 const root = process.env.CLAUDE_PROJECT_DIR || payload.cwd || process.cwd();
 
 // Review mode, after an Agent call: record the verdict if the sub-agent got the exact review prompt.
+// Subagent mode, on SubagentStop: the desktop app runs sub-agents in the background, so PostToolUse
+// only sees the launch notice. This reads the finished sub-agent's own transcript instead: its first
+// user message is the prompt, its last assistant text is the answer.
+if (process.argv[2] === 'subagent') {
+  const tp = payload.agent_transcript_path || (payload.transcript_path && payload.agent_id
+    && path.join(payload.transcript_path.replace(/\.jsonl$/, ''), 'subagents', `agent-${payload.agent_id}.jsonl`));
+  if (!tp || !fs.existsSync(tp)) process.exit(0);
+  let prompt = '', answer = '';
+  for (const l of fs.readFileSync(tp, 'utf8').split('\n')) {
+    let d; try { d = JSON.parse(l); } catch { continue; }
+    const c = d.message?.content;
+    const text = typeof c === 'string' ? c : Array.isArray(c) ? c.filter(x => x.type === 'text').map(x => x.text).join('\n') : '';
+    if (d.type === 'user' && !prompt && typeof c === 'string') prompt = c;
+    if (d.type === 'assistant' && text) answer = text;
+  }
+  if (!/^CS2 STORY REVIEW section/.test(prompt)) process.exit(0);
+  const { record } = await import(path.join(root, 'reference/cs2/check-figures-review.mjs'));
+  const res = record(prompt, answer);
+  if (res?.refused) { console.error(`CS2 review not recorded for section ${res.section}: ${res.refused}.`); process.exit(2); }
+  if (res) console.log(`CS2 review recorded for section ${res.section}: ${res.verdict}.`);
+  process.exit(0);
+}
 if (process.argv[2] === 'review') {
   const texts = [];
   const walk = v => { if (typeof v === 'string') texts.push(v); else if (v && typeof v === 'object') Object.values(v).forEach(walk); };
   walk(payload.tool_response);
+  // A background launch has no answer yet; subagent mode records it when the sub-agent stops.
+  if (/async/i.test(texts.join('\n')) && !/^VERDICT:/m.test(texts.join('\n'))) process.exit(0);
   const { record } = await import(path.join(root, 'reference/cs2/check-figures-review.mjs'));
   const res = record(input.prompt || '', texts.join('\n'));
   if (res?.refused) { console.error(`CS2 review not recorded for section ${res.section}: ${res.refused}.`); process.exit(2); }

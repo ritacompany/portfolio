@@ -1,20 +1,18 @@
 Section: 1
 
-Story review passed 17 Oct. Each block is a title section (eyebrow and headline) followed by a media section from his pool, adapted to his grid. Every square is a visual block with small text saying what goes there; he makes what goes in it.
+Rewritten 20 Oct from the approved outline; story review passed 20 Oct. Each block is a title section (eyebrow and headline) followed by a media section from his pool, on his 12 column grid. Each square is a visual block he makes; the label text after "Label:" goes into Figma word for word.
 
 | Layout piece | Slot | What goes in it | Why |
 |---|---|---|---|
-| TitleAndText position 1 | Eyebrow | Block 1 eyebrow: What was already there | Topic before the claim |
-| TitleAndText position 1 | Headline | Block 1 headline: every career had a set path, but nothing said what to do each week | The point, plain |
-| TextAnd1Image layout 1 | Visual block | Block 1, the large square: a Growth Journey page from before the weekly framework, nothing weekly on it | The real page shows the path with no weekly plan |
-| TextAnd1Image layout 1 | Body | Block 1 text column: the Growth Journey card, then the body about the pieces and the person changing careers | Explains the term and names who it hurt |
-| TitleAndText position 1 | Eyebrow | Block 2 eyebrow: Two jobs at once | Topic |
-| TitleAndText position 1 | Headline | Block 2 headline: the steps had to stay in order, but people's weeks never look the same | The tension the case study answers |
-| TextAnd1Image layout 2 | Visual block | Block 2, the large square on the left: the clash between a set order of steps and weeks that change size; form is his call | The strongest place in the section for a visual, the core tension |
-| TextAnd1Image layout 2 | Body | Block 2 text column on the right: the four numbered questions, then the body that says the rest of the case study answers them | The questions sit beside the tension that raises them |
-| TitleAndText position 1 | Eyebrow | Block 3 eyebrow: Reference products | Topic |
-| TitleAndText position 1 | Headline | Block 3 headline: similar products each got one piece right, never the whole thing | The point |
-| TextAnd3Images layout 1 | Visual block a | Block 3, square top left: a CareerFoundry course screen | Structure with a fixed pace |
-| TextAnd3Images layout 1 | Visual block b | Block 3, square top right: a Duolingo streak freeze or repair screen | Falling behind without punishment |
-| TextAnd3Images layout 1 | Visual block c | Block 3, square bottom left: a Notion or Todoist task list | Flexibility with no path |
-| TextAnd3Images layout 1 | Body | Block 3 text cell bottom right: the three product cards, then the body that hands over to section 2 | Why each falls short, then the hand over |
+| TitleAndText position 1 | Eyebrow | Block 1 eyebrow: Before the framework | Topic before the claim |
+| TitleAndText position 1 | Headline | Block 1 headline: The product had pieces, but nothing joined them into a plan. | The point, plain |
+| TextAnd1Image layout 1 | Visual block | Block 1, the large square on the right. Label: The pieces before the framework, side by side. Curriculum, onboarding quiz, career pages and calendar sync plan. | Seeing each piece whole and apart is what proves nothing joined them |
+| TextAnd1Image layout 1 | Body | Block 1 text column on the left: the body, from the copy file | Names the pieces and who was left without a week |
+| TitleAndText position 1 | Eyebrow | Block 2 eyebrow: No direct reference | Topic |
+| TitleAndText position 1 | Headline | Block 2 headline: The product was meant to guide, and no course or task app did that. | The reasoning the rest of the section rests on |
+| TitleAndText position 1 | Body | Block 2 body, from the copy file, text only | A sentence says it as well as any picture; no screen shows an absence |
+| TitleAndText position 1 | Eyebrow | Block 3 eyebrow: Borrowed and left | Topic |
+| TitleAndText position 1 | Headline | Block 3 headline: I borrowed a piece from a few products and left what didn't fit. | The point |
+| TextAnd1Image layout 2 | Visual block | Block 3, the tall square on the left. Label: One row per product, in card order. A screen of what it does, then an arrow to its card. | Puts each product's real screen beside the line about what was kept and left |
+| TextAnd1Image layout 2 | Cards | Block 3 text column on the right: the four product cards, top to bottom in the same order as the rows | Each card sits level with its row, so the words are never repeated inside the visual |
+| TextAnd1Image layout 2 | Body | Block 3 text column, under the cards: the body that hands over to the unit of time | The hand over to section 2 |
