@@ -2,8 +2,8 @@ Section: 1
 
 ## Block 1
 
-- Claim: Before the framework the product was a set of separate features, and none of them said what someone changing careers should do each week.
-- What the reader has to see: the actual pieces next to each other, each complete on its own, with nothing linking them into a week.
+- Claim: Before the framework the product was a set of separate features, and none of them told someone changing careers what to do next.
+- What the reader has to see: the actual pieces next to each other, each complete on its own, with nothing linking them into a plan.
 - Moves: cs-t36 re-t39 cs-t14
 - Images: 1
 - Image 1: the existing pieces side by side (the curriculum, onboarding quiz, career pages, calendar sync plan), screens from before the framework, his pick | Supports: the product had pieces but nothing joining them into a plan
@@ -11,7 +11,7 @@ Section: 1
 ## Block 2
 
 - Claim: The product was meant to guide people at their own speed, and neither courses nor task apps did that, so there was no product to copy.
-- What the reader has to see: why each kind of product falls short, and the reasoning that one schedule shape cannot fit people fitting a career change around a full time job.
+- What the reader has to see: why each kind of product falls short, and the reasoning that one fixed schedule cannot fit people fitting a career change around a full time job.
 - Moves: cs-t36 cs-t02 cs-t40
 - Images: 0
 

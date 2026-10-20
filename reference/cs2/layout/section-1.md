@@ -7,7 +7,7 @@ Rewritten 20 Oct from the approved outline; story review passed 20 Oct. Each blo
 | TitleAndText position 1 | Eyebrow | Block 1 eyebrow: Before the framework | Topic before the claim |
 | TitleAndText position 1 | Headline | Block 1 headline: The product had pieces, but nothing joined them into a plan. | The point, plain |
 | TextAnd1Image layout 1 | Visual block | Block 1, the large square on the right. Label: The pieces before the framework, side by side. Curriculum, onboarding quiz, career pages and calendar sync plan. | Seeing each piece whole and apart is what proves nothing joined them |
-| TextAnd1Image layout 1 | Body | Block 1 text column on the left: the body, from the copy file | Names the pieces and who was left without a week |
+| TextAnd1Image layout 1 | Body | Block 1 text column on the left: the body, from the copy file | Names the pieces and who was left without a plan |
 | TitleAndText position 1 | Eyebrow | Block 2 eyebrow: No direct reference | Topic |
 | TitleAndText position 1 | Headline | Block 2 headline: The product was meant to guide, and no course or task app did that. | The reasoning the rest of the section rests on |
 | TitleAndText position 1 | Body | Block 2 body, from the copy file, text only | A sentence says it as well as any picture; no screen shows an absence |

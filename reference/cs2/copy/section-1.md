@@ -8,7 +8,7 @@ Headline: The product had pieces, but nothing joined them into a plan.
 
 There was a curriculum of career paths, an onboarding quiz, career pages and a plan to sync calendars.
 Each piece had been designed on its own and then made to fit the rest. No part of it showed someone
-changing careers what to do this week, or how those weeks would add up.
+changing careers what to do next, or how their work would add up to a new career.
 
 ## Block 2
 
@@ -18,8 +18,8 @@ Headline: The product was meant to guide, and no course or task app did that.
 
 A course has a curriculum and holds you to it. This was closer to a guide, which shows the way and lets
 the person set the speed. Task apps fit the work, but a checklist doesn't lead anywhere.
-Letting a synced calendar set the plan assumed every week has the same shape. Many people changing
-careers work full time, and I didn't think one shape could hold them all.
+Letting a synced calendar set the plan assumed everyone schedules their life the same way. Many people
+changing careers work full time, and I didn't think one schedule could fit them all.
 
 ## Block 3
 
