@@ -2,26 +2,23 @@ Section: 1
 
 ## Block 1
 
-- Claim: Every career had a set path, but nothing said what to do each week.
-- What the reader has to see: the path as a real page, and that it gave no week to week plan.
-- Moves: cs-t36 cs-t38 wp-6
+- Claim: Before the framework the product was a set of separate features, and none of them said what someone changing careers should do each week.
+- What the reader has to see: the actual pieces next to each other, each complete on its own, with nothing linking them into a week.
+- Moves: cs-t36 re-t39 cs-t14
 - Images: 1
-- Image 1: a Growth Journey page from before the weekly framework, his pick, nothing weekly on it | Supports: the path existed and showed no weekly plan
+- Image 1: the existing pieces side by side (onboarding quiz, career pages, journey planner, calendar sync plan, the day by day lesson plan), screens or notes from before the framework, his pick | Supports: the product had pieces but nothing joining them into a plan
 
 ## Block 2
 
-- Claim: The steps had to stay in order, but people's weeks never look the same.
-- What the reader has to see: the four open questions that came from holding both.
-- Moves: cs-t14 cs-t36 cs-t39
-- Images: 1
-- Image 1: a visual he designs, the clash between a set order of steps and weeks that change size from one to the next; form is his call | Supports: the steps had to stay in order, but people's weeks never look the same
+- Claim: The product was meant to guide people at their own speed, and neither courses nor task apps did that, so there was no product to copy.
+- What the reader has to see: why each kind of product falls short, and the reasoning that one schedule shape cannot fit people fitting a career change around a full time job.
+- Moves: cs-t36 cs-t02 cs-t40
+- Images: 0
 
 ## Block 3
 
-- Claim: Similar products each got one piece right, never the whole thing.
-- What the reader has to see: what each product got right, what it missed, and what was kept or left.
-- Moves: cs-t24 cs-t36
-- Images: 3
-- Image 1: a CareerFoundry course screen, his pick | Supports: structure with a fixed pace
-- Image 2: a Duolingo streak freeze or repair screen, his pick | Supports: falling behind without punishment
-- Image 3: a Notion or Todoist task list, his pick | Supports: flexibility with no path
+- Claim: A few products each gave one usable piece, each was left where it did not fit, and so the framework was worked out from first principles, starting with the unit of time.
+- What the reader has to see: for each product, what it does, what was kept and, where something was left, what and why. Linear gave one pattern and nothing else, so it has no left half.
+- Moves: cs-t36 cs-t24 re-t39 cs-t14
+- Images: 1
+- Image 1: the stacked comparison, one row per product in card order (CareerFoundry, Motion and Fantastical, Linear, Google Grow and LinkedIn Learning): a screen of what the product does, then an arrow to the card beside it that says what was kept and left | Supports: one piece borrowed from each product and the rest left

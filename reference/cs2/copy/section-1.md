@@ -2,41 +2,36 @@ Section: 1
 
 ## Block 1
 
-Eyebrow: What was already there
+Eyebrow: Before the framework
 
-Headline: Every career had a set path, but nothing said what to do each week.
+Headline: The product had pieces, but nothing joined them into a plan.
 
-Card: The Growth Journey | Five ordered stages | Each career's path, split into five Pathways that run one after another.
-
-Around the path sat an onboarding quiz, a way to pick a career and a plan to connect calendars. The
-pieces had nothing tying them together. So someone changing careers could see the whole journey but not
-what to work on this week, or how those weeks would add up.
+There was an onboarding quiz, career pages, a journey planner with no settled structure and a plan to
+sync calendars. Lessons were pinned to set days, so missing one pushed everything after it back. Each
+feature had been designed on its own and then made to fit the rest. No part of it showed someone
+changing careers what to do this week, or how those weeks would add up.
 
 ## Block 2
 
-Eyebrow: Two jobs at once
+Eyebrow: No direct reference
 
-Headline: The steps had to stay in order, but people's weeks never look the same.
+Headline: The product was meant to guide, and no course or task app did that.
 
-Card: 01 | One week | How much of the path belongs in one week?
-Card: 02 | Behind or ahead | What happens when someone falls behind, or gets ahead?
-Card: 03 | No calendar | What does it do for someone who doesn't plan in a calendar, or doesn't want to connect one?
-Card: 04 | Stepping away | What happens when someone steps away for a while and comes back?
-
-The Pathways run in order, so the product worked a bit like a course. But it was meant to guide people
-through a career change around full, uneven weeks, not hold them to a class schedule. Doing both raised
-these four questions, and the rest of this case study answers them.
+A course has a curriculum and holds you to it. This was closer to a guide, which shows the way and lets
+the person set the speed. Task apps fit the work, but a checklist doesn't lead anywhere.
+Letting a synced calendar set the plan assumed every week has the same shape. Many people changing
+careers work full time, and I didn't think one shape could hold them all.
 
 ## Block 3
 
-Eyebrow: Reference products
+Eyebrow: Borrowed and left
 
-Headline: Similar products each got one piece right, never the whole thing.
+Headline: I borrowed a piece from a few products and left what didn't fit.
 
-Card: CareerFoundry | Order kept | A fixed curriculum at a fixed pace that doesn't move when you fall behind. I kept its order and left the pacing.
-Card: Duolingo | Missed days | It shows a missed day without punishing it, and you carry on. I kept that and left the daily streak, since a career change moves week by week.
-Card: Notion and Todoist | No structure | Flexible, but they show what's due and nothing about where it leads. So here a calendar is optional, a place to plan the week, never the plan itself.
+Card: CareerFoundry | Scheduled dates | It gave structure with room to move, and its scheduled and completion dates became the base for tracking pace. I left its fixed curriculum, held to an outside standard.
+Card: Motion, Fantastical | Calendar ideas | The first ideas for scheduling around a calendar came from here. In the end the calendar only finds when someone is free, and never sets the plan.
+Card: Linear | Opening screen | It opens straight onto the work in front of you, with no home page first. The product's landing screen kept that pattern and nothing else.
+Card: Google, LinkedIn | Career guidance | From a review of Google Grow and LinkedIn Learning, I kept small ideas, like showing which skills carry over. I left their long, impersonal course lists with no route to a job.
 
-Career platforms got a different piece: plenty of paths and courses. But one had so many it was hard to
-know where to start, and another never showed how its courses led to a job. None held a set order and
-room to move at once, so the first thing to settle was how much of the path one week should hold.
+None of them did the whole job, so the framework was worked out from first principles. It started with
+the smallest question, which unit of time a plan should run on.

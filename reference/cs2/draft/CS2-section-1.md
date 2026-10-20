@@ -1,6 +1,6 @@
 # CS2 section 1: Where it started
 
-Status: built, not yet read by him. Draft 4 copy and the three beat list were built 2026-10-14 without his read. Rebuilt the same day in Figma
+Status: drafted. Copy and message plan rewritten 20 Oct from the approved outline at the end of this file; story review passed (not recorded by the hook, see CS2_PROCESS status). Review pack sent; awaiting his read. Figma not rebuilt.
 4228:6859 from `copy/section-1.md`; text checked word for word against the copy file. Slots filled 2026-10-14 with his pick, exported
 from the Mondai MVP file (5RO0m4bYYrTvbiaOgaU3tI): Onboarding/Question standard/5 buttons (2371:44551)
 and Product onboarding step 1, the calendar sync screen (2941:13664). Each sits 16:9 inside its dark tile.
