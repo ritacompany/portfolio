@@ -13,7 +13,7 @@ import fs from 'node:fs';
 const NAMES = ['Betsy', 'Michael']; // colleagues; add any other name that must never reach copy
 // Product terms and the section that introduces each (from the concept ladder in CS2_COMPREHENSION.md).
 const TERMS = [
-  ['Growth Journey', 1], ['Pathway', 1], ['Action Item', 2], ['Action Hub', 2], ['target date', 3],
+  ['Growth Journey', 1], ['Pathway', 1], ['week', 2], ['Action Item', 2], ['Action Hub', 2], ['target date', 3],
   ['rollover', 5], ['recalibrat', 6], ['handoff', 8],
 ];
 const AI_PATTERNS = [

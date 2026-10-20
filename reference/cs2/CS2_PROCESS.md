@@ -157,19 +157,21 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
   first with daily task targets, then weekly from March 2025. The Pathways arrived from Betsy's
   curriculum in September 2025 and replaced his milestones.
 - Settled early: the AI surfaces, researched in March. Neither shipped at MVP (`CHADWICK_ANSWERS`).
-- Existed but unconnected: onboarding quiz, an intent to use the calendar, career screens. Nothing said
-  what a person does week to week.
+- Existed but unconnected: the curriculum, onboarding quiz, an intent to use the calendar, career screens.
+  Nothing told a person what to do next. Corrected 20 Oct, his note: no framework existed before his, and
+  the week is part of that framework, so section 1 never names the week. It first appears in section 2,
+  with his reasons for choosing it. `check-copy.mjs` refuses "week" before section 2.
 - Missing: not "anything about time". By 24 March a Sunday rollover modal with a moving pace date and
-  flex points was on screen (`reasoning/carry-over.md`), so a dated pace system already existed. What
-  nothing decided was how much of the route a week should hold. The carry forward mechanic is his from 9 Mar
+  flex points was on screen (`reasoning/carry-over.md`), so a dated pace system already existed. How much
+  of the route a week holds is section 3's question, not section 1's. The carry forward mechanic is his from 9 Mar
   2025 (ChatGPT export); who designed the March 2026 modal itself is still open.
 - Pathway order, confirmed by Chadwick 2026-10-06 and matching the shipped designs: Discovery,
   Cognition, Networking, Branding, Opportunity. The Mondai archive, his 18 March 2026 message and the
   provisional draft `draft/CS2-rungs-0-2.md` have Branding before Networking and are stale on this. Use the
   designs. An archive correction is drafted only with his approval.
-- Problems that belong here: a fixed route with nothing deciding how much of it a week holds; people
-  whose weeks are irregular (his own argument to Michael, 13 Feb 2025, in CS1 evidence; not a research
-  finding).
+- Problems that belong here: separate pieces with nothing joining them into a plan; no product to copy,
+  because people schedule their lives too differently for one fixed schedule (his own argument to Michael,
+  13 Feb 2025, in CS1 evidence; not a research finding).
   Everything below that waits for its own section.
 - Open question for him: the fixed scheduling claim above.
 - Reference pull done 2026-10-06.
