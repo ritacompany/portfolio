@@ -31,8 +31,8 @@ Card: CareerFoundry | Takeaway | Two dates side by side show if you are on track
 Card: CareerFoundry | Why | As a CareerFoundry student, seeing both dates kept me moving, so I built the product's progress on that pair. A bootcamp sets one timetable for everyone, but here the plan comes from the hours each person says they have.
 Card: Learning apps | Takeaway | Every learning app I reviewed, even the most structured, let people work at their own pace.
 Card: Learning apps | Why | One early idea pinned lessons to set days, like a school timetable. Instead the plan sets a goal and each person decides when to do the work.
-Card: Motion | Takeaway | Motion showed me that AI could help people find time in their calendar for the work.
-Card: Motion | Why | People schedule their lives too differently, and some never use a calendar. So the calendar only finds when someone is free and never sets the plan.
+Card: Motion | Takeaway | Motion showed me that AI could look at someone's calendar and find time for their career tasks.
+Card: Motion | Why | Motion lets the calendar decide when tasks happen, but people schedule their lives too differently and some never use one. So connecting a calendar became optional, and the product only uses it to see when someone is free.
 Card: Linear | Takeaway | Linear opens straight onto the work in front of you, so the product's first screen shows what to do now instead of a home page.
 Card: Linear | Why | A career change is long and keeps changing, and I didn't want the full distance in someone's face every time they opened it. The whole journey lives on its own page instead.
 Card: Google, LinkedIn | Takeaway | Google Career Dreamer and LinkedIn Learning were good for exploring careers and finding courses, but neither showed a route from where someone is to a new job.
