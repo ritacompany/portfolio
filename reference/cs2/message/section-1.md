@@ -10,7 +10,7 @@ Section: 1
 
 ## Block 2
 
-- Claim: The product was meant to guide people at their own speed, and neither courses nor task apps did that, so there was no product to copy.
+- Claim: The product was meant to guide people along a clear route with a target that fits their real lives, and neither courses nor task apps did that, so there was no product to copy.
 - What the reader has to see: why each kind of product falls short, and the reasoning that one fixed schedule cannot fit people fitting a career change around a full time job.
 - Moves: cs-t36 cs-t02
 - Images: 0
@@ -18,7 +18,7 @@ Section: 1
 ## Block 3
 
 - Claim: A few products each taught something, only the parts that fit a guide were kept, and so the framework was worked out from first principles, starting with the unit of time.
-- What the reader has to see: for each product, one plain takeaway, then a why that names a published research finding in everyday words and the decision it led to, with pace explained. Sources: the 21 Oct research report.
+- What the reader has to see: for each product, a topic label a skimmer can read alone, then one short paragraph: what I took, the published research finding in everyday words and the decision it led to. Sources sit in one line under the visual block, from the 21 Oct research report.
 - Moves: cs-t36 cs-t02 cs-t14
 - Images: 1
-- Image 1: the stacked comparison, one row per product in card order (CareerFoundry, learning apps, Motion, Linear, Duolingo): a screen of what the product does beside its takeaway and why | Supports: one idea borrowed from each product and why it fit or did not
+- Image 1: the stacked comparison, one row per product in card order (CareerFoundry, learning apps, Motion, Linear, Duolingo): a screen of what the product does beside its card | Supports: one idea borrowed from each product and why it fit or did not
