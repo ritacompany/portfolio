@@ -18,20 +18,25 @@ Headline: The product was meant to guide people, and no course or task app did t
 
 A course has a curriculum and holds you to it. This was closer to a guide, which shows the way and lets
 the person set the speed. Task apps fit the work, but a checklist doesn't lead anywhere.
-Letting a synced calendar set the plan assumed everyone schedules their life the same way. Many people
-changing careers work full time, and I didn't think one schedule could fit them all.
+Many people changing careers work full time, so whatever guided them had to fit around their lives, not
+the other way round.
 
 ## Block 3
 
 Eyebrow: Borrowed and left
 
-Headline: I borrowed one idea from each of a few products and left the parts that didn't fit a guide.
+Headline: Each of a few products taught me something, and I kept only the parts that fit a guide for career changers.
 
-Card: CareerFoundry | Takeaway | CareerFoundry put a scheduled date beside your completion date, so you always knew if you were ahead or behind. I built the product's progress tracking on that idea.
-Card: CareerFoundry | Why it differs | A bootcamp holds every student to its timetable, because finishing the course is the point. This product guides people toward a new career, so the dates had to fit each person's life.
-Card: Motion, Fantastical | Calendar ideas | The first ideas for scheduling around a calendar came from here. In the end the calendar only finds when someone is free, and never sets the plan.
-Card: Linear | Opening screen | It opens straight onto the work in front of you, with no home page first. The product's landing screen kept that pattern and nothing else.
-Card: Google, LinkedIn | Career guidance | From a review of Google Grow and LinkedIn Learning, I kept small ideas, like showing which skills carry over. I left their long, impersonal course lists with no route to a job.
+Card: CareerFoundry | Takeaway | Two dates side by side show if you are on track: the date the plan says you will finish and the date you will finish at your current pace.
+Card: CareerFoundry | Why | As a CareerFoundry student, seeing both dates kept me moving, so I built the product's progress on that pair. A bootcamp sets one timetable for everyone, but here the plan comes from the hours each person says they have.
+Card: Learning apps | Takeaway | Every learning app I reviewed, even the most structured, let people work at their own pace.
+Card: Learning apps | Why | One early idea pinned lessons to set days, like a school timetable. Instead the plan sets a goal and each person decides when to do the work.
+Card: Motion | Takeaway | Motion showed me that AI could help people find time in their calendar for the work.
+Card: Motion | Why | People schedule their lives too differently, and some never use a calendar. So the calendar only finds when someone is free and never sets the plan.
+Card: Linear | Takeaway | Linear opens straight onto the work in front of you, so the product's first screen shows what to do now instead of a home page.
+Card: Linear | Why | A career change is long and keeps changing, and I didn't want the full distance in someone's face every time they opened it. The whole journey lives on its own page instead.
+Card: Google, LinkedIn | Takeaway | Google Career Dreamer and LinkedIn Learning were good for exploring careers and finding courses, but neither showed a route from where someone is to a new job.
+Card: Google, LinkedIn | Why | That gap is why the product guides people one step at a time instead of offering a library of courses.
 
 None of them did the whole job, so the framework was worked out from first principles. It started with
 the smallest question, which unit of time a plan should run on.

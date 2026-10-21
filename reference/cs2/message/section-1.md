@@ -12,13 +12,13 @@ Section: 1
 
 - Claim: The product was meant to guide people at their own speed, and neither courses nor task apps did that, so there was no product to copy.
 - What the reader has to see: why each kind of product falls short, and the reasoning that one fixed schedule cannot fit people fitting a career change around a full time job.
-- Moves: cs-t36 cs-t02 cs-t40
+- Moves: cs-t36 cs-t02
 - Images: 0
 
 ## Block 3
 
-- Claim: A few products each gave one usable piece, each was left where it did not fit, and so the framework was worked out from first principles, starting with the unit of time.
-- What the reader has to see: for each product, what it does, what was kept and, where something was left, what and why. Linear gave one pattern and nothing else, so it has no left half.
+- Claim: A few products each taught something, only the parts that fit a guide were kept, and so the framework was worked out from first principles, starting with the unit of time.
+- What the reader has to see: for each product, one plain takeaway and why it fit or what this product needed instead, with pace explained in everyday words. Every claim traces to his own words in the 20 Oct research report.
 - Moves: cs-t36 cs-t24 re-t39 cs-t14
 - Images: 1
-- Image 1: the stacked comparison, one row per product in card order (CareerFoundry, Motion and Fantastical, Linear, Google Grow and LinkedIn Learning): a screen of what the product does, then an arrow to the card beside it that says what was kept and left | Supports: one piece borrowed from each product and the rest left
+- Image 1: the stacked comparison, one row per product in card order (CareerFoundry, learning apps, Motion, Linear, Google Career Dreamer and LinkedIn Learning): a screen of what the product does beside its takeaway and why | Supports: one idea borrowed from each product and why it fit or did not
