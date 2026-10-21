@@ -18,7 +18,7 @@ Section: 1
 ## Block 3
 
 - Claim: A few products each taught something, only the parts that fit a guide were kept, and so the framework was worked out from first principles, starting with the unit of time.
-- What the reader has to see: for each product, one plain takeaway and why it fit or what this product needed instead, with pace explained in everyday words. Every claim traces to his own words in the 20 Oct research report.
-- Moves: cs-t36 cs-t24 re-t39 cs-t14
+- What the reader has to see: for each product, one plain takeaway, then a why that names a published research finding in everyday words and the decision it led to, with pace explained. Sources: the 21 Oct research report.
+- Moves: cs-t36 cs-t02 cs-t14
 - Images: 1
-- Image 1: the stacked comparison, one row per product in card order (CareerFoundry, learning apps, Motion, Linear, Google Career Dreamer and LinkedIn Learning): a screen of what the product does beside its takeaway and why | Supports: one idea borrowed from each product and why it fit or did not
+- Image 1: the stacked comparison, one row per product in card order (CareerFoundry, learning apps, Motion, Linear, Duolingo): a screen of what the product does beside its takeaway and why | Supports: one idea borrowed from each product and why it fit or did not
