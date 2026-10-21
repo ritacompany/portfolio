@@ -30,6 +30,8 @@ He updated the block 2 headline himself in Figma to say what the unique space is
 ## Decided in chat, not yet in files
 
 - He says the product has no streaks; the Mondai archive still mentions a streak. Archive correction needs his yes.
+- Section order after section 1 is set: foundation, the week (Saturday night deadlines), personalization (calendar, availability, capacity), then the action hub, opened with a line pointing back to the hierarchy.
+- Capacity is set the first time the user enters the action hub, during product onboarding. The archive blurs product onboarding with feature onboarding and is wrong here; his capacity copy stands. Archive correction needs his yes.
 - He does not want the audience named as career changers or first time tech workers anywhere in CS2.
 
 ## Open questions for Chadwick
