@@ -6,25 +6,24 @@ makes comes back as one return packet, and Claude Code runs every check on it be
 
 If you are Claude in the browser, this file is your brief. Read all of it before replying.
 
-## Setup, once (Chadwick)
+## How a session starts
 
-1. On the second account, make a claude.ai Project called CS2.
-2. Add from GitHub, repo `ritacompany/portfolio`, branch `main`: `CLAUDE.md`, `.claude/portfolio-rules.md`,
-   `.claude/case-study-rules.md`, the folder `reference/cs2`, `.claude/skills/humanizer/SKILL.md`,
-   `.claude/skills/no-ai-slop/SKILL.md` and the folder `docs/about-source`.
-3. Upload by hand the research reports the current section needs, from `~/Documents/CS2-research/reports/`.
-   They never go in git, and the repo is public.
-4. Paste this as the Project instructions:
+Chadwick sets nothing up. He opens a chat on his second account with the portfolio repo attached from
+GitHub, as he always does, and says something like pick up where we left off. Then:
 
-   > CS2 browser mode. Before replying, read reference/cs2/BROWSER_MODE.md and follow it exactly, then
-   > reference/cs2/HANDOFF.md. Write only. Never claim a check passed unless you ran it. End with a
-   > return packet when I say packet, wrap up or done.
+1. Read `reference/cs2/HANDOFF.md` and tell him, in two or three lines, where CS2 stopped, the next
+   action and the `Updated:` time, so he can see it is current. Ask him nothing first.
+2. Start on the next action.
 
-## Every time you switch (Chadwick)
+If `HANDOFF.md` is not in what you can see, say that in one line: the chat needs the portfolio repo
+attached. Do not work from memory or from an older copy.
 
-Claude Code pushes the handoff before the limit hits. In the Project, sync the GitHub files first, then
-start a new chat. A Project holds a snapshot, so an unsynced Project resumes from an old handoff. Check that
-the `Updated:` line in HANDOFF.md matches what Claude Code last told you.
+## Research
+
+His research record lives on his Mac (`~/Documents/CS2-research/`), never in GitHub, because the repo is
+public. Work from what the repo holds: the section drafts, `reasoning/` and the notes in `draft/`. When a
+claim needs a finding that is not there, do not guess and do not ask him to fetch it. Put it under
+"Waiting for Claude Code" in the handoff, keep it out of the copy and carry on.
 
 ## What the browser session may do
 
@@ -33,7 +32,8 @@ Loop steps 1 to 4 in `CS2_PROCESS.md`, and pass 1 of step 5:
 1. Open the section and bring the reference pull from `CS2_REFERENCE_INDEX.md`.
 2. Talk it through, following "How to run the conversation" in `CS2_PROCESS.md` exactly.
 3. Draft the copy for `copy/section-N.md` and the notes for `draft/CS2-section-N.md`.
-4. Voice pass: apply the humanizer skill, then no-ai-slop in detect mode, from the skill files in the Project.
+4. Voice pass: apply the humanizer skill, then no-ai-slop in detect mode, from the skill files in
+   `.claude/skills/` in the repo.
 5. Pass 1 only: draft the message plan for `message/section-N.md`.
 
 ## What it never does
@@ -97,7 +97,8 @@ report its last line as printed. Otherwise check by hand against the list above 
 
 ## The return packet
 
-Send it when he says packet, wrap up or done, and offer it whenever the chat has grown long. It is the whole
+Send it when he says packet, wrap up or done, and offer it whenever the chat has grown long. Copying it
+into Claude Code is the only thing he does by hand, so it carries everything. It is the whole
 output of the session. Anything not in it is lost. Send it as one code block, exactly in this shape:
 
 ```

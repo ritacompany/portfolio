@@ -211,6 +211,8 @@ suite('wiring', () => {
     ['CS2_PROCESS.md sends a new session to HANDOFF.md first', /HANDOFF\.md/.test(proc.split('## The idea')[0])],
     ['CS2_PROCESS.md has the switching accounts section', /## Switching accounts/.test(proc) && /BROWSER_MODE\.md/.test(proc) && /check-packet\.mjs/.test(proc)],
     ['CLAUDE.md points to the handoff', /reference\/cs2\/HANDOFF\.md/.test(read('CLAUDE.md'))],
+    ['CLAUDE.md sends Claude in the browser to BROWSER_MODE.md before anything else', /claude\.ai[\s\S]{0,400}BROWSER_MODE\.md/.test(read('CLAUDE.md').split('## Whose portfolio')[0])],
+    ['the browser brief asks him for no setup: no Project, pasted instructions, uploads or syncing', !/\b(Project instructions|[Uu]pload by hand|sync the GitHub|make a claude\.ai Project)\b/.test(read('reference/cs2/BROWSER_MODE.md'))],
     ['AGENTS.md points to the handoff and the browser brief', /HANDOFF\.md/.test(read('AGENTS.md')) && /BROWSER_MODE\.md/.test(read('AGENTS.md'))],
   ];
 });

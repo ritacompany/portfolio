@@ -3,6 +3,12 @@
 Chadwick's own portfolio. Case study writing, the About page, hero and personal brand copy,
 plus the Metalab layout rebuilds in `build/`.
 
+**Reading this repo in claude.ai (the browser, not Claude Code)?** You are on Chadwick's second account,
+picking CS2 up where his main account stopped. When he says anything like pick up, carry on or where were
+we, do not ask him anything first: read `reference/cs2/BROWSER_MODE.md` and follow it, then
+`reference/cs2/HANDOFF.md`, and open with where CS2 stopped and the next action. Skip the rest of this
+section; it is for Claude Code.
+
 Before doing any work here, read `TRACKER.md`: the launch tracker, with every open item, decision and
 what each running session was doing. Then read `LEDGER.md`. It is the current state of the build: what is
 done, what was decided and why, what is still open. The standing rules that apply to every
