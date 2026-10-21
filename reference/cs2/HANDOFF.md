@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-21 19:20
+Updated: 2026-10-21 19:35
 By: Claude Code
 Section: 1
 Loop step: 6
@@ -25,7 +25,7 @@ Section 1 copy rewritten 21 Oct after his final pass edits in Figma: block 1 say
 
 ## Next action
 
-His read of the rewritten copy. On his build: rebuild every text node of 4363:5682 from copy/section-1.md and the layout plan, then diff the built text against the copy file before showing him. Update the sources line to Harkin et al. 2016; Patall, Cooper and Robinson 2008; Kizilcec, Perez-Sanagustin and Maldonado 2017; Baker, Evans and Dee 2016; Bandura and Schunk 1981 (the layout plan caption row still lists Villar and Lally and needs the same change once the review passes).
+He updated the block 2 headline himself in Figma to say what the unique space is. Before any rebuild, read every text node of 4363:5682 and copy his Figma edits into copy/section-1.md, so the rebuild never overwrites his text. Then a final review of the whole section with him. On his build: rebuild every text node of 4363:5682 from copy/section-1.md and the layout plan, then diff the built text against the copy file before showing him. Update the sources line to Harkin et al. 2016; Patall, Cooper and Robinson 2008; Kizilcec, Perez-Sanagustin and Maldonado 2017; Baker, Evans and Dee 2016; Bandura and Schunk 1981 (the layout plan caption row still lists Villar and Lally and needs the same change once the review passes).
 
 ## Decided in chat, not yet in files
 
@@ -34,7 +34,6 @@ His read of the rewritten copy. On his build: rebuild every text node of 4363:56
 
 ## Open questions for Chadwick
 
-- Keep the block 2 headline as written, or let it name the space (an AI career guide with a route and a fit to real life).
 - Whether section 1 needs any handover line into section 2 now that the closing lines are cut.
 - How CareerFoundry's dates actually worked (only assistant research describes them).
 
