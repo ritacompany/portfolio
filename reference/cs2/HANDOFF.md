@@ -14,38 +14,38 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-21 12:45
+Updated: 2026-10-21 19:20
 By: Claude Code
 Section: 1
 Loop step: 6
 
 ## Where it stopped
 
-Section 1 is built in Figma (4363:5682). Block 3 now has five short cards, each why backed by published research, with one sources line under the visual block. Story review passed and is recorded. The Figma audit fails only on the two image slot labels he removed while filling the slots. Section 2 is built and waiting for his review. Section 3 is in talking.
+Section 1 copy rewritten 21 Oct after his final pass edits in Figma: block 1 says the product had pieces but no framework, so one had to be built; block 2 (eyebrow What Mondai is, his headline) says what Mondai is and why no bootcamp or task app could be copied; block 3 (Competitive analysis, his headline) has his four numbered cards in his order, Duolingo removed, the closing lines removed. No career changer framing, no streaks, no set your own speed. Story review fails on two of his own edits: the block 2 headline names a unique space before saying what it is, and block 3 no longer hands over to section 2. Figma 4363:5682 still shows older text in block 1 and block 2 bodies and the cards, and the sources line still lists studies no card uses.
 
 ## Next action
 
-His read of the section 1 cards in place in Figma, and his images for the two visual blocks. Then the step 6 review pack for section 1 (copy, before and after wireframe in chat, every call made with its pick and reason, blindspot audit findings).
+His read of the rewritten copy. On his build: rebuild every text node of 4363:5682 from copy/section-1.md and the layout plan, then diff the built text against the copy file before showing him. Update the sources line to Harkin et al. 2016; Patall, Cooper and Robinson 2008; Kizilcec, Perez-Sanagustin and Maldonado 2017; Baker, Evans and Dee 2016; Bandura and Schunk 1981 (the layout plan caption row still lists Villar and Lally and needs the same change once the review passes).
 
 ## Decided in chat, not yet in files
 
-None.
+- He says the product has no streaks; the Mondai archive still mentions a streak. Archive correction needs his yes.
+- He does not want the audience named as career changers or first time tech workers anywhere in CS2.
 
 ## Open questions for Chadwick
 
-- Who raised Motion in Sep 2024.
+- Keep the block 2 headline as written, or let it name the space (an AI career guide with a route and a fit to real life).
+- Whether section 1 needs any handover line into section 2 now that the closing lines are cut.
 - How CareerFoundry's dates actually worked (only assistant research describes them).
-- Whether the slide 4 kept and left lines in draft/CS2-section-1.md can be marked CONFIRMED.
-- His yes to correct CS1-PRIMARY-EVIDENCE-VERBATIM.md lines 86 to 88, which credit his 13 Feb 2025 message to the founder.
 
 ## Waiting for Claude Code
 
-- Figma: the section 1 image slot labels and audit, once his images are in.
-- Story review and slot plan for any section the browser account drafts.
+- Figma rebuild of section 1 from the copy file, then the word for word diff and the audit.
+- The process fix session: read the diagnosis in the side session notes folder, file section-1-process-diagnosis.md.
 
 ## Read first
 
 - reference/cs2/CS2_PROCESS.md, the loop and the status table
-- reference/cs2/draft/CS2-section-1.md, notes and where section 1 stopped
 - reference/cs2/copy/section-1.md and reference/cs2/message/section-1.md
+- ~/Code/Mondai/mondai/reference/PRODUCT_KNOWLEDGE_ARCHIVE.md, Terminology, Audience and Competitive positioning, before writing any copy
 - Research for block 3: ~/Documents/CS2-research/reports/CS2 decision research evidence.md (not in git)

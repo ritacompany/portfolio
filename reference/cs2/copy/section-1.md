@@ -4,34 +4,29 @@ Section: 1
 
 Eyebrow: Before the framework
 
-Headline: The product had useful pieces, but nothing joined them into a plan someone changing careers could follow.
+Headline: The product had useful pieces, but no framework to join them into one plan a person could follow.
 
-There was a curriculum of career paths, an onboarding quiz, career pages and a plan to sync calendars.
-Each piece had been designed on its own and then made to fit the rest. No part of it showed someone
-changing careers what to do next, or how their work would add up to a new career.
+When I started there was a curriculum of career paths, an onboarding quiz, career pages and a plan to sync
+calendars. Each piece had been designed on its own and then made to fit the rest. Nothing turned them into
+one plan someone could follow from start to finish, so I had to build a framework that could hold all of them.
 
 ## Block 2
 
-Eyebrow: No direct reference
+Eyebrow: What Mondai is
 
-Headline: The product was meant to guide people, and no course or task app did that, so there was nothing to copy.
+Headline: The product occupies a unique space, leaving no direct reference for us to draw from for the design.
 
-A bootcamp has a curriculum and holds you to its timetable. This was closer to a guide, with a clear route and a
-target that fit into someone's real life. Task apps fit the work, but a checklist doesn't lead anywhere.
-Many people changing careers work full time, so whatever guided them had to fit around their lives, not
-the other way round.
+Mondai is an AI career guide. It builds each person a route into a tech career from their goals and the time
+they actually have. A bootcamp has a route but holds everyone to one timetable. A task app fits around your
+life but doesn't lead anywhere. Mondai had to do both at once, and no product we could find did.
 
 ## Block 3
 
-Eyebrow: Borrowed and left
+Eyebrow: Competitive analysis
 
-Headline: Each of a few products taught me something, and I kept only the parts that fit a guide for career changers.
+Headline: Each of a few products taught me something, and I kept only the parts that fit our product's unique mission.
 
-Card: Progress | CareerFoundry | Studies find that tracking real progress against a goal helps people reach it. So, like CareerFoundry, the product shows two dates side by side: the date the plan sets and the date your current pace is heading for.
-Card: Timing | Learning apps | Every learning app I reviewed, even the most structured, let people fit lessons around their day. Research shows having a say raises motivation and that learners with clear goals and plans are more likely to reach them, so the plan keeps a target and a pace while each person fits the work into their own day.
-Card: Calendar | Motion | Motion showed me AI could find free time in someone's calendar. But a study of 18,000 learners found that pushing people to schedule didn't help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.
-Card: First screen | Linear | Linear opens straight onto the work in front of you. Research on motivation finds near goals build confidence and progress while a distant goal does little, and progress that looks far behind can make people quit, so the first screen shows only the next steps and the whole journey has its own page.
-Card: Coming back | Duolingo | Duolingo's daily streak is one of the strongest tools any app has for bringing people back. Habit research finds one missed day does not undo a habit, so here the streak counts longer stretches of steady work instead of days in a row, and progress toward the target stays the main signal.
-
-None of them did the whole job, so the framework was worked out from first principles. It started with
-the smallest question, which unit of time a plan should run on.
+Card: 01. Progress | CareerFoundry | Studies find that tracking real progress against a goal helps people reach it. So, like CareerFoundry, Mondai shows two dates side by side: the target the plan sets and the pace date your progress is heading for.
+Card: 02. Calendar integration | Motion | Motion showed me AI could find free time in someone's calendar. But a study of 18,000 learners found that pushing people to schedule didn't help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.
+Card: 03. Home screen | Linear | Linear opens straight onto the work in front of you. Research on motivation finds near goals build confidence and progress while a distant goal does little, so the home screen shows only the next steps and the full Growth Journey, every step to the goal, has its own page.
+Card: 04. Timing | Learning apps | Every learning app I reviewed, even the most structured, let people fit lessons around their day. Research shows having a say raises motivation and that learners with clear goals and plans are more likely to reach them, so the plan keeps a target and a pace while each person fits the work into their own day.
