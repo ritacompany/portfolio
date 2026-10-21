@@ -14,37 +14,38 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-21 19:35
+Updated: 2026-10-21 19:05
 By: Claude Code
 Section: 1
-Loop step: 6
+Loop step: 2
 
 ## Where it stopped
 
-Section 1 copy rewritten 21 Oct after his final pass edits in Figma: block 1 says the product had pieces but no framework, so one had to be built; block 2 (eyebrow What Mondai is, his headline) says what Mondai is and why no bootcamp or task app could be copied; block 3 (Competitive analysis, his headline) has his four numbered cards in his order, Duolingo removed, the closing lines removed. No career changer framing, no streaks, no set your own speed. Story review fails on two of his own edits: the block 2 headline names a unique space before saying what it is, and block 3 no longer hands over to section 2. Figma 4363:5682 still shows older text in block 1 and block 2 bodies and the cards, and the sources line still lists studies no card uses.
+The old outline (the order table in CS2_PROCESS.md, taken from the August concept ladder) is retired in practice: it left out start of week, catching up, end of the week, onboarding and reset. He is reordering the case study himself in the Figma WIP frame (4269:9433) and has written the Background. A new full outline was drafted from his frame and the live MVP file, with a product flow map that cites a frame for every step. Both are drafts on his Mac, not committed, waiting for his read. Section 1 he considers good enough for now. Section 2 copy is superseded by the new outline.
 
 ## Next action
 
-He updated the block 2 headline himself in Figma to say what the unique space is. Before any rebuild, read every text node of 4363:5682 and copy his Figma edits into copy/section-1.md, so the rebuild never overwrites his text. Then a final review of the whole section with him. On his build: rebuild every text node of 4363:5682 from copy/section-1.md and the layout plan, then diff the built text against the copy file before showing him. Update the sources line to Harkin et al. 2016; Patall, Cooper and Robinson 2008; Kizilcec, Perez-Sanagustin and Maldonado 2017; Baker, Evans and Dee 2016; Bandura and Schunk 1981 (the layout plan caption row still lists Villar and Lally and needs the same change once the review passes).
+His read of the draft outline (reference/cs2/outline/OUTLINE.md on his Mac, not in git) and his answer on which screens are product onboarding and which are feature onboarding. Then apply the process change in reference/cs2/outline/PROCESS_CHANGE.md once he types allow setup edit.
 
 ## Decided in chat, not yet in files
 
-- He says the product has no streaks; the Mondai archive still mentions a streak. Archive correction needs his yes.
-- He does not want the audience named as career changers or first time tech workers anywhere in CS2.
+- His WIP frame is the outline source from now on, not the CS2_PROCESS.md order table.
+- The live MVP Figma file is product truth; the archive, reasoning files and screen README are search aids only.
 
 ## Open questions for Chadwick
 
-- Whether section 1 needs any handover line into section 2 now that the closing lines are cut.
-- How CareerFoundry's dates actually worked (only assistant research describes them).
+- Product onboarding versus feature onboarding: the file names the calendar, time and capacity screens Product onboarding step 1 to 3, while sign up and the quiz sit on the Onboarding page.
+- Where the quiz and career match section goes (recommended between Foundation and Saturday night deadlines).
+- His Pathways card in the WIP frame numbers Branding before Networking; the live product has Networking third.
+- Who raised Motion in Sep 2024.
 
 ## Waiting for Claude Code
 
-- Figma rebuild of section 1 from the copy file, then the word for word diff and the audit.
-- The process fix session: read the diagnosis in the side session notes folder, file section-1-process-diagnosis.md.
+- The process change: coverage check, fact review with the flow map, read access through the Figma build gate. Needs his allow setup edit.
+- Delete ~/Documents/CS2-research/PRODUCT_BRIEF.md, written from notes and superseded by the flow map.
 
 ## Read first
 
-- reference/cs2/CS2_PROCESS.md, the loop and the status table
-- reference/cs2/copy/section-1.md and reference/cs2/message/section-1.md
-- ~/Code/Mondai/mondai/reference/PRODUCT_KNOWLEDGE_ARCHIVE.md, Terminology, Audience and Competitive positioning, before writing any copy
-- Research for block 3: ~/Documents/CS2-research/reports/CS2 decision research evidence.md (not in git)
+- The Figma WIP frame 4269:9433 in Portfolio Design, read it before anything else
+- ~/Documents/CS2-research/product-flows.md (not in git), the flow map from the live MVP file
+- reference/cs2/outline/ on his Mac: wip-frame.md, OUTLINE.md, PROCESS_CHANGE.md (not in git until he approves)
