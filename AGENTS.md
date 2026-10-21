@@ -7,7 +7,9 @@ between tools.
 
 Then read, in this order:
 
-0. `TRACKER.md` : the launch tracker. Start here for what is open and what is next
+0. `TRACKER.md` : the launch tracker. Start here for what is open and what is next. For CS2 work, start
+   instead at `reference/cs2/HANDOFF.md`, and in the browser on his second account follow
+   `reference/cs2/BROWSER_MODE.md`
 
 1. `docs/PROJECT_CONTEXT.md` : purpose, the Figma source of truth, current work, guardrails
 2. `docs/ABOUT.md` : approved biography. Empty until facts are approved
