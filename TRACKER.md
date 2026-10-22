@@ -165,6 +165,8 @@ At most two besides the coordinator, and only on rows whose Waits on is done.
 
 ## In flight
 
+- **Coordinator (21 Oct, stopped at 87% of the 5 hour limit):** homepage waits on him: D7 headline (the biggest unblock), hero roster, header, footer and collection picks, reviews of the stage 1 and 2 prototypes, and the cleaned master copy `4308:6176`. Design system CS: his answers to GAPS.md are in `reference/design-system-cs/ANSWERS.md`; the angle leans to a system set up so AI can build from it; recommended after image is one token change moving through every screen; tokens finish on the other account within days. Open: the CS2 guard false-flagging git pulls (his yes or no), and the triage session waits on his call about `claude/confident-poincare-b10757` (`claude/journey-map-prototype` is safe to delete).
+
 - **Stage 2 options (16 Oct):** H1, H23, H16 and F9 have pick pages; H8, H16a and H13 are built on defaults, all provisional, in `prototypes/homepage-foundations/` (`headline-options`, `header-styles`, `nav-scroll`, `footer-transitions`, `collection-page`). Nothing touched Figma or `site/`. Open: where the VS Goods header reference lives in Figma.
 - **Foundations (16 Oct):** H6t, H11, H14, H21 and S0 are done and pushed, all awaiting his review. Prototypes in `prototypes/homepage-foundations/` (open with any static server, for example `python3 -m http.server --directory prototypes`). Nothing touched Figma or the deploy.
 - **Coordinator (15 Oct):** tracker rebuilt as an ordered plan from his verbatim notes, after he
