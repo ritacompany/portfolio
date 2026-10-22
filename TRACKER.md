@@ -171,8 +171,19 @@ At most two besides the coordinator, and only on rows whose Waits on is done.
   flagged that the flat list scheduled motion ahead of the hero elements it depends on. Fix
   record: `fixes/2026-10-15-tracker-ordering.md`. Next: start the stage 1 AI sessions on his
   word.
-- **at-risk-triage:** both local-only branches are pushed. His keep, merge or drop call on each
-  item is open.
-- **Uncommitted main-checkout work** belongs to the framework CS and research sessions and is
-  backed up, unreviewed, on branch `wip/main-checkout-2026-10-15`. `output/` (298 MB) and
-  `.playwright-cli/` exist only on this Mac.
+- **at-risk-triage (done 21 Oct):** nothing in a branch is local only any more. Outcomes:
+  - `haven/case-study` (Haven page, Sep homepage studies) and `codex/homepage-responsive` (WIP
+    `7bb1556`: about-source research, Haven ending studies, audits) are archive branches on GitHub.
+    Not merged: both carry a Sep `site/` that would collide with the S0 build on main. When S2
+    builds the Haven page, port `site/haven/` from `haven/case-study`; it matches the 7 Oct Figma.
+  - `origin/claude/optimistic-euler-q7025d` (Sep responsive homepage, old hero) stays as an archive.
+    `origin/claude/journey-map-prototype` is already on main (PR 2) and
+    `origin/claude/confident-poincare-b10757` is superseded by `reports/Visual storytelling per beat.md`;
+    both are safe to delete on his word.
+  - Chess portrait decisions (6 Oct), five research reports and seven research note folders are
+    committed to main.
+  - `output/` is copied to iCloud Drive, `Portfolio backup/output-2026-10-21`, and is now ignored by
+    git along with `.playwright-cli/`.
+  - Still uncommitted in the main checkout: today's framework CS session work, left to that session.
+  - The leadership CS (`reference/cs1/`) has no repo changes since 31 Aug. The "CS1 assembly" session of
+    14 Oct wrote nothing to the repo, so its state is in Figma or that chat.
