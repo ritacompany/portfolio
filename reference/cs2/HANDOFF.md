@@ -14,22 +14,23 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 12:00
+Updated: 2026-10-22 14:30
 By: Claude Code
 Section: 1
 Loop step: 1
 
 ## Where it stopped
 
-The process is rebuilt and enforced (fixes/2026-10-21-cs2-process-rebuild.md, fixes/2026-10-22-case-study-knowledge-layer.md). His split, 22 Oct: Claude does the outline and the writing; layout and imagery are his. Budget: weekly limit at 80% on 22 Oct, resets Monday 26 Oct, so run cheap: Sonnet for readers, no full chat reads, Opus only where a gate needs it.
+Weekly limit at 88% on 22 Oct (resets Monday 26 Oct). His rule 22 Oct: never edit anything he wrote; a change to his text goes before and after in a separate note.
 
-Done 22 Oct: the start of week dossier passes check-dossier.mjs (one Opus judge round failed it on breadth and conflicts; those fixes are applied by hand, not re-judged). reference/cs2/outline/outline.md is written, passes check-truth.mjs and was shown to him; two Opus truth review rounds failed it, fixed by hand, not re-reviewed (he chose to skip that spend). His answers are applied: block 6 is capacity only, the Growth Journey sits with the Action Hub in section 7, section 11 is Action Items only, Networking is third and Branding fourth, calendar and capacity setup is feature onboarding.
+Done: start of week dossier (passes the code check, one Opus judge round failed it, fixes applied by hand, not re-judged). Dossiers in ~/Documents/CS2-research/dossiers/ that pass check-dossier.mjs: start-of-week (F1 to F11), calendar (C1, C2, D3 to D5), action-hub (B1, D1, D2, D6), growth-journey (G1 to G3). Outline: reference/cs2/outline/outline.md, shown to him and his answers applied. Block plans written and passing check-truth.mjs: outline/section-7.md, section-8.md, section-11.md. Each failed two Opus truth reviews (claims that went past their sources); the failing claims were cut by hand after round 2 and none was re-reviewed.
 
 ## Next action
 
-1. Outline sign off: he reads the updated outline; any order change is cheap now.
-2. Each section in his order from 7: a lean dossier per flow (extract-turns plus one Sonnet reader), block plan, truth review, copy, voice pass. Sections 5 and 6 first need no flow dossier except C3 for 6.
-3. Drafting can move to his second account (BROWSER_MODE.md) to save this account.
+1. Truth review PASS for the three plans: one more Opus review each, or bring them to him as they are (the handoff question below). Sections 5 and 6 need no dossier except C3 for 6.
+2. Dossiers still missing: capacity (C3, section 6) and get ahead (E1, E2, section 10). Then block plans for 5, 6, 9, 10 and the Start of week plan.
+3. Copy and voice pass per section after a truth PASS. Layout and imagery are his.
+4. Unanswered, for him: where Focus Areas stand (his 19 Mar 2026 line says a sorting tag, the live Pathway page 2670:11674 shows numbered Focus Areas with a locked rail), and whether the packed calendar switches the whole week (28 Apr) or only items that cannot be placed (3 May).
 
 ## Decided in chat, not yet in files
 
@@ -38,6 +39,7 @@ None
 ## Open questions for Chadwick
 
 - Whether, after two truth review rounds, remaining FAILs go to him and his APPROVALS.md line lifts the copy block (not built).
+- Focus Areas and the packed calendar fallback, above.
 
 ## Waiting for Claude Code
 

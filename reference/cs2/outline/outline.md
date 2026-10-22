@@ -81,7 +81,7 @@ Claim: product | After the week is done additional Action Items are offered and 
 
 ## 11. Action Items
 Frame block: proposed
-Reader gets: The unit of work: one Pathway page holds the Focus Areas and Action Items for that Pathway.
+Reader gets: Where the Action Items live: one Pathway page lists the Focus Areas and Action Items for that Pathway.
 Flows: G2
 Claim: product | A Pathway page holds the Focus Areas and Action Items for that Pathway | src: 2670:11674
 
