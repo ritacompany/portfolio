@@ -2,7 +2,7 @@
 
 ## 11. Action Items
 Frame block: proposed
-Reader gets: Where the Action Items live: one Pathway page lists the Focus Areas and Action Items for that Pathway.
+Reader gets: One Pathway at a time: the Pathway page lists that Pathway's Focus Areas and Action Items.
 Flows: G2
 
 ### Block 1: A Pathway page for learning one Pathway

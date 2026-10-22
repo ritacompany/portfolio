@@ -81,7 +81,7 @@ Claim: product | After the week is done additional Action Items are offered and 
 
 ## 11. Action Items
 Frame block: proposed
-Reader gets: Where the Action Items live: one Pathway page lists the Focus Areas and Action Items for that Pathway.
+Reader gets: One Pathway at a time: the Pathway page lists that Pathway's Focus Areas and Action Items.
 Flows: G2
 Claim: product | A Pathway page holds the Focus Areas and Action Items for that Pathway | src: 2670:11674
 

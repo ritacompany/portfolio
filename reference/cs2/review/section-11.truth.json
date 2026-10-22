@@ -1,0 +1,13 @@
+{
+  "file": "reference/cs2/outline/section-11.md",
+  "hash": "66746dd0101b4efc",
+  "verdict": "FAIL",
+  "checks": [
+    "Check 1: FAIL because the section's Reader gets line opens \"Where the Action Items live\", which frames the Pathway page as the home of Action Items. Frame 2670:11674 only shows one Pathway's Focus Areas and Action Items. The record says the opposite: \"action items are primarily located on the action hub\" (corpus 2026-05-14 action-items-page-header L233), and section 7 places the week's Action Items in the Action Hub (2474:7775). The other product claims match the screen: numbered Focus Areas, a rail marked Complete, Current and Not started, and locks on Action Items in Focus Area 3 onward.",
+    "Check 2: PASS",
+    "Check 3: PASS",
+    "Check 4: PASS",
+    "Check 5: PASS"
+  ],
+  "at": "2026-10-22T17:39:51.427Z"
+}
