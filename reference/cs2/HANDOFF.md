@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 17:00
+Updated: 2026-10-22 18:00
 By: Claude Code
 Section: 1
 Loop step: 1
@@ -27,7 +27,7 @@ What is in the repo for picking this up without Claude Code: reference/cs2/outli
 
 ## Next action
 
-1. Reviews: section 7 fourth review is running or returned (check reference/cs2/review/); section 8 and 11 were fixed after their last FAIL and need one more review each. Every FAIL so far was a claim carrying more detail than the frame or the map shows, so keep claims to the frame's own text. Truth review PASS per plan (reference/review-truth.mjs, Opus): sections 7, 8, 11. When one passes, write its copy in reference/cs2/copy/section-N.md to the shape in BROWSER_MODE.md. Layout and imagery are his.
+1. Reviews. IMPORTANT: a review only counts when the sub-agent's first message is the output of `node reference/review-truth.mjs cs2 --prompt <plan>` pasted word for word as the prompt (the hook reads the sub-agent transcript); pointing it at a file does not record a verdict. Reviews run before this one by file path judged the plans well but recorded nothing. Substantive Opus PASS 22 Oct: section 7 (fourth review), section 11 (fourth review), section 8 not yet (fixed after its last FAIL). Section 7 was re-run with the exact prompt and is waiting for its recorded verdict in reference/cs2/review/. section 8 and 11 were fixed after their last FAIL and need one more review each. Every FAIL so far was a claim carrying more detail than the frame or the map shows, so keep claims to the frame's own text. Truth review PASS per plan (reference/review-truth.mjs, Opus): sections 7, 8, 11. When one passes, write its copy in reference/cs2/copy/section-N.md to the shape in BROWSER_MODE.md. Layout and imagery are his.
 2. Still to do: dossiers for capacity (C3, section 6) and get ahead (E1, E2, section 10); block plans for sections 5, 6, 9 (start of week dossier is done) and 10.
 3. Product questions: read the Figma frames and the later chats first (reference/dossier-reader-prompt.md). Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list with Refresh calendar; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
 
