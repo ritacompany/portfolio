@@ -46,12 +46,12 @@ Claim: background | His block says the number of Action Items per week was based
 
 ## 7. The Action Hub and the Growth Journey
 Frame block: proposed
-Reader gets: Where a person lands and works, and how its target and pace tie to the larger goal. The empty state invites the quiz, the list view holds the week and a tutorial tip teaches it in place. The target and pace in the rail connect to the Growth Journey page, which is where the larger goal and the research behind it belong. This is where the Action Hub is first named, so sections 5 and 6 must not name it.
+Reader gets: Where a person lands and works, and how its target and pace tie to the larger goal. The empty state invites the quiz, the list view holds the week and a tip explains the scheduled time. The target and pace in the rail connect to the Growth Journey page, which is where the larger goal and the research behind it belong. This is where the Action Hub is first named, so sections 5 and 6 must not name it.
 Flows: B1, D1, D2, D6, G1, G3
 Claim: product | The empty Action Hub invites the quiz with "Take our quiz and we'll match you with tech careers" | src: 3269:26651
 Claim: product | The list view shows this week's Action Items with suggested times plus weekly progress and the Pathway target and pace in the rail | src: 2474:7775
 Claim: product | Without a calendar the list view shows a prompt "Schedule smarter" to connect one | src: 2667:9484, 2619:16362
-Claim: product | A tutorial tip on the list view teaches the feature in place | src: 2671:7202
+Claim: product | A "Schedule for you" tip on an Action Item's time slot reads "Mondai picked this time based on your availability. Tap the icon to reschedule anytime." | src: 2671:7202
 Claim: product | The Growth Journey page shows a personalized summary, journey target, journey pace, progress and the five Pathways | src: 4355:22827
 Claim: product | Capacity can be changed from the Growth Journey | src: 2943:14340
 

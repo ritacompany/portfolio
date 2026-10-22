@@ -25,11 +25,10 @@ Claim: product | Without a calendar the list view shows a "Schedule smarter" pro
 Claim: decision | The view stays visible without a calendar and becomes an empty state offering to connect | src: dossier:action-hub#Q4.5
 Claim: decision | For a week too packed to schedule he proposed the non calendar approach, a plain list with no specific scheduled time, all done by end of week | src: dossier:action-hub#Q4.6
 
-### Block 4: A tip teaches the list in place
-Reader has to see: A tutorial tip on the list view, and his decision that the first Action Hub visit is the in product onboarding.
+### Block 4: A tip explains the scheduled time
+Reader has to see: The tip on an Action Item's scheduled time that explains who picked it and how to reschedule.
 Flows: D6
-Claim: product | A tutorial tip on the list view teaches the feature in place | src: 2671:7202
-Claim: decision | The first Action Hub visit is the in product onboarding, with tips for scheduling and for availability | src: dossier:action-hub#Q4.10
+Claim: product | A "Schedule for you" tip on an Action Item's time slot reads "Mondai picked this time based on your availability. Tap the icon to reschedule anytime." | src: 2671:7202
 Claim: decision | Tooltips appear only where they earn it, and the first time moment has to feel like a real start | src: dossier:action-hub#Q4.11
 
 ### Block 5: The long view lives on the Growth Journey page
