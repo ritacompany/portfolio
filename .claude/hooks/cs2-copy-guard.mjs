@@ -31,6 +31,10 @@ if (process.argv[2] === 'subagent') {
     const text = typeof c === 'string' ? c : Array.isArray(c) ? c.filter(x => x.type === 'text').map(x => x.text).join('\n') : '';
     if (d.type === 'user' && !prompt && typeof c === 'string') prompt = c;
     if (d.type === 'assistant' && text) answer = text;
+    // The desktop app has a sub-agent hand its final answer back through a SubagentHandback tool call
+    // instead of a plain text message; that call is in the same sub-agent transcript, so read it too.
+    const handback = Array.isArray(c) ? c.find(x => x.type === 'tool_use' && x.name === 'SubagentHandback' && typeof x.input?.message === 'string') : null;
+    if (d.type === 'assistant' && handback) answer = handback.input.message;
   }
   if (/^CASE STUDY TRUTH REVIEW /.test(prompt)) {
     const { record } = await import(path.join(root, 'reference/review-truth.mjs'));

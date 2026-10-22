@@ -14,22 +14,27 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 18:00
+Updated: 2026-10-22 19:00
 By: Claude Code
 Section: 1
 Loop step: 1
 
 ## Where it stopped
 
-Weekly limit at 91% on 22 Oct (resets Monday 26 Oct); Claude Code stopped there. His rule: never edit anything he wrote; a change to his text goes before and after in a separate note. No copy is written for any section after 2. The copy gate needs an Opus truth review PASS on the section's block plan; sections 7, 8 and 11 each failed three or more reviews on claims stretching past their sources, each time fixed, and re-reviews are the only thing between those plans and copy. His APPROVALS.md mechanism is not built and only he can build it.
+Weekly limit at 93% on 22 Oct (resets Monday 26 Oct); Claude Code stopped there. His rule: never edit anything he wrote; a change to his text goes before and after in a separate note.
 
-What is in the repo for picking this up without Claude Code: reference/cs2/outline/outline.md (all 11 sections, his order, claims), outline/section-7.md, section-8.md and section-11.md (block plans), reference/cs2/reasoning/dossier-findings-22oct.md (what the four passing dossiers say he decided and why, with no quotations; the research itself stays on his Mac), fixes/2026-10-22-asking-him-product-questions.md and reference/dossier-reader-prompt.md (how readers must open the live frames before asking him anything).
+Done: section 7 (The Action Hub and the Growth Journey) has a recorded Opus truth review PASS and its copy is written and passes the guard: reference/cs2/copy/section-7.md. The copy gate hook (.claude/hooks/cs2-copy-guard.mjs) was patched 22 Oct, with his yes, to read a sub-agent's SubagentHandback answer, so reviews now record. Section 7 is the first section recorded through it.
+
+Not yet: truth reviews for sections 8 and 11 (plans fixed after their last FAIL; substantive PASS for 11 on 22 Oct but never recorded). A review only counts when the sub-agent's first message is the output of `node reference/review-truth.mjs cs2 --prompt <plan>` pasted word for word, run on model Opus. Sections 3 to 6, 9 and 10 have no block plan; dossiers for capacity (C3) and get ahead (E1, E2) are missing.
+
+What is in the repo for picking this up without Claude Code: reference/cs2/outline/outline.md, outline/section-7.md, section-8.md, section-11.md, reference/cs2/reasoning/dossier-findings-22oct.md (what the dossiers say he decided and why, no quotations), fixes/2026-10-22-asking-him-product-questions.md and reference/dossier-reader-prompt.md.
 
 ## Next action
 
-1. Reviews. IMPORTANT: a review only counts when the sub-agent's first message is the output of `node reference/review-truth.mjs cs2 --prompt <plan>` pasted word for word as the prompt (the hook reads the sub-agent transcript); pointing it at a file does not record a verdict. Reviews run before this one by file path judged the plans well but recorded nothing. Substantive Opus PASS 22 Oct: section 7 (fourth review), section 11 (fourth review), section 8 not yet (fixed after its last FAIL). Section 7 was re-run with the exact prompt on Opus and answered VERDICT: PASS, but nothing was recorded: in this app a sub-agent hands its answer back through a SubagentHandback tool call, and .claude/hooks/cs2-copy-guard.mjs (subagent mode) only reads the sub-agent's last plain text message, so it sees an empty answer. The hook needs to also read the SubagentHandback message from the same sub-agent transcript (a change to his gate, not made). Until then no review can record and copy stays refused. section 8 and 11 were fixed after their last FAIL and need one more review each. Every FAIL so far was a claim carrying more detail than the frame or the map shows, so keep claims to the frame's own text. Truth review PASS per plan (reference/review-truth.mjs, Opus): sections 7, 8, 11. When one passes, write its copy in reference/cs2/copy/section-N.md to the shape in BROWSER_MODE.md. Layout and imagery are his.
-2. Still to do: dossiers for capacity (C3, section 6) and get ahead (E1, E2, section 10); block plans for sections 5, 6, 9 (start of week dossier is done) and 10.
-3. Product questions: read the Figma frames and the later chats first (reference/dossier-reader-prompt.md). Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list with Refresh calendar; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
+1. Exact-prompt Opus reviews for the section 8 and 11 plans; write each section's copy after its PASS is recorded (shape in BROWSER_MODE.md; check-copy runs in the guard).
+2. Dossiers for capacity (C3) and get ahead (E1, E2); block plans for sections 5, 6, 9, 10; copy for each after its review.
+3. Voice pass on section 7 copy (humanizer, then no-ai-slop detect) before he reads it.
+4. Read the live Figma frames and later chats before asking him any product question. Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list titled Calendar sync failure with a Close button; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
 
 ## Decided in chat, not yet in files
 
@@ -37,7 +42,7 @@ None
 
 ## Open questions for Chadwick
 
-- Whether, after truth review rounds, remaining FAILs go to him and his APPROVALS.md line lifts the copy block (not built).
+- Whether the second account should write copy for sections 8 and 11 once their reviews record, or wait for Claude Code.
 
 ## Waiting for Claude Code
 
