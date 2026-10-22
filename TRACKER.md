@@ -69,7 +69,7 @@ The leadership CS is after launch (C4).
 | H5 | Hero element roster: seven elements, which three carry the superpowers. His canvas plan: one sticker, two 3D, one flat object (CD), two images, one label. Open: the disco ball (loves it, does not map to a superpower, would need his own version), the second 3D element, the photo of him (may go or be fixed), "babies" (his canvas note says all contingent on it) | C | 1 | nothing | decision |
 | H6 | Superpower concepts. Energy that pulls people in: welcome mat. Pattern recognition: no settled idea; cats pattern considered, worried the animation gets too complex on a real photo. Quietly moving the needle: "potentially" a kooky red wig. Two of three still need a settled concept | C | 2 | H6t | open |
 | H6t | Cats animation test: how a cat cutout pattern could move, built from the cat cutouts on the canvas, so he can keep or drop the cats idea on evidence | AI | 1 | nothing | done, awaiting his review: `prototypes/homepage-foundations/cats-motion-test.html` (Multiply recommended, Sort backup, Ripple overcomplicated) |
-| H1 | Hero headline: keep "I'm not really that cool," or move to the "convinced that people would be happier" line as a marquee that settles on hover, centered or left at the superpower indent. He asked for help with this messaging | both | 1 | nothing | decision: options ready, awaiting his pick: `prototypes/homepage-foundations/headline-options.html` (both lines as the marquee, settle centered or left at the indent; AI recommends A in the hero, B kept as the superpowers headline) |
+| H1 | Hero headline: keep "I'm not really that cool," or move to the "convinced that people would be happier" line as a marquee that settles on hover, centered or left at the superpower indent. He asked for help with this messaging | both | 1 | nothing | done, his copy in Figma |
 | H3 | "Homosexual 1991 to current" line: keep, tune or cut | C | 1 | nothing | open |
 | H4 | Chicago and New York in the hero. His earlier ruling: Chicago out of the hero, into contact; if it appears sooner, New York leads and Chicago is the aside. Reopening it is his call | C | 1 | nothing | decision |
 | H16 | Footer: pick the black and white animated transition from his options and finish the footer frame (transition and footer in one frame) | C | 1 | nothing | decision: options ready, awaiting his pick: `prototypes/homepage-foundations/footer-transitions.html` (A stripes from his reference, B his own bar study 3744:3304; AI recommends B) |
@@ -121,12 +121,7 @@ The leadership CS is after launch (C4).
   shorter than that, so including it does not move the launch date. Fallback, at no cost: if
   the homepage ever becomes the thing launch waits on, ship the master as it is today, with the
   superpowers as a row in the About section, and add the section after launch.
-- **D7 Which line goes where (H1), his call.** With the superpowers section under the hero, the
-  "convinced that people would be happier" line can only lead one of them. Recommended: the hero
-  keeps "I'm not really that cool," as the marquee, and the superpowers section opens with the
-  "convinced" line, as the superpowers frame already does. A sentence that long cannot be read in
-  a moving marquee, which is why his note already needed a hover-settle fix for it; the short
-  line can. His note 1 proposed the opposite, which is why it is his call.
+- **D7 Hero copy: settled by Chadwick in Figma, 22 Oct.** He rewrote the hero copy himself; the two-option framing is retired. Read the current hero from the master in Figma, not from this file.
 - **D4 Two working sessions at once, plus the coordinator.** Recheck the pace after the weekly
   limit resets on 19 Oct.
 - **D5 Homepage Figma tasks pass the build gate. Decided by Chadwick, 15 Oct.** The gate lets a
