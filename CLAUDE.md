@@ -3,6 +3,12 @@
 Chadwick's own portfolio. Case study writing, the About page, hero and personal brand copy,
 plus the Metalab layout rebuilds in `build/`.
 
+**Reading this repo in claude.ai (the browser, not Claude Code)?** You are on Chadwick's second account,
+picking CS2 up where his main account stopped. When he says anything like pick up, carry on or where were
+we, do not ask him anything first: read `reference/cs2/BROWSER_MODE.md` and follow it, then
+`reference/cs2/HANDOFF.md`, and open with where CS2 stopped and the next action. Skip the rest of this
+section; it is for Claude Code.
+
 Before doing any work here, read `TRACKER.md`: the launch tracker, with every open item, decision and
 what each running session was doing. Then read `LEDGER.md`. It is the current state of the build: what is
 done, what was decided and why, what is still open. The standing rules that apply to every
@@ -53,6 +59,8 @@ he is. Mondai product mechanics are background for the case studies and nothing 
   them is Metalab scaffold text kept so section heights stay calibrated. Not shippable.
 - `reference/cs1/` : source material for case study 1, the operation. Verbatim evidence, the
   causal chain, Chadwick's own review notes, and the v5 draft.
+- `reference/cs2/HANDOFF.md` : where CS2 stopped and the next action. Read it first for any CS2 work.
+  Kept current so his second account (claude.ai in the browser) can resume; see `reference/cs2/BROWSER_MODE.md`.
 - `reference/cs2/` : source material for case study 2, the framework, from the 27 Aug
   restart. Start at `CS2_PROCESS.md`, which carries the working loop and the status of every section. Drafts are in `draft/`, the
   decision reasoning in `reasoning/`. The pre-restart master doc, build pack and full draft are

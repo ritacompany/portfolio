@@ -1,4 +1,8 @@
 {
+  "statusLine": {
+    "type": "command",
+    "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/usage-statusline.mjs\""
+  },
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -12,6 +16,11 @@
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/skills/fix-the-process/hooks/remind.mjs\"",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/usage-checkpoint.mjs\" prompt",
+            "timeout": 10
           }
         ]
       }
@@ -109,6 +118,11 @@
     "Stop": [
       {
         "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/usage-checkpoint.mjs\" stop",
+            "timeout": 15
+          },
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/question-box.py\"",

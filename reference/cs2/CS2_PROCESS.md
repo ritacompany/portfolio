@@ -3,8 +3,9 @@
 Agreed 2026-10-06. This is how CS2 gets written. It replaces `CS2_PLAN.md` and `CS2_METHOD.md`,
 which are kept for history only.
 
-Any Claude session, on any account, picking up CS2 starts here: read this file, then the status
-table at the bottom, then carry on from the first section that is not approved.
+Any Claude session, on any account, picking up CS2 starts at `HANDOFF.md`, the resume point: where
+the work stopped and the exact next action. Then this file and the status table at the bottom. In the
+browser on his second account, `BROWSER_MODE.md` is the brief (see Switching accounts).
 
 ---
 
@@ -78,6 +79,25 @@ Corrected 2026-10-07, his rule: Mondai source material (transcripts, chats, his 
 quoting them) never goes into git, in any repo. It stays on his Mac outside git, for example
 `~/Documents/CS2-research/`, and repo files only point to where it lives. What is committed here is the
 case study's own working files (process, section drafts, status), and only when he approves.
+
+## Switching accounts
+
+Added 21 Oct, his ask. When this account's usage runs low, CS2 carries on from his second account in
+the browser (claude.ai, reading this repo from GitHub), which writes only.
+
+- `HANDOFF.md` is the resume point. It is rewritten, never appended, at every save and pushed with it.
+  `check-handoff.mjs` checks its shape and refuses quotations from the record, because the repo is public.
+- The usage hook (`.claude/hooks/usage-checkpoint.mjs`) reads the plan usage the status line saves, or asks
+  for the desktop app's usage tool when none arrives. At 75% of the 5 hour limit (90% of the week) it has
+  Claude rewrite the handoff, commit and push. At 90% (95% of the week) it has Claude do the same, finish
+  only the step in hand and stop. The stop hook refuses to end a turn while CS2 work is newer than the
+  pushed handoff: every turn once usage is high, otherwise after 45 minutes.
+- The browser session does loop steps 1 to 4 and pass 1 of step 5, from `BROWSER_MODE.md`. It never builds,
+  plans slots, reviews or approves, and ends with a return packet.
+- Back in Claude Code, `check-packet.mjs` runs every file in the packet through the same checks the hooks
+  run, then each file is saved with Write so the hooks run again, and the story review follows. The intake
+  steps are at the end of `BROWSER_MODE.md`. `test-handoff.mjs` proves all of it, including that the browser
+  brief states every rule `check-copy.mjs` enforces.
 
 ## Reference material, and how it gets used
 
@@ -237,7 +257,8 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
    section (copy, plan, slot plan, built frame), and list its findings in the pack.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
    at the top. On approval, the status table is updated and the change is committed and pushed to
-   GitHub in the same step. Nothing approved lives only on one machine.
+   GitHub in the same step. Nothing approved lives only on one machine. Every save also rewrites
+   `HANDOFF.md` and pushes it, so the other account can pick up from it.
 
 Status values, used in the table and the section file: talking, drafted, built, approved. Where a
 section stopped goes in a "Where section N stopped" list under its notes, in loop order.
@@ -286,7 +307,7 @@ The outline. Worked top to bottom.
 
 | # | Section | What the reader comes away with | Status |
 |---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | Block 3 rewritten 20 Oct from the research report (`~/Documents/CS2-research/reports/CS2 reference products research reasons.md`): five products, each a takeaway card and a why card; three line headlines. Story review passed and recorded. Built in Figma 4363:5682: headlines updated, product cards placed in the block 3 visual block under his exploration. Audit fails only on the two image slot labels, which he removed while filling the slots. Next: his read of the cards in place |
+| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | Block 3 rebuilt 21 Oct: five short cards in his card style (topic label, product, one paragraph): what translates from each product and the research that supports it, no personal experience framing, no small effect sizes as reasons. Sources in one Label/12 line under the visual block. Story review passed and recorded. Built in Figma 4363:5682. Audit fails only on the two image slot labels he removed while filling the slots. Next: his read in place, and his images |
 | 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Built 14 Oct, not yet reviewed (an approval on 14 Oct was sent by mistake and withdrawn). Copy Draft 5 in `copy/section-2.md` with his two wording fixes; notes in `draft/CS2-section-2.md`. Figma 4228:6731 built from the copy file on the two beat list. Next: his review of the build and his image pick for the Action Hub screen slot. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
 | 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Talking, opened 8 Oct, reopened 14 Oct, `draft/CS2-section-3.md`. Three questions for him |
 | 4 | Pace | The system checks reality against the estimate without judging | Not started |

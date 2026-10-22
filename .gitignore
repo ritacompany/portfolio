@@ -7,6 +7,9 @@ dist/
 # machine specific, never shared
 .claude/settings.local.json
 
+# usage numbers the status line saves for the checkpoint hook
+.claude/state/
+
 # auto generated session logs
 .remember/
 .unlazy/
