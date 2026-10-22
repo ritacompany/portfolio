@@ -1,0 +1,13 @@
+{
+  "file": "reference/cs2/outline/section-8.md",
+  "hash": "c2ac75c0f601eab3",
+  "verdict": "PASS",
+  "checks": [
+    "Check 1: PASS",
+    "Check 2: PASS",
+    "Check 3: PASS",
+    "Check 4: PASS",
+    "Check 5: PASS"
+  ],
+  "at": "2026-10-22T17:42:12.423Z"
+}

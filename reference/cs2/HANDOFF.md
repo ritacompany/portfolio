@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 20:00
+Updated: 2026-10-22 20:30
 By: Claude Code
 Section: 1
 Loop step: 1
@@ -25,13 +25,13 @@ Weekly limit at 93% on 22 Oct (resets Monday 26 Oct); Claude Code stopped there.
 
 Done: section 7 (The Action Hub and the Growth Journey) has a recorded Opus truth review PASS and its copy is written and passes the guard: reference/cs2/copy/section-7.md. The copy gate hook (.claude/hooks/cs2-copy-guard.mjs) was patched 22 Oct, with his yes, to read a sub-agent's SubagentHandback answer, so reviews now record. Section 7 is the first section recorded through it.
 
-Not yet: recorded truth reviews for sections 8 and 11. The recorded run of section 11 FAILED on its Reader gets line (fixed, re-submitted, verdict pending in reference/cs2/review/). Section 8 was submitted with the exact prompt; its verdict is also pending there. A review only counts when the sub-agent's first message is the output of `node reference/review-truth.mjs cs2 --prompt <plan>` pasted word for word, run on model Opus. Sections 3 to 6, 9 and 10 have no block plan; dossiers for capacity (C3) and get ahead (E1, E2) are missing.
+Section 11 (Action Items) also has a recorded PASS (after its Reader gets line was fixed) and its copy is written: reference/cs2/copy/section-11.md. Not yet: a recorded truth review for section 8 (submitted with the exact prompt; its verdict was still pending, check reference/cs2/review/section-8.truth.json). A review only counts when the sub-agent's first message is the output of `node reference/review-truth.mjs cs2 --prompt <plan>` pasted word for word, run on model Opus. Sections 3 to 6, 9 and 10 have no block plan; dossiers for capacity (C3) and get ahead (E1, E2) are missing.
 
 What is in the repo for picking this up without Claude Code: reference/cs2/outline/outline.md, outline/section-7.md, section-8.md, section-11.md, reference/cs2/reasoning/dossier-findings-22oct.md (what the dossiers say he decided and why, no quotations), fixes/2026-10-22-asking-him-product-questions.md and reference/dossier-reader-prompt.md.
 
 ## Next action
 
-1. Exact-prompt Opus reviews for the section 8 and 11 plans; write each section's copy after its PASS is recorded (shape in BROWSER_MODE.md; check-copy runs in the guard).
+1. Section 8: confirm its recorded verdict (re-run with the exact prompt if missing or FAIL, fix the plan first), then write its copy (shape in BROWSER_MODE.md; check-copy runs in the guard).
 2. Dossiers for capacity (C3) and get ahead (E1, E2); block plans for sections 5, 6, 9, 10; copy for each after its review.
 3. Voice pass on section 7 copy (humanizer, then no-ai-slop detect) before he reads it.
 4. Read the live Figma frames and later chats before asking him any product question. Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list titled Calendar sync failure with a Close button; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
