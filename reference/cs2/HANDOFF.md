@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 23:30
+Updated: 2026-10-23 00:00
 By: Claude Code
 Section: 1
 Loop step: 1
@@ -31,6 +31,7 @@ What is in the repo for picking this up without Claude Code: reference/cs2/outli
 
 ## Next action
 
+0. FIRST: his frame changed since the 21 Oct snapshot. outline/frame-changes-22oct.md holds what it says now (block 6 is now capacity and cognitive load, calendar and hours rows gone; blocks 4 and 6 have new node ids). Rewrite ~/Documents/CS2-research/wip-frame.md from Figma at the start of the next session (this changes the hash, so re-run the exact-prompt reviews for sections 7, 8, 9 and 11), add cognitive load to the outline section 6, and make a dossier for it before any copy there.
 1. Voice pass on the copy for sections 7, 8 and 11 (humanizer, then no-ai-slop detect), then his read (shape in BROWSER_MODE.md; check-copy runs in the guard).
 2. Section 9 (Start of week) has a recorded PASS and its copy is written (copy/section-9.md). Next: dossiers for capacity (C3) and get ahead (E1, E2); block plans for sections 5, 6 and 10; copy for each after its review. Blocks 1 to 6 of his frame are his own text; a Background block redo draft for him is in draft/CS2-background-v2.md.
 3. Voice pass on section 7 copy (humanizer, then no-ai-slop detect) before he reads it.
