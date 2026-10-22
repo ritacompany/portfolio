@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 22:00
+Updated: 2026-10-22 23:00
 By: Claude Code
 Section: 1
 Loop step: 1
@@ -32,7 +32,7 @@ What is in the repo for picking this up without Claude Code: reference/cs2/outli
 ## Next action
 
 1. Voice pass on the copy for sections 7, 8 and 11 (humanizer, then no-ai-slop detect), then his read (shape in BROWSER_MODE.md; check-copy runs in the guard).
-2. Dossiers for capacity (C3) and get ahead (E1, E2); block plans for sections 5, 6, 9, 10; copy for each after its review.
+2. Section 9 (Start of week): block plan written (outline/section-9.md, passes check-truth), its exact-prompt Opus review was submitted and the verdict is pending in reference/cs2/review/section-9.truth.json; write its copy after a recorded PASS. Then dossiers for capacity (C3) and get ahead (E1, E2); block plans for sections 5, 6 and 10; copy for each after its review. Blocks 1 to 6 of his frame are his own text; a Background block redo draft for him is in draft/CS2-background-v2.md.
 3. Voice pass on section 7 copy (humanizer, then no-ai-slop detect) before he reads it.
 4. Read the live Figma frames and later chats before asking him any product question. Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list titled Calendar sync failure with a Close button; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
 
