@@ -23,3 +23,7 @@ docs/about-source/HUMAN_CORPUS.txt
 docs/about-source/CHADWICK_ONLY.txt
 docs/about-source/_evidence/codex_user_turns.txt
 docs/about-source/_evidence/codex_chadwick.txt
+
+# Local working output, backed up to iCloud Drive, not git
+output/
+.playwright-cli/
