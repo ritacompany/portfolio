@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 21:00
+Updated: 2026-10-22 22:00
 By: Claude Code
 Section: 1
 Loop step: 1
@@ -38,7 +38,7 @@ What is in the repo for picking this up without Claude Code: reference/cs2/outli
 
 ## Decided in chat, not yet in files
 
-None
+- His frame blocks 1 to 6 are his own text in Figma and stay his (the older copy/section-1.md and section-2.md are pre-restart drafts, not his frame; ignore them). Sections 7, 8, 11 copy is new. 22 Oct: he wants the Background block redone with more clarity (draft in reference/cs2/draft/CS2-background-v2.md, his text untouched); Saturday night deadlines stays; the hierarchy comes after the competitive analysis in his order.
 
 ## Open questions for Chadwick
 
