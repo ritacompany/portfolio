@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-21 21:45
+Updated: 2026-10-21 22:05
 By: Claude Code
 Section: 1
 Loop step: 1
@@ -25,7 +25,7 @@ The process was rebuilt and is live (fixes/2026-10-21-cs2-process-rebuild.md). O
 
 ## Next action
 
-Refresh ~/Documents/CS2-research/wip-frame.md from his Figma frame, then write reference/cs2/outline/outline.md in the claims format (start from the trial outline above), run the Opus truth review and fix to PASS, then his read.
+Run the knowledge layer trial (see Waiting for Claude Code). Then refresh ~/Documents/CS2-research/wip-frame.md from his Figma frame and write reference/cs2/outline/outline.md in the claims format (start from the trial outline above), run the Opus truth review and fix to PASS, then his read.
 
 ## Decided in chat, not yet in files
 
@@ -41,6 +41,7 @@ None
 
 ## Waiting for Claude Code
 
+- The knowledge layer trial on start of week, agreed with him 21 Oct and paused at 87% of the 5 hour window: plan and gates in .unlazy/cs2-knowledge/GATES.md on his Mac (one dossier per flow from the raw record, checked by code and a blind Opus judge). Resume after the 5 hour reset; it comes before the outline.
 - Delete ~/Documents/CS2-research/PRODUCT_BRIEF.md, written from notes; nothing reads it now.
 - test-handoff.mjs fails "an empty heading is refused" at 87e0ff3 too, before this change.
 
