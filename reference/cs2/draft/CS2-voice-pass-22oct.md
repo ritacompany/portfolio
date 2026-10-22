@@ -4,7 +4,7 @@ Status: drafted, waiting for his read. Loop step 4 (voice pass) for the four sec
 
 Built on his 22 Oct edits (draft/COPY_EDITED_BY_CHADWICK_22OCT.md) for sections 7, 8 and 11, since his wording wins, and on copy/section-9.md for section 9, which he has not edited. Run with the humanizer skill, then no-ai-slop in detect mode. Every change to his text is listed below as Before and After; his file is untouched. Nothing here goes into copy/ until he has read it: the copy guard checks each save against the frame record on his Mac, so a cloud session cannot save there. Claude Code on his Mac saves the accepted lines.
 
-No new fact was added. Most changes are wording. Three are content fixes toward the block plans: section 7 block 3 names the schedule view the plan says stays as an empty state, section 11 block 2 corrects what is numbered and marked on the rail, and section 9 block 3 is rebuilt so its rule and its states no longer contradict each other. An independent reader checked every block against the block plans and the dossier findings; its three material findings are fixed below and its minor ones are listed under Calls.
+No fact was added that is not in the block plans or the dossier findings. Most changes are wording. Two are content fixes: section 7 block 3 names the schedule view as the view that stays (dossier findings, Action Hub Q3), and section 11 block 2 corrects what is numbered and marked on the rail. Section 9 block 3 is left exactly as it was; its note says why. An independent reader checked every block against the block plans and the dossier findings over three rounds; what it found is fixed below, listed under Calls or, for section 9 block 3, handed to the next Claude Code session on his Mac.
 
 ## Changes to his text
 
@@ -49,7 +49,7 @@ Why: two fact fixes. The block plan and the screen (2670:11674) number the Focus
 - Block 1 body: the three versions are named in parallel, and the Oxford comma before and ahead with positive momentum is gone.
 - Block 2 eyebrow: Behind a bit became Lost days. Two of the rollover versions are for someone still ahead, so behind a bit was wrong for them.
 - Block 2 body: it became the screen, the two extra versions are named as versions, and the header line says the header tells the person why they are seeing the screen.
-- Block 3, headline and body rebuilt: the old headline (catching up has to be earned by real movement) sat above a catching up state where nothing moved, so the block contradicted itself, and closing exactly everything is not catching up was a line a reader cannot decode. The new headline, catching up shows how much of the gap closed, is his rule from the same turn of the record as the old one (dossier findings, start of week Q2 and Q4), and it holds for every state: the no gain no loss screen honestly shows none and says to keep chipping at the gap, which is that screen's own line from the block plan. The persistence rule for catching up is still open in the record; the copy does not state one.
+- Block 3 left as it was. Its body lists a state where the gap has not moved as a case of catching up, under a headline saying catching up has to be earned by real movement, and closing exactly everything is not catching up is a line a reader cannot decode. Every rewrite tried in this pass either dropped half of the plan's decision or stated his requirement as screen behaviour. The fix is in the block plan, not the copy: point its decision claim at his line from the same turn (dossier findings, start of week Q2: catching up must show how much was caught up, not only that the week closed), re-run its truth review on his Mac, then rewrite the block. The plan also lists modest gain and consecutive recovery weeks as two versions, which the copy runs together.
 - Block 4 body: no longer opens by repeating the headline; there is a skip warning became skipping brings up a warning.
 - Block 5 body: the choice was removed became the design moved away from asking the person to choose, because the reader never saw a choice. It stays a decision, not a product fact: the dossier findings show the choice was between keeping the schedule and updating it, and it was still an open thread later.
 
@@ -181,9 +181,9 @@ The screen names the days lost and the Action Items moving into the new week. Ot
 
 Eyebrow: Recovery
 
-Headline: Catching up shows how much of the gap closed.
+Headline: Catching up has to be earned by real movement.
 
-The screen counts real movement, not only that the week closed. When the gap has not moved, it says to keep chipping at it. Modest gains over consecutive recovery weeks have their own versions while the person is still behind. Caught up closes the gap, with one version after a single week behind and one after two or more.
+Catching up shows a gap with no gain and no loss, or modest gains over consecutive recovery weeks while still behind. Closing exactly everything is not catching up. Caught up resolves it, after one week behind or after two or more.
 
 ## Block 4
 
