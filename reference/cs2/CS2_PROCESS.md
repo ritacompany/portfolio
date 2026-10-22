@@ -48,14 +48,10 @@ piece added each time, is dropped. The writing carries the connection instead:
   and its slot says what that claim needs from it. The build up plan in `CS2_COMPREHENSION.md` is
   retired.
 
-## Layouts
+## Layout and imagery
 
-Layout pieces are the families in `Case study layouts` (Portfolio Design file, page `VC`, node
-3461:5685), decoded by name and slot in `LEDGER.md`, for example TextAnd1Image layout 1. Step 5 plans with
-them by name and slot only. Whatever sits in their slots now (images, diagrams, text) is scaffold and
-never carries into CS2. Neither does anything from another case study's content or signature forms.
-How a block is composed follows the Haven case study: eyebrow, claim headline, a figure only when
-step 5 finds the claim needs one, one short body. The HTML in `build/` is not a layout source. Where and how sections get built is step 8.
+His, decided 22 Oct: Claude delivers the outline, block plans and copy. Layout, imagery and
+building in Figma are his; Claude writes no slot plans, image labels or wireframes and builds nothing.
 
 ## Timeline and framing
 
@@ -232,7 +228,7 @@ dossier from the raw record that passes `../check-dossier.mjs`; his decisions ar
 4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
    check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
    Names, quotes, dashes, Oxford commas and early product terms are caught by `check-copy.mjs`.
-5. **Story plan, then slot plan.** Rewritten 16 Oct on his notes: the story comes first, the writing uses
+5. **Story plan.** Rewritten 16 Oct on his notes: the story comes first, the writing uses
    the tactics and case study books, visuals are image slots he fills from his own screens, layouts come
    from his pool, and Claude never draws a diagram or chart. Checks agreed with him 16 Oct.
 
@@ -249,20 +245,14 @@ dossier from the raw record that passes `../check-dossier.mjs`; his decisions ar
    to the next, image slots that serve the point, and moves actually used. Only the hook can record the
    verdict.
 
-   Pass 2 writes `layout/section-N.md`: one table `| Layout piece | Slot | What goes in it | Why |`, every
-   layout piece from his pool (`LEDGER.md` decoder), each row starting `Block N`, image slots equal to the
-   plan's count. The hook refuses a slot plan without a passing plan, a passing story review, a pool
-   layout, matching slots, or with a drawn visual or a Pathway row (his line in `APPROVALS.md` lifts that).
-
-6. **Review pack.** One per section, sent once, his decision 16 Oct: the copy, a before and after
-   wireframe shown in the chat (never Figma) and one list of every call Claude made, each with its pick
+6. **Review pack.** One per section, sent once, his decision 16 Oct: the copy and one list of every call Claude made, each with its pick
    and reason. He replies once and flags only what he disagrees with; a line he leaves stands. Claude
-   decides wording trims, layout picks and anything inside a direction he has set, and lists them instead
+   decides wording trims and anything inside a direction he has set, and lists them instead
    of asking. At most one question per pack, and only for what he alone holds: what existed, taste, what
    he is comfortable claiming. Small fixes are made in place; changes to what the section says go back to
    step 2 or 3.
    Before the pack goes to him, a blind audit: run the `blindspot-audit` skill in scoped mode on the
-   section (copy, plan, slot plan, built frame), and list its findings in the pack.
+   section (copy and plan), and list its findings in the pack.
 7. **Save.** The section file lives in `draft/CS2-section-N.md` from its first draft, with a status line
    at the top. On approval, the status table is updated and the change is committed and pushed to
    GitHub in the same step. Nothing approved lives only on one machine. Every save also rewrites
@@ -278,31 +268,10 @@ A section is done when its copy, layout and visuals are all approved. No second 
 Also commit and push at the end of every working session, even mid section, with the status table
 saying where the conversation stopped.
 
-8. **Build.** Only when he says to build a section; a hook refuses Figma writes until his latest message does. Changed 16 Oct,
-   his call: sections are built straight into `WIP Mondai framework case study` (4269:9433) in the Portfolio
-   Design file, under its Background block and in reading order, one after another. The old Workstation
-   frames (section 1 4228:6859, section 2 4228:6731) are superseded. Format and styling follow the Haven
-   case study (3300:12596), the finished one; the leadership case study is out of date and is not a
-   reference. Haven gives the block grammar and type, never its content or signature forms. The Background
-   block's job is the person and their situation; its final words are written with the intro (section 9),
-   and it never states the problem or the thesis, which section 1 opens with. Text comes from the copy
-   file and slots from the approved slot plan, body text no wider than 7 columns.
-   Each block is built from his pool layout, named `Block N · <layout piece>`, on the 12 column grid, with
-   Haven text styles. Each image slot is a dark frame named `Image slot` with a `Label` text saying what
-   goes there; he supplies the image. After every build, run `figma-audit.js` with use_figma (replace the
-   section id) and fix every failure before showing him: pool layouts, labelled image slots, no drawn
-   visuals, Haven styles only, grid.
+8. **Build.** His, in Figma, from the approved copy.
 
 ## Working notes for a new session (16 to 20 Oct)
 
-- A square in his layouts is a visual block: he makes what goes in it (a real screen or a data
-  visualization). Claude only labels it with small text, never draws it, and places visual blocks where the
-  story most needs one, one block where one will do.
-- Each block is a title section (eyebrow and headline) plus a media section from `Case study layouts`
-  (3461:5685), rebuilt on his 12 column grid. Styling follows Haven (3300:12596).
-- The figma copy match hook only lets text into Figma that appears in the copy or layout plan: write square
-  labels in the layout plan first, word for word.
-- If the figma-mondai connection hits its rate limit or cannot load Satoshi, the second Figma connection reaches the same file with his local fonts.
 - `blindspot-audit` loads in the main session only; sub-agents cannot load it.
 - The desktop app runs sub-agents in the background, so the story review verdict is recorded on SubagentStop from the reviewer's own transcript (`cs2-copy-guard.mjs subagent`), not when the Agent call returns.
 - Repeat story reviews find new nitpicks each round. Fix real problems, drop a move the copy cannot honestly

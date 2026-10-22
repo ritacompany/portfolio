@@ -14,18 +14,20 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 05:40
+Updated: 2026-10-22 06:20
 By: Claude Code
 Section: 1
 Loop step: 1
 
 ## Where it stopped
 
-The process was rebuilt and is live (fixes/2026-10-21-cs2-process-rebuild.md). Outlines and block plans now live in reference/cs2/outline/ as cited claims; the guard hook refuses any save that fails check-truth.mjs (his frame first in his order, every flow step placed or cut, every claim pointing at a frame or his words, snapshots under three days old), and copy for a section is refused until its block plan has an Opus truth review PASS recorded by the hook. No outline.md exists yet. The trial outline that came closest is in ~/Documents/CS2-research/process-trial-21oct/out-B/outline.md: checks 2 to 5 pass, check 1 fails on three Reader lines.
+The process is rebuilt and enforced (fixes/2026-10-21-cs2-process-rebuild.md, fixes/2026-10-22-case-study-knowledge-layer.md). His split, 22 Oct: Claude does the outline (from his WIP frame order) and the writing; layout and imagery are his. Budget: about 24 points of the weekly limit until Monday 26 Oct, and CS2 must finish before then, so run cheap: Sonnet for readers, one Opus judge per artefact, no full chat reads.
 
 ## Next action
 
-Finish the start of week dossier (see Waiting for Claude Code). Then refresh ~/Documents/CS2-research/wip-frame.md from his Figma frame and write reference/cs2/outline/outline.md in the claims format (start from the trial outline above), run the Opus truth review and fix to PASS, then his read.
+1. Start of week dossier (~/Documents/CS2-research/dossiers/start-of-week.md): add the Topic line, run node reference/extract-turns.mjs with the flow words and --missing on it, have one Sonnet reader fold the extract in (his turns only for decisions, every chat listed under ## Chats read), fix start-of-week.review.md, reach DOSSIER_PASS, one Opus judge.
+2. Outline: refresh ~/Documents/CS2-research/wip-frame.md from his Figma frame, write reference/cs2/outline/outline.md in the claims format starting from ~/Documents/CS2-research/process-trial-21oct/out-B/outline.md, Opus truth review, then his read with the open questions below.
+3. Each section in his order: a lean dossier per flow (extract-turns plus one reader), block plan, truth review, copy, voice pass. Drafting can move to his second account (BROWSER_MODE.md) to save this account.
 
 ## Decided in chat, not yet in files
 
