@@ -40,9 +40,10 @@ he is. Mondai product mechanics are background for the case studies and nothing 
   on something only I hold: taste, risk appetite, money, relationships, facts about my life or
   an action that is hard to reverse. Never ask me to arbitrate where neither of us has the
   deciding information.
-- Close with one question or none, never a compound one. When the decision is genuinely mine,
-  state the choice in one line, then what yes means, then what no means, then your
-  recommendation with its reason.
+- Close with one question or none, never a compound one. A choice between set options goes in
+  the question card; any other question goes in the box at the end (Your call, Why it matters,
+  My pick), as `.claude/portfolio-rules.md` DECISIONS sets out and `.claude/hooks/question-box.py`
+  holds.
 
 ## What's in this folder
 
