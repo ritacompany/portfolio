@@ -30,7 +30,7 @@ Done: start of week dossier (passes the code check, one Opus judge round failed 
 1. Truth review PASS for the three plans: one more Opus review each, or bring them to him as they are (the handoff question below). Sections 5 and 6 need no dossier except C3 for 6.
 2. Dossiers still missing: capacity (C3, section 6) and get ahead (E1, E2, section 10). Then block plans for 5, 6, 9, 10 and the Start of week plan.
 3. Copy and voice pass per section after a truth PASS. Layout and imagery are his.
-4. Unanswered, for him: where Focus Areas stand (his 19 Mar 2026 line says a sorting tag, the live Pathway page 2670:11674 shows numbered Focus Areas with a locked rail), and whether the packed calendar switches the whole week (28 Apr) or only items that cannot be placed (3 May).
+4. Settled from the record, 22 Oct: Focus Areas are linear (his 22 Apr 2026 turn, the live Pathway page); a packed calendar removes scheduled times for the week (frame 2616:14229 says "this week"). Read the screens and the record before asking him any product question (fixes/2026-10-22-asking-him-product-questions.md).
 
 ## Decided in chat, not yet in files
 
@@ -39,7 +39,6 @@ None
 ## Open questions for Chadwick
 
 - Whether, after two truth review rounds, remaining FAILs go to him and his APPROVALS.md line lifts the copy block (not built).
-- Focus Areas and the packed calendar fallback, above.
 
 ## Waiting for Claude Code
 
