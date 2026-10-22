@@ -14,20 +14,22 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 06:20
+Updated: 2026-10-22 12:00
 By: Claude Code
 Section: 1
 Loop step: 1
 
 ## Where it stopped
 
-The process is rebuilt and enforced (fixes/2026-10-21-cs2-process-rebuild.md, fixes/2026-10-22-case-study-knowledge-layer.md). His split, 22 Oct: Claude does the outline (from his WIP frame order) and the writing; layout and imagery are his. Budget: about 24 points of the weekly limit until Monday 26 Oct, and CS2 must finish before then, so run cheap: Sonnet for readers, one Opus judge per artefact, no full chat reads.
+The process is rebuilt and enforced (fixes/2026-10-21-cs2-process-rebuild.md, fixes/2026-10-22-case-study-knowledge-layer.md). His split, 22 Oct: Claude does the outline and the writing; layout and imagery are his. Budget: weekly limit at 80% on 22 Oct, resets Monday 26 Oct, so run cheap: Sonnet for readers, no full chat reads, Opus only where a gate needs it.
+
+Done 22 Oct: the start of week dossier passes check-dossier.mjs (one Opus judge round failed it on breadth and conflicts; those fixes are applied by hand, not re-judged). reference/cs2/outline/outline.md is written, passes check-truth.mjs and was shown to him; two Opus truth review rounds failed it, fixed by hand, not re-reviewed (he chose to skip that spend). His answers are applied: block 6 is capacity only, the Growth Journey sits with the Action Hub in section 7, section 11 is Action Items only, Networking is third and Branding fourth, calendar and capacity setup is feature onboarding.
 
 ## Next action
 
-1. Start of week dossier (~/Documents/CS2-research/dossiers/start-of-week.md): add the Topic line, run node reference/extract-turns.mjs with the flow words and --missing on it, have one Sonnet reader fold the extract in (his turns only for decisions, every chat listed under ## Chats read), fix start-of-week.review.md, reach DOSSIER_PASS, one Opus judge.
-2. Outline: refresh ~/Documents/CS2-research/wip-frame.md from his Figma frame, write reference/cs2/outline/outline.md in the claims format starting from ~/Documents/CS2-research/process-trial-21oct/out-B/outline.md, Opus truth review, then his read with the open questions below.
-3. Each section in his order: a lean dossier per flow (extract-turns plus one reader), block plan, truth review, copy, voice pass. Drafting can move to his second account (BROWSER_MODE.md) to save this account.
+1. Outline sign off: he reads the updated outline; any order change is cheap now.
+2. Each section in his order from 7: a lean dossier per flow (extract-turns plus one Sonnet reader), block plan, truth review, copy, voice pass. Sections 5 and 6 first need no flow dossier except C3 for 6.
+3. Drafting can move to his second account (BROWSER_MODE.md) to save this account.
 
 ## Decided in chat, not yet in files
 
@@ -35,11 +37,7 @@ None
 
 ## Open questions for Chadwick
 
-- Pathway order: the Growth Journey page (4355:22827) has Networking third; the Action Hub rail (2667:9484) and the get ahead screen (2820:10408) have Branding third, as his card does. Which is right?
-- His frame says every Action Item in a week is due at the same point; the list view gives each item its own suggested time. Same thing on the page, or does the copy need to separate suggested time from due?
-- Product onboarding versus feature onboarding: the file names the calendar, time and capacity screens Product onboarding step 1 to 3, while sign up and the quiz sit on the Onboarding page.
 - Whether, after two truth review rounds, remaining FAILs go to him and his APPROVALS.md line lifts the copy block (not built).
-- Who raised Motion in Sep 2024.
 
 ## Waiting for Claude Code
 
