@@ -14,23 +14,22 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 14:30
+Updated: 2026-10-22 16:00
 By: Claude Code
 Section: 1
 Loop step: 1
 
 ## Where it stopped
 
-Weekly limit at 88% on 22 Oct (resets Monday 26 Oct). His rule 22 Oct: never edit anything he wrote; a change to his text goes before and after in a separate note.
+Weekly limit near 90% on 22 Oct (resets Monday 26 Oct). His rule: never edit anything he wrote; a change to his text goes before and after in a separate note. No copy is written for any section after 2. The copy gate needs an Opus truth review PASS on the section's block plan; sections 7, 8 and 11 each failed three or more reviews on claims stretching past their sources, each time fixed, and re-reviews are the only thing between those plans and copy. His APPROVALS.md mechanism is not built and only he can build it.
 
-Done: start of week dossier (passes the code check, one Opus judge round failed it, fixes applied by hand, not re-judged). Dossiers in ~/Documents/CS2-research/dossiers/ that pass check-dossier.mjs: start-of-week (F1 to F11), calendar (C1, C2, D3 to D5), action-hub (B1, D1, D2, D6), growth-journey (G1 to G3). Outline: reference/cs2/outline/outline.md, shown to him and his answers applied. Block plans written and passing check-truth.mjs: outline/section-7.md, section-8.md, section-11.md. Each failed two Opus truth reviews (claims that went past their sources); the failing claims were cut by hand after round 2 and none was re-reviewed.
+What is in the repo for picking this up without Claude Code: reference/cs2/outline/outline.md (all 11 sections, his order, claims), outline/section-7.md, section-8.md and section-11.md (block plans), reference/cs2/reasoning/dossier-findings-22oct.md (what the four passing dossiers say he decided and why, with no quotations; the research itself stays on his Mac), fixes/2026-10-22-asking-him-product-questions.md and reference/dossier-reader-prompt.md (how readers must open the live frames before asking him anything).
 
 ## Next action
 
-1. Truth review PASS for the three plans: one more Opus review each, or bring them to him as they are (the handoff question below). Sections 5 and 6 need no dossier except C3 for 6.
-2. Dossiers still missing: capacity (C3, section 6) and get ahead (E1, E2, section 10). Then block plans for 5, 6, 9, 10 and the Start of week plan.
-3. Copy and voice pass per section after a truth PASS. Layout and imagery are his.
-4. Settled from the record, 22 Oct: Focus Areas are linear (his 22 Apr 2026 turn, the live Pathway page); a packed calendar removes scheduled times for the week (frame 2616:14229 says "this week"). Read the screens and the record before asking him any product question (fixes/2026-10-22-asking-him-product-questions.md).
+1. Truth review PASS per plan (reference/review-truth.mjs, Opus): sections 7, 8, 11. When one passes, write its copy in reference/cs2/copy/section-N.md to the shape in BROWSER_MODE.md. Layout and imagery are his.
+2. Still to do: dossiers for capacity (C3, section 6) and get ahead (E1, E2, section 10); block plans for sections 5, 6, 9 (start of week dossier is done) and 10.
+3. Product questions: read the Figma frames and the later chats first (reference/dossier-reader-prompt.md). Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list with Refresh calendar; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
 
 ## Decided in chat, not yet in files
 
@@ -38,7 +37,7 @@ None
 
 ## Open questions for Chadwick
 
-- Whether, after two truth review rounds, remaining FAILs go to him and his APPROVALS.md line lifts the copy block (not built).
+- Whether, after truth review rounds, remaining FAILs go to him and his APPROVALS.md line lifts the copy block (not built).
 
 ## Waiting for Claude Code
 

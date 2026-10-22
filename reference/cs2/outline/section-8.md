@@ -26,8 +26,8 @@ Claim: decision | Scheduled times are recommendations and assistance tools, not 
 Claim: decision | There is no auto reschedule because it could get confusing fast in the product | src: dossier:calendar#Q4.10
 
 ### Block 4: When the calendar cannot hold the week
-Reader has to see: The packed calendar notice and the sync failure screen.
+Reader has to see: The packed calendar notice and the calendar sync failure module over the list.
 Flows: D4, D5
-Claim: product | When the calendar is too full Mondai removes scheduled times and says the calendar is packed | src: 2616:14229, 2616:14541
-Claim: product | A calendar sync failure has its own screen | src: 2693:9409
+Claim: product | When the calendar is too full a notice reads "Your calendar is packed this week so we've removed scheduled times" | src: 2616:14229, 2616:14541
+Claim: product | A module titled Calendar sync failure sits over the list, says the calendar lacks available times or could not sync, and offers Refresh calendar | src: 2693:9409
 Claim: decision | For a packed calendar he proposed switching the user to the non calendar approach for that week, because a manual flow could be a lot of work for a fringe case | src: dossier:calendar#Q4.7

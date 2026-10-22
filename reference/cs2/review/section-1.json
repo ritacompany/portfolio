@@ -1,11 +1,11 @@
 {
   "section": "1",
-  "hash": "d6ff22e2849f1ddb",
-  "verdict": "PASS",
+  "hash": "ce4b7f8df3356ba9",
+  "verdict": "FAIL",
   "blocks": [
     "Block 1: PASS",
-    "Block 2: PASS",
-    "Block 3: PASS"
+    "Block 2: FAIL because 1: \"occupies a unique space\" does not tell a stranger what the space is, so the headline only makes sense after reading the body",
+    "Block 3: FAIL because 6: the section ends on the fourth card and hands over no question for the next section to answer"
   ],
-  "at": "2026-10-21T17:41:29.354Z"
+  "at": "2026-10-21T19:14:47.641Z"
 }
