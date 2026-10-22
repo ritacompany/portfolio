@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 23:00
+Updated: 2026-10-22 23:30
 By: Claude Code
 Section: 1
 Loop step: 1
@@ -23,7 +23,7 @@ Loop step: 1
 
 Weekly limit at 93% on 22 Oct (resets Monday 26 Oct); Claude Code stopped there. His rule: never edit anything he wrote; a change to his text goes before and after in a separate note.
 
-Done: copy written for sections 7, 8 and 11, each after a recorded Opus truth review PASS (reference/cs2/copy/section-7.md, section-8.md, section-11.md). None has had the voice pass or his read. Section 7: The Action Hub and the Growth Journey. The copy gate hook (.claude/hooks/cs2-copy-guard.mjs) was patched 22 Oct, with his yes, to read a sub-agent's SubagentHandback answer, so reviews now record. Section 7 is the first section recorded through it.
+Done: copy written for sections 7, 8, 9 and 11, each after a recorded Opus truth review PASS (reference/cs2/copy/section-7.md, section-8.md, section-11.md). None has had the voice pass or his read. Section 7: The Action Hub and the Growth Journey. The copy gate hook (.claude/hooks/cs2-copy-guard.mjs) was patched 22 Oct, with his yes, to read a sub-agent's SubagentHandback answer, so reviews now record. Section 7 is the first section recorded through it.
 
 Section 11 (Action Items) also has a recorded PASS (after its Reader gets line was fixed) and its copy is written: reference/cs2/copy/section-11.md. Section 8 (Calendar integration) also has a recorded PASS and its copy is written: reference/cs2/copy/section-8.md. A review only counts when the sub-agent's first message is the output of `node reference/review-truth.mjs cs2 --prompt <plan>` pasted word for word, run on model Opus. Sections 3 to 6, 9 and 10 have no block plan; dossiers for capacity (C3) and get ahead (E1, E2) are missing.
 
@@ -32,7 +32,7 @@ What is in the repo for picking this up without Claude Code: reference/cs2/outli
 ## Next action
 
 1. Voice pass on the copy for sections 7, 8 and 11 (humanizer, then no-ai-slop detect), then his read (shape in BROWSER_MODE.md; check-copy runs in the guard).
-2. Section 9 (Start of week): block plan written (outline/section-9.md, passes check-truth), its exact-prompt Opus review was submitted and the verdict is pending in reference/cs2/review/section-9.truth.json; write its copy after a recorded PASS. Then dossiers for capacity (C3) and get ahead (E1, E2); block plans for sections 5, 6 and 10; copy for each after its review. Blocks 1 to 6 of his frame are his own text; a Background block redo draft for him is in draft/CS2-background-v2.md.
+2. Section 9 (Start of week) has a recorded PASS and its copy is written (copy/section-9.md). Next: dossiers for capacity (C3) and get ahead (E1, E2); block plans for sections 5, 6 and 10; copy for each after its review. Blocks 1 to 6 of his frame are his own text; a Background block redo draft for him is in draft/CS2-background-v2.md.
 3. Voice pass on section 7 copy (humanizer, then no-ai-slop detect) before he reads it.
 4. Read the live Figma frames and later chats before asking him any product question. Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list titled Calendar sync failure with a Close button; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
 
