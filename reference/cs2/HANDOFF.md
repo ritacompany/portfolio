@@ -14,38 +14,38 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-21 19:05
+Updated: 2026-10-21 21:45
 By: Claude Code
 Section: 1
-Loop step: 2
+Loop step: 1
 
 ## Where it stopped
 
-The old outline (the order table in CS2_PROCESS.md, taken from the August concept ladder) is retired in practice: it left out start of week, catching up, end of the week, onboarding and reset. He is reordering the case study himself in the Figma WIP frame (4269:9433) and has written the Background. A new full outline was drafted from his frame and the live MVP file, with a product flow map that cites a frame for every step. Both are drafts on his Mac, not committed, waiting for his read. Section 1 he considers good enough for now. Section 2 copy is superseded by the new outline.
+The process was rebuilt and is live (fixes/2026-10-21-cs2-process-rebuild.md). Outlines and block plans now live in reference/cs2/outline/ as cited claims; the guard hook refuses any save that fails check-truth.mjs (his frame first in his order, every flow step placed or cut, every claim pointing at a frame or his words, snapshots under three days old), and copy for a section is refused until its block plan has an Opus truth review PASS recorded by the hook. No outline.md exists yet. The trial outline that came closest is in ~/Documents/CS2-research/process-trial-21oct/out-B/outline.md: checks 2 to 5 pass, check 1 fails on three Reader lines.
 
 ## Next action
 
-His read of the draft outline (reference/cs2/outline/OUTLINE.md on his Mac, not in git) and his answer on which screens are product onboarding and which are feature onboarding. Then apply the process change in reference/cs2/outline/PROCESS_CHANGE.md once he types allow setup edit.
+Refresh ~/Documents/CS2-research/wip-frame.md from his Figma frame, then write reference/cs2/outline/outline.md in the claims format (start from the trial outline above), run the Opus truth review and fix to PASS, then his read.
 
 ## Decided in chat, not yet in files
 
-- His WIP frame is the outline source from now on, not the CS2_PROCESS.md order table.
-- The live MVP Figma file is product truth; the archive, reasoning files and screen README are search aids only.
+None
 
 ## Open questions for Chadwick
 
+- Pathway order: the Growth Journey page (4355:22827) has Networking third; the Action Hub rail (2667:9484) and the get ahead screen (2820:10408) have Branding third, as his card does. Which is right?
+- His frame says every Action Item in a week is due at the same point; the list view gives each item its own suggested time. Same thing on the page, or does the copy need to separate suggested time from due?
 - Product onboarding versus feature onboarding: the file names the calendar, time and capacity screens Product onboarding step 1 to 3, while sign up and the quiz sit on the Onboarding page.
-- Where the quiz and career match section goes (recommended between Foundation and Saturday night deadlines).
-- His Pathways card in the WIP frame numbers Branding before Networking; the live product has Networking third.
+- Whether, after two truth review rounds, remaining FAILs go to him and his APPROVALS.md line lifts the copy block (not built).
 - Who raised Motion in Sep 2024.
 
 ## Waiting for Claude Code
 
-- The process change: coverage check, fact review with the flow map, read access through the Figma build gate. Needs his allow setup edit.
-- Delete ~/Documents/CS2-research/PRODUCT_BRIEF.md, written from notes and superseded by the flow map.
+- Delete ~/Documents/CS2-research/PRODUCT_BRIEF.md, written from notes; nothing reads it now.
+- test-handoff.mjs fails "an empty heading is refused" at 87e0ff3 too, before this change.
 
 ## Read first
 
 - The Figma WIP frame 4269:9433 in Portfolio Design, read it before anything else
+- reference/cs2/truth.json and the top of reference/check-truth.mjs (the format)
 - ~/Documents/CS2-research/product-flows.md (not in git), the flow map from the live MVP file
-- reference/cs2/outline/ on his Mac: wip-frame.md, OUTLINE.md, PROCESS_CHANGE.md (not in git until he approves)

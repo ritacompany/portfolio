@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// PreToolUse guard for CS2 page copy and slot plans. A write to reference/cs2/copy/section-N.md is
+// PreToolUse guard for CS2 page copy, slot plans, the outline and block plans (check-truth.mjs). A write to reference/cs2/copy/section-N.md is
 // checked with check-copy.mjs, a write to reference/cs2/layout/section-N.md with check-slot-plan.mjs,
 // before it lands; a failing write is refused (exit 2) with the reasons.
 // Shell writes into either folder are refused outright so the check cannot be bypassed.
@@ -32,6 +32,15 @@ if (process.argv[2] === 'subagent') {
     if (d.type === 'user' && !prompt && typeof c === 'string') prompt = c;
     if (d.type === 'assistant' && text) answer = text;
   }
+  if (/^CASE STUDY TRUTH REVIEW /.test(prompt)) {
+    const { record } = await import(path.join(root, 'reference/review-truth.mjs'));
+    const model = fs.readFileSync(tp, 'utf8').split('\n').map(l => { try { return JSON.parse(l); } catch { return null; } })
+      .filter(d => d?.type === 'assistant' && d.message?.model).map(d => d.message.model).pop() || '';
+    const res = record(prompt, answer, model);
+    if (res?.refused) { console.error(`Truth review not recorded for ${res.file}: ${res.refused}.`); process.exit(2); }
+    if (res) console.log(`Truth review recorded for ${res.file}: ${res.verdict}.`);
+    process.exit(0);
+  }
   if (!/^CS2 STORY REVIEW section/.test(prompt)) process.exit(0);
   const { record } = await import(path.join(root, 'reference/cs2/check-figures-review.mjs'));
   const res = record(prompt, answer);
@@ -55,10 +64,23 @@ const GUARDED = [
   [/reference\/cs2\/copy\/section-\d+\.md$/, 'check-copy.mjs', 'this CS2 copy breaks his copy rules'],
   [/reference\/cs2\/message\/section-\d+\.md$/, 'check-message-plan.mjs', 'this CS2 message plan fails its check'],
   [/reference\/cs2\/layout\/section-\d+\.md$/, 'check-slot-plan.mjs', 'this CS2 slot plan fails its check'],
+  [/reference\/cs2\/outline\/(?:outline|section-\d+)\.md$/, '../check-truth.mjs', 'this CS2 outline or block plan fails the truth check'],
 ];
+const argsFor = (script, tmp, real) => script === '../check-truth.mjs'
+  ? ['cs2', tmp, ...(/section-\d+\.md$/.test(real) ? ['--section'] : [])]
+  : [tmp, ...(script === 'check-copy.mjs' ? [] : [real])];
+// Copy for section N waits for a truth review PASS on outline/section-N.md.
+const truthReviewFor = real => {
+  const n = (real.match(/reference\/cs2\/copy\/section-(\d+)\.md$/) || [])[1];
+  if (!n) return null;
+  const plan = path.join(root, `reference/cs2/outline/section-${n}.md`);
+  if (!fs.existsSync(plan)) return `no block plan at reference/cs2/outline/section-${n}.md: write it first, it must pass check-truth.mjs and its truth review`;
+  const r = spawnSync('node', [path.join(root, 'reference/review-truth.mjs'), 'cs2', plan], { encoding: 'utf8' });
+  return r.status === 0 ? null : (r.stdout || r.stderr).trim();
+};
 
 const APPROVALS = /reference\/cs2\/APPROVALS\.md/;
-const DIRS = ['copy', 'layout', 'message', 'review'].map(d => path.join(root, 'reference/cs2', d));
+const DIRS = ['copy', 'layout', 'message', 'review', 'outline'].map(d => path.join(root, 'reference/cs2', d));
 const snapshot = () => Object.fromEntries(DIRS.flatMap(d => fs.existsSync(d) ? fs.readdirSync(d).map(f => {
   const full = path.join(d, f); return [full, fs.statSync(full).mtimeMs];
 }) : []));
@@ -66,9 +88,9 @@ const snapPath = () => path.join(os.tmpdir(), `cs2guard-${payload.session_id || 
 const checkFor = full => {
   if (/reference\/cs2\/review\//.test(full)) return 'review verdicts are written only by the hook, after a sub-agent review';
   const g = GUARDED.find(([re]) => re.test(full));
-  if (!g) return 'files here are named section-N.md only';
-  const r = spawnSync('node', [path.join(root, 'reference/cs2', g[1]), full, ...(g[1] === 'check-copy.mjs' ? [] : [full])], { encoding: 'utf8' });
-  return r.status === 0 ? null : (r.stdout || r.stderr).trim();
+  if (!g) return /reference\/cs2\/outline\//.test(full) ? null : 'files here are named section-N.md only';
+  const r = spawnSync('node', [path.join(root, 'reference/cs2', g[1]), ...argsFor(g[1], full, full)], { encoding: 'utf8' });
+  return r.status === 0 ? truthReviewFor(full) : (r.stdout || r.stderr).trim();
 };
 
 // Post mode, after a Bash command: any guarded file it created or changed must pass its check.
@@ -87,7 +109,7 @@ if (tool === 'Bash') {
     console.error('Blocked: APPROVALS.md is Chadwick\'s file. Ask him to add the line himself.');
     process.exit(2);
   }
-  const F = String.raw`reference\/cs2\/(?:copy|layout|message|review)`;
+  const F = String.raw`reference\/cs2\/(?:copy|layout|message|review|outline\/(?:outline|section-\d+)\.md)`;
   const writesCopy = new RegExp(String.raw`(?:>>?|\btee\b(?:\s+-a)?)\s*["']?[^\s"';&|]*${F}\/`).test(cmd)
     || new RegExp(String.raw`\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b[^;&|]*${F}\/`).test(cmd)
     || new RegExp(String.raw`\b(?:node|python3?|ruby|perl)\s+-[ec]\b[^;&|]*${F}`).test(cmd)
@@ -95,7 +117,7 @@ if (tool === 'Bash') {
   // Anything the patterns miss (a script file, a cd one level up) is caught after the command runs:
   // snapshot the guarded files now, and the post hook checks whatever changed.
   fs.writeFileSync(snapPath(), JSON.stringify(snapshot()));
-  if (writesCopy) {
+  if (writesCopy || /(?:>>?|\btee\b|\b(?:sed\s+-i|mv|cp|rm|perl\s+-[a-z]*i)\b)[^;&|]*reference\/cs2\/outline\/(?:outline|section-\d+)\.md/.test(cmd)) {
     console.error('Blocked: CS2 copy and slot plan files are written with Write or Edit only, so their check runs on every change.');
     process.exit(2);
   }
@@ -130,8 +152,10 @@ else if (tool === 'Edit') {
 
 const tmp = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'cs2guard-')), path.basename(file));
 fs.writeFileSync(tmp, next);
-const r = spawnSync('node', [path.join(root, 'reference/cs2', guard[1]), tmp, ...(guard[1] === 'check-copy.mjs' ? [] : [file])], { encoding: 'utf8' });
+const r = spawnSync('node', [path.join(root, 'reference/cs2', guard[1]), ...argsFor(guard[1], tmp, file)], { encoding: 'utf8' });
 fs.rmSync(path.dirname(tmp), { recursive: true, force: true });
-if (r.status === 0) process.exit(0);
+const pending = r.status === 0 ? truthReviewFor(file) : null;
+if (r.status === 0 && !pending) process.exit(0);
+if (pending) { console.error(`Blocked: copy waits for its block plan's truth review.\n${pending}`); process.exit(2); }
 console.error(`Blocked: ${guard[2]}. Rewrite these lines, then save again.\n${(r.stdout || r.stderr).replace(tmp, file)}`);
 process.exit(2);

@@ -19,10 +19,6 @@ failed. Here the material comes first. The story is found at the end, not impose
 
 ## What carries over
 
-- **The concept ladder** in `CS2_COMPREHENSION.md` is kept as an ordering rule only: the order the
-  sections are worked in, and the rule that no product term appears before the reader needs it.
-  It does not decide what goes in a section. The conversation does. Its visual plan (the diagram only at
-  rungs 2, 3, 5 and 6) and its "not a task to build the layout" scope note are replaced by step 5 below.
 - **The drafts** in `draft/` for rungs 0 to 3 are provisional. For section 1, only the "The route" and
   "What existed" parts are material, and the route is credited as inherited. The draft's opening and
   promise are the intro, written last. Its Visual A2 spends terms that belong to section 2, and "once the
@@ -204,10 +200,21 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 - "The framework" in this case study means the product framework. Do not split it into two frameworks
   on the page.
 
+## Sources of truth and the outline
+
+Rebuilt 21 Oct (`fixes/2026-10-21-cs2-process-rebuild.md`). His WIP frame (4269:9433) is the order and the
+live MVP file (5RO0m4bYYrTvbiaOgaU3tI) is product truth; `truth.json` points at the snapshots read from them.
+Notes, the archive, reasoning files and old drafts are search aids and never the authority.
+`outline/outline.md` and each `outline/section-N.md` block plan are written as claims, each pointing at its
+source (format at the top of `../check-truth.mjs`). The guard hook refuses a save that fails
+`check-truth.mjs`, including when a snapshot is over three days old. Then `review-truth.mjs` builds the
+prompt for a fresh sub-agent that judges what code cannot, and only the hook records its verdict. Copy for
+a section is refused until its block plan has that PASS.
+
 ## The loop, per section
 
-1. **Open.** Claude names the section and what it covers in one or two lines, and brings the reference
-   pull for it.
+1. **Open.** Claude names the section from `outline/outline.md` and brings its passing block plan and
+   the reference pull for it.
 2. **Talk it through.** Chadwick talks about it conversationally: what happened, what was decided,
    what connects to what. Claude asks questions and goes and finds the things he mentions in the
    archive, Figma, Notion or the record, and brings back what it found with where it found it.
@@ -301,25 +308,9 @@ saying where the conversation stopped.
   meet, and stop after a pass rather than chasing the reviewer.
 - Research notes that quote his record live in `~/Documents/CS2-research/`, never in git.
 
-## Order
+## Order and status
 
-The outline. Worked top to bottom.
-
-| # | Section | What the reader comes away with | Status |
-|---|---|---|---|
-| 1 | Where it started | What he walked into and the problems the framework had to solve. The route is stated here as given, not as its own section. Problems that belong to a later section are only named here | Block 3 rebuilt 21 Oct: five short cards in his card style (topic label, product, one paragraph): what translates from each product and the research that supports it, no personal experience framing, no small effect sizes as reasons. Sources in one Label/12 line under the visual block. Story review passed and recorded. Built in Figma 4363:5682. Audit fails only on the two image slot labels he removed while filling the slots. Next: his read in place, and his images |
-| 2 | The week | The route arrives a week at a time, as Action Items in the Action Hub. One line that the content is generated | Built 14 Oct, not yet reviewed (an approval on 14 Oct was sent by mistake and withdrawn). Copy Draft 5 in `copy/section-2.md` with his two wording fixes; notes in `draft/CS2-section-2.md`. Figma 4228:6731 built from the copy file on the two beat list. Next: his review of the build and his image pick for the Action Hub screen slot. What first led to the week: his 9 Mar 2025 notes, found in the ChatGPT export (`~/Documents/CS2-research/chatgpt-findings.md`) |
-| 3 | Capacity and target date | How much each week holds comes from the time the user says they have | Talking, opened 8 Oct, reopened 14 Oct, `draft/CS2-section-3.md`. Three questions for him |
-| 4 | Pace | The system checks reality against the estimate without judging | Not started |
-| 5 | Scheduling and rollover | The calendar is where it nearly broke | Not started |
-| 6 | Recalibration | Falling behind cannot mean failing | Not started |
-| 7 | The generated content | None of the words are written by a person | Not started |
-| 8 | Handoff and the team | What it took for other people to hold it | Not started |
-| 9 | Intro | Who it is for and the situation they are in. Written last | Last |
-| 10 | The story | What ties it together, found from the sections. Written last | Last |
-
-Every block has an eyebrow, written for the reader. Section names are working labels and are not reused as eyebrows.
-
-"What the reader comes away with" is the job of the section, not its content. The content comes from
-the conversation. Every section gets a layout from the templates and the real screens. Chadwick
-can reorder any of it. Where a section stopped mid conversation is noted in its status.
+The order is `outline/outline.md`, built from his frame under the truth check; the August concept ladder
+order is retired. Work done before 21 Oct sits in his frame's blocks: his block 3 (Competitive analysis) is
+built at 4363:5682; the old "The week" draft (`draft/CS2-section-2.md`) feeds his block 5; the old
+"Capacity" talk (`draft/CS2-section-3.md`) feeds his block 6. Each is checked again before it is reused.

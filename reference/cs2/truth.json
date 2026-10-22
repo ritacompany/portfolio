@@ -1,0 +1,10 @@
+{
+  "frame": "~/Documents/CS2-research/wip-frame.md",
+  "frameSource": "Figma IarvWaqjIwrZ2afQmMxKm6 node 4269:9433 (personal connection)",
+  "flows": "~/Documents/CS2-research/product-flows.md",
+  "flowsSource": "Figma 5RO0m4bYYrTvbiaOgaU3tI (figma-mondai connection)",
+  "outline": "reference/cs2/outline/outline.md",
+  "background": ["^frame:[1-6]$", "^approved:reference/cs2/CS2_COMPREHENSION\\.md:14[4-8]$"],
+  "corrections": [["career.?chang|chang\\w* careers?", "audience: younger, entering tech for the first time, not career changers (CS2_COMPREHENSION.md:146)"]],
+  "maxAgeDays": 3
+}
