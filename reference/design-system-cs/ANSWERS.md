@@ -9,7 +9,7 @@
 5. "see 4."
 6. "not sure i will try to see if i can go bck that far in history later." Open: he will check Figma version history.
 7. "it was form my own personal account to the rita one i think." The Aug 2025 move was from his personal Figma account to the Rita account, not a design decision.
-8. "not sure if this is related to 8?" Open: re-asked on 21 Oct as what triggered the Sep 2026 rebuild.
+8. "not sure if this is related to 8?" Then, told the "Sep 2026 rebuild" in SOURCES.md was the 18 to 19 Sep redo of the 13 library documentation pages: "the clean up so the organization was prettier?" So that was a tidy-up of how the library is presented, not a system decision. What started the late Sep grid, spacing and button decisions is still open; 9 suggests the grid update was the core of it.
 9. "maybe the recent grid update thing the way it all works with spacing and positioning and stuff." Candidate: the grid, spacing and positioning update.
 10. "honestly dev did a shit job t this i dont think they know much about figma or something." Developers did not build well from the library. Background only; the copy does not blame anyone.
 11. Not answered.
