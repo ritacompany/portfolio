@@ -53,6 +53,14 @@ What is in the repo for picking this up without Claude Code: reference/cs2/outli
 
 ## Read first
 
-- The Figma WIP frame 4269:9433 in Portfolio Design, read it before anything else
-- reference/cs2/truth.json and the top of reference/check-truth.mjs (the format)
-- ~/Documents/CS2-research/product-flows.md (not in git), the flow map from the live MVP file
+Everything below is in this repo. His research and the live product flow map stay on his Mac (the repo is public), so work from these files and from the settled facts in Next action.
+
+- reference/cs2/outline/frame-changes-22oct.md: what his Figma frame says now, block by block (blocks 1 to 6 are his own text and stay his)
+- reference/cs2/outline/outline.md: all 11 sections in his order, as claims
+- reference/cs2/outline/section-7.md, section-8.md, section-9.md, section-11.md: block plans, each with a recorded Opus truth review PASS (against the 21 Oct frame record)
+- reference/cs2/reasoning/dossier-findings-22oct.md: what he decided and why for the Action Hub, Growth Journey, calendar and start of week flows, with the quotations removed
+- reference/cs2/copy/section-7.md, section-8.md, section-9.md, section-11.md: the copy written so far. reference/cs2/COPY_SO_FAR.md is the same in one file
+- reference/cs2/draft/COPY_EDITED_BY_CHADWICK_22OCT.md: the version he edited and ran through ChatGPT on 22 Oct for sections 1, 2, 7, 8 and 11. His wording wins over the repo copy where they differ. Sections 1 and 2 in it are his text
+- reference/cs2/draft/CS2-background-v2.md: a clearer Background block for him to take from or ignore
+- reference/dossier-reader-prompt.md and fixes/2026-10-22-asking-him-product-questions.md: read the frames and later chats before asking him a product question
+- BROWSER_MODE.md for what a browser session may do and the return packet
