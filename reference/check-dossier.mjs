@@ -9,10 +9,13 @@
 // Format:
 //   # Dossier: <flow>
 //   Flow steps: F1, F2, ...                    (ids from check-truth.mjs --ids, all named under Q1)
+//   Topic: week-states                          (corpus index topic; every design chat tagged with it 20 or
+//                                               more times is cited or listed under ## Chats read)
 //   ## Q1 What it does | Q2 The problem it solves | Q3 Options considered | Q4 What he decided and why
 //   ## Q5 How it changed | Q6 Inherited or his | Q7 Open
 //   - <statement> [<source>:<file>#L<line>] "<exact words from that file>"
 //   - <statement> Not in the record: ask him
+//   ## Chats read                              "- <corpus file>: <what it held, or nothing new>"
 //   ## Sources searched                        one "- <source>: <what it held, or nothing>" per source
 //   ## Conflicts                               "- <topic>: <cite> vs <cite> | for Chadwick", or "- None found"
 // Sources: corpus, chatgpt, discord, notion, cs1, figma (figma cites a frame id; its words come from the
@@ -113,6 +116,16 @@ for (const q of QS) {
     if (/\[(archive|reasoning|findings|trail)[:\]]/i.test(b)) fails.push(`${q}: cites a summary, not the record: ${b.slice(0, 80)}`);
   }
   if (q.startsWith('Q1')) for (const id of steps) if (!new RegExp(`\\b${id}\\b`).test(s)) fails.push(`Q1 does not name flow step ${id}`);
+}
+
+// Breadth in code: every design chat the corpus index tags heavily with this flow's topic is accounted for.
+const topic = (text.match(/^Topic: ([\w-]+)$/m) || [])[1];
+if (!topic) fails.push('no "Topic:" line (a topic from the corpus index, for example week-states)');
+else {
+  const idx = JSON.parse(fs.readFileSync(path.join(ROOTS.corpus[0], '..', 'index.json'), 'utf8'));
+  const due = idx.filter(c => (c.topics[topic] || 0) >= 20 && !/(case.?stud|portfolio)/i.test(c.file + ' ' + c.name)).map(c => c.file);
+  const missed = due.filter(f => !text.includes(f));
+  if (missed.length) fails.push(`Breadth: ${missed.length} of ${due.length} design chats tagged ${topic} are neither cited nor under ## Chats read: ${missed.join(', ')}`);
 }
 
 const searched = section('Sources searched');
