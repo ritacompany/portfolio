@@ -6,5 +6,6 @@
   "outline": "reference/cs2/outline/outline.md",
   "background": ["^frame:[1-6]$", "^approved:reference/cs2/CS2_COMPREHENSION\\.md:14[4-8]$"],
   "corrections": [["career.?chang|chang\\w* careers?", "audience: younger, entering tech for the first time, not career changers (CS2_COMPREHENSION.md:146)"]],
+  "dossiers": "~/Documents/CS2-research/dossiers",
   "maxAgeDays": 3
 }

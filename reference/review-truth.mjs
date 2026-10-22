@@ -33,6 +33,8 @@ Sources of truth (they win over every note, archive or draft in the repo):
   For anything it does not settle, call get_metadata or get_screenshot on that file. Never call use_figma.
 - Who it is for and what existed before him: his words in the frame and ${c.background.filter(b => b.startsWith('^approved')).map(b => b.replace(/^\^approved:|\\|\$$/g, '')).join(', ')}.
 - Research: the report each claim cites, in ${repo}/reports/.
+- The record, for what he decided, why and how it changed: the dossiers in ${c.dossiers ? at(c.dossiers) : 'none'}, each
+  entry quoting the raw record. Open the raw source behind any entry a claim leans on.
 
 Each check is pass or fail:
 1. Product truth: every claim about how the product works matches a screen, in the file's own names.
@@ -41,7 +43,8 @@ Each check is pass or fail:
 2. Flow coverage: every flow step this file is responsible for lands in a section or block, or is cut for
    Chadwick to approve.
 3. Background truth: every claim about who the product is for, the company or what existed before him
-   traces to his words above, and the cited block actually says it.
+   traces to his words above, and the cited block actually says it. Any claim about what he decided, why or
+   how something changed must be a decision claim citing a dossier entry that says it; untyped reasoning fails.
 4. Research earns its place: every finding behind a decision has an effect big enough and close enough to
    carry it. A few percent, a null result used as a reason, a correlation stated as cause, an effect its
    own report calls inflated, or a study of a different situation fails, even when flagged.

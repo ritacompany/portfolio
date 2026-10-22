@@ -209,7 +209,8 @@ Notes, the archive, reasoning files and old drafts are search aids and never the
 source (format at the top of `../check-truth.mjs`). The guard hook refuses a save that fails
 `check-truth.mjs`, including when a snapshot is over three days old. Then `review-truth.mjs` builds the
 prompt for a fresh sub-agent that judges what code cannot, and only the hook records its verdict. Copy for
-a section is refused until its block plan has that PASS.
+a section is refused until its block plan has that PASS. A block plan is refused until each of its flows has a
+dossier from the raw record that passes `../check-dossier.mjs`; his decisions are cited from it.
 
 ## The loop, per section
 

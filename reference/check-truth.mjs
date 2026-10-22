@@ -6,7 +6,7 @@
 //
 //   node check-truth.mjs <cs> --ids                  list flow step ids
 //   node check-truth.mjs <cs> <outline>              an outline: his frame first, every flow step placed
-//   node check-truth.mjs <cs> <plan> --section       a section plan: held to its section in the outline
+//   node check-truth.mjs <cs> <plan> --section [--outline <file>]   a section plan, held to its section in the outline
 //
 // Format. Sections from his frame come first, in his order, with his titles. Block plans add
 // "### Block N: <headline>" under their one section. Every flow step id (--ids) sits under a Flows: line
@@ -18,9 +18,12 @@
 //   Claim: product | <claim> | src: <frame ids from the flow map>
 //   Claim: background | <claim> | src: frame:<block> or approved:<file>:<line>
 //   Claim: research | <claim> | src: <report path> | effect: <size with its number> | backs: <the decision>
+//   Claim: decision | <what he decided, why, or how it changed> | src: dossier:<flow>#Q<n>.<m>
+// A section plan is refused until every flow step it owns has a passing dossier (check-dossier.mjs).
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 const repo = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const at = p => p.startsWith('~/') ? path.join(os.homedir(), p.slice(2)) : path.join(repo, p);
@@ -60,8 +63,10 @@ const sections = sectionsOf(text);
 if (!sections.length) fails.push('5 frame: no sections in the required format');
 let required = steps.map(s => s.id);
 if (mode === '--section') {
-  const own = fs.existsSync(at(cfg.outline)) && sectionsOf(fs.readFileSync(at(cfg.outline), 'utf8')).find(s => s.n === sections[0]?.n);
-  if (!own) fails.push(`5 frame: section ${sections[0]?.n} is not in ${cfg.outline}`);
+  const oi = process.argv.indexOf('--outline');
+  const outline = oi > 0 ? path.resolve(process.argv[oi + 1]) : at(cfg.outline);
+  const own = fs.existsSync(outline) && sectionsOf(fs.readFileSync(outline, 'utf8')).find(s => s.n === sections[0]?.n);
+  if (!own) fails.push(`5 frame: section ${sections[0]?.n} is not in ${outline}`);
   else {
     if (own.title.toLowerCase() !== sections[0].title.toLowerCase()) fails.push(`5 frame: title "${sections[0].title}" is not the outline's "${own.title}"`);
     required = own.flows;
@@ -71,6 +76,17 @@ if (mode === '--section') {
   if (!s || s.block !== String(b.n)) fails.push(`5 frame: section ${k + 1} must be his block ${b.n} "${b.title}"`);
   else if (s.title.toLowerCase() !== b.title.toLowerCase()) fails.push(`5 frame: section ${k + 1} title "${s.title}" is not his "${b.title}" (propose a change, do not apply it)`);
 });
+
+// Knowledge: a section plan's flow steps each need a passing dossier from the record.
+const dossierDir = cfg.dossiers && at(cfg.dossiers);
+const dossierOk = {};
+const passes = f => dossierOk[f] ??= spawnSync('node', [path.join(repo, 'reference/check-dossier.mjs'), f], { encoding: 'utf8' }).status === 0;
+const dossiers = dossierDir && fs.existsSync(dossierDir) ? fs.readdirSync(dossierDir).filter(f => f.endsWith('.md')).map(f => path.join(dossierDir, f)) : [];
+const stepsOf = f => ((fs.readFileSync(f, 'utf8').match(/^Flow steps: (.+)$/m) || [])[1] || '').split(/[,\s]+/);
+if (mode === '--section' && dossierDir) {
+  const bare = required.filter(id => !dossiers.some(f => stepsOf(f).includes(id) && passes(f)));
+  if (bare.length) fails.push(`6 knowledge: no passing dossier for ${bare.join(', ')}; build it from the record first (check-dossier.mjs)`);
+}
 
 // 2. Flow coverage
 const covered = new Set();
@@ -97,7 +113,18 @@ for (const [, type, rest] of text.matchAll(/^Claim: (\w+) \| (.+)$/gm)) {
     else if (/\b(no (significant )?effect|null|did ?n[o']t|correlat)/i.test(effect)) fails.push(`4 research: "${parts[0]}" effect "${effect}" is null or correlational`);
     if (!field('backs')) fails.push(`4 research: "${parts[0]}" names no decision it backs`);
     if (!fs.existsSync(path.join(repo, src))) fails.push(`4 research: "${parts[0]}" src ${src} not found`);
-  } else fails.push(`claim type "${type}" unknown: use product, background or research`);
+  } else if (type === 'decision') {
+    const m = src.match(/^dossier:([\w-]+)#Q(\d)\.(\d+)$/);
+    const f = m && dossierDir && path.join(dossierDir, `${m[1]}.md`);
+    if (!f || !fs.existsSync(f)) fails.push(`6 knowledge: "${parts[0]}" src ${src || 'none'} is not a dossier entry`);
+    else if (!passes(f)) fails.push(`6 knowledge: "${parts[0]}" cites ${m[1]}, which fails check-dossier.mjs`);
+    else {
+      const q = fs.readFileSync(f, 'utf8').split(/^## /m).find(s => s.startsWith(`Q${m[2]} `)) || '';
+      const b = q.split('\n').filter(l => /^- /.test(l))[+m[3] - 1];
+      if (!b) fails.push(`6 knowledge: "${parts[0]}" cites Q${m[2]}.${m[3]}, which does not exist`);
+      else if (/Not in the record/.test(b)) fails.push(`6 knowledge: "${parts[0]}" cites an entry the record cannot answer; ask him`);
+    }
+  } else fails.push(`claim type "${type}" unknown: use product, background, research or decision`);
 }
 for (const [re, why] of cfg.corrections) if (new RegExp(re, 'i').test(text)) fails.push(`3 background: contradicts his correction, ${why}`);
 

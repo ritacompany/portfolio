@@ -17,7 +17,8 @@
 //   ## Conflicts                               "- <topic>: <cite> vs <cite> | for Chadwick", or "- None found"
 // Sources: corpus, chatgpt, discord, notion, cs1, figma (figma cites a frame id; its words come from the
 // flow map line for that frame). Summaries (the archive, reasoning files, findings and trail notes) are
-// search aids and cannot be cited. Q4 and Q6 cite his own turns only, never the assistant's.
+// search aids and cannot be cited, and neither can chats that were case study or portfolio writing.
+// Q4 and Q6 cite his own turns only, never the assistant's.
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -80,6 +81,10 @@ const checkCite = (src, ref, excerpt, q) => {
     f = find(src, ref.trim());
     if (!f) return `${src}:${ref} not found`;
     body = cache[f] ??= fs.readFileSync(f, 'utf8');
+    // Chats that were portfolio or case study writing are drafting, not the record (one is titled
+    // "building a framework case study with fabricated metrics"), so they cannot back a dossier.
+    if (/(case.?stud|portfolio|-cs-notes)/i.test(path.basename(f)) || /^# .*(case stud|portfolio)/im.test(body.split('\n').slice(0, 3).join('\n')))
+      return `${src}:${ref} is case study or portfolio writing, not the record`;
   }
   const nb = norm(body), ne = norm(excerpt);
   const at = nb.indexOf(ne);

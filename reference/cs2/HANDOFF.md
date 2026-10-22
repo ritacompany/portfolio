@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-22 04:55
+Updated: 2026-10-22 05:40
 By: Claude Code
 Section: 1
 Loop step: 1
@@ -25,7 +25,7 @@ The process was rebuilt and is live (fixes/2026-10-21-cs2-process-rebuild.md). O
 
 ## Next action
 
-Run the knowledge layer trial (see Waiting for Claude Code). Then refresh ~/Documents/CS2-research/wip-frame.md from his Figma frame and write reference/cs2/outline/outline.md in the claims format (start from the trial outline above), run the Opus truth review and fix to PASS, then his read.
+Finish the start of week dossier (see Waiting for Claude Code). Then refresh ~/Documents/CS2-research/wip-frame.md from his Figma frame and write reference/cs2/outline/outline.md in the claims format (start from the trial outline above), run the Opus truth review and fix to PASS, then his read.
 
 ## Decided in chat, not yet in files
 
@@ -41,7 +41,7 @@ None
 
 ## Waiting for Claude Code
 
-- The knowledge layer trial on start of week is running (22 Oct, after the reset): reference/check-dossier.mjs is built and proven on five bad fixtures; two dossier setups are running in fresh sub-agents, outputs outside git in the scratchpad; check-truth.mjs and review-truth.mjs carry uncommitted dossier wiring (decision claims, section plans need a passing dossier) until the trial picks a winner. Plan and gates in .unlazy/cs2-knowledge/GATES.md on his Mac.
+- The knowledge layer is built and enforced (fixes/2026-10-22-case-study-knowledge-layer.md): a block plan is refused until each of its flows has a dossier from the raw record passing check-dossier.mjs. The start of week dossier (~/Documents/CS2-research/dossiers/start-of-week.md) does not pass yet: fix the list in start-of-week.review.md beside it, then an Opus re-judge. Other flows have no dossier yet.
 - Delete ~/Documents/CS2-research/PRODUCT_BRIEF.md, written from notes; nothing reads it now.
 - test-handoff.mjs fails "an empty heading is refused" at 87e0ff3 too, before this change.
 
