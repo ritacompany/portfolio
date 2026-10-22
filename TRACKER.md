@@ -179,9 +179,9 @@ At most two besides the coordinator, and only on rows whose Waits on is done.
     Not merged: both carry a Sep `site/` that would collide with the S0 build on main. When S2
     builds the Haven page, port `site/haven/` from `haven/case-study`; it matches the 7 Oct Figma.
   - `origin/claude/optimistic-euler-q7025d` (Sep responsive homepage, old hero) stays as an archive.
-    `origin/claude/journey-map-prototype` is already on main (PR 2) and
-    `origin/claude/confident-poincare-b10757` is superseded by `reports/Visual storytelling per beat.md`;
-    both are safe to delete on his word.
+    `claude/journey-map-prototype` was deleted 21 Oct on his yes (identical to main, PR 2; tip
+    `c0a9255`). `origin/claude/confident-poincare-b10757` stays as an archive: its "Visual form per
+    beat" reports and notes exist nowhere else, though main has the later rerun.
   - Chess portrait decisions (6 Oct), five research reports and seven research note folders are
     committed to main.
   - `output/` is copied to iCloud Drive, `Portfolio backup/output-2026-10-21`, and is now ignored by
