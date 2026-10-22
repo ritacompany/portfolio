@@ -30,17 +30,17 @@ Check: yes/no reviewer question, run by a sub-agent on the handoff and the final
 Result on bad output: FAIL (not run; the packed calendar and Focus Areas questions of 22 Oct would fail it). Not executed this turn to save weekly budget.
 
 ## Change
-Files changed: reference/cs2/outline/section-11.md (Focus Areas claims from the live page and his 22 Apr turn), ~/Documents/CS2-research/dossiers/growth-journey.md (Q5 entry). The process itself is unchanged.
-Instruction lines: +0 / -0
-Net growth reason: n/a
+Files changed: reference/dossier-reader-prompt.md (new, the reader prompt readers must paste in), reference/cs2/outline/section-11.md (Focus Areas claims from the live page and his 22 Apr turn), ~/Documents/CS2-research/dossiers/growth-journey.md (Q5 entry)
+Instruction lines: +24 / -0
+Net growth reason: the prompt file is new, since no reader prompt existed in the repo; each spawn wrote its own, which is why the "look at the screens first" step was missing.
 
 ## Verification
-Fresh run: not done.
-Before: the 22 Oct wrap-up questions above.
-After: n/a
-Check result after: not run
+Fresh run: a fresh Sonnet agent was given only the prompt file and the calendar dossier's Q7 (8 open items) and opened the live frames in the MVP file and searched later chats.
+Before: all 8 Q7 items marked "Not in the record: ask him", including the D4 trigger and the D5 trigger and copy.
+After: 3 of 8 answered without him. D4: whole week switches (frame 2616:14541 says "this week"); D5: sync failure frame 2693:9409 has a Refresh calendar button; colour assignment step: not in the live flow. Of the remaining 5, 3 are history only he holds (who set one way read only, Motion influence, the Nov 2025 screens) and 2 are product behaviour that neither the frames nor the chats show as shipped (the under 3 hour warning, the settings re-entry flow), now written with the frame opened and what it showed.
+Check result after: the reviewer yes/no question was not run. By hand: the 2 remaining behaviour items carry the frame they opened, the 3 history items are history.
 Second case: not run
-Enforcement test: n/a
+Enforcement test: n/a (layer 3)
 
 ## Report
-Unverified: the process fix. Proposed, not applied: the dossier reader prompt gets a required first step to open the flow's live frames and the next later chat for each product behaviour it would otherwise mark "ask him", and Q7 entries about behaviour are rejected by the reader prompt, not a rule. It needs a fresh run on one flow to prove it, about 2 points, and his yes. This turn only the two instances were corrected.
+Unverified: a second flow was not run, and nothing forces a future session to paste the prompt file into a reader (it is a request, not enforcement). The test also showed each live frame costs 75k to 128k characters through get_design_context, so a reader needs a text-only way to read frames. Open for him: whether the packed calendar, sync failure and the other answered items go into the calendar dossier and section 8 plan, and whether the 2 unshown behaviours (the under 3 hour warning, the settings re-entry flow) shipped.
