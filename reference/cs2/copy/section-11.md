@@ -4,14 +4,14 @@ Section: 11
 
 Eyebrow: Two pages
 
-Headline: The Pathway page lists one Pathway at a time.
+Headline: The Growth Journey stays the overview, and each Pathway gets its own page where the person learns that one Pathway.
 
-The Growth Journey stays the overview, and the Pathway page is where someone learns a single Pathway. It lists that Pathway's Focus Areas and Action Items, with breadcrumbs back to the journey page.
+The Pathway page lists that Pathway's Focus Areas and Action Items, with breadcrumbs back to the journey page.
 
 ## Block 2
 
 Eyebrow: Sequence
 
-Headline: Focus Areas run in order, so Action Items do too.
+Headline: Focus Areas turned out to be linear, so they set the order the Action Items move through instead of only grouping them.
 
-Focus Areas turned out to be linear, so besides grouping Action Items they set the order the Action Items progress in. On the page the Focus Areas are numbered and a rail marks each one Complete, Current or Not started. Action Items in later Focus Areas are locked.
+On the page the Focus Areas are numbered and a rail marks each one Complete, Current or Not started. Action Items in later Focus Areas are locked.

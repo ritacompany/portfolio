@@ -59,6 +59,8 @@ Shape:
 - Each block has an `Eyebrow:` line, a `Headline:` line that states the claim, optional `Card:` lines and
   one body paragraph of at most 70 words.
 - The eyebrow names the topic and never repeats the headline.
+- A headline runs 12 to 25 words, the length of his own: a full sentence, sometimes two, that says what the
+  person needs or why the design does what it does. Never a short label.
 - `Card: label | title | body`. Label and title at most three words each, body at most two sentences.
 - No `Label:` or `Caption:` lines. Figure text is not copy.
 

@@ -36,7 +36,7 @@ const cases = [
 ];
 let ok = true;
 for (const [label, p, want] of cases) { const r = call(p); const pass = r.status === want; ok &&= pass; console.log(`${pass ? 'ok  ' : 'FAIL'} ${label} exit=${r.status} want=${want}`); }
-fs.writeFileSync(target, 'Section: 2\n\n## 1\n\nEyebrow: The week\n\nHeadline: Due Saturday night.\n\nThe week is the deadline.\n');
+fs.writeFileSync(target, 'Section: 2\n\n## 1\n\nEyebrow: The week\n\nHeadline: Everything is due Saturday night, so the people this is for can fit the work around whatever their week holds.\n\nThe week is the deadline.\n');
 const badEdit = call({ tool_name: 'Edit', tool_input: { file_path: target, old_string: 'The week', new_string: 'Michael said the week' } });
 const goodEdit = call({ tool_name: 'Edit', tool_input: { file_path: target, old_string: 'The week', new_string: 'Each week' } });
 fs.rmSync(target);

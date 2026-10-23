@@ -9,7 +9,7 @@ const here = import.meta.dirname;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'cs2copy-'));
 const run = (body, section = 2, raw = false) => {
   const f = path.join(tmp, `c${Math.random().toString(36).slice(2)}.md`);
-  fs.writeFileSync(f, raw ? `Section: ${section}\n\n${body}\n` : `Section: ${section}\n\n## 1\n\nEyebrow: Unit of time\n\nHeadline: The week is the unit.\n\n${body}\n`);
+  fs.writeFileSync(f, raw ? `Section: ${section}\n\n${body}\n` : `Section: ${section}\n\n## 1\n\nEyebrow: Unit of time\n\nHeadline: The week became the unit because the people this is for do not live regular weeks.\n\n${body}\n`);
   const r = spawnSync('node', [path.join(here, 'check-copy.mjs'), f], { encoding: 'utf8' });
   return { status: r.status, out: r.stdout };
 };
@@ -53,6 +53,34 @@ for (const [label, line] of [
   const passed = r.status === 0;
   ok &&= passed;
   console.log(`${passed ? 'ok  ' : 'FALSE ALARM'} clean ${label}${passed ? '' : '\n' + r.out}`);
+}
+// His own headlines, 23 Oct screenshots (frame blocks 5 and 6, Haven): each must pass. Short labels must not.
+const his = [
+  "Structure had to exist, in fact it's foundational to the type of product we were building.",
+  'The amount of action items each user was assigned per week became based on two things:',
+  'Users need to understand who the Confidante is before making a decision. They need to feel understood, represented and safe.',
+  'People needed to know what to expect before booking an introductory chat.',
+  'When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.',
+  "An expert program designed for flexibility, adapting to each user's unique needs and comfort.",
+  'Identity shapes what safe, relevant support looks like. The quiz makes room for the experiences behind each match.',
+  'For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience.',
+  "Minors need a guardian's consent to join a study. Asking would out the teens who need Haven most, so I interviewed two proxy groups instead.",
+];
+const withHeadline = h => run(`## 1\n\nEyebrow: Topic\n\nHeadline: ${h}\n\nOne plain line of body.`, 11, true);
+for (const h of his) {
+  const r = withHeadline(h);
+  ok &&= r.status === 0;
+  console.log(`${r.status === 0 ? 'ok  ' : 'FALSE ALARM'} his headline passes: ${h.slice(0, 40)}${r.status === 0 ? '' : '\n' + r.out}`);
+}
+for (const [label, h] of [
+  ['short label headline', 'The week is a list with times and a target.'],
+  ['very short headline', 'Rollover moves the week.'],
+  ['run on headline', Array(30).fill('word').join(' ') + '.'],
+]) {
+  const r = withHeadline(h);
+  const caught = r.status === 1 && r.out.includes('his headlines run 12 to 25');
+  ok &&= caught;
+  console.log(`${caught ? 'ok  ' : 'MISS'} planted ${label}`);
 }
 const clean = run('The week is the deadline. Inside it, the user picks the order.\n\nCard: 01 | Ahead | Shown against the week.', 2);
 const cleanOk = clean.status === 0 && clean.out.includes('CS2COPY_PASS');

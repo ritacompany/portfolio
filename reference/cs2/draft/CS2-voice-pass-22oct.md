@@ -17,41 +17,41 @@ Section: 7
 
 Eyebrow: Before a career is chosen
 
-Headline: An empty Action Hub invites the quiz.
+Headline: Without a chosen career there is no week to work on yet, so the empty Action Hub invites the person to take the quiz.
 
-Someone who has not taken the quiz opens an empty Action Hub with an invitation to take the quiz and be matched with tech careers. A placeholder saying the page is still being built would feel dishonest, as if that part of the product did not exist.
+The invitation offers to match them with tech careers. A placeholder saying the page is still being built would feel dishonest, as if that part of the product did not exist.
 
 ## Block 2
 
 Eyebrow: Home base
 
-Headline: The week is a list with times and a target.
+Headline: The Action Hub keeps the person on this week, with the Pathway target and pace beside it as the only anchor for adjustments.
 
-The list view shows this week's Action Items with suggested times and weekly progress. The Pathway target and pace sit in the rail beside it, since they are the only anchor for weekly adjustments. Each card shows its scheduled time, while the schedule view shows where the items sit among the week's events.
+The list view shows this week's Action Items with suggested times and weekly progress. Each card shows its scheduled time, while the schedule view shows where the items sit among the week's events.
 
 ## Block 3
 
 Eyebrow: No calendar
 
-Headline: The list still works without a calendar.
+Headline: A person without a calendar still gets the same week, so the list keeps working and offers a way to connect one.
 
-Without a calendar, the list shows a Schedule smarter prompt that offers to connect one, and the schedule view becomes an empty state with the same offer instead of being hidden. For a week too packed to schedule, the proposed fallback was a plain list with no specific times; everything would be due by the end of the week.
+The list shows a Schedule smarter prompt to connect a calendar, and the schedule view becomes an empty state with that offer instead of being hidden. For a week too packed to schedule, the proposed fallback was a plain list with no specific times; everything would be due by the end of the week.
 
 ## Block 4
 
 Eyebrow: First time
 
-Headline: A short tip explains the scheduled time.
+Headline: The first visit to the Action Hub doubles as onboarding, so a tip on a scheduled time explains who picked it.
 
-An Action Item's time slot carries a tip explaining that Mondai picked the time from the person's availability and that the icon reschedules it at any time. Tips appear only where they earn their place, and the first visit has to feel like a real start.
+The tip says Mondai picked the time from the person's availability and that the icon reschedules it at any time. Tips appear only where they earn their place, and the first visit has to feel like a real start.
 
 ## Block 5
 
-Eyebrow: The long view
+Eyebrow: The whole route
 
-Headline: The Growth Journey page holds the bigger goal.
+Headline: The Growth Journey page holds the long view, so the Action Hub can stay on this week while the journey numbers live here.
 
-The page shows a personalized summary, the journey target, journey pace, progress and the five Pathways. It holds the journey numbers because showing journey and Pathway numbers in one place was confusing. Capacity can be changed here, since it changes the journey numbers.
+The page shows a personalized summary, the journey target, journey pace, progress and the five Pathways. It holds the journey numbers because showing them beside the Pathway's numbers was extremely confusing. Capacity can be changed here, since it changes the journey numbers.
 <!-- end copy:7 -->
 
 # Section 8: Calendar integration
@@ -61,35 +61,35 @@ Section: 8
 
 ## Block 1
 
-Eyebrow: First week
+Eyebrow: Opting in
 
-Headline: Calendar integration is offered, not forced.
+Headline: Calendar integration is offered as a choice in the first week, and the step is written so connecting reads as a decision the person makes.
 
-In week one a person chooses to connect a calendar or manage their own schedule. The calendar step is written as a choice, without pressuring the person to connect.
+They can connect a calendar or manage their own schedule. Connecting lets the week carry real times, and without a calendar the cards carry none.
 
 ## Block 2
 
 Eyebrow: Boundaries
 
-Headline: After sync, the person sets the window.
+Headline: Once a calendar is synced, the person sets the window Mondai may schedule inside and the hours when they work best.
 
-Once the calendar is synced, the person sets a preferred time window and their sharpest hours, and Mondai suggests a range. The preferred times depend on that window. Of the versions explored, the time bar was picked for setting them.
+Mondai suggests a range, and the preferred times depend on the window set. Of the versions explored, the time bar was picked for setting them.
 
 ## Block 3
 
 Eyebrow: Moving things
 
-Headline: A scheduled time is a suggestion that can be moved.
+Headline: Scheduled times are suggestions rather than due dates, because whether the work got done is decided at the end of the week.
 
-The schedule view lets a person move an Action Item to a new time. Scheduled times are suggestions rather than due dates because completion is decided at the end of the week. Mondai does not reschedule on its own, since that could get confusing fast.
+The schedule view lets a person move an Action Item to a new time. Mondai does not reschedule on its own, since that could get confusing fast.
 
 ## Block 4
 
 Eyebrow: Edge cases
 
-Headline: A packed calendar falls back to the plain list.
+Headline: When the calendar is too full to place the week, Mondai removes the scheduled times and tells the person it is packed.
 
-When the calendar is too full, a notice says it is packed this week and the scheduled times are removed. The idea was to switch that week to the plain list used without a calendar, since a manual flow could be a lot of work for a fringe case. When a sync fails, a module over the list says the calendar lacks available times or could not sync.
+The idea was to switch that week to the plain list used without a calendar, since a manual flow could be a lot of work for a fringe case. When a sync fails, a module over the list says the calendar lacks available times or could not sync.
 <!-- end copy:8 -->
 
 # Section 9: Start of week
@@ -101,41 +101,41 @@ Section: 9
 
 Eyebrow: Fresh start
 
-Headline: A clean slate opens a week with no lost days.
+Headline: A clean slate never includes a lost day, and it opens the week for someone on target, ahead or starting a new Pathway.
 
-It comes in three versions: one for someone ahead or on target, one for the start of a new Pathway and one for someone ahead with positive momentum. A lost day always means a rollover instead.
+Being ahead with positive momentum has a version of its own, and any lost day sends the person to rollover instead.
 
 ## Block 2
 
 Eyebrow: Lost days
 
-Headline: Rollover shows where someone is sitting and what moves with them.
+Headline: When days are lost, the rollover screen shows where the person is sitting: the days lost and the Action Items moving into the new week.
 
-The screen names the days lost and the Action Items moving into the new week. Other versions cover someone still ahead and someone who slipped from ahead to on track. The header tells the person why they are seeing the screen.
+Other versions cover someone still ahead and someone who slipped from ahead to on track. The header tells the person why they are seeing the screen.
 
 ## Block 3
 
 Eyebrow: Recovery
 
-Headline: Catching up has to be earned by real movement.
+Headline: Catching up has to be earned by real movement, so finishing exactly the week's Action Items and no more does not count.
 
-Finishing exactly the week's Action Items and no more is not real movement, because the gap behind the target stays where it was. For that case the screen says to keep chipping at it. Modest gains and consecutive recovery weeks each have their own versions while the person is still behind. Caught up marks the gap closed, in versions for one week behind and for two or more.
+That leaves the gap behind the target where it was, and the screen says to keep chipping at it. Modest gains and consecutive recovery weeks each have their own versions while the person is still behind. Caught up marks the gap closed, in versions for one week behind and for two or more.
 
 ## Block 4
 
-Eyebrow: Capacity
+Eyebrow: Recalibration
 
-Headline: Recalibration answers weeks of falling short.
+Headline: After weeks of falling short, Mondai recommends a new capacity, and the person can accept it, set their own or skip it.
 
-Mondai recommends a new capacity, and the person can set a custom one instead. Skipping brings up a warning.
+The recommendation is framed as Mondai's reasoning rather than a number to edit on the page. Skipping brings up a warning.
 
 ## Block 5
 
-Eyebrow: Long absence
+Eyebrow: Reset
 
-Headline: Reset rebuilds the week from today.
+Headline: After a long absence, the person's progress is saved and Mondai rebuilds their week from today, as a variation of the start of week screen.
 
-After a long absence, progress is saved and the week is rebuilt from today. The design moved away from asking the person to choose and dropped the option to keep the original schedule. It is a variation of the start of week screens rather than a separate flow.
+In the design, asking the person to choose was removed, along with the option to keep the original schedule.
 <!-- end copy:9 -->
 
 # Section 11: Action Items
@@ -147,17 +147,17 @@ Section: 11
 
 Eyebrow: Two pages
 
-Headline: The Pathway page lists one Pathway at a time.
+Headline: The Growth Journey stays the overview, and each Pathway gets its own page where the person learns that one Pathway.
 
-The Growth Journey stays the overview, and the Pathway page is where someone learns a single Pathway. It lists that Pathway's Focus Areas and Action Items, with breadcrumbs back to the journey page.
+The Pathway page lists that Pathway's Focus Areas and Action Items, with breadcrumbs back to the journey page.
 
 ## Block 2
 
 Eyebrow: Sequence
 
-Headline: Focus Areas run in order, so Action Items do too.
+Headline: Focus Areas turned out to be linear, so they set the order the Action Items move through instead of only grouping them.
 
-Focus Areas turned out to be linear, so besides grouping Action Items they set the order the Action Items progress in. On the page the Focus Areas are numbered and a rail marks each one Complete, Current or Not started. Action Items in later Focus Areas are locked.
+On the page the Focus Areas are numbered and a rail marks each one Complete, Current or Not started. Action Items in later Focus Areas are locked.
 <!-- end copy:11 -->
 
 # Changes to his text
@@ -225,3 +225,91 @@ Why: two fact fixes. The block plan and the screen (2670:11674) number the Focus
 - Section 7 block 4 left as he edited it. The two claims in its last sentence stay side by side; joining them with a reason would claim more than the record holds.
 - No headline in sections 7, 8 or 11 changed; each still states its block's claim.
 - Plan details missing before this pass and still missing after it, left for the story review to judge because adding them is content, not voice: section 9 block 2 does not say the still ahead versions come as one and two plus, nor that the second title on the screen helps the design; section 7 block 5 says confusing where the record says extremely confusing.
+
+# Headline pass, 23 Oct
+
+His headlines run 12 to 25 words (measured from his frame blocks 5 and 6 and his Haven case study): a full sentence, sometimes two, that says what the person needs or why the design does what it does. Every headline here was a short label, so each is rewritten to that length from its block plan claims and the dossiers, and the body lost whatever the headline now says. Four eyebrows changed because the new headline now contains them: The long view became The whole route, First week became Opting in, Capacity became Recalibration and Long absence became Reset. check-copy.mjs now refuses a headline outside 12 to 25 words and passes all nine of his.
+
+His headlines before this pass, sections 7, 8 and 11:
+
+### Section 7, block 1 headline
+Before: Headline: An empty Action Hub invites the quiz.
+After: Headline: Without a chosen career there is no week to work on yet, so the empty Action Hub invites the person to take the quiz.
+
+### Section 7, block 2 headline
+Before: Headline: The week is a list with times and a target.
+After: Headline: The Action Hub keeps the person on this week, with the Pathway target and pace beside it as the only anchor for adjustments.
+
+### Section 7, block 3 headline
+Before: Headline: The list still works without a calendar.
+After: Headline: A person without a calendar still gets the same week, so the list keeps working and offers a way to connect one.
+
+### Section 7, block 4 headline
+Before: Headline: A short tip explains the scheduled time.
+After: Headline: The first visit to the Action Hub doubles as onboarding, so a tip on a scheduled time explains who picked it.
+
+### Section 7, block 5 headline
+Before: Headline: The Growth Journey page holds the bigger goal.
+After: Headline: The Growth Journey page holds the long view, so the Action Hub can stay on this week while the journey numbers live here.
+
+### Section 8, block 1 headline
+Before: Headline: Calendar integration is offered, not forced.
+After: Headline: Calendar integration is offered as a choice in the first week, and the step is written so connecting reads as a decision the person makes.
+
+### Section 8, block 2 headline
+Before: Headline: After sync, the person sets the window.
+After: Headline: Once a calendar is synced, the person sets the window Mondai may schedule inside and the hours when they work best.
+
+### Section 8, block 3 headline
+Before: Headline: A scheduled time is a suggestion that can be moved.
+After: Headline: Scheduled times are suggestions rather than due dates, because whether the work got done is decided at the end of the week.
+
+### Section 8, block 4 headline
+Before: Headline: A packed calendar falls back to the plain list.
+After: Headline: When the calendar is too full to place the week, Mondai removes the scheduled times and tells the person it is packed.
+
+### Section 11, block 1 headline
+Before: Headline: The Pathway page lists one Pathway at a time.
+After: Headline: The Growth Journey stays the overview, and each Pathway gets its own page where the person learns that one Pathway.
+
+### Section 11, block 2 headline
+Before: Headline: Focus Areas run in order, so Action Items do too.
+After: Headline: Focus Areas turned out to be linear, so they set the order the Action Items move through instead of only grouping them.
+
+Other lines of his text the headline pass changed (the body gave up what its new headline now says):
+
+### Section 7, block 4 body
+Before: An Action Item's time slot carries a tip explaining that Mondai picked the time from the person's availability and that the icon reschedules it at any time. Tips appear only where they earn their place, and the first visit has to feel like a real start.
+After: The tip says Mondai picked the time from the person's availability and that the icon reschedules it at any time. Tips appear only where they earn their place, and the first visit has to feel like a real start.
+
+### Section 7, block 5 eyebrow
+Before: Eyebrow: The long view
+After: Eyebrow: The whole route
+
+### Section 8, block 1 eyebrow
+Before: Eyebrow: First week
+After: Eyebrow: Opting in
+
+### Section 8, block 1 body
+Before: In week one a person chooses to connect a calendar or manage their own schedule. The calendar step is written as a choice, without pressuring the person to connect.
+After: They can connect a calendar or manage their own schedule. Connecting lets the week carry real times, and without a calendar the cards carry none.
+
+### Section 8, block 3 body
+Before: The schedule view lets a person move an Action Item to a new time. Scheduled times are suggestions rather than due dates because completion is decided at the end of the week. Mondai does not reschedule on its own, since that could get confusing fast.
+After: The schedule view lets a person move an Action Item to a new time. Mondai does not reschedule on its own, since that could get confusing fast.
+
+### Section 11, block 1 body
+Before: The Growth Journey stays the overview, and the Pathway page is where someone learns a single Pathway. It lists that Pathway's Focus Areas and Action Items, with breadcrumbs back to the journey page.
+After: The Pathway page lists that Pathway's Focus Areas and Action Items, with breadcrumbs back to the journey page.
+
+## No-ai-slop detect on the final copy, 23 Oct
+
+Run on the copy after the headline pass. House rules clean: no dashes, no Oxford commas, sentence case. Five findings:
+
+- Binary contrast, section 8 block 1 headline (a decision rather than a requirement). Fixed: the headline now says the step is written so connecting reads as a decision the person makes, which is his ask in the record.
+- Stock kicker, section 9 block 5 headline (coming back does not mean starting over). Fixed: the headline ends on the fact that reset is a variation of the start of week screen.
+- Portable line, section 7 block 4 body (tips appear only where they earn their place). Kept: naming which buttons the tips sit on is an open question in the record, and these are his two rulings, so they stay side by side without a because.
+- A design doing a person's verb, section 9 block 5 body. Fixed: in the design, asking the person to choose was removed. It stays a design decision, since the record never shows the choice in the product.
+- Passive voice hides who chose, section 8 blocks 2 and 4. Both stay as they are: the case study rule is that copy never says who built or picked what, and block 4 keeps the idea was because the record still has the whole week and the unplaced items as open options.
+
+An independent reader then checked every block against the block plans and the dossiers and found eleven problems: a reason attached to the wrong claim (7.5, 8.1), a proposal stated as shipped (8.4), the clean slate rule turned around (9.1), the rollover screen no longer said to show the days lost (9.2), a prompt that lost what it is for (7.3), a tip implied on every time (7.4) and headlines the body then repeated (7.2, 7.3, 8.1). Each is fixed in the copy above. A second round found seven smaller ones (the only in only anchor, the tip rule overreaching, a body repeating its headline, the rollover screen's where you are sitting and days lost, and the reset choice read as shipped); those are fixed too.

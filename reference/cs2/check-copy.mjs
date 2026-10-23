@@ -7,6 +7,7 @@
 // "Card: label | title | body", label and title at most three words each, body at most two sentences.
 // Figure text (labels, captions) is not copy: it is written in the message plan once a figure is chosen,
 // so the copy never decides that a block has a figure. The eyebrow names the topic and never repeats the headline.
+// A headline runs 12 to 25 words, the length of his own.
 // Prints CS2COPY_PASS and exits 0, or lists every violation and exits 1.
 import fs from 'node:fs';
 
@@ -72,6 +73,10 @@ for (const b of blocks) {
   const eyebrow = (b.match(/^Eyebrow:\s*(.+)$/m) || [])[1]?.trim().toLowerCase();
   const headline = (b.match(/^Headline:\s*(.+)$/m) || [])[1]?.trim().toLowerCase();
   if (eyebrow && headline && headline.includes(eyebrow)) problems.push(`block "${title.trim()}": eyebrow repeats the headline`);
+  // His headlines run 12 to 25 words, measured 23 Oct from his frame blocks 5 and 6 and his Haven case study:
+  // a full sentence or two that says what the person needs or why, never a short label.
+  const hw = headline ? headline.split(/\s+/).filter(Boolean).length : 0;
+  if (headline && (hw < 12 || hw > 25)) problems.push(`block "${title.trim()}": headline ${hw} words, his headlines run 12 to 25`);
   for (const m of b.matchAll(/^(Label|Caption):\s*(.+)$/gm))
     problems.push(`block "${title.trim()}": ${m[1]}: "${m[2].trim().slice(0, 40)}" is figure text; it goes in the message plan once a figure is chosen (text items are Card: lines)`);
   for (const m of b.matchAll(/^Card:\s*(.+)$/gm)) {

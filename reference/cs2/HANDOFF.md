@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-23 03:30
+Updated: 2026-10-23 05:00
 By: Claude Code
 Section: 7
 Loop step: 4
@@ -23,7 +23,7 @@ Loop step: 4
 
 23 Oct: he uploaded his research folder to this cloud session (README, the four dossiers, product-flows.md, wip-frame.md and an all in one copy). It sits in ~/Documents/CS2-research in the session only, outside both repos, and goes when the session ends. The raw design chat archive the dossier checker reads is not here, so no new dossier can be built or rechecked in the cloud.
 
-Done: the voice pass on sections 7, 8, 9 and 11 is saved into reference/cs2/copy/ through the guard, after his go ahead, with the recorded truth reviews counting. Section 9 block 3 was rewritten from the start of week dossier (the no gain no loss screen is the case of finishing exactly the week; the block plan needed no change) and passed an independent check. reference/cs2/COPY_SO_FAR.md holds the saved copy. The voice pass draft (draft/CS2-voice-pass-22oct.md) keeps every change to his 22 Oct text before and after. A GitHub workflow now runs the copy, draft copy and handoff checks on every PR.
+Done: the voice pass on sections 7, 8, 9 and 11 is saved into reference/cs2/copy/ through the guard, after his go ahead, with the recorded truth reviews counting. Section 9 block 3 was rewritten from the start of week dossier (the no gain no loss screen is the case of finishing exactly the week; the block plan needed no change) and passed an independent check. reference/cs2/COPY_SO_FAR.md holds the saved copy. The voice pass draft (draft/CS2-voice-pass-22oct.md) keeps every change to his 22 Oct text before and after. A GitHub workflow now runs the copy, draft copy and handoff checks on every PR. Headline pass, 23 Oct, his ask: his headlines run 12 to 25 words (his frame blocks 5 and 6 and his Haven case study), so every headline in 7, 8, 9 and 11 was rewritten to that length from the plans and dossiers, checked twice by an independent reader against them and by no-ai-slop detect, and check-copy.mjs now refuses a headline outside 12 to 25 words, proven on all nine of his and on planted short ones.
 
 Not written: section 10 and block plans for sections 3 to 6; dossiers for capacity (C3), cognitive load and get ahead (E1, E2) are missing and need the raw archive on his Mac.
 
