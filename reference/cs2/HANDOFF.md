@@ -55,6 +55,7 @@ What is in the repo for picking this up without Claude Code: reference/cs2/outli
 
 Everything below is in this repo. His research and the live product flow map stay on his Mac (the repo is public), so work from these files and from the settled facts in Next action.
 
+- reference/cs2/PICKUP_PROCESS.md: how he wants to be worked with, the copy gate rules and the one failure that repeated all day (read it second)
 - reference/cs2/outline/frame-changes-22oct.md: what his Figma frame says now, block by block (blocks 1 to 6 are his own text and stay his)
 - reference/cs2/outline/outline.md: all 11 sections in his order, as claims
 - reference/cs2/outline/section-7.md, section-8.md, section-9.md, section-11.md: block plans, each with a recorded Opus truth review PASS (against the 21 Oct frame record)
