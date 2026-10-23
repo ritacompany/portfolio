@@ -76,7 +76,7 @@ Eyebrow: Edge cases
 
 Headline: When the calendar is too full to place the week, Mondai removes the scheduled times and tells the person it is packed.
 
-The idea was to switch that week to the plain list used without a calendar, since a manual flow could be a lot of work for a fringe case. When a sync fails, a module over the list says the calendar lacks available times or could not sync.
+The idea was to switch that week to the plain list used without a calendar, since a manual flow would cost too much for a rare case. When a sync fails, a module over the list says the calendar lacks available times or could not sync.
 
 # Section 9: Start of week
 

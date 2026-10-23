@@ -17,6 +17,14 @@ The first copy for these sections described what each screen does. A case study 
 
 Each block below starts with its plan: the problem, the options, the decision, why, and what is still open, each cited to a dossier bullet. The copy follows in the house block shape and passes check-copy.mjs. I is used only where the dossier marks the decision as his, as his own frame does. Other people's input is written as the brief or a constraint, never credited by name.
 
+## Checks run on this draft, 23 Oct
+
+- Truth: an independent reader checked every block against the four dossiers and the flow map over four rounds. It found 20, then 10, then 4 problems: reasons the record does not give, sequences reversed, inherited input written as his, open questions stated as settled. All are fixed; the last round's 4 were fixed without a fifth round.
+- Case study read: a cold reader playing a hiring manager judged it READS_AS_CASE_STUDY with no block failing to show a decision. It cut the breadcrumbs block and the tips block as low stakes, merged the two target and pace blocks, and named the two moments a reader keeps: his own leftover screens making people do the math, and the four dates cut to two.
+- no-ai-slop detect: three rounds; findings fixed or kept with reason (headline length and first person are his style).
+- Scripts: check-copy.mjs via check-draft-copy.mjs, every plan line cited to a real dossier bullet, and no run of eight words quoted from the private record.
+- Not done here: the truth review the copy guard records (check-truth needs the raw design chat archive on his Mac).
+
 # Section 7: The Action Hub and the Growth Journey
 
 ### Plan 7.1 A home that answers one question
@@ -40,14 +48,7 @@ Decision: a minimal pre-career page whose header leads with the quiz, with the s
 Why: a being built page felt dishonest, as if that part of the product did not exist; design and copy can show the state is temporary without locking anyone out. dossier:action-hub#Q4.8 dossier:action-hub#Q4.7
 Open: whether this ships as the only empty state now that events moved past the MVP (Action Hub Q7).
 
-### Plan 7.4 Teaching on the real screen
-Problem: the framework needs explaining before people can use it. dossier:action-hub#Q2.7
-Options: tips on the first visit, three tutorial Action Items, or a first time moment before the hub. dossier:action-hub#Q3.11 dossier:action-hub#Q5.11
-Decision: the first Action Hub visit is the onboarding, with his tips on the calendar and reschedule buttons; he also floated using the hub as a tutorial. dossier:action-hub#Q4.10 dossier:action-hub#Q6.4 dossier:action-hub#Q5.11
-Why: tips only where they earn it, and the first visit has to feel like a real start. dossier:action-hub#Q4.11 dossier:action-hub#Q2.8
-Open: the tips were still unfinished at the end of May; one tip or a sequence, and whether the first time moment shipped, are not in the record (Action Hub Q5.13, Q7).
-
-### Plan 7.5 Where capacity is changed
+### Plan 7.4 Where capacity is changed
 Problem: capacity sets the pace of the whole journey, and people need a place to change it. dossier:growth-journey#Q3.9
 Options: onboarding, the start of week screen, the Growth Journey, or a settings page. dossier:growth-journey#Q3.9 dossier:growth-journey#Q3.10
 Decision: capacity is changed from the Growth Journey; he accepted a small edit icon on the target tile as the entry point. dossier:growth-journey#Q4.12 dossier:growth-journey#Q4.13 dossier:growth-journey#Q6.12
@@ -63,7 +64,7 @@ Eyebrow: Landing on the week
 
 Headline: The Action Hub answers one question, what to do this week, so it opens straight onto this week's Action Items.
 
-A journey can run for years, too far ahead to act on, so the hub keeps the person on the short term. Rather than a traditional home screen, it is a starting point that behaves like one, with Linear as the reference for opening onto the work in front of you. Everything beyond this week lives on the Growth Journey page.
+A journey can run for years, too far ahead to act on, so the hub keeps the person on the short term. I chose a starting point that behaves like a home screen but opens straight onto the work. When I made this call in March, Linear was the reference for that.
 
 ## Block 2
 
@@ -71,7 +72,7 @@ Eyebrow: Target and pace
 
 Headline: Two dates sit beside the week, the target the plan sets and the pace a person's progress points to. I first had four.
 
-Shown all the time, they are a steady guide rather than a reveal people wait for nervously at the week's end. I had also given the whole journey its own target and pace, because people need to know when it all ends. Two pairs side by side were extremely confusing, so the journey numbers live on the Growth Journey page, with the journey pace kept passive.
+Shown all the time, they are a steady guide rather than a reveal people wait for nervously at the week's end. I had also given the whole journey its own target and pace, because people need to know when it all ends. Two pairs side by side were extremely confusing, so the journey pair came off the weekly rail, and the journey pace sits quietly on the Growth Journey page.
 
 ## Block 3
 
@@ -87,19 +88,11 @@ The sidebar stays available, as the brief required, and the header invites the p
 
 ## Block 4
 
-Eyebrow: Teaching in place
-
-Headline: The framework needed explaining, so the first visit to the Action Hub doubles as the onboarding instead of a separate step.
-
-The tips I designed point at the calendar button and at rescheduling. I also floated turning the hub into a tutorial with three practice Action Items. By the end of May the tips were still unfinished, held to two rules: the first visit has to feel like the real start of the journey, and no tip gets added just to have one.
-
-## Block 5
-
 Eyebrow: Changing capacity
 
-Headline: Capacity, the hours a person can give each week, is changed from the Growth Journey, right beside the date it moves.
+Headline: Capacity, the hours a person can give each week, is changed from the Growth Journey, where its effect on the finish date lands.
 
-Settings was proposed as its home. Sending someone from their week or their journey to a settings page felt like the wrong jump, and a change in capacity lands at journey level anyway, with the Pathway target following it. I settled on a small edit icon on the target as the way in.
+A settings page was also proposed as its home. Sending someone from their week or their journey to a settings page felt like the wrong jump, and a change in capacity lands at journey level anyway, with the Pathway target following it. I settled on a small edit icon on the target as the way in.
 <!-- end copy:7 -->
 
 # Section 8: Calendar integration
@@ -114,7 +107,7 @@ Open: who set the integration as read only is not in the record (Calendar Q7).
 ### Plan 8.2 The smallest window
 Problem: free time on a calendar is not the same as time a person wants to work, and a small window cannot hold a week. dossier:calendar#Q1.6 dossier:calendar#Q4.6
 Options: a ten hour hard minimum, a soft warning, or no constraint; three layouts for setting the window. dossier:calendar#Q3.8 dossier:calendar#Q3.7
-Decision: he first agreed to no constraint, then pushed back; the resolution was a soft warning under three hours, and the 24 hour time bar won, mostly for preferred time. dossier:calendar#Q4.6 dossier:calendar#Q3.8 dossier:calendar#Q4.4
+Decision: he first agreed to no constraint, then pushed back; the resolution was a soft warning under three hours rather than the ten hour floor the assistant first suggested, set on the 24 hour time bar he picked, mostly for preferred time. dossier:calendar#Q4.6 dossier:calendar#Q3.8 dossier:calendar#Q4.4
 Why: a two hour window full of events cannot hold a week of work. dossier:calendar#Q4.6
 Open: whether the soft warning shipped (Calendar Q7).
 
@@ -139,9 +132,9 @@ Section: 8
 
 Eyebrow: Calendar as an option
 
-Headline: People schedule their lives too differently for one approach, so the week works with or without a calendar.
+Headline: The week had to work for people who schedule their lives in very different ways, with a calendar or without one.
 
-Overly structured scheduling would copy traditional education and ignore how much people vary. An earlier integration had people sort synced calendars by colour. After development flagged it as hard and feedback found it visually overwhelming, I put calendar work on hold. It came back as a suggestion system whose job is finding free time, and connecting is offered as a decision, never pushed.
+Overly structured scheduling would copy traditional education. An earlier design added a step to color code each synced calendar. After development flagged it as hard and it was called visually overwhelming in feedback, I put calendar work on hold. It came back as a suggestion system whose job is finding free time, and connecting is offered as a decision, never pushed.
 
 ## Block 2
 
@@ -149,7 +142,7 @@ Eyebrow: The smallest window
 
 Headline: I first agreed people could set any window of hours, then pushed back, because a two hour window full of events cannot hold a week.
 
-After syncing, a person sets the hours Mondai may use and the hours when they work best. The resolution was a soft warning under three hours rather than a ten hour floor. Of three layouts, a 24 hour time bar won, mostly for how it shows preferred time. Whether the warning made the final screen is still open.
+After syncing, a person sets the hours Mondai may use and the hours when they work best, on a 24 hour time bar. The resolution was a soft warning under three hours rather than a ten hour floor. Whether the warning made the final screen is still open.
 
 ## Block 3
 
@@ -157,15 +150,15 @@ Eyebrow: Moving a time
 
 Headline: Scheduled times are suggestions rather than due dates, because whether the work got done is only decided when the week ends.
 
-Motion reshuffles missed tasks into the next free slot without asking. I leaned away from that. When the week is the deadline a missed slot is not a failure, and moving items around unasked could get confusing fast in this product. People move an Action Item themselves from the schedule view.
+Motion reshuffles missed tasks into the next free slot without asking. I leaned away from that, because in this product it could get confusing fast. People move an Action Item themselves from the schedule view.
 
 ## Block 4
 
-Eyebrow: A packed week
+Eyebrow: Too full to schedule
 
 Headline: When the calendar is too full to place the week, the times come off and the person is told plainly that the calendar is packed.
 
-I proposed switching that week to the same plain list someone without a calendar gets, because a manual flow would cost too much for a rare case in an MVP. Widening availability in settings or a manual mode for the week came up afterward and did not change that call. Whether every time comes off or only the ones that cannot be placed is still open.
+I proposed this because designing a way to fix a packed week by hand would cost too much for a rare case in an MVP. Two alternatives came up afterward, widening availability in settings or a manual mode, and the plain list held. Whether every time comes off or only those that cannot be placed is still open.
 <!-- end copy:8 -->
 
 # Section 9: Start of week
@@ -227,29 +220,29 @@ My early notes asked for tasks that never become overdue, because falling behind
 
 Eyebrow: Three fixes rejected
 
-Headline: The brief was to automate rollover, carrying leftover items into the next week, and three fixes were on the table before mine.
+Headline: The brief was to automate rollover, carrying leftover items into the next week, and three fixes were weighed before the answer that stuck.
 
 Card: Fix 1 | Silent rollover | Items slip into next week with no screen. I rejected it because the product needs structure.
-Card: Fix 2 | Longer Sunday flow | A decision every week across several screens. We had already judged it too complex for the MVP.
-Card: Fix 3 | Better flex points | Flex points were my own fix, and by the end of May they were gone. The problem was never flex points but the leftover items.
+Card: Fix 2 | Multi screen flow | A decision every week across several screens. We had already judged it too complex for the MVP.
+Card: Fix 3 | Better flex points | Flex points were my own fix, and by the end of May they were gone. The leftover items were the problem.
 
-Each one either hid the leftover work or kept asking the person to manage it.
+Leftovers still roll into the next week. The change was in how the week opens.
 
 ## Block 3
 
 Eyebrow: Opening the week
 
-Headline: Nobody who has fallen behind should have to do the product's math, so the week now opens on a recap that asks for nothing.
+Headline: Nobody who has fallen behind should have to do the product's math. The week now opens on a recap instead of a decision about leftovers.
 
-The idea came from the screen that closes a finished week, mirrored at the start of the next. Leftover items roll in, and the screen shows what moved. Where the person stands now, with last week folded in, sits at the top. I stopped calling it the Sunday flow, because it simply opens a week, so someone starting on a Wednesday just gets fewer items.
+I mirrored the screen that closes a finished week at the start of the next. Leftover items roll in, and the screen shows what moved. Where the person stands now, with last week folded in, sits at the top. I stopped calling it the Sunday flow, because it simply opens a week, so someone starting on a Wednesday just gets fewer items.
 
 ## Block 4
 
-Eyebrow: Telling the truth
+Eyebrow: State rules
 
-Headline: Every version of that screen follows one rule. It never tells someone where they stand in a way that is not true.
+Headline: The recap comes in five states, each with its own rule. Catching up, for one, has to be earned by real movement.
 
-Catching up is the sharpest case. Finishing exactly the week's Action Items and no more leaves the gap behind the target where it was, and I ruled that is not catching up. The screen for that week says to keep chipping at the gap. A clean slate never includes a lost day either, because a lost day means a rollover.
+Finishing exactly the week's Action Items and no more leaves the gap behind the target where it was, and I ruled that is not catching up. The screen for that week says to keep chipping at the gap.
 
 ## Block 5
 
@@ -265,7 +258,7 @@ Eyebrow: Reset
 
 Headline: After a long absence, Mondai saves the person's progress and rebuilds the week from today, and I took out the choice of what happens next.
 
-An earlier version offered a choice between keeping the original schedule and updating it. Keeping a schedule built for weeks that have passed is close to pointless. Saying everything restarts from today made the saved progress look like a lie, so the screen says progress is saved and the week is rebuilt. Whether to offer the choice after all is still an open question.
+An earlier version offered a choice between keeping the original schedule and updating it. Keeping a schedule built for weeks that have passed is close to pointless. I took the choice out in May; the question was reopened later and is still open. Saying everything restarts from today made the saved progress look like a lie, so the screen says progress is saved and the week is rebuilt.
 <!-- end copy:9 -->
 
 # Section 11: Action Items
@@ -291,15 +284,15 @@ Section: 11
 
 Eyebrow: Two pages
 
-Headline: The overview kept turning into a second Pathway page, so I started it again and gave each Pathway a page of its own.
+Headline: The overview and each Pathway got separate pages, and when the overview kept turning into a second Pathway page, I started it again.
 
-The Growth Journey overview is the higher level view of where the person is and how the hierarchy works. A person lands on it first and clicks into a Pathway page to learn that one Pathway.
+The overview shows where the person is in the whole journey and how it fits together. From there a person clicks into a Pathway page to learn that one Pathway.
 
 ## Block 2
 
 Eyebrow: Below the Pathway
 
-Headline: Focus Areas began as a simple sorting tag, and became a sequence once it turned out the Action Items inside them run in order.
+Headline: Focus Areas began as a simple sorting tag, and became a sequence once it turned out they run in a fixed order.
 
-Each Pathway held too few Action Items to justify another level, and each Focus Area turned out to hold far fewer than I had expected. In April it turned out Focus Areas run in a fixed order, so the page changed to match. They are numbered, a rail marks each one Complete, Current or Not started, and Action Items in later Focus Areas are locked.
+They started as a tag because each Pathway held too few Action Items to need another level of hierarchy. Once the order was clear in April, the page changed to match. They are numbered, a progress rail marks each one Complete, Current or Not started, and Action Items in later Focus Areas are locked.
 <!-- end copy:11 -->
