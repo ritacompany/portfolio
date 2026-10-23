@@ -28,7 +28,7 @@ export function checkDraft(raw) {
 
 const args = process.argv.slice(2);
 if (args[0] === '--selftest') {
-  const block = body => `<!-- copy:7 -->\nSection: 7\n\n## Block 1\n\nEyebrow: Home base\n\nHeadline: The week is a list.\n\n${body}\n<!-- end copy:7 -->\n`;
+  const block = body => `<!-- copy:7 -->\nSection: 7\n\n## Block 1\n\nEyebrow: Home base\n\nHeadline: The Action Hub keeps the person on this week, with the Pathway target and pace beside it as the anchor.\n\n${body}\n<!-- end copy:7 -->\n`;
   const clean = checkDraft(block('The list view shows this week.')).problems.length === 0;
   const dash = checkDraft(block('The list view shows this week — and more.')).problems.length === 1;
   const name = checkDraft(block('Michael wanted the list view.')).problems.length === 1;
