@@ -60,7 +60,7 @@ Eyebrow: Changing capacity
 
 Headline: Capacity is changed from the Growth Journey, beside the end date it moves, rather than only from a settings page.
 
-Capacity's impact is at journey level, so I put the control where that date lives; settings got one too, for consistency. A change applies from the following week, with a quiet link to apply it now. I treated a little friction there as healthy, the kind of anxiety that is productive rather than something to design away.
+Capacity's impact is at journey level, so I put the control where that date lives, and agreed settings needed a place for it too. A change applies from the following week, with a quiet link to apply it now. I treated a little friction there as healthy, the kind of anxiety that is productive rather than something to design away.
 
 ## Block 6
 
@@ -213,7 +213,7 @@ A stakeholder looking at the weekly page could not tell where it sat in the hier
 
 Eyebrow: Below the Pathway
 
-Headline: Focus Areas were a sorting tag while each held only a few Action Items, until the curriculum turned out to run them in order.
+Headline: Focus Areas were a sorting tag while they seemed to hold only a few Action Items, until the curriculum turned out to be in order.
 
 Before designing the Pathway page I asked for content estimates, and a teammate's estimate put far fewer Action Items in each Focus Area than I expected. Once the order mattered, the page had to show it: Focus Area headers, a progress rail and locks on later items. A proposed color system did not survive, because the number of Focus Areas has no limit.
 
