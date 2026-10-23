@@ -1,10 +1,10 @@
 # CS2 voice pass: sections 7, 8, 9 and 11
 
-Status: drafted, waiting for his read. Loop step 4 (voice pass) for the four sections whose copy has a recorded truth review PASS.
+Status: saved into copy/ on 23 Oct after his go ahead. Loop step 4 (voice pass) for the four sections whose copy has a recorded truth review PASS.
 
-Built on his 22 Oct edits (draft/COPY_EDITED_BY_CHADWICK_22OCT.md) for sections 7, 8 and 11, since his wording wins, and on copy/section-9.md for section 9, which he has not edited. Run with the humanizer skill, then no-ai-slop in detect mode. Every change to his text is listed below as Before and After; his file is untouched. Nothing here goes into copy/ until he has read it: the copy guard checks each save against the frame record on his Mac, so a cloud session cannot save there. Claude Code on his Mac saves the accepted lines.
+Built on his 22 Oct edits (draft/COPY_EDITED_BY_CHADWICK_22OCT.md) for sections 7, 8 and 11, since his wording wins, and on copy/section-9.md for section 9, which he has not edited. Run with the humanizer skill, then no-ai-slop in detect mode. Every change to his text is listed below as Before and After; his file is untouched. The copy below is what copy/section-7.md, section-8.md, section-9.md and section-11.md now hold.
 
-No fact was added that is not in the block plans or the dossier findings. Most changes are wording. Two are content fixes: section 7 block 3 names the schedule view as the view that stays (dossier findings, Action Hub Q3), and section 11 block 2 corrects what is numbered and marked on the rail. Section 9 block 3 is left exactly as it was; its note says why. An independent reader checked every block against the block plans and the dossier findings over three rounds; what it found is fixed below, listed under Calls or, for section 9 block 3, handed to the next Claude Code session on his Mac.
+No fact was added that is not in the block plans or the dossier findings. Most changes are wording. Two are content fixes: section 7 block 3 names the schedule view as the view that stays (dossier findings, Action Hub Q3), and section 11 block 2 corrects what is numbered and marked on the rail. Section 9 block 3 is rewritten from the start of week dossier; its note says how. An independent reader checked every block against the block plans and the dossier findings over three rounds; what it found is fixed below, or listed under Calls.
 
 The copy comes first, section by section. Every change to your text, with the reason, follows after it.
 
@@ -119,7 +119,7 @@ Eyebrow: Recovery
 
 Headline: Catching up has to be earned by real movement.
 
-Catching up shows a gap with no gain and no loss, or modest gains over consecutive recovery weeks while still behind. Closing exactly everything is not catching up. Caught up resolves it, after one week behind or after two or more.
+Finishing exactly the week's Action Items and no more is not real movement, because the gap behind the target stays where it was. For that case the screen says to keep chipping at it. Modest gains and consecutive recovery weeks each have their own versions while the person is still behind. Caught up marks the gap closed, in versions for one week behind and for two or more.
 
 ## Block 4
 
@@ -203,7 +203,7 @@ Why: two fact fixes. The block plan and the screen (2670:11674) number the Focus
 - Block 1 body: the three versions are named in parallel, and the Oxford comma before and ahead with positive momentum is gone.
 - Block 2 eyebrow: Behind a bit became Lost days. Two of the rollover versions are for someone still ahead, so behind a bit was wrong for them.
 - Block 2 body: it became the screen, the two extra versions are named as versions, and the header line says the header tells the person why they are seeing the screen.
-- Block 3 left as it was. Its body lists a state where the gap has not moved as a case of catching up, under a headline saying catching up has to be earned by real movement, and closing exactly everything is not catching up is a line a reader cannot decode. Every rewrite tried in this pass either dropped half of the plan's decision or stated his requirement as screen behaviour. The fix is in the block plan, not the copy: point its decision claim at his line from the same turn (dossier findings, start of week Q2: catching up must show how much was caught up, not only that the week closed), re-run its truth review on his Mac, then rewrite the block. The plan also lists modest gain and consecutive recovery weeks as two versions, which the copy runs together.
+- Block 3 body rewritten from the start of week dossier itself, now in this session. The no gain no loss screen is the case where the person closed exactly what the week held: its live text says so, the pace is still behind, and it says to keep chipping at the gap. His ruling on that case is that they are not really catching up. So the rule and the screen agree, and the earlier reading that they contradicted was wrong. Closing exactly everything, which a reader cannot decode, became finishing exactly the week's Action Items and no more is not real movement. The copy does not say his ruling caused the screen's wording, since the record does not show that. Modest gains and consecutive recovery weeks are now named as separate versions, as the plan lists them. The block plan needed no change.
 - Block 4 body: no longer opens by repeating the headline; there is a skip warning became skipping brings up a warning.
 - Block 5 body: the choice was removed became the design moved away from asking the person to choose, because the reader never saw a choice. It stays a decision, not a product fact: the dossier findings show the choice was between keeping the schedule and updating it, and it was still an open thread later.
 

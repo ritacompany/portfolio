@@ -14,4 +14,4 @@ Eyebrow: Sequence
 
 Headline: Focus Areas run in order, so Action Items do too.
 
-Focus Areas turned out to be linear, so the Action Items progress through them in order instead of sitting under a sorting tag. They are numbered on the page, a rail marks each one Complete, Current or Not started, and the Action Items in later Focus Areas are locked.
+Focus Areas turned out to be linear, so besides grouping Action Items they set the order the Action Items progress in. On the page the Focus Areas are numbered and a rail marks each one Complete, Current or Not started. Action Items in later Focus Areas are locked.
