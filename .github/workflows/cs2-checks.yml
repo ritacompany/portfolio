@@ -1,0 +1,29 @@
+name: CS2 checks
+# The copy rules the Claude Code hooks enforce, run on GitHub too, so copy edited anywhere
+# (the browser account, GitHub, another machine) is held to them before it merges.
+# Truth reviews need the research record on Chadwick's Mac and stay with the hooks.
+on:
+  pull_request:
+    paths: ['reference/cs2/**', '.claude/hooks/cs2-copy-guard.mjs', '.github/workflows/cs2-checks.yml']
+  push:
+    branches: [main]
+    paths: ['reference/cs2/**', '.claude/hooks/cs2-copy-guard.mjs', '.github/workflows/cs2-checks.yml']
+jobs:
+  copy-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: The checkers still catch planted mistakes
+        run: |
+          node reference/cs2/test-check-copy.mjs
+          node reference/cs2/test-copy-guard.mjs
+          node reference/cs2/check-draft-copy.mjs --selftest
+      - name: Page copy in copy/ follows his rules
+        run: for f in reference/cs2/copy/section-*.md; do node reference/cs2/check-copy.mjs "$f"; done
+      - name: Copy held in drafts follows his rules
+        run: node reference/cs2/check-draft-copy.mjs reference/cs2/draft/*.md
+      - name: Handoff is in shape and quotes nothing from the record
+        run: node reference/cs2/check-handoff.mjs reference/cs2/HANDOFF.md
