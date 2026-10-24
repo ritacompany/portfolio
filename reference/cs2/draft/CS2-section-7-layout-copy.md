@@ -1,42 +1,36 @@
 Section: 7
 
 <!--
-Copy for his section 7 layout, 24 Oct: his headline and side text beside the Action Hub screenshot, then two
-red frames with a caption under each. Lengths follow his side text (about 55 words); captions run shorter.
-Every claim reuses a line that passed the v5 truth reads, or his 24 Oct ruling that there is no streak.
+Copy for his section 7 layout, revised 24 Oct after his second screenshot: his headline and side text beside
+the Action Hub, then the Growth Journey page in the large left frame and the rail, zoomed, in the right frame,
+each with a caption. The scheduled time and the calendar move to the next block.
 
-Frame plan (my pick):
-- Left red frame: the rail, zoomed, with annotations in the style of his references (short labels, dotted
-  leaders). It plants the Pathway against journey split; section 11 (the Growth Journey page) tells why.
-- Right red frame: an Action Item card with its time and the reschedule popover. Its caption is the exit
-  into section 8, the calendar.
+Research: reports/Near term goal focus evidence.md (7 Oct 2026), using only rows its copy table marks Safe,
+hedged the way it says (classic small studies; mostly health goals). Decision facts reuse v5 lines that passed
+the truth reads, and his 24 Oct ruling that there is no streak.
 Lines starting Text: are paragraph copy. Lines starting Note: are annotation labels, label first.
 -->
 
-## His headline (one change suggested)
+## His headline and side text
 
-Text: The work a person does each week had to be the easiest thing in the product to reach.
+<!-- His headline stands: the research backs it (near term goal focus report, first paragraph). Only fix in
+the side text: Therefor to Therefore. A tighter headline, if he wants one (25 words): -->
 
-<!-- His current headline opens with Research shows. No source in the record backs that sentence, and a
-hiring manager will ask which research. This keeps his point without the claim. 17 words. -->
+Text: Research shows people keep going when they work from a small weekly set, with the long goal in reach but not in front of them.
 
-## His side text, tightened
+## Large left frame: the Growth Journey page
 
-Text: That is the Action Hub. It is built to be the surface people open most, the one their week runs through. A person can only act on a long journey one week at a time, so in a product like this, keeping people motivated week to week became one of the most important factors in how it was built.
+Text: The whole journey lives one click away on the Growth Journey page, with its own target and pace. In classic small studies, a distant goal on its own did no better than no goal, and adults did best with near goals added to a distant one. So the long goal stays in reach, off the week.
 
-<!-- His version says it is the most used touchpoint; nothing measured that yet, so it reads as intent.
-Built to be keeps his claim honest. 58 words, against his 55. -->
-
-## Left red frame: the rail, annotated
+## Right frame: the rail, annotated
 
 Note: Pathway target | Holds steady through an ordinary week.
-Note: Pathway pace | Where their progress is heading. It moves once a week, so nobody watches it tick with every finished item.
-Note: Ahead of target | The gap between the two dates. It is the only ahead or behind signal, and there is no streak.
-Note: Growth Journey | The whole route, one click away. Its own dates live on the Growth Journey page, out of the week.
+Note: Pathway pace | Where their progress is heading. It moves once a week.
+Note: Ahead of target | The gap between the two dates, the only ahead or behind signal. There is no streak.
 
-Text: The weekly adjustments only mean something against a date that stays put, so the rail keeps the Pathway target and pace beside the week. When the whole journey had its own pair of dates here too, four dates competed for attention. The journey pair moved to its own page.
+Text: Beside the week, the rail keeps the Pathway's own target and pace. Across 138 trials, mostly on health goals, monitoring progress improved goal attainment, so the gap between the two dates is always visible. When the journey's dates sat here too, four dates competed for attention, so the journey pair moved to its own page.
 
-## Right red frame: the time on an Action Item
+## Next block: the time on an Action Item, into the calendar
 
 Note: Suggested time | Placed around the person's calendar.
 Note: Reschedule | Moves the time whenever the person wants. Mondai does not reschedule on its own.
