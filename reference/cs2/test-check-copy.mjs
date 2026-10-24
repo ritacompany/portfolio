@@ -49,6 +49,8 @@ for (const [label, line] of [
   ['clause commas', 'When the week ended, nothing carried over, and nothing failed.'],
   ['apostrophes', "Don't connect a calendar and the week's work is a list."],
   ['first person', 'I wanted the pressure at the edge of the week.'],
+  ['principle reasoned with', 'People tend to underestimate how long work takes, the planning fallacy, so a first number runs high.'],
+  ['three paragraphs', 'The week is the deadline.\n\nInside it, the person picks the order.\n\n' + Array(140).fill('word').join(' ') + '.'],
   ['parenthetical clause', 'Auto rescheduling looked easy to build, since the AI already schedules the week, and I declined it.'],
 ]) {
   const r = run(line, 2);
@@ -91,8 +93,9 @@ console.log(`${cleanOk ? 'ok  ' : 'FALSE ALARM'} clean control passes${cleanOk ?
 const shape = [
   ['essay, no blocks', run('The week is the deadline.\n\nInside it, the user picks the order.', 2, true), 'no "## " blocks'],
   ['block with no eyebrow', run('## 1\n\nHeadline: The week is the unit.\n\nThe week is the deadline.', 2, true), 'no Eyebrow: line'],
-  ['two body paragraphs', run('The week is the deadline.\n\nInside it, the user picks the order.'), 'body paragraphs, max 1'],
-  ['body over 70 words', run(Array(75).fill('word').join(' ')), 'max 70'],
+  ['four body paragraphs', run('The week is the deadline.\n\nInside it, the user picks the order.\n\nA third.\n\nA fourth.'), 'body paragraphs, max 3'],
+  ['paragraph over 150 words', run(Array(155).fill('word').join(' ')), 'max 150'],
+  ['body over 300 words', run([1,2,3].map(() => Array(110).fill('word').join(' ')).join('\n\n')), 'body 330 words, max 300'],
   ['label in copy', run('Label: This week'), 'is figure text'],
   ['caption in copy', run('Caption: Research points the same way.'), 'is figure text'],
   ['card with no title', run('Card: 01 | Locked past this week.'), 'label | title | body'],
@@ -102,8 +105,8 @@ const shape = [
   ['aside two sentences', run('One line.\n\nAside: Loss aversion | Drift that shows drives recovery. People hate losing.'), 'aside over 1 sentence'],
   ['aside too long', run('One line.\n\nAside: Loss aversion | ' + Array(30).fill('word').join(' ') + '.'), 'aside sentence over 25 words'],
   ['aside says used', run('One line.\n\nAside: Loss aversion | We used it to keep the date still.'), 'says the principle was used'],
-  ['principle in body', run('I kept the date still because of loss aversion.'), 'named outside the Aside: line'],
-  ['principle in card', run('One line.\n\nCard: Kept | Stable date | Planning fallacy made us cautious.'), 'named outside the Aside: line'],
+  ['principle as a tool in body', run('We used loss aversion to keep people on pace.'), 'names a principle as a tool used'],
+  ['principle as a tool in card', run('One line.\n\nCard: Kept | Stable date | I applied the planning fallacy here.'), 'names a principle as a tool used'],
   ['eyebrow repeats headline', run('## 1\n\nEyebrow: The closest products\n\nHeadline: The closest products each solved half of it.\n\nOne line.', 1, true), 'eyebrow repeats the headline'],
 ];
 for (const [label, r, expect] of shape) {

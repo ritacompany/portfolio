@@ -57,15 +57,18 @@ Shape:
 
 - First line `Section: N`. Then blocks, each starting `## Block N`.
 - Each block has an `Eyebrow:` line, a `Headline:` line that states the claim, optional `Card:` lines and
-  one body paragraph of at most 70 words.
+  up to three body paragraphs, each at most 150 words and 300 in all (24 Oct: he asked for long paragraphs
+  that carry the reasoning).
 - The eyebrow names the topic and never repeats the headline.
 - A headline runs 12 to 25 words, the length of his own: a full sentence, sometimes two, that says what the
   person needs or why the design does what it does. Never a short label.
 - `Card: label | title | body`. Label and title at most three words each, body at most two sentences.
 - No `Label:` or `Caption:` lines. Figure text is not copy.
-- `Aside: name | one sentence` carries the research behind a decision (his 25 Aug rule: decision in the body,
-  principle in a caption, never "we used loss aversion"). At most one per block, name at most four words, one
-  sentence of at most 25 words. A principle named anywhere else in the block fails the check.
+- `Aside: name | one sentence` can caption the research behind a decision. At most one per block, name at most
+  four words, one sentence of at most 25 words.
+- Motivation and UX principles may be reasoned with in the body (24 Oct, his ask), but never written as a tool
+  used, such as "we used loss aversion"; say what the principle means for people.
+- The sections are one story: name the thread before writing and open each section from the one before.
 
 Words:
 

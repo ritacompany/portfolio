@@ -2,15 +2,16 @@
 // Checks CS2 page copy against Chadwick's copy rules. Used by the copy guard hook and by hand.
 // Usage: node check-copy.mjs <copy-file> [--section N]
 // A copy file holds page copy only. Its first line is "Section: N". Lines inside <!-- --> are ignored.
-// Copy is written as blocks: each "## " block has an Eyebrow: line, a Headline: line and at most one body
-// paragraph of at most 70 words. Card: lines are text items set beside the body, not on a figure:
+// Copy is written as blocks: each "## " block has an Eyebrow: line, a Headline: line and up to three body
+// paragraphs, each at most 150 words and 300 in all (24 Oct: he asked for long paragraphs that carry the reasoning;
+// the old one paragraph, 70 word cap was holding it back). Card: lines are text items set beside the body, not on a figure:
 // "Card: label | title | body", label and title at most three words each, body at most two sentences.
 // Figure text (labels, captions) is not copy: it is written in the message plan once a figure is chosen,
 // so the copy never decides that a block has a figure. The eyebrow names the topic and never repeats the headline.
 // A headline runs 12 to 25 words, the length of his own.
-// Aside: lines carry the research behind a decision, as his 25 Aug CS2 docs ruled: the decision goes in the
-// body, the principle in an aside, never "we used loss aversion". "Aside: name | one sentence", at most one per
-// block, name at most four words, sentence at most 25 words. A principle named anywhere else in a block fails.
+// Aside: lines can carry the research behind a decision as a caption. "Aside: name | one sentence", at most one
+// per block, name at most four words, sentence at most 25 words. Since 24 Oct principles may be reasoned with in
+// the body (his ask: motivation and UX principles in the reasoning), but never as "we used loss aversion".
 // Prints CS2COPY_PASS and exits 0, or lists every violation and exits 1.
 import fs from 'node:fs';
 
@@ -96,8 +97,8 @@ for (const b of blocks) {
     if (parts[1].split(/[.?!](\s|$)/).filter(x => x && x.trim()).length > 1) problems.push(`block "${title.trim()}": aside over 1 sentence`);
     if (/\b(we|I) (used|applied|leaned on|drew on)\b/i.test(parts[1])) problems.push(`block "${title.trim()}": aside says the principle was used; state what it shows`);
   }
-  for (const line of b.split('\n').slice(1)) if (!/^Aside:/.test(line) && PRINCIPLES.test(line))
-    problems.push(`block "${title.trim()}": principle "${line.match(PRINCIPLES)[0]}" named outside the Aside: line`);
+  for (const line of b.split('\n').slice(1)) { const m = line.match(new RegExp(`\\b(?:we|I) (?:used|applied|leaned on|drew on|relied on) (?:the )?${PRINCIPLES.source.slice(2, -2)}`, 'i'));
+    if (m) problems.push(`block "${title.trim()}": "${m[0]}" names a principle as a tool used; say what it means for people`); }
   for (const m of b.matchAll(/^Card:\s*(.+)$/gm)) {
     const parts = m[1].split('|').map(x => x.trim());
     if (parts.length !== 3 || parts.some(x => !x)) { problems.push(`block "${title.trim()}": card needs "label | title | body"`); continue; }
@@ -107,8 +108,10 @@ for (const b of blocks) {
   }
   const paras = rest.join('\n').split(/\n\s*\n/).map(p => p.trim())
     .filter(p => p && !/^(Eyebrow|Headline|Label|Caption|Card|Aside):/.test(p));
-  if (paras.length > 1) problems.push(`block "${title.trim()}": ${paras.length} body paragraphs, max 1 (move detail into Card: lines)`);
-  for (const p of paras) { const w = p.split(/\s+/).length; if (w > 70) problems.push(`block "${title.trim()}": body ${w} words, max 70`); }
+  if (paras.length > 3) problems.push(`block "${title.trim()}": ${paras.length} body paragraphs, max 3`);
+  let total = 0;
+  for (const p of paras) { const w = p.split(/\s+/).length; total += w; if (w > 150) problems.push(`block "${title.trim()}": paragraph ${w} words, max 150`); }
+  if (total > 300) problems.push(`block "${title.trim()}": body ${total} words, max 300`);
 }
 
 if (problems.length) {

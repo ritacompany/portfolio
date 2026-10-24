@@ -21,16 +21,16 @@ Loop step: 4
 
 ## Where it stopped
 
-24 Oct: v4 of sections 7, 8, 9 and 11 is in reference/cs2/draft/CS2-v4-sections-7-8-9-11.md. It is v3 with the research behind each decision added, following his 25 Aug rule from the CS2 docs: the decision in the body, the principle in a caption. Copy takes that caption as one Aside: line per block, now checked by check-copy.mjs. Research run at decision time in the design chats (his learning app review, Motion, the rollover pattern research, the reset research he commissioned against his own lean, the capacity preview study he made an assistant justify) is told in the body as his thinking. The archive's principles, which it says were used to defend the framework in leadership syncs, sit in asides only: cognitive load theory, planning fallacy, goal gradient, undo over confirm. Loss aversion and Zeigarnik are left out. The private map is ~/Documents/CS2-research/reports/decision-research-map.md, beside the 23 Oct report.
+24 Oct, latest: he read v4 as formulaic (every block ran what, then why), thin in its reasoning, short in its bodies and without a thread joining the sections. v5 is in reference/cs2/draft/CS2-v5-sections-7-8-9-11.md: one story with its thread named in the header (a structure that holds when life does not go to plan, without making anyone feel behind, and honest about what it knows), each section opening from the one before, long paragraphs, and reasoning that goes into motivation and UX principles (Fogg, self determination theory, goal gradient, planning fallacy, status quo bias) beside the research run at decision time. check-copy.mjs now allows up to three paragraphs of 150 words (300 a block) and reasoned principles, and refuses a principle written as a tool used. The private map is ~/Documents/CS2-research/reports/decision-research-map.md, beside the 23 Oct report.
 
-reference/cs2/copy/ still holds the earlier rejected copy; v4 replaces it once he has read it and the block plans are rewritten and truth reviewed on his Mac.
+reference/cs2/copy/ still holds the earlier rejected copy; v5 replaces it once he has read it and the block plans are rewritten and truth reviewed on his Mac.
 
 Found while checking: earlier sessions committed quotations from his private record into this public repo (reference/cs2/reasoning/*.md, draft/CS2-section-1.md to 3, outline section plans quoting screen text, and his edited copy file). Nothing was removed; the files are in git history either way.
 
 ## Next action
 
-0. On his Mac: rewrite the block plans for sections 7, 8, 9 and 11 from draft/CS2-v4-sections-7-8-9-11.md, the private report and decision-research-map.md into reference/cs2/outline/section-7.md, 8, 9 and 11 (their claims rewritten as decision claims), pass check-truth and run the exact prompt truth reviews, then save the v4 copy into reference/cs2/copy/. Read live frames C2, D3, D4 and 2670:11674 first; they settle the window floor, passed times, the packed week and what is numbered on the Pathway page. Before that, rewrite ~/Documents/CS2-research/wip-frame.md from Figma (frame-changes-22oct.md) and add cognitive load to outline section 6.
-1. His read of the v4 copy, and his answers to the questions only he can answer (the private report lists 23).
+0. On his Mac: rewrite the block plans for sections 7, 8, 9 and 11 from draft/CS2-v5-sections-7-8-9-11.md, the private report and decision-research-map.md into reference/cs2/outline/section-7.md, 8, 9 and 11 (their claims rewritten as decision claims), pass check-truth and run the exact prompt truth reviews, then save the v5 copy into reference/cs2/copy/. Read live frames C2, D3, D4 and 2670:11674 first; they settle the window floor, passed times, the packed week and what is numbered on the Pathway page. Before that, rewrite ~/Documents/CS2-research/wip-frame.md from Figma (frame-changes-22oct.md) and add cognitive load to outline section 6.
+1. His read of the v5 copy, and his answers to the questions only he can answer (the private report lists 23).
 2. Dossiers for capacity (C3), cognitive load and get ahead (E1, E2) from the raw record; block plan and copy for section 10 after its truth review. Sections 5 and 6 are his own frame blocks and stay his.
 3. Story review for each section (loop step 5). My pick for it: cut the packed calendar fallback from section 7 block 3, since section 8 block 4 tells it again.
 4. Read the live Figma frames and later chats before asking him any product question. Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list titled Calendar sync failure with a Close button; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
@@ -54,7 +54,8 @@ Found while checking: earlier sessions committed quotations from his private rec
 
 Everything below is in this repo. His research and the live product flow map stay on his Mac (the repo is public), so work from these files and from the settled facts in Next action.
 
-- reference/cs2/draft/CS2-v4-sections-7-8-9-11.md: v4 of sections 7, 8, 9 and 11, v3 plus the research behind each decision in asides
+- reference/cs2/draft/CS2-v5-sections-7-8-9-11.md: v5 of sections 7, 8, 9 and 11, one connected story with the reasoning in full
+- reference/cs2/draft/CS2-v4-sections-7-8-9-11.md: v4, superseded
 - reference/cs2/draft/CS2-v3-sections-7-8-9-11.md: v3, superseded
 - reference/cs2/draft/CS2-v2-sections-7-8-9-11.md: v2, superseded
 - reference/cs2/draft/CS2-voice-pass-22oct.md: the earlier voice pass draft for sections 7, 8, 9 and 11, with every change to his text before and after; the copy files match it
