@@ -38,6 +38,7 @@ Found while checking: earlier sessions committed quotations from his private rec
 ## Decided in chat, not yet in files
 
 - His frame blocks 1 to 6 are his own text in Figma and stay his (the older copy/section-1.md and section-2.md are pre-restart drafts, not his frame; ignore them). Sections 7, 8, 11 copy is new. 22 Oct: he wants the Background block redone with more clarity (draft in reference/cs2/draft/CS2-background-v2.md, his text untouched); Saturday night deadlines stays; the hierarchy comes after the competitive analysis in his order.
+- 24 Oct: no streak. His words: "We are not using a streak." The start of week dossier's open streak question is closed, and no CS2 copy may describe a streak. The Mondai archive's Clean state line ("Streak intact where applicable") conflicts and is unchanged until he approves an edit there.
 
 ## Open questions for Chadwick
 
