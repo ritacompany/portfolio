@@ -19,4 +19,4 @@ Scope: replace the rejected cut-based studies with coherent close refinements of
 - [x] G5: The source stays byte-identical, delivered SVGs are valid and the comparison references the current files.
   CHECK: node prototypes/cw-logo-exploration/verify.mjs
   EXPECT: CW vector verification passed
-  EVIDENCE: Direct inspection and execution of verify.mjs returned CW vector verification passed with exit code 0. It checked the original SHA256, parsed all SVGs, rejected mask and clipPath elements, checked current references and inspected preview.png dimensions.
+  EVIDENCE: Direct inspection and execution of verify.mjs through /bin/zsh in /Users/chadwickfenner/Code/portfolio returned exit 0 and matched CW vector verification passed. Combined output SHA256: 20247be865652317c2bc5bd3c7b5a840f93e4edf0940bca798209b47fffd5165. The script checked the original SHA256, parsed all SVGs, rejected mask and clipPath elements, checked current references and inspected preview.png dimensions.
