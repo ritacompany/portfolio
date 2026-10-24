@@ -8,8 +8,8 @@ His 25 Aug CS2 docs set the rule this follows: the decision goes in the body and
 
 The research comes in two kinds, kept apart (private map: ~/Documents/CS2-research/reports/decision-research-map.md, with the 23 Oct report's research table):
 
-- Research run at decision time in the design chats: his learning app review, Linear, Motion, the rollover pattern research he weighed, the reset research he commissioned against his own lean, and the capacity preview study he made an assistant justify. The body tells these as his thinking.
-- The principles the archive says were used to defend the framework in leadership syncs: planning fallacy and goal gradient. They sit in asides beside the decision they fit, and are never told as the reason at the time. Left out: loss aversion, which clashes with his own reason for the weekly pace; Zeigarnik, which has no support left; cognitive load theory, which is about working memory, not hours; undo over confirm, since the product shows no undo there.
+- Research and precedents at decision time: his learning app review, Linear, Motion, the rollover pattern research he weighed, the reset research he commissioned against his own lean, and the capacity preview study he made an assistant justify. The body and its asides tell these as his thinking.
+- The principles the archive says were used to defend the framework in leadership syncs: planning fallacy and goal gradient. They sit in asides beside the decision they fit, and are never told as the reason at the time. Left out: loss aversion, which clashes with his own reason for the weekly pace; Zeigarnik, which has no support left; cognitive load theory, which is about working memory, not hours; undo over confirm, since no source shows an undo on the recap.
 
 Nothing here quotes his private record; every line is paraphrase, checked by script.
 
@@ -89,7 +89,7 @@ Eyebrow: Calendar as an assistant
 
 Headline: Calendar integration was in the plan before the framework existed, and I argued that the week had to work without it.
 
-People schedule their lives in very different ways: a predictable stretch of life needs no calendar, a chaotic one depends on it. Tying every Action Item to a calendar would recreate the rigid structure of traditional education. My review of learning apps showed that even the more structured ones let people work at their own pace. The week became the commitment, and the calendar an assistant to it.
+People schedule their lives in very different ways: a predictable stretch of life needs no calendar, another stretch depends on it. Tying every Action Item to a calendar would feel like the rigid structure of traditional education. My review of learning apps showed that even the more structured ones let people work at their own pace. The week became the commitment, and the calendar an assistant to it.
 
 Aside: CareerFoundry | From my own experience, it gave structure while still allowing flexibility.
 
@@ -117,7 +117,7 @@ Headline: A calendar gives each Action Item a time, but the week has one deadlin
 
 I wrote the research brief myself: the evidence first, then comparable products and what we know about people, and only then the interface. Auto rescheduling looked easy to build, since the AI already schedules the week, and I declined it because times moving on their own would confuse people fast. A passed time simply leaves the card, since an item is only late when the week ends.
 
-Aside: Motion | It moves a missed task to the next open slot on its own; it came up in my research, and I turned it down.
+Aside: Motion | It moves a missed task to the next open slot by itself; it came up in research I asked for, and I declined it.
 
 ## Block 5
 
