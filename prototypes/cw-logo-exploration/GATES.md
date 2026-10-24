@@ -1,17 +1,22 @@
-# Gates: CW logo exploration
+# Gates: CW mark revision
 
 OWNS: prototypes/cw-logo-exploration/**
 
-Scope: explore close alternatives to Chadwick's existing CW mark and make them reviewable at header and enlarged sizes.
+Scope: replace the rejected cut-based studies with coherent close refinements of the original CW mark.
 
-- [x] G1: The original mark is preserved for comparison and the supplied SVG's visible bounds are measured accurately.
-  EVIDENCE: `cmp` confirms the copied SVG is byte-for-byte identical. Analytic cubic bounds are x 0 to 911.38 and y 0 to 270.14 inside the 912 by 271 viewBox. The README correctly calls it tight, not clipped.
+- [x] G1: The revision states a consistent shape rule for each direction and explains the specific failure of the rejected studies.
+  EVIDENCE: DESIGN.md records the mask failure and the three complete shape systems.
 
-- [x] G2: Three distinct vector alternatives retain the recognisable CW gesture while addressing the long C sweep and soft terminals in different ways.
-  EVIDENCE: Each SVG rendered in the macOS SVG rasterizer and was reviewed at large size. 01 tightens the C and cuts its opening, 02 adds a separate angled join and 03 shortens the W tail with two cut ends. All keep the original C bowl and W valleys.
+- [x] G2: Each delivered mark reshapes both the C and W, keeps the recognizable gesture and has no arbitrary cut masks or isolated terminal tricks.
+  EVIDENCE: 01-taut.svg, 02-soft-square.svg and 03-balanced.svg are new full-length paths. Visual review in preview.png shows the CW gesture in all three; verify.mjs rejects mask and clipPath elements.
 
-- [x] G3: The comparison deliverables present the original and every alternative at header and enlarged sizes without distorting their proportions.
-  EVIDENCE: The 1600 by 1060 preview was visually reviewed with 48 pixel header marks and larger marks. The HTML specifies widths of 48, 160 and up to 490 pixels with automatic height. All referenced assets exist and all five SVG files parse as XML.
+- [x] G3: The delivered marks are compared with the source at header, medium and enlarged scales. The visual review explicitly checks legibility, stroke rhythm, corner consistency and large-scale silhouette.
+  EVIDENCE: comparison.html displays every mark at 48, 160 and 490 pixels. DESIGN.md records a scale review for legibility, rhythm, corners and silhouette; preview.png was visually inspected.
 
-- [x] G4: The exploration recommends one direction with concrete visual reasons and states what Chadwick would need to decide before adoption.
-  EVIDENCE: The comparison page recommends 01 for its shorter C reach, single sharper edge and preserved continuous gesture. It frames the remaining choice as continuous movement versus a more literal two-letter reading.
+- [x] G4: The final critique rejects any weak sketch and recommends a direction only if it improves the original at the sizes Chadwick wants.
+  EVIDENCE: DESIGN.md rejects the brush sketch after the large-scale view revealed a self-intersection, then compares the surviving directions and recommends Soft square with its header and large-scale tradeoffs.
+
+- [x] G5: The source stays byte-identical, delivered SVGs are valid and the comparison references the current files.
+  CHECK: node prototypes/cw-logo-exploration/verify.mjs
+  EXPECT: CW vector verification passed
+  EVIDENCE: Direct inspection and execution of verify.mjs returned CW vector verification passed with exit code 0. It checked the original SHA256, parsed all SVGs, rejected mask and clipPath elements, checked current references and inspected preview.png dimensions.
