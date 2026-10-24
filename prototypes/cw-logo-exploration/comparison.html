@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CW mark exploration</title>
+  <style>
+    @font-face {
+      font-family: Satoshi;
+      src: url('../homepage-foundations/fonts/satoshi-400.woff2') format('woff2');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: Satoshi;
+      src: url('../homepage-foundations/fonts/satoshi-700.woff2') format('woff2');
+      font-weight: 700;
+    }
+    * { box-sizing: border-box; }
+    html { background: #101013; }
+    body {
+      margin: 0;
+      color: #eeecf0;
+      background: #101013;
+      font-family: Satoshi, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 1440px; margin: 0 auto; padding: 44px clamp(22px, 5vw, 80px) 100px; }
+    .eyebrow { color: #aaa9b0; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { max-width: 950px; margin: 30px 0 16px; font-size: clamp(44px, 6.4vw, 92px); line-height: 1.02; letter-spacing: -.055em; font-weight: 400; }
+    .intro { max-width: 660px; color: #bbb9c1; font-size: clamp(17px, 2vw, 21px); line-height: 1.5; }
+    .diagnosis { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 56px 0 60px; }
+    .diagnosis article { min-height: 290px; padding: 30px; border: 1px solid #3a3940; background: #19191e; }
+    .diagnosis img { width: min(100%, 360px); height: 130px; object-fit: contain; object-position: left center; }
+    .diagnosis h2 { margin: 22px 0 8px; font-size: 18px; font-weight: 700; }
+    .diagnosis p { max-width: 460px; margin: 0; color: #aaa9b0; font-size: 15px; line-height: 1.5; }
+    .section-head { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 16px; border-bottom: 1px solid #4b4a50; padding-bottom: 20px; }
+    .section-head h2 { margin: 0; font-size: clamp(28px, 3.4vw, 44px); font-weight: 400; letter-spacing: -.035em; }
+    .section-head p { margin: 0; color: #aaa9b0; font-size: 13px; }
+    .row { padding: 32px 0 42px; border-bottom: 1px solid #333239; }
+    .row-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 15px; margin-bottom: 25px; }
+    .index { font-size: 13px; color: #aaa9b0; font-variant-numeric: tabular-nums; }
+    h3 { margin: 0; font-size: 27px; font-weight: 400; letter-spacing: -.025em; }
+    .pick { border: 1px solid #dddbe2; border-radius: 99px; padding: 6px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
+    .previews { display: grid; grid-template-columns: minmax(230px, 1fr) minmax(220px, 1fr) minmax(400px, 1.9fr); gap: 12px; }
+    .preview { position: relative; min-height: 240px; padding: 22px; background: #1b1b21; border: 1px solid #303037; overflow: hidden; }
+    .preview.large { min-height: 300px; }
+    .scale { display: block; margin-bottom: 26px; color: #88878f; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; }
+    .navigation { display: flex; align-items: center; gap: 40px; margin-top: 7px; }
+    .navigation img { display: block; width: 48px; height: auto; }
+    .navigation span { color: #bbb9c1; font-size: 12px; white-space: nowrap; }
+    .medium img { display: block; width: 160px; max-width: 100%; height: auto; margin-top: 30px; }
+    .large img { display: block; width: min(100%, 490px); height: auto; margin: 14px auto 0; }
+    .row-note { max-width: 800px; margin: 20px 0 0; color: #aaa9b0; font-size: 16px; line-height: 1.5; }
+    .recommendation { margin-top: 58px; padding: 34px; background: #dedee5; color: #17171b; }
+    .recommendation span { color: #55545c; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+    .recommendation h2 { margin: 15px 0; font-size: clamp(30px, 4vw, 50px); font-weight: 400; letter-spacing: -.04em; }
+    .recommendation p { max-width: 750px; margin: 0; font-size: 18px; line-height: 1.5; }
+    @media (max-width: 1000px) {
+      .previews { grid-template-columns: 1fr 1fr; }
+      .preview.large { grid-column: 1 / -1; }
+    }
+    @media (max-width: 620px) {
+      main { padding-top: 28px; }
+      .diagnosis, .previews { grid-template-columns: 1fr; }
+      .diagnosis article { min-height: 240px; }
+      .preview.large { grid-column: auto; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 8px; }
+      .preview { min-height: 200px; }
+      .preview.large { min-height: 250px; }
+      .navigation { gap: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">L3 exploration / CW mark</div>
+    <h1>Keep the gesture.<br>Give it a firmer edge.</h1>
+    <p class="intro">Three close edits to the existing mark. Each keeps the C bowl, the rising connection and the two W valleys. The comparison uses the mark's current pale gray fill.</p>
+
+    <section class="diagnosis" aria-label="Original SVG diagnosis">
+      <article>
+        <img src="original.svg" alt="Original CW mark in its supplied SVG crop">
+        <h2>Supplied file</h2>
+        <p>The path is intact, but it comes within about one SVG unit of the right and bottom edges. The export has almost no built-in padding.</p>
+      </article>
+      <article>
+        <img src="original-padded.svg" alt="Same original path with more space around it">
+        <h2>Same path, room to breathe</h2>
+        <p>Only the canvas changes here. This separates the tight export framing from the shape questions: C length and terminal softness.</p>
+      </article>
+    </section>
+
+    <div class="section-head">
+      <h2>Four marks, three scales</h2>
+      <p>48 px header / 160 px / large</p>
+    </div>
+
+    <section class="row" aria-labelledby="source-title">
+      <div class="row-title"><span class="index">00</span><h3 id="source-title">Original</h3></div>
+      <div class="previews">
+        <div class="preview"><span class="scale">Header / 48 px</span><div class="navigation"><img src="original.svg" alt="Original mark at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="preview medium"><span class="scale">Medium / 160 px</span><img src="original.svg" alt="Original mark at medium size"></div>
+        <div class="preview large"><span class="scale">Large / 490 px</span><img src="original.svg" alt="Original mark enlarged"></div>
+      </div>
+      <p class="row-note">The generous C sweep is the signature. Its long climb and rounded ends feel softer once the mark becomes a graphic rather than a small nav detail.</p>
+    </section>
+
+    <section class="row" aria-labelledby="tight-title">
+      <div class="row-title"><span class="index">01</span><h3 id="tight-title">Tightened sweep</h3><span class="pick">Recommended</span></div>
+      <div class="previews">
+        <div class="preview"><span class="scale">Header / 48 px</span><div class="navigation"><img src="01-tightened.svg" alt="Tightened sweep at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="preview medium"><span class="scale">Medium / 160 px</span><img src="01-tightened.svg" alt="Tightened sweep at medium size"></div>
+        <div class="preview large"><span class="scale">Large / 490 px</span><img src="01-tightened.svg" alt="Tightened sweep enlarged"></div>
+      </div>
+      <p class="row-note">The C climb is compressed and its opening gets one angled cut. The W retains its softer, handwritten finish, so the edit has a point of tension without making every turn sharp.</p>
+    </section>
+
+    <section class="row" aria-labelledby="open-title">
+      <div class="row-title"><span class="index">02</span><h3 id="open-title">Open join</h3></div>
+      <div class="previews">
+        <div class="preview"><span class="scale">Header / 48 px</span><div class="navigation"><img src="02-open-join.svg" alt="Open join at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="preview medium"><span class="scale">Medium / 160 px</span><img src="02-open-join.svg" alt="Open join at medium size"></div>
+        <div class="preview large"><span class="scale">Large / 490 px</span><img src="02-open-join.svg" alt="Open join enlarged"></div>
+      </div>
+      <p class="row-note">A clean diagonal gap turns the continuous stroke into two parts. It makes the CW reading more explicit at medium size, though the gap becomes a small nick in the header.</p>
+    </section>
+
+    <section class="row" aria-labelledby="stop-title">
+      <div class="row-title"><span class="index">03</span><h3 id="stop-title">Hard stops</h3></div>
+      <div class="previews">
+        <div class="preview"><span class="scale">Header / 48 px</span><div class="navigation"><img src="03-chiseled.svg" alt="Hard stops at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="preview medium"><span class="scale">Medium / 160 px</span><img src="03-chiseled.svg" alt="Hard stops at medium size"></div>
+        <div class="preview large"><span class="scale">Large / 490 px</span><img src="03-chiseled.svg" alt="Hard stops enlarged"></div>
+      </div>
+      <p class="row-note">Both ends stop on angled edges and the W tail is shorter. This has the firmest large silhouette, but the final upstroke loses some of the original flourish.</p>
+    </section>
+
+    <section class="recommendation">
+      <span>Recommendation</span>
+      <h2>Start with 01.</h2>
+      <p>The decision is whether this should stay one continuous gesture or read as two distinct letters. I recommend the continuous gesture: 01 fixes the C's reach and adds one sharp edge without losing what works in the header. Choose 02 if a more literal CW reading matters more.</p>
+    </section>
+  </main>
+</body>
+</html>
