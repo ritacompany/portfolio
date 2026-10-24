@@ -4,7 +4,7 @@ Status: drafted for his read. v3 with the research behind each decision added. R
 
 ## What changed from v3
 
-His 25 Aug CS2 docs set the rule this follows: the decision goes in the body and the research in a caption, never "we used loss aversion". Copy files take that caption as one checked Aside: line per block (check-copy.mjs).
+His 25 Aug CS2 docs set the rule this follows: the decision goes in the body and the principle in a caption, never "we used loss aversion". Copy files take that caption as one checked Aside: line per block (check-copy.mjs), and v4 extends it to the precedents behind a decision (Linear, CareerFoundry, Motion).
 
 The research comes in two kinds, kept apart (private map: ~/Documents/CS2-research/reports/decision-research-map.md, with the 23 Oct report's research table):
 
@@ -62,7 +62,7 @@ Eyebrow: Changing capacity
 
 Headline: Capacity is changed from the Growth Journey, beside the end date it moves, rather than only from a settings page.
 
-Card: Audited | Live preview | An assistant backed dates that move on every keystroke with a study, and when I asked what it measured, the answer was graded feedback on learning. I built three preview modes to compare, and updating on a button press won.
+Card: Audited | Live preview | An assistant backed dates that move on every keystroke with a study, and when I asked what it measured, the answer was graded feedback on learning. Three preview modes were built to compare, and updating on a button press won.
 
 Capacity's impact is at journey level, so I put the control where that date lives, and agreed settings needed a place for it too. A change applies from the following week, with a quiet link to apply it now. I treated a little friction there as healthy, the kind of anxiety that is productive rather than something to design away.
 
@@ -91,7 +91,7 @@ Headline: Calendar integration was in the plan before the framework existed, and
 
 People schedule their lives in very different ways: a predictable stretch of life needs no calendar, a chaotic one depends on it. Tying every Action Item to a calendar would recreate the rigid structure of traditional education. My review of learning apps showed that even the more structured ones let people work at their own pace. The week became the commitment, and the calendar an assistant to it.
 
-Aside: CareerFoundry | The clearest case in that review, structured enough to guide and flexible enough to fit a working life.
+Aside: CareerFoundry | From my own experience, it gave structure while still allowing flexibility.
 
 ## Block 2
 
@@ -117,7 +117,7 @@ Headline: A calendar gives each Action Item a time, but the week has one deadlin
 
 I wrote the research brief myself: the evidence first, then comparable products and what we know about people, and only then the interface. Auto rescheduling looked easy to build, since the AI already schedules the week, and I declined it because times moving on their own would confuse people fast. A passed time simply leaves the card, since an item is only late when the week ends.
 
-Aside: Motion | The closest precedent moves a missed task into the next free slot on its own, the pattern I checked and turned down.
+Aside: Motion | It moves a missed task to the next open slot on its own; it came up in my research, and I turned it down.
 
 ## Block 5
 
@@ -170,7 +170,7 @@ Eyebrow: Opening the week
 
 Headline: Automatic could not mean silent, so the week opens on a recap of where the person stands, mirroring the screen that ends a week.
 
-The rollover research I weighed found one pattern: the system does the work, then shows what it did. So the recap orients rather than asks, and leftovers simply appear in the new week. I stopped calling it the Sunday flow when the name kept producing a wrong rule, that someone joining on a Wednesday should wait for Sunday. It opens whatever week a person is in.
+The rollover research I weighed found one pattern: the system does the work, shows what it did and offers a way to change it. The recap orients rather than asks, and leftovers simply appear in the new week. I stopped calling it the Sunday flow when the name kept producing a wrong rule: someone joining on a Wednesday would wait for Sunday. It opens whatever week a person is in.
 
 ## Block 5
 
@@ -184,7 +184,7 @@ Card: Catching up | Earned movement | I ruled that finishing exactly the week's 
 
 As variants grew past a dozen, I pruned them to keep the MVP buildable.
 
-Aside: Goal gradient | People speed up as they see the distance to a goal close, so the closing has to be visible.
+Aside: Goal gradient | People tend to speed up as a goal gets closer.
 
 ## Block 6
 
@@ -194,7 +194,7 @@ Headline: After weeks of falling short, the product reads back what a person act
 
 My first version let people type any number right on the screen, which lost the sense of a recommendation backed by reasoning. I reframed it: show their own weekly average, then recommend less work. It only lowers, because nobody behind should be invited to set a capacity they already cannot meet. Declining is allowed, but it carries a warning.
 
-Aside: Planning fallacy | People tend to underestimate how long work takes, so a capacity declared on day one often starts too high.
+Aside: Planning fallacy | People tend to underestimate how long work takes and overestimate the time they will have.
 
 ## Block 7
 
