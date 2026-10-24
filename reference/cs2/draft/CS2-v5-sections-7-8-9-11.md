@@ -30,9 +30,9 @@ Eyebrow: Where the week lives
 
 Headline: With the week as the unit, the next question was where that week should live and what a person sees first.
 
-The tension running through this framework was set in the first sections. The founder championed structure, while our users are making their way into tech around lives that are already full, where some weeks go well and some do not. Early on I had written down the risk that a product like this can open one more place to feel behind. Holding both sides of that tension is the job of every screen that follows.
+The founder championed structure, while our users are making their way into tech around lives that are already full, where some weeks go well and some do not. Early on I had written down the risk that a product like this can open one more place to feel behind. Holding both sides of that tension is the job of every screen that follows.
 
-The home screen was the first test. The brief I inherited asked for a dashboard with an overview, progress at a glance and shortcuts, and for a journey that can run for years a dashboard mostly shows a person how much road is left. I made the Action Hub open straight onto this week's Action Items, the way Linear lands on the work in front of you. Near goals tend to motivate more when a farther one stays visible, because progress on them shows up often enough to feel, so the rail keeps the Pathway target beside the week. The Saturday night deadline already gave the week a real edge.
+The home screen was the first test. The brief I inherited asked for a dashboard with an overview, progress at a glance and shortcuts, and for a journey that can run for years a dashboard mostly shows a person how much road is left. I made the Action Hub open straight onto this week's Action Items, the way Linear lands on the work in front of you. Near goals tend to motivate more when a farther one stays visible, because progress on them shows up often enough to feel. A rail beside the week keeps the Pathway target in view, because the weekly adjustments need something to anchor to. The Saturday night deadline already gave the week a real edge.
 
 The long view still mattered, so it got its own page, the Growth Journey. Looking further down the route is something a person does now and then, and keeping it apart left the Action Hub as the place for getting work done. One page for doing and another for looking became a line I kept coming back to.
 
@@ -58,9 +58,9 @@ Card: Rejected | Under construction | A page saying it was still being built. It
 Card: Rejected | Lockout | Blocking the product until a career was chosen. A guide points to the next step.
 Card: Chosen | Quiz first | A minimal empty state that leads with the quiz, with Linear and Notion as precedent.
 
-People who registered through events had never taken the career quiz, so they would land in a product with no week to work on, and nobody had designed for them. I expected the founder to want the sidebar kept before a career was chosen, though I had never been given a reason. Keeping it came at a price, some filtering options on the resources page, so I planned to put both options to the founder as a suggestion based on evidence and not a decision already made. A week later the answer came back that the sidebar had to stay.
+People who registered through events had never taken the career quiz, so they would land in a product with no week to work on, and nobody had designed for them. I expected the founder to want the sidebar kept before a career was chosen, though nobody had told me why. Keeping it came at a price, some filtering options on the resources page, so I planned to put both options to the founder as a suggestion based on evidence and not a decision already made. A week later the founder said the sidebar had to stay.
 
-So the empty Action Hub had to do the guiding. A lockout would have been structure at its bluntest. The empty state leads with the quiz instead, because choosing a career is the priority and it is what gives the Action Hub a week to show. Linear and Notion both keep a minimal page like this until there is something to put on it.
+So the empty Action Hub had to do the guiding. A lockout would have been structure at its bluntest. The empty state leads with the quiz instead, because choosing a career is the priority and it is what gives the Action Hub a week to show. I pointed to Linear and Notion as precedent for a minimal page like this.
 
 ## Block 4
 
@@ -78,7 +78,7 @@ The capacity screen previews the new dates when the person presses a button. An 
 
 Eyebrow: Teaching in place
 
-Headline: Onboarding was already long. Adding more steps is the lazy fix, so the first visit to the Action Hub carries the teaching.
+Headline: Onboarding was already long, so the first visit to the Action Hub carries the teaching that more steps would have.
 
 The quiz alone was long, and tips for the Growth Journey and the Action Hub were about to pile on top of it. Every extra step is another place for someone to leave before they have done anything. The calendar, availability and capacity screens run the first time a person enters the Action Hub, as setup for the feature they are about to use, and people learn the rest by using the week.
 
@@ -99,7 +99,7 @@ Eyebrow: Calendar as an assistant
 
 Headline: Calendar integration was planned before the framework existed, and I argued that the week had to work without a calendar at all.
 
-A calendar is the most structured thing a product can hold someone to, and the push for it came from the same wish for structure. I agreed structure was required. What I pushed on was how much people vary in how they schedule their lives. At the time my own schedule was predictable enough that I would not have needed a calendar to plan around, and at other times in my life one had been essential. Tying every Action Item to a calendar slot would feel like the rigid structure of traditional education, which Mondai exists as an alternative to.
+The calendar was among the founder's first ideas for the product, meant to help people fit a tech career into a busy life. I agreed structure was required. What I pushed on was how much people vary in how they schedule their lives. At the time my own schedule was predictable enough that I would not have needed a calendar to plan around, and at other times in my life one had been essential. Tying every Action Item to a calendar slot would feel like the rigid structure of traditional education, which Mondai exists as an alternative to.
 
 My review of learning apps backed this up. Even the more structured ones let people work at their own pace, and CareerFoundry, which I knew from my own experience, gave structure while still allowing flexibility. Self determination theory explains why that balance holds. People stay with something when they feel they chose how to do it, and a schedule imposed from outside wears that feeling down.
 
@@ -131,11 +131,11 @@ Eyebrow: Suggested times
 
 Headline: A calendar gives each Action Item a time, while the week has one deadline. Those two clocks had to be reconciled before anything was drawn.
 
-A synced Action Item gets a time from the person's calendar, and that time lives outside the weekly framework, while everything is still due at the end of the week. I wrote the research brief for this myself, in order: what the research says, what comparable products do, what we know about people from psychology, UX and sociology, how those products handle the interface and only then our own interface.
+A synced Action Item gets a time from the person's calendar, and that time lives outside the weekly framework, while everything is still due at the end of the week. I wrote the research brief for this myself and put our own interface last, after the research, comparable products and what psychology, UX and sociology say about people.
 
 Motion came up in the research. It moves a missed task to the next open slot on its own. Auto rescheduling looked easy for us to build as well, since the AI already schedules the week, and I declined it because times that move by themselves get confusing fast. When a time passes, it leaves the card and the reschedule icon stays, so the person can choose a new time whenever they want.
 
-Nothing marks the Action Item as late. The system cannot see whether someone did the work at 3pm or at 9pm, and it should not pretend to know. Lateness is decided once, when the week ends, so a scheduled time is help and not a due date.
+Nothing marks the Action Item as late. The system cannot see whether someone did the work at 3pm or at 9pm, and it should not pretend to know. Lateness is decided once, when the week ends, so a scheduled time stays a suggestion.
 
 ## Block 5
 
@@ -143,7 +143,7 @@ Eyebrow: A packed week
 
 Headline: When a calendar is too full to place the week, the times come off and the person works from the plain list.
 
-An AI assistant offered two routes for a packed week, adjusting availability in settings or switching to a manual mode for that week. A manual mode would cost a lot of design for a rare case in an MVP. Because the week was built to work without the calendar, a packed week drops to the same plain list people without a calendar use, with its deadline at the end of the week. Whether the whole week falls back or only the items that cannot be placed is still open.
+An AI assistant offered two routes for a packed week, adjusting availability in settings or switching to a manual mode for that week. A manual mode would cost a lot of design for a rare case in an MVP. So in place of a manual mode, a packed week drops to the same plain list people without a calendar use, with its deadline at the end of the week. Whether the whole week falls back or only the items that cannot be placed is still open.
 
 <!-- end copy:8 -->
 
@@ -180,7 +180,7 @@ Silently moving leftovers into next week looked like the easy way to automate it
 
 Eyebrow: Sizing the week
 
-Headline: This is where capacity came from. Sizing each week to the hours a person declared let a leftover fit inside next week.
+Headline: Capacity was born here, sizing each week to the hours a person declared so a leftover fits inside next week.
 
 Each Action Item carries its own cognitive load, and once I treated load as belonging to items, the week could be assembled to fit. Capacity, the hours a person says they can give each week, was the number that made that possible. If a week never exceeds that number, a leftover takes the place of new work and the week still fits. Carrying work forward stops being an ambush, the flex points had nothing left to do and I dropped them.
 
@@ -192,7 +192,7 @@ Eyebrow: Opening the week
 
 Headline: Automatic could not mean silent, so the week opens on a recap that mirrors the screen people see when they finish a week early.
 
-Taking the decision away from people cost them some control, and they needed to see what the system had done for them. I already had a screen for finishing a week early and asked whether people should get a similar recap when a week begins. Rollover research that session, covering Motion, Sunsama, Duolingo and default bias, found one pattern, where the system does the work, shows what it did and offers a way to change it.
+Taking the decision away from people cost them some control, and they needed to see what the system had done for them. I already had a screen for finishing a week early and asked whether people should get a similar recap when a week begins. Rollover research from the same conversation, on Motion, Sunsama, Duolingo and default bias, found one pattern, in which the system does the work, shows what it did and offers a way to change it.
 
 The recap orients first and asks only when the plan has to change. Where the person stands sits at the top with last week folded in, and leftovers appear in the new week. Because the pace moves once a week, this is also where people see it change. The week runs Sunday to Saturday, and I stopped calling this the Sunday flow when the name kept leading to a wrong rule, that someone joining on a Wednesday would have to wait for Sunday. It opens whatever week a person is in, with fewer Action Items mid week.
 
@@ -206,7 +206,7 @@ Card: Clean slate | Nothing missed | A clean slate only means something if no da
 Card: Rollover | Coach not parent | I rejected headlines that would make people feel bad and matched the tone of the screens for finishing early.
 Card: Catching up | Earned movement | I ruled that finishing exactly the week's items is not catching up. Catching up should show how much of the gap closed.
 
-Five was not planned as a set. I started with three, added the others as cases came up and added reset last, ending with clean slate, catching up, rollover, recalibration and reset. Copy and content variants inside them passed a dozen, which made me nervous about the MVP timeline, and I pruned the ones that could not exist.
+Five was not planned as a set. I started with three, added the others as cases came up and added reset last, ending with clean slate, catching up, rollover, recalibration and reset. Copy and content variants inside them passed a dozen, which made me nervous about the MVP timeline, and I pruned the combinations that could not actually happen.
 
 In self determination theory, people keep at something when they feel competent and in control, and a screen that scolds them after a bad week takes both away. The rollover headline stays neutral, and I chose magenta for it because it is not an alert color and feels softer against the green and black of the interface. Catching up has to be earned, because finishing exactly the week's items closes no gap. People also tend to speed up as they see a goal getting closer, so the catching up screen shows how much of the gap closed.
 
@@ -214,7 +214,7 @@ In self determination theory, people keep at something when they feel competent 
 
 Eyebrow: Recalibration
 
-Headline: Rollover can only stay honest for so long. After weeks of falling short, the product reads back what a person actually does.
+Headline: After weeks of falling short, the product reads back what a person actually does and recommends a lower capacity.
 
 After weeks of slipping, carrying work forward hides the fact that the plan no longer fits the person. People tend to underestimate how long work takes, the planning fallacy, so a capacity declared on day one is partly a guess. Recalibration is where the product finally uses what it has seen.
 
@@ -228,9 +228,9 @@ Eyebrow: Reset
 
 Headline: For someone returning after weeks away, I leaned toward rebuilding their week without asking. Then I asked for research that could prove me wrong.
 
-I leaned toward doing it for them, saving their progress and rebuilding the week from today, because keeping the old plan would make catching up really difficult. An AI assistant argued for keeping the choice so the system could show humility, and I rejected that as having no backing. Autonomy is the stronger case for a choice, the same reasoning behind the calendar, so I wanted my lean checked before it shipped. I asked the assistant for research and told it not to just find things that support me.
+I leaned toward doing it for them, saving their progress and rebuilding the week from today, because keeping the old plan would make catching up really difficult. An AI assistant argued for keeping the choice so the system could show humility, and I rejected that as having no backing. I wanted my lean checked before it shipped, so I asked the assistant for research and told it not to just find things that support me.
 
-Offered a choice, people disproportionately keep the option they already have, so a button to keep the old plan would win by inertia and leave someone with a schedule built for weeks that are gone. The research also pointed to habit studies on friction at the moment of coming back. For someone returning, a choice mostly offers the freedom to keep a plan that no longer works. Progress is saved and the week is rebuilt from today in one step, and an undo as a middle path is still open. I also changed the wording, because saying everything restarts from today made the saved progress look like a lie.
+Self determination theory makes the strongest case for a choice, since someone who finds their week rebuilt without asking can feel the product took over just when control matters most. Against that, people offered a choice disproportionately keep the option they already have, so a button to keep the old plan would win by inertia and leave someone with a schedule built for weeks that are gone. The research also pointed to habit studies on friction at the moment of coming back. For someone returning, a choice mostly offers the freedom to keep a plan that no longer works. Progress is saved and the week is rebuilt from today in one step. An undo would answer the cost to control, and it is still open. I also changed the wording, because saying everything restarts from today made the saved progress look like a lie.
 
 <!-- end copy:9 -->
 
@@ -247,15 +247,15 @@ Eyebrow: Two pages
 
 Headline: After the week has handled what happens now, a person still needs to see where this week sits in the whole route.
 
-Rollover, recalibration and reset all look back at weeks that have happened. Everything ahead, the rest of the curriculum, still needed a home. When the founder could not tell which page they were on, I answered that the page sorts the hierarchy into a framework someone can use. To make that hierarchy visible, I split the long view into two pages, a Growth Journey overview people land on and a Pathway page for learning one Pathway at a time.
+Rollover, recalibration and reset all look back at weeks that have happened. Everything ahead, the rest of the curriculum, still needed a home. When the founder could not tell which page they were on, I answered that its job is to sort the hierarchy into a framework someone can use. Two weeks later I settled on two pages, a Growth Journey overview people land on and a Pathway page for learning one Pathway at a time.
 
-When the overview drafts kept turning into a second Pathway page, I started over. The only difference between them was that one listed Action Items, so the overview had no job of its own. Its job became the whole route and how the person's own answers shaped it. Progress is not changed on either page; that happens in the Action Hub or inside an Action Item, so apart from capacity, which is the person's own setting, these pages stay places for looking.
+When the overview drafts kept turning into a second Pathway page, I started over. The only difference between them was that one listed Action Items, so the overview had no job of its own. Its job became the whole route and how the person's own answers shaped it. Progress is not changed on either page; that happens in the Action Hub or inside an Action Item. Apart from capacity, which is the person's own setting, these pages stay places for looking.
 
 ## Block 2
 
 Eyebrow: Below the Pathway
 
-Headline: Focus Areas began as a tag for sorting. Then I learned they run in order, and the Pathway page had to show it.
+Headline: Focus Areas began as a tag for sorting, until I learned they run in order and the Pathway page had to show it.
 
 Before laying out the Pathway page I asked the team for content estimates, because the right amount of hierarchy depends on how much sits inside it. A teammate expected only a few Action Items in each Focus Area, far fewer than I had assumed. In March, believing each Pathway held too few Action Items to need another level, I made Focus Areas a tag for sorting.
 
