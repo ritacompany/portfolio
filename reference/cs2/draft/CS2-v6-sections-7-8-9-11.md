@@ -19,20 +19,17 @@ Headline: Research shows that the user's prime functional experience with the pr
 
 Text: Which is exactly what the action hub is. The action hub is one of the primary surfaces the user will interact with. It's the most used touchpoint within an average user's daily flow. Therefore, in the context of the product, motivation became one of the most important factors of this build.
 
-## Left frame: the Growth Journey page
-
-Note: Journey target and pace | The long goal, one click from the week.
-Note: Change capacity | Capacity moves the end date, so it changes here, beside that date. A change lands the next week.
-
-Text: A career journey can run for years, and a date that far away does little for this week. In classic small studies, a distant goal on its own did no better than no goal at all. So the whole journey, with its own target and pace, lives one click away on the Growth Journey page.
-
-## Right frame: the rail
+## Right frame: the rail (his text, tidied)
 
 Note: Pathway target | Holds steady through an ordinary week.
 Note: Pathway pace | Where their progress is heading. It moves once a week, so nobody watches it tick with every finished item.
 Note: Ahead of target | The gap between the two dates, the only ahead or behind signal. There is no streak.
 
-Text: Research shows people keep going when they work from a small weekly set, with the long goal in reach but not in front of them. So the rail holds only the Pathway's target and pace, near enough that this week's work visibly moves the pace. Across 138 trials, mostly on health goals, monitoring progress improved goal attainment.
+Text: The rail keeps the Pathway's own target and pace. Research shows people keep going when they work from a small weekly set, with the long goal in reach but not in front of them. So keeping people focused on their progress in their current Pathway results in a more motivated user.
+
+## Left frame: the Growth Journey page
+
+Text: The whole journey lives one click away on the Growth Journey page, with its own target and pace. In classic small studies, a distant goal on its own did no better than no goal, and adults did best when near goals were added to it. A goal that feels too far away to reach wears motivation down, so the long goal stays in reach, off the week.
 
 ## Next block: suggested times
 
