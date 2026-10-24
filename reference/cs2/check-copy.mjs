@@ -63,6 +63,8 @@ lines.forEach((line, i) => {
   // A leading subordinate clause ("When the week ended, ...") is not a list item, so it is set aside first.
   const listPart = line.split(/(?<=[.!?])\s+/).map(s => s.replace(/^\s*(?:When|If|Because|After|Before|While|Although|Though|Since|Once|As|Until|Unless|Whenever)\b[^,]*,\s*/, '')).join(' ');
   if (/\b[\w'-]+(?: [\w'-]+){0,2}, [\w'-]+(?: [\w'-]+){0,2}, (?:and|or) /i.test(listPart)) problems.push(`line ${n}: Oxford comma`);
+  // Longer items repeat their first word ("what the research says, what products do, and what..."): caught 24 Oct.
+  else if (/\b(\w+) [^,.;]{1,60}, (?:\1 [^,.;]{1,60}, )+(?:and|or) /i.test(listPart)) problems.push(`line ${n}: Oxford comma`);
   if (/two by two|\b2 ?x ?2\b|\b2 by 2\b|\bmatrix\b|\bquadrant|upper right|sat where|in the corner/i.test(line)) problems.push(`line ${n}: two by two, in words`);
   if (Number.isFinite(section)) for (const [term, from] of TERMS)
     if (section < from && new RegExp(`\\b${term}`, 'i').test(line)) problems.push(`line ${n}: product term "${term}" before section ${from} introduces it`);

@@ -34,6 +34,7 @@ const planted = [
   ['single quotes', "The lead called it 'not worth shipping' at kickoff.", 'single quotation marks'],
   ['curly single quotes', 'The lead called it ‘not worth shipping’ at kickoff.', 'single quotation marks'],
   ['Oxford, longer items', 'It held the full route, the weekly plan, and the calendar view.', 'Oxford comma'],
+  ['Oxford, long parallel items', 'I asked what the research says, what comparable products do, what we know about people, and only then the interface.', 'Oxford comma'],
 ];
 let ok = true;
 for (const [label, line, expect] of planted) {
@@ -48,6 +49,7 @@ for (const [label, line] of [
   ['clause commas', 'When the week ended, nothing carried over, and nothing failed.'],
   ['apostrophes', "Don't connect a calendar and the week's work is a list."],
   ['first person', 'I wanted the pressure at the edge of the week.'],
+  ['parenthetical clause', 'Auto rescheduling looked easy to build, since the AI already schedules the week, and I declined it.'],
 ]) {
   const r = run(line, 2);
   const passed = r.status === 0;

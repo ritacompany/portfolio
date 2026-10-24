@@ -8,8 +8,8 @@ His 25 Aug CS2 docs set the rule this follows: the decision goes in the body and
 
 The research comes in two kinds, kept apart (private map: ~/Documents/CS2-research/reports/decision-research-map.md, with the 23 Oct report's research table):
 
-- Research run at decision time in the design chats: his learning app review, Motion, the rollover pattern research he weighed, the reset research he commissioned against his own lean, and the capacity preview study he made an assistant justify. The body tells these as his thinking.
-- The principles the archive says were used to defend the framework in leadership syncs: cognitive load theory, planning fallacy, goal gradient, undo over confirm. They sit in asides beside the decision they fit, and are never told as the reason at the time. Loss aversion and Zeigarnik are left out: the first clashes with his own reason for the weekly pace, the second has no support left.
+- Research run at decision time in the design chats: his learning app review, Linear, Motion, the rollover pattern research he weighed, the reset research he commissioned against his own lean, and the capacity preview study he made an assistant justify. The body tells these as his thinking.
+- The principles the archive says were used to defend the framework in leadership syncs: planning fallacy and goal gradient. They sit in asides beside the decision they fit, and are never told as the reason at the time. Left out: loss aversion, which clashes with his own reason for the weekly pace; Zeigarnik, which has no support left; cognitive load theory, which is about working memory, not hours; undo over confirm, since the product shows no undo there.
 
 Nothing here quotes his private record; every line is paraphrase, checked by script.
 
@@ -24,7 +24,9 @@ Eyebrow: Landing on the week
 
 Headline: A journey can run for years, but the person opening Mondai needs to know what to do this week, so the home became the week.
 
-The early brief for a home screen was a dashboard: an overview, progress at a glance and shortcuts. I dropped the traditional home screen for a starting point that lands on this week's Action Items, the way Linear opens straight onto the work in front of you. Looking further along the route is something a person does now and then, not daily, so it lives on its own page.
+The early brief for a home screen was a dashboard: an overview, progress at a glance and shortcuts. I dropped the traditional home screen for a starting point that lands on this week's Action Items, straight onto the work in front of the person. Looking further along the route is something a person does now and then, not daily, so it lives on its own page.
+
+Aside: Linear | The precedent for a product that opens straight onto the work in front of you.
 
 ## Block 2
 
@@ -60,7 +62,7 @@ Eyebrow: Changing capacity
 
 Headline: Capacity is changed from the Growth Journey, beside the end date it moves, rather than only from a settings page.
 
-Card: Audited | Live preview | An assistant cited a study for dates that move on every keystroke, and asked what it measured, it was graded feedback on learning. I built three modes to compare, and the button won.
+Card: Audited | Live preview | An assistant backed dates that move on every keystroke with a study, and when I asked what it measured, the answer was graded feedback on learning. I built three preview modes to compare, and updating on a button press won.
 
 Capacity's impact is at journey level, so I put the control where that date lives, and agreed settings needed a place for it too. A change applies from the following week, with a quiet link to apply it now. I treated a little friction there as healthy, the kind of anxiety that is productive rather than something to design away.
 
@@ -87,7 +89,7 @@ Eyebrow: Calendar as an assistant
 
 Headline: Calendar integration was in the plan before the framework existed, and I argued that the week had to work without it.
 
-People schedule their lives in very different ways: a predictable stretch of life needs no calendar, a chaotic one depends on it. Tying every Action Item to a calendar would recreate the rigid structure of traditional education. My review of learning apps showed the lasting ones give structure and still let people set their own pace. The week became the commitment, and the calendar an assistant to it.
+People schedule their lives in very different ways: a predictable stretch of life needs no calendar, a chaotic one depends on it. Tying every Action Item to a calendar would recreate the rigid structure of traditional education. My review of learning apps showed that even the more structured ones let people work at their own pace. The week became the commitment, and the calendar an assistant to it.
 
 Aside: CareerFoundry | The clearest case in that review, structured enough to guide and flexible enough to fit a working life.
 
@@ -113,7 +115,7 @@ Eyebrow: Suggested times
 
 Headline: A calendar gives each Action Item a time, but the week has one deadline, so every scheduled time is a suggestion.
 
-I wrote the research brief myself: what the research says, what comparable products do, what we know about people, and only then the interface. Auto rescheduling looked easy to build, since the AI already schedules the week, and I declined it because times moving on their own would get confusing fast. A passed time leaves the card, the reschedule icon stays and only the week's end decides late.
+I wrote the research brief myself: the evidence first, then comparable products and what we know about people, and only then the interface. Auto rescheduling looked easy to build, since the AI already schedules the week, and I declined it because times moving on their own would confuse people fast. A passed time simply leaves the card, since an item is only late when the week ends.
 
 Aside: Motion | The closest precedent moves a missed task into the next free slot on its own, the pattern I checked and turned down.
 
@@ -160,9 +162,7 @@ Eyebrow: Sizing the week
 
 Headline: Sizing every week to the hours a person declared was the turn. A leftover then fits inside next week instead of piling on top.
 
-Each Action Item carries its own cognitive load, so capacity, not a fixed count, sets how much a week holds. Once a week never exceeds what a person said they can give, carrying leftovers forward stops being an ambush, and my flex points had nothing left to do. I dropped them. Rollover became automatic, but never invisible.
-
-Aside: Cognitive load theory | A week that never holds more than a person can carry keeps the work within reach.
+Each Action Item carries its own cognitive load, so capacity, not a fixed count, sets how much a week holds. Once a week never exceeds what a person said they can give, carrying leftovers forward stops being an ambush, and my flex points had nothing left to do. I dropped them, and rollover could finally be automatic.
 
 ## Block 4
 
@@ -171,8 +171,6 @@ Eyebrow: Opening the week
 Headline: Automatic could not mean silent, so the week opens on a recap of where the person stands, mirroring the screen that ends a week.
 
 The rollover research I weighed found one pattern: the system does the work, then shows what it did. So the recap orients rather than asks, and leftovers simply appear in the new week. I stopped calling it the Sunday flow when the name kept producing a wrong rule, that someone joining on a Wednesday should wait for Sunday. It opens whatever week a person is in.
-
-Aside: Undo over confirm | Resolving the carry over first and then showing it orients people instead of questioning them.
 
 ## Block 5
 
@@ -196,7 +194,7 @@ Headline: After weeks of falling short, the product reads back what a person act
 
 My first version let people type any number right on the screen, which lost the sense of a recommendation backed by reasoning. I reframed it: show their own weekly average, then recommend less work. It only lowers, because nobody behind should be invited to set a capacity they already cannot meet. Declining is allowed, but it carries a warning.
 
-Aside: Planning fallacy | People tend to overestimate the time they will have, so a declared capacity needs a way down.
+Aside: Planning fallacy | People tend to underestimate how long work takes, so a capacity declared on day one often starts too high.
 
 ## Block 7
 
@@ -204,7 +202,7 @@ Eyebrow: Reset
 
 Headline: For someone returning after weeks away, I leaned toward rebuilding their week without asking, then asked for research that could prove me wrong.
 
-It held up: at a low motivation moment, a choice tends to default to keeping a schedule built for weeks that have passed. So progress is saved and the week is rebuilt from today in one step. I also changed the wording, since saying everything restarts from today made the saved progress look like a lie.
+It held up: offered a choice at a low motivation moment, people tend to keep a schedule built for weeks that have passed. So progress is saved and the week is rebuilt from today in one step. I also changed the wording, since saying everything restarts from today made the saved progress look like a lie.
 
 Aside: Status quo bias | Given a choice, people disproportionately stick with the option they already have.
 
