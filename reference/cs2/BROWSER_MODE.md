@@ -63,6 +63,9 @@ Shape:
   person needs or why the design does what it does. Never a short label.
 - `Card: label | title | body`. Label and title at most three words each, body at most two sentences.
 - No `Label:` or `Caption:` lines. Figure text is not copy.
+- `Aside: name | one sentence` carries the research behind a decision (his 25 Aug rule: decision in the body,
+  principle in a caption, never "we used loss aversion"). At most one per block, name at most four words, one
+  sentence of at most 25 words. A principle named anywhere else in the block fails the check.
 
 Words:
 

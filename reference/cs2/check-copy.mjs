@@ -8,6 +8,9 @@
 // Figure text (labels, captions) is not copy: it is written in the message plan once a figure is chosen,
 // so the copy never decides that a block has a figure. The eyebrow names the topic and never repeats the headline.
 // A headline runs 12 to 25 words, the length of his own.
+// Aside: lines carry the research behind a decision, as his 25 Aug CS2 docs ruled: the decision goes in the
+// body, the principle in an aside, never "we used loss aversion". "Aside: name | one sentence", at most one per
+// block, name at most four words, sentence at most 25 words. A principle named anywhere else in a block fails.
 // Prints CS2COPY_PASS and exits 0, or lists every violation and exits 1.
 import fs from 'node:fs';
 
@@ -28,6 +31,8 @@ const AI_PATTERNS = [
   [/^\s*(?:Ultimately|In the end|In short|In summary),/im, 'summary closer'],
   [/\bthe importance of\b/i, 'moralizing closer ("the importance of")'],
 ];
+
+const PRINCIPLES = /\b(loss aversion|planning fallacy|zeigarnik|goal gradient|cognitive load theory|self[ -]determination theory|fogg|peak[ -]end|progress principle|undo over confirm|consistency heuristic)\b/i;
 
 const args = process.argv.slice(2);
 const file = args.find(a => !a.startsWith('--'));
@@ -79,6 +84,18 @@ for (const b of blocks) {
   if (headline && (hw < 12 || hw > 25)) problems.push(`block "${title.trim()}": headline ${hw} words, his headlines run 12 to 25`);
   for (const m of b.matchAll(/^(Label|Caption):\s*(.+)$/gm))
     problems.push(`block "${title.trim()}": ${m[1]}: "${m[2].trim().slice(0, 40)}" is figure text; it goes in the message plan once a figure is chosen (text items are Card: lines)`);
+  const asides = [...b.matchAll(/^Aside:\s*(.*)$/gm)].map(m => m[1]);
+  if (asides.length > 1) problems.push(`block "${title.trim()}": ${asides.length} Aside: lines, max 1`);
+  for (const a of asides) {
+    const parts = a.split('|').map(x => x.trim());
+    if (parts.length !== 2 || parts.some(x => !x)) { problems.push(`block "${title.trim()}": aside needs "name | one sentence"`); continue; }
+    if (parts[0].split(/\s+/).length > 4) problems.push(`block "${title.trim()}": aside name "${parts[0]}" over 4 words`);
+    if (parts[1].split(/\s+/).length > 25) problems.push(`block "${title.trim()}": aside sentence over 25 words`);
+    if (parts[1].split(/[.?!](\s|$)/).filter(x => x && x.trim()).length > 1) problems.push(`block "${title.trim()}": aside over 1 sentence`);
+    if (/\b(we|I) (used|applied|leaned on|drew on)\b/i.test(parts[1])) problems.push(`block "${title.trim()}": aside says the principle was used; state what it shows`);
+  }
+  for (const line of b.split('\n').slice(1)) if (!/^Aside:/.test(line) && PRINCIPLES.test(line))
+    problems.push(`block "${title.trim()}": principle "${line.match(PRINCIPLES)[0]}" named outside the Aside: line`);
   for (const m of b.matchAll(/^Card:\s*(.+)$/gm)) {
     const parts = m[1].split('|').map(x => x.trim());
     if (parts.length !== 3 || parts.some(x => !x)) { problems.push(`block "${title.trim()}": card needs "label | title | body"`); continue; }
@@ -87,7 +104,7 @@ for (const b of blocks) {
     if (sentences > 2) problems.push(`block "${title.trim()}": card body over 2 sentences`);
   }
   const paras = rest.join('\n').split(/\n\s*\n/).map(p => p.trim())
-    .filter(p => p && !/^(Eyebrow|Headline|Label|Caption|Card):/.test(p));
+    .filter(p => p && !/^(Eyebrow|Headline|Label|Caption|Card|Aside):/.test(p));
   if (paras.length > 1) problems.push(`block "${title.trim()}": ${paras.length} body paragraphs, max 1 (move detail into Card: lines)`);
   for (const p of paras) { const w = p.split(/\s+/).length; if (w > 70) problems.push(`block "${title.trim()}": body ${w} words, max 70`); }
 }

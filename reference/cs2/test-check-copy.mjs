@@ -82,7 +82,7 @@ for (const [label, h] of [
   ok &&= caught;
   console.log(`${caught ? 'ok  ' : 'MISS'} planted ${label}`);
 }
-const clean = run('The week is the deadline. Inside it, the user picks the order.\n\nCard: 01 | Ahead | Shown against the week.', 2);
+const clean = run('The week is the deadline. Inside it, the user picks the order.\n\nCard: 01 | Ahead | Shown against the week.\n\nAside: Loss aversion | A date that holds still makes drift visible, and visible drift drives recovery.', 2);
 const cleanOk = clean.status === 0 && clean.out.includes('CS2COPY_PASS');
 ok &&= cleanOk;
 console.log(`${cleanOk ? 'ok  ' : 'FALSE ALARM'} clean control passes${cleanOk ? '' : '\n' + clean.out}`);
@@ -94,6 +94,14 @@ const shape = [
   ['label in copy', run('Label: This week'), 'is figure text'],
   ['caption in copy', run('Caption: Research points the same way.'), 'is figure text'],
   ['card with no title', run('Card: 01 | Locked past this week.'), 'label | title | body'],
+  ['two asides', run('One line.\n\nAside: Loss aversion | Drift that shows drives recovery.\nAside: Goal gradient | People speed up near the end.'), 'Aside: lines, max 1'],
+  ['aside with no sentence', run('One line.\n\nAside: Loss aversion'), 'name | one sentence'],
+  ['aside name too long', run('One line.\n\nAside: The famous loss aversion finding | Drift that shows drives recovery.'), 'over 4 words'],
+  ['aside two sentences', run('One line.\n\nAside: Loss aversion | Drift that shows drives recovery. People hate losing.'), 'aside over 1 sentence'],
+  ['aside too long', run('One line.\n\nAside: Loss aversion | ' + Array(30).fill('word').join(' ') + '.'), 'aside sentence over 25 words'],
+  ['aside says used', run('One line.\n\nAside: Loss aversion | We used it to keep the date still.'), 'says the principle was used'],
+  ['principle in body', run('I kept the date still because of loss aversion.'), 'named outside the Aside: line'],
+  ['principle in card', run('One line.\n\nCard: Kept | Stable date | Planning fallacy made us cautious.'), 'named outside the Aside: line'],
   ['eyebrow repeats headline', run('## 1\n\nEyebrow: The closest products\n\nHeadline: The closest products each solved half of it.\n\nOne line.', 1, true), 'eyebrow repeats the headline'],
 ];
 for (const [label, r, expect] of shape) {
