@@ -44,18 +44,6 @@ Note: Reschedule | Moves the time whenever the person wants.
 
 Text: Motion came up in the research I asked for, and it moves a missed task to the next open slot on its own. Auto rescheduling looked easy for us to build too, and I declined it because times that move by themselves get confusing fast. The person moves a time when they choose.
 
-## Next block: before a career is chosen
-
-Eyebrow: Before a career is chosen
-
-Headline: People who joined through events had never taken the career quiz, so they would land in a product with no week to work on.
-
-Card: Rejected | Under construction | A page saying it was still being built. It felt dishonest, as if that part of the product did not exist.
-Card: Rejected | Lockout | Blocking the product until a career was chosen. A guide points to the next step.
-Card: Chosen | Quiz first | A minimal empty state that leads with the quiz, with Linear and Notion as precedent.
-
-Text: Nobody had designed for this group. The empty Action Hub leads with the quiz, because choosing a career is the priority and it is what gives the Action Hub a week to show. A lockout would have been structure at its bluntest, shutting someone out at the start of a journey that runs on their motivation.
-
 Section: 8
 
 # Section 8: Calendar integration
