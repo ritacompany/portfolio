@@ -14,33 +14,33 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-26 15:30
+Updated: 2026-10-26 17:20
 By: Claude Code
 Section: 8
-Loop step: 1
+Loop step: 3
 
 ## Where it stopped
 
-26 Oct. His Figma frame (WIP Mondai framework case study, 4269:9433, 16 blocks) and the Spec 1 document beside it (4496:16282, the v6 copy for sections 7, 8, 9 and 11 with his feedback) are the current state. The frame is the source; the repo copy files are older and are not to be built from.
+26 Oct. His Figma frame (WIP Mondai framework case study, 4269:9433, 16 blocks) and the Spec 1 document beside it (4496:16282) are the current state and the only copy source.
 
-He did a full pass on Spec 1 and a walkthrough of his build. Both are in fixes/2026-10-26-cs2-content-selection.md. The cause, as he corrected it: the record is the right source, but nothing picks the core decisions out of it, so low weight entries (the color coding pause, reversals, his private notes, how a decision was reached) reached the copy. He agreed four reader checks that every section must pass (in that file).
+Section 8 (calendar): he confirmed the core decisions shortlist (reference/cs2/core/section-8.md) with three picks: the setup screen stays; a packed week drops times only from the items that cannot be placed; the 18,000 learners study lives in section 8, not on section 3 card 02. Copy written only from that list is in reference/cs2/core/section-8-copy.md and passed all four reader checks from fixes/2026-10-26-cs2-content-selection.md on the third reviewer run. Waiting for his approval of the copy.
 
-The first test of the fix: reference/cs2/core/section-8.md, a core decisions shortlist for section 8 (calendar). Waiting for his check.
-
-The working view is the CS2 canvas artifact (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37): his frame and Spec 1 on a board, with sticky notes saved to the page. Read his notes with ArtifactData list, collection notes.
+The working view is the CS2 canvas artifact (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37). Read his notes with ArtifactData list, collection notes. Canvas source and republish steps: .cs2-canvas/ in the worktree, never committed.
 
 ## Next action
 
-Work section by section in his frame's order. Do not propose changing the section order; he decides order himself as sections are worked. For each section: core decisions shortlist from the record, his check, then copy only from the confirmed shortlist, then the four reader checks. Start with his reaction to core/section-8.md.
+Get his approval on reference/cs2/core/section-8-copy.md. Then wait for him to name what is next. He clarified on 26 Oct: this is not a march through every section together. Shortlists are a tool for when he asks what can be used in a section; he brings things up as he browses each section. Never propose changing the section order.
 
 ## Decided in chat, not yet in files
 
 - Use I for decisions he made and we or the team only for team facts.
 - The method behind a decision (asking an AI assistant, who asked whom, changed my mind) never goes in copy.
+- Shortlists are on demand, not a standing step for every section.
 
 ## Open questions for Chadwick
 
-- Section 8: is anything on the shortlist not core, or missing? Does the calendar setup screen stay?
+- Section 8 copy: approve, or what changes.
+- Section 3 card 02: drop the 18,000 learners line there, keeping the Motion reference and a one line lesson.
 
 ## Waiting for Claude Code
 
@@ -49,7 +49,7 @@ Work section by section in his frame's order. Do not propose changing the sectio
 
 ## Read first
 
+- reference/cs2/core/section-8.md and section-8-copy.md: the confirmed shortlist and the copy from it
 - fixes/2026-10-26-cs2-content-selection.md: his feedback, the cause, the four checks, his walkthrough notes
-- reference/cs2/core/section-8.md: the first core decisions shortlist
 - reference/cs2/reasoning/dossier-findings-22oct.md: the record per flow, the source for shortlists
-- The CS2 canvas artifact above, and his Figma frame 4269:9433 (read text with a read-only use_figma script; the build gate lets reads through)
+- The CS2 canvas artifact above, and his Figma frame 4269:9433 (read text with a read-only use_figma script)

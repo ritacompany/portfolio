@@ -1,6 +1,6 @@
 # Core decisions: section 8, calendar integration
 
-Status: draft for Chadwick, 26 Oct. The selection test from fixes/2026-10-26-cs2-content-selection.md. No copy is written from this until he confirms the list.
+Status: confirmed by Chadwick 26 Oct with the picks: setup screen stays; a packed week drops times only from items that cannot be placed; the 18,000 learners study lives here. The selection test from fixes/2026-10-26-cs2-content-selection.md. No copy is written from this until he confirms the list.
 
 How each decision was picked: it shaped how the framework works (not one screen's styling), it shows on a screen in his frame or a frame he plans and a hiring manager needs it to understand why that screen works the way it does. Sources are entries in reasoning/dossier-findings-22oct.md, Calendar integration, unless noted.
 
