@@ -23,13 +23,13 @@ Loop step: 3
 
 26 Oct. His Figma frame (WIP Mondai framework case study, 4269:9433, 16 blocks) and the Spec 1 document beside it (4496:16282) are the current state and the only copy source.
 
-Section 8 (calendar): he confirmed the core decisions shortlist (reference/cs2/core/section-8.md) with three picks: the setup screen stays; a packed week drops times only from the items that cannot be placed; the 18,000 learners study lives in section 8, not on section 3 card 02. Copy written only from that list is in reference/cs2/core/section-8-copy.md and passed all four reader checks from fixes/2026-10-26-cs2-content-selection.md on the third reviewer run. Waiting for his approval of the copy.
+Section 8 (calendar): he confirmed the core decisions shortlist (reference/cs2/core/section-8.md) with three picks: the setup screen stays; a packed week drops times only from the items that cannot be placed; the 18,000 learners study lives in section 8, not on section 3 card 02. Copy written only from that list is in reference/cs2/core/section-8-copy.md and passed all four reader checks from fixes/2026-10-26-cs2-content-selection.md on the third reviewer run. He did not ask for that copy; it is reference only.
 
 The working view is the CS2 canvas artifact (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37). Read his notes with ArtifactData list, collection notes. Canvas source and republish steps: .cs2-canvas/ in the worktree, never committed.
 
 ## Next action
 
-Get his approval on reference/cs2/core/section-8-copy.md. Then wait for him to name what is next. He clarified on 26 Oct: this is not a march through every section together. Shortlists are a tool for when he asks what can be used in a section; he brings things up as he browses each section. Never propose changing the section order.
+Work on the CS2 canvas (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37), opened in the session he is in. He goes section by section and says what each section needs; Claude drafts nothing he has not asked for. Read his sticky notes there first (ArtifactData list, collection notes) and answer on the canvas. Shortlists are on demand only, for when he asks what can be used in a section. core/section-8-copy.md was written without being asked; it is reference only. Never propose changing the section order.
 
 ## Decided in chat, not yet in files
 
@@ -39,7 +39,6 @@ Get his approval on reference/cs2/core/section-8-copy.md. Then wait for him to n
 
 ## Open questions for Chadwick
 
-- Section 8 copy: approve, or what changes.
 - Section 3 card 02: drop the 18,000 learners line there, keeping the Motion reference and a one line lesson.
 
 ## Waiting for Claude Code

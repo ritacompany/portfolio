@@ -1,6 +1,6 @@
 # Section 8 copy: calendar integration
 
-Status: draft for Chadwick, 26 Oct. Reader checks: all four pass on every block (third run; runs one and two failed block 5 check 3 and several terms on check 2, fixed). Written only from the confirmed shortlist in core/section-8.md (confirmed 26 Oct with the picks: setup screen stays; a packed week drops times only from the items that cannot be placed; the 18,000 learners study lives here, not on section 3 card 02).
+Status: Not asked for. Written 26 Oct by misreading his go ahead; he works section by section and says what each section needs. Kept only as reference, never as a proposal. Reader checks: all four pass on every block (third run; runs one and two failed block 5 check 3 and several terms on check 2, fixed). Written only from the confirmed shortlist in core/section-8.md (confirmed 26 Oct with the picks: setup screen stays; a packed week drops times only from the items that cannot be placed; the 18,000 learners study lives here, not on section 3 card 02).
 
 Sources per block: core/section-8.md decisions 1 to 5. Eight hour floor: reasoning/CHADWICK_ANSWERS_2026-08-27.md and reasoning/calendar-and-schedule.md. Study: Baker, Evans and Dee 2016.
 
