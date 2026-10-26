@@ -14,54 +14,42 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-23 00:00
+Updated: 2026-10-26 15:30
 By: Claude Code
-Section: 1
+Section: 8
 Loop step: 1
 
 ## Where it stopped
 
-Weekly limit at 93% on 22 Oct (resets Monday 26 Oct); Claude Code stopped there. His rule: never edit anything he wrote; a change to his text goes before and after in a separate note.
+26 Oct. His Figma frame (WIP Mondai framework case study, 4269:9433, 16 blocks) and the Spec 1 document beside it (4496:16282, the v6 copy for sections 7, 8, 9 and 11 with his feedback) are the current state. The frame is the source; the repo copy files are older and are not to be built from.
 
-Done: copy written for sections 7, 8, 9 and 11, each after a recorded Opus truth review PASS (reference/cs2/copy/section-7.md, section-8.md, section-11.md). None has had the voice pass or his read. Section 7: The Action Hub and the Growth Journey. The copy gate hook (.claude/hooks/cs2-copy-guard.mjs) was patched 22 Oct, with his yes, to read a sub-agent's SubagentHandback answer, so reviews now record. Section 7 is the first section recorded through it.
+He did a full pass on Spec 1 and a walkthrough of his build. Both are in fixes/2026-10-26-cs2-content-selection.md. The cause, as he corrected it: the record is the right source, but nothing picks the core decisions out of it, so low weight entries (the color coding pause, reversals, his private notes, how a decision was reached) reached the copy. He agreed four reader checks that every section must pass (in that file).
 
-Section 11 (Action Items) also has a recorded PASS (after its Reader gets line was fixed) and its copy is written: reference/cs2/copy/section-11.md. Section 8 (Calendar integration) also has a recorded PASS and its copy is written: reference/cs2/copy/section-8.md. A review only counts when the sub-agent's first message is the output of `node reference/review-truth.mjs cs2 --prompt <plan>` pasted word for word, run on model Opus. Sections 3 to 6, 9 and 10 have no block plan; dossiers for capacity (C3) and get ahead (E1, E2) are missing.
+The first test of the fix: reference/cs2/core/section-8.md, a core decisions shortlist for section 8 (calendar). Waiting for his check.
 
-What is in the repo for picking this up without Claude Code: reference/cs2/outline/outline.md, outline/section-7.md, section-8.md, section-11.md, reference/cs2/reasoning/dossier-findings-22oct.md (what the dossiers say he decided and why, no quotations), fixes/2026-10-22-asking-him-product-questions.md and reference/dossier-reader-prompt.md.
+The working view is the CS2 canvas artifact (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37): his frame and Spec 1 on a board, with sticky notes saved to the page. Read his notes with ArtifactData list, collection notes.
 
 ## Next action
 
-0. FIRST: his frame changed since the 21 Oct snapshot. outline/frame-changes-22oct.md holds what it says now (block 6 is now capacity and cognitive load, calendar and hours rows gone; blocks 4 and 6 have new node ids). Rewrite ~/Documents/CS2-research/wip-frame.md from Figma at the start of the next session (this changes the hash, so re-run the exact-prompt reviews for sections 7, 8, 9 and 11), add cognitive load to the outline section 6, and make a dossier for it before any copy there.
-1. Voice pass on the copy for sections 7, 8 and 11 (humanizer, then no-ai-slop detect), then his read (shape in BROWSER_MODE.md; check-copy runs in the guard).
-2. Section 9 (Start of week) has a recorded PASS and its copy is written (copy/section-9.md). Next: dossiers for capacity (C3) and get ahead (E1, E2); block plans for sections 5, 6 and 10; copy for each after its review. Blocks 1 to 6 of his frame are his own text; a Background block redo draft for him is in draft/CS2-background-v2.md.
-3. Voice pass on section 7 copy (humanizer, then no-ai-slop detect) before he reads it.
-4. Read the live Figma frames and later chats before asking him any product question. Settled: Focus Areas are linear; a packed calendar removes scheduled times for the week; sync failure is a module over the list titled Calendar sync failure with a Close button; Pathway order is Networking third, Branding fourth; the calendar and capacity screens are feature onboarding on first Action Hub entry.
+Work section by section in his frame's order. Do not propose changing the section order; he decides order himself as sections are worked. For each section: core decisions shortlist from the record, his check, then copy only from the confirmed shortlist, then the four reader checks. Start with his reaction to core/section-8.md.
 
 ## Decided in chat, not yet in files
 
-- His frame blocks 1 to 6 are his own text in Figma and stay his (the older copy/section-1.md and section-2.md are pre-restart drafts, not his frame; ignore them). Sections 7, 8, 11 copy is new. 22 Oct: he wants the Background block redone with more clarity (draft in reference/cs2/draft/CS2-background-v2.md, his text untouched); Saturday night deadlines stays; the hierarchy comes after the competitive analysis in his order.
+- Use I for decisions he made and we or the team only for team facts.
+- The method behind a decision (asking an AI assistant, who asked whom, changed my mind) never goes in copy.
 
 ## Open questions for Chadwick
 
-- Whether the second account should write copy for sections 8 and 11 once their reviews record, or wait for Claude Code.
+- Section 8: is anything on the shortlist not core, or missing? Does the calendar setup screen stay?
 
 ## Waiting for Claude Code
 
-- The knowledge layer is built and enforced (fixes/2026-10-22-case-study-knowledge-layer.md): a block plan is refused until each of its flows has a dossier from the raw record passing check-dossier.mjs. The start of week dossier (~/Documents/CS2-research/dossiers/start-of-week.md) does not pass yet: fix the list in start-of-week.review.md beside it, then an Opus re-judge. Other flows have no dossier yet.
-- Delete ~/Documents/CS2-research/PRODUCT_BRIEF.md, written from notes; nothing reads it now.
-- test-handoff.mjs fails "an empty heading is refused" at 87e0ff3 too, before this change.
+- The copy hook flags CSS custom properties (two hyphens) as dashes in HTML. Needs his allow setup edit to fix.
+- Two process rules proposed 26 Oct (reader gets sentence first; frame and Spec 1 as the only copy source) wait for his yes.
 
 ## Read first
 
-Everything below is in this repo. His research and the live product flow map stay on his Mac (the repo is public), so work from these files and from the settled facts in Next action.
-
-- reference/cs2/PICKUP_PROCESS.md: how he wants to be worked with, the copy gate rules and the one failure that repeated all day (read it second)
-- reference/cs2/outline/frame-changes-22oct.md: what his Figma frame says now, block by block (blocks 1 to 6 are his own text and stay his)
-- reference/cs2/outline/outline.md: all 11 sections in his order, as claims
-- reference/cs2/outline/section-7.md, section-8.md, section-9.md, section-11.md: block plans, each with a recorded Opus truth review PASS (against the 21 Oct frame record)
-- reference/cs2/reasoning/dossier-findings-22oct.md: what he decided and why for the Action Hub, Growth Journey, calendar and start of week flows, with the quotations removed
-- reference/cs2/copy/section-7.md, section-8.md, section-9.md, section-11.md: the copy written so far. reference/cs2/COPY_SO_FAR.md is the same in one file
-- reference/cs2/draft/COPY_EDITED_BY_CHADWICK_22OCT.md: the version he edited and ran through ChatGPT on 22 Oct for sections 1, 2, 7, 8 and 11. His wording wins over the repo copy where they differ. Sections 1 and 2 in it are his text
-- reference/cs2/draft/CS2-background-v2.md: a clearer Background block for him to take from or ignore
-- reference/dossier-reader-prompt.md and fixes/2026-10-22-asking-him-product-questions.md: read the frames and later chats before asking him a product question
-- BROWSER_MODE.md for what a browser session may do and the return packet
+- fixes/2026-10-26-cs2-content-selection.md: his feedback, the cause, the four checks, his walkthrough notes
+- reference/cs2/core/section-8.md: the first core decisions shortlist
+- reference/cs2/reasoning/dossier-findings-22oct.md: the record per flow, the source for shortlists
+- The CS2 canvas artifact above, and his Figma frame 4269:9433 (read text with a read-only use_figma script; the build gate lets reads through)
