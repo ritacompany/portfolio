@@ -46,3 +46,23 @@ Enforcement test: not run.
 
 ## Report
 Unverified: the redesign itself, the reviewer agent and a fresh run on two sections. He must agree the four check questions first.
+
+## His pass, 26 Oct, every item
+
+Each item maps to the reviewer check question that would catch it (1 decision and why, 2 terms explained before use, 3 no process, personal life or private thoughts, 4 nothing shown twice). Items with no question are listed as gaps.
+
+1. Section 8 block 2, the pause: color coding came from another version of the product and serves no decision on the page. Question 1.
+2. Content reads as the first thing found in the record, not chosen from what each section has to prove and what is most impactful. Cause 1; gap: no step picks content from the section's job first.
+3. The tactics documents were never used for 7, 8, 9 and 11. Chain, Loaded; gap: no check that a block uses a move.
+4. Copy assumes the reader knows the product (Recalibration headline: "what a person actually does" is never explained). Question 2.
+5. Private notes and his own thoughts cited as reasons (section 8 block 1, "my own schedule"). Question 3.
+6. Smallest window: a minimum is argued before the reader knows why one is needed, what it means or what capacity is. Question 2, and concept order across sections.
+7. The method he set: the feature, the decision, then the research or reasoning that explains why. Question 1.
+8. Suggested times repeats Saturday night deadlines and brings up the calendar before it is introduced. Questions 2 and 4.
+9. "The founder asked me" and similar process framing (section 9 block 2). Question 3.
+10. Automation sits where no context for it exists yet. Concept order; gap: no check on order across sections.
+11. Section 11 block 1 covers the Growth Journey page, which his frame already places in section 7. Question 4; also the copy did not follow his frame's placement.
+12. Reset framed as "research that could prove me wrong" reads like a mistake. Question 3. Asking for research that confirms or contradicts a stated position is fine; the framing is the problem.
+13. "My personal experience and life and thoughts" never belong in the case study. Question 3.
+
+Open for him: "I" or "we". Recommendation: "I" for decisions he made, "we" for work the team did together (research, building). Taste and what he is comfortable claiming, so his call.
