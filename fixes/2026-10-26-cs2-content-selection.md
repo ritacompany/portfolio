@@ -45,7 +45,7 @@ Second case: not run.
 Enforcement test: not run.
 
 ## Report
-Unverified: the redesign itself, the reviewer agent and a fresh run on two sections. He must agree the four check questions first.
+Unverified: the redesign itself, the reviewer agent and a fresh run on two sections. He agreed the four check questions on 26 Oct.
 
 ## His pass, 26 Oct, every item
 
