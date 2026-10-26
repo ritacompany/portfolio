@@ -18,8 +18,8 @@ Reader arrives knowing: the week has one deadline on Saturday night (section 5),
    Screen: the schedule view with Action Items placed between the person's own events; the same item in the list view with its suggested time.
    Source: Q2 his framing of calendar sync as a tool for finding time; Q4 times are recommendations and assistance tools, not due dates; Q4 Feb 2026 scope, a suggestion based system.
 
-3. **The person sets where Mondai may place work: a window for the day and the hours they focus best, which sit inside that window.**
-   Why: placement has to respect the person's life, and best hours outside the window would offer times the person never has.
+3. **The person tells Mondai their preferred hours for the day and the hours they focus best, which sit inside them. Mondai places work there first; nothing is locked.** (Corrected by Chadwick 26 Oct: the range guides placement, it is not a hard limit. The setup screen line "Mondai will only place action items inside your selected time frame" states the old meaning.)
+   Why: placement should follow how the person's day usually runs, and focus hours outside the range would point at times the person rarely has.
    Screen: the setup step after syncing (time bar for the window, focus hours below).
    Source: Q4 C2 direction; Q4 preferred times depend on the window.
    Note: the eight hour floor belongs here only as the rule and its reason (open time is the window minus meetings), and only once capacity is already explained.
