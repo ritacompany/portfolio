@@ -15,11 +15,11 @@ Enforcement: the copy guard and truth review check that each claim traces to the
 Check: none existed for relevance, context or duplication.
 
 ## Causes
-- Cause 1: content is selected from the record (what happened, how it changed) instead of from the screens in his frame and the questions a hiring manager asks of them | For: the pause block, the reversal lines and the founder line all come from dossier Q5 and Q2 entries; the block plans list dossier claims as content | Against: some blocks (recalibration, state rules) are on point, so the record is not always the wrong source.
+- Cause 1: the record is the right source, but nothing picks the core decisions out of it. Each dossier lists every decision, option and change at the same weight, and the drafter takes what is there | For: the four dossiers hold 81 decision lines with no ranking (34 for start of week alone), mixing framework shaping calls (times are suggestions, a packed week falls back to the list, no auto reschedule) with small ones (generic CTA wording, a renamed screen); the pause block and the reversal lines are low weight entries that made it into copy | Against: some blocks (recalibration, state rules) did land on core decisions, so selection sometimes works by chance.
 - Cause 2: the only external check is truth, so any true line ships | For: the v6 header cites truth reads as the reason to reuse lines; nothing failed the pause block | Against: a relevance check alone would not fix ordering of concepts.
 - Cause 3: drafting skipped his talk-through and the tactics pull, both self-run steps | For: grep shows no tactics noted; HANDOFF shows copy written from dossiers | Against: the talk-through was skipped because the process let copy start from a passing block plan.
 History: eight CS2 process fixes since 13 Oct (fixes/2026-10-13 to 2026-10-22), including a full process rebuild on 21 Oct and a knowledge layer on 22 Oct. Each added steps or gates; the failure came back. Per the skill, this area is past patching: redesign with output checks agreed first.
-Chosen cause: Cause 1, with Cause 2 as why it reached him.
+Chosen cause: Cause 1 as corrected by him on 26 Oct: the record is meant to be mined for the discussions; the failure is that nothing selects the core decisions, the ones that shaped the framework and that a hiring manager needs, before copy is written. Cause 2 is why the low weight ones reached him.
 
 ## Layer
 Layer: 3
