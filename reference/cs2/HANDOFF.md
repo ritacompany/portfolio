@@ -21,11 +21,9 @@ Loop step: 3
 
 ## Where it stopped
 
-26 Oct. His Figma frame (WIP Mondai framework case study, 4269:9433, 16 blocks) and the Spec 1 document beside it (4496:16282) are the current state and the only copy source.
+26 Oct. Working on the canvas with him. He asked for two versions of the Action Hub block (eyebrow, headline, side text, rail paragraph and rail notes) placed left of his frame's block, updated from his feedback. Both are on the canvas (Version A at x -1940, Version B at x -3500, y 6227) and in reference/cs2/core/action-hub-versions.md. Waiting for his reaction. Do not say section numbers to him; name the block (the Action Hub, the calendar).
 
-Section 8 (calendar): he confirmed the core decisions shortlist (reference/cs2/core/section-8.md) with three picks: the setup screen stays; a packed week drops times only from the items that cannot be placed; the 18,000 learners study lives in section 8, not on section 3 card 02. Copy written only from that list is in reference/cs2/core/section-8-copy.md and passed all four reader checks from fixes/2026-10-26-cs2-content-selection.md on the third reviewer run. He did not ask for that copy; it is reference only.
-
-The working view is the CS2 canvas artifact (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37). Read his notes with ArtifactData list, collection notes. Canvas source and republish steps: .cs2-canvas/ in the worktree, never committed.
+The section 8 shortlist (core/section-8.md) is confirmed and kept for when he asks; core/section-8-copy.md was not asked for and is reference only.
 
 ## Next action
 
