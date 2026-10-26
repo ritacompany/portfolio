@@ -1,7 +1,15 @@
-# Action Hub block: versions A and B (26 Oct, his ask)
+# Action Hub block (26 Oct)
 
-Status: on the CS2 canvas, left of his frame's Action Hub block, for his pick. Not in Figma.
-His feedback applied: drop the "prime functional experience" research headline; say what the screen is and that later parts happen on it; keep motivation as the hand-off, briefly; eyebrow names the Action Hub.
+Status: one updated version on the CS2 canvas, left of his frame's Action Hub block (x -1940, y 6227). He picked A's side text and A's three rail notes, his own original rail line and a sources line at the bottom of the block, competitive analysis style. Headline rewritten: at least three lines, does not open with the eyebrow's words. Waiting for his reaction to the headline.
+
+## Current
+Eyebrow: The Action Hub
+Headline: Most of a person's week happens on one screen, the list of Action Items they come back to nearly every day.
+Side text: as Version A below.
+Rail paragraph (his, "focusing" made "focused"): Research shows that a small weekly set keeps people motivated. Keeping the user focused on their current Pathway target rather than a longer term goal enhances user motivation.
+Notes: as Version A below.
+Sources line, bottom of the block: Bandura and Schunk 1981; Latham and Seijts 1999
+
 Sources: frame text and Spec 1; reasoning/dossier-findings-22oct.md (target follows weekly hours; pace moves once a week; week one pace equals target; no streak); reports/Near term goal focus evidence.md (Bandura and Schunk 1981, Latham and Seijts 1999, safe if hedged as classic small studies).
 
 ## Version A: the screen first, three rail notes

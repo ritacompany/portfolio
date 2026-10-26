@@ -21,7 +21,7 @@ Loop step: 3
 
 ## Where it stopped
 
-26 Oct. Working on the canvas with him. He asked for two versions of the Action Hub block (eyebrow, headline, side text, rail paragraph and rail notes) placed left of his frame's block, updated from his feedback. Both are on the canvas (Version A at x -1940, Version B at x -3500, y 6227) and in reference/cs2/core/action-hub-versions.md. Waiting for his reaction. Do not say section numbers to him; name the block (the Action Hub, the calendar).
+26 Oct. Working on the canvas with him. The Action Hub block has one updated version on the canvas (x -1940, y 6227), saved in reference/cs2/core/action-hub-versions.md; version B was removed after his pick. Waiting for his reaction to the new headline. Rules he restated: a headline runs at least three lines; never cite research inline, put a sources line at the bottom of the block as the competitive analysis does; a headline does not open with the eyebrow's words. Do not say section numbers to him; name the block. Canvas text (Spec 1 and version blocks) is now selectable; frame text is image and cannot be.
 
 The section 8 shortlist (core/section-8.md) is confirmed and kept for when he asks; core/section-8-copy.md was not asked for and is reference only.
 
