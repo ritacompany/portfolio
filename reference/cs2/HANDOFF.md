@@ -21,7 +21,7 @@ Loop step: 3
 
 ## Where it stopped
 
-26 Oct. Working on the canvas with him. The Action Hub block has one updated version on the canvas (x -1940, y 6227), saved in reference/cs2/core/action-hub-versions.md; version B was removed after his pick. Waiting for his reaction to the new headline. Rules he restated: a headline runs at least three lines; never cite research inline, put a sources line at the bottom of the block as the competitive analysis does; a headline does not open with the eyebrow's words. Do not say section numbers to him; name the block. Canvas text (Spec 1 and version blocks) is now selectable; frame text is image and cannot be.
+26 Oct. Working on the canvas with him. The Action Hub block has one updated version on the canvas (x -1940, y 6227), saved in reference/cs2/core/action-hub-versions.md; version B was removed after his pick. He approved it 26 Oct. Next: whatever block he brings up; the copy goes into his Figma frame only when he says build. Rules he restated: a headline runs at least three lines; never cite research inline, put a sources line at the bottom of the block as the competitive analysis does; a headline does not open with the eyebrow's words. Do not say section numbers to him; name the block. Canvas text (Spec 1 and version blocks) is now selectable; frame text is image and cannot be.
 
 The section 8 shortlist (core/section-8.md) is confirmed and kept for when he asks; core/section-8-copy.md was not asked for and is reference only.
 

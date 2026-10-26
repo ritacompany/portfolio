@@ -1,6 +1,6 @@
 # Action Hub block (26 Oct)
 
-Status: one updated version on the CS2 canvas, left of his frame's Action Hub block (x -1940, y 6227). He picked A's side text and A's three rail notes, his own original rail line and a sources line at the bottom of the block, competitive analysis style. Headline rewritten: at least three lines, does not open with the eyebrow's words. Waiting for his reaction to the headline.
+Status: one updated version on the CS2 canvas, left of his frame's Action Hub block (x -1940, y 6227). He picked A's side text and A's three rail notes, his own original rail line and a sources line at the bottom of the block, competitive analysis style. Headline rewritten: at least three lines, does not open with the eyebrow's words. He approved the headline 26 Oct; the block is approved as it stands on the canvas.
 
 ## Current
 Eyebrow: The Action Hub
