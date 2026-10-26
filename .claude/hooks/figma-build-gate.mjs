@@ -21,7 +21,8 @@ if (!WRITES.test(payload.tool_name || '')) process.exit(0);
 // A use_figma script that only reads (no node creation, removal, reparenting or property assignment)
 // is a read, so it stays open. Without this, a frame too large for get_metadata could not be read at all.
 const MUTATES = /figma\.create|\.remove\(|appendChild|insertChild|\.set\(|\.resize\w*\(|setBound|setRange|setValueForMode|setPluginData|setSharedPluginData|loadFontAsync|combineAsVariants|detachInstance|\.\s*(characters|fills|strokes|name|x|y|visible|opacity|layoutMode|fontSize|fontName|description|placeholder|locked|rotation)\s*=(?!=)/;
-if (/__use_figma$/.test(payload.tool_name) && !MUTATES.test((payload.tool_input || {}).code || '')) process.exit(0);
+const code = (payload.tool_input || {}).code || '';
+if (/__use_figma$/.test(payload.tool_name) && code.trim() && !MUTATES.test(code)) process.exit(0);
 
 function latestTyped(file) {
   if (!file || !fs.existsSync(file)) return null;

@@ -28,10 +28,14 @@ const cases = [
   ["don't touch the homepage", W, [typed("don't touch the homepage figma yet")], 2],
   ['homepage only inside pasted content', W, [typed('<pasted_content id="a">homepage figma cleanup</pasted_content id="a"> thoughts?')], 2],
   ['homepage only from a subagent', W, [typed('show me the plan'), sub('homepage figma cleanup')], 2],
+  ['read-only script passes', W, [typed('ok')], 0, 'const n = await figma.getNodeByIdAsync("1:2"); return n.name;'],
+  ['renaming script blocked', W, [typed('ok')], 2, 'n.name = "x"'],
+  ['text edit blocked', W, [typed('ok')], 2, 't.characters = "a"'],
+  ['create blocked', W, [typed('ok')], 2, 'figma.createFrame()'],
 ];
 let ok = true;
-for (const [label, tool, msgs, want] of cases) {
-  const r = spawnSync('node', [hook], { input: JSON.stringify({ tool_name: tool, transcript_path: tx(msgs) }), encoding: 'utf8' });
+for (const [label, tool, msgs, want, code] of cases) {
+  const r = spawnSync('node', [hook], { input: JSON.stringify({ tool_name: tool, tool_input: code ? { code } : {}, transcript_path: tx(msgs) }), encoding: 'utf8' });
   const pass = r.status === want; ok &&= pass;
   console.log(`${pass ? 'ok  ' : 'FAIL'} ${label} exit=${r.status} want=${want}`);
 }
