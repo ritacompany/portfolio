@@ -32,6 +32,9 @@ const planted = [
   ['negative parallelism', "It wasn't just a task; it was a daily burden.", 'negative parallelism'],
   ['unlisted name', 'Jordan wanted the other risk covered.', 'names a person'],
   ['single quotes', "The lead called it 'not worth shipping' at kickoff.", 'single quotation marks'],
+  ['year', 'In 2025 the week held everything.', 'date or timeline'],
+  ['month', 'In March the page changed.', 'date or timeline'],
+  ['span', 'For two years the answers kept failing.', 'date or timeline'],
   ['curly single quotes', 'The lead called it ‘not worth shipping’ at kickoff.', 'single quotation marks'],
   ['Oxford, longer items', 'It held the full route, the weekly plan, and the calendar view.', 'Oxford comma'],
 ];

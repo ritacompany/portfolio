@@ -57,6 +57,9 @@ lines.forEach((line, i) => {
   // A leading subordinate clause ("When the week ended, ...") is not a list item, so it is set aside first.
   const listPart = line.split(/(?<=[.!?])\s+/).map(s => s.replace(/^\s*(?:When|If|Because|After|Before|While|Although|Though|Since|Once|As|Until|Unless|Whenever)\b[^,]*,\s*/, '')).join(' ');
   if (/\b[\w'-]+(?: [\w'-]+){0,2}, [\w'-]+(?: [\w'-]+){0,2}, (?:and|or) /i.test(listPart)) problems.push(`line ${n}: Oxford comma`);
+  // Time stays out of the copy (CS2_PROCESS.md, Timeline and framing): years, months, dated eras, spans of time.
+  if (/\b(?:19|20)\d{2}\b|\b(?:January|February|March|April|June|July|August|September|October|November|December)\b|\bMay \d|\b(?:one|two|three|four|five|six|\d+) (?:years?|months?)\b/.test(line) || /\b(?:a|one|two|three|\d+) (?:years?|months?) (?:ago|later|of)\b|\bfor (?:two|three|\d+) years\b/i.test(line))
+    problems.push(`line ${n}: date or timeline (time stays out of the copy)`);
   if (/two by two|\b2 ?x ?2\b|\b2 by 2\b|\bmatrix\b|\bquadrant|upper right|sat where|in the corner/i.test(line)) problems.push(`line ${n}: two by two, in words`);
   if (Number.isFinite(section)) for (const [term, from] of TERMS)
     if (section < from && new RegExp(`\\b${term}`, 'i').test(line)) problems.push(`line ${n}: product term "${term}" before section ${from} introduces it`);
