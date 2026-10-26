@@ -66,3 +66,17 @@ Each item maps to the reviewer check question that would catch it (1 decision an
 13. "My personal experience and life and thoughts" never belong in the case study. Question 3.
 
 Open for him: "I" or "we". Recommendation: "I" for decisions he made, "we" for work the team did together (research, building). Taste and what he is comfortable claiming, so his call.
+
+## His build walkthrough, 26 Oct
+
+- Done or nearly: competitive analysis, the foundation we built on, recalibration, reset. Background works but he is not attached to it; try how it works with the competitive analysis.
+- The foundation's hierarchy drawing is his example of the visualization he wants: a picture that makes a concept clear. Every section needs a visual of its own kind, never a copy of that one.
+- Transitions are his biggest struggle. Saturday night deadlines sets up capacity; each section should hand the next its question.
+- Personalized timeline example: "action items" stacks on two lines; reword.
+- Action Hub rail: each of target, pace and ahead of target gets a short, clear description as a side note, not blended into a paragraph. Motivation is the thread to the Growth Journey page; the near goal research line is the right kind of content.
+- Suggested times is the transition into the calendar. Annotate that times are placed automatically from the person's schedule and the person can change them; show the custom time popover. The Motion paragraph may not belong here.
+- Calendar: show the scheduled view, what happens when an Action Item is clicked and how it ties to the list view; a custom scenario person so the long all day boxes do not dominate; a scroll animation. Whether to show the setup screen is open. Design system fixes wait until his other account is back.
+- Start of week: no timeline, no dates, no two years. Walk the reader back into the Action Hub after the calendar. Get ahead uses near identical screens and may come first; the order of get ahead and start of week is open.
+- State rules: headline too short; overlaps rollover, which has to be defined before it.
+- Add an Action Item page section, made to look better than the current screen.
+- The case study has no ending; it stops abruptly after the Pathway page.
