@@ -1,0 +1,11 @@
+VERSION V1: Calendar setup
+  (label) Calendar setup
+V1.S1 Calendar sync connects a person's own calendar to Mondai and unlocks the schedule view, where this week's Action Items sit between their events.
+V1.S2 Turning it on takes two quick questions about their day.
+V1.S3 The first is the hours a person prefers to work.
+V1.S4 Mondai suggests a range from their synced calendar, and the person adjusts it.
+V1.S5 The second is when they focus best within those hours.
+V1.S6 Mondai uses both to decide where Action Items go first.
+V1.S7 They are preferences, not limits.
+V1.S8 The range needs at least eight hours, because Mondai can only use the time not already taken by the person's own events.
+V1.S9 A short range on a busy day leaves none.
