@@ -50,6 +50,7 @@ he is. Mondai product mechanics are background for the case studies and nothing 
 - `docs/FRONTEND_WORKFLOW.md` : decision ownership, browser testing and the frontend definition of done.
 - `docs/RESPONSIVE_HANDOFF.md` : start here when continuing the compact, tablet and mobile homepage work
   in Claude Code or another cloud task.
+- `.claude/motion-rules.md` : animation rules, render contract and review loop. Skill: `code-motion`.
 - `NEXT.md` : the current short list of what to do next.
 - `LEDGER.md` : build state for `build/`, decisions, what is open.
 - `layout-decision-board/` : small local tool for working through layout choices.

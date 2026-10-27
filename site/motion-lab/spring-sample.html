@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spring sample</title>
+<!-- Pipeline sample, not a page section. Style guide and review log: docs/motion/spring-sample/.
+     The phone turns from an angle to face the viewer on a heavy spring, holds, then turns back so
+     the last frame leads into the first. Every value is a function of t through window.seek(t). -->
+<style>
+  html, body { margin: 0; background: #040405; }
+  #c { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #040405; perspective: 1800px; }
+  .stage { position: absolute; left: 58%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+  .phone { position: absolute; width: 330px; height: 680px; left: -165px; top: -340px; transform-style: preserve-3d; }
+  .phone img { display: block; width: 100%; height: 100%; }
+  .shadow { position: absolute; width: 300px; height: 40px; left: -150px; top: 330px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0,0,0,0.9), rgba(0,0,0,0)); }
+  .plate { position: absolute; inset: 0; background: linear-gradient(90deg, #18181b 0, #18181b 1px, transparent 1px) 0 0 / 96px 100%; opacity: 0.35; }
+</style>
+</head>
+<body>
+<div id="c">
+  <div class="plate"></div>
+  <div class="stage">
+    <div class="shadow" id="shadow"></div>
+    <div class="phone" id="phone"><img src="../haven/assets/profile-phone-straight.webp" alt=""></div>
+  </div>
+</div>
+<script type="module">
+  import { track, HEAVY, UI } from "../lib/motion.js";
+
+  const DUR = 5;
+  const phone = document.getElementById("phone");
+  const shadow = document.getElementById("shadow");
+
+  // Angled first frame, faces the viewer from 0.4 s, turns back from 3.6 s and has settled by 5 s.
+  const yaw = [[0, -28], [0.4, 0, HEAVY], [3.6, -28, HEAVY]];
+  const pitch = [[0, 10], [0.4, 0, HEAVY], [3.6, 10, HEAVY]];
+  // The phone lifts a little as it squares up, on a quicker spring so the lift leads the turn.
+  const lift = [[0, 0], [0.35, -14, UI], [3.55, 0, UI]];
+
+  window.seek = (t) => {
+    t = ((t % DUR) + DUR) % DUR;
+    const ry = track(t, yaw), rx = track(t, pitch), y = track(t, lift);
+    phone.style.transform = `translateY(${y}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    const face = 1 - Math.abs(ry) / 28;
+    shadow.style.transform = `scaleX(${0.8 + 0.2 * face})`;
+    shadow.style.opacity = String(0.45 + 0.4 * face);
+  };
+
+  window.seek(0);
+  if (!window.__RENDER__) {
+    const t0 = performance.now();
+    const loop = (now) => { window.seek((now - t0) / 1000); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+</script>
+</body>
+</html>
