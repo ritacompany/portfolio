@@ -1,0 +1,25 @@
+VERSION V1: Rollover, version 1
+  (label) Rollover
+V1.S1 Unfinished Action Items move into next week on their own, and the week stays the size the person said they could give.
+V1.S2 Because each week is filled to the person's capacity, leftovers take the place of new work instead of piling on top of it.
+V1.S3 So a person used to four Action Items still opens a week that fits, not a week of six with two marked as leftovers.
+  (label) Nothing to sort
+V1.S4 Nobody is asked what to do with each leftover.
+V1.S5 That choice would arrive at the moment they are already behind and turn the week into math.
+
+VERSION V2: Rollover, version 2
+  (label) Rollover
+V2.S1 Plenty of weeks will not go to plan, so unfinished work moves into next week without the person having to do anything.
+V2.S2 Missing a step toward a long goal raises the risk of giving up on it, so where leftovers go is a motivation problem.
+V2.S3 Next week is built from the hours the person gave, with leftovers counted first, so the week never gets heavier.
+  (label) Carried, not late
+V2.S4 Rolled over items carry a soft magenta tag rather than a warning color, so a leftover reads as carried forward rather than overdue.
+
+VERSION V3: Rollover, version 3
+  (label) Rollover
+V3.S1 Leftover work had two bad options, asking the person to sort it or moving it silently, and sizing each week to capacity removed the need for either.
+V3.S2 Asking turns a bad week into a list of decisions.
+V3.S3 Moving work silently would surprise someone used to four Action Items with a week of six.
+V3.S4 Because every Action Item carries a time estimate and every week is filled to the person's capacity, leftovers take the place of new work.
+  (label) What sizing does not solve
+V3.S5 Sizing keeps each week the right size, but a run of hard weeks can still build a backlog.
