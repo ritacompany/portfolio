@@ -1,0 +1,9 @@
+VERSION V1: Schedule view
+  (label) The schedule view
+V1.S1 With calendar sync on, the Action Hub can switch to a calendar view, with each Action Item placed between the person's own events.
+V1.S2 It is the same week and the same Action Items, and clicking one opens the same card as the list.
+V1.S3 Each card shows the time Mondai suggests, placed around the person's day.
+V1.S4 The person can move it whenever they want, and the menu for picking a new time also shows the time it was first given.
+V1.S5 Mondai never moves a time on its own, because times that shift by themselves get confusing fast.
+V1.S6 When a time passes, the block dims in the calendar and the time drops off the card, while the item stays open for the rest of the week.
+V1.S7 Nothing is marked missed, because Mondai cannot see whether the work was done.
