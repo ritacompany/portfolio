@@ -1,0 +1,26 @@
+VERSION V1: Calendar, version 1
+  (label) Calendar sync
+V1.S1 An Action Item card carries no due date, because everything on the screen belongs to one week, and the week itself is the deadline.
+V1.S2 With calendar sync on, the week also shows as a calendar, called the schedule view, with this week's Action Items among the person's own events.
+V1.S3 Each card carries only the time Mondai suggests, the one thing that differs from item to item.
+  (label) Same card, either view
+V1.S4 Clicking a block in the schedule view opens the same Action Item card as the Action Hub list.
+
+VERSION V2: Calendar, version 2
+  (label) The schedule view
+V2.S1 With calendar sync on, the week also shows as a calendar, the schedule view, where every Action Item sits among the person's own events and opens the same card as the Action Hub list.
+V2.S2 Both views use the same card, so a person reschedules the same way in either one.
+V2.S3 The menu that opens from the reschedule icon also shows the time the item was first given, so the person can see their original plan when they pick a new one.
+  (label) When a time passes
+V2.S4 The block stays in place in the schedule view and dims, and the card drops the time.
+V2.S5 No item is marked missed, because Mondai cannot see whether the work was done.
+
+VERSION V3: Calendar, version 3
+  (label) Calendar sync
+V3.S1 An Action Item keeps the same card whatever happens to its time, so it reads the same in the Action Hub list and in the calendar view.
+V3.S2 That calendar view of the week is the schedule view.
+V3.S3 A card shows a time when calendar sync placed one there.
+V3.S4 If that time passes, if the calendar had no free gap for it or if sync is off, the card shows no time.
+  (label) What changes
+V3.S5 Only the time on the card appears or disappears.
+V3.S6 Everything else on the card stays where it was.
