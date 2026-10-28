@@ -1,0 +1,23 @@
+VERSION V1: Schedule view, version 1
+  (label) The schedule view
+V1.S1 Calendar sync only reads.
+V1.S2 Mondai pulls in the person's events to find the open time around them, and nothing it suggests is ever written back to their calendar.
+V1.S3 We kept the sync one way, so a person's calendar stays exactly as they left it and Action Items live only in Mondai.
+V1.S4 In the schedule view the week opens at the start of the hours they set, with their own events and this week's Action Items side by side.
+V1.S5 Turning sync off clears the suggested times and the Action Hub goes back to its list.
+V1.S6 Nothing the plan depends on is lost, because the week never relied on the calendar.
+
+VERSION V2: Schedule view, version 2
+  (label) The schedule view
+V2.S1 A synced calendar answers when the work could fit, while the week still decides when it is due, so every suggested time in the schedule view is help rather than a deadline.
+V2.S2 Calendar sync reads the person's events and never writes to their calendar.
+V2.S3 Mondai finds the open time between those events, starting from the hours they set, and suggests where each Action Item could go.
+V2.S4 That split is what let calendar integration join the plan without taking it over.
+
+VERSION V3: Schedule view, version 3
+  (label) The schedule view
+V3.S1 We took the part of AI scheduling that finds free time in a busy calendar and left out the part that takes the calendar over, so calendar sync only ever reads.
+V3.S2 With calendar sync on, Mondai looks at the person's events and suggests a time for each Action Item in the gaps, starting from the hours they set.
+V3.S3 It never adds events, blocks time or moves anything on their calendar.
+V3.S4 The suggestions appear only in Mondai, in the schedule view.
+V3.S5 Turning sync off removes the suggestions and leaves the calendar untouched, because nothing of Mondai's was ever in it.
