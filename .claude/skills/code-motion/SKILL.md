@@ -7,8 +7,8 @@ description: Build, render and review a portfolio animation from code. Use for a
 
 Rules: .claude/motion-rules.md and docs/HAVEN_MOTION_PLAN.md (plan wins).
 
-1. Reference: write docs/motion/<piece>/style_guide.md, then a state list. Real Figma exports only.
-2. Build a page with window.seek(t) using site/lib/motion.js. Samples: site/motion-lab/spring-sample.html (time), site/motion-lab/scroll-sample.html (scroll).
+1. Reference: write docs/motion/<piece>/style_guide.md, then a state list. Real Figma exports only. Motion inside media only; the page entrances in haven.js are out of scope.
+2. Build a page with window.seek(t) using site/lib/motion.js, plus its reduced motion still (one frame, nothing moves). Samples: site/motion-lab/spring-sample.html (time), site/motion-lab/scroll-sample.html (scroll).
 3. Render a clip:
    node scripts/render.mjs --page site/motion-lab/spring-sample.html --width 720 --height 900 --fps 60 --dur 4.6
    Scroll scrub: node scripts/render.mjs --page site/motion-lab/scroll-sample.html --mode scroll --scroll "#scene" --start "top top" --end "bottom bottom" --dur 3 --fps 30

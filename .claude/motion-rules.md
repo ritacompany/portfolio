@@ -2,6 +2,13 @@
 
 Read on demand for any animation work. docs/HAVEN_MOTION_PLAN.md wins wherever the two differ.
 
+## Scope
+- These rules cover motion inside media: loops, the rotating phone, scroll driven mockups and any clip rendered to video.
+- The page entrances already built in site/haven/haven.js (text fade, MaskReveal, Lenis) stay as they are. They run on the browser clock, so the renderer cannot capture them frame by frame. They are reviewed in the browser under docs/FRONTEND_WORKFLOW.md, not rewritten to fit this contract.
+
+## Reduced motion
+- Every piece has a reduced motion version: one still frame, the state the motion argues for (the phone facing the viewer, the profile at rest). Nothing inside the media moves. The plan already requires this per section.
+
 ## Render contract
 - Every animation is a pure function of time or scroll progress. window.seek(t) paints frame t.
 - No setTimeout, no carried state between frames, no CSS transitions in render mode. requestAnimationFrame only drives seek in live mode, never in render mode (window.__RENDER__ is true there).
@@ -27,3 +34,9 @@ Read on demand for any animation work. docs/HAVEN_MOTION_PLAN.md wins wherever t
 2. Look at contact.png, strip.png and phone.png. Always re-render at 390 wide too: a scaled down sheet hid a cropped phone in the sample.
 3. Score 1 to 10, harshly: motion quality, composition, readability at phone size, pacing, loop seam, fidelity to Figma.
 4. Fix the 3 worst. At least 3 rounds; every score 8 or more. Log each round in docs/motion/<piece>/review_log.md.
+
+## On hold (27 Oct 2026, Chadwick: "put the other stuff on hold")
+Built and proven on planted mistakes, but not part of the process until he turns them on: scripts/motion-check.mjs
+(review log, cut strips, scroll lint, perf and reduced motion gates) and the --state cut strips in motion-review.mjs.
+The perf limit is not tuned: it fails one 137 ms frame on the clean scroll sample. Also on hold: ranked P0 to P2
+review in place of scores, a fresh eyes subagent, GSAP 3.15 and the official GSAP skills.
