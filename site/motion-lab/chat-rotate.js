@@ -116,16 +116,11 @@ export async function mountChatPhone(section) {
       const g = Math.min(w, 1920) / 1440;
       L1 = { g, x1: F1.x * g, x2: F2.x * g, y1: F1.y * g, ppm1: F1.ppm * g, ppm2: F2.ppm * g,
         px: 274 * g, py: PARA_Y * g, pw: 360, drop: (PARA_Y + PARA_TO_PHONE_END - F1.y) * g };
-      // Where the paragraph holds on screen: chosen so the phone is cut by the same amount at the top
-      // when the drop starts as at the bottom when it lands (on short screens the two do not both fit).
-      L1.hold = reduced ? 0 : 0.7 * vh;
-      L1.holdAt = Math.min((vh + 438.5 * g) / 2, vh - 160 * g);
     } else {
       const bw = block.clientWidth, ppm2 = Math.min(0.6 * vh, 1.25 * bw) / L, ppm1 = ppm2 * F1.ppm / F2.ppm;
       const y1 = 64 + 352 / F1.ppm * ppm1;      // under the pill, room for the tilted phone
       L1 = { g: ppm2 / F2.ppm, x1: bw / 2, x2: bw / 2, y1, ppm1, ppm2,
-        px: 0, py: y1 + L / 2 * ppm2 + 32, pw: bw, drop: 0, hold: 0 };
-      L1.holdAt = L1.py - y1 + vh / 2;           // no hold: the turn ends as the phone reaches mid screen
+        px: 0, py: y1 + L / 2 * ppm2 + 32, pw: bw, drop: 0 };
     }
     L1.half = 352 * L1.ppm1 / F1.ppm;            // half the tilted phone's height on screen
     L1.box = Math.round(780 * L1.ppm1 / F1.ppm); // canvas fits the phone at any angle
@@ -135,29 +130,24 @@ export async function mountChatPhone(section) {
       renderer.setSize(L1.box, L1.box);
     }
     para.style.width = `${L1.pw}px`;
-    const end = Math.max(L1.y1 + L1.drop + L1.hold + 324 * L1.ppm2 / F2.ppm, L1.py + L1.hold + para.offsetHeight);
+    const end = Math.max(L1.y1 + L1.drop + 324 * L1.ppm2 / F2.ppm, L1.py + para.offsetHeight);
     block.style.height = `${Math.ceil(end + 24)}px`;
     return L1;
   };
 
-  // The paragraph is there from the start, under the phone as in frame 1. When it reaches its hold spot
-  // it stays still for the hold while the phone, turning since the moment it came into view, comes down
-  // to land beside it. Then both scroll on together.
-  //   sIn: the phone's top comes into view. sHold: the paragraph reaches its hold spot. sEnd: hold over.
+  // The paragraph scrolls with the page from the start, under the phone as in frame 1. The phone falls
+  // behind the scroll from the moment it comes into view, turning as it goes, so the paragraph catches up
+  // with it. Once the two line up (frame 2) the phone moves with the page again and they scroll on together.
+  //   sIn: the phone's top comes into view. sMeet: they line up, with the phone in the middle of the screen.
   const draw = () => {
     const Lo = layout(), vh = innerHeight;
     const top = block.getBoundingClientRect().top + scrollY;
-    const sIn = top + Lo.y1 - Lo.half - vh;
-    const sHold = top + Lo.py - Lo.holdAt, sEnd = sHold + Lo.hold;
-    const held = reduced ? 0 : clamp(scrollY - sHold, 0, Lo.hold);           // cancels the scroll: holds
-    const turn = reduced ? 1 : ease(range(scrollY, sIn, sEnd));
-    // The phone starts falling behind the scroll a little before the hold, so it slows, stops and comes
-    // down rather than snapping into reverse. w blends it from its frame 1 spot to its spot beside the text.
-    const w = reduced ? 1 : ease(range(scrollY, sHold - 0.15 * vh, sEnd));
-    const cx = lerp(Lo.x1, Lo.x2, turn), cy = Lo.y1 + w * (Lo.drop + held);
-    const ppm = lerp(Lo.ppm1, Lo.ppm2, turn);
+    const sIn = top + Lo.y1 - Lo.half - vh, sMeet = top + Lo.y1 + Lo.drop - vh / 2;
+    const k = reduced ? 1 : ease(range(scrollY, sIn, sMeet));   // sine in out: no jolt at either end
+    const cx = lerp(Lo.x1, Lo.x2, k), cy = Lo.y1 + k * Lo.drop;
+    const ppm = lerp(Lo.ppm1, Lo.ppm2, k), turn = k;
     holder.style.transform = `translate(${cx - Lo.box / 2}px, ${cy - Lo.box / 2}px)`;
-    para.style.transform = `translate(${Lo.px}px, ${Lo.py + held}px)`;
+    para.style.transform = `translate(${Lo.px}px, ${Lo.py}px)`;
     // Focal length in CSS px puts the phone at Mokker's distance and Figma's scale.
     camera.fov = 2 * THREE.MathUtils.radToDeg(Math.atan(Lo.box / 2 / (ppm * DIST)));
     camera.updateProjectionMatrix();

@@ -39,3 +39,10 @@ is cut about 106 px at the top when the drop starts and at the bottom when it la
 Start pose re-measured against Figma frame 1: same angle (-71.57 degrees both), outline IoU 0.995.
 Checks: START_MATCH, END_MATCH, TEXT_MATCH (visible throughout), REDUCED_STILL (frame 2, offset -13.34).
 Motion 8, composition 8, readability 8, pacing 8, fidelity 8.
+
+## Round 6, 28 Oct (Chadwick: round 5 was not what he meant)
+He meant no hold at all: the text scrolls with the page, the phone visibly falls behind until the text lines
+up with it, then they move together. Now: from the moment the phone comes into view it lags the scroll
+(sine in out over the whole approach, so no jolt at either end) and turns as it goes; the paragraph scrolls
+normally and catches up; they line up in frame 2 with the phone mid screen, then scroll on as one. No pin.
+Checks: START_MATCH, END_MATCH, TEXT_MATCH, REDUCED_STILL.
