@@ -67,6 +67,10 @@ he is. Mondai product mechanics are background for the case studies and nothing 
   discarded; they are in git history only.
 - `.claude/` : the automation. Standing rules injected every turn, a hook that blocks em
   dashes in new writing, and a hook that blocks edits to the verbatim evidence files.
+- `.claude/motion-rules.md` : animation rules, render contract and review loop. Skill: code-motion.
+  The Haven motion plan (`docs/HAVEN_MOTION_PLAN.md`, on the `haven/case-study` archive branch
+  until the Haven page is ported) wins where the two differ. Library `site/lib/motion.js`,
+  renderer `scripts/render.mjs`, samples `site/motion-lab/`; the site build leaves the lab out.
 
 ## Evidence rules
 

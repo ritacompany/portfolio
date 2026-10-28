@@ -135,6 +135,8 @@ The leadership CS is after launch (C4).
   need a task he gave.
 - **top-design** (the award-site skill) and **gsap-scrolltrigger**: stage 4 motion. Not
   motion-framer, which is React; the site is plain HTML and JS.
+- **code-motion**: motion inside media (loops, the rotating phone, scroll driven mockups, clips),
+  rendered frame by frame and reviewed before he sees it. Rules: `.claude/motion-rules.md`.
 - **no-ai-slop** for copy outside the case studies. **humanizer** only when he asks to compare.
 - **deep-research**: only for a question the `reports/` folder does not already answer.
 - **unlazy**: gates on long builds.

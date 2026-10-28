@@ -11,4 +11,6 @@ const outputDirectory = new URL("dist/", projectRoot);
 
 await rm(outputDirectory, { recursive: true, force: true });
 await mkdir(outputDirectory, { recursive: true });
-await cp(sourceDirectory, outputDirectory, { recursive: true });
+// site/motion-lab/ holds the motion pipeline samples (.claude/motion-rules.md), never shipped.
+const lab = new URL("site/motion-lab", projectRoot).pathname;
+await cp(sourceDirectory, outputDirectory, { recursive: true, filter: (from) => from !== lab && !from.startsWith(lab + "/") });

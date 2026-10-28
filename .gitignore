@@ -27,3 +27,6 @@ docs/about-source/_evidence/codex_chadwick.txt
 # Local working output, backed up to iCloud Drive, not git
 output/
 .playwright-cli/
+
+# npm installs (Playwright for the motion renderer)
+node_modules/
