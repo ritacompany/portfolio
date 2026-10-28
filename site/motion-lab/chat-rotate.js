@@ -1,5 +1,5 @@
-// Chat section phone: turns from the Figma frame 1 tilt to face the reader while the paragraph rises
-// beside it. Rules: .claude/motion-rules.md. Every frame is a pure function of scroll position.
+// Chat section phone: travels down the page to the paragraph while it turns from the Figma frame 1 tilt
+// to face the reader, then holds beside it. Rules: .claude/motion-rules.md. Every frame is a pure function of scroll position.
 //
 // Frame 1 (Figma 4262:4971) and frame 2 (4268:8819) are the two ends. The tilt is the Mokker camera
 // recovered from the frame 1 render (fov 45.2, phone 459 mm away, 30 degrees off face on). The phone is
@@ -17,6 +17,7 @@ const PARA_TO_PHONE_END = 13.34;                     // frame 2: phone centre si
 const R1 = [[0.87704, -0.3656, -0.31166], [-0.25304, 0.1999, -0.94658], [0.40837, 0.90905, 0.08281]];
 const DIST = 458.9;                                  // mm, camera to phone, as Mokker
 const ease = cubicBezier(0.37, 0, 0.63, 1);          // gentle sine in out for scrubs
+const HOLD = 1.0;                                    // screens of scroll the met pair stays put
 
 const SH = 2.0, W = 77.6 - SH, L = 160.9 - SH, D = 8.25, RC = 13.5, B = 1.4, DD = 0.4;
 const LOOK = { bc: 0x6a4fc0, br: 0.26, ei: 0.9, kv: 0.9, ks: 7, ko: 3.2, kf: 0.05, cc: 1.0, nw: 1, bz: 6.5, bb: 0x8a5cff, be: 1.6 };
@@ -122,6 +123,7 @@ export async function mountChatPhone(section) {
       L1 = { g: ppm2 / F2.ppm, x1: bw / 2, x2: bw / 2, y1, ppm1, ppm2,
         px: 0, py: y1 + L / 2 * ppm2 + 32, pw: bw, drop: 0 };
     }
+    L1.hold = reduced ? 0 : HOLD * vh;
     L1.half = 352 * L1.ppm1 / F1.ppm;            // half the tilted phone's height on screen
     L1.box = Math.round(780 * L1.ppm1 / F1.ppm); // canvas fits the phone at any angle
     if (L1.box !== size) {
@@ -131,31 +133,48 @@ export async function mountChatPhone(section) {
     }
     para.style.width = `${L1.pw}px`;
     const end = Math.max(L1.y1 + L1.drop + 324 * L1.ppm2 / F2.ppm, L1.py + para.offsetHeight);
-    block.style.height = `${Math.ceil(end + 24)}px`;
+    block.style.height = `${Math.ceil(end + 24 + L1.hold)}px`;
     return L1;
   };
 
-  // The paragraph scrolls with the page from the start, under the phone as in frame 1. The phone falls
-  // behind the scroll from the moment it comes into view, turning as it goes, so the paragraph catches up
-  // with it. Once the two line up (frame 2) the phone moves with the page again and they scroll on together.
-  //   sIn: the phone's top comes into view. sMeet: they line up, with the phone in the middle of the screen.
+  // The paragraph is part of the page and only scrolls. The phone travels down the page to it while it
+  // turns, they meet in the frame 2 layout with the phone in the middle of the screen, hold there for
+  // HOLD screens of scroll, then leave together. On screen the phone rises slower than the page, so the
+  // paragraph scrolls up into it.
+  //   sGo: the phone's centre reaches the bottom of the screen and it starts its own motion.
+  //   sMeet: they meet in frame 2 and the hold starts.
   const draw = () => {
     const Lo = layout(), vh = innerHeight;
     const top = block.getBoundingClientRect().top + scrollY;
-    const sIn = top + Lo.y1 - Lo.half - vh, sMeet = top + Lo.y1 + Lo.drop - vh / 2;
-    const k = reduced ? 1 : ease(range(scrollY, sIn, sMeet));   // sine in out: no jolt at either end
-    const cx = lerp(Lo.x1, Lo.x2, k), cy = Lo.y1 + k * Lo.drop;
+    // Wide: phone centre mid screen. Narrow: the phone and the paragraph under it centred as a pair.
+    const mid = Lo.drop ? Lo.y1 + Lo.drop : (Lo.y1 - L / 2 * Lo.ppm2 + Lo.py + para.offsetHeight) / 2;
+    const sMeet = top + mid - vh / 2;
+    const sGo = top + Lo.y1 - vh;
+    const u = reduced ? 1 : range(scrollY, sGo, sMeet);
+    const k = ease(u);                                    // turn and slide: sine in out
+    // Travel down the page: leaves at page speed and arrives at rest on screen exactly as the hold starts,
+    // so the phone lands without overshooting. Cubic with slope 0 at the start and c at the end.
+    const c = Lo.drop ? (sMeet - sGo) / Lo.drop : 1, fall = (3 - c) * u * u + (c - 2) * u * u * u;
+    const hold = reduced ? 0 : clamp(scrollY - sMeet, 0, Lo.hold);   // pair stays put on screen
+    const cx = lerp(Lo.x1, Lo.x2, k), cy = Lo.y1 + fall * Lo.drop + hold;
     const ppm = lerp(Lo.ppm1, Lo.ppm2, k), turn = k;
     holder.style.transform = `translate(${cx - Lo.box / 2}px, ${cy - Lo.box / 2}px)`;
-    para.style.transform = `translate(${Lo.px}px, ${Lo.py}px)`;
+    para.style.transform = `translate(${Lo.px}px, ${Lo.py + hold}px)`;
     // Focal length in CSS px puts the phone at Mokker's distance and Figma's scale.
     camera.fov = 2 * THREE.MathUtils.radToDeg(Math.atan(Lo.box / 2 / (ppm * DIST)));
     camera.updateProjectionMatrix();
     phone.quaternion.slerpQuaternions(q1, q2, turn);
     renderer.render(scene, camera);
     section.dataset.turn = turn.toFixed(4);
+    Object.assign(section.dataset, { hold: hold.toFixed(1), go: sGo.toFixed(1), meet: sMeet.toFixed(1), holdLen: Lo.hold.toFixed(1) });
   };
   addEventListener("scroll", draw, { passive: true });
+  // The Haven page's smooth scroll (same Lenis lerp as haven.js), so the study feels like the page.
+  // Off for reduced motion, for the renderer and checks (webdriver) and with ?smooth=0.
+  if (window.Lenis && !reduced && !navigator.webdriver && new URLSearchParams(location.search).get("smooth") !== "0") {
+    const lenis = new window.Lenis({ lerp: 0.1, wheelMultiplier: 1 });
+    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
+  }
   addEventListener("resize", draw);
   draw();
   return { draw, para };

@@ -46,3 +46,23 @@ up with it, then they move together. Now: from the moment the phone comes into v
 (sine in out over the whole approach, so no jolt at either end) and turns as it goes; the paragraph scrolls
 normally and catches up; they line up in frame 2 with the phone mid screen, then scroll on as one. No pin.
 Checks: START_MATCH, END_MATCH, TEXT_MATCH, REDUCED_STILL.
+
+## Round 7, 28 Oct (Chadwick: the phone starts too early, the text is plain page text, the phone travels to it, then the pair holds)
+State list rewritten first and agreed. He saw two versions live on the page's smooth scroll (Lenis, same
+lerp as haven.js): "phone slows down" and "phone drops". He picked slows down, with a longer hold.
+Now: the phone's own motion starts when its centre reaches the bottom of the screen (about 350 px later than
+round 6). It rises slower than the page, slowing to rest at mid screen with no overshoot (a cubic whose end
+slope matches the scroll), while it turns on a sine in out. The paragraph never moves inside the block. They
+meet in frame 2, hold for one screen of scroll, then leave at page speed together. Narrow: the pair holds
+centred. Smooth scroll is off for reduced motion, the renderer and the checks.
+Checks: START_MATCH (IoU 0.9966), END_MATCH (0.9878, at the meet, phone mid screen), TEXT_MATCH (offsets
+exact, paragraph still in the block), PATH_RISES (turn 0 until the start point, phone only rises, ends mid
+screen), HOLD_SCREEN (pair still for 900 px, then both leave at page speed), REDUCED_STILL. Each fails on its
+planted mistake (CHECK_PLANT=1: other frame's phone, paragraph 26 px off, round 6 start, 0.75 screen hold,
+reduced showing frame 1).
+Clips chat-r7-1440 and chat-r7-390. Motion 8, composition 8, readability 8, pacing 8, fidelity 8.
+1. The 390 review clip scrubbed 2100 px in 8 s, so motion blur smeared the text through the approach. That is
+   the render speed, not the build. The final render gives the 1440 scrub 12 s.
+2. The hold reads clearly at both sizes: five or more tiles at 0.5 s with nothing moving.
+3. Exit: the pair leaves as one block at both sizes, no gap opening between them.
+Final 1440 clip chat-r7-final, 12 s at 30 fps, rendered twice: sha256 cb53fcee both times.

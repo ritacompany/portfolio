@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chat phone turn</title>
-<!-- Study for the Haven chat section (Figma 4262:4967): the phone turns from the frame 1 tilt to face the
-     reader while the paragraph rises beside it. Scroll driven; see chat-rotate.js. -->
+<!-- Study for the Haven chat section (Figma 4262:4967): the phone travels down to the paragraph while it
+     turns from the frame 1 tilt to face the reader, then the pair holds. Scroll driven; see chat-rotate.js. -->
 <link rel="stylesheet" href="../haven/haven.css">
 <style>
   .spacer { height: 70vh; }
@@ -43,6 +43,7 @@
   </section>
   <div class="spacer"></div>
 </main>
+<script src="../haven/vendor/lenis.min.js"></script>
 <script type="module">
   import { mountChatPhone } from "./chat-rotate.js";
   window.ready = mountChatPhone(document.getElementById("chat-rotate"));
