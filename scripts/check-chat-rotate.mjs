@@ -2,7 +2,8 @@
 //   node scripts/check-chat-rotate.mjs start|end|text|reduced
 // start / end: the phone's rendered outline against the Mokker phone from Figma frame 1 or 2, placed where
 //   that frame puts it relative to the phone centre. Passes at IoU 0.96 or more.
-// text: the paragraph's offset from the phone centre at both ends, against the Figma frames, within 4 px.
+// text: the paragraph's offset from the phone centre at both ends against frame 2, within 4 px, hidden at
+//   the start and fully in after the turn.
 // reduced: with reduced motion the phone shows frame 2 and does not move inside the block while scrolling.
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
@@ -18,7 +19,8 @@ if (!["start", "end", "text", "reduced"].includes(which)) { console.error("usage
 // and each Mokker rectangle's top left relative to its phone centre.
 const F1 = { cx: 981.51, cy: 415.22, rect: [746 - 981.51, 72 - 415.22, 477.15, 704.16] };
 const F2 = { rect: [735 - 891.67, 72 - 396.34, 313.71, 648.19] };
-const PARA = { x: 274, startOff: 839 - 415.22, endOff: 383 - 396.34 };
+// The paragraph waits beside the phone at its frame 2 spot and fades in once the turn passes 0.6.
+const PARA = { x: 274, startOff: 383 - 396.34, endOff: 383 - 396.34 };
 
 const pwPath = process.env.PLAYWRIGHT_MODULE || path.join(process.env.HOME, ".npm/_npx/31e32ef8478fbf80/node_modules/playwright-core/index.mjs");
 if (!existsSync(pwPath)) { console.error("playwright-core not found"); process.exit(2); }
@@ -51,7 +53,8 @@ const state = (where) => page.evaluate(async (where) => {
   dispatchEvent(new Event("scroll"));
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
   const b = block.getBoundingClientRect(), h = document.querySelector(".cr-phone").getBoundingClientRect(), p = document.querySelector(".cr-para").getBoundingClientRect();
-  return { turn: +sec.dataset.turn, cx: h.left + h.width / 2 - b.left, cy: h.top + h.height / 2 - b.top, px: p.left - b.left, py: p.top - b.top, box: h.width };
+  await new Promise((r) => setTimeout(r, where === "end" ? 1600 : 50));
+  return { op: +getComputedStyle(document.querySelector(".cr-para .tb-item")).opacity, turn: +sec.dataset.turn, cx: h.left + h.width / 2 - b.left, cy: h.top + h.height / 2 - b.top, px: p.left - b.left, py: p.top - b.top, box: h.width };
 }, where);
 
 // Outline overlap: draw the WebGL canvas and the Figma image into one 2D canvas around the phone centre.
@@ -79,7 +82,8 @@ if (which === "start" || which === "end") {
 } else if (which === "text") {
   const a = await state("start"), b = await state("end");
   out = { start: a.py - a.cy, end: b.py - b.cy, x: [a.px, b.px], want: PARA };
-  ok = Math.abs(out.start - PARA.startOff) <= 4 && Math.abs(out.end - PARA.endOff) <= 4 && Math.abs(a.px - PARA.x) <= 1 && Math.abs(b.px - PARA.x) <= 1;
+  out.opacity = [a.op, b.op];
+  ok = a.op === 0 && b.op === 1 && Math.abs(out.start - PARA.startOff) <= 4 && Math.abs(out.end - PARA.endOff) <= 4 && Math.abs(a.px - PARA.x) <= 1 && Math.abs(b.px - PARA.x) <= 1;
 } else {
   const a = await state("start"), b = await state("end");
   out = { a, b };

@@ -20,3 +20,10 @@ Motion 8, composition 8, readability 8, pacing 7, fidelity 7.
 Motion 8, composition 8, readability 8, pacing 8, fidelity 8.
 Left as is: Mokker's frame 1 shows a brighter violet rim along the top edge than the 3D band does. It is one
 edge highlight, not the shape or angle, which both match the Figma phone.
+
+## Round 4, 28 Oct (Chadwick: the text should load in like the page's scroll animations, before the end)
+The 437 px rise is gone. With the block pinned, nothing on screen scrolled past it, so it read as a second
+scroll rather than parallax. The paragraph now waits at its frame 2 spot and arrives with the page's own
+text fade (1.4 s, power1.out, once) when the turn is 60 percent done, so it has landed as the phone squares
+up. Checks: START_MATCH, END_MATCH, TEXT_MATCH (hidden at start, in at the end), REDUCED_STILL.
+Motion 8, composition 8, readability 8, pacing 8, fidelity 8.

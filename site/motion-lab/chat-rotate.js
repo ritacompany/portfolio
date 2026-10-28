@@ -88,6 +88,22 @@ export async function mountChatPhone(section) {
   const para = section.querySelector(".cr-para");
   const holder = section.querySelector(".cr-phone");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const text = para.querySelector(".tb-item");
+
+  // Same entrance as every text block on the Haven page (haven.js): 1.4 s opacity fade, power1.out,
+  // once. It runs on the browser clock like the page's own; the renderer, which has no clock, gets the
+  // same fade tied to the turn instead so review clips still show it.
+  const TEXT_AT = 0.6, POWER1_OUT = "cubic-bezier(0.5, 1, 0.89, 1)";
+  let shown = reduced;
+  text.style.opacity = shown ? 1 : 0;
+  const reveal = (turn, passed) => {
+    if (window.__RENDER__) { text.style.opacity = clamp((turn - TEXT_AT) / 0.25); return; }
+    if (shown || !(turn >= TEXT_AT || passed)) return;
+    shown = true;
+    if (passed) { text.style.opacity = 1; return; }
+    text.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1400, easing: POWER1_OUT, fill: "forwards" })
+      .finished.then(() => { text.style.opacity = 1; });
+  };
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
   renderer.setClearColor(0x000000, 0);
@@ -146,7 +162,10 @@ export async function mountChatPhone(section) {
     const cx = lerp(Lo.x1, Lo.x2, turn), cy = Lo.y1 + off;
     const ppm = lerp(Lo.ppm1, Lo.ppm2, turn);
     holder.style.transform = `translate(${cx - Lo.box / 2}px, ${cy - Lo.box / 2}px)`;
-    para.style.transform = `translate(${Lo.px}px, ${Lo.py + off - Lo.rise * turn}px)`;
+    // The paragraph waits at its frame 2 spot beside the phone and arrives with the page's own text
+    // entrance once the turn is 60 percent done, so it has landed by the time the phone faces the reader.
+    para.style.transform = `translate(${Lo.px}px, ${Lo.py - Lo.rise + off}px)`;
+    reveal(turn, scrollY > s0 + Lo.pin + innerHeight);
     // Focal length in CSS px puts the phone at Mokker's distance and Figma's scale.
     camera.fov = 2 * THREE.MathUtils.radToDeg(Math.atan(Lo.box / 2 / (ppm * DIST)));
     camera.updateProjectionMatrix();
