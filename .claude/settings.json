@@ -89,6 +89,16 @@
         ]
       },
       {
+        "matcher": "Artifact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/canvas-copy-guard.mjs\"",
+            "timeout": 30
+          }
+        ]
+      },
+      {
         "matcher": "mcp__.*",
         "hooks": [
           {
