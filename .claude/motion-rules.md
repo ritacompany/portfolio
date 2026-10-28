@@ -6,6 +6,7 @@ Read on demand for any animation work. docs/HAVEN_MOTION_PLAN.md wins wherever t
 - Every animation is a pure function of time or scroll progress. window.seek(t) paints frame t.
 - No setTimeout, no carried state between frames, no CSS transitions in render mode. requestAnimationFrame only drives seek in live mode, never in render mode (window.__RENDER__ is true there).
 - Never Math.random. Use rng(seed) or noise(x, seed) from site/lib/motion.js. The renderer fails any render that calls Math.random during a seek.
+- Scroll scrubs use a gentle curve (sine in out, cubicBezier(0.37, 0, 0.63, 1)) across most of the range. A steep curve leaves the first third of the scroll doing nothing and snaps in the middle.
 - Scroll driven motion reads progress from the scroll position, so the renderer can scrub it by scrolling. Never a lagging scrub (`scrub: 1`) or Lenis lerp in render mode: both depend on scroll history. Lenis with ScrollTrigger is wired as in lenis.dev/llms.txt (`lenis.on('scroll', ScrollTrigger.update)` on the GSAP ticker).
 - Size media to the frame (vh, %, container units), never fixed pixels, so one page renders at desktop and 390 wide.
 

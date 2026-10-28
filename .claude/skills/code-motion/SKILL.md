@@ -16,4 +16,4 @@ Rules: .claude/motion-rules.md and docs/HAVEN_MOTION_PLAN.md (plan wins).
 4. Review: node scripts/motion-review.mjs output/motion/<clip>.mp4 --every 0.25 --strip <fast moment> --loop
    Render again at --width 390 and review that clip too. Rounds 30 fps for speed; the final at 60.
 5. Score, fix the 3 worst, repeat; 3 rounds, all 8 or more, logged in review_log.md.
-6. Determinism check before shipping: render twice, the sha256 lines must match.
+6. Determinism check before shipping: render twice, the sha256 lines must match. Run at most two renders at once; three in parallel crashed one Chrome.
