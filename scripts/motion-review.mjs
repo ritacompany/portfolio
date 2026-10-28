@@ -1,15 +1,20 @@
 // Turns a rendered clip into review images to look at. Rules: .claude/motion-rules.md.
 //
-//   node scripts/motion-review.mjs output/motion/spring-sample.mp4 --every 0.25 --strip 0.4 --loop
+//   node scripts/motion-review.mjs output/motion/spring-sample.mp4 --state docs/motion/spring-sample/state_list.md --loop
+//   node scripts/motion-review.mjs output/motion/clip.mp4 --cuts 0.3,2.8 --loop
 //
 // Writes next to the clip, in <name>-review/:
 //   contact.png  one frame every --every seconds (default 0.25), 6 across, each labelled with its time
-//   strip.png    12 consecutive frames from --strip <seconds>, to catch a stutter or a pop in a fast moment
+//   strip-cut-<t>s.png   every frame from 0.2 s before to 0.2 s after each cut, to catch a stutter or a pop.
+//                        Cuts come from --cuts (comma separated seconds) or --state (a state list: lines
+//                        "- 0.30 s: ..."). With --loop the seam at the clip end gets strip-seam-<t>s.png,
+//                        taken across the wrap. strips.json lists every strip with its time.
+//   strip.png    12 consecutive frames from --strip <seconds>, kept for a one off look
 //   phone.png    one frame a second scaled to 360 wide, the size it reads at on a phone
 //   seam.txt     with --loop: how far the last frame is from the first (PSNR; 40 dB or more is a clean seam)
 // Phone scale is a read check only. A section that recomposes on mobile is rendered again at 390 wide.
 import { spawnSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import path from "node:path";
 
 const argv = process.argv.slice(2);
@@ -50,4 +55,25 @@ if (argv.includes("--loop")) {
   writeFileSync(path.join(dir, "seam.txt"), `last frame vs first frame PSNR ${psnr} dB: ${verdict}\n`);
   console.log(`seam  PSNR ${psnr} dB, ${verdict}`);
 }
-console.log(`review images in ${dir}: contact.png, strip.png, phone.png, times.txt`);
+// Cut strips. A loop is read as two copies back to back, so a window across the seam wraps cleanly.
+const loop = argv.includes("--loop");
+let cuts = [];
+if (str("cuts", null)) cuts = str("cuts").split(",").map(Number);
+if (str("state", null)) cuts = cuts.concat([...readFileSync(str("state"), "utf8").matchAll(/^\s*-\s*(\d+(?:\.\d+)?)\s*s\s*:/gm)].map((m) => Number(m[1])));
+const strips = [];
+const seen = new Set();
+for (const f of readdirSync(dir)) if (/^strip-(cut|seam)-/.test(f)) rmSync(path.join(dir, f));
+for (let c of cuts.concat(loop ? [dur] : [])) {
+  const seam = loop && (c >= dur - 1e-3 || c <= 1e-3);
+  if (seam) c = dur;
+  const key = (seam ? "seam" : "cut") + c.toFixed(2);
+  if (seen.has(key) || (!loop && c > dur + 1e-3)) continue;
+  seen.add(key);
+  const a = Math.max(0, c - 0.2), b = loop ? c + 0.2 : Math.min(dur, c + 0.2);
+  const n = Math.round((b - a) * fps) + 1, rowsN = Math.ceil(n / 12);
+  const file = `strip-${seam ? "seam" : "cut"}-${c.toFixed(2)}s.png`;
+  run([...(loop ? ["-stream_loop", "1"] : []), "-i", clip, "-vf", `select='between(t\\,${a.toFixed(4)}\\,${b.toFixed(4)})',scale=200:-2,${label}tile=12x${rowsN}:padding=2`, "-frames:v", "1", "-fps_mode", "passthrough", path.join(dir, file)]);
+  strips.push({ t: Number(c.toFixed(2)), kind: seam ? "seam" : "cut", from: Number(a.toFixed(2)), to: Number(b.toFixed(2)), file });
+}
+writeFileSync(path.join(dir, "strips.json"), JSON.stringify({ clip, duration: dur, loop, strips }, null, 1));
+console.log(`review images in ${dir}: contact.png, strip.png, phone.png, times.txt` + (strips.length ? `, ${strips.length} cut strips (${strips.map((x) => x.file).join(", ")})` : ""));
