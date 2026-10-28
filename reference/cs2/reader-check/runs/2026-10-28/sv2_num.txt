@@ -1,0 +1,32 @@
+VERSION V1: Schedule view, version 1
+  (label) The schedule view
+V1.S1 People follow through more often on a plan that names a time, so with calendar sync on, the Action Hub can become a calendar that gives every Action Item one.
+V1.S2 Each Action Item gets a suggested time in an open gap between the person's own events, leaning toward the hours they focus best.
+V1.S3 In a large field study, asking people to write down a date barely changed whether they followed through.
+V1.S4 Asking for a date and a time did.
+V1.S5 The time is there to help, not to judge.
+V1.S6 Saturday night is still the only deadline, so a suggested time can pass without anything going wrong.
+V1.S7 Source: Milkman, Beshears, Choi, Laibson and Madrian 2011
+
+VERSION V2: Schedule view, version 2
+  (label) The schedule view
+V2.S1 In a list every Action Item looks the same size.
+V2.S2 On a calendar each one takes up the time it needs, so a person can see how heavy their week is before they start.
+V2.S3 Every Action Item carries an estimate of how long it takes.
+V2.S4 The list has no way to show it, and the length of a block on the calendar is the first place it appears.
+V2.S5 A two hour block beside a thirty minute one says more about the week than any number on a card.
+V2.S6 People without a synced calendar never see that block, so for them the estimate is still invisible.
+V2.S7 That gap is still open.
+
+VERSION V3: Schedule view, version 3
+  (label) The schedule view
+V3.S1 Once Action Items had times on a calendar, three features could have turned a helpful suggestion into a schedule to fail, and I said no to all three.
+  (label) No moving on its own
+V3.S2 Times change only when the person changes them.
+V3.S3 A plan that rearranges itself is hard to trust, and people keep using a tool more often when they keep the final say.
+  (label) No deadline per item
+V3.S4 People underestimate how long their own work takes, so a due time on every Action Item would be missed constantly, while one deadline for the whole week leaves room to misjudge.
+  (label) No missed state
+V3.S5 Mondai cannot see whether the work happened at the suggested time.
+V3.S6 When the time passes, the Action Item simply stays open for the week.
+V3.S7 Sources: Dietvorst, Simmons and Massey 2018; Buehler, Griffin and Ross 1994

@@ -1,0 +1,25 @@
+=== Schedule view, version 1
+[eyebrow or sub-heading] The schedule view
+[headline] People follow through more often on a plan that names a time, so with calendar sync on, the Action Hub can become a calendar that gives every Action Item one.
+Each Action Item gets a suggested time in an open gap between the person's own events, leaning toward the hours they focus best.
+In a large field study, asking people to write down a date barely changed whether they followed through. Asking for a date and a time did.
+The time is there to help, not to judge. Saturday night is still the only deadline, so a suggested time can pass without anything going wrong.
+Source: Milkman, Beshears, Choi, Laibson and Madrian 2011
+
+=== Schedule view, version 2
+[eyebrow or sub-heading] The schedule view
+[headline] In a list every Action Item looks the same size. On a calendar each one takes up the time it needs, so a person can see how heavy their week is before they start.
+Every Action Item carries an estimate of how long it takes. The list has no way to show it, and the length of a block on the calendar is the first place it appears.
+A two hour block beside a thirty minute one says more about the week than any number on a card.
+People without a synced calendar never see that block, so for them the estimate is still invisible. That gap is still open.
+
+=== Schedule view, version 3
+[eyebrow or sub-heading] The schedule view
+[headline] Once Action Items had times on a calendar, three features could have turned a helpful suggestion into a schedule to fail, and I said no to all three.
+[eyebrow or sub-heading] No moving on its own
+Times change only when the person changes them. A plan that rearranges itself is hard to trust, and people keep using a tool more often when they keep the final say.
+[eyebrow or sub-heading] No deadline per item
+People underestimate how long their own work takes, so a due time on every Action Item would be missed constantly, while one deadline for the whole week leaves room to misjudge.
+[eyebrow or sub-heading] No missed state
+Mondai cannot see whether the work happened at the suggested time. When the time passes, the Action Item simply stays open for the week.
+Sources: Dietvorst, Simmons and Massey 2018; Buehler, Griffin and Ross 1994
