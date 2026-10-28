@@ -10,4 +10,9 @@ K6. Calendar setup (approved copy): Calendar sync connects a person's own calend
 
 K7. A person can move an Action Item to a new time from its card (covered in the Action Hub block, per Chadwick 27 Oct).
 
+Promises earlier blocks set up for this block to pay off (from his frame text, 28 Oct export):
+
+P1. Background (frame y 1510): the MVP had plans for calendar integration but no framework to connect it.
+P2. Competitive analysis, Motion card (frame y 2863): AI can find free time in a calendar, but pushing people to schedule did not help them stick with it, so a connected calendar suggests where the work fits and the plan still runs without one.
+
 Not yet shown: the schedule view itself, suggested times.
