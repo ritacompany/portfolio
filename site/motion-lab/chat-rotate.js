@@ -88,22 +88,6 @@ export async function mountChatPhone(section) {
   const para = section.querySelector(".cr-para");
   const holder = section.querySelector(".cr-phone");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const text = para.querySelector(".tb-item");
-
-  // Same entrance as every text block on the Haven page (haven.js): 1.4 s opacity fade, power1.out,
-  // once. It runs on the browser clock like the page's own; the renderer, which has no clock, gets the
-  // same fade tied to the turn instead so review clips still show it.
-  const TEXT_AT = 0.6, POWER1_OUT = "cubic-bezier(0.5, 1, 0.89, 1)";
-  let shown = reduced;
-  text.style.opacity = shown ? 1 : 0;
-  const reveal = (turn, passed) => {
-    if (window.__RENDER__) { text.style.opacity = clamp((turn - TEXT_AT) / 0.25); return; }
-    if (shown || !(turn >= TEXT_AT || passed)) return;
-    shown = true;
-    if (passed) { text.style.opacity = 1; return; }
-    text.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1400, easing: POWER1_OUT, fill: "forwards" })
-      .finished.then(() => { text.style.opacity = 1; });
-  };
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
   renderer.setClearColor(0x000000, 0);
@@ -131,41 +115,49 @@ export async function mountChatPhone(section) {
     if (!narrow) {
       const g = Math.min(w, 1920) / 1440;
       L1 = { g, x1: F1.x * g, x2: F2.x * g, y1: F1.y * g, ppm1: F1.ppm * g, ppm2: F2.ppm * g,
-        px: 274 * g, py: PARA_Y * g, pw: 360, rise: (PARA_Y + PARA_TO_PHONE_END - F1.y) * g };
+        px: 274 * g, py: PARA_Y * g, pw: 360, drop: (PARA_Y + PARA_TO_PHONE_END - F1.y) * g };
+      // Where the paragraph holds on screen: chosen so the phone is cut by the same amount at the top
+      // when the drop starts as at the bottom when it lands (on short screens the two do not both fit).
+      L1.hold = reduced ? 0 : 0.7 * vh;
+      L1.holdAt = Math.min((vh + 438.5 * g) / 2, vh - 160 * g);
     } else {
       const bw = block.clientWidth, ppm2 = Math.min(0.6 * vh, 1.25 * bw) / L, ppm1 = ppm2 * F1.ppm / F2.ppm;
       const y1 = 64 + 352 / F1.ppm * ppm1;      // under the pill, room for the tilted phone
       L1 = { g: ppm2 / F2.ppm, x1: bw / 2, x2: bw / 2, y1, ppm1, ppm2,
-        px: 0, py: y1 + L / 2 * ppm2 + 32, pw: bw, rise: 0 };
+        px: 0, py: y1 + L / 2 * ppm2 + 32, pw: bw, drop: 0, hold: 0 };
+      L1.holdAt = L1.py - y1 + vh / 2;           // no hold: the turn ends as the phone reaches mid screen
     }
-    L1.box = Math.round(780 * L1.ppm1 / F1.ppm);   // canvas fits the phone at any angle
-    L1.pin = reduced ? 0 : 1.2 * vh;                 // scroll length of the pin: long enough to read as a slow turn
+    L1.half = 352 * L1.ppm1 / F1.ppm;            // half the tilted phone's height on screen
+    L1.box = Math.round(780 * L1.ppm1 / F1.ppm); // canvas fits the phone at any angle
     if (L1.box !== size) {
       size = L1.box;
       renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
       renderer.setSize(L1.box, L1.box);
     }
     para.style.width = `${L1.pw}px`;
-    const end = Math.max(L1.y1 + L1.pin + 324 * L1.ppm2 / F2.ppm, L1.py + L1.pin - L1.rise + para.offsetHeight);
+    const end = Math.max(L1.y1 + L1.drop + L1.hold + 324 * L1.ppm2 / F2.ppm, L1.py + L1.hold + para.offsetHeight);
     block.style.height = `${Math.ceil(end + 24)}px`;
     return L1;
   };
 
-  // s0: the phone reaches the middle of the screen. The block then holds still for the pin while the
-  // phone turns to face the reader and the paragraph rises beside it, then all of it scrolls on.
+  // The paragraph is there from the start, under the phone as in frame 1. When it reaches its hold spot
+  // it stays still for the hold while the phone, turning since the moment it came into view, comes down
+  // to land beside it. Then both scroll on together.
+  //   sIn: the phone's top comes into view. sHold: the paragraph reaches its hold spot. sEnd: hold over.
   const draw = () => {
-    const Lo = layout();
+    const Lo = layout(), vh = innerHeight;
     const top = block.getBoundingClientRect().top + scrollY;
-    const s0 = top + Lo.y1 - innerHeight / 2;
-    const off = reduced ? 0 : clamp(scrollY - s0, 0, Lo.pin);   // cancels the scroll: pinned
-    const turn = reduced ? 1 : ease(range(scrollY, s0, s0 + Lo.pin));
-    const cx = lerp(Lo.x1, Lo.x2, turn), cy = Lo.y1 + off;
+    const sIn = top + Lo.y1 - Lo.half - vh;
+    const sHold = top + Lo.py - Lo.holdAt, sEnd = sHold + Lo.hold;
+    const held = reduced ? 0 : clamp(scrollY - sHold, 0, Lo.hold);           // cancels the scroll: holds
+    const turn = reduced ? 1 : ease(range(scrollY, sIn, sEnd));
+    // The phone starts falling behind the scroll a little before the hold, so it slows, stops and comes
+    // down rather than snapping into reverse. w blends it from its frame 1 spot to its spot beside the text.
+    const w = reduced ? 1 : ease(range(scrollY, sHold - 0.15 * vh, sEnd));
+    const cx = lerp(Lo.x1, Lo.x2, turn), cy = Lo.y1 + w * (Lo.drop + held);
     const ppm = lerp(Lo.ppm1, Lo.ppm2, turn);
     holder.style.transform = `translate(${cx - Lo.box / 2}px, ${cy - Lo.box / 2}px)`;
-    // The paragraph waits at its frame 2 spot beside the phone and arrives with the page's own text
-    // entrance once the turn is 60 percent done, so it has landed by the time the phone faces the reader.
-    para.style.transform = `translate(${Lo.px}px, ${Lo.py - Lo.rise + off}px)`;
-    reveal(turn, scrollY > s0 + Lo.pin + innerHeight);
+    para.style.transform = `translate(${Lo.px}px, ${Lo.py + held}px)`;
     // Focal length in CSS px puts the phone at Mokker's distance and Figma's scale.
     camera.fov = 2 * THREE.MathUtils.radToDeg(Math.atan(Lo.box / 2 / (ppm * DIST)));
     camera.updateProjectionMatrix();

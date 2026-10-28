@@ -27,3 +27,15 @@ scroll rather than parallax. The paragraph now waits at its frame 2 spot and arr
 text fade (1.4 s, power1.out, once) when the turn is 60 percent done, so it has landed as the phone squares
 up. Checks: START_MATCH, END_MATCH, TEXT_MATCH (hidden at start, in at the end), REDUCED_STILL.
 Motion 8, composition 8, readability 8, pacing 8, fidelity 8.
+
+## Round 5, 28 Oct (Chadwick: turn as soon as the phone comes into view; text there from the start, holding while the phone comes down to it)
+His pick between two drawn versions: text holds, phone drops in.
+The turn now starts the moment the phone's top enters the screen. The paragraph shows from the start under
+the phone (frame 1, no fade), holds still when it reaches its spot, and the phone comes down to land beside
+it; then both scroll on. The phone starts lagging the scroll 0.15 screens before the hold, so it slows,
+stops and comes down instead of reversing in one frame. Hold spot balances the crop: at 1440x900 the phone
+is cut about 106 px at the top when the drop starts and at the bottom when it lands, since phone plus drop
+(1141 px) is taller than the screen.
+Start pose re-measured against Figma frame 1: same angle (-71.57 degrees both), outline IoU 0.995.
+Checks: START_MATCH, END_MATCH, TEXT_MATCH (visible throughout), REDUCED_STILL (frame 2, offset -13.34).
+Motion 8, composition 8, readability 8, pacing 8, fidelity 8.
