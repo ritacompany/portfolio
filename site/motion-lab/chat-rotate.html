@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat phone turn</title>
+<!-- Study for the Haven chat section (Figma 4262:4967): the phone turns from the frame 1 tilt to face the
+     reader while the paragraph rises beside it. Scroll driven; see chat-rotate.js. -->
+<link rel="stylesheet" href="../haven/haven.css">
+<style>
+  .spacer { height: 70vh; }
+  .cr { padding: 64px var(--m) 110px 0; }
+  .cr__text { padding-left: calc(633 * var(--g)); display: flex; flex-direction: column; gap: 39px; }
+  .cr__text .h40 { max-width: 767px; }
+  /* Block coordinates follow the Figma frames in 1440 px, scaled by --g. */
+  .cr-block { position: relative; margin-top: calc(182 * var(--g)); }   /* height set by chat-rotate.js */
+  .cr-pill { position: absolute; top: 0; right: 0; }
+  .cr-para { position: absolute; left: 0; top: 0; will-change: transform; }
+  .cr-para .tb-item { text-box: normal; }
+  .cr-phone { position: absolute; left: 0; top: 0; will-change: transform; pointer-events: none; }
+  .cr-phone canvas { display: block; }
+  @media (max-width: 767px) {
+    .cr { padding: 64px var(--m) 88px; }
+    .cr__text { padding-left: 0; }
+    .cr-block { margin-top: 64px; }
+    .cr-pill { right: auto; left: 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="spacer"></div>
+  <section class="cr" id="chat-rotate" aria-labelledby="cr-title">
+    <div class="cr__text">
+      <h2 class="eyebrow" id="cr-title">Chat-based interactions</h2>
+      <p class="h40">When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.</p>
+    </div>
+    <div class="cr-block">
+      <span class="pill cr-pill">Interview insight 2</span>
+      <div class="cr-phone" data-screen="../haven/assets/chat-screen.webp" role="img" aria-label="A phone showing an introduction chat by text with a Confidante."></div>
+      <p class="body body-400 cr-para"><span class="tb-item">The final concept uses text-based sessions, not voice or video, so users can engage without speaking sensitive information aloud. A bounded chat format gives users more control over when and how much they share, responding directly to concerns about being overheard.</span></p>
+    </div>
+  </section>
+  <div class="spacer"></div>
+</main>
+<script type="module">
+  import { mountChatPhone } from "./chat-rotate.js";
+  window.ready = mountChatPhone(document.getElementById("chat-rotate"));
+</script>
+</body>
+</html>
