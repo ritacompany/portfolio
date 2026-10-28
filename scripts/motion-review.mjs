@@ -26,7 +26,7 @@ const dur = Number(probe("format=duration") || spawnSync("ffprobe", ["-v", "erro
 const [num, den] = probe("stream=r_frame_rate").split("/").map(Number);
 const fps = num / (den || 1);
 
-const cols = 6, rows = Math.ceil(dur / every / cols);
+const count = Math.floor(dur / every + 1e-6), cols = 6, rows = Math.ceil(count / cols);
 // Time labels need ffmpeg built with drawtext. Without it the tiles are unlabelled and times.txt maps them.
 const hasText = /drawtext/.test(spawnSync("ffmpeg", ["-hide_banner", "-filters"], { encoding: "utf8" }).stdout);
 const label = hasText ? "drawtext=text='%{pts\\:hms}':x=8:y=8:fontsize=18:fontcolor=white:box=1:boxcolor=black@0.6:boxborderw=4," : "";
@@ -36,7 +36,7 @@ run(["-i", clip, "-vf", `fps=1,scale=360:-2,tile=${Math.min(5, Math.ceil(dur))}x
 
 const t = (i) => (i * every).toFixed(2) + " s";
 writeFileSync(path.join(dir, "times.txt"), `contact.png, read left to right, ${cols} across:\n` +
-  Array.from({ length: rows }, (_, r) => Array.from({ length: cols }, (_, c) => t(r * cols + c)).join("  ")).join("\n") +
+  Array.from({ length: rows }, (_, r) => Array.from({ length: Math.min(cols, count - r * cols) }, (_, c) => t(r * cols + c)).join("  ")).join("\n") +
   `\n\nstrip.png: 12 frames from ${stripAt} s at ${fps} fps, ${(1 / fps).toFixed(3)} s apart\nphone.png: one frame a second from 0 s\n`);
 
 if (argv.includes("--loop")) {

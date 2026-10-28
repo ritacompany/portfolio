@@ -10,38 +10,39 @@
 <style>
   html, body { margin: 0; background: #040405; }
   #c { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #040405; perspective: 1800px; }
-  .stage { position: absolute; left: 58%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
-  .phone { position: absolute; width: 330px; height: 680px; left: -165px; top: -340px; transform-style: preserve-3d; }
+  .stage { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+  /* Sized to the frame, not in pixels, so the phone fits at every viewport: 85 percent of the height. */
+  .phone { --h: 85vh; position: absolute; height: var(--h); width: calc(var(--h) * 879 / 1811); left: calc(var(--h) * -879 / 3622); top: calc(var(--h) * -0.51); transform-style: preserve-3d; }
   .phone img { display: block; width: 100%; height: 100%; }
-  .shadow { position: absolute; width: 300px; height: 40px; left: -150px; top: 330px; border-radius: 50%;
+  .shadow { position: absolute; width: 37vh; height: 5vh; left: -18.5vh; top: 40vh; border-radius: 50%;
     background: radial-gradient(closest-side, rgba(0,0,0,0.9), rgba(0,0,0,0)); }
-  .plate { position: absolute; inset: 0; background: linear-gradient(90deg, #18181b 0, #18181b 1px, transparent 1px) 0 0 / 96px 100%; opacity: 0.35; }
 </style>
 </head>
 <body>
 <div id="c">
-  <div class="plate"></div>
   <div class="stage">
     <div class="shadow" id="shadow"></div>
     <div class="phone" id="phone"><img src="../haven/assets/profile-phone-straight.webp" alt=""></div>
   </div>
 </div>
 <script type="module">
-  import { track, HEAVY, UI } from "../lib/motion.js";
+  import { track, UI } from "../lib/motion.js";
 
-  const DUR = 5;
+  const DUR = 4.6;
+  // Softer than HEAVY (z 1.0, settles in 1.7 s) so the turn starts gently instead of snapping.
+  const TURN = { k: 30, d: 11 };
   const phone = document.getElementById("phone");
   const shadow = document.getElementById("shadow");
 
-  // Angled first frame, faces the viewer from 0.4 s, turns back from 3.6 s and has settled by 5 s.
-  const yaw = [[0, -28], [0.4, 0, HEAVY], [3.6, -28, HEAVY]];
-  const pitch = [[0, 10], [0.4, 0, HEAVY], [3.6, 10, HEAVY]];
-  // The phone lifts a little as it squares up, on a quicker spring so the lift leads the turn.
-  const lift = [[0, 0], [0.35, -14, UI], [3.55, 0, UI]];
+  // Angled first frame, faces the viewer from 0.3 s, holds 0.8 s once settled, turns back from 2.8 s and has settled by 4.5 s.
+  const yaw = [[0, -28], [0.3, 0, TURN], [2.8, -28, TURN]];
+  const pitch = [[0, 10], [0.3, 0, TURN], [2.8, 10, TURN]];
+  // The phone lifts a little (14 px in a 900 px frame) as it squares up, on a quicker spring so the lift leads the turn.
+  const lift = [[0, 0], [0.3, -14, UI], [2.8, 0, UI]];
 
   window.seek = (t) => {
     t = ((t % DUR) + DUR) % DUR;
-    const ry = track(t, yaw), rx = track(t, pitch), y = track(t, lift);
+    const ry = track(t, yaw), rx = track(t, pitch), y = track(t, lift) * innerHeight / 900;
     phone.style.transform = `translateY(${y}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
     const face = 1 - Math.abs(ry) / 28;
     shadow.style.transform = `scaleX(${0.8 + 0.2 * face})`;

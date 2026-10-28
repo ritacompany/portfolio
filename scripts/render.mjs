@@ -144,7 +144,10 @@ const total = frames * SUB;
 const tAt = (i) => MODE === "scroll" ? i / (total - 1) : i / (FPS * SUB);
 
 // Each output frame is the mean of its SUB samples. Bitexact flags keep the file byte identical.
-const vf = [SUB > 1 ? `tmix=frames=${SUB}:weights=${Array(SUB).fill(1).join(" ")},select='eq(mod(n\\,${SUB})\\,${SUB - 1})',setpts=N/${FPS}/TB` : `setpts=N/${FPS}/TB`, "pad=ceil(iw/2)*2:ceil(ih/2)*2", "format=yuv420p"].join(",");
+// Samples are averaged in linear light (gamma 2.2 out and back in 16 bit), so fast bright edges do not darken.
+const toLin = "lutrgb=r='pow(val/65535\\,2.2)*65535':g='pow(val/65535\\,2.2)*65535':b='pow(val/65535\\,2.2)*65535'";
+const toSrgb = "lutrgb=r='pow(val/65535\\,1/2.2)*65535':g='pow(val/65535\\,1/2.2)*65535':b='pow(val/65535\\,1/2.2)*65535'";
+const vf = [SUB > 1 ? `format=rgb48le,${toLin},tmix=frames=${SUB}:weights=${Array(SUB).fill(1).join(" ")},${toSrgb},select='eq(mod(n\\,${SUB})\\,${SUB - 1})',setpts=N/${FPS}/TB` : `setpts=N/${FPS}/TB`, "pad=ceil(iw/2)*2:ceil(ih/2)*2", "format=yuv420p"].join(",");
 const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(FPS * SUB), "-i", "-",
   "-vf", vf, "-r", String(FPS), "-c:v", "libx264", "-preset", "medium", "-crf", String(CRF), "-pix_fmt", "yuv420p", "-threads", "1",
   "-map_metadata", "-1", "-fflags", "+bitexact", "-flags:v", "+bitexact", "-movflags", "+faststart", OUT], { stdio: ["pipe", "inherit", "inherit"] });
