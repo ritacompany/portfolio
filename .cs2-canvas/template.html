@@ -1,0 +1,196 @@
+<title>CS2 canvas</title>
+<style>
+/* Layout: a pannable, zoomable board in Figma coordinates. His frame at 0,0, Spec 1 to its right, sticky notes anywhere on the board. */
+:root{
+  --board:#1e1e22; --ui:#2a2a30; --ui-2:#34343c; --line:#3d3d46; --ink:#f2f1f8; --muted:#a9a9b4;
+  --his:#f6e27a; --his-ink:#2a2410; --mine:#cdbfff; --mine-ink:#1d1730; --accent:#cdbfff;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{background:var(--board);color:var(--ink);font-family:var(--sans);overflow:hidden;margin:0}
+.viewport{position:fixed;inset:0;overflow:hidden;cursor:grab;touch-action:none}
+.viewport.panning{cursor:grabbing}
+.board{position:absolute;left:0;top:0;transform-origin:0 0}
+.art{position:absolute;display:block;max-width:none;max-height:none;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.art-label{position:absolute;font-size:22px;color:var(--muted);white-space:nowrap;pointer-events:none}
+.sec-label{position:absolute;font-size:26px;font-weight:600;color:var(--muted);text-align:right;width:420px;pointer-events:none;line-height:1.2}
+.sec-label small{display:block;font-size:18px;font-weight:400;color:#77777f}
+
+.note{position:absolute;width:var(--w,380px);border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.45);font-size:19px;line-height:1.4;cursor:default}
+.note.his{background:var(--his);color:var(--his-ink)}
+.note.mine{background:var(--mine);color:var(--mine-ink)}
+.note header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px 0 14px;cursor:move;font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.75;user-select:none}
+.note header button{background:none;border:0;font-size:22px;line-height:1;cursor:pointer;color:inherit;padding:2px 6px;border-radius:4px}
+.note header button:hover{background:rgba(0,0,0,.1)}
+.note textarea{display:block;width:100%;box-sizing:border-box;border:0;background:transparent;color:inherit;font:inherit;resize:none;padding:6px 14px 14px;outline:none;overflow:hidden;min-height:60px}
+.note.focus{outline:3px solid #fff;outline-offset:2px}
+
+.toolbar{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;align-items:center;background:var(--ui);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 30px rgba(0,0,0,.4);z-index:5;max-width:calc(100vw - 32px);flex-wrap:wrap;justify-content:center}
+.toolbar button,.toolbar select{font:inherit;font-size:13px;color:var(--ink);background:var(--ui-2);border:1px solid var(--line);border-radius:8px;padding:7px 10px;cursor:pointer}
+.toolbar button.primary{background:var(--his);color:var(--his-ink);border-color:transparent;font-weight:700}
+.toolbar .zoom{font-size:12px;color:var(--muted);min-width:44px;text-align:center;font-variant-numeric:tabular-nums}
+.status{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));font-size:12px;color:var(--muted);background:var(--ui);border:1px solid var(--line);border-radius:999px;padding:6px 12px;z-index:5}
+.help{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));font-size:12px;color:var(--muted);background:var(--ui);border:1px solid var(--line);border-radius:10px;padding:8px 12px;z-index:5;max-width:min(360px,calc(100vw - 180px));line-height:1.5}
+.help b{color:var(--ink);font-weight:600}
+.lh{background:var(--his)} .lm{background:var(--mine);margin-left:8px}
+.legend{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:4px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.spec{position:absolute;left:2160px;top:0;width:900px;background:#f7f6f2;color:#1d1d22;border-radius:8px;padding:56px 64px;font-size:22px;line-height:1.5;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.spec h1{font-size:38px;line-height:1.2;margin:56px 0 18px;font-weight:700}
+.spec h2{font-size:26px;margin:40px 0 12px;font-weight:700;color:#3a3a44}
+.spec p{margin:0 0 16px}
+.spec .lab{font-weight:700;color:#55556a}
+.spec .sec{font-size:16px;letter-spacing:.08em;text-transform:uppercase;color:#77778a;margin-top:64px}
+.spec .cmt{font-size:17px;color:#6d6d7c;background:#ecebe6;border-radius:6px;padding:14px 18px}
+.spec s{color:#8a8a96}
+.spec .fb{background:#ffe7a3;color:#3d2f00;border-radius:6px;padding:10px 14px;font-weight:600}
+.spec-title{position:absolute;left:2160px;top:-44px;font-size:22px;color:#a9a9b4}
+
+.ver{position:absolute;top:6227px;width:1440px;height:1656px;overflow:hidden;background:#000;outline:2px solid #6b5cff}
+.ver .cov{position:absolute;background:#000;color:#e9e9ee;font-family:var(--sans)}
+.ver .eb{font-size:20px;color:#bdbdc6;margin:0 0 26px}
+.ver .hl{font-size:40px;line-height:1.12;margin:0;color:#fff;font-weight:400;letter-spacing:-.01em}
+.ver .tx{font-size:15.5px;line-height:1.42;margin:0}
+.ver .nl{font-size:14px;letter-spacing:.04em;color:#bdbdc6;margin:0 0 6px}
+.ver .nt{font-size:16px;line-height:1.38;margin:0 0 20px;font-weight:500}
+
+.lay{position:absolute;width:1440px;background:#000;outline:2px solid #6b5cff;color:#e9e9ee;font-family:var(--sans);overflow:hidden}
+.lay .abs{position:absolute}.lay img.ly{position:absolute;left:0;display:block;width:1440px}
+.lay .eb{font-size:20px;color:#bdbdc6;margin:0 0 26px}
+.lay .hl{font-size:40px;line-height:1.12;margin:0;color:#fff;font-weight:400;letter-spacing:-.01em}
+.lay .tx{font-size:16px;line-height:1.4;margin:0 0 12px}
+.lay .src{font-size:13px;color:#9a9aa4}
+.lay .gn{position:absolute;box-sizing:border-box;padding:24px;background:#0b0b0f;border:1px dashed #4a4a5a}
+.lay .gn .nl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#b9b0ff;margin:0 0 12px}
+.lay .gn .tx{font-size:16px;color:#c9c9d2}
+.lay .t,.lay .t *,.lay .gn,.lay .gn *{user-select:text;-webkit-user-select:text;cursor:text}
+.ver-label{position:absolute;top:6175px;font-size:26px;font-weight:600;color:#b9b0ff}
+.spec,.spec *,.ver .cov,.ver .cov *{user-select:text;-webkit-user-select:text;cursor:text}
+</style>
+
+<div class="viewport" id="vp"><div class="board" id="board">
+  __TILES__
+  __SPEC__
+  <div class="art-label" style="left:0;top:-44px">WIP Mondai framework case study</div>
+  <div class="ver-label" style="left:-1940px;top:7788px">Calendar setup</div>
+  <div class="lay" style="left:-1940px;top:7840px;height:1251px"><div class="abs t" style="left:40px;top:40px;width:887px"><p class="eb">Calendar setup</p><p class="hl">Syncing a calendar lets this week&#x27;s Action Items sit between a person&#x27;s own events, after two quick questions about their day.</p></div><div class="gn t" style="left:40px;top:300px;width:511px;height:661px"><p class="nl">Image</p><p class="tx">Your Set your boundaries screen: the preferred time frame with the suggested range from the person&#x27;s calendar. Crop it so the range and the hours are readable at this size.</p></div><div class="gn t" style="left:732px;top:300px;width:439px;height:661px"><p class="nl">Image</p><p class="tx">Your When do you focus best screen, with Mornings, Mid-day, Evenings, Late night and No preference all visible and one tile selected.</p></div><div class="abs t" style="left:40px;top:991px;width:480px"><p class="tx">People&#x27;s weeks look nothing alike, and a plan that ignores that feels like a school timetable, so setup asks two things a calendar can&#x27;t say. First, when a person prefers to work, since a free hour at 6am isn&#x27;t time most people would use. Mondai suggests a range from their calendar and they adjust it. It needs at least eight hours, so a busy day still has open time.</p></div><div class="abs t" style="left:732px;top:991px;width:440px"><p class="tx">Second, when they focus best, because demanding work tends to go better at a person&#x27;s peak hours. Mondai uses both answers to decide which gaps Action Items fill first. They are preferences, not limits, because the evidence on peak hours is real but modest and plenty of days don&#x27;t go as planned.</p></div><div class="abs t" style="left:40px;top:1191px;width:1100px"><p class="tx src">Source: May, Hasher and Healey 2023</p></div></div>
+  <div class="ver-label" style="left:-1940px;top:9328px">The schedule view</div>
+  <div class="lay" style="left:-1940px;top:9380px;height:1516px"><div class="abs t" style="left:40px;top:40px;width:1084px"><p class="eb">The schedule view</p><p class="hl">The same week can also be laid out by time, so a person sees where each Action Item fits in their day and can flip back to the list whenever they like.</p></div><div class="gn t" style="left:40px;top:300px;width:1065px;height:732px"><p class="nl">Image</p><p class="tx">Aisha&#x27;s week as a calendar, opening at 9AM, the start time she set in setup, so the top rows are already full. Her own events and two or three Action Items sit side by side, one block clearly longer than another. The List and Schedule switch is visible at the top right.</p></div><div class="gn t" style="left:961px;top:1055px;width:439px;height:351px"><p class="nl">Image</p><p class="tx">The click, as a short animation. A block opens a popover with Go to action item, Mark as complete and Reschedule, then the reschedule menu opens. Last frame: a passed time dropped off the card, the item still open.</p></div><div class="abs t" style="left:1128px;top:300px;width:272px"><p class="tx">Each Action Item gets a time because naming a time works better than naming a day. In a flu shot study, a date alone barely moved turnout, while a date and a time did.</p><p class="tx">The time stays a suggestion. People underestimate their own work, so Saturday night is still the only deadline.</p><p class="tx">We kept the sync one way. Mondai reads the calendar to find gaps between events and never writes anything back, because a suggestion written into a person&#x27;s calendar would look like a commitment they never made.</p></div><div class="abs t" style="left:40px;top:1436px;width:1100px"><p class="tx src">Sources: Milkman, Beshears, Choi, Laibson and Madrian 2011; Buehler, Griffin and Ross 1994</p></div></div>
+  <div class="ver-label" style="left:-3480px;top:10698px">Rollover</div>
+  <div class="lay" style="left:-3480px;top:10750px;height:1142px"><div class="abs t" style="left:40px;top:40px;width:887px"><p class="eb">Rollover</p><p class="hl">So what happens to the Action Items someone doesn&#x27;t get to by Saturday night? They have to go somewhere.</p></div><div class="gn t" style="left:40px;top:300px;width:1129px;height:732px"><p class="nl">Image</p><p class="tx">One Action Item card shown twice, side by side. Left: Saturday night at the bottom of this week. Right: Sunday morning at the top of next week with the soft magenta carried tag. Next week still shows four Action Items, so the leftover took a slot instead of adding one.</p></div><div class="abs t" style="left:1193px;top:300px;width:207px"><p class="tx">A missed step on a long goal makes people more likely to give up, so where leftovers go is a motivation question. Pushing it all forward makes next week heavier than the hours the person gave. Asking them to sort it hands them a pile of decisions while they are behind. Dropping it lets the Pathway slip quietly.</p><p class="tx">So leftovers move into next week on their own and count first against the same hours. Carried items are marked in soft magenta instead of a warning color, because showing a lapse lowers later engagement. Pace updates once a week. A run of hard weeks is a different problem, which the plan handles when it rechecks the hours a person gave.</p></div><div class="abs t" style="left:40px;top:1062px;width:1100px"><p class="tx src">Sources: Rai, Sharif, Chang, Milkman and Duckworth 2022; Silverman and Barasch 2023</p></div></div>
+  <div class="ver-label" style="left:-1940px;top:7080px;width:1400px;white-space:normal">Scheduled times: approved 27 Oct to move out of the Action Hub into the schedule view block (y 9380), with its rescheduling image.</div>
+  <div id="labels"></div>
+  <div id="notes"></div>
+</div></div>
+
+<div class="status" id="status" role="status">Connecting</div>
+<div class="toolbar">
+  <button class="primary" id="add" type="button">+ Note</button>
+  <button id="zout" type="button" aria-label="Zoom out">&minus;</button>
+  <span class="zoom" id="zl">50%</span>
+  <button id="zin" type="button" aria-label="Zoom in">+</button>
+  <button id="fit" type="button">Fit width</button>
+</div>
+
+<script>
+const SECTIONS = __SECTIONS__;
+const vp = document.getElementById('vp'), board = document.getElementById('board'), notesEl = document.getElementById('notes');
+const statusEl = document.getElementById('status');
+let view = {x:0, y:0, s:0.5};
+function apply(){ board.style.transform = `translate(${view.x}px,${view.y}px) scale(${view.s})`; document.getElementById('zl').textContent = Math.round(view.s*100)+'%'; }
+function zoomAt(f, cx, cy){ const s = Math.min(2, Math.max(0.08, view.s*f)); const k = s/view.s; view.x = cx-(cx-view.x)*k; view.y = cy-(cy-view.y)*k; view.s = s; apply(); }
+let touched = false;
+function fit(){ const w = Math.max(vp.clientWidth, 320); view.s = Math.min(1, (w-40)/(2140+260)); view.x = 20 + 260*view.s; view.y = 40; apply(); }
+addEventListener('resize', ()=>{ if(!touched) fit(); });
+function goTo(y){ view.y = -y*view.s + 90; apply(); }
+function toBoard(cx, cy){ return {x:(cx-view.x)/view.s, y:(cy-view.y)/view.s}; }
+
+// Section labels left of the frame and the jump list
+document.getElementById('labels').innerHTML = SECTIONS.map(s=>`<div class="sec-label" style="left:-450px;top:${s.y}px">${s.n}<small>${s.title}</small></div>`).join('');
+
+// Pan, zoom
+let pan = null;
+vp.addEventListener('pointerdown', e=>{ if(e.target.closest('.note, .spec, .cov')) return; touched = true; pan = {x:e.clientX, y:e.clientY, vx:view.x, vy:view.y}; vp.classList.add('panning'); vp.setPointerCapture(e.pointerId); });
+vp.addEventListener('pointermove', e=>{ if(!pan) return; view.x = pan.vx + e.clientX - pan.x; view.y = pan.vy + e.clientY - pan.y; apply(); });
+vp.addEventListener('pointerup', ()=>{ pan = null; vp.classList.remove('panning'); });
+vp.addEventListener('wheel', e=>{ e.preventDefault(); touched = true; if(e.ctrlKey||e.metaKey){ zoomAt(Math.exp(-e.deltaY*0.01), e.clientX, e.clientY); } else { view.x -= e.deltaX; view.y -= e.deltaY; apply(); } }, {passive:false});
+document.getElementById('zin').onclick = ()=>zoomAt(1.25, vp.clientWidth/2, vp.clientHeight/2);
+document.getElementById('zout').onclick = ()=>zoomAt(0.8, vp.clientWidth/2, vp.clientHeight/2);
+document.getElementById('fit').onclick = fit;
+
+// Notes store: the artifact's db when available, this browser otherwise
+const notes = new Map(); let db = null, col = null; const timers = {};
+function setStatus(t){ statusEl.textContent = t; }
+function localSave(){ try{ localStorage.setItem('cs2-canvas-notes', JSON.stringify([...notes.entries()])); }catch(e){} }
+function persist(id, immediate){
+  clearTimeout(timers[id]);
+  const run = async ()=>{
+    const n = notes.get(id); if(!n) return;
+    if(!col){ localSave(); setStatus('Saved in this browser only'); return; }
+    setStatus('Saving');
+    try{ await col.doc(id).set({...n, updated: Date.now()}); setStatus('Saved'); }
+    catch(err){ setStatus(err && err.code==='quota_exceeded' ? 'Note limit reached' : 'Not saved, try again'); }
+  };
+  if(immediate) run(); else timers[id] = setTimeout(run, 700);
+}
+async function remove(id){ notes.delete(id); document.getElementById('n-'+id)?.remove(); if(col){ try{ await col.doc(id).delete(); setStatus('Saved'); }catch(e){ setStatus('Not deleted, try again'); } } else localSave(); }
+function grow(t){ t.style.height='auto'; t.style.height = t.scrollHeight+'px'; }
+function render(id){
+  const n = notes.get(id); let el = document.getElementById('n-'+id);
+  if(!el){
+    el = document.createElement('div'); el.id = 'n-'+id;
+    el.innerHTML = `<header><span></span><button type="button" aria-label="Delete note">&times;</button></header><textarea aria-label="Note"></textarea>`;
+    const ta = el.querySelector('textarea');
+    ta.addEventListener('input', ()=>{ const m = notes.get(id); m.text = ta.value; grow(ta); persist(id); });
+    el.querySelector('header button').addEventListener('click', ()=>{ if(el.dataset.confirm){ remove(id); } else { el.dataset.confirm='1'; el.querySelector('header span').textContent='Click again to delete'; setTimeout(()=>{ delete el.dataset.confirm; render(id); }, 2500); } });
+    const hd = el.querySelector('header');
+    hd.addEventListener('pointerdown', e=>{ if(e.target.closest('button')) return; e.stopPropagation(); hd.setPointerCapture(e.pointerId); const m = notes.get(id); const st = {x:e.clientX, y:e.clientY, nx:m.x, ny:m.y};
+      const mv = ev=>{ m.x = st.nx + (ev.clientX-st.x)/view.s; m.y = st.ny + (ev.clientY-st.y)/view.s; el.style.left = m.x+'px'; el.style.top = m.y+'px'; };
+      const up = ()=>{ hd.removeEventListener('pointermove', mv); hd.removeEventListener('pointerup', up); persist(id, true); };
+      hd.addEventListener('pointermove', mv); hd.addEventListener('pointerup', up); });
+    notesEl.appendChild(el);
+  }
+  el.className = 'note ' + (n.by==='claude' ? 'mine' : 'his');
+  el.style.left = n.x+'px'; el.style.top = n.y+'px'; el.style.setProperty('--w', (n.w||380)+'px');
+  if(!el.dataset.confirm) el.querySelector('header span').textContent = (n.by==='claude' ? 'Claude' : 'Chadwick') + (n.section ? ' · '+n.section : '');
+  const ta = el.querySelector('textarea'); if(document.activeElement !== ta) ta.value = n.text||''; grow(ta);
+  return el;
+}
+function sectionAt(y){ let s = SECTIONS[0]; for(const x of SECTIONS) if(y >= x.y) s = x; return s.n; }
+function addNote(bx, by){
+  const id = 'n' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+  notes.set(id, {x:bx, y:by, w:380, text:'', by:'chadwick', section:sectionAt(by), created:Date.now()});
+  const el = render(id); persist(id, true); const ta = el.querySelector('textarea'); ta.focus({preventScroll:true});
+}
+vp.addEventListener('dblclick', e=>{ if(e.target.closest('.note, .spec, .cov')) return; const p = toBoard(e.clientX, e.clientY); addNote(p.x, p.y); });
+document.getElementById('add').onclick = ()=>{ const p = toBoard(vp.clientWidth/2, vp.clientHeight/2); addNote(Math.max(1480, p.x), p.y); };
+
+fit(); apply();
+try{ const saved = JSON.parse(localStorage.getItem('cs2-canvas-notes')||'[]'); for(const [id,n] of saved){ notes.set(id,n); render(id); } }catch(e){}
+setStatus('Saved in this browser only');
+(async ()=>{
+  try{ db = window.claude && await window.claude.use('db'); }catch(e){ db = null; }
+  if(!db){ setStatus('Saved in this browser only'); return; }
+  col = db.collection('notes');
+  notes.clear(); notesEl.innerHTML = '';
+  col.onSnapshot(snap=>{
+    for(const ch of snap.docChanges()){
+      const id = ch.doc.id;
+      if(ch.type==='removed'){ notes.delete(id); document.getElementById('n-'+id)?.remove(); continue; }
+      const d = ch.doc.data(); const local = notes.get(id);
+      if(local && document.activeElement === document.querySelector('#n-'+id+' textarea')) continue;
+      notes.set(id, {...d}); render(id);
+    }
+    setStatus(snap.metadata.hasPendingWrites ? 'Saving' : 'Saved');
+  }, ()=>{ setStatus('Live sync stopped, reload to reconnect'); });
+})();
+
+// Version blocks: reuse the frame tiles behind the rewritten text
+document.querySelectorAll('[data-ver]').forEach(v=>{ const t=+v.dataset.top, h=v.offsetHeight||2000; document.querySelectorAll('img.art[alt^="Frame"]').forEach(img=>{ const y=parseInt(img.style.top); if(y+1500<t||y>t+h) return; const c=img.cloneNode(); c.style.left='0px'; c.style.top=(y-t)+'px'; v.prepend(c); }); });
+
+// covers grow to the full original text box under them (frame text bounds from Figma), so no original copy shows through
+const TEXTBOX='23,107,1357,152;41,324,31,11;41,351,129,11;302,324,51,11;302,351,52,11;486,324,41,11;486,351,220,11;41,482,440,40;41,558,440,40;41,1333,123,17;270,1510,995,802;273,2492,660,14;273,2545,791,131;273,2824,141,15;273,2863,420,77;739,2824,65,15;739,2863,420,99;273,3044,58,15;273,3083,420,99;739,3044,132,15;739,3083,424,99;159,3531,660,14;159,3585,760,131;160,3840,314,14;160,3874,435,33;159,4581,660,14;159,4635,660,131;505,4898,255,15;505,4928,255,55;787,4898,255,15;787,4929,228,33;40,5415,660,14;40,5469,727,131;40,6530,285,99;901,6562,437,54;901,6669,437,55;901,6777,437,33;609,7218,395,15;609,7253,395,121;156,7894,660,14;156,7948,887,119;156,9081,494,187;40,9433,660,14;40,9487,1084,114;40,9673,320,121;400,10498,1000,14;400,10540,571,99;40,10804,660,14;40,10858,1000,80;0,11727,684,55;708,11727,684,55;708,11854,211,121;0,11854,660,275;40,12417,660,14;40,12471,1000,131;1180,12690,212,407;40,13643,660,14;40,13697,1000,80;0,14566,684,55;708,14566,684,77;708,14715,211,143;0,14715,660,77;40,15278,660,14;40,15332,1000,80;1180,15500,212,253;40,16453,660,14;40,16507,1000,131;1138,16726,278,165;1138,16915,278,187'.split(';').map(r=>r.split(',').map(Number));
+document.querySelectorAll('[data-ver] .cov').forEach(c=>{ const v=c.parentElement, t=+v.dataset.top, P=10; let L=c.offsetLeft, T=c.offsetTop+t, R=L+c.offsetWidth, B=T+c.offsetHeight; TEXTBOX.forEach(([x,y,w,h])=>{ if(x<R&&x+w>L&&y<B&&y+h>T){ L=Math.min(L,x-P); T=Math.min(T,y-P); R=Math.max(R,x+w+P); B=Math.max(B,y+h+P); } }); L=Math.max(L,0); R=Math.min(R,1440); const m=document.createElement('div'); m.className='mask'; m.style.cssText=`position:absolute;background:#000;left:${L}px;top:${T-t}px;width:${R-L}px;height:${B-T}px`; c.before(m); });
+
+</script>
