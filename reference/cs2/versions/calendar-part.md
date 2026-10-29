@@ -1,77 +1,75 @@
-# Calendar part versions, round 2 (29 Oct)
+# Calendar part versions, round 3 (29 Oct)
 
-Calendar setup is done in his frame; no versions. Schedule view rethought with scheduled times as one of its points. Rollover unchanged from round 1. Reader check pending on the schedule view row.
+Calendar setup is done in his frame. Each version uses a different layout from his pool and carries a Covers line. Reader check pending.
 
-## The schedule view A: T2I, two clocks
+## The schedule view A: one big week, two moments below
+Covers: same week two views, the time is theirs to move, two clocks
 
 Headline: People who sync their calendar also get the schedule view, which shows exactly where each of their Action Items fits in the week they already have.
 
-Image: Big image: Aisha's week as a calendar opening at 9AM, the start time she set in setup, her own events and Action Items side by side, the List and Schedule switch visible.
-Image: Small image, animated: a click on a block opens the popover, then the reschedule menu, and a new time is picked. Last frame: a passed time dropped off the card, the item still open.
+Image: Aisha's week as a calendar opening at 9AM, the start time she set in setup, her own events and Action Items side by side, the List and Schedule switch visible.
+Image: A block clicked: the popover, then the reschedule menu with a new time picked.
+Image: The card after its time passed: the time gone, the item still open.
 
-It's the same week as the list, and they can flip between the two whenever they like.
-Each Action Item gets a suggested time, placed around the person's day. They can move it whenever they want, from either view. Mondai never moves one on its own. Moving times automatically was easy to build, and I left it out, because times that shift by themselves get confusing fast.
-That left two clocks: a time on Tuesday and the real deadline on Saturday night. I made the week the one that counts. When a time passes, it drops off the card and the item stays open until Saturday, with nothing marked missed.
-We kept the sync one way. Mondai reads the calendar and never writes back, so a person's calendar stays theirs.
+Every time is a suggestion the person can move from either view. I left out moving times automatically, because a plan that rearranges itself gets confusing fast.
+A passed time just drops off the card, and Saturday night stays the deadline.
 
-## The schedule view B: T3I, why a time
+## The schedule view B: two views side by side
+Covers: how Mondai finds the times, effort you can see, same week two views
 
-Headline: With a calendar synced, the Action Hub can show the same week as a schedule, so a person sees where each Action Item could fit before the week fills up.
+Headline: With a calendar synced, the Action Hub can show the same week as a schedule, with Mondai finding a time for each Action Item around the person's day.
 
-Image: Aisha's week as a calendar opening at 9AM, with a two hour block next to a thirty minute one.
-Image: The popover a block opens, with Go to action item, Mark as complete and Reschedule.
-Image: The reschedule menu with a new time picked for the same Action Item.
+Image: Aisha's week as a calendar, Action Items placed in her focus hours, one two hour block next to a thirty minute one.
+Image: The same week as the list, so the two views sit side by side.
 
-It's the same week either way, and a person can flip back to the list whenever they like.
-Each Action Item gets a suggested time, because a plan with a specific time gets followed through more often than one with only a day.
-The time belongs to the person. They can move it from the card in either view, and Mondai never moves it for them. A passed time costs nothing. It drops off the card and the item stays open for the week.
-Block length also shows how big an Action Item is, which the list has no way to show.
-Source: Milkman, Beshears, Choi, Laibson and Madrian 2011
+Times come from the two answers in setup. Mondai looks for open time inside the hours a person prefers and fills the hours they focus best first.
+Seeing work as blocks also shows its size. A two hour block next to a thirty minute one says more about the week than the list can.
 
-## The schedule view C: T1I, one way sync
+## The schedule view C: one way sync
+Covers: why the sync only reads, what turning it off does
 
-Headline: Syncing a calendar adds a schedule view to the Action Hub, a second way to look at the same week with every Action Item placed in a free gap.
+Headline: Syncing a calendar adds a schedule view to the Action Hub, with each Action Item given a time that fits around the person's own plans and the hours they set.
 
-Image: One image: Aisha's week as a calendar opening at 9AM, her own events beside her Action Items, with the reschedule menu open on one block.
+Image: Aisha's week as a calendar, her events beside her Action Items.
+Image: Your Calendar successfully synced screen.
+Image: The list after sync is turned off, unchanged.
 
-Mondai reads the person's calendar to find the gaps between their events, starting from the hours they set in setup. It never writes anything back. Their calendar holds their job, classes and family. A suggestion written into it would look like a commitment they never made.
-So each suggested time lives only in Mondai. A person moves it from the card whenever they like, and Mondai never moves it on its own, since times that shift by themselves get confusing fast.
-The week keeps one deadline, Saturday night, because people misjudge how long their own work takes. Turning sync off clears the times and leaves the list as it was.
-Source: Buehler, Griffin and Ross 1994
+Mondai reads the person's calendar and never writes back. Their calendar holds their job, classes and family. A suggestion written into it would look like a commitment they never made.
+That keeps every suggested time inside Mondai, and turning sync off leaves the list as it was.
 
-## Rollover A: T1I, three ways out
+## Rollover A: the reasoning beside the result
+Covers: the moment it lands, three ways out, the decision, the carried tag
 
 Headline: So what happens to the Action Items someone doesn't get to by Saturday night? They have to go somewhere.
 
-Image: One image: an Action Item card shown twice, Saturday night at the bottom of this week, then Sunday morning at the top of next week with the soft magenta carried tag. Next week still shows four Action Items.
+Image: Next week's Action Hub list with a carried item at the top in its soft magenta tag.
+Image: Close up: a carried card beside a normal one, so the tag reads at a glance.
 
-Every option pulled on something else. Pushing all of it into next week makes that week heavier than the hours the person gave. Asking them to sort it hands them a pile of decisions right when they're behind. Dropping it lets the Pathway slip without anyone saying so.
-So leftovers move into next week on their own and count first against the same hours. New work makes room for them, and the week stays the size the person said they could give.
-A carried item gets a soft magenta tag instead of a warning color, so it reads as carried forward, not overdue.
-Source: Silverman and Barasch 2023
+Unfinished work lands right when someone already feels behind. A missed step on a long goal is one of the moments people give up, so this was really a question about how the next week would feel.
+Every option pulled on something else. Moving everything forward makes a heavier week after a bad one. Asking them to sort it hands them decisions while they're behind. Dropping it lets the Pathway slip without anyone saying so.
+So leftovers carry into next week on their own and the week doesn't grow. A carried item gets a soft magenta tag instead of a warning color, so it reads as carried forward, not overdue.
+Sources: Rai, Sharif, Chang, Milkman and Duckworth 2022; Silverman and Barasch 2023
 
-## Rollover B: T2I, what it touches
+## Rollover B: what the person sees next week
+Covers: why it matters to the person and to Mondai, target and pace, hand off to the week flow
 
 Headline: Some weeks won't go to plan, and whatever someone doesn't finish by Saturday night still has to land somewhere.
 
-Image: Big image: next week's Action Hub list with a carried item at the top in its magenta tag, four Action Items in total.
-Image: Small image: the Pathway pace date moving once, at the start of the week.
+Image: The Action Hub at the start of the new week: a carried item in its magenta tag, the Pathway target unchanged and the pace moved a few days.
 
-A missed step on a long goal is one of the moments people give up, so I treated leftovers as a motivation problem first.
-They move into next week automatically, counted against the same hours, so a bad week never turns into a heavier one.
-The Pathway pace moves once a week, so a carried item shows up as a later finish rather than a red flag on the day.
-A run of hard weeks is a different problem. Sizing keeps each week fair, but leftovers can stack up, and that's when the plan rechecks the hours the person gave.
+A missed step on a long goal is one of the moments people give up. For Mondai that is the user we lose, so the first screen of the next week has to keep them going.
+The target holds. Only the pace moves, once a week, so a carried item shows up as a later finish instead of a red flag.
+If weeks keep slipping, the plan looks at the person's progress and suggests changes. That is where the week flow begins.
 Source: Rai, Sharif, Chang, Milkman and Duckworth 2022
 
-## Rollover C: T3I, Saturday to Sunday
+## Rollover C: Saturday to Sunday
+Covers: what happens on Saturday night, what Sunday looks like, why nobody is asked to sort
 
-Headline: Every week ends with some Action Items still open, and where they go next decides how the following week feels.
+Headline: Every week ends with some Action Items still open, and the person is usually already behind when it does.
 
-Image: This week on Saturday night, with two Action Items still open.
-Image: Sunday morning, the new week, with those two at the top in the magenta carried tag.
-Image: The new week's count: four Action Items, the same as a normal week.
+Image: Saturday evening: the Action Hub with two Action Items still open.
+Image: Sunday morning: the new week with those two at the top in the magenta carried tag.
+Image: The Pathway pace before and after the week, moved a few days.
 
-On Saturday night nothing happens to the open items. Nobody is asked to sort them and nothing is marked late.
-On Sunday they're at the top of the new week with a magenta carried tag. The week still holds four Action Items, not six, because leftovers take the place of new work.
-Asking the person to decide what to do with each one would arrive right when they're already behind and turn the week into math.
-
+On Saturday night nothing happens to the open items. Nobody is asked to sort them and nothing is marked late. On Sunday they wait at the top of the new week with a magenta carried tag, and the new week is the same size as any other.
+Asking the person to decide what to do with each one would land right when they're already behind and turn the week into math.

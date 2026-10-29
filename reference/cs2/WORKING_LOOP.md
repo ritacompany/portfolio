@@ -60,6 +60,11 @@ before the first reply, then HANDOFF.md for where things stand.
   T2I media+body: image 24,0 1090x749, small image 967,773 449x359, text column 1138,0 width 278.
   T3I three media+body: images 24,0 and 732,0 and 24,701, each 684x677, text in the fourth cell 732,701.
   Headers in his frame sit at x 40; the eyebrow, then the headline.
+  The WIP case study frames in the same section hold many more layouts (Robinhood, Suno, Atoms, The Atlantic,
+  Calvin Klein, Headspace, Ro, Windsurf). Use the whole pool: no two versions in a round share a layout, and
+  pick image sizes that fit what the image shows.
+- Each version's label carries a Covers line naming the points it includes, so he can compare versions.
+- Keep text short and beside the image it explains; break it up rather than filling a long column.
 - Each image slot is a dashed gray frame with a note inside saying what the image is. He makes the images.
 - Text keeps 40px margins; only images touch the frame edge.
 - If the frame tiles are missing in a new worktree, copy .cs2-canvas/img from another worktree or
