@@ -1,0 +1,7 @@
+=== The schedule view
+[eyebrow or sub-heading] The schedule view
+[headline] The same week can also be laid out by time, so a person sees where each Action Item fits in their day and can flip back to the list whenever they like.
+Each Action Item gets a time because naming a time works better than naming a day. In a flu shot study, a date alone barely moved turnout, while a date and a time did.
+The time stays a suggestion. People underestimate their own work, so Saturday night is still the only deadline.
+We kept the sync one way. Mondai reads the calendar to find gaps between events and never writes anything back, because a suggestion written into a person's calendar would look like a commitment they never made.
+Sources: Milkman, Beshears, Choi, Laibson and Madrian 2011; Buehler, Griffin and Ross 1994

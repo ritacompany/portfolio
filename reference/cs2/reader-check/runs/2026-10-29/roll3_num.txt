@@ -1,0 +1,13 @@
+VERSION V1: Rollover
+  (label) Rollover
+V1.S1 So what happens to the Action Items someone doesn't get to by Saturday night?
+V1.S2 They have to go somewhere.
+V1.S3 A missed step on a long goal makes people more likely to give up, so where leftovers go is a motivation question.
+V1.S4 Pushing it all forward makes next week heavier than the hours the person gave.
+V1.S5 Asking them to sort it hands them a pile of decisions while they are behind.
+V1.S6 Dropping it lets the Pathway slip quietly.
+V1.S7 So leftovers move into next week on their own and count first against the same hours.
+V1.S8 Carried items are marked in soft magenta instead of a warning color, because showing a lapse lowers later engagement.
+V1.S9 Pace updates once a week.
+V1.S10 A run of hard weeks is a different problem, which the plan handles when it rechecks the hours a person gave.
+V1.S11 Sources: Rai, Sharif, Chang, Milkman and Duckworth 2022; Silverman and Barasch 2023
