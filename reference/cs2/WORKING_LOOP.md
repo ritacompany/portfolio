@@ -33,9 +33,16 @@ before the first reply, then HANDOFF.md for where things stand.
 - On the canvas: https://claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37. Source in `.cs2-canvas/`
   (template.html, build.py, spec.md are in git; his frame tiles in img/tiles are not, the repo is public).
   Build with `python3 .cs2-canvas/build.py .cs2-canvas`, publish the built cs2-canvas.html to that link.
-- A version is a copy of his actual frame block placed to the left of it. Never sticky notes.
-- Layouts come from his pool (Case study layouts section, page VC, T1I T2I T3I). Text keeps 40px margins;
-  only images touch the frame edge. Each block gets a text frame saying what visual he could make.
+  Before publishing, read the live canvas (Artifact read) in case a newer version was published elsewhere.
+- Three versions for each section, labelled A, B and C, placed to the left of his block. They differ in
+  structure, not wording. He gives feedback on the story, picks one, and the fix goes into that one.
+- Keep his sections as the page names them. Never invent a new section, never split one by word count and
+  never make a text only block.
+- Layout, per version: list the points the section needs, decide which points have a visual, pick a layout
+  from his pool by image count and text room (Case study layouts section, page VC, T1I T2I T3I). Points
+  without an image ride in the same layout. Draw it on his black page: no gray backdrop, no boxes.
+- Each image slot is a dashed gray frame with a note inside saying what the image is. He makes the images.
+- Text keeps 40px margins; only images touch the frame edge.
 - If the frame tiles are missing in a new worktree, copy .cs2-canvas/img from another worktree or
   re-export frame 4269:9433 from Figma and tile it (1500px tiles named fNN_y.png) before building.
 
@@ -45,7 +52,7 @@ before the first reply, then HANDOFF.md for where things stand.
 2. Canvas copy guard: runs on every canvas publish and refuses dashes, Oxford commas, quotes, AI
    vocabulary and colleague names (`.claude/hooks/canvas-copy-guard.mjs`). Enforced.
 3. Reader check (`reference/cs2/reader-check/README.md`): three runs, PASS needed. Run it on the version
-   he picks, not on every option, to save usage.
+   he picks, not on A, B and C, to save usage.
 
 ## Usage
 
