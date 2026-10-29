@@ -117,7 +117,7 @@ document.getElementById('labels').innerHTML = SECTIONS.map(s=>`<div class="sec-l
 
 // Pan, zoom
 let pan = null;
-vp.addEventListener('pointerdown', e=>{ if(e.target.closest('.note, .spec, .cov')) return; touched = true; pan = {x:e.clientX, y:e.clientY, vx:view.x, vy:view.y}; vp.classList.add('panning'); vp.setPointerCapture(e.pointerId); });
+vp.addEventListener('pointerdown', e=>{ if(e.target.closest('.note, .spec, .cov, .lay .t, .ver-label')) return; touched = true; pan = {x:e.clientX, y:e.clientY, vx:view.x, vy:view.y}; vp.classList.add('panning'); vp.setPointerCapture(e.pointerId); });
 vp.addEventListener('pointermove', e=>{ if(!pan) return; view.x = pan.vx + e.clientX - pan.x; view.y = pan.vy + e.clientY - pan.y; apply(); });
 vp.addEventListener('pointerup', ()=>{ pan = null; vp.classList.remove('panning'); });
 vp.addEventListener('wheel', e=>{ e.preventDefault(); touched = true; if(e.ctrlKey||e.metaKey){ zoomAt(Math.exp(-e.deltaY*0.01), e.clientX, e.clientY); } else { view.x -= e.deltaX; view.y -= e.deltaY; apply(); } }, {passive:false});
@@ -169,7 +169,7 @@ function addNote(bx, by){
   notes.set(id, {x:bx, y:by, w:380, text:'', by:'chadwick', section:sectionAt(by), created:Date.now()});
   const el = render(id); persist(id, true); const ta = el.querySelector('textarea'); ta.focus({preventScroll:true});
 }
-vp.addEventListener('dblclick', e=>{ if(e.target.closest('.note, .spec, .cov')) return; const p = toBoard(e.clientX, e.clientY); addNote(p.x, p.y); });
+// double click no longer adds a note; he does not use notes and it broke text selection
 document.getElementById('add').onclick = ()=>{ const p = toBoard(vp.clientWidth/2, vp.clientHeight/2); addNote(Math.max(1480, p.x), p.y); };
 
 fit(); apply();
