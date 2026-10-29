@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chat phone turn</title>
 <!-- Study for the Haven chat section (Figma 4262:4967): the phone travels down to the paragraph while it
-     turns from the frame 1 tilt to face the reader, then the pair holds. Scroll driven; see chat-rotate.js. -->
+     turns from the frame 1 tilt to face the reader, the insight chip riding above it, then they hold. Scroll driven; see chat-rotate.js. -->
 <link rel="stylesheet" href="../haven/haven.css">
 <style>
   .spacer { height: 70vh; }
@@ -14,7 +14,7 @@
   .cr__text .h40 { max-width: 767px; }
   /* Block coordinates follow the Figma frames in 1440 px, scaled by --g. */
   .cr-block { position: relative; margin-top: calc(182 * var(--g)); }   /* height set by chat-rotate.js */
-  .cr-pill { position: absolute; top: 0; right: 0; }
+  .cr-pill { position: absolute; top: 0; right: 0; z-index: 1; will-change: transform; }
   .cr-para { position: absolute; left: 0; top: 0; will-change: transform; }
   .cr-para .tb-item { text-box: normal; }
   .cr-phone { position: absolute; left: 0; top: 0; will-change: transform; pointer-events: none; }

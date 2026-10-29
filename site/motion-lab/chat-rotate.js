@@ -13,6 +13,7 @@ const F1 = { x: 981.51, y: 415.22, ppm: 4.1969 };   // phone centre and px per m
 const F2 = { x: 891.67, ppm: 4.0812 };               // frame 2 (its y follows the paragraph)
 const PARA_Y = 839;                                  // paragraph top in frame 1
 const PARA_TO_PHONE_END = 13.34;                     // frame 2: phone centre sits this far below the paragraph top
+const CHIP = [415.22, 396.34];                       // chip top above the phone centre, frames 1 and 2 (72 px above the image)
 // Phone rotation at frame 1, in three.js camera axes (from the recovered Mokker pose).
 const R1 = [[0.87704, -0.3656, -0.31166], [-0.25304, 0.1999, -0.94658], [0.40837, 0.90905, 0.08281]];
 const DIST = 458.9;                                  // mm, camera to phone, as Mokker
@@ -87,6 +88,7 @@ function phoneModel(map) {
 export async function mountChatPhone(section) {
   const block = section.querySelector(".cr-block");
   const para = section.querySelector(".cr-para");
+  const chip = section.querySelector(".cr-pill");
   const holder = section.querySelector(".cr-phone");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -160,6 +162,9 @@ export async function mountChatPhone(section) {
     const ppm = lerp(Lo.ppm1, Lo.ppm2, k), turn = k;
     holder.style.transform = `translate(${cx - Lo.box / 2}px, ${cy - Lo.box / 2}px)`;
     para.style.transform = `translate(${Lo.px}px, ${Lo.py + hold}px)`;
+    // The chip names the insight, so it rides with the phone: same spot above it as in each Figma frame.
+    const above = Lo.drop ? lerp(CHIP[0], CHIP[1], k) * Lo.g : Lo.y1;
+    chip.style.transform = `translateY(${cy - above}px)`;
     // Focal length in CSS px puts the phone at Mokker's distance and Figma's scale.
     camera.fov = 2 * THREE.MathUtils.radToDeg(Math.atan(Lo.box / 2 / (ppm * DIST)));
     camera.updateProjectionMatrix();

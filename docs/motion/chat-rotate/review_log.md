@@ -66,3 +66,12 @@ Clips chat-r7-1440 and chat-r7-390. Motion 8, composition 8, readability 8, paci
 2. The hold reads clearly at both sizes: five or more tiles at 0.5 s with nothing moving.
 3. Exit: the pair leaves as one block at both sizes, no gap opening between them.
 Final 1440 clip chat-r7-final, 12 s at 30 fps, rendered twice: sha256 cb53fcee both times.
+
+## Round 8, 29 Oct (Chadwick: the chip has to move with the phone, so readers know which insight it belongs to)
+Figma settles where: both frames put the chip 72 px above the phone image, right aligned (415.22 px above
+the phone centre in frame 1, 396.34 in frame 2). It now follows the phone, easing between the two offsets
+with the turn, and holds with the pair at the top of the screen (54 px down at 1440 by 900). Narrow: it
+keeps its spot above the phone and holds with it.
+New check CHIP_RIDES (both offsets within 2 px, right edge on the block, still through the hold, on screen);
+it fails on the chip left at the block top (CHECK_PLANT=1). All seven checks pass.
+Final 1440 clip chat-r8-final, 12 s at 30 fps, rendered twice: sha256 a18ca637 both times.

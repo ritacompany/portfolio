@@ -1,5 +1,5 @@
 // Checks the chat phone study against the agreed state list (docs/motion/chat-rotate/state_list.md).
-//   node scripts/check-chat-rotate.mjs start|end|text|path|hold|reduced
+//   node scripts/check-chat-rotate.mjs start|end|text|path|hold|chip|reduced
 // start / end: the phone's rendered outline against the Mokker phone from Figma frame 1 (scroll 0) or frame 2
 //   (the moment they meet), placed where that frame puts it relative to the phone centre. IoU 0.96 or more.
 // text: the paragraph's offset from the phone centre at both ends against the Figma frames, within 4 px,
@@ -8,6 +8,8 @@
 //   meet the phone only rises on screen (no drop, no overshoot), slower than the page, and ends mid screen.
 // hold: from the meet the pair stays put on screen for at least one screen of scroll, then both leave at
 //   page speed together.
+// chip: the insight chip sits where each Figma frame puts it above the phone centre, right aligned, and
+//   holds with the pair.
 // reduced: with reduced motion the phone shows frame 2 and does not move inside the block while scrolling.
 // CHECK_PLANT=1 plants a mistake for the chosen check (the other frame's phone for start and end, a changed
 // line of chat-rotate.js for the rest); the check must then fail.
@@ -19,7 +21,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const which = process.argv[2];
-if (!["start", "end", "text", "path", "hold", "reduced"].includes(which)) { console.error("usage: start|end|text|path|hold|reduced"); process.exit(2); }
+if (!["start", "end", "text", "path", "hold", "chip", "reduced"].includes(which)) { console.error("usage: start|end|text|path|hold|chip|reduced"); process.exit(2); }
 
 // Figma, block coordinates at 1440: frame 1 phone centre, frame 2 phone centre relative to the paragraph,
 // and each Mokker rectangle's top left relative to its phone centre.
@@ -27,6 +29,8 @@ const F1 = { cx: 981.51, cy: 415.22, rect: [746 - 981.51, 72 - 415.22, 477.15, 7
 const F2 = { rect: [735 - 891.67, 72 - 396.34, 313.71, 648.19] };
 // The paragraph sits under the phone at the start (frame 1) and beside it when they meet (frame 2).
 const PARA = { x: 274, startOff: 839 - 415.22, endOff: 383 - 396.34 };
+// The chip: its top above the phone centre in each frame, its right edge on the block's.
+const CHIP = { startOff: 0 - 415.22, endOff: 0 - 396.34 };
 
 const pwPath = process.env.PLAYWRIGHT_MODULE || path.join(process.env.HOME, ".npm/_npx/31e32ef8478fbf80/node_modules/playwright-core/index.mjs");
 if (!existsSync(pwPath)) { console.error("playwright-core not found"); process.exit(2); }
@@ -51,6 +55,7 @@ const PLANTS = {
   path: ["const sGo = top + Lo.y1 - vh;", "const sGo = top + Lo.y1 - Lo.half - vh;"],   // starts early (round 6)
   hold: ["const HOLD = 1.0;", "const HOLD = 0.75;"],                      // the round 7 draft hold
   reduced: ["const u = reduced ? 1 :", "const u = reduced ? 0 :"],        // reduced shows frame 1
+  chip: ["chip.style.transform = `translateY(${cy - above}px)`;", ""],   // chip left at the block top
 };
 if (plant && PLANTS[which]) await page.route("**/chat-rotate.js", async (route) => {
   const res = await route.fetch(), body = await res.text(), [a, b] = PLANTS[which];
@@ -70,10 +75,10 @@ const state = (where, plus = 0) => page.evaluate(async ([where, plus]) => {
   api.draw();
   const d = sec.dataset, at = { start: 0, go: +d.go, meet: +d.meet, off: +d.meet + +d.holdLen }[where] ?? where;
   scrollTo(0, at + plus); api.draw();
-  const b = block.getBoundingClientRect(), h = document.querySelector(".cr-phone").getBoundingClientRect(), p = document.querySelector(".cr-para").getBoundingClientRect();
+  const b = block.getBoundingClientRect(), h = document.querySelector(".cr-phone").getBoundingClientRect(), p = document.querySelector(".cr-para").getBoundingClientRect(), c = document.querySelector(".cr-pill").getBoundingClientRect();
   return { scroll: scrollY, op: +getComputedStyle(document.querySelector(".cr-para .tb-item")).opacity, turn: +sec.dataset.turn,
     cx: h.left + h.width / 2 - b.left, cy: h.top + h.height / 2 - b.top, px: p.left - b.left, py: p.top - b.top,
-    sy: h.top + h.height / 2, spy: p.top, holdLen: +d.holdLen, vh: innerHeight, box: h.width };
+    sy: h.top + h.height / 2, spy: p.top, chy: c.top, chOff: c.top - (h.top + h.height / 2), chRight: b.right - c.right, holdLen: +d.holdLen, vh: innerHeight, box: h.width };
 }, [where, plus]);
 
 // Outline overlap: draw the WebGL canvas and the Figma image into one 2D canvas around the phone centre.
@@ -118,6 +123,11 @@ if (which === "start" || which === "end") {
   out = { holdLen: meet.holdLen, vh: meet.vh, phoneY: [meet.sy, ...mids.map((m) => m.sy), off.sy], paraY: [meet.spy, ...mids.map((m) => m.spy), off.spy], after: [after.sy - off.sy, after.spy - off.spy] };
   const put = out.phoneY.every((y) => Math.abs(y - meet.sy) < 0.5) && out.paraY.every((y) => Math.abs(y - meet.spy) < 0.5);
   ok = put && meet.holdLen >= meet.vh - 0.5 && Math.abs(out.after[0] + 200) < 0.5 && Math.abs(out.after[1] + 200) < 0.5 && meet.turn === 1;
+} else if (which === "chip") {
+  const a = await state("start"), m = await state("meet"), mid = await state("meet", m.holdLen / 2), off = await state("off");
+  out = { start: a.chOff, end: m.chOff, want: CHIP, right: [a.chRight, m.chRight], heldY: [m.chy, mid.chy, off.chy] };
+  ok = Math.abs(a.chOff - CHIP.startOff) <= 2 && Math.abs(m.chOff - CHIP.endOff) <= 2 && Math.abs(a.chRight) < 1 && Math.abs(m.chRight) < 1
+    && out.heldY.every((y) => Math.abs(y - m.chy) < 0.5) && m.chy >= 0;
 } else {
   const a = await state("start"), b = await state("off", 400);
   out = { a, b };
@@ -127,5 +137,5 @@ if (which === "start" || which === "end") {
 console.log(JSON.stringify(out));
 if (errors.length) { console.log("page errors:", errors.join(" | ")); ok = false; }
 await browser.close(); server.close();
-console.log(ok ? { start: "START_MATCH", end: "END_MATCH", text: "TEXT_MATCH", path: "PATH_RISES", hold: "HOLD_SCREEN", reduced: "REDUCED_STILL" }[which] : "FAILED");
+console.log(ok ? { start: "START_MATCH", end: "END_MATCH", text: "TEXT_MATCH", path: "PATH_RISES", hold: "HOLD_SCREEN", chip: "CHIP_RIDES", reduced: "REDUCED_STILL" }[which] : "FAILED");
 process.exit(ok ? 0 : 1);

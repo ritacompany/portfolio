@@ -3,7 +3,11 @@
 Agreed with Chadwick, 28 Oct (round 7). He saw two versions on the page's smooth scroll and picked
 "phone slows down", with a longer hold. Numbers are for a 1440 by 900 screen.
 
-The paragraph never moves on its own: it is part of the page. The phone is the only thing that moves. It
+The "Interview insight 2" chip names the insight, so it belongs to the phone. In both Figma frames it sits
+72 px above the top of the phone image, on the right edge. It rides with the phone the whole way and holds
+with the pair (added 29 Oct, Chadwick).
+
+The paragraph never moves on its own: it is part of the page. The phone, with its chip, is the only thing that moves. It
 travels down through the page to the paragraph, then they lock. On screen, because the page is scrolling
 up, that reads as the phone rising slower than everything around it.
 
