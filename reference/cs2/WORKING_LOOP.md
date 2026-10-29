@@ -34,8 +34,11 @@ before the first reply, then HANDOFF.md for where things stand.
   (template.html, build.py, spec.md are in git; his frame tiles in img/tiles are not, the repo is public).
   Build with `python3 .cs2-canvas/build.py .cs2-canvas`, publish the built cs2-canvas.html to that link.
   Before publishing, read the live canvas (Artifact read) in case a newer version was published elsewhere.
-- Three versions for each section, labelled A, B and C, placed to the left of his block. They differ in
-  structure, not wording. He gives feedback on the story, picks one, and the fix goes into that one.
+- Work in rounds. Each round shows three versions of the section, labelled A, B and C, placed to the left
+  of his block and differing in structure, not wording. He comments on each: what he likes, what he does not
+  and which he leans toward. The next round revises from his comments. As he narrows, the versions he
+  drops are deleted and work goes on in the one he keeps. Narrowing is the method working, never a sign to
+  stop showing three versions in the next section. This is how every section gets written.
 - Keep his sections as the page names them. Never invent a new section, never split one by word count and
   never make a text only block.
 - Layout, per version: list the points the section needs, decide which points have a visual, pick a layout
