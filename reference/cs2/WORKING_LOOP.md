@@ -63,6 +63,12 @@ before the first reply, then HANDOFF.md for where things stand.
   The WIP case study frames in the same section hold many more layouts (Robinhood, Suno, Atoms, The Atlantic,
   Calvin Klein, Headspace, Ro, Windsurf). Use the whole pool: no two versions in a round share a layout, and
   pick image sizes that fit what the image shows.
+- Every version carries every important point of the section. Versions differ in structure, layout, order and
+  emphasis, never by dropping points. Splitting points across A, B and C leaves each version thin (29 Oct).
+- For each decision the body says what was decided, what else was weighed and why that option won, from his
+  record. Cutting length never cuts reasoning; shorten by plainer sentences and by moving text beside images.
+- Versions in one row are not paired with versions in the next row unless he asks.
+- Run no-ai-slop as the skill on the final text of every version. Applying it from memory is not the pass.
 - Each version's label carries a Covers line naming the points it includes, so he can compare versions.
 - Keep text short and beside the image it explains; break it up rather than filling a long column.
 - Each image slot is a dashed gray frame with a note inside saying what the image is. He makes the images.
