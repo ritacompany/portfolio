@@ -11,7 +11,8 @@ If you are Claude in the browser, this file is your brief. Read all of it before
 Chadwick sets nothing up. He opens a chat on his second account with the portfolio repo attached from
 GitHub, as he always does, and says something like pick up where we left off. Then:
 
-1. Read `reference/cs2/HANDOFF.md` and tell him, in two or three lines, where CS2 stopped, the next
+1. Read `reference/cs2/WORKING_LOOP.md` in full: it is how every CS2 session works, on either account.
+   Then read `reference/cs2/HANDOFF.md` and tell him, in two or three lines, where CS2 stopped, the next
    action and the `Updated:` time, so he can see it is current. Ask him nothing first.
 2. Start on the next action.
 
@@ -122,6 +123,9 @@ Loop step reached: N
 (the whole new handoff, By: browser, same format as the current one)
 === END FILE ===
 ```
+
+Block versions go in the draft file as text, one per block: eyebrow, headline, body, sources line and
+the visual note, as WORKING_LOOP.md sets out. Claude Code puts them on the canvas.
 
 Each file is the complete new version, never a diff. Only these four paths, all for the one section.
 HANDOFF.md is always included.
