@@ -31,7 +31,7 @@ Research for these blocks: reports/Schedule view how it works.md and research_no
 
 ## Next action
 
-Open the canvas with him and get his read on the three rebuilt sections. Work only on what he names, by WORKING_LOOP.md.
+Calendar setup A, B and C are on the canvas at y 7840 (x -1940, -3480, -5020): A two questions with one screen each, B why personalize with one image, C the flow in three screens. Get his story feedback and pick, fix the picked one, reader check it, then do The schedule view the same way, then Rollover.
 
 ## Decided in chat, not yet in files
 
