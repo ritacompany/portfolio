@@ -22,7 +22,9 @@ before the first reply, then HANDOFF.md for where things stand.
 
 - Headline: introduces the screen or the problem in plain words, at least three lines, never opens with
   the eyebrow's words, no solution in a problem headline, and the transition is never signposted.
-- Body: the reasoning behind each decision and the research that backs it, in plain spoken language.
+- Body: his reasoning first, taken from the record (reference/cs2/reasoning/, his own words in the
+  dossier and transcripts). Research only where it backs a decision he made, never as the point and never
+  in an academic voice. Plain spoken language, like explaining it to a friend.
   A body that only lists features fails. Use I for his decisions, we only for team facts.
 - Sources: one line at the bottom of the block, never cited inline.
 - No quotes from anyone, no colleague names, no dashes, no Oxford commas, no process story (who asked
@@ -47,6 +49,12 @@ before the first reply, then HANDOFF.md for where things stand.
   layout from his pool with that many image frames and room for the text (Case study layouts section, page
   VC, T1I T2I T3I). Points without an image go together with the text beside an image, never alone. Draw it
   on his black page: no gray backdrop, no boxes, no text in boxes.
+- The pool is the Content stack frame in the Case study layouts section on page VC. Never invent a layout.
+  Its media layouts, in pool units (frame 1440, content 24 to 1416; scale by 0.977 to his 40px margins):
+  T1I media+body: image 260,0 1156x749, text column 24,431 width 212.
+  T2I media+body: image 24,0 1090x749, small image 967,773 449x359, text column 1138,0 width 278.
+  T3I three media+body: images 24,0 and 732,0 and 24,701, each 684x677, text in the fourth cell 732,701.
+  Headers in his frame sit at x 40; the eyebrow, then the headline.
 - Each image slot is a dashed gray frame with a note inside saying what the image is. He makes the images.
 - Text keeps 40px margins; only images touch the frame edge.
 - If the frame tiles are missing in a new worktree, copy .cs2-canvas/img from another worktree or
