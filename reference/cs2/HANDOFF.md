@@ -31,7 +31,7 @@ Research for these blocks: reports/Schedule view how it works.md and research_no
 
 ## Next action
 
-He rejected round 4 on 29 Oct: too little content, it repeated the calendar setup block (how the two setup answers place items is already there; never restate it), it rewrote his approved Scheduled times copy instead of reusing it word for word, and it never covered the design decisions behind the calendar itself. He is continuing the schedule view by hand. His own lines, to keep:
+Structure decided 29 Oct: there is no standalone Rollover section. Rollover is an old framing; what happens to unfinished Action Items is told inside the start of week flows, which come right after The schedule view. The rollover rows on the canvas are superseded, keep their reasoning for the start of week flows. He rejected round 4 on 29 Oct: too little content, it repeated the calendar setup block (how the two setup answers place items is already there; never restate it), it rewrote his approved Scheduled times copy instead of reusing it word for word, and it never covered the design decisions behind the calendar itself. He is continuing the schedule view by hand. His own lines, to keep:
 
 The list view is still accessible because calendar sync is optional and the framework has to work with or without it.
 The product uses one way calendar integration, meaning Mondai is able to read the user's calendar but the action items do not get transferred over to the user's personal calendar of choice.
