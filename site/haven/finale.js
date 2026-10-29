@@ -45,7 +45,7 @@ cards.forEach((card, i) => {
     clearTimeout(closeTimer); clearTimeout(openTimer);
     setActive(i, true);
   });
-  
+
   card.addEventListener('focus', () => { if (card.matches(':focus-visible')) setActive(i); });
   card.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(active === i ? null : i); }
