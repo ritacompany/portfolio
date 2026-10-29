@@ -1,0 +1,11 @@
+VERSION V1: Calendar setup
+  (label) Calendar setup
+V1.S1 Syncing a calendar unlocks the schedule view, where this week's Action Items sit between a person's own events, after two quick questions.
+V1.S2 People's weeks look nothing alike, and a plan that ignores that feels like a school timetable, so setup asks two things a calendar can't say.
+V1.S3 First, when a person prefers to work, since a free hour at 6am isn't time most people would use.
+V1.S4 Mondai suggests a range from their calendar and they adjust it.
+V1.S5 It needs at least eight hours, so a busy day still has open time.
+V1.S6 Second, when they focus best, because demanding work tends to go better at a person's peak hours.
+V1.S7 Mondai uses both answers to decide which gaps Action Items fill first.
+V1.S8 They are preferences, not limits, because the evidence on peak hours is real but modest and plenty of days don't go as planned.
+V1.S9 Source: May, Hasher and Healey 2023

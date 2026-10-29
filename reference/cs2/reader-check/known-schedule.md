@@ -6,7 +6,7 @@ K1. Each week has one deadline, Saturday night.
 K2. Each week is sized to the hours a person says they can give each week (capacity).
 K3. The Action Hub is the screen people open most. It lists this week's Action Items, each a piece of work shown as a card (the Action Hub list).
 K4. A Pathway target and a Pathway pace show how the current Pathway is going.
-K6. Calendar setup (approved copy): Calendar sync connects a person's own calendar to Mondai and unlocks the schedule view, where this week's Action Items sit between their events. Turning it on takes two quick questions about their day. The first is the hours a person prefers to work. Mondai suggests a range from their synced calendar, and the person adjusts it. The second is when they focus best within those hours. Mondai uses both to decide where Action Items go first. They are preferences, not limits. The range needs at least eight hours, because Mondai can only use the time not already taken by the person's own events. A short range on a busy day leaves none.
+K6. Calendar setup (working copy, 29 Oct): Syncing a calendar lets this week's Action Items sit between a person's own events, after two quick questions about their day. People's weeks look nothing alike, so setup asks when a person prefers to work (a range Mondai suggests from their calendar, at least eight hours) and when they focus best. Both are preferences, not limits, and decide which gaps Action Items fill first.
 
 K7. A person can move an Action Item to a new time from its card (covered in the Action Hub block, per Chadwick 27 Oct).
 

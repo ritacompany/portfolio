@@ -1,0 +1,28 @@
+V1 Q1 yes | V1.S3, V1.S6, V1.S8
+V1.S1 Q2 yes | calendar sync, schedule view
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S2 Q2 no
+V1.S2 Q3 yes
+V1.S2 Q4 no
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S6 Q2 no
+V1.S6 Q3 no
+V1.S6 Q4 no
+V1.S7 Q2 no
+V1.S7 Q3 no
+V1.S7 Q4 no
+V1.S8 Q2 no
+V1.S8 Q3 no
+V1.S8 Q4 no
+V1.S9 Q2 no
+V1.S9 Q3 no
+V1.S9 Q4 no
