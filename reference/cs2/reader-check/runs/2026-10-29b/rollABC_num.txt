@@ -1,0 +1,29 @@
+VERSION V1: Rollover, version A
+  (label) Rollover
+V1.S1 So what happens to the Action Items someone doesn't get to by Saturday night?
+V1.S2 They have to go somewhere.
+V1.S3 Every option pulled on something else.
+V1.S4 Pushing all of it into next week makes that week heavier than the hours the person gave.
+V1.S5 Asking them to sort it hands them a pile of decisions right when they're behind.
+V1.S6 Dropping it lets the Pathway slip without anyone saying so.
+V1.S7 So leftovers move into next week on their own and count first against the same hours.
+V1.S8 New work makes room for them, and the week stays the size the person said they could give.
+V1.S9 A carried item gets a soft magenta tag instead of a warning color, so it reads as carried forward, not overdue.
+
+VERSION V2: Rollover, version B
+  (label) Rollover
+V2.S1 Some weeks won't go to plan, and whatever someone doesn't finish by Saturday night still has to land somewhere.
+V2.S2 A missed step on a long goal is one of the moments people give up, so I treated leftovers as a motivation problem first.
+V2.S3 They move into next week automatically, counted against the same hours, so a bad week never turns into a heavier one.
+V2.S4 The pace date moves once a week, so a carried item shows up as a later finish rather than a red flag on the day.
+V2.S5 A run of hard weeks is a different problem.
+V2.S6 Sizing keeps each week fair, but leftovers can stack up, and that's when the plan rechecks the hours the person gave.
+
+VERSION V3: Rollover, version C
+  (label) Rollover
+V3.S1 Every week ends with some Action Items still open, and where they go next decides how the following week feels.
+V3.S2 On Saturday night nothing happens to the open items.
+V3.S3 Nobody is asked to sort them and nothing is marked late.
+V3.S4 On Sunday they're at the top of the new week with a magenta carried tag.
+V3.S5 The week still holds four Action Items, not six, because leftovers take the place of new work.
+V3.S6 Asking the person to decide what to do with each one would arrive right when they're already behind and turn the week into math.

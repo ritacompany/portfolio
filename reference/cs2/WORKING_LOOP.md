@@ -41,6 +41,11 @@ before the first reply, then HANDOFF.md for where things stand.
   and which he leans toward. The next round revises from his comments. As he narrows, the versions he
   drops are deleted and work goes on in the one he keeps. Narrowing is the method working, never a sign to
   stop showing three versions in the next section. This is how every section gets written.
+- Canvas order: one row per section, top to bottom in page order, A then B then C from right to left at
+  x -1940, -3480 and -5020. Each version is labelled with its section, letter, layout and angle.
+- Every time versions change, save their full text (headline, body, image notes, sources) to
+  reference/cs2/versions/<part>.md and push, so the other account can run the rounds from GitHub.
+- Before reporting, say plainly which checks ran on which versions and which did not.
 - Keep his sections as the page names them. Never invent a new section, never split one by word count and
   never make a text only block.
 - Layout, per version: list the points the section needs (A, B, C, D), each one a decision and the thinking

@@ -25,7 +25,7 @@ Image: The popover a block opens, with Go to action item, Mark as complete and R
 It's the same week either way, and a person can flip back to the list whenever they like.
 Putting a time on each Action Item gives the plan somewhere to start. Plans with a specific time get followed through more often than plans with only a day.
 The length of each block also shows how big an Action Item is, which the list has no way to show.
-The time stays a suggestion. Saturday night is still the only deadline.
+The time stays a suggestion, so a passed one costs the person nothing.
 Source: Milkman, Beshears, Choi, Laibson and Madrian 2011
 
 ## The schedule view C: T1I, one way sync
@@ -59,7 +59,7 @@ Image: Small image: the Pathway pace date moving once, at the start of the week.
 
 A missed step on a long goal is one of the moments people give up, so I treated leftovers as a motivation problem first.
 They move into next week automatically, counted against the same hours, so a bad week never turns into a heavier one.
-The pace date moves once a week, so a carried item shows up as a later finish rather than a red flag on the day.
+The Pathway pace moves once a week, so a carried item shows up as a later finish rather than a red flag on the day.
 A run of hard weeks is a different problem. Sizing keeps each week fair, but leftovers can stack up, and that's when the plan rechecks the hours the person gave.
 Source: Rai, Sharif, Chang, Milkman and Duckworth 2022
 

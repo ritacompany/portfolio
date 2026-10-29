@@ -1,0 +1,22 @@
+=== The schedule view, version A
+[eyebrow or sub-heading] The schedule view
+[headline] People who sync their calendar also get the schedule view, which shows exactly where each of their Action Items fits in the week they already have.
+They can flip between the list and the schedule whenever they like. It's the same week either way.
+Every Action Item gets a suggested time, which left each one with two clocks: a time on Tuesday and the real deadline on Saturday night. I made the week the only one that counts. The times help a person find room. They are not due dates.
+So when a time passes, it drops off the card and the item stays open until Saturday. Nothing is marked missed, because Mondai can't see whether the work got done.
+We kept the sync one way. Mondai reads the calendar and never writes back, so a person's calendar stays theirs.
+
+=== The schedule view, version B
+[eyebrow or sub-heading] The schedule view
+[headline] With a calendar synced, the Action Hub can show the same week as a schedule, so a person sees where each Action Item could fit before the week fills up.
+It's the same week either way, and a person can flip back to the list whenever they like.
+Putting a time on each Action Item gives the plan somewhere to start. Plans with a specific time get followed through more often than plans with only a day.
+The length of each block also shows how big an Action Item is, which the list has no way to show.
+The time stays a suggestion. Saturday night is still the only deadline.
+
+=== The schedule view, version C
+[eyebrow or sub-heading] The schedule view
+[headline] Syncing a calendar adds a schedule view to the Action Hub, a second way to look at the same week with every Action Item placed in a free gap.
+Mondai reads the person's calendar to find the gaps between their events, starting from the hours they set in setup. It never writes anything back. Their calendar holds their job, classes and family. A suggestion written into it would look like a commitment they never made.
+So Action Items live only in Mondai. Turning sync off clears the times and leaves the list as it was.
+Each time is a suggestion. The week keeps one deadline, Saturday night, because people misjudge how long their own work takes.
