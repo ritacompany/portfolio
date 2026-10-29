@@ -95,6 +95,8 @@ Load unlazy for every round.
 
 - After every change he approves, and at every checkpoint: commit and push to main, then fast forward
   ~/Code/portfolio. Work that is only committed in a worktree is invisible to every other session.
+- Enforced: a stop hook (.claude/hooks/cs2-unpushed-guard.mjs) refuses to end a Claude Code turn while CS2 files
+  are uncommitted or CS2 commits are not on GitHub main.
 - HANDOFF.md is rewritten, never appended. Where it stopped holds the current state of each open block in
   a few lines. History lives in git.
 
