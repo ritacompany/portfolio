@@ -31,7 +31,7 @@ Research for these blocks: reports/Schedule view how it works.md and research_no
 
 ## Next action
 
-Calendar setup A, B and C are on the canvas at y 7840 on real pool layouts (A T2I, B T1I, C T3I); copy passes the reader check. Next: he confirms the points for the calendar part (listed below), then build The schedule view A, B and C and Rollover A, B and C as rows, each on a real pool layout, reader checked before showing.
+All three calendar sections now have a row of A, B and C on the canvas (Calendar setup y 7840, The schedule view y 9380, Rollover y 11200; A at x -1940, B -3480, C -5020), each on a real pool layout. The text of every version is in reference/cs2/versions/calendar-part.md, so the browser account can run the review rounds from GitHub: he comments per version, the next round revises, versions he drops are dropped. Reader check passed on Calendar setup only; schedule view and rollover rows still need it in Claude Code before anything is final. Copy guard and no-ai-slop done on all.
 
 Points proposed 29 Oct for the calendar part, his reasoning first: setup 1 why personalize (school timetable), 2 preferred hours (a calendar shows busy, not willing; range with an eight hour floor), 3 focus hours (decides which gaps fill first, never a limit). Schedule view 4 same week two views, 5 a specific time helps, 6 the two clocks (times are suggestions, Saturday the only deadline; his words, recommendations not due dates), 7 one way sync, 8 effort you can see in block length. Rollover 9 the problem, 10 three ways out each pulling on something else, 11 the decision (leftovers move on their own, counted first), 12 what it touches (magenta tag, pace, run of hard weeks to recalibration).
 
