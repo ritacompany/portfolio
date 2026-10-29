@@ -1,0 +1,18 @@
+=== Calendar setup, version A
+[eyebrow or sub-heading] Calendar setup
+[headline] Syncing a calendar lets this week's Action Items sit between a person's own events, after two quick questions about their day.
+People's weeks look nothing alike, and a plan that ignores that feels like a school timetable, so setup asks two things a calendar can't say. First, when a person prefers to work, since a free hour at 6am isn't time most people would use. Mondai suggests a range from their calendar and they adjust it. It needs at least eight hours, so a busy day still has open time.
+Second, when they focus best, because demanding work tends to go better at a person's peak hours. Mondai uses both answers to decide which gaps Action Items fill first. They are preferences, not limits, because the evidence on peak hours is real but modest and plenty of days don't go as planned.
+
+=== Calendar setup, version B
+[eyebrow or sub-heading] Calendar setup
+[headline] A calendar shows when someone is busy but not when they'd want to work, so turning on sync asks them two quick questions first.
+People's weeks look nothing alike, and a plan that ignores that starts to feel like a school timetable, so the schedule starts from theirs.
+The first question is the hours they prefer to work. A free hour at 6am isn't time most people would use. Mondai suggests a range from their calendar and they adjust it. It needs at least eight hours so a busy day still has room.
+The second is when they focus best. Demanding work tends to go better at a person's peak hours, though the evidence is modest, so the answer only decides which gaps fill first.
+
+=== Calendar setup, version C
+[eyebrow or sub-heading] Calendar setup
+[headline] Turning on calendar sync takes three screens, and each one asks only for what Mondai can't work out from the calendar on its own.
+The calendar shows when someone is busy. It can't show when they'd want to work, so the second screen asks for a range of hours. Mondai suggests one from their events and they adjust it. It needs at least eight hours, because a short range on a busy day leaves nothing open.
+The third screen asks when they focus best, which decides which open gaps fill first, since demanding work tends to go better at a person's peak hours. The evidence is modest, so these answers guide where Action Items go and never block a time.

@@ -41,9 +41,12 @@ before the first reply, then HANDOFF.md for where things stand.
   stop showing three versions in the next section. This is how every section gets written.
 - Keep his sections as the page names them. Never invent a new section, never split one by word count and
   never make a text only block.
-- Layout, per version: list the points the section needs, decide which points have a visual, pick a layout
-  from his pool by image count and text room (Case study layouts section, page VC, T1I T2I T3I). Points
-  without an image ride in the same layout. Draw it on his black page: no gray backdrop, no boxes.
+- Layout, per version: list the points the section needs (A, B, C, D), each one a decision and the thinking
+  or research behind it. Decide which points need a visual, from how the Mondai designs actually work (his
+  desktop MVP folder in Figma): an interaction that is talked about gets shown. Count the images, then pick a
+  layout from his pool with that many image frames and room for the text (Case study layouts section, page
+  VC, T1I T2I T3I). Points without an image go together with the text beside an image, never alone. Draw it
+  on his black page: no gray backdrop, no boxes, no text in boxes.
 - Each image slot is a dashed gray frame with a note inside saying what the image is. He makes the images.
 - Text keeps 40px margins; only images touch the frame edge.
 - If the frame tiles are missing in a new worktree, copy .cs2-canvas/img from another worktree or
@@ -54,8 +57,9 @@ before the first reply, then HANDOFF.md for where things stand.
 1. Voice pass: no-ai-slop on every line before it goes on the canvas. Say it was run.
 2. Canvas copy guard: runs on every canvas publish and refuses dashes, Oxford commas, quotes, AI
    vocabulary and colleague names (`.claude/hooks/canvas-copy-guard.mjs`). Enforced.
-3. Reader check (`reference/cs2/reader-check/README.md`): three runs, PASS needed. Run it on the version
-   he picks, not on A, B and C, to save usage.
+3. Reader check (`reference/cs2/reader-check/README.md`): three runs, PASS needed, on every version.
+Nothing goes on the canvas before all three. His rule: no-ai-slop and the reader check are not optional.
+Load unlazy for every round.
 
 ## Usage
 
