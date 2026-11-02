@@ -1,0 +1,87 @@
+V1 Q1 yes | V1.S3, V1.S4, V1.S6
+V1.1 Q2 no
+V1.1 Q3 no
+V1.1 Q4 no
+V1.2 Q2 no
+V1.2 Q3 no
+V1.2 Q4 no
+V1.3 Q2 no
+V1.3 Q3 no
+V1.3 Q4 no
+V1.4 Q2 no
+V1.4 Q3 no
+V1.4 Q4 no
+V1.5 Q2 no
+V1.5 Q3 no
+V1.5 Q4 no
+V1.6 Q2 no
+V1.6 Q3 no
+V1.6 Q4 no
+V1.7 Q2 no
+V1.7 Q3 no
+V1.7 Q4 no
+V1.8 Q2 yes | buffer flow
+V1.8 Q3 no
+V1.8 Q4 no
+V1.9 Q2 yes | start of week
+V1.9 Q3 no
+V1.9 Q4 no
+V1.10 Q2 no
+V1.10 Q3 no
+V1.10 Q4 no
+V2 Q1 yes | V2.S4, V2.S6
+V2.1 Q2 no
+V2.1 Q3 yes
+V2.1 Q4 no
+V2.2 Q2 no
+V2.2 Q3 no
+V2.2 Q4 no
+V2.3 Q2 no
+V2.3 Q3 yes
+V2.3 Q4 no
+V2.4 Q2 no
+V2.4 Q3 no
+V2.4 Q4 no
+V2.5 Q2 no
+V2.5 Q3 no
+V2.5 Q4 no
+V2.6 Q2 no
+V2.6 Q3 no
+V2.6 Q4 no
+V2.7 Q2 no
+V2.7 Q3 no
+V2.7 Q4 no
+V2.8 Q2 yes | buffer flow, start of week
+V2.8 Q3 no
+V2.8 Q4 no
+V2.9 Q2 no
+V2.9 Q3 no
+V2.9 Q4 no
+V3 Q1 yes | V3.S2, V3.S8, V3.S9
+V3.1 Q2 no
+V3.1 Q3 no
+V3.1 Q4 no
+V3.2 Q2 yes | buffer flow
+V3.2 Q3 no
+V3.2 Q4 no
+V3.3 Q2 yes | start of week
+V3.3 Q3 no
+V3.3 Q4 no
+V3.4 Q2 no
+V3.4 Q3 no
+V3.4 Q4 no
+V3.5 Q2 no
+V3.5 Q3 no
+V3.5 Q4 no
+V3.6 Q2 no
+V3.6 Q3 no
+V3.6 Q4 no
+V3.7 Q2 no
+V3.7 Q3 no
+V3.7 Q4 no
+V3.8 Q2 no
+V3.8 Q3 no
+V3.8 Q4 no
+V3.9 Q2 no
+V3.9 Q3 no
+V3.9 Q4 no
