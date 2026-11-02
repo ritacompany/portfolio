@@ -34,6 +34,6 @@ Sally had four Action Items this week and finished three. Nothing about her goal
 What changes is small and expected. When the new week starts, her pace shows the later finish, and the unfinished Action Item is already in the new week, which takes fewer new ones so it still fits.
 Three mechanisms answer what she'd want to know next.
 
-Card 01, What if the week ends early?: A screen called the buffer flow opens with the chance to catch up or get ahead.
+Card 01, What if the week ends early?: When every Action Item is done before the week ends, a screen called the buffer flow opens with the chance to catch up or get ahead.
 Card 02, Where does she stand now?: Each new week opens on a recap, called start of week, after unfinished Action Items have moved over.
 Card 03, What if weeks keep slipping?: The plan looks at her progress and suggests fewer hours, and she can change them in settings too.

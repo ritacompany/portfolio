@@ -31,7 +31,7 @@ Sally had four Action Items this week and finished three. Nothing about her goal
 What changes is small and expected. When the new week starts, her pace shows the later finish, and the unfinished Action Item is already in the new week, which takes fewer new ones so it still fits.
 Three mechanisms answer what she'd want to know next.
 [eyebrow or sub-heading] What if the week ends early?
-A screen called the buffer flow opens with the chance to catch up or get ahead.
+When every Action Item is done before the week ends, a screen called the buffer flow opens with the chance to catch up or get ahead.
 [eyebrow or sub-heading] Where does she stand now?
 Each new week opens on a recap, called start of week, after unfinished Action Items have moved over.
 [eyebrow or sub-heading] What if weeks keep slipping?
