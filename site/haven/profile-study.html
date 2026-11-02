@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile scroll study</title>
+<link rel="stylesheet" href="haven.css">
+<style>
+  body { padding: 40px 0 120px; }
+  .study { width: min(100% - 32px, 1440px); margin: 0 auto; }
+  .study__intro { max-width: 760px; display: flex; flex-direction: column; gap: 16px; }
+  .study__row { margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+  .study__item { display: flex; flex-direction: column; gap: 16px; }
+  .study__item .body { color: #c9c9d4; }
+  .pframe-study { aspect-ratio: 680 / 677; height: auto; overflow: hidden; background: #171717; }
+
+</style>
+</head>
+<body>
+<main class="study">
+  <div class="study__intro">
+    <h1 class="h40">Confidante profile scroll</h1>
+    <p class="body">Your mockup, straightened. The scroll now behaves like a thumb on the glass: short drags that track the finger, then momentum that coasts and slows the way iOS does, uneven pauses to read, a small scroll back to reread and a flick back to the top that bounces. It only covers the first few shared experiences.</p>
+  </div>
+  <div class="study__row">
+    <section class="study__item">
+      <p class="eyebrow">A. Scroll physics only</p>
+      <div class="pframe pframe-study" data-pscroll>
+        <img class="pframe__collage" src="assets/profile-collage.webp" alt="">
+        <div class="phone">
+          <img class="phone__case" src="assets/profile-phone-straight.webp" alt="">
+          <div class="phone__screen">
+            <img class="phone__content" src="assets/profile-screen-expanded.webp" alt="Penelope’s Confidante profile scrolling through her shared experiences.">
+            <img class="phone__header" src="assets/profile-screen-header.webp" alt="">
+            <img class="phone__footer" src="assets/profile-screen-footer.webp" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="study__item">
+      <p class="eyebrow">B. Scroll physics with a fingertip</p>
+      <div class="pframe pframe-study" data-pscroll>
+        <img class="pframe__collage" src="assets/profile-collage.webp" alt="">
+        <div class="phone">
+          <img class="phone__case" src="assets/profile-phone-straight.webp" alt="">
+          <div class="phone__screen">
+            <img class="phone__content" src="assets/profile-screen-expanded.webp" alt="Penelope’s Confidante profile scrolling through her shared experiences.">
+            <img class="phone__header" src="assets/profile-screen-header.webp" alt="">
+            <img class="phone__footer" src="assets/profile-screen-footer.webp" alt="">
+            <span class="touch" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="profile-scroll.js"></script>
+</body>
+</html>

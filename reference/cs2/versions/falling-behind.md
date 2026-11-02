@@ -1,5 +1,7 @@
 # Falling behind, round 2 (2 Nov)
 
+Superseded 2 Nov: he moved Falling behind to a short lead in (HANDOFF.md, Next action). Kept for the reasoning; round 3 starts fresh.
+
 Text and cards only, in his existing bridge layout. Every version carries every point.
 
 ## Falling behind A: Sally first, then the mechanisms

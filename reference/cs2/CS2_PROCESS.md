@@ -225,8 +225,8 @@ dossier from the raw record that passes `../check-dossier.mjs`; his decisions ar
    labels and captions are written in step 5, only once a figure is chosen, so the copy never decides
    that a block has a figure. The eyebrow names the topic and never repeats the headline. Notes and sources stay in the draft file. A hook refuses any copy save
    that breaks the copy rules or the block shape, and Figma takes its text from the copy file only.
-4. **Voice pass.** Run `humanizer` over the draft, then `no-ai-slop` in detect mode as a second
-   check. Both live in `.claude/skills/` in this repo so they work on any account. Sentence case.
+4. **Voice pass.** Run `no-ai-slop` over the draft (humanizer retired, see WORKING_LOOP.md) as the
+   check. It lives in `.claude/skills/` in this repo so they work on any account. Sentence case.
    Names, quotes, dashes, Oxford commas and early product terms are caught by `check-copy.mjs`.
 5. **Story plan.** Rewritten 16 Oct on his notes: the story comes first, the writing uses
    the tactics and case study books, visuals are image slots he fills from his own screens, layouts come

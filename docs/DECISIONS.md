@@ -1,5 +1,9 @@
 # Portfolio decisions
 
+## 2026-10-28: Haven uses Chadwick's corrected spacing
+
+Chadwick said he fixed the extra frames and the upper and lower margins himself. The current Haven master is the source for implementation. Do not apply the earlier spacing review's proposals over those corrections. The local page update preserves the existing quiz and profile motion and integrates the previously built chat turn and five-card ending. These integrations remain candidates for his review.
+
 ## 2026-10-06: Chess pieces must retain partial translucency
 
 Chadwick said the current pieces look too solid compared with the original object inspiration. He identified partial transparency and subtle shadowing from the hand as likely missing cues, and asked to inspect those references before further full-scene work. The original resin reference photo shows varying degrees of translucency across its pieces. `output/chess-portrait/14-translucent-contact/` tests the material in a close grip, but its result is not approved.

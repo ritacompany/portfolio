@@ -1,0 +1,87 @@
+.stage-wrap { position: relative; height: calc(604px * var(--s)); margin-top: 66px; }
+.stage {
+  position: absolute; left: 50%; top: 0; width: 1497px; height: 604px;
+  transform: translateX(-50%) scale(var(--s)); transform-origin: top center;
+  clip-path: inset(0 -100vw 0 -100vw);
+}
+.track { position: absolute; inset: 0; transform: translateX(var(--shift, 0px)); transition: transform var(--t) var(--ease); will-change: transform; }
+
+/* Each card is a 386 x 604 slot. Everything inside moves with transforms only. */
+.end-card { position: absolute; top: 0; width: 386px; height: 604px; pointer-events: none; outline: none; z-index: 1; transition: transform var(--t) var(--ease), z-index 0s linear var(--t); will-change: transform; }
+.end-card:nth-child(1) { left: -58.5px; --c: #6854ec; }
+.end-card:nth-child(2) { left: 248.5px; --c: #d080fc; }
+.end-card:nth-child(3) { left: 555.5px; --c: #d2401f; }
+.end-card:nth-child(4) { left: 862.5px; --c: #78b765; }
+.end-card:nth-child(5) { left: 1169.5px; --c: #ac54db; }
+.end-card.is-left { transform: translateX(-58.5px); }
+.end-card.is-right { transform: translateX(58.5px); }
+/* The open card sits on top at once, and a closing card stays on top until it has shrunk,
+   so no neighbor's cover can cut into it mid-animation. */
+.end-card.is-active { z-index: 3; transition: transform var(--t) var(--ease), z-index 0s; }
+
+/* Color panel: 269 x 336 at rest, scales from its center to 386 x 604 */
+.end-bg {
+  position: absolute; left: 58.5px; top: 134px; width: 269px; height: 336px;
+  background: var(--c); pointer-events: auto; cursor: default;
+  transform: scale(1); transition: transform var(--t) var(--ease); will-change: transform;
+}
+.end-card.is-active .end-bg { transform: scale(1.43494, 1.79762); }
+.end-card:focus-visible .end-bg { box-shadow: inset 0 0 0 2px var(--n050); }
+
+/* Phone: 192 wide at rest, 227 wide and whole when open, always centered */
+.end-phone {
+  position: absolute; left: 96.5px; top: 162px; width: 192px; height: auto;
+  transform-origin: top center; transform: none;
+  transition: transform var(--t) var(--ease); will-change: transform; pointer-events: none;
+}
+.end-card.is-active .end-phone { transform: translateY(-129px) scale(1.18229); }
+
+/* Caption: Bold 16, never moves. The cover below hides it and the cropped phone at rest,
+   and slides away at the same speed the panel grows, so the text is wiped into view. */
+.end-caption {
+  position: absolute; bottom: 22px;
+  /* Always 273px wide and 16px on screen, whatever the row's scale, so it wraps the same way. */
+  width: calc(273px / var(--s)); left: calc((386px - 273px / var(--s)) / 2);
+  font-weight: 700; font-size: calc(16px / var(--s)); line-height: 1.4; color: var(--bg); pointer-events: none;
+}
+.end-cover {
+  position: absolute; left: 48px; top: 470px; width: 290px; height: 240px;
+  background: var(--bg); pointer-events: none;
+  transform: translateY(0); transition: transform var(--t) var(--ease); will-change: transform;
+}
+.end-card.is-active .end-cover { transform: translateY(134px); }
+
+/* Dim the cards that are not open */
+.end-dim {
+  position: absolute; left: 58.5px; top: 134px; width: 269px; height: 336px;
+  background: var(--bg); opacity: 0; pointer-events: none;
+  transform: scale(1);
+  transition: opacity var(--t) var(--ease), transform var(--t) var(--ease); will-change: transform, opacity;
+}
+/* The dim layer grows and shrinks with the color panel, so it always matches the card. */
+.end-card.is-active .end-dim { transform: scale(1.43494, 1.79762); }
+.track.has-active .end-card:not(.is-active) .end-dim { opacity: 0.42; }
+/* The card being opened clears its dimming quickly. */
+.end-card.is-active .end-dim { opacity: 0; transition: opacity 120ms linear, transform var(--t) var(--ease); }
+
+/* Tablets and phones: the row scrolls sideways and the open card is brought to the middle.
+   Tablets keep the cards at full 1440 size, so cards, phones and captions match desktop exactly. */
+@media (max-width: 1159px) {
+  .stage-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .stage-wrap::-webkit-scrollbar { display: none; }
+  .stage { left: var(--edge); transform: scale(var(--s)); transform-origin: top left; }
+  .stage-size { width: calc(1497px * var(--s) + var(--edge) * 2); height: 1px; }
+}
+/* Phones: too narrow for a 273px caption inside a card, so the row scales down and the caption
+   is set wider and at 15px on screen. */
+@media (max-width: 679px) {
+  .stage-wrap { margin-top: 48px; }
+  .end-caption { left: 43px; width: 300px; font-size: calc(15px / var(--s)); }
+  .end-card.is-active .end-phone { transform: translateY(-129px) scale(1.08); }
+  .close { margin-top: 48px; }
+  .after { height: 180px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track, .end-card, .end-bg, .end-phone, .end-cover { transition: none; }
+}

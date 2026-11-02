@@ -1,8 +1,8 @@
 # CS2 handoff
 
 <!--
-The resume point for CS2 on either account. Whoever picks CS2 up reads this first, then the status
-table in CS2_PROCESS.md. Rewritten, never appended: it says where things stand now, not a history.
+The resume point for CS2 on either account. Whoever picks CS2 up reads this first, then
+WORKING_LOOP.md. Rewritten, never appended: it says where things stand now, not a history.
 
 Claude Code rewrites it at every save, at 75% and 90% of the 5 hour limit (the usage hook says when),
 and whenever the stop hook asks; then commits and pushes. The browser account never edits this file in
@@ -14,16 +14,18 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-29 14:00
+Updated: 2026-11-02 16:30
 By: Claude Code
-Section: 8
+Section: 3
 Loop step: 3
 
 ## Where it stopped
 
 How to work: reference/cs2/WORKING_LOOP.md. Read it before anything else.
 
-Calendar setup, The schedule view and Rollover are rebuilt on the canvas on layouts from his pool (setup x -1940 y 7840, schedule view x -1940 y 9380, rollover x -3480 y 10750). Each has a three line headline, a body that gives the reasoning and research behind each decision, a sources line and an imagery note in the gray frame. One way sync is folded into the schedule view. Reader check PASS on all three (runs/2026-10-29, copy files setup4, sched2, roll2), canvas copy guard passes, no-ai-slop run by hand. He has not reviewed this build yet.
+Now (2 Nov, later): the page order is applied in his Figma frame (Desktop 1 MVP file, CS page, frame 5590:26084) and the canvas is re-exported from it. Order: the route; Action Hub, Growth Journey page placeholder; calendar setup, schedule view, scheduled times; Personalized timeline, then the map block (his sitemap note, unhidden); Falling behind, buffer flow, start of week; the page ends on the Action Item page placeholder. The ending placeholder is gone. Details in reference/cs2/outline/CS2-outline-and-copy.md (The order). The part being written is the map block and Falling behind, the hinge into Part 5.
+
+Earlier, for Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, The schedule view and Rollover are rebuilt on the canvas on layouts from his pool (setup x -1940 y 7840, schedule view x -1940 y 9380, rollover x -3480 y 10750). Each has a three line headline, a body that gives the reasoning and research behind each decision, a sources line and an imagery note in the gray frame. One way sync is folded into the schedule view. Reader check PASS on all three (runs/2026-10-29, copy files setup4, sched2, roll2), canvas copy guard passes, no-ai-slop run by hand. He has not reviewed this build yet.
 
 Still missing from his frame: Get ahead (goes before Opening the week, which refers to the get ahead screen; streak question open in core/get-ahead.md), the Growth Journey page and the Action Item page (custom build; MVP text only AI; same actions as the Action Hub popover). Scheduled times copy still sits in the Action Hub block in Figma (y 7218); approved 27 Oct to move under the schedule view as his smaller interaction square. He builds Figma himself.
 
@@ -31,7 +33,7 @@ Research for these blocks: reports/Schedule view how it works.md and research_no
 
 ## Next action
 
-Order applied in his Figma frame 2 Nov (see outline, The order): route; Action Hub, Growth Journey page placeholder; calendar setup, schedule view, scheduled times; Personalized timeline, then the map block (his sitemap note, unhidden and renamed); Falling behind, buffer flow, start of week; the page ends on the Action Item page placeholder. The ending placeholder was removed. Canvas re-exported to match. Next: write the map block and Falling behind as A B C, then buffer flow and start of week bodies, the Growth Journey page and the Action Item page.
+A new round of A B C for the map block and Falling behind together: the map shows how capacity, the week, the targets and the paces connect (his idea, he makes the visual), and Falling behind is the short lead in (two short lines, no cards, no Sally) in his existing bridge layout. Then buffer flow and start of week bodies, the Growth Journey page and the Action Item page. Figma text edits are his to paste because his frame uses Satoshi; structural changes work through the figma-mondai connection.
 
 Content the schedule view has not used yet, the design decisions behind the calendar component (source: research_notes/Schedule view how it works/mondai_mechanics.md and reports/Schedule view how it works.md): a Sunday to Saturday week grid so the view matches the weekly framework; Action Items in green, Mondai events in magenta, the person's own events in their source color; block height follows duration, with short 15 minute blocks too small to show title or time; clicking any block opens an anchored popover with Go to action item, the state action and Reschedule, a quick step before a decision rather than jumping to the detail page; only the active Action Item can be completed, matching the sequence; rescheduling stays inside the week because moving work to next week is rollover's job; the reschedule picker only offers open time so an item never lands on a meeting; drag to reschedule deferred to a later version; reconnecting mid week re-places times and disconnecting clears them and returns to the list; a packed week falls back to the list for items that cannot be placed. Reuse his approved Scheduled times copy (Action Hub block, frame y 7218) as written.
 
@@ -59,6 +61,8 @@ Points proposed 29 Oct for the calendar part, his reasoning first: setup 1 why p
 ## Read first
 
 - reference/cs2/WORKING_LOOP.md
+- reference/cs2/versions/falling-behind.md (the part in hand)
+- reference/cs2/outline/CS2-outline-and-copy.md (The order)
 - The CS2 canvas (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37) and his notes on it
-- His Figma frame 4269:9433 on page VC (read text with a read only use_figma script)
+- His Figma frame 5590:26084, CS page of the Desktop 1 (MVP) file (read text with a read only use_figma script)
 - reports/Schedule view how it works.md
