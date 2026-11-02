@@ -1,0 +1,38 @@
+VERSION V1: Falling behind, version A
+  (label) Falling behind
+V1.S1 Every plan built on weeks has to decide what happens when one of them doesn't get finished, and that answer shapes every week after it.
+V1.S2 Say Sally had four Action Items this week and finished three.
+V1.S3 Her Pathway target doesn't move, because it only changes when the hours she gives change.
+V1.S4 A target that slid with every bad week would stop meaning anything.
+V1.S5 On Sunday her pace moves to show the later finish.
+V1.S6 The unfinished Action Item is already in her new week, and the week takes fewer new ones, so it still fits her hours and doesn't punish her for last week.
+V1.S7 Three mechanisms keep a short week from turning into a pile up, each at a different moment.
+V1.S8 The first is the buffer flow, a screen that opens when someone finishes their week early, so they can catch up or get ahead.
+V1.S9 The second is start of week, a recap that opens every new week and shows where they stand.
+V1.S10 If weeks keep falling short, the plan looks at their progress and suggests fewer hours, which they can also change themselves in settings.
+
+VERSION V2: Falling behind, version B
+  (label) Falling behind
+V2.S1 When a week ends with work unfinished, the target, the pace and the next week all react, so each one got a rule for how far it can move.
+V2.S2 Take Sally, with four Action Items this week and three finished.
+V2.S3 The rule I set is that one short week changes as little as possible.
+V2.S4 Her target stays where it was, since only a change in her hours moves it.
+V2.S5 Her pace moves once, on Sunday, to show the later finish.
+V2.S6 The unfinished Action Item carries into the new week on its own, and the week takes fewer new ones so it still fits her hours.
+V2.S7 Three mechanisms handle what one week can't.
+V2.S8 The buffer flow, a screen for finishing a week early, covers the good weeks.
+V2.S9 The start of week recap, which opens every new week, shows where she stands.
+V2.S10 Capacity covers a run of short weeks, when the plan looks at her progress and suggests fewer hours.
+V2.S11 She can also change her hours herself in settings.
+
+VERSION V3: Falling behind, version C
+  (label) Falling behind
+V3.S1 Falling behind one week can't be allowed to grow into a pile of work, so three mechanisms share the job of keeping each week the right size.
+V3.S2 The first is the buffer flow, a screen that opens the moment someone finishes their week early and lets them catch up or get ahead.
+V3.S3 The second is start of week, a recap that opens every new week and shows where they stand.
+V3.S4 Capacity steps in when weeks keep falling short.
+V3.S5 The plan looks at their progress and suggests fewer hours, and they can change it themselves in settings.
+V3.S6 Sally's week shows them working together.
+V3.S7 She had four Action Items and finished three.
+V3.S8 Her target stays put, because only her hours move it.
+V3.S9 On Sunday her pace shows the later finish, and the unfinished one is already in her new week, which takes fewer new Action Items so it still fits.

@@ -11,7 +11,8 @@ for (let i = rows.length - 1; i >= 0; i--) {
   const e = rows[i]; if (e.type !== 'user' || e.isSidechain || e.isMeta) continue;
   const c = e.message && e.message.content;
   const t = typeof c === 'string' ? c : Array.isArray(c) && c.some(x => x.type === 'text') ? c.filter(x => x.type === 'text').map(x => x.text).join(' ') : '';
-  if (t && !/^Base directory for this skill/.test(t)) { start = i; break; }
+  // Sub-agent hand-backs and task notifications arrive as user rows; only his typed messages start a turn.
+  if (t && !/^(Base directory for this skill|Another Claude session sent a message|<task-notification|\[SYSTEM NOTIFICATION|Stop hook feedback)/.test(t.trim())) { start = i; break; }
 }
 const WORK = /^(Edit|Write|NotebookEdit|Bash|Artifact|Agent|Workflow)$|use_figma$|generate_figma_design$/;
 let work = false, loaded = false;

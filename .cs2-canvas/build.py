@@ -7,7 +7,7 @@ tiles = []
 for f in sorted((d/"img/tiles").glob("*.png")):
     kind, y = f.stem.split("_"); y = int(y)
     x, w, alt = (0, 1440, "Frame") if kind.startswith("f") else (2160, 752, "Spec 1")
-    tiles.append(f'<img class="art" alt="{alt}, from {y}px" src="data:image/png;base64,{base64.b64encode(f.read_bytes()).decode()}" style="left:{x}px;top:{y}px;width:{w}px;height:1500px">')
+    tiles.append(f'<img class="art" alt="{alt}, from {y}px" src="data:image/png;base64,{base64.b64encode(f.read_bytes()).decode()}" style="left:{x}px;top:{y}px;width:{w}px;height:{int.from_bytes(f.read_bytes()[20:24],"big")*w//int.from_bytes(f.read_bytes()[16:20],"big")}px">')
 import html as H, re
 def inl(x):
     x = H.escape(x)
