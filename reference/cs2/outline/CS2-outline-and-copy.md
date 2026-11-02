@@ -1,104 +1,98 @@
-# Framework case study: outline and copy
+# Framework case study: outline (rethought 2 Nov)
 
-Read from the CS page of the Desktop 1 (MVP) file on 31 Oct by his other account. Each block is marked Keep, Update (fix what is there) or New (paste in).
+Built from the whole WIP frame on the CS page of the Desktop 1 (MVP) file (frame 5590:26084), read top to
+bottom on 2 Nov, and from his notes to the other account. Replaces the 31 Oct outline, which was written
+without seeing the frames. Copy for new blocks is written in rounds of A, B and C (WORKING_LOOP.md), so this
+file holds the plan and the facts, not final copy.
 
-Review 2 Nov, still to fix before use: caption 5 recalibration looks at progress, never hours spent; card 03 says start of week, not Sunday flow; the Action Item page needs his point that the popover carries the same actions and why it gives a step before deciding; decide the hierarchy reprise block (frame y about 13177); the Growth Journey line that both levels on one screen was confusing needs a source or goes; the ending's a bad week moves a date and nothing else is not accurate. Buffer flow is already above start of week in the frame.
+## What the frame holds now
 
-## Curriculum: the route
+Finished or close, his own copy and visuals:
+1. Hero: title, role line, intro; the right column is still placeholder text.
+2. Background: two paragraph statement.
+3. Competitive analysis: four reference cards and a sources line.
+4. The foundation: Growth Journey, five Pathway tiles, Focus Areas and Action Items, the hierarchy note.
+5. Personalized timeline: capacity tile, Capacity, Cognitive load and Example cards.
+6. Below the Pathway (Action Hub): the Action Hub screen, the Pathway card with target and pace, three notes.
+7. Calendar setup: laptop mockup with the synced, boundaries and focus screens.
+8. Schedule view: the week calendar with a block's popover open, his two paragraphs.
+9. Scheduled times: the reschedule picker and his copy.
 
-### 1. Hero
-**Update** the right column, which reads "This case study is focused on" plus placeholder text:
+His thinking, not finished (he used these blocks to work out ideas):
+10. Sitemap note: a placeholder headline asking for a visual of how everything connects, maybe an
+    interactive sitemap he could pull up at any point, plus a repeat of the hierarchy stack.
+11. The bridge: placeholder headline, notes on the Sally example (four Action Items, three done, connect back
+    to target and pace, show what impacts what, maybe the Growth Journey scores, long versus short term),
+    three rough cards.
+12. Start of week: real headline, the carousel of six templates (template 1, Clean slate, has its caption),
+    filler body text.
+13. Buffer flow: headline with a typo, the screen, filler body text.
 
-> This case study covers the framework behind Mondai's weekly plan: how a fixed curriculum becomes a week sized to each person's life.
+Both 10 and 11 still carry the Scheduled times eyebrow copied from 9.
 
-### 2. Background
-**Update** one typo: "one of the primary feature" becomes "one of its primary features".
+## The story the page tells
 
-### 3. Competitive analysis
-**Keep.**
+Part 1, the route: 1 to 4. What the curriculum is and how it is organized.
+Part 2, fitting the route into a week: 5 to 9. One number from the person (capacity) sizes each week; the
+Action Hub is where the week lives; the calendar is an optional tool on top of it.
+Part 3, when the week doesn't go to plan: the bridge, then the buffer flow, then start of week.
+Ending: one short block on what holds it together.
 
-### 4. The foundation
-**Keep.**
+The order problem he raised (curriculum versus framework) is solved by keeping Part 1 strictly about the
+route and Part 2 strictly about the week. New blocks below are placed inside the part they belong to.
 
-## Framework: how the route fits a week
+## Block by block
 
-### 5. Personalized timeline
-**Update** the capacity card: "by informing the user how many hours" becomes "by telling Mondai how many hours they can give each week".
+1. Hero. Replace the placeholder right column with one line on what the case study covers: the framework
+   that turns a fixed curriculum into a week sized to each person's life.
+2. Background. Typo: one of its primary features.
+3. Competitive analysis. Keep.
+4. The foundation. Keep. This is the one place the hierarchy is shown.
+   New, right after it, only if he wants the Growth Journey page in Part 1: the Growth Journey page as the
+   long view of the route. Needs a frame he has not made. Fact to source before writing: why the journey's
+   target and pace live there and the Pathway's on the Action Hub.
+5. Personalized timeline. Wording: telling Mondai how many hours they can give each week; its required effort.
+6. Action Hub. Keep.
+   New, after it: the Action Item page. Needs his custom build. Points from his asks: at launch the AI
+   writes each Action Item as text only; the popover on the Action Hub carries the same actions as the
+   page (go to the Action Item, mark complete, reschedule), giving a person a step before they decide;
+   mark complete only on the active Action Item.
+7. Calendar setup. Keep.
+8. Schedule view. Keep. Its image is his custom calendar build, still to decide.
+9. Scheduled times. Wording: reschedule Action Items; an Action Item; scheduled time.
+10. Sitemap note. Cut from the page flow; the hierarchy is already in 4. Keep the interactive map as a
+    later, page level idea (something a reader can open from anywhere), not a block.
+11. Falling behind (the bridge). Text and cards only, no image: every visual for this part already belongs
+    to 12 or 13. Points: the question every weekly plan has to answer; Sally, four Action Items, three
+    done; her target holds because only her hours move it; her pace moves once, at the start of the next
+    week; the unfinished one carries over and the new week takes fewer new ones so it still fits; three
+    mechanisms keep a short week from piling up, one card each, in the order the reader meets them:
+    buffer flow (finishing early, catch up or get ahead), start of week (a recap of where they stand),
+    capacity (after a run of short weeks the plan looks at their progress and suggests fewer hours; they
+    can also change it in settings). Capacity has no section of its own after this; it shows up inside
+    start of week as the recalibration template. Eyebrow: Falling behind.
+12. Buffer flow. Must sit above start of week, because the start of week headline says it mirrors the
+    screen people see when they finish early. Headline typo: drop a and the comma. Body points: opens the
+    moment every Action Item for the week is done, whatever day; it cannot wait for Sunday because how much
+    someone can pull forward depends on the days left; it is rollover running the other way.
+13. Start of week. Keep the headline. Body points: leftovers move on their own; an earlier version asked
+    people to choose what to take on at the moment they were behind, which read like paying to keep going;
+    pace updates only at the start of a week. Captions for templates 2 to 6: Rollover (magenta tag, not an
+    error), Catching up (only when someone gained ground), Caught up (closes the recovery), Recalibration
+    (the plan looks at progress over several short weeks and suggests a lower capacity; it can only go
+    down while behind; skipping is allowed with a warning), Reset (after a long absence the week rebuilds
+    from today and progress is kept; one button, Start from today, because a keep my plan option would win
+    by inertia).
+14. Ending. One short block: every mechanism traces back to the weekly hours the person gives. Capacity
+    sizes the week, sets the targets and decides when the plan suggests a change. Needs a frame.
 
-**Update** the cognitive load card: "it's required effort" becomes "its required effort".
+## Facts corrected from the 31 Oct outline
 
-**New**, Growth Journey add-on:
+- Recalibration looks at the person's progress and suggests changes. It never looks at hours spent.
+- The Sunday flow is now called start of week.
+- A bad week does more than move a date: the leftover also carries forward. Do not claim otherwise.
 
-- Eyebrow: Growth Journey
-- Headline: One number from the person turns the whole route into dates, so they can see when they will reach the end of it.
-- Body: Capacity sets six dates at once: a target for each of the five Pathways and one for the whole journey. Showing both levels on one screen was confusing, so the Growth Journey page holds the journey's target and pace, and the Action Hub shows only the current Pathway's. Capacity is changed from here too, because it is what moves these dates.
+## Open for him
 
-### 6. Pathway page
-**New**
-
-- Eyebrow: Pathway page
-- Headline: Each Pathway has its own page for looking ahead, and the work itself stays in the Action Hub.
-- Body: The page lists the Pathway's Focus Areas and Action Items in order, with the current ones at the top. Any Pathway can be opened, but Action Items can only be completed in sequence, because some depend on the one before. You can't synthesize findings from a usability session you haven't run. Nothing gets checked off here, so the Action Hub stays the one place work happens.
-
-### 7. Action Hub
-**Keep.**
-
-### 8. Action Item page
-**New**
-
-- Eyebrow: Action Item
-- Headline: Opening an Action Item shows the work itself, written by the AI for that person.
-- Body: Because the AI writes every Action Item, the page is built from text containers it can fill, such as ordered steps, an aside or link cards. Fixed components would force every item into the same shape. At launch the page is text only. Mark complete appears only on the active Action Item, matching the order set on the Pathway page.
-
-### 9. Calendar setup
-**Keep.**
-
-### 10. Schedule view
-**Keep.**
-
-### 11. Scheduled times
-**Update** three wording slips:
-
-- Headline: "reschedule tasks" becomes "reschedule Action Items".
-- Body: "a action item" becomes "an Action Item".
-- Body: "schedule time time" becomes "scheduled time".
-
-## When the week doesn't go to plan
-
-### 12. Bridge
-**New.** Replaces the work in progress block. Cut the sitemap block.
-
-- Eyebrow: Falling behind
-- Headline: Any plan built on weeks has to decide what happens when a week doesn't get finished.
-- Body: Say Sally had four Action Items this week and finished three. Her Pathway target stays put, since it only moves when her capacity changes. On Sunday her pace moves to show the later finish. The unfinished Action Item carries into next week on its own, and the AI picks fewer new ones so the week still fits her hours. Three mechanisms keep this from turning into a pile up.
-- Card 01, Buffer flow: Finishing early opens a chance to catch up or get ahead by pulling next week's Action Items forward.
-- Card 02, Start of week: Every Sunday the week opens on a recap of where the person stands, after leftovers have already moved.
-- Card 03, Capacity: If weeks keep falling short, the plan suggests fewer hours. People can also change capacity themselves in settings, on the Growth Journey page or in the Sunday flow.
-
-### 13. Buffer flow
-Move it above start of week.
-
-**Update** the headline: "Finishing your week early means you now have a chance to catch up or even get ahead." This drops "a" and the comma.
-
-**New** body: The buffer flow opens the moment every Action Item for the week is done, whatever day that is. It can't wait for Sunday, because how much someone can pull forward depends on how many days are left. It is rollover running the other way. Rollover moves unfinished work into the next week, and the buffer lets someone start next week's work early.
-
-### 14. Start of week
-**Keep** the headline.
-
-**New** body: An earlier version stopped people on Sunday to choose what to take on, with the math on screen. It was cut, because a decision at the moment someone is behind reads like paying to keep going. Leftovers now move on their own. Pace only updates at the start of a week, so nobody panics as it shifts with every finished item, and Sunday is when they see the new number.
-
-Template captions, keep 1 and add 2 to 6:
-
-1. Clean slate. **Keep.**
-2. Rollover. **New:** Carried Action Items get a magenta tag instead of orange, because falling behind isn't an error. The headline stays neutral and the pace line carries the news.
-3. Catching up. **New:** Catching up needs real movement. Finishing exactly last week's Action Items while still behind isn't recovery, so this only shows when someone gained ground.
-4. Caught up. **New:** Caught up closes the recovery, whether it took one week or several.
-5. Recalibration. **New:** After several weeks short of capacity, Mondai shows the hours the person actually spent and recommends a lower capacity. Here it can only go down, since raising it while behind would widen the gap. Skipping is allowed, with a warning.
-6. Reset. **New:** After a long absence, the week rebuilds from today and progress is kept. There is one button, Start from today, because a "keep my plan" option would win by inertia even when it's the worse choice.
-
-### 15. Ending
-**New**
-
-- Eyebrow: What holds it together
-- Headline: The route stays fixed while the week bends around each person, and a bad week moves a date and nothing else.
-- Body: Every mechanism traces back to one number the person gives: their weekly hours. Capacity sizes the week, sets the targets and decides when the plan suggests a change.
+- Whether the Growth Journey page and the Action Item page get their own blocks, since both need frames.
+- Moving buffer flow above start of week in the frame; it has not saved yet.
