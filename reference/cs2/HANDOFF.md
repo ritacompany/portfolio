@@ -1,8 +1,8 @@
 # CS2 handoff
 
 <!--
-The resume point for CS2 on either account. Whoever picks CS2 up reads this first, then the status
-table in CS2_PROCESS.md. Rewritten, never appended: it says where things stand now, not a history.
+The resume point for CS2 on either account. Whoever picks CS2 up reads this first, then
+WORKING_LOOP.md. Rewritten, never appended: it says where things stand now, not a history.
 
 Claude Code rewrites it at every save, at 75% and 90% of the 5 hour limit (the usage hook says when),
 and whenever the stop hook asks; then commits and pushes. The browser account never edits this file in

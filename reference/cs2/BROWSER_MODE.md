@@ -33,7 +33,7 @@ Loop steps 1 to 4 in `CS2_PROCESS.md`, and pass 1 of step 5:
 1. Open the section and bring the reference pull from `CS2_REFERENCE_INDEX.md`.
 2. Talk it through, following "How to run the conversation" in `CS2_PROCESS.md` exactly.
 3. Draft the copy for `copy/section-N.md` and the notes for `draft/CS2-section-N.md`.
-4. Voice pass: apply the humanizer skill, then no-ai-slop in detect mode, from the skill files in
+4. Voice pass: apply no-ai-slop (humanizer is retired), from the skill file in
    `.claude/skills/` in the repo.
 5. Pass 1 only: draft the message plan for `message/section-N.md`.
 

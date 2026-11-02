@@ -9,7 +9,11 @@ we, do not ask him anything first: read `reference/cs2/BROWSER_MODE.md` and foll
 `reference/cs2/HANDOFF.md`, and open with where CS2 stopped and the next action. Skip the rest of this
 section; it is for Claude Code.
 
-Before doing any work here, read `TRACKER.md`: the launch tracker, with every open item, decision and
+**CS2 work (the framework case study):** read `reference/cs2/HANDOFF.md`, then
+`reference/cs2/WORKING_LOOP.md`, and nothing else first. WORKING_LOOP is how CS2 is written now; where
+`CS2_PROCESS.md` says something different, WORKING_LOOP wins. Skip TRACKER and LEDGER unless the task needs them.
+
+Any other work: before doing it, read `TRACKER.md`: the launch tracker, with every open item, decision and
 what each running session was doing. Then read `LEDGER.md`. It is the current state of the build: what is
 done, what was decided and why, what is still open. The standing rules that apply to every
 turn are in `.claude/portfolio-rules.md` and are injected automatically, so you do not need
@@ -62,7 +66,7 @@ he is. Mondai product mechanics are background for the case studies and nothing 
 - `reference/cs2/HANDOFF.md` : where CS2 stopped and the next action. Read it first for any CS2 work.
   Kept current so his second account (claude.ai in the browser) can resume; see `reference/cs2/BROWSER_MODE.md`.
 - `reference/cs2/` : source material for case study 2, the framework, from the 27 Aug
-  restart. Start at `CS2_PROCESS.md`, which carries the working loop and the status of every section. Drafts are in `draft/`, the
+  restart. Start at `HANDOFF.md`, then `WORKING_LOOP.md`. `CS2_PROCESS.md` holds the older loop and the status of every section. Drafts are in `draft/`, the
   decision reasoning in `reasoning/`. The pre-restart master doc, build pack and full draft are
   discarded; they are in git history only.
 - `.claude/` : the automation. Standing rules injected every turn, a hook that blocks em
