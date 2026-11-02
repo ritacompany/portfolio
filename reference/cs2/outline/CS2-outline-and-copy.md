@@ -30,6 +30,31 @@ His thinking, not finished (he used these blocks to work out ideas):
 
 Both 10 and 11 still carry the Scheduled times eyebrow copied from 9.
 
+## The order (decided 2 Nov, replaces the one below where they differ)
+
+The problem: target, pace and capacity are explained near the top, then three calendar blocks sit
+between them and the part where the week goes wrong, so the reader has forgotten them by then, and the
+start of week templates (recalibration most of all) lean on knowledge the reader no longer has.
+
+The fix: keep everything about the week's numbers together, then show what happens when a week goes
+wrong while those numbers are still fresh, then add the calendar as the optional tool on top.
+
+Part 1, the route: Hero, Background, Competitive analysis, The foundation.
+Part 2, the week: Personalized timeline (capacity, cognitive load), then a Growth Journey page placeholder
+(capacity turns the whole route into dates; the journey's target and pace; where capacity is changed),
+then the Action Hub (this week, the Pathway target and pace), then an Action Item page placeholder.
+Part 3, when the week doesn't go to plan: Falling behind (a short lead in), Buffer flow, Start of week
+(the six template carousel, recalibration included).
+Part 4, the calendar, an optional tool on top: Calendar setup, Schedule view, Scheduled times.
+Ending placeholder.
+The sitemap note is hidden, not deleted.
+
+Falling behind, new approach: no cards, no Sally walkthrough, two short lines. It reminds the reader of
+the numbers they just read (each week is sized to their hours, the target only moves when hours change,
+pace moves once a week) and names the three things that keep a short week from piling up, which the
+next two blocks then show: a buffer for finishing early, a recap at the start of every week, and a
+check on capacity when weeks keep falling short.
+
 ## The story the page tells
 
 Part 1, the route: 1 to 4. What the curriculum is and how it is organized.
