@@ -11,7 +11,8 @@ section; it is for Claude Code.
 
 **CS2 work (the framework case study):** read `reference/cs2/HANDOFF.md`, then
 `reference/cs2/WORKING_LOOP.md`, and nothing else first. WORKING_LOOP is how CS2 is written now; where
-`CS2_PROCESS.md` says something different, WORKING_LOOP wins. Skip TRACKER and LEDGER unless the task needs them.
+`CS2_PROCESS.md` says something different, WORKING_LOOP wins. Do not open TRACKER.md or LEDGER.md for CS2
+work; they cover other work and cost a lot to read. The paragraph below is for everything else.
 
 Any other work: before doing it, read `TRACKER.md`: the launch tracker, with every open item, decision and
 what each running session was doing. Then read `LEDGER.md`. It is the current state of the build: what is

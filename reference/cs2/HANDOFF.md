@@ -14,16 +14,18 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-10-29 14:00
+Updated: 2026-11-02 13:45
 By: Claude Code
-Section: 8
+Section: 3
 Loop step: 3
 
 ## Where it stopped
 
 How to work: reference/cs2/WORKING_LOOP.md. Read it before anything else.
 
-Calendar setup, The schedule view and Rollover are rebuilt on the canvas on layouts from his pool (setup x -1940 y 7840, schedule view x -1940 y 9380, rollover x -3480 y 10750). Each has a three line headline, a body that gives the reasoning and research behind each decision, a sources line and an imagery note in the gray frame. One way sync is folded into the schedule view. Reader check PASS on all three (runs/2026-10-29, copy files setup4, sched2, roll2), canvas copy guard passes, no-ai-slop run by hand. He has not reviewed this build yet.
+Now (2 Nov): the page order is decided (reference/cs2/outline/CS2-outline-and-copy.md, The order). Part 2 the week, Part 3 when the week does not go to plan, Part 4 the calendar. His Figma frame 4269:9433 is reordered with placeholders and the canvas is re-exported from it. The part being written is Falling behind, the opening of Part 3. Rounds 1 and 2 (A B C, reader check PASS) are in reference/cs2/versions/falling-behind.md, but round 2 is superseded: he wants Falling behind as a short lead in to the buffer flow and start of week. Next is a new round of A B C for that short lead in (see Next action).
+
+Earlier, for Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, The schedule view and Rollover are rebuilt on the canvas on layouts from his pool (setup x -1940 y 7840, schedule view x -1940 y 9380, rollover x -3480 y 10750). Each has a three line headline, a body that gives the reasoning and research behind each decision, a sources line and an imagery note in the gray frame. One way sync is folded into the schedule view. Reader check PASS on all three (runs/2026-10-29, copy files setup4, sched2, roll2), canvas copy guard passes, no-ai-slop run by hand. He has not reviewed this build yet.
 
 Still missing from his frame: Get ahead (goes before Opening the week, which refers to the get ahead screen; streak question open in core/get-ahead.md), the Growth Journey page and the Action Item page (custom build; MVP text only AI; same actions as the Action Hub popover). Scheduled times copy still sits in the Action Hub block in Figma (y 7218); approved 27 Oct to move under the schedule view as his smaller interaction square. He builds Figma himself.
 
@@ -31,7 +33,7 @@ Research for these blocks: reports/Schedule view how it works.md and research_no
 
 ## Next action
 
-New order decided 2 Nov, in reference/cs2/outline/CS2-outline-and-copy.md (The order): Part 2 the week (timeline, Growth Journey page placeholder, Action Hub, Action Item page placeholder), Part 3 when the week doesn't go to plan (Falling behind as a short lead in, buffer flow, start of week), Part 4 the calendar (setup, schedule view, scheduled times), ending placeholder; sitemap note hidden. Applied in his Figma frame 2 Nov with placeholders for the Growth Journey page, the Action Item page and the Ending; sitemap note hidden. Canvas re-exported from it, Spec 1 and the side labels removed, Claude notes deleted, a hide control added (hover a block, x; Show hidden brings it back). Next: Falling behind as a short lead in, A B C. Falling behind round 2 on the canvas is superseded by the short lead in approach.
+New order decided 2 Nov, in reference/cs2/outline/CS2-outline-and-copy.md (The order): Part 2 the week (timeline, Growth Journey page placeholder, Action Hub, Action Item page placeholder), Part 3 when the week doesn't go to plan (Falling behind as a short lead in, buffer flow, start of week), Part 4 the calendar (setup, schedule view, scheduled times), ending placeholder; sitemap note hidden. Applied in his Figma frame 2 Nov with placeholders for the Growth Journey page, the Action Item page and the Ending; sitemap note hidden. Canvas re-exported from it, Spec 1 and the side labels removed, Claude notes deleted, a hide control added (hover a block, x; Show hidden brings it back). Next: Falling behind as a short lead in, A B C. Each version is the two short lines the outline describes (The order, Falling behind, new approach), no cards and no Sally, in his existing bridge layout (the Falling behind block already in his Figma frame, not one from the pool) with no image: his outline makes this the one text only block, every visual for Part 3 belongs to the buffer flow and start of week, and that overrides the WORKING_LOOP rules on image slots and text only blocks for this block. Falling behind round 2 on the canvas is superseded by the short lead in approach.
 
 Content the schedule view has not used yet, the design decisions behind the calendar component (source: research_notes/Schedule view how it works/mondai_mechanics.md and reports/Schedule view how it works.md): a Sunday to Saturday week grid so the view matches the weekly framework; Action Items in green, Mondai events in magenta, the person's own events in their source color; block height follows duration, with short 15 minute blocks too small to show title or time; clicking any block opens an anchored popover with Go to action item, the state action and Reschedule, a quick step before a decision rather than jumping to the detail page; only the active Action Item can be completed, matching the sequence; rescheduling stays inside the week because moving work to next week is rollover's job; the reschedule picker only offers open time so an item never lands on a meeting; drag to reschedule deferred to a later version; reconnecting mid week re-places times and disconnecting clears them and returns to the list; a packed week falls back to the list for items that cannot be placed. Reuse his approved Scheduled times copy (Action Hub block, frame y 7218) as written.
 
@@ -59,6 +61,8 @@ Points proposed 29 Oct for the calendar part, his reasoning first: setup 1 why p
 ## Read first
 
 - reference/cs2/WORKING_LOOP.md
+- reference/cs2/versions/falling-behind.md (the part in hand)
+- reference/cs2/outline/CS2-outline-and-copy.md (The order)
 - The CS2 canvas (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37) and his notes on it
 - His Figma frame 4269:9433 on page VC (read text with a read only use_figma script)
 - reports/Schedule view how it works.md

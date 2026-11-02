@@ -6,6 +6,7 @@
 // Storage), so a quotation of eight words or more is refused: point to where the source lives instead.
 // Prints HANDOFF_PASS and exits 0, or lists every problem, prints HANDOFF_FAIL and exits 1.
 import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
 export const HEADINGS = [
@@ -48,7 +49,15 @@ export function checkHandoff(raw) {
 if (import.meta.url === `file://${process.argv[1]}`) {
   const file = process.argv[2] || path.join(path.dirname(new URL(import.meta.url).pathname), 'HANDOFF.md');
   if (!fs.existsSync(file)) { console.log(`HANDOFF_FAIL ${file} does not exist`); process.exit(1); }
-  const problems = checkHandoff(fs.readFileSync(file, 'utf8'));
+  const raw = fs.readFileSync(file, "utf8");
+  const problems = checkHandoff(raw);
+  // A handoff that only had its Next action edited still passes the format check while its date and
+  // Where it stopped describe an older state (2 Nov: dated 29 Oct over 2 Nov work). So it must be dated no
+  // earlier than the newest committed CS2 work product.
+  const last = spawnSync('git', ['log', '-1', '--format=%cI', '--', 'reference/cs2/versions', 'reference/cs2/copy', '.cs2-canvas/spec.md', '.cs2-canvas/template.html'], { encoding: 'utf8' }).stdout.trim();
+  const updated = (raw.match(/^Updated:\s*(.+)$/m) || [])[1];
+  if (last && updated && Date.parse(updated.replace(' ', 'T')) + 60000 < Date.parse(last))
+    problems.push(`"Updated:" ${updated} is older than the last CS2 work commit (${last.slice(0, 16)}); rewrite Where it stopped and Next action for where things stand now`);
   if (problems.length) { console.log(problems.map(p => `  ${p}`).join('\n')); console.log('HANDOFF_FAIL'); process.exit(1); }
   console.log('HANDOFF_PASS');
 }
