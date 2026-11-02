@@ -30,30 +30,22 @@ His thinking, not finished (he used these blocks to work out ideas):
 
 Both 10 and 11 still carry the Scheduled times eyebrow copied from 9.
 
-## The order (decided 2 Nov, replaces the one below where they differ)
+## The order (decided 2 Nov, applied in his Figma frame)
 
-The problem: target, pace and capacity are explained near the top, then three calendar blocks sit
-between them and the part where the week goes wrong, so the reader has forgotten them by then, and the
-start of week templates (recalibration most of all) lean on knowledge the reader no longer has.
+1. The route: Hero, Background, Competitive analysis, The foundation.
+2. What a person sees: Action Hub (this week, the Pathway target and pace), Growth Journey page placeholder
+   (the journey's target and pace).
+3. When they do it: Calendar setup, Schedule view, Scheduled times. The calendar sits next to the Action Hub
+   it is part of; the earlier Action Hub image has no times, so the scheduled times image does not contradict
+   it (that image may still be rethought).
+4. What drives it all: Personalized timeline (capacity and cognitive load size every week and set both sets
+   of dates the reader has now seen), then the map block (his sitemap idea): how capacity, the week, the
+   targets and the paces connect.
+5. When the week doesn't go to plan: Falling behind (short lead in), Buffer flow, Start of week.
+6. The page ends on the Action Item page: what the work itself looks like. No separate ending block.
 
-The fix: keep everything about the week's numbers together, then show what happens when a week goes
-wrong while those numbers are still fresh, then add the calendar as the optional tool on top.
-
-Part 1, the route: Hero, Background, Competitive analysis, The foundation.
-Part 2, the week: Personalized timeline (capacity, cognitive load), then a Growth Journey page placeholder
-(capacity turns the whole route into dates; the journey's target and pace; where capacity is changed),
-then the Action Hub (this week, the Pathway target and pace), then an Action Item page placeholder.
-Part 3, when the week doesn't go to plan: Falling behind (a short lead in), Buffer flow, Start of week
-(the six template carousel, recalibration included).
-Part 4, the calendar, an optional tool on top: Calendar setup, Schedule view, Scheduled times.
-Ending placeholder.
-The sitemap note is hidden, not deleted.
-
-Falling behind, new approach: no cards, no Sally walkthrough, two short lines. It reminds the reader of
-the numbers they just read (each week is sized to their hours, the target only moves when hours change,
-pace moves once a week) and names the three things that keep a short week from piling up, which the
-next two blocks then show: a buffer for finishing early, a recap at the start of every week, and a
-check on capacity when weeks keep falling short.
+Why: capacity only makes sense once the reader has seen the dates it moves; the map lands when everything it
+connects has been introduced; target, pace and capacity are fresh when falling behind arrives.
 
 ## The story the page tells
 
