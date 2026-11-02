@@ -83,7 +83,10 @@ before the first reply, then HANDOFF.md for where things stand.
    vocabulary and colleague names (`.claude/hooks/canvas-copy-guard.mjs`). Enforced.
 3. Reader check (`reference/cs2/reader-check/README.md`): three runs, PASS needed, on every version.
 Nothing goes on the canvas before all three. His rule: no-ai-slop and the reader check are not optional.
-Load unlazy for every round.
+Load unlazy every work turn. Enforced: a stop hook (.claude/hooks/unlazy-every-turn.mjs) refuses to end a
+turn that used work tools without loading it.
+Figma writes: allowed when one of his last three messages tells me to change the design and his latest does
+not say stop or wait (.claude/hooks/figma-build-gate.mjs). No keyword needed.
 
 ## Usage
 

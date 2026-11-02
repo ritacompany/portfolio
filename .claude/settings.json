@@ -147,6 +147,14 @@
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/cs2-unpushed-guard.mjs\""
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/unlazy-every-turn.mjs\""
+          }
+        ]
       }
     ]
   }
