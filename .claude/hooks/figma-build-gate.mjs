@@ -24,6 +24,18 @@ const MUTATES = /figma\.create|\.remove\(|appendChild|insertChild|\.set\(|\.resi
 const code = (payload.tool_input || {}).code || '';
 if (/__use_figma$/.test(payload.tool_name) && code.trim() && !MUTATES.test(code)) process.exit(0);
 
+function typedMessages(file) {
+  if (!file || !fs.existsSync(file)) return [];
+  const out = [];
+  for (const l of fs.readFileSync(file, 'utf8').trim().split('\n')) {
+    let e; try { e = JSON.parse(l); } catch { continue; }
+    if (e.type !== 'user' || e.isSidechain || e.isMeta) continue;
+    const c = e.message && e.message.content;
+    const t = typeof c === 'string' ? c : Array.isArray(c) && c.some(x => x.type === 'text') ? c.filter(x => x.type === 'text').map(x => x.text).join('\n') : null;
+    if (t && !/^Base directory for this skill/.test(t)) out.push(t);
+  }
+  return out;
+}
 function latestTyped(file) {
   if (!file || !fs.existsSync(file)) return null;
   const entries = fs.readFileSync(file, 'utf8').trim().split('\n')
@@ -43,6 +55,19 @@ const said = (latestTyped(payload.transcript_path) || '')
   .replace(/<pasted_content[\s\S]*?<\/pasted_content[^>]*>/g, '')
   .replace(/<system-reminder[\s\S]*?<\/system-reminder[^>]*>/g, '');
 if (SAYS_BUILD.test(said) && !SAYS_DONT.test(said)) process.exit(0);
+// 2 Nov: any clear instruction from him to change the design counts, not only the word build. His latest
+// message, or one of the two before it if the latest does not tell me to stop.
+const clean = t => t.replace(/<pasted_content[\s\S]*?<\/pasted_content[^>]*>/g, '').replace(/<system-reminder[\s\S]*?<\/system-reminder[^>]*>/g, '');
+const ACT = /\b(move|put|fix|reorder|order|update|change|add|place|swap|rename|apply|make|do it|go ahead)\b/i;
+const DESIGN = /\b(figma|frame|page|layout|block|section|design)\b/i;
+const APPROVE = /^\s*(yes|yeah|yep|go|go ahead|do it|okay do it|sure)\b/i;
+const STOP = /\b(stop|wait|hold on|don'?t (do|change|touch|build)|do not (do|change|touch|build))\b/i;
+const recent = typedMessages(payload.transcript_path).slice(-3).map(clean);
+const last = recent[recent.length - 1] || '';
+if (!STOP.test(last)) {
+  if (APPROVE.test(last) || (ACT.test(last) && DESIGN.test(last))) process.exit(0);
+  if (recent.slice(0, -1).some(t => ACT.test(t) && DESIGN.test(t) && !STOP.test(t))) process.exit(0);
+}
 if (NAMES_HOMEPAGE.test(said) && NAMES_FIGMA.test(said) && !HOMEPAGE_DONT.test(said)) process.exit(0);
-console.error('Blocked: Figma writes wait until Chadwick says to build (CS2 loop step 8), or names a homepage Figma task. His latest message does neither. Bring him the plan and ask; do not build.');
+console.error('Blocked: no instruction from Chadwick to change the Figma design in his recent messages, or his latest says to stop. Bring him the plan and ask; do not build.');
 process.exit(2);

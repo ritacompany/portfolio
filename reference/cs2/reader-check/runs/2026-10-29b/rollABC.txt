@@ -1,0 +1,21 @@
+=== Rollover, version A
+[eyebrow or sub-heading] Rollover
+[headline] So what happens to the Action Items someone doesn't get to by Saturday night? They have to go somewhere.
+Every option pulled on something else. Pushing all of it into next week makes that week heavier than the hours the person gave. Asking them to sort it hands them a pile of decisions right when they're behind. Dropping it lets the Pathway slip without anyone saying so.
+So leftovers move into next week on their own and count first against the same hours. New work makes room for them, and the week stays the size the person said they could give.
+A carried item gets a soft magenta tag instead of a warning color, so it reads as carried forward, not overdue.
+
+=== Rollover, version B
+[eyebrow or sub-heading] Rollover
+[headline] Some weeks won't go to plan, and whatever someone doesn't finish by Saturday night still has to land somewhere.
+A missed step on a long goal is one of the moments people give up, so I treated leftovers as a motivation problem first.
+They move into next week automatically, counted against the same hours, so a bad week never turns into a heavier one.
+The pace date moves once a week, so a carried item shows up as a later finish rather than a red flag on the day.
+A run of hard weeks is a different problem. Sizing keeps each week fair, but leftovers can stack up, and that's when the plan rechecks the hours the person gave.
+
+=== Rollover, version C
+[eyebrow or sub-heading] Rollover
+[headline] Every week ends with some Action Items still open, and where they go next decides how the following week feels.
+On Saturday night nothing happens to the open items. Nobody is asked to sort them and nothing is marked late.
+On Sunday they're at the top of the new week with a magenta carried tag. The week still holds four Action Items, not six, because leftovers take the place of new work.
+Asking the person to decide what to do with each one would arrive right when they're already behind and turn the week into math.
