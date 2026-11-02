@@ -1,6 +1,6 @@
 import base64, json, pathlib, sys
 d = pathlib.Path(sys.argv[1])
-secs = [("Hero",0,"Hero and background"),("Competitive",2420,"Competitive analysis"),("Foundation",3442,"The foundation we built on"),("Saturday",4495,"Saturday night deadlines"),("Timeline",5450,"Personalized timeline"),("Action Hub",6220,"The Action Hub"),("Calendar setup",7790,"Calendar setup"),("Schedule view",9300,"The schedule view"),("Rollover",10690,"Two years of answers"),("Opening the week",12890,"Opening the week"),("State rules",13880,"State rules"),("Recalibration",15130,"Recalibration"),("Reset",15975,"Reset")]
+secs = [("Page",0,"")]
 S = [dict(n=n,y=y,title=t) for n,y,t in secs]
 h = (d/"template.html").read_text()
 tiles = []
@@ -26,6 +26,6 @@ for ln in (d/"spec.md").read_text().splitlines():
     elif ln.startswith(("FEEDBACK","notes:")): out.append(f'<p class="fb">{H.escape(ln)}</p>')
     else: out.append(f"<p>{inl(ln)}</p>")
 spec = '<div class="spec-title">Spec 1 (beside the frame in Figma)</div><div class="spec">' + "\n".join(out) + "</div>"
-h = h.replace("__SPEC__", spec)
+h = h.replace("__SPEC__", "")  # Spec 1 retired 2 Nov; the frame is the only source
 h = h.replace("__TILES__", "\n  ".join(tiles)).replace("__SECTIONS__", json.dumps(S))
 (d/"cs2-canvas.html").write_text(h); print(len(h))
