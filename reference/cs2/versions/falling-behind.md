@@ -23,7 +23,7 @@ Her target stays where it was, since only a change in her hours moves it. Her pa
 Anything bigger than one week is handled at three moments.
 
 Card 01, When a week ends early: A screen called the buffer flow opens the moment every Action Item is done, so the extra time can go to catching up or getting ahead.
-Card 02, When a new week starts: Start of week opens on a recap of where the person stands.
+Card 02, When a new week starts: A recap called start of week opens and shows where the person stands.
 Card 03, When weeks keep slipping: The plan looks at their progress and suggests a lower capacity, which they can also change in settings.
 
 ## Falling behind C: what changes and what doesn't, then her questions

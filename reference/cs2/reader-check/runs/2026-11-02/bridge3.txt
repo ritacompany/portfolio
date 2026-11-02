@@ -20,7 +20,7 @@ Anything bigger than one week is handled at three moments.
 [eyebrow or sub-heading] When a week ends early
 A screen called the buffer flow opens the moment every Action Item is done, so the extra time can go to catching up or getting ahead.
 [eyebrow or sub-heading] When a new week starts
-Start of week opens on a recap of where the person stands.
+A recap called start of week opens and shows where the person stands.
 [eyebrow or sub-heading] When weeks keep slipping
 The plan looks at their progress and suggests a lower capacity, which they can also change in settings.
 
