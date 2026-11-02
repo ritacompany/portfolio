@@ -1,0 +1,15 @@
+VERSION V1: Falling behind, version C
+  (label) Falling behind
+V1.S1 Falling behind one week can't be allowed to grow into a pile of work, so I decided how every part of the plan responds when a week comes up short.
+V1.S2 Sally had four Action Items this week and finished three.
+V1.S3 Nothing about her goal changes.
+V1.S4 Her target only moves when her hours do, so one short week can't push it.
+V1.S5 What changes is small and expected.
+V1.S6 When the new week starts, her pace shows the later finish, and the unfinished Action Item is already in the new week, which takes fewer new ones so it still fits.
+V1.S7 Three mechanisms answer what she'd want to know next.
+  (label) What if the week ends early?
+V1.S8 When every Action Item is done before the week ends, a screen called the buffer flow opens with the chance to catch up or get ahead.
+  (label) Where does she stand now?
+V1.S9 Each new week opens on a recap, called start of week, after unfinished Action Items have moved over.
+  (label) What if weeks keep slipping?
+V1.S10 The plan looks at her progress and suggests fewer hours, and she can change them in settings too.
