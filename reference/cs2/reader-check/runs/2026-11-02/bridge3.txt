@@ -33,6 +33,6 @@ Three mechanisms answer what she'd want to know next.
 [eyebrow or sub-heading] What if the week ends early?
 A screen called the buffer flow opens with the chance to catch up or get ahead.
 [eyebrow or sub-heading] Where does she stand now?
-Each new week opens on a recap called start of week, after leftovers have moved.
+Each new week opens on a recap, called start of week, after unfinished Action Items have moved over.
 [eyebrow or sub-heading] What if weeks keep slipping?
 The plan looks at her progress and suggests fewer hours, and she can change them in settings too.

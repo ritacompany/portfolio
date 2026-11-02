@@ -35,5 +35,5 @@ What changes is small and expected. When the new week starts, her pace shows the
 Three mechanisms answer what she'd want to know next.
 
 Card 01, What if the week ends early?: A screen called the buffer flow opens with the chance to catch up or get ahead.
-Card 02, Where does she stand now?: Each new week opens on a recap called start of week, after leftovers have moved.
+Card 02, Where does she stand now?: Each new week opens on a recap, called start of week, after unfinished Action Items have moved over.
 Card 03, What if weeks keep slipping?: The plan looks at her progress and suggests fewer hours, and she can change them in settings too.
