@@ -1,36 +1,39 @@
-# Falling behind (the bridge), round 1 (2 Nov)
+# Falling behind, round 2 (2 Nov)
 
-Every version carries every point. KNOWN file: reference/cs2/reader-check/known-bridge.md.
+Text and cards only, in his existing bridge layout. Every version carries every point.
 
-## Falling behind A: Sally first, then the three mechanisms
+## Falling behind A: Sally first, then the mechanisms
 
 Headline: Every plan built on weeks has to decide what happens when one of them doesn't get finished, and that answer shapes every week after it.
 
-Image: Buffer flow: the screen that opens when every Action Item is done early, with the option to pull next week's work forward.
-Image: Start of week: the recap that opens the new week, showing where the person stands after leftovers moved.
-Image: Capacity: the suggestion to lower weekly hours after several short weeks.
-
 Say Sally had four Action Items this week and finished three. Her Pathway target doesn't move, because it only changes when the hours she gives change. A target that slid with every bad week would stop meaning anything.
-On Sunday her pace moves to show the later finish. The unfinished Action Item is already in her new week, and the week takes fewer new ones, so it still fits her hours and doesn't punish her for last week.
-Three mechanisms keep a short week from turning into a pile up, each at a different moment. The first is the buffer flow, a screen that opens when someone finishes their week early, so they can catch up or get ahead. The second is start of week, a recap that opens every new week and shows where they stand. If weeks keep falling short, the plan looks at their progress and suggests fewer hours, which they can also change themselves in settings.
+When her next week starts, her pace moves to show the later finish. The unfinished Action Item is already in the new week, and the week takes fewer new ones, so it still fits her hours.
+Three mechanisms keep a short week from turning into a pile up.
 
-## Falling behind B: what each part does after one short week
+Card 01, Buffer flow: When someone finishes their week early, a screen opens that lets them catch up or get ahead.
+Card 02, Start of week: Every new week opens on a recap of where the person stands, after leftovers have moved.
+Card 03, Capacity: After a run of short weeks, the plan looks at their progress and suggests fewer hours. People can change it in settings too.
+
+## Falling behind B: the rule first, then three moments
 
 Headline: When a week ends with work unfinished, the target, the pace and the next week all react, so each one got a rule for how far it can move.
 
-Image: Sally's two weeks side by side: this week with three of four done; next week with the carried Action Item at the top in its magenta tag, the target date unchanged and the pace date a few days later.
+The rule I set is that one short week changes as little as possible. Take Sally, with four Action Items this week and three finished.
+Her target stays where it was, since only a change in her hours moves it. Her pace moves once, when the new week starts. The unfinished Action Item carries over on its own, and the week takes fewer new ones so it still fits her hours.
+Anything bigger than one week is handled at three moments.
 
-Take Sally, with four Action Items this week and three finished. The rule I set is that one short week changes as little as possible.
-Her target stays where it was, since only a change in her hours moves it. Her pace moves once, on Sunday, to show the later finish. The unfinished Action Item carries into the new week on its own, and the week takes fewer new ones so it still fits her hours.
-Three mechanisms handle what one week can't. The buffer flow, a screen for finishing a week early, covers the good weeks. The start of week recap, which opens every new week, shows where she stands. Capacity covers a run of short weeks, when the plan looks at her progress and suggests fewer hours. She can also change her hours herself in settings.
+Card 01, When a week ends early: A screen called the buffer flow opens the moment every Action Item is done, so the extra time can go to catching up or getting ahead.
+Card 02, When a new week starts: A recap called start of week opens and shows where the person stands.
+Card 03, When weeks keep slipping: The plan looks at their progress and suggests a lower capacity, which they can also change in settings.
 
-## Falling behind C: the mechanisms first, around a map
+## Falling behind C: what changes and what doesn't, then her questions
 
-Headline: Falling behind one week can't be allowed to grow into a pile of work, so three mechanisms share the job of keeping each week the right size.
+Headline: Falling behind one week can't be allowed to grow into a pile of work, so I decided how every part of the plan responds when a week comes up short.
 
-Image: A map of how it connects: weekly hours size each week; the week feeds the target and the pace; buffer flow, start of week and capacity sit around it, each at its own moment.
-Image: Sally's new week with the carried Action Item tagged and the pace date moved.
-Image: The capacity suggestion after a run of short weeks.
+Sally had four Action Items this week and finished three. Nothing about her goal changes. Her target only moves when her hours do, so one short week can't push it.
+What changes is small and expected. When the new week starts, her pace shows the later finish, and the unfinished Action Item is already in the new week, which takes fewer new ones so it still fits.
+Three mechanisms answer what she'd want to know next.
 
-The first is the buffer flow, a screen that opens the moment someone finishes their week early and lets them catch up or get ahead. The second is start of week, a recap that opens every new week and shows where they stand. Capacity steps in when weeks keep falling short. The plan looks at their progress and suggests fewer hours, and they can change it themselves in settings.
-Sally's week shows them working together. She had four Action Items and finished three. Her target stays put, because only her hours move it. On Sunday her pace shows the later finish, and the unfinished one is already in her new week, which takes fewer new Action Items so it still fits.
+Card 01, What if the week ends early?: A screen called the buffer flow opens with the chance to catch up or get ahead.
+Card 02, Where does she stand now?: Each new week opens on a recap called start of week, after leftovers have moved.
+Card 03, What if weeks keep slipping?: The plan looks at her progress and suggests fewer hours, and she can change them in settings too.
