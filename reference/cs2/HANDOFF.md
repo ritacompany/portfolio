@@ -40,7 +40,7 @@ Still missing from his frame: Get ahead (goes before Opening the week; streak qu
 ## Next action
 
 This session is the parent for all CS2 work. Sections left (his list, 3 Nov; small items are not tracked here):
-1. Pathway page: new block between Below the Pathway (Action Hub) and the Growth Journey page, so the page zooms out week, Pathway, journey. The screen is in his MVP file (Desktop 1 MVP, file 5RO0m4bYYrTvbiaOgaU3tI, page Growth Journey, frame Pathway page 2670:11674). Copy to write once he places it.
+1. Pathway page: his order 3 Nov follows the curriculum the foundation just taught, top down: Growth Journey page, Pathway page, then the block now called Below the Pathway renamed to Action Hub. Recommended with it: the Pathway target, pace and gap definitions move from the Action Hub block to the Pathway page, and the Action Item page follows the Action Hub (structure first, then how a week runs: calendar, personalized timeline, Falling behind, buffer flow, start of week). Action Item page placement is his call. The screen is in his MVP file (Desktop 1 MVP, file 5RO0m4bYYrTvbiaOgaU3tI, page Growth Journey, frame Pathway page 2670:11674).
 2. Action Item page: placeholder (node 4787:13139); visuals worked out together.
 3. Growth Journey page: his image is in; write its copy.
 4. Falling behind: copy written and reader checked; image proposal 2 is a text diagram of the four ways a leftover could go (versions/falling-behind.md). Waiting on his review.
@@ -48,7 +48,7 @@ This session is the parent for all CS2 work. Sections left (his list, 3 Nov; sma
 6. Intro: redo.
 7. Tactics audit across the case study.
 8. Ending.
-Pace line given 3 Nov for the Pathway pace note in Below the Pathway: It updates at the start of each week, so nobody watches it tick with every finished item. Start of week reader check runs in another session. His Mondai MVP screens: file 5RO0m4bYYrTvbiaOgaU3tI (linked across ../Mondai); the figma-mondai View seat hits its call limit fast, so read it sparingly. Figma text edits are his to paste because his frame uses Satoshi.
+Pace line given 3 Nov for the Pathway pace note (moves with the definitions to the Pathway page): It updates at the start of each week, so nobody watches it tick with every finished item. Start of week reader check runs in another session. His Mondai MVP screens: file 5RO0m4bYYrTvbiaOgaU3tI (linked across ../Mondai); the figma-mondai View seat hits its call limit fast, so read it sparingly. Figma text edits are his to paste because his frame uses Satoshi.
 
 For the calendar part when it comes back:
 
