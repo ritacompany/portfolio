@@ -1,4 +1,4 @@
-# Start of week, round 6 (3 Nov)
+# Start of week, round 7 (3 Nov)
 
 Written against his portfolio frame 4269:9433, block node 4711:9960 (layer Start of week | State rules | T3I
 layout 6), right after buffer flow. Run lean: one version, rounds in chat. His layout kept: header at x 40,
@@ -28,14 +28,14 @@ Round 2 comments applied: it opened on leftovers moving, which is not what this 
 Round 3 comments applied: the pace holds still explanation belongs where target and pace are introduced, so here it is only a reference (this is when pace updates). The point of the block is what start of week is and why it is useful: a progress check that shows where someone stands, then lays out the week from there, a guide back on track with options where needed; the captions say what each template does.
 Round 4 comments applied: he freed the headline. His kept headline was about leftovers moving automatically and kept pulling the body toward rollover. The new headline says what the block is (a check on where someone stands and a plan built from there) and links to the two blocks before it (finished early, fell behind). The last line rests on Falling behind's source (Soman and Cheema 2004, via reports/Schedule view how it works.md).
 Round 5 comments applied: it read as AI written (stacked short sentences, a kicker last line) and the gap implied everyone has one. Cause of the AI read: no-ai-slop was run by the same session that drafted the text, so it barely changed anything; a separate reviewer has not been set up.
-Checks: no-ai-slop pass by the drafting session only. Reader check not run. Reader check runs once he is happy.
+Round 7: the column is his own simplified text, run through humanizer and then no-ai-slop as skills.
+Checks: humanizer and no-ai-slop run as skills on his text. Reader check not run. Reader check runs once he is happy.
 
 ## Version
 Layout: T3I layout 6 (his)
 Eyebrow: Start of week
 Headline: Every week opens with a check on where someone stands and a plan for the week built from there, whether they finished early or fell behind.
-Text: This is the first screen someone sees each week. It shows how last week went and where their pace now sits against the target, since this is the only time pace changes.
-Text: Then it lays out the week ahead. Someone on track gets a normal week of Action Items. Someone behind sees how this week helps them catch up, and is asked to decide something only when it has to happen, like dropping to fewer hours.
+Text: This is the first screen someone sees when they open the product each week. It lays out the week ahead, and what's on it depends on what they need that week. If they're on track, it says less. If they're struggling to stay on target, it offers ways to catch up.
 
 Caption 1, Clean slate (his, kept): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover.
 Caption 2, Rollover: Leftovers arrive already in the week, under the magenta rollover tag, a color that does not read as an error. An earlier version asked people to choose what to take on at the moment they were behind, which read like paying to keep going.
