@@ -1,0 +1,17 @@
+=== Buffer flow
+[eyebrow or sub-heading] Buffer flow
+[headline] Finish the week's work early and the days that are left become room to catch up or to get further ahead.
+The moment the last Action Item of the week is done, this screen celebrates it and offers next week's Action Items to pull forward.
+A week only holds the hours a person gave, so finishing early leaves nothing left to do. Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.
+So the words follow the gap. Someone ahead is told they can stretch it. Someone still behind gets the finish celebrated too, then hears this is how they close the gap.
+It can't wait for the next week. How much someone can pull forward depends on the days left in this one.
+
+=== Start of week
+[eyebrow or sub-heading] Start of week
+[headline] Whether someone finished last week early or fell short, the next week opens on a recap of where they landed and a plan from there.
+This is the first screen someone sees when they open the product each week. It lays out the week ahead, and what's on it depends on what they need that week. If they're on track, it says less. If they're struggling to stay on target, it offers ways to catch up.
+[caption, template Clean slate] A clean slate only means something if no day was lost, so a week with a lost day gets the Rollover template.
+[caption, template Catching up] It names the progress of someone behind and points to finishing early to close the rest, until the week they reach the target.
+[caption, template Rollover] Last week's unfinished Action Items arrive already in the week under a magenta tag. Nothing asks people to choose what to take on while they're behind, because a choice at that moment feels like paying to keep going.
+[caption, template Recalibration] After several short weeks, it suggests a capacity that fits the hours someone has been giving, which they can take, change or skip.
+[caption, template Reset] After a long absence, the week rebuilds from today with progress kept and one button, because a keep my plan option would win by default.
