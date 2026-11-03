@@ -27,5 +27,7 @@ for ln in (d/"spec.md").read_text().splitlines():
     else: out.append(f"<p>{inl(ln)}</p>")
 spec = '<div class="spec-title">Spec 1 (beside the frame in Figma)</div><div class="spec">' + "\n".join(out) + "</div>"
 h = h.replace("__SPEC__", "")  # Spec 1 retired 2 Nov; the frame is the only source
+sys.path.insert(0, str(d)); import versions as V
+h = h.replace("__VERSIONS__", V.render(sorted((d.resolve().parent/"reference/cs2/versions").glob("map-and-falling-behind.md"))))
 h = h.replace("__TILES__", "\n  ".join(tiles)).replace("__SECTIONS__", json.dumps(S))
 (d/"cs2-canvas.html").write_text(h); print(len(h))

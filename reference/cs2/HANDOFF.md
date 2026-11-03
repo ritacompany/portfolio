@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-03 09:00
+Updated: 2026-11-03 18:00
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -23,17 +23,21 @@ Loop step: 3
 
 How to work: reference/cs2/WORKING_LOOP.md. Read it before anything else.
 
-Where the frame lives (3 Nov): work from his personal Portfolio Design file in Figma (file IarvWaqjIwrZ2afQmMxKm6, the framework case study WIP frame 4269:9433), not the Desktop 1 MVP file. He copied the frame into the MVP file only so his other account could reach it, and he is moving it back; the MVP copy (frame 5590:26084) is gone. Before drafting, read his portfolio frame top to bottom and confirm the order below is in it; if it is not, tell him what differs and do not rebuild it. Now (2 Nov, later): the page order is applied in his Figma frame (Desktop 1 MVP file, CS page, frame 5590:26084) and the canvas is re-exported from it. Order: the route; Action Hub, Growth Journey page placeholder; calendar setup, schedule view, scheduled times; Personalized timeline, then the map block (his sitemap note, unhidden); Falling behind, buffer flow, start of week; the page ends on the Action Item page placeholder. The ending placeholder is gone. Details in reference/cs2/outline/CS2-outline-and-copy.md (The order). The part being written is the map block and Falling behind, the hinge into Part 5.
+Where the frame lives: his personal Portfolio Design file in Figma (file IarvWaqjIwrZ2afQmMxKm6, framework case study WIP frame 4269:9433, page VC). Write to it through the Figma connection on his own account (Full seat); the figma-mondai connection is a View seat and hit its call limit on 3 Nov. The MVP file copy is gone.
 
-Earlier, for Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, The schedule view and Rollover are rebuilt on the canvas on layouts from his pool (setup x -1940 y 7840, schedule view x -1940 y 9380, rollover x -3480 y 10750). Each has a three line headline, a body that gives the reasoning and research behind each decision, a sources line and an imagery note in the gray frame. One way sync is folded into the schedule view. Reader check PASS on all three (runs/2026-10-29, copy files setup4, sched2, roll2), canvas copy guard passes, no-ai-slop run by hand. He has not reviewed this build yet.
+Order, applied in his portfolio frame 3 Nov (it had not carried over from the MVP copy): the route; Action Hub, Growth Journey page placeholder (node 4787:13132); calendar setup, schedule view, scheduled times; Personalized timeline, then the map block (layer Map | How it connects); Falling behind (layer Falling behind | Bridge, still holding his 01 02 03 cards and Sally notes), buffer flow, start of week; Action Item page placeholder (node 4787:13139) before the footer. Matches the outline (The order). Canvas re-exported and tiled from it.
 
-Still missing from his frame: Get ahead (goes before Opening the week, which refers to the get ahead screen; streak question open in core/get-ahead.md), the Growth Journey page and the Action Item page (custom build; MVP text only AI; same actions as the Action Hub popover). Scheduled times copy still sits in the Action Hub block in Figma (y 7218); approved 27 Oct to move under the schedule view as his smaller interaction square. He builds Figma himself.
+Map block and Falling behind, round 1, on the canvas (3 Nov), not yet reviewed by him. Map A T1I forward chain, B T2I said and done, C T3I backwards from the gap; every version carries the seven map points in versions/map-and-falling-behind.md. Falling behind A question headline with the stakes in the body, B stakes headline with the decision in the body, C the Saturday night moment; all short, no cards, no Sally, in his bridge layout. Map row at y 14108 and Falling behind row at y 16160, A B C at x -1940, -3480, -5020. no-ai-slop run as the skill; reader check PASS on all six after two revisions (runs/2026-11-03). Eyebrow How it connects is a proposal; his frame still says Scheduled times on both blocks.
 
-Research for these blocks: reports/Schedule view how it works.md and research_notes/. Contradictions still open are listed in that report (dimming, eight hour floor, his setup subtitle still says Mondai will only place items inside the range).
+Earlier, Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, The schedule view and Rollover versions are in versions/calendar-part.md; they are not on the canvas now (the 2 Nov re-export dropped them).
+
+Still missing from his frame: Get ahead (goes before Opening the week; streak question open in core/get-ahead.md), the Growth Journey page and Action Item page builds behind the placeholders. Scheduled times copy still sits in the Action Hub block in Figma; approved 27 Oct to move under the schedule view as his smaller interaction square. He builds Figma himself.
 
 ## Next action
 
-A new round of A B C for the map block and Falling behind together: the map shows how capacity, the week, the targets and the paces connect (his idea, he makes the visual), and Falling behind is the short lead in (two short lines, no cards, no Sally) in his existing bridge layout. Then buffer flow and start of week bodies, the Growth Journey page and the Action Item page. Figma text edits are his to paste because his frame uses Satoshi; structural changes work through the figma-mondai connection.
+He reviews round 1 of the map block and Falling behind on the canvas and comments on each version; the next round revises from his comments in a new session. Then buffer flow and start of week bodies, the Growth Journey page and the Action Item page. Figma text edits are his to paste because his frame uses Satoshi.
+
+For the calendar part when it comes back:
 
 Content the schedule view has not used yet, the design decisions behind the calendar component (source: research_notes/Schedule view how it works/mondai_mechanics.md and reports/Schedule view how it works.md): a Sunday to Saturday week grid so the view matches the weekly framework; Action Items in green, Mondai events in magenta, the person's own events in their source color; block height follows duration, with short 15 minute blocks too small to show title or time; clicking any block opens an anchored popover with Go to action item, the state action and Reschedule, a quick step before a decision rather than jumping to the detail page; only the active Action Item can be completed, matching the sequence; rescheduling stays inside the week because moving work to next week is rollover's job; the reschedule picker only offers open time so an item never lands on a meeting; drag to reschedule deferred to a later version; reconnecting mid week re-places times and disconnecting clears them and returns to the list; a packed week falls back to the list for items that cannot be placed. Reuse his approved Scheduled times copy (Action Hub block, frame y 7218) as written.
 
@@ -61,7 +65,7 @@ Points proposed 29 Oct for the calendar part, his reasoning first: setup 1 why p
 ## Read first
 
 - reference/cs2/WORKING_LOOP.md
-- reference/cs2/versions/falling-behind.md (the part in hand)
+- reference/cs2/versions/map-and-falling-behind.md (the part in hand)
 - reference/cs2/outline/CS2-outline-and-copy.md (The order)
 - The CS2 canvas (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37) and his notes on it
 - His Figma frame 4269:9433 in the Portfolio Design file IarvWaqjIwrZ2afQmMxKm6 (read text with a read only use_figma script)

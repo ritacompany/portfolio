@@ -1,0 +1,6 @@
+=== Map, version C
+[eyebrow or sub-heading] How it connects
+[headline] The small number beside a target, two days ahead or three behind, is the end of a chain that starts with one answer about a person's week.
+Working back from that number, it is the distance between what a person said and what they did, since the target comes from the hours they promised and the pace from the Action Items they finished.
+The same hours size each week, with Action Items added in order until their effort fills the time, so a week never weighs more than the person said they had. That is why hours are the only thing anyone sets. I picked them over a fixed weekly load, which would suit neither someone fitting this around a job nor someone giving it forty hours. The same number sets six dates, a target for each of the five Pathways and one for the journey.
+Hours can change from the journey's target, at the start of a week or in settings. The control sits with the journey because a new number moves every date. It starts next week unless the person picks now, and dates update on save, not while typing, so the screen keeps the plan's weekly rhythm.

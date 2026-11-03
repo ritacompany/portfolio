@@ -1,0 +1,35 @@
+=== Map, version A
+[eyebrow or sub-heading] How it connects
+[headline] A person answers one question about their week, and the plan, its dates and its pace all grow out of that answer.
+Capacity is the only number a person sets. I chose it over a fixed amount of work per week, because a fixed amount would suit neither someone fitting this around a job nor someone giving it forty hours.
+Each week is built to that size. Action Items go in, in order, until their effort fills the hours, so a week never weighs more than the person said they had.
+The same hours set six dates, a target for each of the five Pathways and one for the whole journey. A target only moves when the hours do.
+The pace is the one part that comes from what the person actually finished. Once a week it is set against the target, and that is how the plan knows someone is behind.
+Hours can change from the journey's target, at the start of a week or in settings. I kept the control with the journey because a new number moves every date in it, not only this week.
+A change starts next week unless the person picks now. The dates update when they save rather than as they type, so the screen keeps the plan's weekly rhythm.
+=== Map, version B
+[eyebrow or sub-heading] How it connects
+[headline] Every date in the plan comes from one of two places, what a person says they can give each week and what they actually finish.
+What they say is capacity, the hours per week. It is the only number anyone sets. I picked it over a fixed weekly load, which would suit neither someone squeezing this around a job nor someone giving it forty hours.
+The hours build the week. Action Items fill it in order until their effort reaches the hours, so it never weighs more than the person promised.
+The hours also set six targets, one for each of the five Pathways and one for the journey. They move only when the hours change.
+What they finish sets the pace, checked once a week, and the gap between the two dates is what tells someone they are ahead or behind.
+I put the hours on the journey's target, as well as at the start of a week and in settings, because a new number moves every date in the journey. It starts next week unless the person picks now, and nothing moves until they save, so the screen keeps the plan's weekly rhythm.
+=== Map, version C
+[eyebrow or sub-heading] How it connects
+[headline] The small number beside a target, two days ahead or three behind, is the end of a chain that starts with one answer about a person's week.
+Working back from that number, the gap compares two dates. The target comes from the hours a person says they can give each week and moves only when those hours do. The pace comes from what they finish, updated once a week.
+The hours also size each week. Action Items go in, in order, until their effort fills the time, so a week never weighs more than the person said they had. That is why hours are the only thing anyone sets. I picked them over a fixed weekly load, which would suit neither someone fitting this around a job nor someone giving it forty hours. The same number sets six dates, a target for each of the five Pathways and one for the journey.
+Hours can change from the journey's target, at the start of a week or in settings. The control sits with the journey because a new number moves every date. It starts next week unless the person picks now, and dates update on save, not while typing, so the screen keeps the plan's weekly rhythm.
+=== Falling behind, version A
+[eyebrow or sub-heading] Falling behind
+[headline] Sooner or later every plan built on weeks has to answer what happens when a week ends and some of its work is still open.
+A lapse that feels like failure makes people less likely to keep going, so the plan answers at two moments, when a week ends early and when the next one begins.
+=== Falling behind, version B
+[eyebrow or sub-heading] Falling behind
+[headline] The week that does not go to plan is where people decide whether to keep going, and a plan made of weeks will always have one.
+So the question was what the target, the pace and the next week should do when work is left over, and what someone gets when they finish early instead.
+=== Falling behind, version C
+[eyebrow or sub-heading] Falling behind
+[headline] Saturday night comes, and a few Action Items are still open. One short week like that can't be allowed to become the reason someone stops.
+Each part of the plan has a rule for that night, and for the week that ends early too.

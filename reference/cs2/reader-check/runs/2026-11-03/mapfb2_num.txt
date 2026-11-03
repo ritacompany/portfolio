@@ -1,0 +1,41 @@
+VERSION V1: Map, version A
+  (label) How it connects
+V1.S1 A person answers one question about their week, and the plan, its dates and its pace all grow out of that answer.
+V1.S2 Capacity is the only number a person sets.
+V1.S3 I chose it over a fixed amount of work per week, because a fixed amount would suit neither someone fitting this around a job nor someone giving it forty hours.
+V1.S4 Each week is built to that size, with Action Items added in order until their effort fills the hours, so a week never weighs more than the person said they had.
+V1.S5 The same hours set six dates, a target for each of the five Pathways and one for the whole journey, and none of them moves unless the hours do.
+V1.S6 The pace is the one date that comes from what the person did rather than what they said, so the gap between it and the target is the distance between the two.
+V1.S7 Hours can change from the journey's target, at the start of a week or in settings.
+V1.S8 I kept the control with the journey because a new number moves every date in it, not only this week.
+V1.S9 A change starts next week unless the person picks now.
+V1.S10 The dates update when they save rather than as they type, so the screen keeps the plan's weekly rhythm.
+
+VERSION V2: Map, version B
+  (label) How it connects
+V2.S1 Every date in the plan comes from one of two places, what a person says they can give each week and what they actually finish.
+V2.S2 What they say is capacity, the hours per week, and it is the only number anyone sets.
+V2.S3 I picked it over a fixed weekly load, which would suit neither someone squeezing this around a job nor someone giving it forty hours.
+V2.S4 The hours build the week, with Action Items added in order until their effort reaches the hours, so it never weighs more than the person promised.
+V2.S5 The hours also set six targets, one for each of the five Pathways and one for the journey, so a change in hours is the only thing that moves any of them.
+V2.S6 What they finish sets the pace, so the gap between pace and target is the difference between what they did and what they said.
+V2.S7 I put the hours on the journey's target, as well as at the start of a week and in settings, because a new number moves every date in the journey.
+V2.S8 It starts next week unless the person picks now, and nothing moves until they save, so the screen keeps the plan's weekly rhythm.
+
+VERSION V3: Map, version C
+  (label) How it connects
+V3.S1 The small number beside a target, two days ahead or three behind, is the end of a chain that starts with one answer about a person's week.
+V3.S2 Working back from that number, it is the distance between what a person said and what they did.
+V3.S3 The target comes from the hours they promised each week and the pace from the Action Items they finished.
+V3.S4 The same hours size each week, with Action Items added in order until their effort fills the time, so a week never weighs more than the person said they had.
+V3.S5 That is why hours are the only thing anyone sets.
+V3.S6 I picked them over a fixed weekly load, which would suit neither someone fitting this around a job nor someone giving it forty hours.
+V3.S7 The same number sets six dates, a target for each of the five Pathways and one for the journey.
+V3.S8 Hours can change from the journey's target, at the start of a week or in settings.
+V3.S9 The control sits with the journey because a new number moves every date.
+V3.S10 It starts next week unless the person picks now, and dates update on save, not while typing, so the screen keeps the plan's weekly rhythm.
+
+VERSION V4: Falling behind, version B
+  (label) Falling behind
+V4.S1 The week that does not go to plan is where people decide whether to keep going, and a plan made of weeks will always have one.
+V4.S2 So I gave the target, the pace and the next week each a rule for work that is left over, and gave finishing early a rule of its own.
