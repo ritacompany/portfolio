@@ -103,7 +103,7 @@ suite('handoff', () => {
   return [
     ['the real HANDOFF.md passes', real.status === 0 && real.stdout.includes('HANDOFF_PASS'), real.stdout],
     fails('a missing heading is refused', swap('## Next action', '## Next'), 'Next action'),
-    fails('an empty heading is refused', swap(/## Decided in chat, not yet in files\n\nNone\./, '## Decided in chat, not yet in files\n'), 'is empty'),
+    fails('an empty heading is refused', swap(/## Decided in chat, not yet in files\n\n[\s\S]*?(?=\n## )/, '## Decided in chat, not yet in files\n'), 'is empty'),
     fails('a loop step outside 1 to 8 is refused', swap(/^Loop step: \d+$/m, 'Loop step: 9'), 'Loop step'),
     fails('a section outside 1 to 10 is refused', swap(/^Section: \d+$/m, 'Section: 0'), 'Section'),
     fails('By must be Claude Code or browser', swap(/^By: .*$/m, 'By: me'), 'By'),
