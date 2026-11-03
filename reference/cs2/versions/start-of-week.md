@@ -1,4 +1,4 @@
-# Start of week, round 4 (3 Nov)
+# Start of week, round 5 (3 Nov)
 
 Written against his portfolio frame 4269:9433, block node 4711:9960 (layer Start of week | State rules | T3I
 layout 6), right after buffer flow. Run lean: one version, rounds in chat. His layout kept: header at x 40,
@@ -26,15 +26,16 @@ Open: Recalibration's only down while behind rule has no reason in the files rea
 
 Round 2 comments applied: it opened on leftovers moving, which is not what this screen is for, and did not connect to buffer flow; he also needs the header shown with the column. Round 3 opens on the link to the finish screen (every week opens here, however the last one went), then the screen's job: the recap where pace moves, once a week (dossier L17, his 12 May rule). The earlier choose-what-to-take-on version moved into the Rollover caption.
 Round 3 comments applied: the pace holds still explanation belongs where target and pace are introduced, so here it is only a reference (this is when pace updates). The point of the block is what start of week is and why it is useful: a progress check that shows where someone stands, then lays out the week from there, a guide back on track with options where needed; the captions say what each template does.
-Checks: no-ai-slop run as the skill on round 4. Reader check runs once he is happy.
+Round 4 comments applied: he freed the headline. His kept headline was about leftovers moving automatically and kept pulling the body toward rollover. The new headline says what the block is (a check on where someone stands and a plan built from there) and links to the two blocks before it (finished early, fell behind). The last line rests on Falling behind's source (Soman and Cheema 2004, via reports/Schedule view how it works.md).
+Checks: no-ai-slop run as the skill on round 5. Reader check not run. Reader check runs once he is happy.
 
 ## Version
 Layout: T3I layout 6 (his)
 Eyebrow: Start of week
-Headline (his, kept): Automatic could not mean silent, so the week opens on a recap that mirrors the screen people see when they finish a week early.
-Text: Every week opens on a progress check. It shows where someone stands, and it's when their pace updates against the target.
-Text: Then it sets out the week from there. Someone on track starts a clean week. Someone behind sees how this week gets them back, with a choice only where one is needed, like taking on fewer hours.
-Text: The plan depends on where someone lands, so the screen does too. Each template is one of those cases.
+Headline: Every week opens with a check on where someone stands and a plan for the week built from there, whether they finished early or fell behind.
+Text: Everyone sees it, every week. It's where pace updates and where someone finds out what last week did to the gap.
+Text: Then it sets up the week. Someone on track starts clean. Someone behind sees how this week gets them back, with a choice only where one is needed.
+Text: A short week is when people are most likely to give up, so this is where the plan does the most work.
 
 Caption 1, Clean slate (his, kept): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover.
 Caption 2, Rollover: Leftovers arrive already in the week, under the magenta rollover tag, a color that does not read as an error. An earlier version asked people to choose what to take on at the moment they were behind, which read like paying to keep going.
