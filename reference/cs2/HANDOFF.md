@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-03 19:45
+Updated: 2026-11-03 20:20
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -31,7 +31,7 @@ Map block and Falling behind, round 1, on the canvas (3 Nov), not yet reviewed b
 
 Connections block (the map block's successor, 3 Nov): a visual that connects what the reader has met, text only an eyebrow, a headline and one line. Concept 1, the route laid along time, is his pick; two sketch rounds missed on scale (fixes/2026-11-03-connections-sketch-wrong-scale.md). Any drawing must honour: one Pathway at a time, in order, and a Pathway runs many weeks, up to about 40 (reasoning/pathways-and-hierarchy.md, dossier-findings-22oct.md line 88), so a week is a thin slice of one Pathway; target and pace are dates and the gap a person sees is a few days (versions/map-and-falling-behind.md Map C). Sketches: reference/cs2/sketches/connections-concepts.html, https://claude.ai/artifact/JQfxxaaEkHQz2NFkfCHQhZ. He cut the item blocks inside weeks (Personalized timeline already shows load) and wants one long progress line with annotations that define each mark. Form now comes from the dataviz skill's form heuristic, not from a layout in the brief: the journey as one meter split into five Pathway segments, the current Pathway in the accent and the rest gray (emphasis); target against pace as a delta to target, two dates days apart (dumbbell); this week as a meter of hours; arrows only for the causes (hours set targets, finished work sets pace). Next: his yes on that form, then draw it, then copy and checks.
 
-Buffer flow approved 3 Nov and in his frame (versions/buffer-flow.md). Decided 3 Nov (his yes in the buffer flow session): introduce rollover in Falling behind (the bridge block), one or two sentences saying unfinished Action Items move into next week on their own and the new week takes fewer new ones so it still fits; buffer flow relies on the reader knowing that. Start of week round 2 in versions/start-of-week.md, waiting on his comments; it relies on Falling behind for rollover.
+Buffer flow approved 3 Nov and in his frame (versions/buffer-flow.md). Decided 3 Nov (his yes in the buffer flow session): introduce rollover in Falling behind (the bridge block), one or two sentences saying unfinished Action Items move into next week on their own and the new week takes fewer new ones so it still fits; buffer flow relies on the reader knowing that. Start of week round 3 in versions/start-of-week.md (session CS2 start of week block, detached), waiting on his comments. He rejected round 2 for opening on leftovers and not connecting to buffer flow: the block opens on the link to the finish screen and the recap's job (pace moves only here), and always show him eyebrow, headline and column together. Rollover lives in Falling behind.
 
 Earlier, Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, The schedule view and Rollover versions are in versions/calendar-part.md; they are not on the canvas now (the 2 Nov re-export dropped them).
 
