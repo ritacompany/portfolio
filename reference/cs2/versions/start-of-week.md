@@ -39,12 +39,13 @@ Eyebrow: Start of week
 Headline: Whether someone finished last week early or fell short, the next week opens on a recap of where they landed and a plan from there.
 Text: This is the first screen someone sees when they open the product each week. It lays out the week ahead, and what's on it depends on what they need that week. If they're on track, it says less. If they're struggling to stay on target, it offers ways to catch up.
 
+Template order (recommended 3 Nov, not yet confirmed by him): Clean slate, Rollover, Recalibration, Reset, Catching up, Caught up. The carousel reads as one person's arc, from on track through slipping further to the way back, and ends on the template that closes the recovery.
 Caption 1, Clean slate (his, kept): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover.
 Caption 2, Rollover: Leftovers arrive already in the week, under the magenta rollover tag, a color that does not read as an error. An earlier version asked people to choose what to take on at the moment they were behind, which read like paying to keep going.
-Caption 3, Catching up: Shows only when someone behind won back days last week. From behind, progress is easy to miss, so the screen names it. A week that only kept pace does not count.
-Caption 4, Caught up: Shows the week the pace reaches the target again. It tells someone the catching up is over.
-Caption 5, Recalibration: After several short weeks, the plan looks at what someone has done and suggests fewer weekly hours. While behind, it can only suggest fewer. Skipping it is allowed, with a warning.
-Caption 6, Reset: After a long absence, the week rebuilds from today and the progress already made is kept. There is one button, Start from today. A keep my plan option would win by default, even when it is the plan they can no longer catch up to.
+Caption 3, Recalibration: After several short weeks, the screen suggests fewer weekly hours, based on what someone has been finishing. While they're behind, it can only suggest fewer. They can skip it, with a warning.
+Caption 4, Reset: After a long absence, the week rebuilds from today and the progress already made is kept. There is one button, Start from today. A keep my plan option would win by default, even when it is the plan they can no longer catch up to.
+Caption 5, Catching up: Shows only when someone behind won back days last week. From behind, progress is easy to miss, so the screen names it. A week that only kept pace does not count.
+Caption 6, Caught up: Shows the week the pace reaches the target again. It tells someone the catching up is over.
 
 Image: his six start of week templates in the carousel, already in the frame.
 Sources: Mondai design record
