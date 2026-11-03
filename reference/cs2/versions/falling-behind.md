@@ -23,18 +23,9 @@ Kept out on purpose: the magenta rollover tag (start of week shows it), pace mov
 pace block), buffer flow and start of week by name (the next blocks show them, and both happen without
 falling behind too), the earlier choose what to carry modal (start of week Rollover caption).
 
-## Image for the slot (proposal)
+## Image for the slot
 
-His Action Hub list view on Saturday evening, week 3, 3/4 weekly Action Items complete: three checked off,
-the fourth (Update wireframes based on findings) still Active, its Friday 3pm time already passed, target and
-pace unchanged on the right. No rollover tag and no next week; the screen stops at the open item, so it poses
-the same question as the headline and leaves the answer to the copy.
-
-Why this screen: it is the screen everyone has, calendar or not (K2, K6), so the problem reads for every
-user. A schedule view version would only speak to people who synced a calendar. The start of week Rollover
-template is the answer, so using it here would give the solution away and repeat the image two blocks later.
-Build: duplicate his Action Hub frame from Below the Pathway, change 2/4 to 3/4, mark Synthesize usability
-findings complete, leave Update wireframes Active, set the week label to Saturday.
+Open. The Action Hub proposal (a Saturday 3/4 variant) was rejected 3 Nov: the Action Hub already appears twice in the frame and he will not build a variant of it. The next proposal has to be an existing Mondai screen the frame does not show yet (fixes/2026-11-03-falling-behind-image-repeats-screen.md).
 
 ## Version
 Layout: his bridge layout, cards replaced by the one image
@@ -42,7 +33,7 @@ Eyebrow: Falling behind
 Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
 Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
 Text (rollover): So anything left over moves into the next week on its own, and that week takes fewer new Action Items to stay within their capacity.
-Image: Action Hub, Saturday, 3/4 done, one Action Item still open (proposal above).
+Image: open.
 Sources: Soman and Cheema 2004; Mondai design record
 
 ## Checks
