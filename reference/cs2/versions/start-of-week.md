@@ -1,4 +1,6 @@
-# Start of week, round 7 (3 Nov)
+# Start of week, approved (3 Nov)
+
+Approved by him 3 Nov: round 7, the round 5 headline over his own column text (humanized), captions from round 3. He pastes it into his frame.
 
 Written against his portfolio frame 4269:9433, block node 4711:9960 (layer Start of week | State rules | T3I
 layout 6), right after buffer flow. Run lean: one version, rounds in chat. His layout kept: header at x 40,
