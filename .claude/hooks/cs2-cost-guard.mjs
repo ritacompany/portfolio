@@ -65,7 +65,7 @@ if (mode === 'stop') {
   }
   const edited = uses(since).filter(x => ['Write', 'Edit', 'MultiEdit'].includes(x.name)).map(x => rel(x.input && x.input.file_path));
   if (edited.some(f => PROCESS_DOCS.test(f))) {
-    const records = [...new Set(edited.filter(f => /^fixes\/[^/]+\.md$/.test(f)))];
+    const records = [...new Set(edited.filter(f => /(^|\/)fixes\/[^/]+\.md$/.test(f)))];
     const checker = path.join(os.homedir(), '.claude/skills/fix-the-process/scripts/check-fix-record.mjs');
     const ok = records.some(f => /fix record complete/.test(spawnSync('node', [checker, path.join(root, f)], { encoding: 'utf8' }).stdout || ''));
     if (!ok) out({ decision: 'block', reason: 'A process doc changed this session without a passing fix record. Write fixes/YYYY-MM-DD-<slug>.md from the fix-the-process template and run its checker until it prints "fix record complete" (Status: not verified is allowed if you say what is unproven).' });
