@@ -1,6 +1,6 @@
 # Start of week, approved (3 Nov)
 
-Approved by him 3 Nov: round 7, the round 5 headline over his own column text (humanized), captions from round 3. He pastes it into his frame.
+Approved by him 3 Nov: round 7 with the recap headline he picked (the round 5 headline repeated his column), over his own column text (humanized), captions from round 3. He pastes it into his frame.
 
 Written against his portfolio frame 4269:9433, block node 4711:9960 (layer Start of week | State rules | T3I
 layout 6), right after buffer flow. Run lean: one version, rounds in chat. His layout kept: header at x 40,
@@ -36,7 +36,7 @@ Checks: humanizer and no-ai-slop run as skills on his text. Reader check not run
 ## Version
 Layout: T3I layout 6 (his)
 Eyebrow: Start of week
-Headline: Every week opens with a check on where someone stands and a plan for the week built from there, whether they finished early or fell behind.
+Headline: Whether someone finished last week early or fell short, the next week opens on a recap of where they landed and a plan from there.
 Text: This is the first screen someone sees when they open the product each week. It lays out the week ahead, and what's on it depends on what they need that week. If they're on track, it says less. If they're struggling to stay on target, it offers ways to catch up.
 
 Caption 1, Clean slate (his, kept): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover.
