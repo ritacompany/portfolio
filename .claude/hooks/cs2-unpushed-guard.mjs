@@ -8,7 +8,7 @@ let payload = {};
 try { payload = JSON.parse(fs.readFileSync(0, 'utf8')); } catch {}
 if (payload.stop_hook_active) process.exit(0);
 const run = c => { try { return execSync(c, { cwd: payload.cwd || process.cwd(), encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch { return null; } };
-const dirty = run('git status --porcelain -- reference/cs2 .cs2-canvas/template.html ':(exclude)reference/cs2/reader-check/runs'');
+const dirty = run("git status --porcelain -- reference/cs2 .cs2-canvas/template.html ':(exclude)reference/cs2/reader-check/runs'");
 if (dirty === null) process.exit(0);
 run('git fetch -q origin main');
 const ahead = run('git rev-list --count origin/main..HEAD') || '0';

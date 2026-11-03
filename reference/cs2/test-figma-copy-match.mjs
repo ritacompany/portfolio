@@ -24,7 +24,7 @@ const cases = [
   ['CS2 write, layer name and font', `${frame} const t = figma.createText(); t.name = 'Body text block one'; t.fontName = { family: 'Inter Display', style: 'Semi Bold' };`, 0],
   ['CS2 write, invented sentence', `${frame} const t = figma.createText(); t.characters = 'Triage dropped by seventy percent in two weeks.';`, 2],
   ['CS2 write, short name line', `${frame} const t = figma.createText(); t.characters = 'Michael wanted pressure';`, 2],
-  ['CS2 write by frame id, invented', "const n = await figma.getNodeByIdAsync('4228:6731'); const t = figma.createText(); t.characters = 'The team loved the new weekly view a lot.';", 2],
+  ['CS2 write by frame id, invented', "const n = await figma.getNodeByIdAsync('4269:9433'); const t = figma.createText(); t.characters = 'The team loved the new weekly view a lot.';", 2],
   ['CS2 write, text held in a variable', `${frame} const copy = { h: 'Every team member agreed the week was right.' }; const t = figma.createText(); t.characters = copy.h;`, 2],
 ];
 let ok = !!real;
