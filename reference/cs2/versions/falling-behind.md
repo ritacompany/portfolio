@@ -23,9 +23,21 @@ Kept out on purpose: the magenta rollover tag (start of week shows it), pace mov
 pace block), buffer flow and start of week by name (the next blocks show them, and both happen without
 falling behind too), the earlier choose what to carry modal (start of week Rollover caption).
 
-## Image for the slot
+## Image for the slot (proposal 2, 3 Nov)
 
-Open. The Action Hub proposal (a Saturday 3/4 variant) was rejected 3 Nov: the Action Hub already appears twice in the frame and he will not build a variant of it. The next proposal has to be an existing Mondai screen the frame does not show yet (fixes/2026-11-03-falling-behind-image-repeats-screen.md).
+No Mondai screen shows this moment: by design there is no missed state, so Saturday night looks like any
+other list (the Action Hub, already shown twice) and the answer is the start of week Rollover template (two
+blocks later). So the slot shows the thinking instead: the four ways a leftover Action Item could go, three
+ruled out, one kept. Text only on his black page, no boxes, a mark under the kept one. Not a matrix (Haven
+has the 2x2).
+
+1. Push it all into next week. Next week gets heavier right after a hard one.
+2. Ask the person what to keep. A decision at the moment they are behind.
+3. Drop it. The Pathway slips and nobody sees it happen.
+4. Carry it over and take fewer new ones. The week stays the size of their capacity. (kept)
+
+Source: the three options weighed and the decision, reasoning/calendar-and-schedule.md and
+reasoning/carry-over.md (7 May 2026 weekly assembly). CONFIRMED.
 
 ## Version
 Layout: his bridge layout, cards replaced by the one image
@@ -33,7 +45,7 @@ Eyebrow: Falling behind
 Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
 Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
 Text (rollover): So anything left over moves into the next week on its own, and that week takes fewer new Action Items to stay within their capacity.
-Image: open.
+Image: the four ways a leftover could go, three ruled out, one kept (proposal 2 above).
 Sources: Soman and Cheema 2004; Mondai design record
 
 ## Checks

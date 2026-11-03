@@ -30,7 +30,7 @@ Check: reviewer question. Does the proposed image already appear in frame 4269:9
 Result on bad output: FAIL. The Action Hub already appears in Below the Pathway (y 4675) and Scheduled times (y 12175), and the proposal asks for a new variant.
 
 ## Change
-Files changed: reference/cs2/HANDOFF.md (screens already in the frame listed; MVP screen location asked of him), reference/cs2/versions/falling-behind.md (image proposal withdrawn)
+Files changed: reference/cs2/HANDOFF.md (MVP file location recorded: 5RO0m4bYYrTvbiaOgaU3tI, found in ../Mondai links), reference/cs2/versions/falling-behind.md (image proposal withdrawn)
 Instruction lines: +0 / -0
 Net growth reason: n/a
 
@@ -43,4 +43,4 @@ Second case: not run.
 Enforcement test: n/a
 
 ## Report
-Unverified: he says where the Mondai MVP screens live (file and page); then a fresh session proposes the Falling behind image against the used screens list and the check above is asked of a separate reviewer.
+Unverified: the MVP location is now in HANDOFF; a fresh session proposes the Falling behind image against the used screens list and the check above is asked of a separate reviewer.
