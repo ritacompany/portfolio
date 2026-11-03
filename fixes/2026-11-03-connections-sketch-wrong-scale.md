@@ -17,7 +17,7 @@ Check: none ran on the drawing's facts; the browser look checked overlaps only.
 ## Causes
 - Cause 1: drew from the brief, not the record, so scale was invented | For: no reasoning file opened before either sketch round; the 40 week cap and days sized gap were both in the repo | Against: none
 - Cause 2: skipped the concept sentence, so a wrong mental model reached a build twice | For: CLAUDE.md asks for it; both rounds went straight to SVG | Against: a concept sentence alone would not have carried the scale facts unless the record was read
-History: none for diagrams. The concept first rule already exists and was skipped, so restating it is a failed experiment.
+History: none for diagrams. Later the same day the deeper cause showed: his frame copy was never read in this session, though WORKING_LOOP lists it as the second step before any block; every round guessed what the reader had already met. The concept first rule already exists and was skipped, so restating it is a failed experiment.
 Chosen cause: Cause 1; the wrong picture follows directly from the missing scale facts.
 
 ## Layer
