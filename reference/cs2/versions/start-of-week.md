@@ -40,7 +40,7 @@ Headline: Whether someone finished last week early or fell short, the next week 
 Text: This is the first screen someone sees when they open the product each week. It lays out the week ahead, and what's on it depends on what they need that week. If they're on track, it says less. If they're struggling to stay on target, it offers ways to catch up.
 
 Five templates, not six (his 3 Nov): Caught up is now a variation inside Catching up. Each template has several variations by circumstance (his frame, 3 Nov screenshots), so each caption says what the template does across them. Reset's button is Update journey in his current screen, not Start from today.
-Template order (recommended 3 Nov, not yet confirmed by him): Clean slate, Rollover, Recalibration, Reset, Catching up. On track, then slipping further, then the way back; it ends on the template that holds the recovery.
+Template order (his, 3 Nov): Clean slate, Catching up, Rollover, Recalibration, Reset.
 Captions cut to about the length of his Clean slate caption (his 3 Nov: too long).
 Caption 1, Clean slate (his, kept; second sentence optional): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover. It also opens each new Pathway.
 Caption 2, Rollover: Leftovers arrive already in the week under the magenta rollover tag. An earlier version made people choose what to take on while behind, which read like paying to keep going.
