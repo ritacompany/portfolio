@@ -58,3 +58,5 @@ Sources: Soman and Cheema 2004; Mondai design record
   not exist in this repo, so the self check ran against SKILL.md patterns only.
 - Reader check: PASS, three Sonnet runs, aggregate V1 PASS (reader-check/runs/2026-11-03-fb, against
   known-falling-behind.md, which is known-bridge.md without the map block).
+- Diagram cards: no-ai-slop run as the skill (Ask them became Let them pick; the second card lost its trailing
+  appositive). Reader check on the whole block with the cards: PASS (runs/2026-11-03-fb D1 to D3).
