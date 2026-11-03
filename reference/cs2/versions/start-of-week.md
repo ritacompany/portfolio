@@ -43,7 +43,8 @@ Five templates, not six (his 3 Nov): Caught up is now a variation inside Catchin
 Template order (his, 3 Nov): Clean slate, Catching up, Rollover, Recalibration, Reset.
 Captions cut to about the length of his Clean slate caption (his 3 Nov: too long).
 Caption 1, Clean slate (his, kept; second sentence optional): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover. It also opens each new Pathway.
-Caption 2, Rollover: Leftovers arrive already in the week under the magenta rollover tag. An earlier version made people choose what to take on while behind, which read like paying to keep going.
+Caption 2, Rollover: Leftovers arrive already in the week under the magenta rollover tag. The screen never asks people to choose what to take on while they're behind, because a choice at that moment feels like paying to keep going.
+Reader check 3 Nov (runs/2026-11-03b): buffer flow PASS; start of week flagged rollover as untaught (cleared: Falling behind teaches it, his 3 Nov) and the earlier version sentence as design history, rewritten above. Not re-run.
 Caption 3, Recalibration: After several short weeks, it suggests a capacity that fits the hours someone has been giving, which they can take, change or skip.
 Caption 4, Reset: After a long absence, the week rebuilds from today with progress kept and one button, because a keep my plan option would win by default.
 Caption 5, Catching up: It names the progress of someone behind and points to finishing early to close the rest, until the week they reach the target.
