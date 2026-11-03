@@ -41,12 +41,12 @@ Text: This is the first screen someone sees when they open the product each week
 
 Five templates, not six (his 3 Nov): Caught up is now a variation inside Catching up. Each template has several variations by circumstance (his frame, 3 Nov screenshots), so each caption says what the template does across them. Reset's button is Update journey in his current screen, not Start from today.
 Template order (his, 3 Nov): Clean slate, Catching up, Rollover, Recalibration, Reset.
-Captions round 3 Nov evening (his: say why each exists and tie it to what came before; use rollover, not leftovers; recalibration and reset too thin). Order is his.
+Captions round 3 Nov evening (his: say why each exists and tie it to what came before; use rollover, not leftovers; recalibration and reset too thin). Order is his. Trimmed to three lines each in his frame (his 3 Nov).
 Caption 1, Clean slate (his, kept): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover.
-Caption 2, Catching up: Someone behind can finish every Action Item and still be behind, so this screen shows the days they won back and points to finishing early as the way to close the rest. The week the pace meets the target, it tells them they've caught up.
-Caption 3, Rollover: When a week ends unfinished, the rollover Action Items are already waiting in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes without them seeing it.
-Caption 4, Recalibration: Rollover covers one short week. When short weeks keep coming, the capacity is the problem, so the screen compares the hours someone set with the hours they've been giving and suggests a number that fits, with the new target dates beside it. They can take it, set their own or skip it with a warning.
-Caption 5, Reset: After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with progress kept and new target dates. It has one button, because a keep my plan option would win by default even when it's the worse choice.
+Caption 2, Catching up: Finishing every Action Item doesn't close the gap for someone behind, so this screen shows the days they won back and points to finishing early, until they catch up.
+Caption 3, Rollover: When a week ends unfinished, the rollover Action Items wait in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes unseen.
+Caption 4, Recalibration: Rollover covers one short week. When short weeks keep coming, the screen compares the hours someone set with what they've been giving and suggests a capacity that fits, with new target dates. They can take it, set their own or skip it with a warning.
+Caption 5, Reset: After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with progress kept and new target dates. It has one button, because a keep my plan option would win by default.
 Sources: Catching up, start-of-week-states.md sections 2 and 6; Rollover, the silent rollover rejection (start of week dossier Q3); Reset, start-of-week-states.md section 4 (default effect and status quo bias research he commissioned, 23 May). The dropped choice sentence was the product archive's reading of why the decision modal went, not research (carry-over.md section 8).
 
 Image: his five start of week templates in the carousel, already in the frame.
