@@ -1,4 +1,4 @@
-# Buffer flow, round 2 (3 Nov)
+# Buffer flow, round 3 (3 Nov)
 
 Written against his portfolio frame 4269:9433, block node 4726:11317 (layer Start of week | State rules |
 T3I layout 7, eyebrow Buffer flow), between Falling behind and start of week. Run lean: one version, rounds in
@@ -21,7 +21,14 @@ Round 1 comments applied: alt headline taken; dropped the Wednesday or Friday li
 Saturday night); dropped the start of week reference, since that block comes after this one; dropped the carry
 forward line, since the reader meets leftovers moving forward only in the start of week block.
 
-Not carried: three wordings per state (the record describes them as there to prevent repetition, but in
+Round 2 comments applied: the body now says what the screen is for and why a weekly plan needs it (a week
+holds only the hours given, so pulling work forward is the only way to move the pace against the target; his
+words, 28 Apr 2026, get ahead dossier L305: getting ahead means widening the distance between pace and
+target); the copy point is said as the words following the gap, without naming the five states or the streak
+inputs; the timing line moved last, with two rewrites offered.
+
+Not carried: the five state names and the copy variants (his: for him and the product, not the reader);
+three wordings per state (the record describes them as there to prevent repetition, but in
 assistant words, so ASSUMED; left out until he confirms).
 
 Checks: none yet. no-ai-slop and the reader check run once he is happy.
@@ -30,9 +37,11 @@ Checks: none yet. no-ai-slop and the reader check run once he is happy.
 Layout: T3I layout 7 (his)
 Eyebrow: Buffer flow
 Headline: Finish the week's work early and the days that are left become room to catch up or to get further ahead.
-Text: This screen opens the moment the last Action Item of the week is done, on any day before Saturday night. The finish comes first, with next week's Action Items just below it, ready to pull forward.
-Text: I couldn't wait until the next week began. How much someone can pull forward depends on how many days are left, and once the week ends there are none.
-Text: A finished week doesn't mean someone is ahead. Work left from an earlier week can keep them behind, so the screen reads their streak of full weeks and where their pace sits against the target, then picks one of five versions. Ahead, it offers to get further ahead. Behind, it offers to catch up.
-Text: The streak only lives here. The gap in days already says ahead or behind on every Pathway, and a second count would muddy the offer.
-Image: His completion screen in the Turning version: every Action Item done, streak active, pace behind target, the offer to catch up below. (Fallback: the Momentum version he has built now.)
+Text: The moment the last Action Item of the week is done, this screen celebrates it and offers next week's Action Items to pull forward.
+Text: A week only holds the hours a person gave, so finishing early leaves nothing left to do. Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.
+Text: So the words follow the gap. Someone ahead is told they can stretch it. Someone still behind gets the finish celebrated too, then hears this is how they close the gap.
+Text: It can't wait for the next week. How much someone can pull forward depends on the days left in this one.
+Timing line, rewrite 2: Waiting for the next week would miss the point, because the fewer days are left, the less someone can pull forward.
+Timing line, round 2 wording: I couldn't wait until the next week began. How much someone can pull forward depends on how many days are left, and once the week ends there are none.
+Image: His completion screen in the Turning version: every Action Item done, pace behind target, the offer to catch up below. The gap in days on the right of the screen is the number the copy follows. (Fallback: the Momentum version he has built now.)
 Sources: Mondai design record
