@@ -73,7 +73,9 @@ before the first reply, then HANDOFF.md for where things stand.
 - Keep text short and beside the image it explains; break it up rather than filling a long column.
 - Each image slot is a dashed gray frame with a note inside saying what the image is. He makes the images.
 - Text keeps 40px margins; only images touch the frame edge.
-- If the frame tiles are missing in a new worktree, copy .cs2-canvas/img from another worktree or
+- If the frame tiles are missing in a new worktree, copy .cs2-canvas/img from ~/Code/portfolio (the main
+  checkout keeps the latest copy, since archiving a session deletes its worktree; copy them back there after
+  a re-export) or
   re-export frame 4269:9433 from Figma and tile it (1500px tiles named fNN_y.png) before building.
 
 ## Checks, in order
