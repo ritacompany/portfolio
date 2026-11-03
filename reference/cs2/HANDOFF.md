@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-02 16:30
+Updated: 2026-11-03 09:00
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -23,7 +23,7 @@ Loop step: 3
 
 How to work: reference/cs2/WORKING_LOOP.md. Read it before anything else.
 
-Now (2 Nov, later): the page order is applied in his Figma frame (Desktop 1 MVP file, CS page, frame 5590:26084) and the canvas is re-exported from it. Order: the route; Action Hub, Growth Journey page placeholder; calendar setup, schedule view, scheduled times; Personalized timeline, then the map block (his sitemap note, unhidden); Falling behind, buffer flow, start of week; the page ends on the Action Item page placeholder. The ending placeholder is gone. Details in reference/cs2/outline/CS2-outline-and-copy.md (The order). The part being written is the map block and Falling behind, the hinge into Part 5.
+Where the frame lives (3 Nov): work from his personal Portfolio Design file in Figma (file IarvWaqjIwrZ2afQmMxKm6, the framework case study WIP frame 4269:9433), not the Desktop 1 MVP file. He copied the frame into the MVP file only so his other account could reach it, and he is moving it back; the MVP copy (frame 5590:26084) is gone. Before drafting, read his portfolio frame top to bottom and confirm the order below is in it; if it is not, tell him what differs and do not rebuild it. Now (2 Nov, later): the page order is applied in his Figma frame (Desktop 1 MVP file, CS page, frame 5590:26084) and the canvas is re-exported from it. Order: the route; Action Hub, Growth Journey page placeholder; calendar setup, schedule view, scheduled times; Personalized timeline, then the map block (his sitemap note, unhidden); Falling behind, buffer flow, start of week; the page ends on the Action Item page placeholder. The ending placeholder is gone. Details in reference/cs2/outline/CS2-outline-and-copy.md (The order). The part being written is the map block and Falling behind, the hinge into Part 5.
 
 Earlier, for Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, The schedule view and Rollover are rebuilt on the canvas on layouts from his pool (setup x -1940 y 7840, schedule view x -1940 y 9380, rollover x -3480 y 10750). Each has a three line headline, a body that gives the reasoning and research behind each decision, a sources line and an imagery note in the gray frame. One way sync is folded into the schedule view. Reader check PASS on all three (runs/2026-10-29, copy files setup4, sched2, roll2), canvas copy guard passes, no-ai-slop run by hand. He has not reviewed this build yet.
 
@@ -64,5 +64,5 @@ Points proposed 29 Oct for the calendar part, his reasoning first: setup 1 why p
 - reference/cs2/versions/falling-behind.md (the part in hand)
 - reference/cs2/outline/CS2-outline-and-copy.md (The order)
 - The CS2 canvas (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37) and his notes on it
-- His Figma frame 5590:26084, CS page of the Desktop 1 (MVP) file (read text with a read only use_figma script)
+- His Figma frame 4269:9433 in the Portfolio Design file IarvWaqjIwrZ2afQmMxKm6 (read text with a read only use_figma script)
 - reports/Schedule view how it works.md
