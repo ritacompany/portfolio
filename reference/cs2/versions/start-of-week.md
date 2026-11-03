@@ -39,13 +39,13 @@ Eyebrow: Start of week
 Headline: Whether someone finished last week early or fell short, the next week opens on a recap of where they landed and a plan from there.
 Text: This is the first screen someone sees when they open the product each week. It lays out the week ahead, and what's on it depends on what they need that week. If they're on track, it says less. If they're struggling to stay on target, it offers ways to catch up.
 
-Template order (recommended 3 Nov, not yet confirmed by him): Clean slate, Rollover, Recalibration, Reset, Catching up, Caught up. The carousel reads as one person's arc, from on track through slipping further to the way back, and ends on the template that closes the recovery.
-Caption 1, Clean slate (his, kept): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover.
-Caption 2, Rollover: Leftovers arrive already in the week, under the magenta rollover tag, a color that does not read as an error. An earlier version asked people to choose what to take on at the moment they were behind, which read like paying to keep going.
-Caption 3, Recalibration: After several short weeks, the screen suggests fewer weekly hours, based on what someone has been finishing. While they're behind, it can only suggest fewer. They can skip it, with a warning.
-Caption 4, Reset: After a long absence, the week rebuilds from today and the progress already made is kept. There is one button, Start from today. A keep my plan option would win by default, even when it is the plan they can no longer catch up to.
-Caption 5, Catching up: Shows only when someone behind won back days last week. From behind, progress is easy to miss, so the screen names it. A week that only kept pace does not count.
-Caption 6, Caught up: Shows the week the pace reaches the target again. It tells someone the catching up is over.
+Five templates, not six (his 3 Nov): Caught up is now a variation inside Catching up. Each template has several variations by circumstance (his frame, 3 Nov screenshots), so each caption says what the template does across them. Reset's button is Update journey in his current screen, not Start from today.
+Template order (recommended 3 Nov, not yet confirmed by him): Clean slate, Rollover, Recalibration, Reset, Catching up. On track, then slipping further, then the way back; it ends on the template that holds the recovery.
+Caption 1, Clean slate (his, kept, with a proposed second sentence): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover. It also opens the first week of each new Pathway, and names the days gained when someone pulled ahead.
+Caption 2, Rollover: Leftovers arrive already in the week under the magenta rollover tag, a color that does not read as an error, and the screen says the plan has already made room for them. What it says changes with whether someone is still ahead, on track or behind, and when they're behind it points to finishing early as the way back. An earlier version asked people to choose what to take on at the moment they were behind, which read like paying to keep going.
+Caption 3, Recalibration: After several short weeks, the screen shows the hours someone has really been giving and suggests a capacity to match, with the new target dates beside it. They can take it, set their own number or skip it. If they skip, a warning says the gap will keep growing.
+Caption 4, Reset: After a long absence, the screen shows what stays (the progress already made) and what changes (the target dates, rebuilt from today). There is one button, Update journey, because a keep my plan option would win by default.
+Caption 5, Catching up: Shows when someone behind finishes their week, whether they held steady or won days back. Progress is easy to miss from behind, so the screen names it and points to finishing early as the way to close the rest. The week they reach the target again, it says the catching up is over.
 
-Image: his six start of week templates in the carousel, already in the frame.
+Image: his five start of week templates in the carousel, already in the frame.
 Sources: Mondai design record
