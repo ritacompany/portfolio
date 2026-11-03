@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Falling behind, preview</title>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500&display=swap">
+<style>
+  body { margin: 0; background: #0b0b0c; font-family: Satoshi, system-ui, sans-serif; }
+  .block { position: relative; width: 1440px; height: 760px; margin: 0 auto; background: #0b0b0c; }
+  .abs { position: absolute; }
+  .eb { left: 40px; top: 64px; width: 660px; margin: 0; font-size: 20px; font-weight: 500; line-height: 1.32; letter-spacing: -0.02em; color: #aeaeb4; }
+  .hl { left: 40px; top: 118px; width: 812px; margin: 0; font-size: 40px; font-weight: 500; line-height: 1.15; letter-spacing: -0.04em; color: #f2f1f8; }
+  .col { top: 420px; width: 232px; }
+  .rule { height: 1px; background: #6b6b70; }
+  .kept .rule { height: 2px; background: #f2f1f8; }
+  .lab { margin: 20px 0 0; font-size: 14px; font-weight: 500; color: #6b6b70; }
+  .kept .lab { color: #f2f1f8; }
+  .ti { margin: 14px 0 0; font-size: 20px; font-weight: 500; line-height: 1.32; letter-spacing: -0.02em; color: #aeaeb4; }
+  .kept .ti { color: #f2f1f8; }
+  .tx { margin: 12px 0 0; font-size: 16px; line-height: 1.5; color: #6b6b70; }
+  .kept .tx { color: #aeaeb4; }
+  .body { left: 1098px; top: 420px; width: 302px; margin: 0; font-size: 16px; line-height: 1.5; color: #aeaeb4; }
+  .src { left: 40px; top: 680px; margin: 0; font-size: 14px; color: #6b6b70; }
+</style>
+</head>
+<body>
+<div class="block">
+  <p class="abs eb">Falling behind</p>
+  <p class="abs hl">Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.</p>
+
+  <div class="abs col" style="left:40px"><div class="rule"></div><p class="lab">Ruled out</p><p class="ti">Push forward</p><p class="tx">Everything left lands in next week, which gets heavier right after a hard one.</p></div>
+  <div class="abs col" style="left:296px"><div class="rule"></div><p class="lab">Ruled out</p><p class="ti">Let them pick</p><p class="tx">They decide what to keep at the moment they are behind.</p></div>
+  <div class="abs col" style="left:552px"><div class="rule"></div><p class="lab">Ruled out</p><p class="ti">Drop it</p><p class="tx">The leftover disappears and the Pathway slips without anyone seeing it.</p></div>
+  <div class="abs col kept" style="left:808px"><div class="rule"></div><p class="lab">Kept</p><p class="ti">Carry over</p><p class="tx">The week stays the size of their capacity.</p></div>
+
+  <p class="abs body">A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything left over moves into the next week on its own, and that week takes fewer new Action Items to stay within their capacity.</p>
+  <p class="abs src">Sources: Soman and Cheema 2004; Mondai design record</p>
+</div>
+<script>function fit(){document.querySelector(".block").style.zoom=Math.min(1,innerWidth/1440)}fit();addEventListener("resize",fit)</script>
+</body>
+</html>

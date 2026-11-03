@@ -1,0 +1,14 @@
+VERSION V1: Falling behind with the four ways diagram
+  (label) Falling behind
+V1.S1 Every Action Item in a week is due by Saturday night.
+V1.S2 Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+  (label) Ruled out: Push forward
+V1.S3 Everything left lands in next week, which gets heavier right after a hard one.
+  (label) Ruled out: Let them pick
+V1.S4 They decide what to keep at the moment they are behind.
+  (label) Ruled out: Drop it
+V1.S5 The leftover disappears and the Pathway slips without anyone seeing it.
+  (label) Kept: Carry over
+V1.S6 The week stays the size of their capacity.
+V1.S7 A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
+V1.S8 So anything left over moves into the next week on its own, and that week takes fewer new Action Items to stay within their capacity.

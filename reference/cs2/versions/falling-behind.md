@@ -31,10 +31,14 @@ blocks later). So the slot shows the thinking instead: the four ways a leftover 
 ruled out, one kept. Text only on his black page, no boxes, a mark under the kept one. Not a matrix (Haven
 has the 2x2).
 
-1. Push it all into next week. Next week gets heavier right after a hard one.
-2. Ask the person what to keep. A decision at the moment they are behind.
-3. Drop it. The Pathway slips and nobody sees it happen.
-4. Carry it over and take fewer new ones. The week stays the size of their capacity. (kept)
+Card: Ruled out | Push forward | Everything left lands in next week, which gets heavier right after a hard one.
+Card: Ruled out | Let them pick | They decide what to keep at the moment they are behind.
+Card: Ruled out | Drop it | The leftover disappears and the Pathway slips without anyone seeing it.
+Card: Kept | Carry over | The week stays the size of their capacity.
+
+Preview: .cs2-canvas/falling-behind-preview.html (four columns left, body text column at x 1098 beside them).
+Not in his Figma frame: Figma writes for CS2 text go through the block plan and copy file gates
+(reference/cs2/outline, reference/cs2/copy), which this block has not been through; he pastes.
 
 Source: the three options weighed and the decision, reasoning/calendar-and-schedule.md and
 reasoning/carry-over.md (7 May 2026 weekly assembly). CONFIRMED.
@@ -45,7 +49,7 @@ Eyebrow: Falling behind
 Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
 Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
 Text (rollover): So anything left over moves into the next week on its own, and that week takes fewer new Action Items to stay within their capacity.
-Image: the four ways a leftover could go, three ruled out, one kept (proposal 2 above).
+Image: the four ways diagram (cards above).
 Sources: Soman and Cheema 2004; Mondai design record
 
 ## Checks
