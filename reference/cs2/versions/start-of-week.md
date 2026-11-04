@@ -51,3 +51,8 @@ Sources: Catching up, start-of-week-states.md sections 2 and 6; Rollover, the si
 
 Image: his five start of week templates in the carousel, already in the frame.
 Sources: Mondai design record
+
+Reader check 3 Nov, run 2026-11-03c (the frame copy as it stands, plus the proposed Recalibration caption as V2):
+- Only flag: "rollover" untaught (S6 3/3, S8 2/3, V2.S1 3/3). Cause was the known file: K10 described the mechanism without the word, while his Falling behind block carries it as a title. K10 now names it. Copy unchanged.
+- V2.S1 flagged as restating K10. Intended: it is the tie back to rollover that the next sentence builds on.
+- Blind spot: no reviewer flagged "Rollover covers one short week" (S10), which he could not parse. The check only catches product terms; plain words used as shorthand get through. Meaning still needs his read.
