@@ -139,21 +139,39 @@ const PRESET_EASES = {
 };
 
 const DEFAULTS = {
-  rowWidth: 968, rowHeight: 56, radius: 12, rowGap: 8, weekGap: 32, padX: 20, innerGap: 16, borderWidth: 1, checkSize: 20, labelToRows: 44,
-  count: 4, openPos: 4, preChecked: 2, preNext: 3, newCount: 0, weekAfter: false, nextCap: 3, order: [0, 1, 2, 3, 4, 5, 6],
+  rowWidth: 640, rowHeight: 56, radius: 12, rowGap: 8, weekGap: 32, padX: 20, innerGap: 16, borderWidth: 1, checkSize: 20, labelToRows: 50, labelSize: 16, labelWeight: 500, labelThis: 'This week', labelNext: 'Next week', labelAfter: 'Week after',
+  count: 4, openPos: 1, preChecked: 2, preNext: 3, newCount: 0, weekAfter: false, nextCap: 3, order: [0, 1, 2, 3, 4, 5, 6],
   mainBase: 37, mainVar: 9, mainHeight: 10, metaBase: 8.5, metaVar: 1.5, metaHeight: 8, showMeta: true,
   pageBg: '#0b0b0c', cardFill: '#141416', cardBorder: '#26262a', checkRing: '#4a4a50', checkGreen: '#78b765', tick: '#0b0b0c',
-  liftBorder: '#4a4a50', carriedBorder: '#5a5a60', barMain: '#2a2a2e', barMeta: '#202023', labels: '#6b6b70', rule: '#1f1f22',
+  liftBorder: '#4a4a50', carriedBorder: '#5a5a60', barMain: '#2a2a2e', barMeta: '#202023', labels: '#8e8e94', rule: '#1f1f22',
   doneOpacity: 0.4,
   introStagger: 0, fadeIn: 300, introRise: 0, introPause: 400,
   checkStagger: 600, checkPop: 320, dimDelay: 260, dimDur: 400,
-  weekEndPause: 500, liftDur: 250, lift: 6, liftScale: 1.01, shadowY: 12, shadowBlur: 28, shadowAlpha: 0.5,
-  path: 'curve', travelDur: 1100, travelEase: 'cubic-bezier(.65,0,.35,1)', overlap: 0.4, cascade: 40, tilt: 0, closeGap: true, closeDelay: 150, closeDur: 500, outX: 400, outDur: 450, downDur: 450, inDur: 500, textOver: true,
+  weekEndPause: 500, liftDur: 250, lift: 14, liftScale: 1.08, shadowY: 20, shadowBlur: 44, shadowAlpha: 0.6,
+  path: 'drop', travelDur: 900, travelEase: 'cubic-bezier(.65,0,.35,1)', overlap: 0.4, cascade: 40, tilt: 0, closeGap: true, closeDelay: 150, closeDur: 500, outX: 400, outDur: 450, downDur: 450, inDur: 500, textOver: true,
   slideDur: 800, settle: 200, fillStagger: 90, fillDur: 500, fillRise: 8,
   hold: 1800, fadeOut: 400, loopGap: 300, loop: true, speed: 1,
   moveEase: 'cubic-bezier(.2,.8,.2,1)', fadeEase: 'cubic-bezier(.2,.8,.2,1)',
   offsets: {}
 };
+
+const PATHS = [['drop', 'Straight down'], ['curve', 'Swing out right'], ['around', 'Out, down, in (three legs)']];
+const BASICS = [
+  ['path', 'Path', 'select', PATHS],
+  ['openPos', 'Item that stays open', 1, 7, 1],
+  ['liftScale', 'Grow while moving', 1, 1.5, 0.01],
+  ['lift', 'Lift height px', 0, 60, 1],
+  ['travelDur', 'Move ms', 200, 3000, 10],
+  ['weekEndPause', 'Pause before it moves', 0, 3000, 10],
+  ['hold', 'Hold at end ms', 0, 8000, 50],
+  ['closeGap', 'Close the gap', 'bool'],
+  ['rowWidth', 'Row width', 200, 1060, 1],
+  ['rowHeight', 'Row height', 24, 120, 1],
+  ['labelSize', 'Label size', 10, 40, 1],
+  ['labelThis', 'Top label', 'text'],
+  ['labelNext', 'Bottom label', 'text'],
+  ['speed', 'Playback speed', 0.1, 3, 0.05]
+];
 
 const CONTROLS = [
   ['Items', [
@@ -166,9 +184,9 @@ const CONTROLS = [
     ['nextCap', 'Next week holds', 1, 6, 1]
   ]],
   ['Move', [
-    ['path', 'Path', 'select', [['curve', 'One smooth curve'], ['around', 'Out, down, in (three legs)'], ['drop', 'Straight drop']]],
-    ['travelDur', 'Curve ms', 200, 3000, 10],
-    ['travelEase', 'Curve ease', 'ease'],
+    ['path', 'Path', 'select', PATHS],
+    ['travelDur', 'Move ms', 200, 3000, 10],
+    ['travelEase', 'Move ease (down, curve)', 'ease'],
     ['overlap', 'Overlap between steps', 0, 0.9, 0.05],
     ['cascade', 'Ripple per row ms', 0, 150, 5],
     ['tilt', 'Tilt while moving deg', 0, 6, 0.25],
@@ -176,14 +194,13 @@ const CONTROLS = [
     ['outDur', 'Out ms', 0, 2000, 10],
     ['downDur', 'Down ms', 0, 2000, 10],
     ['inDur', 'Back in ms', 0, 2000, 10],
-    ['slideDur', 'Straight drop ms', 100, 3000, 10],
     ['textOver', 'Text above the row', 'bool'],
     ['closeGap', 'Close the gap', 'bool'],
     ['closeDelay', 'Wait after landing ms', 0, 2000, 10],
     ['closeDur', 'Close gap ms', 0, 2000, 10],
     ['liftDur', 'Lift ms', 0, 1500, 10],
-    ['lift', 'Lift px', 0, 30, 1],
-    ['liftScale', 'Lift scale', 1, 1.1, 0.005],
+    ['lift', 'Lift height px', 0, 60, 1],
+    ['liftScale', 'Grow while moving', 1, 1.5, 0.01],
     ['shadowY', 'Shadow y', 0, 40, 1],
     ['shadowBlur', 'Shadow blur', 0, 80, 1],
     ['shadowAlpha', 'Shadow strength', 0, 1, 0.05],
@@ -216,7 +233,9 @@ const CONTROLS = [
     ['radius', 'Corner radius', 0, 40, 1],
     ['rowGap', 'Gap between rows', 0, 40, 1],
     ['weekGap', 'Gap between weeks', 0, 160, 1],
-    ['labelToRows', 'Label to first row', 20, 100, 1],
+    ['labelToRows', 'Label to first row', 20, 120, 1],
+    ['labelWeight', 'Label weight', 300, 700, 100],
+    ['labelAfter', 'Week after label', 'text'],
     ['padX', 'Side padding', 0, 60, 1],
     ['innerGap', 'Check to bar gap', 0, 48, 1],
     ['borderWidth', 'Border width', 0, 4, 0.5],
@@ -251,7 +270,7 @@ const CONTROLS = [
 const MAIN_PATTERN = [-0.33, 1, -1, 0.33, -0.67, 0.78, 0, 0.55, -0.45, 0.2, -0.8, 0.6, -0.2];
 const META_PATTERN = [0.33, -1, 1, -0.33, 0.33, -1, 1, 0, -0.67, 0.67, -0.33, 0.5, 0];
 
-const STORE = 'fb-playground-v2';
+const STORE = 'fb-playground-v3';
 let S = load();
 let t = 0, playing = true, last = null, TL = null, dragMode = 'reorder';
 const els = { rows: [], pre: [], fresh: [], zones: [] };
@@ -296,6 +315,7 @@ const lerp = (a, b, k) => a + (b - a) * k;
 const prog = (time, start, dur) => dur <= 0 ? (time >= start ? 1 : 0) : Math.min(1, Math.max(0, (time - start) / dur));
 
 function openIdx() { return Math.min(S.count, Math.max(1, S.openPos)) - 1; }
+const LINE = () => Math.round(S.labelSize * 1.35 + 8);
 const STEP = () => S.rowHeight + S.rowGap;
 function Y1(p) { return S.labelToRows + p * STEP(); }
 function nextTotal() { return S.preNext + 1 + S.newCount; }
@@ -307,7 +327,7 @@ function afterLabelTop() { return Y2(Math.max(1, nextShown()) - 1) + S.rowHeight
 function Y3(k) { return afterLabelTop() + S.labelToRows + k * STEP(); }
 function slotY(s) { return S.weekAfter && s >= S.nextCap ? Y3(s - S.nextCap) : Y2(s); }
 function stageHeight() {
-  if (S.weekAfter) return afterRows() ? Y3(afterRows() - 1) + S.rowHeight : afterLabelTop() + 30;
+  if (S.weekAfter) return afterRows() ? Y3(afterRows() - 1) + S.rowHeight : afterLabelTop() + LINE() + 4;
   return Y2(Math.max(1, nextShown()) - 1) + S.rowHeight;
 }
 
@@ -345,9 +365,9 @@ function buildTimeline() {
     shiftStart = moveStart + S.travelDur * 0.3; shiftDur = S.travelDur * 0.5;
     P.push(['Curve', moveStart]);
   } else {
-    moveEnd = moveStart + S.slideDur;
-    shiftStart = moveStart + S.slideDur * 0.35; shiftDur = S.slideDur * 0.65;
-    P.push(['Drop', moveStart]);
+    moveEnd = moveStart + S.travelDur;
+    shiftStart = moveStart + S.travelDur * 0.3; shiftDur = S.travelDur * 0.55;
+    P.push(['Down', moveStart]);
   }
   const closeStart = moveEnd + S.closeDelay;
   const closeEnd = S.closeGap ? closeStart + S.closeDur + S.cascade * (S.preNext + S.newCount + 1) : moveEnd;
@@ -398,13 +418,13 @@ function rebuild() {
   document.querySelector('.body').style.zIndex = S.textOver ? 20 : 0;
   stage.innerHTML = '';
   els.zones = [];
-  const zones = [['This week', 0], ['Next week', nextLabelTop()]];
-  if (S.weekAfter) zones.push(['Week after', afterLabelTop()]);
+  const zones = [[S.labelThis, 0], [S.labelNext, nextLabelTop()]];
+  if (S.weekAfter) zones.push([S.labelAfter, afterLabelTop()]);
   zones.forEach(([txt, top]) => {
     const z = document.createElement('div'); z.className = 'zone'; z.textContent = txt;
-    z.style.top = top + 'px'; z.style.color = S.labels; stage.appendChild(z);
+    z.style.top = top + 'px'; z.style.color = S.labels; z.style.fontSize = S.labelSize + 'px'; z.style.fontWeight = S.labelWeight; stage.appendChild(z);
     const l = document.createElement('div'); l.className = 'line';
-    l.style.top = top + 26 + 'px'; l.style.width = S.rowWidth + 'px'; l.style.background = S.rule; stage.appendChild(l);
+    l.style.top = top + LINE() + 'px'; l.style.width = S.rowWidth + 'px'; l.style.background = S.rule; stage.appendChild(l);
     if (top > 0) els.zones.push([z, l, top]);
   });
   els.rows = [];
@@ -433,7 +453,7 @@ function render() {
   const out = 1 - fe(prog(t, TL.holdEnd, S.fadeOut));
   const gapAt = (i) => S.closeGap ? STEP() * me(prog(t, TL.closeStart + i * S.cascade, S.closeDur)) : 0;
   const gap = gapAt(0);
-  els.zones.forEach(([z, l, top]) => { z.style.top = top - gap + 'px'; l.style.top = top - gap + 26 + 'px'; });
+  els.zones.forEach(([z, l, top]) => { z.style.top = top - gap + 'px'; l.style.top = top - gap + LINE() + 'px'; });
   els.rows.forEach((c, p) => {
     const key = c.dataset.key;
     const a = fe(prog(t, TL.inStart[p], S.fadeIn));
@@ -476,9 +496,9 @@ function render() {
           k = me(prog(raw, 0.55, 0.45));
           rot = S.tilt * Math.sin(Math.PI * u) * (u < 0.5 ? 1 : -1);
         } else {
-          const sb = me(prog(t, TL.moveStart, S.slideDur));
-          y = lerp(y0, y1, sb);
-          k = sb;
+          const raw = prog(t, TL.moveStart, S.travelDur);
+          y = lerp(y0, y1, easeFn(S.travelEase)(raw));
+          k = me(prog(raw, 0.6, 0.4));
         }
         const lt = Math.min(1, la);
         sc = lerp(lerp(1, S.liftScale, lt), 1, k); shadow = lt * (1 - k); border = mix(mix(S.cardBorder, S.liftBorder, lt), S.carriedBorder, k);
@@ -600,10 +620,14 @@ function attachDrag(c) {
 }
 
 const inputs = {};
+const addInput = (k, o) => { (inputs[k] = inputs[k] || []).push(o); };
 function buildControls() {
   const root = document.getElementById('controls');
-  CONTROLS.forEach(([title, list], gi) => {
-    const d = document.createElement('details'); d.open = gi < 2 || title === 'Timing';
+  const adv = document.createElement('div'); adv.id = 'advanced'; adv.style.display = 'none';
+  const more = document.createElement('button'); more.textContent = 'Show all controls'; more.style.margin = '10px 14px';
+  more.onclick = () => { const on = adv.style.display === 'none'; adv.style.display = on ? '' : 'none'; more.textContent = on ? 'Hide extra controls' : 'Show all controls'; };
+  [['Basics', BASICS]].concat(CONTROLS).forEach(([title, list], gi) => {
+    const d = document.createElement('details'); d.open = gi === 0;
     const sm = document.createElement('summary'); sm.textContent = title; d.appendChild(sm);
     if (title === 'Items') {
       const h = document.createElement('div'); h.className = 'hint';
@@ -621,20 +645,26 @@ function buildControls() {
         tx.addEventListener('input', () => { const h = hexNorm(tx.value); tx.classList.toggle('bad', !h); if (h) { S[key] = h; cp.value = h; changed(true); } });
         tx.addEventListener('blur', () => { tx.value = S[key]; tx.classList.remove('bad'); });
         row.append(cp, tx);
-        inputs[key] = { set: () => { cp.value = S[key]; tx.value = S[key]; } };
+        addInput(key, { set: () => { cp.value = S[key]; tx.value = S[key]; } });
+      } else if (a === 'text') {
+        row.classList.add('wide');
+        const tx = document.createElement('input'); tx.type = 'text';
+        tx.addEventListener('input', () => { S[key] = tx.value; changed(true); });
+        row.appendChild(tx);
+        addInput(key, { set: () => { tx.value = S[key]; } });
       } else if (a === 'select') {
         row.classList.add('wide');
         const sel = document.createElement('select');
         b.forEach(([v, n]) => { const op = document.createElement('option'); op.value = v; op.textContent = n; sel.appendChild(op); });
         sel.addEventListener('change', () => { S[key] = sel.value; changed(true); });
         row.appendChild(sel);
-        inputs[key] = { set: () => { sel.value = S[key]; } };
+        addInput(key, { set: () => { sel.value = S[key]; } });
       } else if (a === 'bool') {
         row.classList.add('wide', 'check');
         const cb = document.createElement('input'); cb.type = 'checkbox';
         cb.addEventListener('change', () => { S[key] = cb.checked; changed(true); });
         row.appendChild(cb);
-        inputs[key] = { set: () => { cb.checked = !!S[key]; } };
+        addInput(key, { set: () => { cb.checked = !!S[key]; } });
       } else if (a === 'ease') {
         row.classList.add('wide');
         const wrap = document.createElement('div');
@@ -654,26 +684,26 @@ function buildControls() {
         sel.addEventListener('change', () => { if (sel.value !== 'Custom') { S[key] = PRESET_EASES[sel.value]; tx.value = S[key]; tx.classList.remove('bad'); draw(); changed(true); } });
         tx.addEventListener('input', () => { const v = parseEase(tx.value); tx.classList.toggle('bad', !v); if (v) { S[key] = 'cubic-bezier(' + v.join(',') + ')'; pick(); draw(); changed(true); } });
         wrap.append(sel, svg, tx); row.appendChild(wrap);
-        inputs[key] = { set: () => { tx.value = S[key]; pick(); draw(); } };
+        addInput(key, { set: () => { tx.value = S[key]; pick(); draw(); } });
       } else {
         const rg = document.createElement('input'); rg.type = 'range'; rg.min = a; rg.max = b; rg.step = step;
         const nb = document.createElement('input'); nb.type = 'number'; nb.step = step;
         rg.addEventListener('input', () => { S[key] = +rg.value; nb.value = rg.value; changed(true); });
         nb.addEventListener('input', () => { if (nb.value === '' || isNaN(+nb.value)) return; S[key] = +nb.value; rg.value = nb.value; changed(true); });
         row.append(rg, nb);
-        inputs[key] = { set: () => { rg.value = S[key]; nb.value = S[key]; if (key === 'openPos') rg.max = S.count; } };
+        addInput(key, { set: () => { rg.value = S[key]; nb.value = S[key]; if (key === 'openPos') rg.max = S.count; } });
       }
       d.appendChild(row);
     });
-    root.appendChild(d);
+    if (gi === 0) { root.appendChild(d); root.appendChild(more); root.appendChild(adv); } else adv.appendChild(d);
   });
 }
-function syncControls() { Object.keys(inputs).forEach(k => inputs[k].set()); }
+function syncControls() { Object.keys(inputs).forEach(k => inputs[k].forEach(o => o.set())); }
 
 let saveTimer = null;
 function changed(structural) {
   if (structural) rebuild(); else render();
-  if (inputs.openPos) inputs.openPos.set();
+  (inputs.openPos || []).forEach(o => o.set());
   document.getElementById('speedLbl').textContent = S.speed !== 1 ? S.speed + 'x' : '';
   clearTimeout(saveTimer); saveTimer = setTimeout(save, 200);
 }
