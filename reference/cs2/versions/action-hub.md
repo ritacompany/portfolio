@@ -52,3 +52,19 @@ Note, Pathway pace: The pace only updates once a week, so the user isn't watchin
 Note, Days ahead or behind: The gap between the target and the pace, counted in days and shown as ahead of target or behind target. Nothing else on the screen tells the user whether they're ahead or behind.
 
 Not reader checked. His original rail paragraph was flagged in round 1 (its two sentences overlap each other and the competitive analysis), so the block will not read PASS with it; kept on his call.
+
+## Round 5, side text reworked from how the screen works (4 Nov)
+
+His notes on the humanizer pass: the line about the week not being locked made no sense for the design, and
+the completed items line was unnecessary. Both cut. Source for the new points: Mondai PRODUCT_KNOWLEDGE_ARCHIVE.md,
+Action Hub (hero section: weekly headline and AI paragraph about the week's work, not about progress; sequence
+gating: only Active can be completed; Active over In progress because the system only knows what is available).
+Headline unchanged (his, approved 26 Oct). Rail paragraph: his own text, unchanged. Notes: as in the humanizer pass.
+
+Side text, paragraph 1: I designed the Action Hub to work as a starting point instead of a traditional home screen. It answers one question for the user, what do I need to do this week, and the full curriculum stays on the Growth Journey and Pathway pages.
+
+Side text, paragraph 2: Each week opens with a short headline and a paragraph the AI writes about that week's work. It should read like a friend telling the user what the week is about before they look at their list, so it talks about the work itself and not about how much they've finished.
+
+Side text, paragraph 3: Action Items are finished in order here too, so only the Active one at the top can be checked off. The label says Active instead of In progress because the product only knows which item is available to work on, not whether the user is actually working on it.
+
+Humanizer rules applied. Not reader checked.
