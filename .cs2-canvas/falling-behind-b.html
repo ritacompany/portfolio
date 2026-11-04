@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Falling behind, direction B: time moves, the work stays</title>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: #0b0b0c; font-family: Satoshi, system-ui, sans-serif; overflow: hidden; }
+  #view { position: fixed; left: 0; top: 0; bottom: 0; right: 340px; overflow: auto; }
+  #holder { position: relative; margin: 0 auto; }
+  #frame { position: absolute; left: 0; top: 0; width: 1440px; height: 1040px; transform-origin: 0 0; overflow: hidden; }
+  .t { position: absolute; margin: 0; }
+  .eb { left: 40px; top: 64px; width: 660px; font-size: 20px; font-weight: 500; line-height: 1.32; letter-spacing: -0.02em; color: #aeaeb4; }
+  .hl { left: 40px; top: 118px; width: 812px; font-size: 40px; font-weight: 500; line-height: 1.15; letter-spacing: -0.04em; color: #f2f1f8; }
+  .bd { left: 1098px; top: 330px; width: 302px; font-size: 16px; line-height: 1.5; color: #aeaeb4; }
+  .sr { left: 40px; top: 980px; font-size: 14px; color: #6b6b70; }
+
+  #win { position: absolute; left: 40px; top: 330px; overflow: hidden; }
+  #strip { position: absolute; left: 0; top: 0; right: 0; height: 100%; }
+  .wk { position: absolute; left: 0; white-space: nowrap; }
+  .wk span { position: absolute; left: 0; top: 0; }
+  .rule { position: absolute; left: 0; right: 0; height: 1px; }
+  .it { position: absolute; left: 0; right: 0; box-sizing: border-box; display: flex; align-items: center; border-style: solid; }
+  .ck { flex: none; border-radius: 50%; border-style: solid; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
+  .ck svg { width: 50%; height: 50%; }
+  .b1, .b2 { flex: none; }
+  .b2 { margin-left: auto; }
+  .rail { position: absolute; top: 0; bottom: 0; width: 1px; }
+  .tick { position: absolute; left: -3px; width: 7px; height: 7px; border-radius: 50%; }
+
+  #panel { position: fixed; right: 0; top: 0; bottom: 0; width: 340px; box-sizing: border-box; background: #121214; border-left: 1px solid #222226;
+           color: #d6d6dc; font-size: 12px; display: flex; flex-direction: column; }
+  .bar { padding: 14px; border-bottom: 1px solid #222226; background: #161618; }
+  .line { display: flex; gap: 6px; align-items: center; }
+  .line + .line { margin-top: 8px; }
+  button { font: inherit; font-size: 12px; color: #e8e8ee; background: #232327; border: 1px solid #333338; border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+  button:hover { background: #2c2c31; }
+  .go { background: #78b765; border-color: #78b765; color: #0b0b0c; font-weight: 500; }
+  #clock { margin-left: auto; color: #9a9aa2; font-variant-numeric: tabular-nums; }
+  #step { color: #78b765; font-weight: 500; }
+  #scrub { width: 100%; margin: 0; }
+  #list { flex: 1; overflow: auto; padding: 6px 0 16px; }
+  h3 { margin: 14px 14px 6px; font-size: 13px; font-weight: 500; color: #f2f1f8; }
+  .c { display: grid; grid-template-columns: 118px 1fr 56px; gap: 8px; align-items: center; padding: 3px 14px; }
+  .c label { color: #a6a6ae; }
+  .c input[type=range] { width: 100%; margin: 0; }
+  .c input[type=number], .c input[type=text], .c select { width: 100%; box-sizing: border-box; font: inherit; font-size: 12px; color: #e8e8ee;
+    background: #1b1b1e; border: 1px solid #2e2e33; border-radius: 5px; padding: 3px 5px; }
+  .c.two { grid-template-columns: 118px 1fr; }
+  .c.hex { grid-template-columns: 118px 34px 1fr; }
+  .c input[type=color] { width: 34px; height: 24px; padding: 0; border: 1px solid #2e2e33; border-radius: 5px; background: none; }
+  .c input.bad { border-color: #c0504d; }
+  .note { padding: 2px 14px 8px; color: #7c7c84; line-height: 1.4; }
+  .foot { padding: 10px 14px; border-top: 1px solid #222226; display: flex; gap: 6px; }
+  #msg { position: fixed; right: 356px; bottom: 16px; background: #78b765; color: #0b0b0c; padding: 8px 12px; border-radius: 6px; font-size: 12px;
+         font-weight: 500; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  #dlg { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: none; align-items: center; justify-content: center; z-index: 9; }
+  #dlg.open { display: flex; }
+  #dlg .box { width: 500px; background: #161618; border: 1px solid #2e2e33; border-radius: 10px; padding: 16px; }
+  #dlg textarea { width: 100%; box-sizing: border-box; height: 260px; margin: 10px 0; background: #1b1b1e; color: #e8e8ee; border: 1px solid #2e2e33;
+                  border-radius: 6px; font: 11px ui-monospace, Menlo, monospace; padding: 8px; }
+</style>
+</head>
+<body>
+<div id="view"><div id="holder"><div id="frame">
+  <p class="t eb">Falling behind</p>
+  <p class="t hl">Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.</p>
+  <div id="win"><div id="strip"></div></div>
+  <p class="t bd">A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open moves into the next week on its own. This is rollover, and the week it lands in takes fewer new Action Items so it still fits the hours they gave.</p>
+  <p class="t sr">Sources: Soman and Cheema 2004; Mondai design record</p>
+</div></div></div>
+
+<div id="panel">
+  <div class="bar">
+    <div class="line"><button class="go" id="play">Pause</button><button id="again">Restart</button><span id="clock"></span></div>
+    <div class="line"><input type="range" id="scrub" min="0" max="1000" value="0"></div>
+    <div class="line"><span id="step"></span></div>
+  </div>
+  <div id="list"></div>
+  <div class="foot"><button class="go" id="copy">Copy settings</button><button id="paste">Paste settings</button><button id="reset" style="margin-left:auto">Reset</button></div>
+</div>
+<div id="dlg"><div class="box">
+  <div style="color:#f2f1f8;font-weight:500" id="dlgTitle"></div>
+  <textarea id="dlgText" spellcheck="false"></textarea>
+  <div class="line"><span id="dlgErr" style="color:#c0504d"></span><button id="dlgClose" style="margin-left:auto">Close</button><button class="go" id="dlgLoad">Load</button></div>
+</div></div>
+<div id="msg"></div>
+
+<script>
+const BASE = {
+  width: 640, height: 56, gap: 8, radius: 12, weekGap: 40, labelSize: 16, labelGap: 16,
+  thisLabel: 'This week', nextLabel: 'Next week', afterLabel: 'Week after',
+  items: 4, preNext: 3, relabel: true, rail: true, anchor: true, fadeEdges: true,
+  pauseBefore: 500, turn: 1300, turnEase: [0.65, 0, 0.35, 1], ripple: 50, hold: 2200, speed: 1, loop: true,
+  page: '#0b0b0c', fill: '#141416', border: '#26262a', carried: '#78b765', green: '#78b765', bar1: '#2a2a2e', bar2: '#202023',
+  label: '#8e8e94', ruleColor: '#1f1f22', railColor: '#2a2a2e'
+};
+const EASES = { 'Smooth in out': [0.65, 0, 0.35, 1], 'Soft in out': [0.45, 0, 0.2, 1], 'Gentle': [0.4, 0, 0.6, 1], 'Fast start': [0.16, 1, 0.3, 1], 'Linear': [0, 0, 1, 1] };
+const PANEL = [
+  ['Motion', [
+    ['turn', 'Week turn ms', 400, 3000, 10],
+    ['turnEase', 'Turn ease', 'ease'],
+    ['pauseBefore', 'Pause before turn', 0, 3000, 10],
+    ['ripple', 'Ripple per row ms', 0, 200, 5],
+    ['hold', 'Hold at end ms', 0, 8000, 50],
+    ['speed', 'Playback speed', 0.1, 3, 0.05],
+    ['loop', 'Loop', 'bool']
+  ]],
+  ['What it shows', [
+    ['items', 'Items this week', 2, 6, 1],
+    ['preNext', 'Already in next week', 0, 5, 1],
+    ['relabel', 'Labels change after the turn', 'bool'],
+    ['anchor', 'Highlight the item that stays', 'bool'],
+    ['rail', 'Time rail on the left', 'bool'],
+    ['fadeEdges', 'Fade at the edges', 'bool']
+  ]],
+  ['Size and text', [
+    ['width', 'Row width', 240, 1000, 1],
+    ['height', 'Row height', 32, 110, 1],
+    ['gap', 'Gap between rows', 0, 32, 1],
+    ['radius', 'Corner radius', 0, 32, 1],
+    ['weekGap', 'Gap between weeks', 8, 140, 1],
+    ['labelSize', 'Label size', 10, 36, 1],
+    ['thisLabel', 'Top label', 'text'],
+    ['nextLabel', 'Bottom label', 'text'],
+    ['afterLabel', 'Third label', 'text']
+  ]],
+  ['Colors', [
+    ['page', 'Page', 'hex'], ['fill', 'Card fill', 'hex'], ['border', 'Card border', 'hex'], ['carried', 'Item that stays', 'hex'],
+    ['green', 'Check green', 'hex'], ['bar1', 'Title bar', 'hex'], ['bar2', 'Meta bar', 'hex'], ['label', 'Labels', 'hex'],
+    ['ruleColor', 'Divider line', 'hex'], ['railColor', 'Time rail', 'hex']
+  ]]
+];
+const W1 = [0.42, 0.55, 0.35, 0.48, 0.38, 0.52, 0.44, 0.5, 0.33, 0.46, 0.4, 0.57, 0.36];
+const W2 = [0.12, 0.09, 0.14, 0.1, 0.12, 0.09, 0.13, 0.11, 0.1, 0.13, 0.09, 0.12, 0.11];
+
+const KEY = 'fb-direction-b-v1';
+let C = (() => { try { return Object.assign({}, BASE, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) { return Object.assign({}, BASE); } })();
+let now = 0, running = true, prevFrame = null, plan = null, parts = null, zoom = 1;
+
+const curve = (a, b, c, d) => (x) => {
+  if (x <= 0) return 0; if (x >= 1) return 1;
+  let lo = 0, hi = 1, u = x;
+  const fx = (u) => 3 * (1 - u) * (1 - u) * u * a + 3 * (1 - u) * u * u * c + u * u * u;
+  for (let i = 0; i < 22; i += 1) { u = (lo + hi) / 2; if (fx(u) < x) lo = u; else hi = u; }
+  return 3 * (1 - u) * (1 - u) * u * b + 3 * (1 - u) * u * u * d + u * u * u;
+};
+const soft = curve(0.2, 0.8, 0.2, 1);
+const clamp01 = (v) => Math.max(0, Math.min(1, v));
+const span = (t, a, d) => d <= 0 ? (t >= a ? 1 : 0) : clamp01((t - a) / d);
+const hexOk = (v) => { v = String(v).trim().replace(/^#/, ''); if (/^[0-9a-f]{3}$/i.test(v)) v = v.replace(/./g, (m) => m + m); return /^[0-9a-f]{6}$/i.test(v) ? '#' + v.toLowerCase() : null; };
+const rgb = (h) => { const n = parseInt(h.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; };
+const blend = (a, b, k) => { const A = rgb(a), B = rgb(b); return 'rgb(' + A.map((v, i) => Math.round(v + (B[i] - v) * k)).join(',') + ')'; };
+const alpha = (h, a) => 'rgba(' + rgb(h).join(',') + ',' + a + ')';
+
+const row = () => C.height + C.gap;
+const ruleY = () => Math.round(C.labelSize * 1.35 + 6);
+const firstRow = () => ruleY() + C.labelGap;
+const weekHeight = (n) => firstRow() + Math.max(1, n) * row() - C.gap;
+const nextTop = () => weekHeight(C.items) + C.weekGap;
+const afterTop = () => nextTop() + weekHeight(C.preNext + 1) + C.weekGap;
+const turnDistance = () => nextTop();
+const windowHeight = () => nextTop() + weekHeight(C.preNext + 1);
+
+function timeline() {
+  const checks = [];
+  let t = 700;
+  const fresh = C.items >= 4 ? 1 : (C.items >= 3 ? 1 : 0);
+  for (let i = 0; i < fresh; i += 1) { checks.push(t); t += 520; }
+  const anchorAt = t + C.pauseBefore * 0.4;
+  const turnAt = t + C.pauseBefore;
+  const turnEnd = turnAt + C.turn;
+  const settled = turnEnd + C.ripple * (C.preNext + 1) + 200;
+  const relabelAt = settled;
+  const holdEnd = relabelAt + (C.relabel ? 500 : 0) + C.hold;
+  const fadeEnd = holdEnd + 450;
+  const total = fadeEnd + 300;
+  const steps = [['Fade in', 0], ['Last check', 700], ['Pause', t], ['Week turns', turnAt], ['Settles', turnEnd]];
+  if (C.relabel) steps.push(['Labels change', relabelAt]);
+  steps.push(['Hold', relabelAt + (C.relabel ? 500 : 0)], ['Fade out', holdEnd]);
+  return { checks, fresh, anchorAt, turnAt, turnEnd, relabelAt, holdEnd, fadeEnd, total, steps };
+}
+
+function card(i) {
+  const el = document.createElement('div'); el.className = 'it';
+  el.innerHTML = '<div class="ck"><svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="b1"></div><div class="b2"></div>';
+  Object.assign(el.style, { height: C.height + 'px', borderRadius: C.radius + 'px', background: C.fill, borderColor: C.border, borderWidth: '1px',
+    padding: '0 ' + Math.round(C.height * 0.36) + 'px', gap: Math.round(C.height * 0.28) + 'px' });
+  const ck = el.querySelector('.ck'), sz = Math.round(C.height * 0.36);
+  Object.assign(ck.style, { width: sz + 'px', height: sz + 'px', borderWidth: '1.5px', borderColor: '#4a4a50' });
+  ck.querySelector('path').setAttribute('stroke', C.page);
+  const bh = Math.max(4, Math.round(C.height * 0.18));
+  Object.assign(el.querySelector('.b1').style, { width: W1[i % W1.length] * 100 + '%', height: bh + 'px', borderRadius: bh + 'px', background: C.bar1 });
+  Object.assign(el.querySelector('.b2').style, { width: W2[i % W2.length] * 100 + '%', height: bh - 2 + 'px', borderRadius: bh + 'px', background: C.bar2 });
+  return el;
+}
+function label(text) {
+  const w = document.createElement('div'); w.className = 'wk';
+  w.style.width = C.width + 'px';
+  w.innerHTML = '<span></span><span></span><div class="rule"></div>';
+  const [a, b] = w.querySelectorAll('span');
+  a.textContent = text;
+  [a, b].forEach((s) => Object.assign(s.style, { fontSize: C.labelSize + 'px', fontWeight: 500, color: C.label }));
+  Object.assign(w.querySelector('.rule').style, { top: ruleY() + 'px', background: C.ruleColor });
+  return w;
+}
+
+function build() {
+  ['items', 'preNext'].forEach((k) => { C[k] = Math.round(C[k]); });
+  document.body.style.background = C.page;
+  document.getElementById('frame').style.background = C.page;
+  const win = document.getElementById('win'), strip = document.getElementById('strip');
+  const railPad = C.rail ? 28 : 0;
+  win.style.left = 40 - railPad + 'px';
+  win.style.width = C.width + railPad + 'px';
+  win.style.height = windowHeight() + 'px';
+  const edge = 36;
+  const m = C.fadeEdges ? `linear-gradient(to bottom, transparent 0, #000 ${edge}px, #000 calc(100% - ${edge}px), transparent 100%)` : 'none';
+  win.style.webkitMaskImage = m; win.style.maskImage = m;
+  win.style.paddingTop = '0';
+  strip.innerHTML = '';
+  strip.style.left = railPad + 'px'; strip.style.width = C.width + 'px';
+  const P = { labels: [], thisRows: [], nextRows: [], afterRows: [], stay: null, rail: null };
+  const L1 = label(C.thisLabel), L2 = label(C.nextLabel), L3 = label(C.afterLabel);
+  [[L1, 0], [L2, nextTop()], [L3, afterTop()]].forEach(([el, y]) => { el.dataset.y = y; strip.appendChild(el); P.labels.push(el); });
+  for (let i = 1; i < C.items; i += 1) {
+    const el = card(i); el.dataset.y = firstRow() + i * row(); strip.appendChild(el); P.thisRows.push(el);
+  }
+  for (let k = 0; k < C.preNext; k += 1) {
+    const el = card(C.items + k); el.dataset.y = nextTop() + firstRow() + k * row(); el.dataset.k = k; strip.appendChild(el); P.nextRows.push(el);
+  }
+  for (let k = 0; k < 2; k += 1) {
+    const el = card(C.items + C.preNext + k); el.dataset.y = afterTop() + firstRow() + k * row(); strip.appendChild(el); P.afterRows.push(el);
+  }
+  const stay = card(0); stay.style.zIndex = 3; strip.appendChild(stay); P.stay = stay;
+  if (C.rail) {
+    const r = document.createElement('div'); r.className = 'rail'; r.style.left = '10px'; r.style.background = C.railColor; win.appendChild(r);
+    P.ticks = [0, nextTop(), afterTop()].map((y) => {
+      const d = document.createElement('div'); d.className = 'tick'; d.dataset.y = y + Math.round(C.labelSize * 0.68) - 3; d.style.background = C.railColor; r.appendChild(d); return d;
+    });
+  }
+  parts = P;
+  plan = timeline();
+  now = Math.min(now, plan.total);
+  fit();
+  draw();
+}
+
+function draw() {
+  const T = plan, P = parts;
+  const ease = curve(...C.turnEase);
+  const intro = soft(span(now, 0, 300));
+  const out = 1 - soft(span(now, T.holdEnd, 450));
+  const s = ease(span(now, T.turnAt, C.turn));
+  const shift = -turnDistance() * s;
+  const alive = intro * out;
+  P.labels.forEach((el, i) => {
+    el.style.transform = `translateY(${+el.dataset.y + shift}px)`;
+    el.style.opacity = alive;
+    const [a, b] = el.querySelectorAll('span');
+    const swap = C.relabel ? soft(span(now, T.relabelAt, 450)) : 0;
+    const to = i === 1 ? C.thisLabel : (i === 2 ? C.nextLabel : null);
+    if (to && swap > 0) { b.textContent = to; a.style.opacity = 1 - swap; b.style.opacity = swap; a.style.transform = `translateY(${-6 * swap}px)`; b.style.transform = `translateY(${6 * (1 - swap)}px)`; }
+    else { b.textContent = ''; a.style.opacity = 1; a.style.transform = 'none'; b.style.opacity = 0; }
+  });
+  const fresh = new Set();
+  for (let i = 0; i < T.fresh; i += 1) fresh.add(P.thisRows.length - 1 - i);
+  P.thisRows.forEach((el, i) => {
+    const ck = el.querySelector('.ck');
+    let done = true, pop = 1;
+    if (fresh.has(i)) { const at = T.checks[P.thisRows.length - 1 - i]; done = now >= at; pop = 0.6 + 0.4 * soft(span(now, at, 300)); }
+    ck.style.background = done ? C.green : 'transparent'; ck.style.borderColor = done ? C.green : '#4a4a50';
+    ck.querySelector('svg').style.opacity = done ? 1 : 0; ck.style.transform = `scale(${done ? pop : 1})`;
+    const dim = fresh.has(i) ? 1 - 0.6 * soft(span(now, T.checks[P.thisRows.length - 1 - i] + 250, 400)) : 0.4;
+    el.style.transform = `translateY(${+el.dataset.y + shift}px)`;
+    el.style.opacity = alive * dim;
+  });
+  P.nextRows.forEach((el) => {
+    const k = +el.dataset.k;
+    const room = ease(span(now, T.turnAt + C.turn * 0.3 + k * C.ripple, C.turn * 0.55));
+    el.style.transform = `translateY(${+el.dataset.y + room * row() + shift}px)`;
+    el.style.opacity = alive;
+  });
+  P.afterRows.forEach((el) => { el.style.transform = `translateY(${+el.dataset.y + shift}px)`; el.style.opacity = alive; });
+  const st = P.stay;
+  const glow = C.anchor ? soft(span(now, T.anchorAt, 350)) * (1 - soft(span(now, T.turnEnd + 300, 700)) * 0.5) : 0;
+  st.style.transform = `translateY(${firstRow()}px) scale(${1 + 0.015 * glow})`;
+  st.style.opacity = alive;
+  st.style.borderColor = blend(C.border, C.carried, glow * 0.85);
+  st.style.boxShadow = glow > 0 ? `0 0 0 ${3 * glow}px ${alpha(C.carried, 0.12 * glow)}, 0 14px 34px rgba(0,0,0,${0.5 * glow})` : 'none';
+  if (P.ticks) P.ticks.forEach((d) => { d.style.transform = `translateY(${+d.dataset.y + shift}px)`; d.style.opacity = alive; });
+  document.getElementById('scrub').value = Math.round(now / T.total * 1000);
+  document.getElementById('clock').textContent = (now / 1000).toFixed(2) + ' s / ' + (T.total / 1000).toFixed(2) + ' s';
+  let name = T.steps[0][0]; T.steps.forEach(([n, at]) => { if (now >= at) name = n; });
+  document.getElementById('step').textContent = name;
+}
+
+function tick(ts) {
+  if (running) {
+    if (prevFrame !== null) {
+      now += (ts - prevFrame) * C.speed;
+      if (now >= plan.total) { if (C.loop) now %= plan.total; else { now = plan.total; setRun(false); } }
+    }
+    prevFrame = ts; draw();
+  }
+  requestAnimationFrame(tick);
+}
+function setRun(v) { running = v; prevFrame = null; document.getElementById('play').textContent = v ? 'Pause' : 'Play'; }
+function fit() {
+  const w = document.getElementById('view').clientWidth;
+  zoom = Math.min(1, w / 1440);
+  document.getElementById('frame').style.transform = `scale(${zoom})`;
+  const h = document.getElementById('holder'); h.style.width = 1440 * zoom + 'px'; h.style.height = 1040 * zoom + 'px';
+}
+addEventListener('resize', fit);
+
+const setters = [];
+function panel() {
+  const list = document.getElementById('list');
+  const n = document.createElement('div'); n.className = 'note';
+  n.textContent = 'The week moves; the open item holds still and ends up at the top of next week. Scrub to step through.';
+  list.appendChild(n);
+  PANEL.forEach(([title, ctl]) => {
+    const h = document.createElement('h3'); h.textContent = title; list.appendChild(h);
+    ctl.forEach(([k, name, a, b, step]) => {
+      const r = document.createElement('div'); r.className = 'c';
+      const lb = document.createElement('label'); lb.textContent = name; r.appendChild(lb);
+      if (a === 'hex') {
+        r.classList.add('hex');
+        const p = document.createElement('input'); p.type = 'color';
+        const x = document.createElement('input'); x.type = 'text'; x.spellcheck = false;
+        p.oninput = () => { C[k] = p.value; x.value = p.value; x.classList.remove('bad'); update(); };
+        x.oninput = () => { const v = hexOk(x.value); x.classList.toggle('bad', !v); if (v) { C[k] = v; p.value = v; update(); } };
+        x.onblur = () => { x.value = C[k]; x.classList.remove('bad'); };
+        r.append(p, x); setters.push(() => { p.value = C[k]; x.value = C[k]; });
+      } else if (a === 'bool') {
+        r.classList.add('two');
+        const cb = document.createElement('input'); cb.type = 'checkbox'; cb.style.justifySelf = 'start';
+        cb.onchange = () => { C[k] = cb.checked; update(); };
+        r.appendChild(cb); setters.push(() => { cb.checked = !!C[k]; });
+      } else if (a === 'text') {
+        r.classList.add('two');
+        const x = document.createElement('input'); x.type = 'text';
+        x.oninput = () => { C[k] = x.value; update(); };
+        r.appendChild(x); setters.push(() => { x.value = C[k]; });
+      } else if (a === 'ease') {
+        r.classList.add('two');
+        const sel = document.createElement('select');
+        Object.keys(EASES).forEach((e) => { const o = document.createElement('option'); o.textContent = e; sel.appendChild(o); });
+        sel.onchange = () => { C[k] = EASES[sel.value].slice(); update(); };
+        r.appendChild(sel);
+        setters.push(() => { const hit = Object.keys(EASES).find((e) => EASES[e].join() === C[k].join()); sel.value = hit || 'Smooth in out'; });
+      } else {
+        const rg = document.createElement('input'); rg.type = 'range'; rg.min = a; rg.max = b; rg.step = step;
+        const nb = document.createElement('input'); nb.type = 'number'; nb.step = step;
+        rg.oninput = () => { C[k] = +rg.value; nb.value = rg.value; update(); };
+        nb.oninput = () => { if (nb.value === '' || isNaN(+nb.value)) return; C[k] = +nb.value; rg.value = nb.value; update(); };
+        r.append(rg, nb); setters.push(() => { rg.value = C[k]; nb.value = C[k]; });
+      }
+      list.appendChild(r);
+    });
+  });
+}
+let saving = null;
+function update() { build(); clearTimeout(saving); saving = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(C)); } catch (e) {} }, 200); }
+function refresh() { setters.forEach((f) => f()); }
+function say(t) { const m = document.getElementById('msg'); m.textContent = t; m.style.opacity = 1; clearTimeout(say.h); say.h = setTimeout(() => { m.style.opacity = 0; }, 1500); }
+
+document.getElementById('play').onclick = () => { if (!running && now >= plan.total) now = 0; setRun(!running); };
+document.getElementById('again').onclick = () => { now = 0; setRun(true); };
+document.getElementById('scrub').oninput = (e) => { setRun(false); now = e.target.value / 1000 * plan.total; draw(); };
+addEventListener('keydown', (e) => {
+  if (/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) return;
+  if (e.code === 'Space') { e.preventDefault(); document.getElementById('play').click(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); setRun(false); now = Math.max(0, Math.min(plan.total, now + (e.key === 'ArrowRight' ? 1 : -1) * (e.shiftKey ? 500 : 50))); draw(); }
+});
+const dlg = document.getElementById('dlg'), dt = document.getElementById('dlgText');
+const asJSON = () => JSON.stringify(Object.assign({ playground: 'falling-behind-b', version: 1 }, C), null, 2);
+document.getElementById('copy').onclick = async () => {
+  try { await navigator.clipboard.writeText(asJSON()); say('Settings copied as JSON'); }
+  catch (e) { document.getElementById('dlgTitle').textContent = 'Copy these settings'; dt.value = asJSON(); document.getElementById('dlgLoad').style.display = 'none'; dlg.classList.add('open'); dt.select(); }
+};
+document.getElementById('paste').onclick = async () => {
+  document.getElementById('dlgTitle').textContent = 'Paste settings JSON'; document.getElementById('dlgLoad').style.display = '';
+  dt.value = ''; document.getElementById('dlgErr').textContent = ''; dlg.classList.add('open'); dt.focus();
+  try { const c = await navigator.clipboard.readText(); if (c.trim().startsWith('{')) dt.value = c; } catch (e) {}
+};
+document.getElementById('dlgClose').onclick = () => dlg.classList.remove('open');
+document.getElementById('dlgLoad').onclick = () => {
+  try {
+    const o = JSON.parse(dt.value); const next = Object.assign({}, BASE);
+    Object.keys(BASE).forEach((k) => { if (k in o) next[k] = o[k]; });
+    Object.keys(BASE).forEach((k) => { if (typeof BASE[k] === 'string' && BASE[k].startsWith('#')) next[k] = hexOk(next[k]) || BASE[k]; });
+    if (!Array.isArray(next.turnEase) || next.turnEase.length !== 4) next.turnEase = BASE.turnEase.slice();
+    C = next; refresh(); update(); dlg.classList.remove('open'); say('Settings loaded');
+  } catch (e) { document.getElementById('dlgErr').textContent = 'Could not read that: ' + e.message; }
+};
+document.getElementById('reset').onclick = () => { C = JSON.parse(JSON.stringify(BASE)); refresh(); update(); say('Back to the starting values'); };
+
+panel(); refresh(); build(); requestAnimationFrame(tick);
+</script>
+</body>
+</html>
