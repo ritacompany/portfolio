@@ -60,3 +60,25 @@ tile lights. Timeline filled in (his yes, 3 Nov): Discovery completed Jun 19 202
 (the +2d in his Action Hub); Networking Nov 15, pace Nov 13; Branding Feb 21 2027, pace Feb 19; Opportunity
 Jun 12 2027, pace Jun 10, so journey pace changes from Jun 2 to Jun 10 to stay consistent; progress 24 percent.
 Not reviewed by him. Recreated in HTML from his screen (Heebo and IBM Plex Mono, his colours), not his Figma.
+
+## Image concept, round 2 (4 Nov), from scratch
+His comments 4 Nov: every card shows its target and pace by default, no hover to reveal; date carries up is the
+coolest idea but a number floating up into the tile looks wrong, so the link between the last card and the
+journey tile needs its own answer; the image is his real screen exported from Figma in every detail, never a
+redrawn mockup. Round 1 cursor tour and green line stay ruled out.
+
+What it teaches: each Pathway has its own target and pace, they run in order, and the last one is the journey
+target. Reader time: about 3 seconds while scrolling, so the point lands in under 3 and holds still after.
+
+Directions, each with every card's dates visible:
+1. Sweep (recommended). A green accent passes through the date pairs from Discovery to Opportunity in order, then
+   the Journey target and pace tiles light in the same beat Opportunity's do. Nothing moves position; only
+   emphasis travels, like a progress fill. About 2 seconds, then rests on the lit pair.
+2. Linked highlight. One cursor hover on Opportunity: the card takes his Current card style and the Journey
+   target and pace tiles light at the same moment. The connection is a shared hover state, the way linked
+   charts work in dashboards. About 1.5 seconds.
+3. Still. No motion. Opportunity's dates and the two journey tiles in green, everything else in its normal
+   colour. The match reads as two same-colour dates.
+Dates: his frame's card dates are placeholders. Set the timeline above on a duplicate of his screen in Figma,
+never his original, then export. Open: his frame shows progress 45 percent and pace Jun 2; the timeline says 24
+percent and Jun 10.
