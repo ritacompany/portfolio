@@ -16,7 +16,7 @@ Known only to a reader of the Falling behind block (the map comes first):
 K9. The map block: how capacity, the week, the targets and the paces connect.
 
 Known from Falling behind (3 Nov, the bridge block before these two):
-K10. Unfinished Action Items move into the next week on their own, and the new week takes fewer new ones so it still fits the hours given.
+K10. Unfinished Action Items move into the next week on their own, and the new week takes fewer new ones so it still fits the hours given. This is called rollover (the title of that part of the Falling behind block).
 
 Known only when reading V2, because the buffer flow block (V1) comes right before start of week:
 K11. When every Action Item of the week is done early, a completion screen celebrates it and offers next week's Action Items to pull forward; its words change with where the person stands against the target.
