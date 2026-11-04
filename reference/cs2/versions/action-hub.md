@@ -68,3 +68,7 @@ Side text, paragraph 2: Each week opens with a short headline and a paragraph th
 Side text, paragraph 3: Action Items are finished in order here too, so only the Active one at the top can be checked off. The label says Active instead of In progress because the product only knows which item is available to work on, not whether the user is actually working on it.
 
 Humanizer rules applied. Not reader checked.
+
+## His edit to round 5 (4 Nov)
+
+He keeps paragraphs 1 and 2, moves the first sentence of paragraph 3 (Action Items are finished in order here too, so only the Active one at the top can be checked off.) onto the end of paragraph 2 and deletes the rest of paragraph 3. He is making the edit in Figma himself. Headline stays.
