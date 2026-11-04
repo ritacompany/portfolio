@@ -1,0 +1,6 @@
+=== Pathway page
+[eyebrow or sub-heading] Pathway
+[headline] Each Pathway has its own page, with all of its Focus Areas and Action Items laid out in the order someone works through them.
+This page was designed to give the user a closer look at the pathway they're on, including which focus area they're in and what's coming up next. They won't need it every week, but it's there whenever they want to look ahead.
+[eyebrow or sub-heading] Focus areas
+Each pathway is split into focus areas, like user testing or visual design. They run in order and give the user a sense of what that pathway will cover.

@@ -1,0 +1,8 @@
+VERSION V1: Pathway page
+  (label) Pathway
+V1.S1 Each Pathway has its own page, with all of its Focus Areas and Action Items laid out in the order someone works through them.
+V1.S2 This page was designed to give the user a closer look at the pathway they're on, including which focus area they're in and what's coming up next.
+V1.S3 They won't need it every week, but it's there whenever they want to look ahead.
+  (label) Focus areas
+V1.S4 Each pathway is split into focus areas, like user testing or visual design.
+V1.S5 They run in order and give the user a sense of what that pathway will cover.

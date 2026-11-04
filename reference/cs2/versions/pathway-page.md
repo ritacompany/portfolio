@@ -118,4 +118,4 @@ Focus areas (label, his block 4840:21143)
 Text: Each pathway is split into focus areas, like user testing or visual design. They run in order and give the user a sense of what that pathway will cover.
 Source for the definition: reasoning/pathways-and-hierarchy.md section 2 (31 Mar page brief: focus areas give an idea of the kinds of things a pathway focuses on; 22 Apr: they are linear). Examples are Focus Area names on his Pathway page screen.
 
-Checks: humanizer run as the skill on both. Reader check not run. Not reviewed by him.
+Checks: humanizer run as the skill on both. Reader check PASS (runs/2026-11-04-pathway-r5); single run notes, below the two needed: the Focus Area line about order repeats the headline, and the Pathway text repeats the headline. Not reviewed by him.
