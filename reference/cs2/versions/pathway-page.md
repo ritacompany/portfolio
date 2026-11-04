@@ -50,3 +50,22 @@ last line, The dates at the top are this Pathway's own target and pace: FAIL, 3/
 clean, decision and reason found 3/3. Fix: that line cut, since the reader has already seen per Pathway dates
 and the screen shows them; point 5 is carried by the image. Not re-run after the cut (a deletion only; the
 remaining sentences are the ones that passed).
+
+## Round 2 (4 Nov), his note: make it super simple
+His note beside the round 1 copy: this block only shows that a Pathway is a different level and what its page
+looks like. People do no work at this level; it is a page to look at. No reasoning or backing needed. The
+reasoning in round 1 (the second to do list trade, finishing in order) is dropped from this block.
+
+Eyebrow: Pathway
+Headline: One level down, each Pathway has a page of its own, with the Focus Areas and Action Items inside it and what comes next.
+Text:
+Nobody works on this page. It shows what's finished, what's current and what's still ahead. The week's work happens on the home screen.
+
+Sources: none (no claim needs one)
+Image: the Pathway page, already in his frame.
+
+Fit (estimate): headline about 3 lines at 40px width 887; column 23 words, about 5 to 6 lines at 193px, inside
+his 143px filler. The headline echoes the Growth Journey headline (a page of its own) to read as the next step
+down; that headline is not approved yet, so if it changes this one follows.
+
+Checks: no-ai-slop run as the skill. Reader check not run. Not reviewed by him.
