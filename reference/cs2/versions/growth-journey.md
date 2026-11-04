@@ -107,3 +107,20 @@ next dates light and so on; Opportunity's dates and the journey target and pace 
 hold 2.6 s. Discovery shows completed Jun 19 2026 (the label his file already had). Journey pace set to Jun 10
 and progress to 24 percent to match the timeline. Review log: docs/motion/growth-journey/review_log.md (two
 rounds; round 3, 390 render and double render owed). Not yet seen by him.
+
+## Round 2 comments (4 Nov) and concept reset
+His comments: the fill looks off; on dashed bars the dots should turn green one by one and then the solid line
+flashes in, without the motion stopping; the end makes no connection between Opportunity and the journey target;
+too much to read (target and pace under every card); maybe the earlier cards just say completed with a date.
+Cause: the image tried to teach three things in about 3 seconds and doubled every date with pace. Reset to one
+point: the journey's finish date is the last Pathway's target. Pace stays out of the image (the reader already
+met target and pace).
+Directions:
+A. Late in the journey (recommended, his idea refined). Same screen in a later state: Discovery to Branding
+   complete, each with its completed date in order; Opportunity current with its target. The last bar's dots turn
+   green one by one, the solid line flashes in, and Opportunity's target and the Journey target tile light on the
+   same beat. One comparison to read. Needs: card state swap on the copies and a progress figure (open).
+B. Target only. Today's state, pace hidden under every card, five targets in order; they light left to right and
+   the last lights with the journey tile. Still five dates to read.
+C. Callout still. No motion. The real screen, with Opportunity's target and the Journey target tile each shown
+   enlarged beside the screen as two crops of the same UI, same date in both.
