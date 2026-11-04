@@ -16,6 +16,7 @@ editor is organised by what things are, with left and right panels, not generic 
   EXPECT: REGIONS_GROUNDED
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio/.claude/worktrees/jovial-wiles-6aeace/docs/motion/cs2-falling-behind-editor; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=bf848ed9e1a321686a270f9eb161691e243a005a06e99875c81cb92f3ec34f31; output-bytes=19
 - [x] G4: structure shown to Chadwick in chat before any build (manual)
+  EVIDENCE: approved by him 5 Nov, recorded in reference/cs2/HANDOFF.md (Yes, build it)
 
 ## Build to the approved structure (5 Nov)
 
@@ -26,5 +27,8 @@ editor is organised by what things are, with left and right panels, not generic 
 - [x] G6: every scene list row selects its object, the canvas marks it and the right panel shows its own properties
   EVIDENCE: all 12 rows checked; canvas clicks on labels, items, tag, background and outside the frame select the same rows
 - [x] G7: timeline bars write their setting (checkAt, tagAt, liftAt, moveAt and moveDur by body and both edges, arriveDur by its end) and undo restores them
-- [x] G8: both panels hide, show and resize while the frame stays centred and inside the canvas (dx 0, dy 0 in every state)
+  EVIDENCE: built in browser 5 Nov; synthetic drags gave checkAt 0.9 to 1.4, tagAt 1.7 to 2, liftAt 2.5 to 2.3, moveAt 2.7 to 2.9, right edge moveDur 1.05 to 1.45, left edge moveAt 2.7 dur 1.65, arriveDur 0.7 to 1, arrival body did not move; undo returned all six to defaults; a real mouse drag moved moveAt 2.7 to 3.2
+- [x] G8: both panels hide, show and resize while the frame stays centred and inside the canvas
+  EVIDENCE: built in browser at 1440 by 900, after the grid row fix; both open, left hidden, both hidden, right hidden, both shown, each edge dragged and reset: frame centre offset 0 px both axes and frame inside the stage in every state
 - [x] G9: no console errors from the page itself
+  EVIDENCE: fresh tab, every row clicked, Motion tab opened, arrival preview played, fbCoverage run: read_console_messages returned No console logs
