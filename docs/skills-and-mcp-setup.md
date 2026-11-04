@@ -88,6 +88,21 @@ Measured in this session (1M context window):
 
 Also worth a look: the design plugin's 6 connections that were never signed in (Asana, Atlassian, Intercom, Linear, Notion, Slack) can go if you do not use them. Notion is the largest connector; switch it off in sessions that do not touch Notion.
 
+### Skills that cannot work as set up today
+
+Checked 4 Nov 2026 by reading every skill for what it needs outside itself, then checking whether that thing is on this Mac or connected.
+
+| Skill | Where it lives | Needs | Status | Proposal |
+|---|---|---|---|---|
+| sleek-design-mobile-apps | account | A Sleek API key | No key set. Cannot work | Switch off |
+| agent-browser | account | The agent-browser program | Not installed. Cannot work, and the built-in browser does the same job | Switch off |
+| morning | account (Anthropic) | Calendar, email and chat connectors | None connected. Cannot work | Switch off |
+| google-workspace | account (Anthropic) | Google Drive, Docs or Sheets connectors | None connected. Cannot work | Switch off |
+| framer, framer-code-components | personal | A one time Framer setup and a Framer site | Setup never run, no Framer site in any repo | Move to `~/.claude/skills-archive/` |
+| watch | personal | yt-dlp and ffmpeg, plus an OpenAI key for videos with no captions | yt-dlp and ffmpeg are installed, no key set. Works on captioned videos only | Keep |
+
+Everything else that mentions Figma, Notion or Slack mentions it as advice or an optional extra, and works without it. obsidian-vault works: the vault is at `~/Documents/Obsidian Vault`.
+
 ### Tools for later
 
 - `/doctor` in a terminal session shows the skill list's cost and its biggest contributors. `/skill-doctor` finds skills you never use.
