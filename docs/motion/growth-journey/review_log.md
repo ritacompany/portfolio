@@ -15,3 +15,14 @@ Phone readability is held by his UI itself: date text is 6px in a 962px screen, 
 whatever the motion does. Raising it needs a closer crop of the screen, his call. Round 3 and the 390 render are
 still owed, and the determinism double render.
 Reduced motion still: output/motion/growth-journey-still.png (t 3.0).
+
+## Direction A, round 1 (late in the journey, 5.0 s)
+His round 2 comments reset the concept to one point (versions/growth-journey.md). Scores: motion 7, composition
+8, phone readability 7, pacing 8, loop seam 9 (PSNR 56 dB), Figma fidelity 7.
+Worst three:
+1. The dot and line overlay sat about 2 units low and the dots did not line up with his dashes. Fixed in round 2
+   by measuring the dashes and the line from the export pixels.
+2. The dots stepped at 0.18 s and the line waited, so it read as a pause. Fixed: 0.14 s steps, the line lands
+   0.02 s after the last dot and the match lights 0.08 s after that.
+3. Readability: one comparison now (Jun 12 2027 in the tile and on Opportunity). Phone size still small because
+   the UI text is small; a closer crop stays his call.

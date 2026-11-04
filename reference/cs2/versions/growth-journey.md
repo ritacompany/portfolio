@@ -124,3 +124,8 @@ B. Target only. Today's state, pace hidden under every card, five targets in ord
    the last lights with the journey tile. Still five dates to read.
 C. Callout still. No motion. The real screen, with Opportunity's target and the Journey target tile each shown
    enlarged beside the screen as two crops of the same UI, same date in both.
+
+## His correction (4 Nov): real UI only at the end
+While the animation is being worked out, a mockup is fine. His real Figma UI comes in once the animation is
+agreed, as the final step. No Figma edits for this image until then. My two export copies on page VC
+(4828:15927, 4842:16572) stay as they are until he says what to do with them.

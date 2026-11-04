@@ -11,7 +11,7 @@
   .screen { position: relative; width: min(100vw, calc(100vh * 961.997 / 541.123)); aspect-ratio: 961.997 / 541.123; }
   .screen img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .lit { opacity: 0; }
-  .bar { position: absolute; background: #39f145; transform-origin: 0 50%; transform: scaleX(0); }
+  .seg { position: absolute; background: #097e12; opacity: 0; }
 </style>
 </head>
 <body>
@@ -28,43 +28,37 @@
   const W = 961.997, H = 541.123;
   const pct = (v, of) => (v / of * 100) + "%";
   const screen = document.getElementById("screen");
-  // Bars from the Figma copy, frame units. Stroke 2.505, centred on y 335.42.
-  const barsX = [281.58, 421.63, 561.66, 701.7], BW = 25.8, BY = 335.42, BH = 3.4;
-  const bars = barsX.map((x) => {
-    const b = document.createElement("div"); b.className = "bar";
-    Object.assign(b.style, { left: pct(x, W), top: pct(BY - BH / 2, H), width: pct(BW, W), height: pct(BH, H) });
-    screen.appendChild(b); return b;
-  });
-  // Lit layers cut from lit.png: the two journey tiles, and each Pathway's date pair.
+  const box = (x, y, w, h, cls) => {
+    const el = document.createElement("div"); el.className = cls;
+    Object.assign(el.style, { left: pct(x, W), top: pct(y, H), width: pct(w, W), height: pct(h, H) });
+    screen.appendChild(el); return el;
+  };
+  // Late journey state: bars 1 to 3 are solid in the file, bar 4 (Branding to Opportunity) is dashed.
+  // Bar 4 measured from the export: line from y 332.33 to 334.67, dashes at the x spans below.
+  const BX = 701.6, BT = 332.2, BL = 25.9, BH = 2.6;
+  const DOTS = [[701.6, 703.8], [708.2, 712.4], [716.9, 721.1], [725.2, 727.5]];
+  const dots = DOTS.map(([a, b]) => box(a, BT, b - a, BH, "seg"));
+  const line = box(BX, BT, BL, BH, "seg");
+  // Lit layers cut from lit.png: the Journey target tile and Opportunity's target date.
   const inset = (x, y, w, h) => `inset(${pct(y, H)} ${pct(W - x - w, W)} ${pct(H - y - h, H)} ${pct(x, W)})`;
   const layer = (clip) => {
     const im = document.createElement("img"); im.src = "lit.png"; im.alt = ""; im.className = "lit";
     im.style.clipPath = clip; screen.appendChild(im); return im;
   };
-  const litTiles = layer(inset(495, 47, 237.2, 75.2));
-  const cardsX = [167.34, 307.38, 447.42, 587.47, 727.51];
-  const litDates = cardsX.map((x) => layer(inset(x, 429, 114.24, 16)));
+  const litTile = layer(inset(495, 47, 114, 75.2));
+  const litDate = layer(inset(755, 428.5, 29, 15.5));
 
-  // Order: Discovery's dates light, the bar after it fills, the next dates light, and so on.
-  // Opportunity's dates and the journey tiles light on the same beat and hold.
-  const T0 = 0.5, STEP = 0.38, LAST = T0 + 4 * STEP, OFF = 4.6, DUR_ = 5.6;
-  const on = (t, at) => (t >= at ? clamp(spring(t - at, TYPE.k, TYPE.d)) : 0);
+  // The dots turn green one after another, the solid line flashes in, and on that beat
+  // Opportunity's target and the Journey target light together. Nothing pauses between steps.
+  const DOT0 = 0.6, DOTSTEP = 0.14, LINE = DOT0 + 4 * DOTSTEP + 0.02, LIT = LINE + 0.08, OFF = 3.9, DUR = 5.0;
+  const on = (t, at, p = TYPE) => (t >= at ? clamp(spring(t - at, p.k, p.d)) : 0);
   window.seek = (t) => {
-    t = ((t % DUR_) + DUR_) % DUR_;
-    const off = t >= OFF ? clamp(spring(t - OFF, TYPE.k, TYPE.d)) : 0;
-    bars.forEach((b, i) => {
-      const at = T0 + i * STEP + 0.1;
-      const s = t >= at ? spring(t - at, UI.k, UI.d) : 0;
-      b.style.transform = `scaleX(${clamp(s)})`;
-      b.style.opacity = String(1 - off);
-    });
-    litDates.forEach((im, i) => {
-      const at = T0 + i * STEP;
-      // Earlier pairs hand the accent on as the next one lights; the last one keeps it.
-      const v = i < 4 ? on(t, at) * (1 - on(t, at + STEP)) : on(t, at) * (1 - off);
-      im.style.opacity = String(v);
-    });
-    litTiles.style.opacity = String(on(t, LAST) * (1 - off));
+    t = ((t % DUR) + DUR) % DUR;
+    const keep = 1 - on(t, OFF);
+    dots.forEach((d, j) => { d.style.opacity = String(on(t, DOT0 + j * DOTSTEP) * keep); });
+    line.style.opacity = String(on(t, LINE, UI) * keep);
+    const v = String(on(t, LIT) * keep);
+    litTile.style.opacity = v; litDate.style.opacity = v;
   };
 
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches || location.search.includes("still");
