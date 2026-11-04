@@ -38,6 +38,7 @@ for (const [k, src] of [['frame', 'frameSource'], ['flows', 'flowsSource']]) {
   const f = at(cfg[k]);
   if (!fs.existsSync(f)) { console.log(`missing ${cfg[k]}: read it from ${cfg[src]}`); console.log('TRUTH_FAIL'); process.exit(1); }
   const days = (Date.now() - fs.statSync(f).mtimeMs) / 864e5;
+  if (cfg.fixed?.includes(k)) continue; // a saved snapshot never re-read (his call, 3 Nov: no Mondai file reads)
   if (days > cfg.maxAgeDays) fails.push(`0 sources: ${cfg[k]} is ${Math.floor(days)} days old; read it again from ${cfg[src]}`);
 }
 

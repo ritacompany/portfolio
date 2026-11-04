@@ -30,7 +30,7 @@ Check: grep -nE "MVP folder|MVP file|5RO0m4" reference/cs2/WORKING_LOOP.md refer
 Result on bad output: FAIL, WORKING_LOOP.md:53 "desktop MVP folder in Figma" and HANDOFF.md:28 "The MVP file copy is gone." (the two other HANDOFF pointers were removed earlier the same turn, commit 78d9ae6).
 
 ## Change
-Files changed: reference/cs2/WORKING_LOOP.md, reference/cs2/HANDOFF.md
+Files changed: reference/cs2/WORKING_LOOP.md, reference/cs2/HANDOFF.md; then, on his yes, reference/cs2/CS2_PROCESS.md line 202, reference/cs2/truth.json (flowsSource and a fixed list) and reference/check-truth.mjs (snapshots in fixed skip the age check). Before, check-truth told sessions: product-flows.md is 12 days old; read it again from Figma 5RO0m4bYYrTvbiaOgaU3tI (figma-mondai connection). After, only the frame snapshot is age checked, read from his portfolio frame.
 Instruction lines: +0 / -0 (one phrase in WORKING_LOOP reworded to "from how the screens in his portfolio frame actually work"; HANDOFF status lines reworded)
 Net growth reason: n/a
 
@@ -43,4 +43,4 @@ Second case: the Action Item page block, same run: IarvWaqjIwrZ2afQmMxKm6, frame
 Enforcement test: n/a
 
 ## Report
-Unverified: none. Left for him: CS2_PROCESS.md line 202 still names the MVP file as product truth for truth.json snapshots; his call whether that goes too.
+Unverified: none. The product flow map is now a saved snapshot that never refreshes; if the product changes, it goes stale without a warning.
