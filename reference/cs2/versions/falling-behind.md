@@ -34,7 +34,7 @@ as a noun, since Start of week's Rollover and Recalibration captions use it that
 Eyebrow: Falling behind
 Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
 Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open moves into the next week on its own. This is rollover, and the week it lands in takes fewer new Action Items so it still fits the hours they gave.
-Image: none in the copy. Animation beside it, his idea 3 Nov, built in the preview: This week and Next week rows of skeleton mini Action Items; three check off and dim, the fourth lifts and slides into next week and keeps a lighter border, then three new ones fill the row so the week is the same size. White and gray only. Loops; reduced motion shows the end state.
+Image: none in the copy. Animation beside it, his idea 3 Nov, built in the preview: This week and Next week stacks of long skeleton mini Action Items, one on top of another like the Action Hub list; three check off in Haven green (#78b765) and dim, the fourth lifts and slides into next week and keeps a lighter border, then three new ones fill the row so the week is the same size. White and gray only. Loops; reduced motion shows the end state.
 Layout: headline left at x 40, text column at x 1098 width 302, sources at the bottom.
 Sources: Soman and Cheema 2004; Mondai design record
 

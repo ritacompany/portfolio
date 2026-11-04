@@ -6,25 +6,25 @@
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500&display=swap">
 <style>
   body { margin: 0; background: #0b0b0c; font-family: Satoshi, system-ui, sans-serif; }
-  .block { position: relative; width: 1440px; height: 760px; margin: 0 auto; background: #0b0b0c; }
+  .block { position: relative; width: 1440px; height: 1040px; margin: 0 auto; background: #0b0b0c; }
   .abs { position: absolute; margin: 0; }
   .eb { left: 40px; top: 64px; width: 660px; font-size: 20px; font-weight: 500; line-height: 1.32; letter-spacing: -0.02em; color: #aeaeb4; }
   .hl { left: 40px; top: 118px; width: 812px; font-size: 40px; font-weight: 500; line-height: 1.15; letter-spacing: -0.04em; color: #f2f1f8; }
   .body { left: 1098px; top: 330px; width: 302px; font-size: 16px; line-height: 1.5; color: #aeaeb4; }
-  .src { left: 40px; top: 700px; font-size: 14px; color: #6b6b70; }
+  .src { left: 40px; top: 980px; font-size: 14px; color: #6b6b70; }
 
-  .stage { left: 40px; top: 330px; width: 968px; height: 320px; }
+  .stage { left: 40px; top: 330px; width: 968px; height: 620px; }
   .zone { position: absolute; left: 0; font-size: 14px; font-weight: 500; color: #6b6b70; }
   .line { position: absolute; left: 0; width: 968px; height: 1px; background: #1f1f22; }
-  .card { position: absolute; width: 230px; height: 96px; box-sizing: border-box; padding: 20px; border-radius: 12px;
-          background: #141416; border: 1px solid #26262a; }
-  .check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #4a4a50; box-sizing: border-box;
+  .card { position: absolute; width: 968px; height: 56px; box-sizing: border-box; padding: 0 20px; border-radius: 12px;
+          background: #141416; border: 1px solid #26262a; display: flex; align-items: center; gap: 16px; }
+  .check { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #4a4a50; box-sizing: border-box;
            display: flex; align-items: center; justify-content: center; }
   .check svg { width: 10px; height: 10px; opacity: 0; }
-  .card.done .check { background: #f2f1f8; border-color: #f2f1f8; }
+  .card.done .check { background: #78b765; border-color: #78b765; }
   .card.done .check svg { opacity: 1; }
-  .bar { height: 10px; border-radius: 5px; background: #2a2a2e; margin-top: 14px; }
-  .bar.s { height: 8px; margin-top: 10px; background: #202023; }
+  .bar { height: 10px; border-radius: 5px; background: #2a2a2e; }
+  .bar.s { height: 8px; margin-left: auto; background: #202023; }
 </style>
 </head>
 <body>
@@ -35,8 +35,8 @@
   <div class="abs stage" id="stage" aria-hidden="true">
     <div class="zone" style="top:0">This week</div>
     <div class="line" style="top:26px"></div>
-    <div class="zone" style="top:176px">Next week</div>
-    <div class="line" style="top:202px"></div>
+    <div class="zone" style="top:324px">Next week</div>
+    <div class="line" style="top:350px"></div>
   </div>
 
   <p class="abs body">A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open moves into the next week on its own. This is rollover, and the week it lands in takes fewer new Action Items so it still fits the hours they gave.</p>
@@ -44,13 +44,13 @@
 </div>
 <script>
 const stage = document.getElementById('stage');
-const X = i => i * 246, ROW1 = 44, ROW2 = 220;
+const Y1 = i => 44 + i * 64, Y2 = i => 368 + i * 64;
 const tick = '<svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8" fill="none" stroke="#0b0b0c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const widths = [[62, 40], [74, 48], [56, 36], [68, 44], [60, 42], [72, 38], [58, 46]];
-function card(i, x, y, w) {
+const widths = [[34, 9], [46, 7], [28, 10], [40, 8], [31, 9], [44, 7], [37, 10]];
+function card(i, y, w) {
   const c = document.createElement('div');
   c.className = 'card';
-  c.style.left = x + 'px'; c.style.top = y + 'px';
+  c.style.left = '0px'; c.style.top = y + 'px';
   c.innerHTML = `<div class="check">${tick}</div><div class="bar" style="width:${w[0]}%"></div><div class="bar s" style="width:${w[1]}%"></div>`;
   stage.appendChild(c); return c;
 }
@@ -61,11 +61,11 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 async function run() {
   stage.querySelectorAll('.card').forEach(c => c.remove());
-  const week = [0, 1, 2, 3].map(i => card(i, X(i), ROW1, widths[i]));
+  const week = [0, 1, 2, 3].map(i => card(i, Y1(i), widths[i]));
   if (reduce) {
     week.slice(0, 3).forEach(c => { c.classList.add('done'); c.style.opacity = .4; });
-    week[3].style.top = ROW2 + 'px'; week[3].style.left = '0px';
-    [1, 2, 3].forEach(i => card(i, X(i), ROW2, widths[3 + i]));
+    week[3].style.top = Y2(0) + 'px'; week[3].style.borderColor = '#5a5a60';
+    [1, 2, 3].forEach(i => card(i, Y2(i), widths[3 + i]));
     return;
   }
   await Promise.all(week.map((c, i) => anim(c, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 500, delay: i * 80 })));
@@ -79,11 +79,11 @@ async function run() {
   }
   await wait(700);
   const open = week[3];
-  await anim(open, [{ transform: 'none' }, { transform: 'translateY(-6px) scale(1.03)', boxShadow: '0 12px 28px rgba(0,0,0,.5)', borderColor: '#4a4a50' }], { duration: 320 });
-  await anim(open, [{ transform: 'translateY(-6px) scale(1.03)', boxShadow: '0 12px 28px rgba(0,0,0,.5)', borderColor: '#4a4a50' },
-                    { transform: `translate(${-X(3)}px, ${ROW2 - ROW1}px) scale(1)`, boxShadow: '0 0 0 rgba(0,0,0,0)', borderColor: '#5a5a60' }], { duration: 900 });
+  await anim(open, [{ transform: 'none' }, { transform: 'translateY(-6px) scale(1.01)', boxShadow: '0 12px 28px rgba(0,0,0,.5)', borderColor: '#4a4a50' }], { duration: 320 });
+  await anim(open, [{ transform: 'translateY(-6px) scale(1.01)', boxShadow: '0 12px 28px rgba(0,0,0,.5)', borderColor: '#4a4a50' },
+                    { transform: `translateY(${Y2(0) - Y1(3)}px) scale(1)`, boxShadow: '0 0 0 rgba(0,0,0,0)', borderColor: '#5a5a60' }], { duration: 900 });
   await wait(250);
-  const fresh = [1, 2, 3].map(i => card(i, X(i), ROW2, widths[3 + i]));
+  const fresh = [1, 2, 3].map(i => card(i, Y2(i), widths[3 + i]));
   fresh.forEach(c => c.style.opacity = 0);
   await Promise.all(fresh.map((c, i) => anim(c, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 500, delay: i * 90 })));
   await wait(2600);
