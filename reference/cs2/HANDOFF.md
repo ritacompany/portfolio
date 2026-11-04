@@ -21,6 +21,8 @@ Loop step: 3
 
 ## Where it stopped
 
+Growth Journey image paused by him 4 Nov after the direction A mockup (he called it pointless for now). Do not resume it unless he raises it. Clip and page: site/motion-lab/growth-journey, log in docs/motion/growth-journey.
+
 Growth Journey image, his correction 4 Nov: he picked direction A (late in the journey: four cards complete, Opportunity current, the last dashed bar's dots turn green then the solid line flashes in, and Opportunity's target and the Journey target light together). Work it out as a mockup; his real Figma UI comes in only once the animation is agreed. No Figma edits for this image until he says so. Two export copies sit on page VC (4828:15927, 4842:16572), left for his call.
 
 Growth Journey image, 4 Nov: he picked direction a, fill along the connector (every card shows its dates by default, no stagger, no number travelling; options and references in versions/growth-journey.md). Round 2 build in site/motion-lab/growth-journey/index.html on 3x Figma exports of his screen (copies 4828:15927 and 4828:16185 on page VC, his original untouched; PNGs not in git, copy in the main checkout). Dates light in order along the connector and Opportunity's dates light with the journey tiles. Two review rounds logged; round 3, the 390 render and the double render are owed, then he reviews. After approval: trim the column copy to fit, no-ai-slop as the skill, fit measure, reader check. Pathway page block comes next.
