@@ -14,9 +14,9 @@ Side text, paragraph 2: Just like on the Pathway page, Action Items are finished
 
 Rail paragraph (built on his line): The panel on the right side of the screen only tracks the Pathway the user is in right now. A Growth Journey can take years, and keeping the user focused on their current Pathway target rather than a longer term goal keeps them more motivated. The journey target and pace stay on the Growth Journey page, so the user only sees one target and one pace here and there's no confusion over which one they're working toward.
 
-Note, Pathway target: The date the user should finish this Pathway by. It's based on the hours they told Mondai they can give each week, so it stays the same through a normal week and only changes when those hours change.
-Note, Pathway pace: When the user is actually on track to finish, based on their progress so far. It only updates once a week, so the user isn't watching it shift every time they finish something. In the first week it's the same as the target, since there's no progress to measure yet.
-Note, Ahead of target: The gap between the target and the pace, in days. When the pace is earlier than the target the user is ahead, and when it's later they're behind. This is the only place on the screen that shows it.
+Note, Pathway target: Set from the hours the user told Mondai they can give each week, so it stays the same through a normal week and only changes when those hours change.
+Note, Pathway pace: It only updates once a week, so the user isn't watching it shift every time they finish something. In the first week it's the same as the target, since there's no progress to measure yet.
+Note, Days ahead or behind: The gap between the target and the pace, in days, shown under them as ahead of target or behind target. When the pace is earlier than the target the user is ahead, and when it's later they're behind. This is the only place on the screen that shows it.
 
 Sources line: Bandura and Schunk 1981; Latham and Seijts 1999
 
@@ -32,4 +32,6 @@ Checks: no-ai-slop run as the skill on round 1. Reader check round 1 (runs/2026-
 new known-action-hub.md): FAIL. Flags: Linear line restated the competitive analysis; Active, side panel and
 Ahead of target undefined; his two research sentences repeated each other and the competitive analysis; the
 journey numbers sentence read as process. The text above is round 2 with those fixed. Round 2 reader check
-(runs/2026-11-04-action-hub-voice-r2) not run yet: the cost guard allows three reader agents per turn.
+(runs/2026-11-04-action-hub-voice-r2): FAIL on the notes only. The target and pace definitions restated the
+competitive analysis and the Ahead of target label read as an undefined term. The notes above are round 3: the
+definitions cut, the third label renamed. Round 3 reader check (runs/2026-11-04-action-hub-voice-r3) not run yet.
