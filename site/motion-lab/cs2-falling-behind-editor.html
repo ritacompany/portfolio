@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Falling behind editor</title>
+<style id="fonts"></style>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: #101012; color: #d9d9de; font: 12px/1.4 system-ui, -apple-system, sans-serif; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 6px 340px; }
+  body.collapsed { grid-template-columns: 1fr 0 0; }
+  button, select, input { font: inherit; color: inherit; }
+  button { background: #1d1d21; border: 1px solid #303036; border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+  button:hover { background: #26262b; }
+  button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid #09c916; outline-offset: 1px; }
+  button.primary { background: #09c916; border-color: #09c916; color: #08120a; font-weight: 600; }
+  button.icon { padding: 4px 8px; }
+
+  /* Preview: the frame stays centred in whatever space is left, at any window size. */
+  .preview, .side, .handle { height: 100vh; }
+  .preview { min-width: 0; display: flex; flex-direction: column; }
+  .stagewrap { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  #frame { flex: none; }
+  #frame { box-shadow: 0 0 0 1px #2a2a30; }
+  #frame [data-key] { cursor: grab; }
+  #frame [data-key]:hover { outline: 1px dashed #09c91699; outline-offset: 3px; }
+  #frame [data-key].sel { outline: 1px solid #09c916; outline-offset: 3px; }
+  .hintline { position: absolute; left: 16px; top: 12px; color: #7d7d86; }
+  .open-panel { position: absolute; right: 12px; top: 10px; display: none; }
+  body.collapsed .open-panel { display: block; }
+
+  .transport { border-top: 1px solid #222227; padding: 10px 16px 12px; display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+  .transport .left { display: flex; gap: 6px; align-items: center; }
+  .scrub { position: relative; }
+  .scrub input { width: 100%; margin: 0; accent-color: #09c916; }
+  .marks { position: relative; height: 16px; }
+  .marks button { position: absolute; top: 0; transform: translateX(-50%); width: 14px; height: 14px; padding: 0; background: none; border: 0; }
+  .marks button::after { content: ""; position: absolute; left: 6px; top: 1px; width: 2px; height: 9px; border-radius: 1px; background: #55555e; }
+  .marks button:hover::after, .marks button.now::after { background: #09c916; }
+  .phase { color: #09c916; font-weight: 600; min-width: 72px; }
+  .transport select { background: #1b1b1f; border: 1px solid #2c2c32; border-radius: 5px; padding: 3px 6px; }
+  .time { font-variant-numeric: tabular-nums; color: #9a9aa3; min-width: 92px; text-align: right; }
+
+  .handle { cursor: col-resize; background: #18181b; border-left: 1px solid #222227; }
+  .handle:hover, .handle.drag { background: #09c91633; }
+  body.collapsed .handle { display: none; }
+
+  /* Sidebar */
+  .side { min-width: 0; display: flex; flex-direction: column; background: #141417; border-left: 1px solid #222227; }
+  body.collapsed .side { display: none; }
+  .side header { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid #222227; }
+  .side header strong { font-size: 13px; color: #f1f1f4; }
+  .side header .sp { flex: 1; }
+  .body { flex: 1; overflow: auto; }
+  details { border-bottom: 1px solid #1f1f24; }
+  summary { list-style: none; cursor: pointer; padding: 10px 12px; display: flex; align-items: center; gap: 8px; color: #f1f1f4; font-weight: 600; }
+  summary::before { content: "\25B8"; color: #6f6f78; font-size: 10px; transition: transform .15s; }
+  details[open] > summary::before { transform: rotate(90deg); }
+  summary .reset { margin-left: auto; font-weight: 400; font-size: 11px; padding: 2px 7px; color: #9a9aa3; }
+  .row { display: grid; grid-template-columns: 118px 1fr 56px; gap: 8px; align-items: center; padding: 4px 12px; }
+  .row label { color: #a9a9b2; }
+  .row input[type=range] { width: 100%; margin: 0; accent-color: #09c916; }
+  .row input[type=number], .row input[type=text], .row select { width: 100%; box-sizing: border-box; background: #1b1b1f; border: 1px solid #2c2c32; border-radius: 5px; padding: 3px 6px; }
+  .row.wide { grid-template-columns: 118px 1fr; }
+  .row.color { grid-template-columns: 118px 28px 1fr; }
+  .row input[type=color] { width: 28px; height: 24px; padding: 0; border: 1px solid #2c2c32; border-radius: 5px; background: none; }
+  .row input[type=checkbox] { justify-self: start; accent-color: #09c916; }
+  .note { padding: 2px 12px 8px; color: #7d7d86; }
+  .bad { border-color: #c0504d !important; }
+  .sel-empty { padding: 4px 12px 10px; color: #7d7d86; }
+
+  .side footer { border-top: 1px solid #222227; padding: 10px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .side footer .sp { flex: 1; }
+  .pastebox { display: none; width: 100%; }
+  .pastebox.open { display: block; }
+  .pastebox textarea { width: 100%; height: 120px; box-sizing: border-box; background: #0f0f11; border: 1px solid #2c2c32; border-radius: 6px; color: #d9d9de; font: 11px ui-monospace, Menlo, monospace; padding: 6px; }
+  .pastebox .msg { color: #c0504d; margin: 4px 0; min-height: 14px; }
+  .toast { position: fixed; left: 50%; bottom: 64px; transform: translateX(-50%); background: #09c916; color: #08120a; padding: 7px 12px; border-radius: 6px; font-weight: 600; opacity: 0; transition: opacity .2s; pointer-events: none; }
+</style>
+</head>
+<body>
+<section class="preview">
+  <div class="stagewrap" id="wrap">
+    <span class="hintline">Drag any label or item to move it. Space plays and pauses.</span>
+    <button class="open-panel" id="openPanel" title="Show controls (\)">Show controls</button>
+    <div id="frame"></div>
+  </div>
+  <div class="transport">
+    <div class="left">
+      <button class="primary" id="play" title="Play or pause (Space)">Pause</button>
+      <button class="icon" id="back" title="Back one frame (Left arrow)">&#9664;</button>
+      <button class="icon" id="fwd" title="Forward one frame (Right arrow)">&#9654;</button>
+    </div>
+    <div class="scrub"><input type="range" id="scrub" min="0" max="1000" step="1" aria-label="Time"><div class="marks" id="marks"></div></div>
+    <div class="left">
+      <select id="speed" aria-label="Playback speed"><option value="0.25">0.25x</option><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option></select>
+      <span class="phase" id="phase">Fade in</span>
+      <span class="time" id="time">0.00 s</span>
+    </div>
+  </div>
+</section>
+<div class="handle" id="handle" title="Drag to resize. Double click to reset."></div>
+<aside class="side">
+  <header>
+    <strong>Falling behind</strong><span class="sp"></span>
+    <button class="icon" id="undo" title="Undo (Cmd Z)">Undo</button>
+    <button class="icon" id="redo" title="Redo (Shift Cmd Z)">Redo</button>
+    <button class="icon" id="collapse" title="Hide controls (\)">Hide</button>
+  </header>
+  <div class="body" id="controls"></div>
+  <footer>
+    <button class="primary" id="copy">Copy settings</button>
+    <button id="pasteBtn">Paste settings</button>
+    <span class="sp"></span>
+    <button id="resetAll">Reset all</button>
+    <div class="pastebox" id="pastebox">
+      <textarea id="pasteText" spellcheck="false" aria-label="Settings JSON"></textarea>
+      <div class="msg" id="pasteMsg"></div>
+      <button class="primary" id="pasteLoad">Load</button> <button id="pasteCancel">Cancel</button>
+    </div>
+  </footer>
+</aside>
+<div class="toast" id="toast"></div>
+<script type="module">
+  import { createScene, DEFAULTS, ARRIVE_STYLES, EASES, FONTS, FONT_CSS, timeline } from "./fb-engine.js";
+  document.getElementById("fonts").textContent = FONT_CSS;
+
+  const STORE = "fb-editor-v1";
+  const clone = (o) => JSON.parse(JSON.stringify(o));
+  let S = (() => { try { const s = JSON.parse(localStorage.getItem(STORE)); if (s) return { ...clone(DEFAULTS), ...s }; } catch (e) {} return clone(DEFAULTS); })();
+  const frame = document.getElementById("frame");
+  const scene = createScene(frame, S);
+  let t = 0, playing = true, last = null, speed = 1, selected = null;
+
+  // Plain word controls, grouped by what he is changing. Rebuild means the scene is rebuilt (colours, text, sizes).
+  const SECTIONS = [
+    ["Selected item", "selected"],
+    ["Green arrival", [
+      ["arriveStyle", "Effect", "select", ARRIVE_STYLES],
+      ["arriveDur", "Length s", 0, 2, 0.05],
+      ["flickers", "Flicker count", 1, 16, 1],
+      ["glitchAmount", "Glitch strength px", 0, 30, 1],
+      ["glitchSeed", "Glitch pattern", 1, 40, 1],
+      ["arriveColor", "Outline", "color"],
+      ["ringActive", "Ring", "color"],
+      ["outlineWidth", "Outline width", 0.5, 4, 0.25],
+      ["ringWidth", "Ring width", 1, 6, 0.25],
+      ["splitA", "Split colour 1", "color"],
+      ["splitB", "Split colour 2", "color"]
+    ]],
+    ["Rollover tag", [
+      ["chipText", "Text", "text"],
+      ["tagAt", "Shows at s", 0, 6, 0.05],
+      ["chipStays", "Stays after the move", "bool"],
+      ["chipSize", "Text size", 6, 16, 0.5],
+      ["chipColor", "Colour", "color"],
+      ["chipFill", "Fill", "color"],
+      ["chipTint", "Tints the item border", 0, 1, 0.05]
+    ]],
+    ["Background pixels", [
+      ["fieldCount", "How many", 0, 600, 5],
+      ["drift", "Drift right px/s", 0, 80, 1],
+      ["wander", "Wander up and down px", 0, 60, 1],
+      ["wanderSpeed", "Wander speed", 1, 6, 1],
+      ["depth", "Depth (near moves faster)", 0, 1, 0.05],
+      ["lives", "Fade in and out per loop", 1, 6, 1],
+      ["twinkle", "Twinkle", 0, 1, 0.05],
+      ["sizeMin", "Smallest px", 1, 6, 1],
+      ["sizeMax", "Largest px", 1, 8, 1],
+      ["opMin", "Faintest", 0, 1, 0.05],
+      ["opMax", "Brightest", 0, 1, 0.05],
+      ["fieldColor", "Colour", "color"],
+      ["fieldSeed", "Shuffle pattern", 1, 99, 1]
+    ]],
+    ["Week labels", [
+      ["labelThis", "Left label", "text"],
+      ["labelNext", "Right label", "text"],
+      ["labelCaps", "All caps", "bool"],
+      ["labelFont", "Font", "select", FONTS],
+      ["labelSize", "Size px", 10, 40, 1],
+      ["labelWeight", "Weight", "select", [[400, "Regular"], [500, "Medium"], [600, "Semibold"], [700, "Bold"]]],
+      ["labelTracking", "Letter spacing", -0.05, 0.3, 0.01],
+      ["labelColor", "Colour", "color"]
+    ]],
+    ["Action items", [
+      ["cardFill", "Fill", "color"],
+      ["cardBorder", "Border", "color"],
+      ["ring", "Ring", "color"],
+      ["checkFill", "Check", "color"],
+      ["tick", "Tick", "color"],
+      ["barTitle", "Title bar", "color"],
+      ["barMeta", "Meta bar", "color"],
+      ["doneDim", "Finished items brightness", 0.1, 1, 0.05],
+      ["ringSize", "Ring size", 12, 32, 1],
+      ["barH", "Bar thickness", 4, 16, 1]
+    ]],
+    ["Spacing", [
+      ["colW", "Item width", 160, 340, 1],
+      ["rowH", "Item height", 32, 90, 1],
+      ["rowGap", "Gap between items", 0, 30, 1],
+      ["weekGap", "Gap between weeks", 0, 200, 1],
+      ["labelGap", "Label to items", 4, 80, 1],
+      ["radius", "Corner radius", 0, 30, 1],
+      ["padX", "Inner padding", 4, 40, 1],
+      ["shiftY", "Move all up or down", -200, 200, 1],
+      ["frameW", "Frame width", 360, 1440, 10],
+      ["frameH", "Frame height", 300, 1440, 10],
+      ["bg", "Background", "color"]
+    ]],
+    ["Move and timing", [
+      ["checkAt", "Last check at s", 0, 4, 0.05],
+      ["liftAt", "Lift at s", 0, 6, 0.05],
+      ["moveAt", "Move at s", 0, 6, 0.05],
+      ["moveDur", "Move length s", 0.2, 3, 0.05],
+      ["moveEase", "Move curve", "select", Object.keys(EASES).map((k) => [k, k[0].toUpperCase() + k.slice(1)])],
+      ["lift", "Lift px", 0, 30, 1],
+      ["grow", "Grow while moving", 1, 1.2, 0.01],
+      ["makeRoom", "Next week makes room", "bool"],
+      ["closeGap", "This week closes the gap", "bool"],
+      ["fadeIn", "Fade in s", 0, 2, 0.05],
+      ["fadeOutAt", "Fade out at s", 1, 20, 0.05],
+      ["loop", "Loop length s", 3, 20, 0.1]
+    ]]
+  ];
+
+  const inputs = {};
+  const hexOk = (v) => { v = String(v).trim().replace(/^#/, ""); if (/^[0-9a-f]{3}$/i.test(v)) v = v.split("").map((c) => c + c).join(""); return /^[0-9a-f]{6}$/i.test(v) ? "#" + v.toLowerCase() : null; };
+
+  function control(key, label, a, b, step) {
+    const row = document.createElement("div"); row.className = "row";
+    const lb = document.createElement("label"); lb.textContent = label; lb.htmlFor = "c_" + key; row.appendChild(lb);
+    if (a === "color") {
+      row.classList.add("color");
+      const sw = document.createElement("input"); sw.type = "color"; sw.id = "c_" + key;
+      const tx = document.createElement("input"); tx.type = "text"; tx.spellcheck = false; tx.setAttribute("aria-label", label + " hex");
+      sw.oninput = () => { tx.value = sw.value; set(key, sw.value); };
+      sw.onchange = () => commit();
+      tx.onchange = () => { const h = hexOk(tx.value); tx.classList.toggle("bad", !h); if (h) { sw.value = h; tx.value = h; set(key, h); commit(); } };
+      row.append(sw, tx); inputs[key] = () => { sw.value = S[key]; tx.value = S[key]; tx.classList.remove("bad"); };
+    } else if (a === "text") {
+      row.classList.add("wide");
+      const tx = document.createElement("input"); tx.type = "text"; tx.id = "c_" + key;
+      tx.oninput = () => set(key, tx.value); tx.onchange = () => commit();
+      row.appendChild(tx); inputs[key] = () => { tx.value = S[key]; };
+    } else if (a === "bool") {
+      row.classList.add("wide");
+      const cb = document.createElement("input"); cb.type = "checkbox"; cb.id = "c_" + key;
+      cb.onchange = () => { set(key, cb.checked); commit(); };
+      row.appendChild(cb); inputs[key] = () => { cb.checked = !!S[key]; };
+    } else if (a === "select") {
+      row.classList.add("wide");
+      const sel = document.createElement("select"); sel.id = "c_" + key;
+      b.forEach(([v, n]) => { const o = document.createElement("option"); o.value = v; o.textContent = n; sel.appendChild(o); });
+      sel.onchange = () => { const v = typeof DEFAULTS[key] === "number" ? Number(sel.value) : sel.value; set(key, v); commit(); };
+      row.appendChild(sel); inputs[key] = () => { sel.value = String(S[key]); };
+    } else {
+      const r = document.createElement("input"); r.type = "range"; r.min = a; r.max = b; r.step = step; r.id = "c_" + key;
+      const n = document.createElement("input"); n.type = "number"; n.step = step; n.setAttribute("aria-label", label);
+      r.oninput = () => { n.value = r.value; set(key, Number(r.value)); };
+      r.onchange = () => commit();
+      n.onchange = () => { const v = Number(n.value); if (!isNaN(v)) { r.value = v; set(key, v); commit(); } };
+      row.append(r, n); inputs[key] = () => { r.value = S[key]; n.value = S[key]; };
+    }
+    return row;
+  }
+
+  const selBox = document.createElement("div");
+  function renderSelected() {
+    selBox.innerHTML = "";
+    if (!selected) { selBox.innerHTML = '<div class="sel-empty">Click a label or item in the preview to select it, then drag it or type exact values here. The moving item remembers a start place and a landing place: scrub before the move to set the start, after it to set the landing.</div>'; return; }
+    const o = S.offsets[selected] || { x: 0, y: 0 };
+    const name = { "label:this": "Left label", "label:next": "Right label", "carry:start": "Moving item, start", "carry:end": "Moving item, landing" }[selected]
+      || (selected.startsWith("this") ? "This week item " : "Next week item ") + (Number(selected.split(":")[1]) + 1);
+    const head = document.createElement("div"); head.className = "note"; head.textContent = name; selBox.appendChild(head);
+    ["x", "y"].forEach((ax) => {
+      const row = document.createElement("div"); row.className = "row wide";
+      const lb = document.createElement("label"); lb.textContent = "Nudge " + ax + " px";
+      const n = document.createElement("input"); n.type = "number"; n.value = o[ax];
+      n.onchange = () => { const v = Number(n.value) || 0; const cur = S.offsets[selected] || { x: 0, y: 0 }; S.offsets = { ...S.offsets, [selected]: { ...cur, [ax]: v } }; apply(false); commit(); };
+      row.append(lb, n); selBox.appendChild(row);
+    });
+    const row = document.createElement("div"); row.className = "row wide";
+    const r1 = document.createElement("button"); r1.textContent = "Reset this one";
+    r1.onclick = () => { const o2 = { ...S.offsets }; delete o2[selected]; S.offsets = o2; apply(false); commit(); renderSelected(); };
+    const r2 = document.createElement("button"); r2.textContent = "Reset all positions";
+    r2.onclick = () => { S.offsets = {}; apply(false); commit(); renderSelected(); };
+    row.append(r1, r2); selBox.appendChild(row);
+  }
+
+  function buildControls() {
+    const root = document.getElementById("controls");
+    SECTIONS.forEach(([title, list], i) => {
+      const d = document.createElement("details"); d.open = i < 3;
+      const sm = document.createElement("summary"); sm.textContent = title;
+      d.appendChild(sm);
+      if (list === "selected") { d.appendChild(selBox); renderSelected(); root.appendChild(d); return; }
+      const rs = document.createElement("button"); rs.className = "reset"; rs.textContent = "Reset";
+      rs.title = "Reset this section";
+      rs.onclick = (e) => { e.preventDefault(); list.forEach(([k]) => { S[k] = clone(DEFAULTS[k]); }); apply(); commit(); sync(); };
+      sm.appendChild(rs);
+      list.forEach((c) => d.appendChild(control(...c)));
+      root.appendChild(d);
+    });
+  }
+  const sync = () => Object.values(inputs).forEach((f) => f());
+
+  // Settings changes. Structural keys rebuild the scene; field keys rebuild the pixels.
+  function apply(rebuild = true) { scene.set(S, rebuild); fit(); drawMarks(); scene.seek(t); renderSelectionMark(); }
+  function set(key, v, rebuild = true) { S[key] = v; apply(rebuild || key !== "offsets"); save(); }
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {} }
+
+  // Undo and redo, one step per finished change.
+  let hist = [JSON.stringify(S)], hi = 0;
+  function commit() { const s = JSON.stringify(S); if (s === hist[hi]) return; hist = hist.slice(0, hi + 1); hist.push(s); if (hist.length > 200) hist.shift(); hi = hist.length - 1; save(); }
+  function restore(i) { hi = i; S = JSON.parse(hist[hi]); apply(); sync(); renderSelected(); save(); }
+  document.getElementById("undo").onclick = () => { if (hi > 0) restore(hi - 1); };
+  document.getElementById("redo").onclick = () => { if (hi < hist.length - 1) restore(hi + 1); };
+
+  // Fit the frame into the preview, centred, whatever the window or sidebar size.
+  const wrap = document.getElementById("wrap");
+  function fit() {
+    const w = wrap.clientWidth - 64, h = wrap.clientHeight - 64;
+    const s = Math.max(0.1, Math.min(w / S.frameW, h / S.frameH));
+    scene.resize(s, window.devicePixelRatio || 1);
+    frame.dataset.scale = s;
+  }
+  new ResizeObserver(() => fit()).observe(wrap);
+
+  // Timeline
+  const scrub = document.getElementById("scrub");
+  function drawMarks() {
+    const m = document.getElementById("marks"); m.innerHTML = "";
+    timeline(S).forEach(([n, s]) => {
+      const b = document.createElement("button"); b.title = n + " at " + s.toFixed(2) + " s"; b.setAttribute("aria-label", "Jump to " + n); b.dataset.t = s; b.style.left = (s / S.loop) * 100 + "%";
+      b.onclick = () => { setPlaying(false); t = s + 0.001; scene.seek(t); ui(); };
+      m.appendChild(b);
+    });
+  }
+  function ui() {
+    scrub.value = Math.round((t / S.loop) * 1000);
+    document.getElementById("time").textContent = t.toFixed(2) + " / " + S.loop.toFixed(1) + " s";
+    let ph = "Fade in", btn = null;
+    document.querySelectorAll("#marks button").forEach((b) => { b.classList.remove("now"); if (t >= Number(b.dataset.t)) { ph = b.title.split(" at ")[0]; btn = b; } });
+    if (btn) btn.classList.add("now");
+    document.getElementById("phase").textContent = ph;
+  }
+  function setPlaying(v) { playing = v; last = null; document.getElementById("play").textContent = v ? "Pause" : "Play"; }
+  scrub.oninput = () => { setPlaying(false); t = (scrub.value / 1000) * S.loop; scene.seek(t); ui(); renderSelectionMark(); };
+  document.getElementById("play").onclick = () => setPlaying(!playing);
+  const step = (d) => { setPlaying(false); t = Math.min(S.loop, Math.max(0, t + d / 60)); scene.seek(t); ui(); };
+  document.getElementById("back").onclick = () => step(-1);
+  document.getElementById("fwd").onclick = () => step(1);
+  document.getElementById("speed").onchange = (e) => { speed = Number(e.target.value); };
+  function frameLoop(now) {
+    if (playing) { if (last != null) { t = (t + ((now - last) / 1000) * speed) % S.loop; } last = now; scene.seek(t); ui(); }
+    requestAnimationFrame(frameLoop);
+  }
+
+  // Selecting and dragging in the preview.
+  function keyFor(el) { const k = el.dataset.key; return k === "this:0" ? scene.carryKey(t) : k; }
+  function renderSelectionMark() {
+    frame.querySelectorAll("[data-key].sel").forEach((e) => e.classList.remove("sel"));
+    if (!selected) return;
+    const k = selected.startsWith("carry") ? "this:0" : selected;
+    const el = frame.querySelector(`[data-key="${k}"]`); if (el) el.classList.add("sel");
+  }
+  frame.addEventListener("pointerdown", (e) => {
+    const el = e.target.closest("[data-key]"); if (!el) { selected = null; renderSelected(); renderSelectionMark(); return; }
+    e.preventDefault(); setPlaying(false);
+    const key = keyFor(el); selected = key; renderSelected(); renderSelectionMark();
+    const s = Number(frame.dataset.scale) || 1, sx = e.clientX, sy = e.clientY;
+    const start = S.offsets[key] || { x: 0, y: 0 };
+    frame.setPointerCapture(e.pointerId);
+    const move = (ev) => {
+      const nx = Math.round(start.x + (ev.clientX - sx) / s), ny = Math.round(start.y + (ev.clientY - sy) / s);
+      S.offsets = { ...S.offsets, [key]: { x: nx, y: ny } }; scene.set(S, false); renderSelectionMark();
+    };
+    const up = () => { frame.removeEventListener("pointermove", move); frame.removeEventListener("pointerup", up); save(); commit(); renderSelected(); };
+    frame.addEventListener("pointermove", move); frame.addEventListener("pointerup", up);
+  });
+
+  // Sidebar: collapse and resize.
+  const body = document.body, handle = document.getElementById("handle");
+  let sideW = Number(localStorage.getItem(STORE + ":w")) || 340;
+  const setW = (w) => { sideW = Math.min(620, Math.max(260, w)); body.style.gridTemplateColumns = body.classList.contains("collapsed") ? "" : `1fr 6px ${sideW}px`; localStorage.setItem(STORE + ":w", sideW); };
+  const toggle = () => { body.classList.toggle("collapsed"); setW(sideW); };
+  document.getElementById("collapse").onclick = toggle;
+  document.getElementById("openPanel").onclick = toggle;
+  handle.addEventListener("pointerdown", (e) => {
+    handle.setPointerCapture(e.pointerId); handle.classList.add("drag");
+    const mv = (ev) => setW(window.innerWidth - ev.clientX - 3);
+    const up = () => { handle.classList.remove("drag"); handle.removeEventListener("pointermove", mv); handle.removeEventListener("pointerup", up); };
+    handle.addEventListener("pointermove", mv); handle.addEventListener("pointerup", up);
+  });
+  handle.ondblclick = () => setW(340);
+  setW(sideW);
+
+  // Keyboard
+  addEventListener("keydown", (e) => {
+    if (e.target.matches("input, textarea, select")) return;
+    if (e.code === "Space") { e.preventDefault(); setPlaying(!playing); }
+    else if (e.key === "ArrowLeft") step(e.shiftKey ? -10 : -1);
+    else if (e.key === "ArrowRight") step(e.shiftKey ? 10 : 1);
+    else if (e.key === "\\") toggle();
+    else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "z") { e.preventDefault(); if (e.shiftKey) document.getElementById("redo").click(); else document.getElementById("undo").click(); }
+  });
+
+  // Copy, paste, reset.
+  const toast = (m) => { const el = document.getElementById("toast"); el.textContent = m; el.style.opacity = 1; clearTimeout(toast.h); toast.h = setTimeout(() => { el.style.opacity = 0; }, 1600); };
+  document.getElementById("copy").onclick = async () => {
+    const json = JSON.stringify(S, null, 2);
+    try { await navigator.clipboard.writeText(json); toast("Settings copied. Paste them into the chat."); }
+    catch (e) { const pb = document.getElementById("pastebox"); pb.classList.add("open"); const ta = document.getElementById("pasteText"); ta.value = json; ta.select(); toast("Selected. Press Cmd C."); }
+  };
+  document.getElementById("pasteBtn").onclick = () => { document.getElementById("pastebox").classList.toggle("open"); document.getElementById("pasteText").focus(); };
+  document.getElementById("pasteCancel").onclick = () => document.getElementById("pastebox").classList.remove("open");
+  document.getElementById("pasteLoad").onclick = () => {
+    try {
+      const o = JSON.parse(document.getElementById("pasteText").value);
+      const next = clone(DEFAULTS); Object.keys(DEFAULTS).forEach((k) => { if (k in o) next[k] = o[k]; });
+      S = next; apply(); sync(); commit(); renderSelected();
+      document.getElementById("pastebox").classList.remove("open"); document.getElementById("pasteMsg").textContent = ""; toast("Settings loaded");
+    } catch (e) { document.getElementById("pasteMsg").textContent = "That is not valid settings JSON."; }
+  };
+  document.getElementById("resetAll").onclick = () => { S = clone(DEFAULTS); apply(); sync(); commit(); selected = null; renderSelected(); toast("Back to the starting values. Undo brings yours back."); };
+
+  buildControls(); sync(); drawMarks(); fit(); ui();
+  document.fonts.ready.then(() => scene.seek(t));
+  requestAnimationFrame(frameLoop);
+</script>
+</body>
+</html>

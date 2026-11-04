@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS2 Falling behind</title>
+<style id="fonts"></style>
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0b0c; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div id="frame"></div>
+<script type="module">
+  // Render page for the Falling behind animation. It draws the settings saved from the editor
+  // (fb-settings.json, pasted from Copy settings) with the same engine the editor uses.
+  import { createScene, FONT_CSS } from "./fb-engine.js";
+  document.getElementById("fonts").textContent = FONT_CSS;
+  let saved = {};
+  try { saved = await (await fetch("fb-settings.json", { cache: "no-store" })).json(); } catch (e) {}
+  const scene = createScene(document.getElementById("frame"), saved);
+  const S = scene.settings;
+  document.body.style.background = S.bg;
+  const fit = () => scene.resize(Math.min(innerWidth / S.frameW, innerHeight / S.frameH), window.devicePixelRatio || 1);
+  addEventListener("resize", fit); fit();
+  window.LOOP = S.loop;
+  window.seek = (t) => scene.seek(t);
+  window.ready = document.fonts.ready;
+  const still = new URLSearchParams(location.search).has("still") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.seek(still ? S.fadeOutAt - 0.5 : 0);
+  if (!window.__RENDER__ && !still) {
+    const t0 = performance.now();
+    const loop = (now) => { window.seek((now - t0) / 1000); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+</script>
+</body>
+</html>
