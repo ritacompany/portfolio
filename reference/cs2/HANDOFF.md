@@ -14,14 +14,14 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-04 23:59
+Updated: 2026-11-05 00:10
 By: Claude Code
 Section: 3
 Loop step: 3
 
 ## Where it stopped
 
-Action hub voice round, 4 Nov: his notes said the approved block named suggested times, the calendar and the start of week before the page introduces them (2 Nov reorder) and read as AI. Rewritten in his voice, layout and headline kept; text and record in versions/action-hub.md, reader check round 4 PASS (runs/2026-11-04-action-hub-voice-r4, new known-action-hub.md). Voice guide from his own frame copy in docs/VOICE-draft.md, not approved. Waiting on his read; he pastes text into Figma himself.
+Action hub voice round, 4 Nov: his notes said the approved side text named suggested times, the calendar and the start of week before the page introduces them (2 Nov reorder) and read as AI. Current text is round 5 in versions/action-hub.md: headline unchanged, his rail paragraph unchanged (he said it was fine), side text rebuilt from how the screen works (starting point, weekly headline and AI paragraph, Active label), notes rewritten. He prefers humanizer over no-ai-slop for the voice pass. He cut: the week not being locked (made no sense for the design) and completed items staying. Round 5 not reader checked; his rail paragraph will keep the reader check from a clean PASS (two sentences overlap), kept on his call. Voice guide from his own frame copy in docs/VOICE-draft.md, not approved. Next: his read of round 5, then reader check, then he pastes into Figma.
 
 Growth Journey image paused by him 4 Nov after the direction A mockup (he called it pointless for now). Do not resume it unless he raises it. Clip and page: site/motion-lab/growth-journey, log in docs/motion/growth-journey.
 
