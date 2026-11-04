@@ -1,6 +1,6 @@
 # Fix: CS2 sessions sent to the Mondai MVP file for screens that are in his portfolio frame
 
-Status: not verified
+Status: verified
 
 ## Evidence
 Bad output: the Pathway page session called use_figma on file 5RO0m4bYYrTvbiaOgaU3tI (the Mondai MVP file) to read frame 2670:11674, hit the View seat call limit, and reported "MVP file: I didn't read it. The figma-mondai View seat hit its limit". He asked why it was going through that channel at all.
@@ -35,12 +35,12 @@ Instruction lines: +0 / -0 (one phrase in WORKING_LOOP reworded to "from how the
 Net growth reason: n/a
 
 ## Verification
-Fresh run: a Sonnet sub-agent given only HANDOFF.md and WORKING_LOOP.md, asked where it would look at the Pathway page and Action Item page screens. Result pending.
+Fresh run: a Sonnet sub-agent given only HANDOFF.md and WORKING_LOOP.md, asked where it would look at the Pathway page and Action Item page screens.
 Before: HANDOFF sent the Pathway screen read to file 5RO0m4bYYrTvbiaOgaU3tI frame 2670:11674.
-After: pending.
+After: Pathway page in his Portfolio Design file IarvWaqjIwrZ2afQmMxKm6, frame 4269:9433, block 4811:27970; asked whether either file sends it to a Mondai file or figma-mondai: no, both send it away from it.
 Check result after: PASS (grep, no match).
-Second case: the Action Item page block, in the same fresh run. Pending.
+Second case: the Action Item page block, same run: IarvWaqjIwrZ2afQmMxKm6, frame 4269:9433, placeholder 4787:13139. No Mondai file.
 Enforcement test: n/a
 
 ## Report
-Unverified: the fresh run result. CS2_PROCESS.md line 202 still names the MVP file as product truth for truth.json snapshots; his call whether that goes too.
+Unverified: none. Left for him: CS2_PROCESS.md line 202 still names the MVP file as product truth for truth.json snapshots; his call whether that goes too.
