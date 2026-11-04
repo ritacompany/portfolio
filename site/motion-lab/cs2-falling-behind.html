@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS2 Falling behind</title>
+<style>
+  @font-face { font-family: "Satoshi FB"; font-weight: 500; src: local("Satoshi Medium"), local("Satoshi-Medium"),
+    url("https://api.fontshare.com/v2/fonts/satoshi/fonts/Satoshi-Medium.woff2") format("woff2"); }
+  html, body { margin: 0; background: #0b0b0c; }
+  #c { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #0b0b0c; }
+  /* Drawn in a 720 by 680 design box and scaled to the frame, so one page renders at desktop and 390 wide. */
+  .art { position: absolute; left: 50%; top: 50%; width: 720px; height: 680px; transform-origin: 0 0; }
+  .stage { position: absolute; left: 40px; top: 40px; width: 640px; }
+  .label { position: absolute; left: 0; font: 500 16px/1 "Satoshi FB", system-ui, sans-serif; color: #8e8e94; white-space: nowrap; }
+  .rule { position: absolute; left: 0; width: 640px; height: 1px; background: #1f1f22; }
+  .card { position: absolute; left: 0; width: 640px; height: 56px; box-sizing: border-box; display: flex; align-items: center;
+    gap: 16px; padding: 0 20px; border: 1px solid #26262a; border-radius: 12px; background: #141416; transform-origin: 50% 50%; }
+  .check { flex: none; width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid #4a4a50;
+    display: flex; align-items: center; justify-content: center; }
+  .check svg { width: 50%; height: 50%; }
+  .bar { flex: none; height: 10px; border-radius: 5px; background: #2a2a2e; }
+  .bar.s { height: 8px; border-radius: 4px; background: #202023; margin-left: auto; }
+</style>
+</head>
+<body>
+<div id="c"><div class="art" id="art"><div class="stage" id="stage"></div></div></div>
+<script type="module">
+  // Media for the CS2 Falling behind block. Style guide, state list and review log: docs/motion/cs2-falling-behind/.
+  // Direction A: the one open row lifts, travels straight down into next week and next week keeps its size.
+  // Every value is a function of t through window.seek(t). Add ?still to see the reduced motion frame.
+  import { spring, cubicBezier, clamp, lerp, range, UI, TYPE } from "../lib/motion.js";
+
+  const DUR = 6.2;
+  // Values from the approved playground (direction A, 763e109). Colours in hex, as Chadwick works.
+  const C = { card: "#26262a", lifted: "#4a4a50", carried: "#8e8e94", ring: "#4a4a50", green: "#78b765" };
+  const ROW = 56, STEP = 64, TO_ROWS = 50, LINE = 30, WEEK_GAP = 32, DONE = 0.4;
+  const Y1 = (p) => TO_ROWS + p * STEP;              // This week rows
+  const NEXT = Y1(3) + ROW + WEEK_GAP;               // Next week label
+  const Y2 = (k) => NEXT + TO_ROWS + k * STEP;        // Next week rows
+
+  // Springs for everything except the carry. FADE is critically damped and settles in under half a second.
+  const FADE = { k: 400, d: 40 };
+  // The carry keeps the curve he tuned in the playground rounds (smooth in out, one continuous move
+  // after step, stop, step was fixed), reproduced exactly under seek.
+  const carryEase = cubicBezier(0.65, 0, 0.35, 1), landEase = cubicBezier(0.2, 0.8, 0.2, 1);
+
+  // Timeline in seconds, from the state list.
+  const T = { check: 0.7, dim: 0.96, lift: 1.8, move: 2.0, moveDur: 0.9, shift: 2.27, close: 3.05, ripple: 0.04, out: 5.5 };
+
+  const MAIN = [-0.33, 1, -1, 0.33, -0.67, 0.78, 0];
+  const META = [0.33, -1, 1, -0.33, 0.33, -1, 1];
+  const tick = '<svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8" fill="none" stroke="#0b0b0c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const stage = document.getElementById("stage"), art = document.getElementById("art");
+
+  function el(cls, html) { const d = document.createElement("div"); d.className = cls; if (html) d.innerHTML = html; stage.appendChild(d); return d; }
+  function card(id) {
+    const c = el("card", `<div class="check">${tick}</div><div class="bar"></div><div class="bar s"></div>`);
+    c.children[1].style.width = (37 + 9 * MAIN[id]) + "%";
+    c.children[2].style.width = (8.5 + 1.5 * META[id]) + "%";
+    return c;
+  }
+  const thisLabel = el("label"); thisLabel.textContent = "This week";
+  const thisRule = el("rule");
+  const nextLabel = el("label"); nextLabel.textContent = "Next week";
+  const nextRule = el("rule");
+  const pre = [4, 5, 6].map(card);        // already in next week
+  const rows = [0, 1, 2, 3].map(card);    // this week; row 0 stays open
+  rows[0].style.zIndex = 5;
+
+  function setCheck(c, done, pop) {
+    const ch = c.firstElementChild;
+    ch.style.background = done ? C.green : "transparent";
+    ch.style.borderColor = done ? C.green : C.ring;
+    ch.firstElementChild.style.opacity = done ? 1 : 0;
+    ch.style.transform = done ? `scale(${lerp(0.6, 1, pop)})` : "none";
+  }
+  function place(c, y, op, sc = 1, shadow = 0, border = C.card) {
+    c.style.transform = `translateY(${y}px) scale(${sc})`;
+    c.style.opacity = op;
+    c.style.borderColor = border;
+    c.style.boxShadow = shadow > 0.001 ? `0 ${20 * shadow}px ${44 * shadow}px rgba(0,0,0,${0.6 * shadow})` : "none";
+  }
+  function mix(a, b, k) {
+    const h = (x) => [1, 3, 5].map((i) => parseInt(x.slice(i, i + 2), 16));
+    const A = h(a), B = h(b);
+    // Returns hex so a blend can feed another blend.
+    return "#" + A.map((v, i) => Math.round(v + (B[i] - v) * k).toString(16).padStart(2, "0")).join("");
+  }
+
+  window.seek = (t) => {
+    t = ((t % DUR) + DUR) % DUR;
+    const vis = spring(t, FADE.k, FADE.d) * (1 - spring(t - T.out, FADE.k, FADE.d));
+    const gap = (i) => STEP * spring(t - T.close - i * T.ripple, TYPE.k, TYPE.d);
+
+    // Labels and dividers come and go with the rows, so the last frame matches the first.
+    thisLabel.style.transform = "translateY(0px)"; thisRule.style.transform = `translateY(${LINE}px)`;
+    nextLabel.style.transform = `translateY(${NEXT - gap(0)}px)`; nextRule.style.transform = `translateY(${NEXT - gap(0) + LINE}px)`;
+    [thisLabel, thisRule, nextLabel, nextRule].forEach((e) => { e.style.opacity = vis; });
+
+    // This week rows 2 and 3 start checked; row 4 is checked at 0.7 s; all three dim.
+    rows.forEach((c, p) => {
+      if (p === 0) return;
+      const at = p === 3 ? T.check : -10;
+      const done = t >= at;
+      setCheck(c, done, spring(t - at, UI.k, UI.d));
+      const dim = lerp(1, DONE, spring(t - (p === 3 ? T.dim : -10), TYPE.k, TYPE.d));
+      place(c, Y1(p) - gap(0), vis * dim);
+    });
+
+    // The open row: lift, carry straight down, land.
+    const o = rows[0];
+    setCheck(o, false, 0);
+    const la = spring(t - T.lift, UI.k, UI.d);
+    const raw = clamp((t - T.move) / T.moveDur);
+    const land = landEase(range(raw, 0.6, 1));
+    const yStart = Y1(0) - 14 * la;
+    const y = lerp(yStart, Y2(0), carryEase(raw)) - gap(1);
+    const sc = lerp(lerp(1, 1.08, la), 1, land);
+    const border = mix(mix(C.card, C.lifted, la), C.carried, land);
+    place(o, y, vis, sc, la * (1 - land), border);
+
+    // Next week steps down to make room; its last row shrinks out so the week stays at three.
+    pre.forEach((c, k) => {
+      setCheck(c, false, 0);
+      // Bottom row leads the step down, so rows never run into the one below them.
+      const sh = spring(t - T.shift - (2 - k) * T.ripple, TYPE.k, TYPE.d);
+      const drop = k === 2 ? spring(t - T.shift, TYPE.k, TYPE.d) : 0;
+      place(c, lerp(Y2(k), Y2(k + 1), sh) - gap(k + 2), vis * (1 - drop), lerp(1, 0.96, drop));
+    });
+  };
+
+  function fit() {
+    const s = Math.min(innerWidth / 720, innerHeight / 680);
+    art.style.transform = `scale(${s}) translate(-360px, -340px)`;
+  }
+  addEventListener("resize", () => { fit(); });
+  fit();
+  window.ready = document.fonts.load('500 16px "Satoshi FB"');
+
+  // Reduced motion: one still, the end state the motion argues for (carried row at the top of next week).
+  const still = new URLSearchParams(location.search).has("still") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.seek(still ? 4.5 : 0);
+  if (!window.__RENDER__ && !still) {
+    const t0 = performance.now();
+    const loop = (now) => { window.seek((now - t0) / 1000); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+</script>
+</body>
+</html>
