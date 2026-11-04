@@ -25,7 +25,7 @@ Pathway page block, round 1 (3 Nov), in chat, not yet reviewed by him (versions/
 
 How to work: reference/cs2/WORKING_LOOP.md. Read it before anything else.
 
-Where the frame lives: his personal Portfolio Design file in Figma (file IarvWaqjIwrZ2afQmMxKm6, framework case study WIP frame 4269:9433, page VC). Write to it through the Figma connection on his own account (Full seat); the figma-mondai connection is a View seat and hit its call limit on 3 Nov. The MVP file copy is gone.
+Where the frame lives: his personal Portfolio Design file in Figma (file IarvWaqjIwrZ2afQmMxKm6, framework case study WIP frame 4269:9433, page VC). Write to it through the Figma connection on his own account (Full seat); the figma-mondai connection is a View seat and hit its call limit on 3 Nov. The case study is not in any Mondai file.
 
 Order, applied in his portfolio frame 3 Nov (it had not carried over from the MVP copy): the route; Action Hub, Growth Journey page placeholder (node 4787:13132); calendar setup, schedule view, scheduled times; Personalized timeline, then the map block (layer Map | How it connects); Falling behind (layer Falling behind | Bridge, still holding his 01 02 03 cards and Sally notes), buffer flow, start of week; Action Item page placeholder (node 4787:13139) before the footer. Matches the outline (The order). Canvas re-exported and tiled from it.
 

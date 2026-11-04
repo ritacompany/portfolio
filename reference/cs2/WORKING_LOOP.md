@@ -49,8 +49,8 @@ before the first reply, then HANDOFF.md for where things stand.
 - Keep his sections as the page names them. Never invent a new section, never split one by word count and
   never make a text only block.
 - Layout, per version: list the points the section needs (A, B, C, D), each one a decision and the thinking
-  or research behind it. Decide which points need a visual, from how the Mondai designs actually work (his
-  desktop MVP folder in Figma): an interaction that is talked about gets shown. Count the images, then pick a
+  or research behind it. Decide which points need a visual, from how the screens in his portfolio frame
+  actually work: an interaction that is talked about gets shown. Count the images, then pick a
   layout from his pool with that many image frames and room for the text (Case study layouts section, page
   VC, T1I T2I T3I). Points without an image go together with the text beside an image, never alone. Draw it
   on his black page: no gray backdrop, no boxes, no text in boxes.
