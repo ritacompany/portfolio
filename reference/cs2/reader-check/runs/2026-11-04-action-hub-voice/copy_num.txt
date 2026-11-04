@@ -1,0 +1,24 @@
+VERSION V1: Action hub
+  (label) Action hub
+V1.S1 Most of a person's week happens on one screen, the list of Action Items they come back to nearly every day.
+V1.S2 The Action Hub is the screen the user lands on when they open Mondai.
+V1.S3 Instead of a traditional home screen, I designed it as a starting point that opens straight onto this week's Action Items, the same way Linear opens on the work in front of you.
+V1.S4 It answers one question for the user, what do I need to do this week, and leaves the full curriculum to the Growth Journey and Pathway pages.
+V1.S5 Just like on the Pathway page, Action Items are finished in order, so only the Active one at the top can be checked off.
+V1.S6 Everything else in the week stays visible below it instead of being locked, which lets the user see what's coming and plan around it.
+V1.S7 Completed items collapse at the bottom of the list, where the user can still see what they finished and undo it if they need to.
+V1.S8 Research shows that a small weekly set keeps people motivated.
+V1.S9 Keeping the user focused on their current Pathway target rather than a longer term goal enhances user motivation.
+V1.S10 A Growth Journey can take years, so the side panel only tracks the Pathway the user is in right now.
+V1.S11 The journey target and pace live on the Growth Journey page instead, because showing both levels on one screen made the numbers confusing.
+V1.S12 [label] Pathway target
+V1.S13 The date the user should finish this Pathway by.
+V1.S14 It's based on the hours they told Mondai they can give each week, so it stays the same through a normal week and only changes when those hours change.
+V1.S15 [label] Pathway pace
+V1.S16 When the user is actually on track to finish, based on their progress so far.
+V1.S17 It only updates once a week, so the user isn't watching it shift every time they finish something.
+V1.S18 In the first week it's the same as the target, since there's no progress to measure yet.
+V1.S19 [label] Ahead of target
+V1.S20 The difference between the target and the pace, in days.
+V1.S21 It's the only place on the screen that tells the user whether they're ahead or behind.
+V1.S22 [sources] Sources: Bandura and Schunk 1981; Latham and Seijts 1999

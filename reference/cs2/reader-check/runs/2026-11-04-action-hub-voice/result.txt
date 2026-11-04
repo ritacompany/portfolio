@@ -1,0 +1,10 @@
+V1 FAIL
+  V1.S10 Q2 (3/3) side panel
+  V1.S10 Q5 (2/3) introduces a side panel the version never mentioned before; side panel appears with no earlier mention of it
+  V1.S11 Q3 (2/3) 
+  V1.S19 Q2 (2/3) Ahead of target
+  V1.S3 Q4 (3/3) K4
+  V1.S5 Q2 (3/3) Active
+  V1.S8 Q5 (3/3) research claim jumps in after completed items with no link; vague research claim that does not follow from the completed-items point and has no link to the layout decisions; vague unsupported claim, does not follow from completed items and repeats the point of S9
+  V1.S9 Q4 (2/3) K4
+  V1.S9 Q5 (3/3) repeats S8 and the home screen reasoning already given; repeats S8 and the near goals point the reader already has; repeats the motivation point already made by S8 and the known near-goals fact

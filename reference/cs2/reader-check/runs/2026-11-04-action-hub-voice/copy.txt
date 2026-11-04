@@ -1,0 +1,13 @@
+=== Action hub
+[eyebrow or sub-heading] Action hub
+[headline] Most of a person's week happens on one screen, the list of Action Items they come back to nearly every day.
+The Action Hub is the screen the user lands on when they open Mondai. Instead of a traditional home screen, I designed it as a starting point that opens straight onto this week's Action Items, the same way Linear opens on the work in front of you. It answers one question for the user, what do I need to do this week, and leaves the full curriculum to the Growth Journey and Pathway pages.
+Just like on the Pathway page, Action Items are finished in order, so only the Active one at the top can be checked off. Everything else in the week stays visible below it instead of being locked, which lets the user see what's coming and plan around it. Completed items collapse at the bottom of the list, where the user can still see what they finished and undo it if they need to.
+Research shows that a small weekly set keeps people motivated. Keeping the user focused on their current Pathway target rather than a longer term goal enhances user motivation. A Growth Journey can take years, so the side panel only tracks the Pathway the user is in right now. The journey target and pace live on the Growth Journey page instead, because showing both levels on one screen made the numbers confusing.
+[label] Pathway target
+The date the user should finish this Pathway by. It's based on the hours they told Mondai they can give each week, so it stays the same through a normal week and only changes when those hours change.
+[label] Pathway pace
+When the user is actually on track to finish, based on their progress so far. It only updates once a week, so the user isn't watching it shift every time they finish something. In the first week it's the same as the target, since there's no progress to measure yet.
+[label] Ahead of target
+The difference between the target and the pace, in days. It's the only place on the screen that tells the user whether they're ahead or behind.
+[sources] Sources: Bandura and Schunk 1981; Latham and Seijts 1999

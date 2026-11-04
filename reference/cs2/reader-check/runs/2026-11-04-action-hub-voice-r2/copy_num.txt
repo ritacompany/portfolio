@@ -1,0 +1,23 @@
+VERSION V1: Action hub
+  (label) Action hub
+V1.S1 Most of a person's week happens on one screen, the list of Action Items they come back to nearly every day.
+V1.S2 The Action Hub is the screen the user lands on when they open Mondai.
+V1.S3 I designed it as a starting point rather than a traditional home screen, so it answers one question for the user, what do I need to do this week, and leaves the full curriculum to the Growth Journey and Pathway pages.
+V1.S4 Just like on the Pathway page, Action Items are finished in order, so only the one at the top, marked Active, can be checked off.
+V1.S5 Everything else in the week stays visible below it instead of being locked, which lets the user see what's coming and plan around it.
+V1.S6 Completed items collapse at the bottom of the list, where the user can still see what they finished and undo it if they need to.
+V1.S7 The panel on the right side of the screen only tracks the Pathway the user is in right now.
+V1.S8 A Growth Journey can take years, and keeping the user focused on their current Pathway target rather than a longer term goal keeps them more motivated.
+V1.S9 The journey target and pace stay on the Growth Journey page, so the user only sees one target and one pace here and there's no confusion over which one they're working toward.
+V1.S10 [label] Pathway target
+V1.S11 The date the user should finish this Pathway by.
+V1.S12 It's based on the hours they told Mondai they can give each week, so it stays the same through a normal week and only changes when those hours change.
+V1.S13 [label] Pathway pace
+V1.S14 When the user is actually on track to finish, based on their progress so far.
+V1.S15 It only updates once a week, so the user isn't watching it shift every time they finish something.
+V1.S16 In the first week it's the same as the target, since there's no progress to measure yet.
+V1.S17 [label] Ahead of target
+V1.S18 The gap between the target and the pace, in days.
+V1.S19 When the pace is earlier than the target the user is ahead, and when it's later they're behind.
+V1.S20 This is the only place on the screen that shows it.
+V1.S21 [sources] Sources: Bandura and Schunk 1981; Latham and Seijts 1999
