@@ -5,18 +5,43 @@
 set -uo pipefail
 
 payload=$(cat)
-file=$(printf '%s' "$payload" | jq -r '.tool_input.file_path // .tool_response.filePath // empty')
 
-[ -n "$file" ] || exit 0
+if [ "$(printf '%s' "$payload" | jq -r '.tool_name // empty')" = Bash ]; then
+  # A shell command can write prose too (printf or a heredoc into a file, sed -i). Find the prose
+  # files it wrote, then read what landed: the lines git sees as added, or the whole file if new.
+  cmd=$(printf '%s' "$payload" | jq -r '.tool_input.command // empty')
+  cwd=$(printf '%s' "$payload" | jq -r '.cwd // empty'); [ -n "$cwd" ] && cd "$cwd" 2>/dev/null
+  ext='[^[:space:]'"'"'";|&<>()]+\.(md|markdown|html|txt)'
+  targets=$(printf '%s' "$cmd" | grep -oE "(>>?|tee( -a)?)[[:space:]]*['\"]?$ext" | sed -E "s/^(>>?|tee( -a)?)[[:space:]]*['\"]?//")
+  if printf '%s' "$cmd" | grep -qE '\b(sed|perl)\b[^|]*-[a-zA-Z]*i'; then
+    targets="$targets"$'\n'$(printf '%s' "$cmd" | grep -oE "$ext")
+  fi
+  file=""; written=""
+  while IFS= read -r t; do
+    [ -n "$t" ] && [ -f "$t" ] || continue
+    if git ls-files --error-unmatch -- "$t" >/dev/null 2>&1; then
+      added=$(git diff -U0 -- "$t" | grep '^+' | grep -v '^+++' | cut -c2-)
+    else
+      added=$(cat -- "$t")
+    fi
+    [ -n "$added" ] || continue
+    file="${file:+$file, }$t"; written="$written"$'\n'"$added"
+  done <<< "$(printf '%s\n' "$targets" | sort -u)"
+  [ -n "$written" ] || exit 0
+else
+  file=$(printf '%s' "$payload" | jq -r '.tool_input.file_path // .tool_response.filePath // empty')
 
-case "$file" in
-  *.md|*.markdown|*.html|*.txt) ;;
-  *) exit 0 ;;
-esac
+  [ -n "$file" ] || exit 0
 
-# Write sends .content, Edit sends .new_string. Anything else is not prose we wrote.
-written=$(printf '%s' "$payload" | jq -r '.tool_input.new_string // .tool_input.content // empty')
-[ -n "$written" ] || exit 0
+  case "$file" in
+    *.md|*.markdown|*.html|*.txt) ;;
+    *) exit 0 ;;
+  esac
+
+  # Write sends .content, Edit sends .new_string. Anything else is not prose we wrote.
+  written=$(printf '%s' "$payload" | jq -r '.tool_input.new_string // .tool_input.content // empty')
+  [ -n "$written" ] || exit 0
+fi
 
 # Reduce the text to prose we authored, dropping everything the rule does not govern:
 #   fenced blocks and inline code, so documented CLI flags are not read as dashes

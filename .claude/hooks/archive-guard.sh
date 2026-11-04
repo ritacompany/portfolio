@@ -10,7 +10,9 @@ tool=$(printf '%s' "$payload" | jq -r '.tool_name // empty')
 PROTECTED='CS1-PRIMARY-EVIDENCE-VERBATIM\.md|02-EVIDENCE_1\.md'
 
 # Shell operations that can modify a file. Read-only use (grep, cat, less) stays allowed.
-WRITERS='>|\btee\b|\bsed\b[^|]*-[a-zA-Z]*i|\bperl\b[^|]*-[a-zA-Z]*i|\bpython[0-9.]*\b[^|]*-[a-zA-Z]*i|\bcp\b|\bmv\b|\brm\b|\btruncate\b|\bdd\b|\bpatch\b|\bgit\b +(apply|checkout|restore)|\binstall\b'
+# Any script interpreter counts: a one-line Python or Node write names no shell operator, so it
+# cannot be told apart from a read. Reading the evidence goes through the Read tool or cat instead.
+WRITERS='>|\btee\b|\bsed\b[^|]*-[a-zA-Z]*i|\bperl\b[^|]*-[a-zA-Z]*i|\b(python[0-9.]*|node|ruby|deno|bun|osascript)\b|\brsync\b|\bln\b|\bcp\b|\bmv\b|\brm\b|\btruncate\b|\bdd\b|\bpatch\b|\bgit\b +(apply|checkout|restore)|\binstall\b'
 
 deny() {
   jq -n --arg r "$1" '{
