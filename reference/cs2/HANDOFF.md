@@ -14,12 +14,14 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-03 23:40
+Updated: 2026-11-04 02:15
 By: Claude Code
 Section: 3
 Loop step: 3
 
 ## Where it stopped
+
+Pathway page block, round 1 (3 Nov), in chat, not yet reviewed by him (versions/pathway-page.md). Frame block 4811:27970: eyebrow Pathway, headline Someone works through one Pathway at a time, and its page shows where they stand in it and what comes next; a 69 word column on the page being for looking (nothing checked off, the work is on the weekly home screen; separating this week's Action Items would have made it a second to do list), Focus Areas in order with the side panel marking the current one, and any Action Item can be opened but they are finished in order (a usability test you have not run). The own target line was cut: the reader check (runs/2026-11-03-pathway, known-pathway.md) flagged it 3/3 as restating the Growth Journey image, which already shows per Pathway dates. The column is longer than his 143px filler (about 380px beside a 688px image); his call. Not in his frame yet. The MVP Pathway screen (file 5RO0m4bYYrTvbiaOgaU3tI) was not read: the figma-mondai View seat hit its limit again; the screen in his portfolio frame was used instead.
 
 How to work: reference/cs2/WORKING_LOOP.md. Read it before anything else.
 
@@ -40,7 +42,7 @@ Still missing from his frame: Get ahead (goes before Opening the week; streak qu
 ## Next action
 
 This session is the parent for all CS2 work. Sections left (his list, 3 Nov; small items are not tracked here):
-1. Pathway page: his order 3 Nov follows the curriculum the foundation just taught, top down: Growth Journey page, Pathway page, then the block now called Below the Pathway renamed to Action Hub. Target, pace and gap stay defined in the Action Hub block with his annotated Action Hub visual (his favourite; withdrawn 3 Nov: moving them). One job per block so nothing repeats: Growth Journey page is where someone is going, the whole journey and its long term target; Pathway page is the stretch they are on now, the near goal, its Focus Areas and weeks, naming that it has its own target without defining it; Action Hub is this week, where target, pace and the gap are explained. Action Item page follows the Action Hub (structure first, then how a week runs), unless he moves it. The screen is in his MVP file (Desktop 1 MVP, file 5RO0m4bYYrTvbiaOgaU3tI, page Growth Journey, frame Pathway page 2670:11674).
+1. Pathway page: round 1 in chat, waiting on his review, then into his frame and HANDOFF. His order 3 Nov follows the curriculum the foundation just taught, top down: Growth Journey page, Pathway page, then the block now called Below the Pathway renamed to Action Hub. Target, pace and gap stay defined in the Action Hub block with his annotated Action Hub visual (his favourite; withdrawn 3 Nov: moving them). One job per block so nothing repeats: Growth Journey page is where someone is going, the whole journey and its long term target; Pathway page is the stretch they are on now, the near goal, its Focus Areas and weeks, naming that it has its own target without defining it; Action Hub is this week, where target, pace and the gap are explained. Action Item page follows the Action Hub (structure first, then how a week runs), unless he moves it. The screen is in his MVP file (Desktop 1 MVP, file 5RO0m4bYYrTvbiaOgaU3tI, page Growth Journey, frame Pathway page 2670:11674).
 2. Action Item page: placeholder (node 4787:13139); visuals worked out together.
 3. Growth Journey page: his image is in; write its copy.
 4. Falling behind: round 6, a text block by his call (he decides later on anything beside it), two sentences (stakes, then rollover), back to his 3 Nov spec after he rejected the round 5 cards as padding. no-ai-slop run; reader check FAILED on the noun wording (rollover undefined, runs/2026-11-03-fb3); rewritten to a step called rollover, reader check owed on that (three Sonnet runs, known-falling-behind.md); the new reader check Q5 did not catch the round 5 cards, so his read is still the check (fixes/2026-11-03-falling-behind-padded-cards.md). Preview .cs2-canvas/falling-behind-preview.html; he pastes it between Personalized timeline and Buffer flow.
