@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scroll sample</title>
+<!-- Pipeline sample for scroll mode. The scene pins while it scrolls and the phone's angle is a pure
+     function of scroll progress, read from the scroll position on every scroll event. No seek(t) is
+     needed: the renderer sets the scroll position and the page's own listener draws the frame. -->
+<style>
+  html, body { margin: 0; background: #040405; }
+  .spacer { height: 60vh; }
+  #scene { position: relative; height: 200vh; }
+  .pin { position: sticky; top: 0; height: 100vh; overflow: hidden; perspective: 1800px; }
+  .stage { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+  /* Sized to the screen, not in pixels: 78 percent of the height, capped by the width on narrow screens. */
+  .phone { --h: min(78vh, 160vw); position: absolute; height: var(--h); width: calc(var(--h) * 879 / 1811); left: calc(var(--h) * -879 / 3622); top: calc(var(--h) * -0.5); }
+  .phone img { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div class="spacer"></div>
+<section id="scene">
+  <div class="pin">
+    <div class="stage"><div class="phone" id="phone"><img src="assets/phone.webp" alt=""></div></div>
+  </div>
+</section>
+<div class="spacer"></div>
+<script type="module">
+  import { range, cubicBezier, lerp } from "../lib/motion.js";
+
+  // Sine in out. The reader's own scroll already eases, so a steep curve like Power3 makes the start of
+  // the scroll feel unresponsive and the middle snap.
+  const ease = cubicBezier(0.37, 0, 0.63, 1);
+
+  const scene = document.getElementById("scene");
+  const phone = document.getElementById("phone");
+
+  // Progress 0 when the scene top meets the screen top, 1 when its bottom meets the screen bottom.
+  const progress = () => {
+    const top = scene.getBoundingClientRect().top + scrollY;
+    return range(scrollY, top, top + scene.offsetHeight - innerHeight);
+  };
+  const draw = () => {
+    const p = progress();
+    // Turns to face the viewer over the first 90 percent of the pin, so every bit of scroll moves it.
+    const e = ease(range(p, 0, 0.9));
+    phone.style.transform = `rotateX(${lerp(12, 0, e)}deg) rotateY(${lerp(-32, 0, e)}deg)`;
+  };
+  addEventListener("scroll", draw, { passive: true });
+  addEventListener("resize", draw);
+  draw();
+</script>
+</body>
+</html>
