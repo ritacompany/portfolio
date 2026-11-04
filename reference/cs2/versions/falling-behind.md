@@ -23,7 +23,27 @@ Kept out on purpose: the magenta rollover tag (start of week shows it), pace mov
 pace block), buffer flow and start of week by name (the next blocks show them, and both happen without
 falling behind too), the earlier choose what to carry modal (start of week Rollover caption).
 
-## Round 5 (3 Nov): ruled-out options cut
+## Round 6 (3 Nov): back to the block's job
+
+His comment on round 5: the On its own and Still fits cards over-explain, read like searching for something to
+say and lack logic. The cards were filling the space the cut diagram left. Back to his 3 Nov spec: a problem
+headline, one stakes line and the rollover sentence, image slot blank. The word rollover still arrives here
+(rolls over) for Start of week; the hours they gave matches Buffer flow.
+
+## Version
+Eyebrow: Falling behind
+Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open rolls over into the next week, and that week takes fewer new Action Items so it still fits the hours they gave.
+Image: slot blank (his call 3 Nov).
+Sources: Soman and Cheema 2004; Mondai design record
+
+## Checks
+- no-ai-slop run as the skill on the two sentences: no change.
+- Reader check with the new Q5 (logic and padding): PASS (runs/2026-11-03-fb2 V2). Q5 also passed the round 5
+  cards he rejected, so it does not stand in for his read (fixes/2026-11-03-falling-behind-padded-cards.md).
+
+## Round 5 (superseded)
+
 
 His comment on round 4: explaining the options not taken could confuse the reader; use the space for what
 was done and why. The four ways diagram is gone. The space now holds three short columns, all about the
@@ -45,10 +65,7 @@ automation was safe only if the week never got heavier (carry-over.md section 3)
 Preview: .cs2-canvas/falling-behind-preview.html (stakes line at x 40, three columns at x 440, 773, 1106).
 He pastes it into his frame between Personalized timeline and Buffer flow.
 
-## Version
-Eyebrow: Falling behind
-Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
-Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
+Round 5 version:
 Column: Rollover | Anything still open on Saturday night rolls over into the next week.
 Column: On its own | It happens without asking, so nobody has to decide what to keep at the moment they're behind.
 Column: Still fits | The next week takes fewer new Action Items to make room and stays the size of the hours someone gave.

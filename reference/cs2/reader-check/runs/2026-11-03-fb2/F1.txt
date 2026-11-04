@@ -1,0 +1,75 @@
+V1 Q1 yes | V1.S4, V1.S5, V1.S6
+V1.S1 Q2 no
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | follows from the label
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | sets up the problem
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | gives the stake before the fix
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 no | answers where it goes
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | reason for rollover
+V1.S6 Q2 no
+V1.S6 Q3 no
+V1.S6 Q4 no
+V1.S6 Q5 no | follows from rollover
+V2 Q1 yes | V2.S3, V2.S4
+V2.S1 Q2 no
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | follows from the label
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | sets up the problem
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | gives the stake before the fix
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | follows from the stake
+V3 Q1 yes | V3.S3, V3.S4, V3.S5, V3.S7, V3.S8
+V3.S1 Q2 no
+V3.S1 Q3 no
+V3.S1 Q4 no
+V3.S1 Q5 no | follows from the label
+V3.S2 Q2 no
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | sets up the problem
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | follows from the label
+V3.S4 Q2 no
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | follows from the label
+V3.S5 Q2 no
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 no | follows from the label
+V3.S6 Q2 no
+V3.S6 Q3 no
+V3.S6 Q4 yes | K8
+V3.S6 Q5 yes | states the outcome of Carry over before the version says what it does, and S8 repeats it
+V3.S7 Q2 no
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 yes | the feeling of failing does not follow from the week staying the size of capacity
+V3.S8 Q2 no
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | states the kept mechanism

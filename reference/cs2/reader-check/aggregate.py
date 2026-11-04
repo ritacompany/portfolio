@@ -10,7 +10,7 @@ q1_no = collections.Counter()
 versions = set()
 for r in runs:
     for line in r.splitlines():
-        m = re.match(r'(V\d+)(\.S\d+)?\s+(Q[1-4])\s+(yes|no)\s*(?:\|\s*(.*))?', line.strip(), re.I)
+        m = re.match(r'(V\d+)(\.S\d+)?\s+(Q[1-5])\s+(yes|no)\s*(?:\|\s*(.*))?', line.strip(), re.I)
         if not m:
             continue
         v, s, q, a, note = m.groups()
