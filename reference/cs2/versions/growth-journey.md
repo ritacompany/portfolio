@@ -82,3 +82,18 @@ Directions, each with every card's dates visible:
 Dates: his frame's card dates are placeholders. Set the timeline above on a duplicate of his screen in Figma,
 never his original, then export. Open: his frame shows progress 45 percent and pace Jun 2; the timeline says 24
 percent and Jun 10.
+
+### The connection moment, options with references (4 Nov)
+His ask: the link between Opportunity's target and the Journey target, investigated with options, not a default.
+a. Fill along the screen's own connector (recommended, used in direction 1). His cards already sit on a line,
+   solid green for done and dashed for not started. The green fill runs along that existing line to
+   Opportunity, then the journey tiles light on the same beat. Reference: progress steppers and delivery
+   trackers (Material stepper, food delivery status bars). Differs from round 1: no new line is drawn up to the
+   tile.
+b. Same beat highlight (direction 2). Opportunity and the journey tiles light at once, nothing travels.
+   Reference: linked highlighting in dashboards (Tableau highlight actions).
+c. Digit roll in the tile. As Opportunity lights, the Journey target date rolls like an odometer and settles on
+   the same date. The tile counts to it instead of a number flying in. Reference: price tickers in trading
+   apps. Risk: a rolling date suggests the target is changing.
+d. Shared element morph, considered and not recommended. The date travels from card to tile as one element
+   (Material container transform). It is the polished version of the floating number he rejected.
