@@ -1,0 +1,4 @@
+VERSION V1: Pathway page
+  (label) Pathway
+V1.S1 One level below the Growth Journey, each Pathway has its own page, with its Focus Areas and the Action Items inside each one.
+V1.S2 It shows the whole Pathway someone is on: every Focus Area in order, the one they're in now and how many Action Items they've finished.
