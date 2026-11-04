@@ -82,4 +82,4 @@ It shows the whole Pathway someone is on: every Focus Area in order, the one the
 Sources: none (no claim needs one; each fact is on the screen: Focus Areas marked Complete, Current, Not started, and 20/60 Action Items complete)
 Image: the Pathway page, already in his frame.
 
-Checks: no-ai-slop run as the skill. Reader check (runs/2026-11-04-pathway-r3): FAIL on Q1 only, 3/3 found no design decision with a reason, which is by his note (no reasoning for this block). Every sentence clean on terms, process and restating. His call whether Q1 is waived here.
+Checks: no-ai-slop run as the skill. Reader check (runs/2026-11-04-pathway-r3): FAIL on Q1 only, 3/3 found no design decision with a reason, which is by his note (no reasoning for this block). Every sentence clean on terms, process and restating. Q1 waived by him 4 Nov (connector block, no reasoning by design). Approved by him 4 Nov: copy stands.
