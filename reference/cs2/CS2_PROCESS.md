@@ -198,8 +198,8 @@ What the 6 Oct chat established for "Where it started", to build on rather than 
 
 ## Sources of truth and the outline
 
-Rebuilt 21 Oct (`fixes/2026-10-21-cs2-process-rebuild.md`). His WIP frame (4269:9433) is the order and the
-live MVP file (5RO0m4bYYrTvbiaOgaU3tI) is product truth; `truth.json` points at the snapshots read from them.
+Rebuilt 21 Oct (`fixes/2026-10-21-cs2-process-rebuild.md`). His WIP frame (4269:9433) is the order and holds every
+screen; the product flow map is a saved snapshot, never re-read from a Mondai file. `truth.json` points at both.
 Notes, the archive, reasoning files and old drafts are search aids and never the authority.
 `outline/outline.md` and each `outline/section-N.md` block plan are written as claims, each pointing at its
 source (format at the top of `../check-truth.mjs`). The guard hook refuses a save that fails

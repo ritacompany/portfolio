@@ -1,4 +1,6 @@
-# Buffer flow, round 3 (3 Nov)
+# Buffer flow, approved (3 Nov)
+
+Approved by him 3 Nov and pasted into his frame himself: round 3 text with timing line 1, his Momentum screen as the image.
 
 Written against his portfolio frame 4269:9433, block node 4726:11317 (layer Start of week | State rules |
 T3I layout 7, eyebrow Buffer flow), between Falling behind and start of week. Run lean: one version, rounds in
@@ -41,7 +43,5 @@ Text: The moment the last Action Item of the week is done, this screen celebrate
 Text: A week only holds the hours a person gave, so finishing early leaves nothing left to do. Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.
 Text: So the words follow the gap. Someone ahead is told they can stretch it. Someone still behind gets the finish celebrated too, then hears this is how they close the gap.
 Text: It can't wait for the next week. How much someone can pull forward depends on the days left in this one.
-Timing line, rewrite 2: Waiting for the next week would miss the point, because the fewer days are left, the less someone can pull forward.
-Timing line, round 2 wording: I couldn't wait until the next week began. How much someone can pull forward depends on how many days are left, and once the week ends there are none.
-Image: His completion screen in the Turning version: every Action Item done, pace behind target, the offer to catch up below. The gap in days on the right of the screen is the number the copy follows. (Fallback: the Momentum version he has built now.)
+Image: His completion screen, Momentum version: week 3 of the Cognition Pathway done, +2d ahead of target on the right, the next Action Item with Add to this week.
 Sources: Mondai design record

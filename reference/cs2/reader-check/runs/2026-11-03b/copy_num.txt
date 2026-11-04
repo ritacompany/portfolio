@@ -1,0 +1,25 @@
+VERSION V1: Buffer flow
+  (label) Buffer flow
+V1.S1 Finish the week's work early and the days that are left become room to catch up or to get further ahead.
+V1.S2 The moment the last Action Item of the week is done, this screen celebrates it and offers next week's Action Items to pull forward.
+V1.S3 A week only holds the hours a person gave, so finishing early leaves nothing left to do.
+V1.S4 Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.
+V1.S5 So the words follow the gap.
+V1.S6 Someone ahead is told they can stretch it.
+V1.S7 Someone still behind gets the finish celebrated too, then hears this is how they close the gap.
+V1.S8 It can't wait for the next week.
+V1.S9 How much someone can pull forward depends on the days left in this one.
+
+VERSION V2: Start of week
+  (label) Start of week
+V2.S1 Whether someone finished last week early or fell short, the next week opens on a recap of where they landed and a plan from there.
+V2.S2 This is the first screen someone sees when they open the product each week.
+V2.S3 It lays out the week ahead, and what's on it depends on what they need that week.
+V2.S4 If they're on track, it says less.
+V2.S5 If they're struggling to stay on target, it offers ways to catch up.
+V2.S6 [caption, template Clean slate] A clean slate only means something if no day was lost, so a week with a lost day goes to rollover.
+V2.S7 [caption, template Catching up] It names the progress of someone behind and points to finishing early to close the rest, until the week they reach the target.
+V2.S8 [caption, template Rollover] Leftovers arrive already in the week under the magenta rollover tag.
+V2.S9 An earlier version made people choose what to take on while behind, which read like paying to keep going.
+V2.S10 [caption, template Recalibration] After several short weeks, it suggests a capacity that fits the hours someone has been giving, which they can take, change or skip.
+V2.S11 [caption, template Reset] After a long absence, the week rebuilds from today with progress kept and one button, because a keep my plan option would win by default.

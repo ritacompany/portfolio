@@ -1,0 +1,33 @@
+VERSION V1: Round 5, three columns
+  (label) Falling behind
+V1.S1 Every Action Item in a week is due by Saturday night.
+V1.S2 Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+V1.S3 A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
+  (label) Rollover
+V1.S4 Anything still open on Saturday night rolls over into the next week.
+  (label) On its own
+V1.S5 It happens without asking, so nobody has to decide what to keep at the moment they're behind.
+  (label) Still fits
+V1.S6 The next week takes fewer new Action Items to make room and stays the size of the hours someone gave.
+
+VERSION V2: Rewrite, two sentences
+  (label) Falling behind
+V2.S1 Every Action Item in a week is due by Saturday night.
+V2.S2 Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+V2.S3 A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
+V2.S4 So anything still open rolls over into the next week, and that week takes fewer new Action Items so it still fits the hours they gave.
+
+VERSION V3: Round 4, four ways diagram
+  (label) Falling behind
+V3.S1 Every Action Item in a week is due by Saturday night.
+V3.S2 Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+  (label) Ruled out: Push forward
+V3.S3 Everything left lands in next week, which gets heavier right after a hard one.
+  (label) Ruled out: Let them pick
+V3.S4 They decide what to keep at the moment they are behind.
+  (label) Ruled out: Drop it
+V3.S5 The leftover disappears and the Pathway slips without anyone seeing it.
+  (label) Kept: Carry over
+V3.S6 The week stays the size of their capacity.
+V3.S7 A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
+V3.S8 So anything left over moves into the next week on its own, and that week takes fewer new Action Items to stay within their capacity.

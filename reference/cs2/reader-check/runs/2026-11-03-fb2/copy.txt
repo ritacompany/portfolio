@@ -1,0 +1,28 @@
+=== Round 5, three columns
+[eyebrow or sub-heading] Falling behind
+[headline] Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
+[eyebrow or sub-heading] Rollover
+Anything still open on Saturday night rolls over into the next week.
+[eyebrow or sub-heading] On its own
+It happens without asking, so nobody has to decide what to keep at the moment they're behind.
+[eyebrow or sub-heading] Still fits
+The next week takes fewer new Action Items to make room and stays the size of the hours someone gave.
+
+=== Rewrite, two sentences
+[eyebrow or sub-heading] Falling behind
+[headline] Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open rolls over into the next week, and that week takes fewer new Action Items so it still fits the hours they gave.
+
+=== Round 4, four ways diagram
+[eyebrow or sub-heading] Falling behind
+[headline] Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+[eyebrow or sub-heading] Ruled out: Push forward
+Everything left lands in next week, which gets heavier right after a hard one.
+[eyebrow or sub-heading] Ruled out: Let them pick
+They decide what to keep at the moment they are behind.
+[eyebrow or sub-heading] Ruled out: Drop it
+The leftover disappears and the Pathway slips without anyone seeing it.
+[eyebrow or sub-heading] Kept: Carry over
+The week stays the size of their capacity.
+A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything left over moves into the next week on its own, and that week takes fewer new Action Items to stay within their capacity.

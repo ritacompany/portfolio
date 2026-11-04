@@ -17,4 +17,7 @@ Vn.Sm Q3 yes|no
 Vn.Sm Q4 yes|no | the K id
   Q4: does this sentence only restate a fact in KNOWN and add nothing new? A sentence that names a known fact in order to add a new point is not this.
 
+Vn.Sm Q5 yes|no | why
+  Q5: would a reader stop at this sentence because it does not follow from what came before it, or because it explains something the version already made clear or that the reader does not need to follow the point? A short label above a sentence belongs to that sentence.
+
 Write the answer to the OUT path you are given, then reply only with the word done.

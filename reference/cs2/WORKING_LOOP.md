@@ -49,8 +49,8 @@ before the first reply, then HANDOFF.md for where things stand.
 - Keep his sections as the page names them. Never invent a new section, never split one by word count and
   never make a text only block.
 - Layout, per version: list the points the section needs (A, B, C, D), each one a decision and the thinking
-  or research behind it. Decide which points need a visual, from how the Mondai designs actually work (his
-  desktop MVP folder in Figma): an interaction that is talked about gets shown. Count the images, then pick a
+  or research behind it. Decide which points need a visual, from how the screens in his portfolio frame
+  actually work: an interaction that is talked about gets shown. Count the images, then pick a
   layout from his pool with that many image frames and room for the text (Case study layouts section, page
   VC, T1I T2I T3I). Points without an image go together with the text beside an image, never alone. Draw it
   on his black page: no gray backdrop, no boxes, no text in boxes.
@@ -85,6 +85,8 @@ before the first reply, then HANDOFF.md for where things stand.
    vocabulary and colleague names (`.claude/hooks/canvas-copy-guard.mjs`). Enforced.
 3. Reader check (`reference/cs2/reader-check/README.md`): three runs, PASS needed, on every version. All
    versions of a block go in one COPY file, so a round is three sub-agents, not three per version.
+   Enforced (.claude/hooks/cs2-cost-guard.mjs): sub-agents must be Sonnet, and a fourth in one turn is
+   refused until he asks for a re-run.
 Nothing goes on the canvas before all three. His rule: no-ai-slop and the reader check are not optional.
 Load unlazy once per session, and again after the session compacts. Enforced: a stop hook
 (.claude/hooks/unlazy-every-turn.mjs) refuses to end a turn that used work tools when it has not been
@@ -96,13 +98,12 @@ not say stop or wait (.claude/hooks/figma-build-gate.mjs). No keyword needed.
 
 - The usage hook gives the 5 hour and weekly numbers. At 75 percent of the 5 hour limit rewrite HANDOFF,
   commit and push. At 90 percent finish the step in hand and stop, unless he says keep going.
-- Weekly usage is the tighter limit. No fan out of sub-agents unless he asks. Prefer editing over redrafting.
-- One session per section or round (2 Nov). Every call resends the whole conversation, so a long session
-  costs more with every turn; the 29 Oct session ran 1,394 calls and reached about 950k tokens. When a
-  round is done or he moves to another section: save versions/<part>.md, rewrite HANDOFF.md so its Where it
-  stopped names the section, the round, what he said on each version and the next action, commit, push and
-  tell him to start a new session. The new session reads HANDOFF.md, this file and versions/<part>.md, and
-  nothing about the loop is lost because the loop lives here, not in the conversation.
+- Prefer editing over redrafting.
+- One session per section or round. Every call resends the whole conversation. Enforced: past 250k tokens
+  the cost guard refuses to end a turn until HANDOFF.md (section, round, his comments on each version, next
+  action) is committed, then tell him to start a new session. He sees a notice when a session runs on Opus.
+- Process docs (this file, CLAUDE.md, the rules files, reader-check README) cannot be edited until
+  fix-the-process is loaded, and a turn that edited one cannot end without a passing fix record in fixes/.
 
 ## Saving
 

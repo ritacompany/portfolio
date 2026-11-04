@@ -1,41 +1,79 @@
-# Falling behind, round 2 (2 Nov)
+# Falling behind, copy block (3 Nov)
 
-Superseded 2 Nov: he moved Falling behind to a short lead in (HANDOFF.md, Next action). Kept for the reasoning; round 3 starts fresh.
+Round 4. Rounds 1 to 3 (cards, Sally, the mechanisms named) are superseded and live in git history and in
+versions/map-and-falling-behind.md. His call 3 Nov: no data visualization; a copy block with one image, the
+headline poses the problem without the solution, at most one short line, plus the rollover sentence he
+approved in the buffer flow session.
 
-Text and cards only, in his existing bridge layout. Every version carries every point.
+Written against his portfolio frame 4269:9433, block node 4712:12325 (layer Falling behind | Bridge, y 15192),
+read 3 Nov. It follows Personalized timeline (capacity, cognitive load, six hours can mean three Action Items
+one week and four the next) and comes before Buffer flow, whose headline already says catch up. The map block
+above it is treated as cut (he judged it probably unnecessary, 3 Nov).
 
-## Falling behind A: Sally first, then the mechanisms
+Points:
+1. Every Action Item in a week is due by the end of it, 11:59pm Saturday (reasoning/calendar-and-schedule.md
+   line 52, his words). CONFIRMED.
+2. A week that comes up short can feel like failure, and that makes people less likely to keep going (Soman
+   and Cheema 2004, via reports/Schedule view how it works.md). PARAPHRASE.
+3. Leftovers move into the next week on their own, and the week takes fewer new Action Items so it stays the
+   size of the person's capacity (reasoning/carry-over.md, 7 May 2026 weekly assembly; his yes 3 Nov to say
+   this here). CONFIRMED.
 
-Headline: Every plan built on weeks has to decide what happens when one of them doesn't get finished, and that answer shapes every week after it.
+Kept out on purpose: the magenta rollover tag (start of week shows it), pace moving (owed to the target and
+pace block), buffer flow and start of week by name (the next blocks show them, and both happen without
+falling behind too), the earlier choose what to carry modal (start of week Rollover caption).
 
-Say Sally had four Action Items this week and finished three. Her Pathway target doesn't move, because it only changes when the hours she gives change. A target that slid with every bad week would stop meaning anything.
-When her next week starts, her pace moves to show the later finish. The unfinished Action Item is already in the new week, and the week takes fewer new ones, so it still fits her hours.
-Three mechanisms keep a short week from turning into a pile up.
+## Round 6 (3 Nov): back to the block's job
 
-Card 01, Buffer flow: When someone finishes their week early, a screen opens that lets them catch up or get ahead.
-Card 02, Start of week: Every new week opens on a recap of where the person stands, after leftovers have moved.
-Card 03, Capacity: After a run of short weeks, the plan looks at their progress and suggests fewer hours. People can change it in settings too.
+His comment on round 5: the On its own and Still fits cards over-explain, read like searching for something to
+say and lack logic. The cards were filling the space the cut diagram left. Back to his 3 Nov spec: a problem
+headline, one stakes line and the rollover sentence, image slot blank. The word rollover still arrives here
+as a noun, since Start of week's Rollover and Recalibration captions use it that way (Recalibration now reads Rollover handles one unfinished week); the hours they gave matches Buffer flow.
 
-## Falling behind B: the rule first, then three moments
+## Version
+Eyebrow: Falling behind
+Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open moves into the next week on its own. This is rollover, and the week it lands in takes fewer new Action Items so it still fits the hours they gave.
+Image: none in the copy. Animation beside it, his idea 3 Nov, built in the preview: This week and Next week stacks of long skeleton mini Action Items, one on top of another like the Action Hub list; three check off in Haven green (#78b765) and dim, the fourth lifts and slides into next week and keeps a lighter border, then three new ones fill the row so the week is the same size. White and gray only. Loops; reduced motion shows the end state.
+Layout: headline left at x 40, text column at x 1098 width 302, sources at the bottom.
+Sources: Soman and Cheema 2004; Mondai design record
 
-Headline: When a week ends with work unfinished, the target, the pace and the next week all react, so each one got a rule for how far it can move.
+## Checks
+- no-ai-slop run as the skill on the two sentences: no change.
+- Reader check with the new Q5 (logic and padding): PASS (runs/2026-11-03-fb2 V2) On the noun wording (So rollover moves anything still open) it FAILED: rollover undefined, 3/3 (runs/2026-11-03-fb3). Rewritten to define it, then no-ai-slop run as the skill split the sentence (This is rollover, and the week it lands in). Final wording: reader check PASS, no flags in any run (runs/2026-11-03-fb4). Q5 also passed the round 5
+  cards he rejected, so it does not stand in for his read (fixes/2026-11-03-falling-behind-padded-cards.md).
 
-The rule I set is that one short week changes as little as possible. Take Sally, with four Action Items this week and three finished.
-Her target stays where it was, since only a change in her hours moves it. Her pace moves once, when the new week starts. The unfinished Action Item carries over on its own, and the week takes fewer new ones so it still fits her hours.
-Anything bigger than one week is handled at three moments.
+## Round 5 (superseded)
 
-Card 01, When a week ends early: A screen called the buffer flow opens the moment every Action Item is done, so the extra time can go to catching up or getting ahead.
-Card 02, When a new week starts: A recap called start of week opens and shows where the person stands.
-Card 03, When weeks keep slipping: The plan looks at their progress and suggests a lower capacity, which they can also change in settings.
 
-## Falling behind C: what changes and what doesn't, then her questions
+His comment on round 4: explaining the options not taken could confuse the reader; use the space for what
+was done and why. The four ways diagram is gone. The space now holds three short columns, all about the
+decision: what rollover is, why it happens on its own, why the week still fits.
 
-Headline: Falling behind one week can't be allowed to grow into a pile of work, so I decided how every part of the plan responds when a week comes up short.
+Set up for the next two blocks, read from versions/buffer-flow.md and versions/start-of-week.md:
+- The word rollover is introduced here. Start of week uses it as a term (Clean slate, Rollover and
+  Recalibration captions) and his rule is rollover, never leftovers.
+- A short week is set up here (the stakes line). Buffer flow says "after a short week" and Recalibration
+  says "Rollover covers one short week".
+- "The hours someone gave" matches Buffer flow's "the hours a person gave".
+- Left for later blocks: the magenta tag and where pace landed (Rollover caption), repeated short weeks
+  (Recalibration), pace moving (Action Hub), finishing early (Buffer flow).
 
-Sally had four Action Items this week and finished three. Nothing about her goal changes. Her target only moves when her hours do, so one short week can't push it.
-What changes is small and expected. When the new week starts, her pace shows the later finish, and the unfinished Action Item is already in the new week, which takes fewer new ones so it still fits.
-Three mechanisms answer what she'd want to know next.
+Sources: points 1 to 3 above. Column 2 rests on his own flag that a carry forward decision while behind was
+a weird decision making point (reasoning/carry-over.md section 1); column 3 on his constraint that the
+automation was safe only if the week never got heavier (carry-over.md section 3). CONFIRMED.
 
-Card 01, What if the week ends early?: When every Action Item is done before the week ends, a screen called the buffer flow opens with the chance to catch up or get ahead.
-Card 02, Where does she stand now?: Each new week opens on a recap, called start of week, after unfinished Action Items have moved over.
-Card 03, What if weeks keep slipping?: The plan looks at her progress and suggests fewer hours, and she can change them in settings too.
+Preview: .cs2-canvas/falling-behind-preview.html (stakes line at x 40, three columns at x 440, 773, 1106).
+He pastes it into his frame between Personalized timeline and Buffer flow.
+
+Round 5 version:
+Column: Rollover | Anything still open on Saturday night rolls over into the next week.
+Column: On its own | It happens without asking, so nobody has to decide what to keep at the moment they're behind.
+Column: Still fits | The next week takes fewer new Action Items to make room and stays the size of the hours someone gave.
+Sources: Soman and Cheema 2004; Mondai design record
+
+## Checks
+- no-ai-slop run as the skill on the final text (cut the kicker "That's rollover."; the third column's
+  absolute "never followed by a heavier one" became the hours someone gave).
+- Reader check: PASS, three Sonnet runs, aggregate V1 PASS, no flags in any run
+  (reader-check/runs/2026-11-03-fb E1 to E3, copy3).

@@ -1,0 +1,75 @@
+V1 Q1 yes | V1.S4, V1.S5, V1.S6
+V1.S1 Q2 no | none
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | follows from the label
+V1.S2 Q2 no | none
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | follows S1
+V1.S3 Q2 no | none
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | gives the reason the problem matters
+V1.S4 Q2 no | none
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 no | answers S2 under its label
+V1.S5 Q2 no | none
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | follows from the label and S4
+V1.S6 Q2 no | none
+V1.S6 Q3 no
+V1.S6 Q4 no
+V1.S6 Q5 no | follows from the label and S4
+V2 Q1 yes | V2.S4, V2.S3
+V2.S1 Q2 no | none
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | follows from the label
+V2.S2 Q2 no | none
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | follows S1
+V2.S3 Q2 no | none
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | gives the reason the problem matters
+V2.S4 Q2 no | none
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | the "So" follows from S3 and S2
+V3 Q1 yes | V3.S8, V3.S7, V3.S5
+V3.S1 Q2 no | none
+V3.S1 Q3 no
+V3.S1 Q4 no
+V3.S1 Q5 no | follows from the label
+V3.S2 Q2 no | none
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | follows S1
+V3.S3 Q2 no | none
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | explains the ruled out option
+V3.S4 Q2 no | none
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | explains the ruled out option
+V3.S5 Q2 no | none
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 no | explains the ruled out option
+V3.S6 Q2 no | none
+V3.S6 Q3 no
+V3.S6 Q4 yes | K8
+V3.S6 Q5 yes | states the result before the kept option's move is described, and repeats the capacity idea the reader already has
+V3.S7 Q2 no | none
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 yes | the failing feeling does not follow from the capacity line before it
+V3.S8 Q2 no | none
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | the "So" resolves S7 and S2
