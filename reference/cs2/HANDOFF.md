@@ -14,14 +14,14 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-04 02:45
+Updated: 2026-11-04 02:55
 By: Claude Code
 Section: 3
 Loop step: 3
 
 ## Where it stopped
 
-Order change, his call 3 Nov: Growth Journey block before the Pathway page block. Story for both: this is how the structure is set up, and it is not a surface people use regularly like the Action Hub (never said that bluntly). Growth Journey round 1 drafted in versions/growth-journey.md, no checks run yet (usage limit); next session runs no-ai-slop as the skill, the fit measure (scratch script approach: Satoshi from ~/Library/Fonts, column 193px at 16px, line height 140 percent) and the reader check, then shows him. Pathway page round 1 waits until Growth Journey is approved, and gets rewritten to that story.
+Order change, his call 3 Nov: Growth Journey block before the Pathway page block. Story for both: this is how the structure is set up, and it is not a surface people use regularly like the Action Hub (never said that bluntly). Growth Journey round 2 in versions/growth-journey.md (his round 1 comments applied: confusing-dates line belongs to the Action Hub block; focus on why the long term goal stays, how journey and Pathway dates relate, the only place journey progress shows). His image idea, recommended: hover animation across the Pathway cards revealing each target and pace, the last matching the journey target (details in the versions file; the card dates in his frame are placeholders). No checks run yet (usage limit); next session runs no-ai-slop as the skill, the fit measure (scratch script approach: Satoshi from ~/Library/Fonts, column 193px at 16px, line height 140 percent) and the reader check, then shows him. Pathway page round 1 waits until Growth Journey is approved, and gets rewritten to that story.
 
 Pathway page block, round 1 (3 Nov), in chat, not yet reviewed by him (versions/pathway-page.md). Frame block 4811:27970: eyebrow Pathway, headline Someone works through one Pathway at a time, and its page shows where they stand in it and what comes next; a 69 word column on the page being for looking (nothing checked off, the work is on the weekly home screen; separating this week's Action Items would have made it a second to do list), Focus Areas in order with the side panel marking the current one, and any Action Item can be opened but they are finished in order (a usability test you have not run). The own target line was cut: the reader check (runs/2026-11-03-pathway, known-pathway.md) flagged it 3/3 as restating the Growth Journey image, which already shows per Pathway dates. The column is longer than his 143px filler (about 380px beside a 688px image); his call. Not in his frame yet.
 
