@@ -69,3 +69,17 @@ his 143px filler. The headline echoes the Growth Journey headline (a page of its
 down; that headline is not approved yet, so if it changes this one follows.
 
 Checks: no-ai-slop run as the skill. Reader check PASS (runs/2026-11-04-pathway-r2, known-pathway.md); one run of three flagged the last sentence as restating K4 (home screen), below the two needed. Not reviewed by him.
+
+## Round 3 (4 Nov), his correction
+Round 2 failed his note: it said what the page is not (nobody works here). His rule for this block: say only
+what the page is, simply, as the next level down and what that page looks like. Round 2 is dropped.
+
+Eyebrow: Pathway
+Headline: One level below the Growth Journey, each Pathway has its own page, with its Focus Areas and the Action Items inside each one.
+Text:
+It shows the whole Pathway someone is on: every Focus Area in order, the one they're in now and how many Action Items they've finished.
+
+Sources: none (no claim needs one; each fact is on the screen: Focus Areas marked Complete, Current, Not started, and 20/60 Action Items complete)
+Image: the Pathway page, already in his frame.
+
+Checks: no-ai-slop run as the skill. Reader check not run on round 3. Not reviewed by him.
