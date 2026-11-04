@@ -34,7 +34,8 @@ as a noun, since Start of week's Rollover and Recalibration captions use it that
 Eyebrow: Falling behind
 Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
 Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So rollover moves anything still open into the next week, and that week takes fewer new Action Items so it still fits the hours they gave.
-Image: slot blank (his call 3 Nov).
+Image: none. His call 3 Nov: a text block; he decides later whether anything goes beside it.
+Layout: headline left at x 40, text column at x 1098 width 302, sources at the bottom.
 Sources: Soman and Cheema 2004; Mondai design record
 
 ## Checks

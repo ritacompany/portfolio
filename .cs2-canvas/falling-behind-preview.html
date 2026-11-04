@@ -6,31 +6,19 @@
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500&display=swap">
 <style>
   body { margin: 0; background: #0b0b0c; font-family: Satoshi, system-ui, sans-serif; }
-  .block { position: relative; width: 1440px; height: 760px; margin: 0 auto; background: #0b0b0c; }
-  .abs { position: absolute; }
-  .eb { left: 40px; top: 64px; width: 660px; margin: 0; font-size: 20px; font-weight: 500; line-height: 1.32; letter-spacing: -0.02em; color: #aeaeb4; }
-  .hl { left: 40px; top: 118px; width: 812px; margin: 0; font-size: 40px; font-weight: 500; line-height: 1.15; letter-spacing: -0.04em; color: #f2f1f8; }
-  .col { top: 420px; width: 294px; }
-  .rule { height: 1px; background: #6b6b70; }
-  .kept .rule { height: 2px; background: #f2f1f8; }
-  .lab { margin: 20px 0 0; font-size: 14px; font-weight: 500; color: #6b6b70; }
-  .kept .lab { color: #f2f1f8; }
-  .ti { margin: 20px 0 0; font-size: 20px; font-weight: 500; line-height: 1.32; letter-spacing: -0.02em; color: #aeaeb4; }
-  .kept .ti { color: #f2f1f8; }
-  .tx { margin: 12px 0 0; font-size: 16px; line-height: 1.5; color: #6b6b70; }
-  .kept .tx { color: #aeaeb4; }
-  .body { left: 1098px; top: 420px; width: 302px; margin: 0; font-size: 16px; line-height: 1.5; color: #aeaeb4; }
-  .src { left: 40px; top: 680px; margin: 0; font-size: 14px; color: #6b6b70; }
+  .block { position: relative; width: 1440px; height: 420px; margin: 0 auto; background: #0b0b0c; }
+  .abs { position: absolute; margin: 0; }
+  .eb { left: 40px; top: 64px; width: 660px; font-size: 20px; font-weight: 500; line-height: 1.32; letter-spacing: -0.02em; color: #aeaeb4; }
+  .hl { left: 40px; top: 118px; width: 812px; font-size: 40px; font-weight: 500; line-height: 1.15; letter-spacing: -0.04em; color: #f2f1f8; }
+  .body { left: 1098px; top: 126px; width: 302px; font-size: 16px; line-height: 1.5; color: #aeaeb4; }
+  .src { left: 40px; top: 340px; font-size: 14px; color: #6b6b70; }
 </style>
 </head>
 <body>
 <div class="block">
   <p class="abs eb">Falling behind</p>
   <p class="abs hl">Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.</p>
-
-  <p class="abs body" style="left:40px;width:420px">A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So rollover moves anything still open into the next week, and that week takes fewer new Action Items so it still fits the hours they gave.</p>
-  <div class="abs" style="left:552px;top:420px;width:848px;height:220px;border:1px dashed #6b6b70;display:flex;align-items:center;justify-content:center;color:#6b6b70;font-size:14px">Image slot, open</div>
-
+  <p class="abs body">A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So rollover moves anything still open into the next week, and that week takes fewer new Action Items so it still fits the hours they gave.</p>
   <p class="abs src">Sources: Soman and Cheema 2004; Mondai design record</p>
 </div>
 <script>function fit(){document.querySelector(".block").style.zoom=Math.min(1,innerWidth/1440)}fit();addEventListener("resize",fit)</script>
