@@ -1,6 +1,6 @@
 # Scroll sample style guide
 
-Reference: the Haven page scroll grammar (Lenis, pinned sections) and HAVEN_MOTION_PLAN.md.
+Worked example. The reference used for this sample was the Haven page scroll grammar (Lenis, pinned sections); a new piece names its own reference here.
 
 - Palette and subject as the spring sample: page black, the real profile export, nothing added.
 - The section pins for one screen of scroll. The reader's scroll is the clock: every bit of scroll should visibly move the phone until it faces them, then a short rest before release.

@@ -1,7 +1,7 @@
 // Renders a motion page to MP4, frame by frame, from window.seek(t). Rules: .claude/motion-rules.md.
 //
 //   node scripts/render.mjs --page site/motion-lab/spring-sample.html --width 1080 --height 1080 --fps 60 --dur 4
-//   node scripts/render.mjs --page site/haven/ --mode scroll --scroll "#chat" --width 1440 --height 900 --dur 6
+//   node scripts/render.mjs --page site/motion-lab/scroll-sample.html --mode scroll --scroll "#scene" --start "top top" --end "bottom bottom" --dur 3
 //   node scripts/render.mjs --page site/motion-lab/spring-sample.html --still 1.5 --out output/motion/still.png
 //
 // Time mode: t runs 0 to dur seconds, end exclusive, so a loop's last frame leads into its first.
@@ -10,7 +10,6 @@
 //   or --start/--end "top top" style edges) or --from and --to in pixels. --dur sets how long the scrub lasts.
 // Every frame is drawn --sub times at evenly spaced moments and blended, which gives real motion blur.
 // The page runs with window.__RENDER__ = true. A Math.random call during a seek fails the render.
-// Uses playwright-core with the system Chrome, like scripts/verify-haven.mjs.
 import { createServer } from "node:http";
 import { readFile, mkdir, writeFile, rm } from "node:fs/promises";
 import { existsSync, createReadStream } from "node:fs";
@@ -35,8 +34,10 @@ const STILL = has("still") ? num("still", 0) : null;
 const name = path.basename(PAGE.replace(/\/$/, "")).replace(/\.html$/, "") || "render";
 const OUT = path.resolve(root, str("out", `output/motion/${name}-${W}x${H}${STILL !== null ? `-t${STILL}.png` : ".mp4"}`));
 
-const pwPath = process.env.PLAYWRIGHT_MODULE || path.join(process.env.HOME, ".npm/_npx/31e32ef8478fbf80/node_modules/playwright-core/index.mjs");
-if (!existsSync(pwPath)) { console.error("playwright-core not found at " + pwPath + ". Set PLAYWRIGHT_MODULE."); process.exit(2); }
+// Playwright: PLAYWRIGHT_MODULE if set, else the project's own node_modules (npm i -D playwright).
+const pwCandidates = [process.env.PLAYWRIGHT_MODULE, path.join(root, "node_modules/playwright/index.mjs"), path.join(root, "node_modules/playwright-core/index.mjs")].filter(Boolean);
+const pwPath = pwCandidates.find((p) => existsSync(p));
+if (!pwPath) { console.error("Playwright not found. Run: npm i -D playwright && npx playwright install chromium"); process.exit(2); }
 const { chromium } = await import(pathToFileURL(pwPath).href);
 
 // Static server over the repo root, because ES modules do not load from file URLs.
@@ -56,10 +57,10 @@ await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const url = /^https?:/.test(PAGE) ? PAGE : `http://127.0.0.1:${server.address().port}/${PAGE.replace(/^\//, "")}`;
 
 // Software GL and a fixed colour profile keep pixels identical from run to run, WebGL included.
-const browser = await chromium.launch({
-  channel: "chrome", headless: true,
-  args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--force-color-profile=srgb", "--font-render-hinting=none", "--disable-partial-raster", "--hide-scrollbars", "--mute-audio"],
-});
+// The installed Chrome if there is one, else Playwright's own Chromium. Keep to one of them for a piece:
+// two different browsers can give two different hashes.
+const launchArgs = { headless: true, args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--force-color-profile=srgb", "--font-render-hinting=none", "--disable-partial-raster", "--hide-scrollbars", "--mute-audio"] };
+const browser = await chromium.launch({ ...launchArgs, channel: process.env.MOTION_BROWSER || "chrome" }).catch(() => chromium.launch(launchArgs));
 const ctx = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: DPR, reducedMotion: "no-preference" });
 await ctx.addInitScript(() => {
   window.__RENDER__ = true;

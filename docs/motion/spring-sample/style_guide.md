@@ -1,6 +1,6 @@
 # Spring sample style guide
 
-Reference: the Haven page itself (site/haven) and HAVEN_MOTION_PLAN.md. Take its grammar, not new content.
+Worked example. The reference used for this sample was the Haven case study page and its motion plan; a new piece names its own reference here. Take its grammar, not new content.
 
 - Palette: page black #040405, phone and screen exactly as exported from Figma. No added colour, no glow.
 - Subject: the real Confidante profile export (profile-phone-straight.webp). Never redrawn.
