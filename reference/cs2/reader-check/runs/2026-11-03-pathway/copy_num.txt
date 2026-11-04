@@ -1,0 +1,8 @@
+VERSION V1: Pathway page
+  (label) Pathway
+V1.S1 Someone works through one Pathway at a time, and its page shows where they stand in it and what comes next.
+V1.S2 Nothing gets checked off here.
+V1.S3 The work happens on the weekly home screen, and pulling this week's Action Items out would have made the list clearer but turned the page into a second to do list.
+V1.S4 Focus Areas run in order, and the side panel marks which one is current.
+V1.S5 Any Action Item can be opened, but they're finished in order, since you can't write up a usability test you haven't run.
+V1.S6 The dates at the top are this Pathway's own target and pace.
