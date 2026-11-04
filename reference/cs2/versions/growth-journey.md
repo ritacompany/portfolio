@@ -40,3 +40,13 @@ Sources: Mondai design record (his words 9 Apr, 28 Apr, 6 May, 17 May and 19 May
 Image: his Growth Journey page, already in his frame.
 
 Checks: none yet. no-ai-slop as the skill, fit measure and the reader check owed.
+
+## Image idea (his, 3 Nov), recommended
+An animation on his Growth Journey screen: the cursor hovers each Pathway card left to right, each hover reveals
+that Pathway's target and pace, and the last card (Opportunity) lands on a target that matches the journey
+target at the top, with a visual link between the two. Recommendation: yes. It shows "each Pathway's dates
+follow from those" and the dates chaining toward one finish, so the column can drop that clause and keep the
+why (people need the full finish date; this is the only place it shows). Needs real dates in the frame: the cards
+now all read Aug 28 2026 while the journey target reads Jun 12 2027; each Pathway's target should run in order
+and the last should equal Jun 12 2027 (and its pace the journey pace, Jun 2 2027, if that holds in the product).
+He makes the animation. Copy is revised to fit once the animation is agreed; checks still owed.
