@@ -1,0 +1,4 @@
+=== Pathway page
+[eyebrow or sub-heading] Pathway
+[headline] One level down, each Pathway has a page of its own, with the Focus Areas and Action Items inside it and what comes next.
+Nobody works on this page. It shows what's finished, what's current and what's still ahead. The week's work happens on the home screen.

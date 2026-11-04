@@ -1,0 +1,6 @@
+VERSION V1: Pathway page
+  (label) Pathway
+V1.S1 One level down, each Pathway has a page of its own, with the Focus Areas and Action Items inside it and what comes next.
+V1.S2 Nobody works on this page.
+V1.S3 It shows what's finished, what's current and what's still ahead.
+V1.S4 The week's work happens on the home screen.

@@ -68,4 +68,4 @@ Fit (estimate): headline about 3 lines at 40px width 887; column 23 words, about
 his 143px filler. The headline echoes the Growth Journey headline (a page of its own) to read as the next step
 down; that headline is not approved yet, so if it changes this one follows.
 
-Checks: no-ai-slop run as the skill. Reader check not run. Not reviewed by him.
+Checks: no-ai-slop run as the skill. Reader check PASS (runs/2026-11-04-pathway-r2, known-pathway.md); one run of three flagged the last sentence as restating K4 (home screen), below the two needed. Not reviewed by him.
