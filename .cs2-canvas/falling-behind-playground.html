@@ -133,6 +133,8 @@ const PRESET_EASES = {
   'Ease in out': 'cubic-bezier(.42,0,.58,1)',
   'Ease in': 'cubic-bezier(.42,0,1,1)',
   'Back out': 'cubic-bezier(.34,1.56,.64,1)',
+  'Smooth in out': 'cubic-bezier(.65,0,.35,1)',
+  'Soft in out': 'cubic-bezier(.45,0,.2,1)',
   'Linear': 'cubic-bezier(0,0,1,1)'
 };
 
@@ -146,7 +148,7 @@ const DEFAULTS = {
   introStagger: 0, fadeIn: 300, introRise: 0, introPause: 400,
   checkStagger: 600, checkPop: 320, dimDelay: 260, dimDur: 400,
   weekEndPause: 500, liftDur: 250, lift: 6, liftScale: 1.01, shadowY: 12, shadowBlur: 28, shadowAlpha: 0.5,
-  path: 'around', closeGap: true, closeDelay: 150, closeDur: 500, outX: 400, outDur: 450, downDur: 450, inDur: 500, textOver: true,
+  path: 'curve', travelDur: 1100, travelEase: 'cubic-bezier(.65,0,.35,1)', overlap: 0.4, cascade: 40, tilt: 0, closeGap: true, closeDelay: 150, closeDur: 500, outX: 400, outDur: 450, downDur: 450, inDur: 500, textOver: true,
   slideDur: 800, settle: 200, fillStagger: 90, fillDur: 500, fillRise: 8,
   hold: 1800, fadeOut: 400, loopGap: 300, loop: true, speed: 1,
   moveEase: 'cubic-bezier(.2,.8,.2,1)', fadeEase: 'cubic-bezier(.2,.8,.2,1)',
@@ -164,7 +166,12 @@ const CONTROLS = [
     ['nextCap', 'Next week holds', 1, 6, 1]
   ]],
   ['Move', [
-    ['path', 'Path', 'select', [['around', 'Out right and around'], ['drop', 'Straight drop']]],
+    ['path', 'Path', 'select', [['curve', 'One smooth curve'], ['around', 'Out, down, in (three legs)'], ['drop', 'Straight drop']]],
+    ['travelDur', 'Curve ms', 200, 3000, 10],
+    ['travelEase', 'Curve ease', 'ease'],
+    ['overlap', 'Overlap between steps', 0, 0.9, 0.05],
+    ['cascade', 'Ripple per row ms', 0, 150, 5],
+    ['tilt', 'Tilt while moving deg', 0, 6, 0.25],
     ['outX', 'Out to the right px', 0, 900, 5],
     ['outDur', 'Out ms', 0, 2000, 10],
     ['downDur', 'Down ms', 0, 2000, 10],
@@ -326,18 +333,24 @@ function buildTimeline() {
   const P = [['Intro', 0], ['Pause', introEnd]];
   if (j) P.push(['Checks', checksStart]);
   P.push(['Week end pause', checksEnd], ['Lift', liftStart]);
-  let outEnd = liftEnd, downEnd = liftEnd, moveEnd, shiftStart, shiftDur;
+  const ov = Math.min(0.9, Math.max(0, S.overlap));
+  const moveStart = liftStart + S.liftDur * (1 - ov);
+  let outEnd = moveStart, downEnd = moveStart, downStart = moveStart, inStart2 = moveStart, moveEnd, shiftStart, shiftDur;
   if (S.path === 'around') {
-    outEnd = liftEnd + S.outDur; downEnd = outEnd + S.downDur; moveEnd = downEnd + S.inDur;
-    shiftStart = outEnd; shiftDur = S.downDur;
-    P.push(['Out right', liftEnd], ['Down', outEnd], ['Back in', downEnd]);
+    downStart = moveStart + S.outDur * (1 - ov); inStart2 = downStart + S.downDur * (1 - ov); moveEnd = inStart2 + S.inDur;
+    shiftStart = downStart; shiftDur = S.downDur;
+    P.push(['Out right', moveStart], ['Down', downStart], ['Back in', inStart2]);
+  } else if (S.path === 'curve') {
+    moveEnd = moveStart + S.travelDur;
+    shiftStart = moveStart + S.travelDur * 0.3; shiftDur = S.travelDur * 0.5;
+    P.push(['Curve', moveStart]);
   } else {
-    moveEnd = liftEnd + S.slideDur;
-    shiftStart = liftEnd + S.slideDur * 0.35; shiftDur = S.slideDur * 0.65;
-    P.push(['Drop', liftEnd]);
+    moveEnd = moveStart + S.slideDur;
+    shiftStart = moveStart + S.slideDur * 0.35; shiftDur = S.slideDur * 0.65;
+    P.push(['Drop', moveStart]);
   }
   const closeStart = moveEnd + S.closeDelay;
-  const closeEnd = S.closeGap ? closeStart + S.closeDur : moveEnd;
+  const closeEnd = S.closeGap ? closeStart + S.closeDur + S.cascade * (S.preNext + S.newCount + 1) : moveEnd;
   if (S.closeGap) P.push(['Close gap', closeStart]);
   const fillStart = Math.max(moveEnd + S.settle, closeEnd);
   const fillT = [];
@@ -349,7 +362,7 @@ function buildTimeline() {
   const T = fadeEnd + S.loopGap;
   P.push(['Hold', fillEnd], ['Fade out', holdEnd], ['Gap', fadeEnd]);
   P.sort((a, b) => a[1] - b[1]);
-  return { closeStart, inStart, preIn, checkT, liftStart, liftEnd, outEnd, downEnd, moveEnd, shiftStart, shiftDur, fillT, holdEnd, fadeEnd, T, phases: P };
+  return { closeStart, inStart, preIn, checkT, liftStart, liftEnd, moveStart, downStart, inStart2, moveEnd, shiftStart, shiftDur, fillT, holdEnd, fadeEnd, T, phases: P };
 }
 
 const tickSvg = () => `<svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8" fill="none" stroke="${S.tick}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -418,7 +431,8 @@ function render() {
   const fe = easeFn(S.fadeEase), me = easeFn(S.moveEase);
   const o = openIdx();
   const out = 1 - fe(prog(t, TL.holdEnd, S.fadeOut));
-  const gap = S.closeGap ? STEP() * me(prog(t, TL.closeStart, S.closeDur)) : 0;
+  const gapAt = (i) => S.closeGap ? STEP() * me(prog(t, TL.closeStart + i * S.cascade, S.closeDur)) : 0;
+  const gap = gapAt(0);
   els.zones.forEach(([z, l, top]) => { z.style.top = top - gap + 'px'; l.style.top = top - gap + 26 + 'px'; });
   els.rows.forEach((c, p) => {
     const key = c.dataset.key;
@@ -435,34 +449,50 @@ function render() {
       svg.style.opacity = done ? 1 : 0;
       ch.style.transform = done ? `scale(${lerp(0.6, 1, fe(prog(t, ct, S.checkPop)))})` : 'none';
       op *= lerp(1, S.doneOpacity, fe(prog(t, ct + S.dimDelay, S.dimDur)));
-      if (p > o) y -= gap;
+      if (p > o) y -= gapAt(0);
       c.dataset.where = 'this';
     } else {
       ch.style.background = 'transparent'; ch.style.borderColor = S.checkRing; svg.style.opacity = 0; ch.style.transform = 'none';
       c.style.zIndex = 5;
       const la = me(prog(t, TL.liftStart, S.liftDur));
-      const started = t > TL.liftEnd;
-      let k = 0;
+      const started = t > TL.moveStart;
+      const y0 = Y1(p) - S.lift * la, y1 = Y2(0) - gapAt(1);
+      let k = 0, rot = 0;
       if (!started) {
         ty -= S.lift * la; sc = lerp(1, S.liftScale, la); shadow = la; border = mix(S.cardBorder, S.liftBorder, la);
-      } else if (S.path === 'around') {
-        const po = me(prog(t, TL.liftEnd, S.outDur)), pd = me(prog(t, TL.outEnd, S.downDur)), pi = me(prog(t, TL.downEnd, S.inDur));
-        x = S.outX * po - S.outX * pi;
-        y = lerp(Y1(p) - S.lift, Y2(0) - gap, pd);
-        sc = lerp(S.liftScale, 1, pi); shadow = 1 - pi; border = mix(S.liftBorder, S.carriedBorder, pi);
-        k = pi;
       } else {
-        const sb = me(prog(t, TL.liftEnd, S.slideDur));
-        y = lerp(Y1(p) - S.lift, Y2(0) - gap, sb); sc = lerp(S.liftScale, 1, sb); shadow = 1 - sb; border = mix(S.liftBorder, S.carriedBorder, sb);
-        k = sb;
+        if (S.path === 'around') {
+          const po = me(prog(t, TL.moveStart, S.outDur)), pd = me(prog(t, TL.downStart, S.downDur)), pi = me(prog(t, TL.inStart2, S.inDur));
+          x = S.outX * po - S.outX * pi;
+          y = lerp(y0, y1, pd);
+          k = pi;
+          rot = S.tilt * (po - pi);
+        } else if (S.path === 'curve') {
+          const raw = prog(t, TL.moveStart, S.travelDur);
+          const u = easeFn(S.travelEase)(raw), v = 1 - u;
+          const cx = S.outX / 0.75;
+          x = 3 * v * v * u * cx + 3 * v * u * u * cx;
+          y = v * v * v * y0 + 3 * v * v * u * y0 + 3 * v * u * u * y1 + u * u * u * y1;
+          k = me(prog(raw, 0.55, 0.45));
+          rot = S.tilt * Math.sin(Math.PI * u) * (u < 0.5 ? 1 : -1);
+        } else {
+          const sb = me(prog(t, TL.moveStart, S.slideDur));
+          y = lerp(y0, y1, sb);
+          k = sb;
+        }
+        const lt = Math.min(1, la);
+        sc = lerp(lerp(1, S.liftScale, lt), 1, k); shadow = lt * (1 - k); border = mix(mix(S.cardBorder, S.liftBorder, lt), S.carriedBorder, k);
+        ty = 0;
       }
+      c.dataset.rot = rot;
       if (k > 0) { const oc = off('carry'); ofs = { x: lerp(ofs.x, oc.x, k), y: lerp(ofs.y, oc.y, k) }; }
       c.dataset.where = t >= TL.moveEnd ? 'carry' : (started ? 'moving' : 'this');
     }
     place(c, x + ofs.x, y + ofs.y, ty, sc, op * out, shadow, border);
   });
-  const sh = me(prog(t, TL.shiftStart, TL.shiftDur));
   els.pre.forEach((c, k) => {
+    const sh = me(prog(t, TL.shiftStart + k * S.cascade, TL.shiftDur));
+    const gap = gapAt(k + 2);
     const a = fe(prog(t, TL.preIn[k], S.fadeIn));
     const ofs = off(c.dataset.key);
     c.dataset.where = 'next';
@@ -470,6 +500,7 @@ function render() {
   });
   els.fresh.forEach((c, k) => {
     const a = fe(prog(t, TL.fillT[k], S.fillDur));
+    const gap = gapAt(S.preNext + 2 + k);
     const ofs = off(c.dataset.key);
     c.dataset.where = 'next';
     place(c, ofs.x, slotY(S.preNext + 1 + k) - gap + ofs.y, (1 - a) * S.fillRise, 1, a * out, 0, S.cardBorder);
@@ -484,7 +515,7 @@ function render() {
 function place(c, x, y, ty, sc, op, shadow, border) {
   if (c.classList.contains('dragging')) return;
   c.style.left = x + 'px'; c.style.top = y + 'px';
-  c.style.transform = `translateY(${ty}px) scale(${sc})`;
+  c.style.transform = `translateY(${ty}px) scale(${sc})` + (+c.dataset.rot ? ` rotate(${c.dataset.rot}deg)` : '');
   c.style.opacity = op;
   c.style.borderColor = border;
   c.style.boxShadow = shadow > 0 ? `0 ${S.shadowY * shadow}px ${S.shadowBlur * shadow}px rgba(0,0,0,${S.shadowAlpha * shadow})` : 'none';
