@@ -50,3 +50,13 @@ why (people need the full finish date; this is the only place it shows). Needs r
 now all read Aug 28 2026 while the journey target reads Jun 12 2027; each Pathway's target should run in order
 and the last should equal Jun 12 2027 (and its pace the journey pace, Jun 2 2027, if that holds in the product).
 He makes the animation. Copy is revised to fit once the animation is agreed; checks still owed.
+
+## Animation, round 1 (3 Nov)
+prototypes/growth-journey-dates/ (template.html, build.mjs inlines site/lib/motion.js; node build.mjs writes
+growth-journey-dates.html; window.seek(t) draws any frame, loop 13.35 s). The cursor visits each Pathway card;
+a hover reveals that card's dates (TYPE spring) and they hide on leave; Cognition, the current one, always shows
+its dates. On Opportunity its target turns green, a line draws up behind the cards to Journey target and the
+tile lights. Timeline filled in (his yes, 3 Nov): Discovery completed Jun 19 2026; Cognition Aug 30, pace Aug 28
+(the +2d in his Action Hub); Networking Nov 15, pace Nov 13; Branding Feb 21 2027, pace Feb 19; Opportunity
+Jun 12 2027, pace Jun 10, so journey pace changes from Jun 2 to Jun 10 to stay consistent; progress 24 percent.
+Not reviewed by him. Recreated in HTML from his screen (Heebo and IBM Plex Mono, his colours), not his Figma.

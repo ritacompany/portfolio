@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Growth Journey dates</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--u:1.6px;--bg:#080908;--card:#161715;--ink:#eefae8;--sub:#c9cfc6;--mute:#90968e;--dim:#b5bdb1;--g:#39f145;--g2:#5bff65;--gd:#09c916}
+*{box-sizing:border-box;margin:0}
+html,body{background:#000;height:100%}
+body{overflow:hidden;font-family:Heebo,sans-serif;color:var(--ink)}
+#stage{position:absolute;left:50%;top:50%;width:calc(760*var(--u));height:calc(470*var(--u));background:var(--bg);border-radius:calc(6*var(--u));overflow:hidden}
+.mono{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.12em}
+.abs{position:absolute}
+#hdr{left:calc(40*var(--u));top:calc(40*var(--u));width:calc(280*var(--u))}
+#hdr .eye{font-size:calc(6.1*var(--u));color:var(--g2)}
+#hdr h1{font-size:calc(12.3*var(--u));margin-top:calc(6*var(--u))}
+#hdr p{font-size:calc(8.2*var(--u));color:var(--sub);line-height:1.45;margin-top:calc(10*var(--u))}
+#tiles{right:calc(40*var(--u));top:calc(34*var(--u));display:flex;gap:calc(10*var(--u));padding:calc(8*var(--u));border:1px solid #1d1e1c;border-radius:calc(5*var(--u))}
+.tile{width:calc(113*var(--u));height:calc(70*var(--u));border:1px solid #2a2b29;border-radius:calc(3*var(--u));padding:calc(10*var(--u))}
+.tile .l{font-size:calc(7.2*var(--u));color:var(--g)}
+.tile .v{font-size:calc(12.3*var(--u));font-weight:700;margin-top:calc(16*var(--u))}
+.tile .y{font-size:calc(7.2*var(--u));color:var(--sub);margin-top:calc(3*var(--u))}
+#rule{left:calc(40*var(--u));right:calc(40*var(--u));top:calc(150*var(--u));height:1px;background:linear-gradient(90deg,transparent,#262725 20%,#262725 80%,transparent)}
+#ph{left:0;right:0;top:calc(180*var(--u));text-align:center}
+#ph h2{font-size:calc(12.3*var(--u))}
+#ph p{font-size:calc(8.2*var(--u));color:var(--sub);margin-top:calc(6*var(--u))}
+.card{top:calc(236*var(--u));width:calc(117*var(--u));height:calc(142*var(--u));border:1px solid #2a2b29;border-radius:calc(3*var(--u));background:var(--card);overflow:hidden;text-align:center}
+.card .st{font-size:calc(6.1*var(--u));color:var(--mute);margin-top:calc(10*var(--u))}
+.card .nm{font-size:calc(12.3*var(--u));font-weight:700;color:var(--dim);margin-top:calc(2*var(--u))}
+.card .dt{display:inline-block;font-size:calc(7.2*var(--u));border:1px solid #3a3b39;border-radius:99px;padding:calc(3*var(--u)) calc(20*var(--u));margin-top:calc(9*var(--u))}
+.card .num{position:absolute;left:0;right:0;bottom:calc(-14*var(--u));font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:calc(90*var(--u));line-height:1;color:transparent;-webkit-text-stroke:1px #4a4c48;background:linear-gradient(#0000,#0000 40%,#2a2b29);-webkit-background-clip:text;background-clip:text}
+.card.cur{border-color:var(--g)}.card.cur .st{color:var(--gd)}.card.cur .nm{color:var(--ink)}.card.cur .num{-webkit-text-stroke-color:var(--g);background:linear-gradient(#0000 40%,#0b5c12);-webkit-background-clip:text;background-clip:text}
+.link{top:calc(306*var(--u));height:2px}
+.dates{top:calc(388*var(--u));width:calc(117*var(--u));display:flex;justify-content:center;gap:calc(14*var(--u));text-align:left}
+.dates .l{font-size:calc(5.1*var(--u));color:var(--g)}
+.dates .v{font-size:calc(7.5*var(--u));font-weight:700;margin-top:calc(3*var(--u));color:#d9dfd1}
+.dates .y{font-size:calc(6.1*var(--u));color:var(--sub)}
+.dates .c .l{color:var(--sub)}
+#wire{left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+#cursor{left:0;top:0;width:calc(14*var(--u));height:calc(20*var(--u));pointer-events:none}
+#jt{position:absolute;inset:-1px;border:1px solid var(--g);border-radius:calc(3*var(--u));opacity:0}
+</style></head><body>
+<div id="stage">
+  <div id="hdr" class="abs"><div class="eye mono">Aisha&rsquo;s unique</div><h1>UX Designer Journey</h1>
+    <p>Your path was shaped by your creative background, interest in human behavior and goal of breaking into tech. The same UX Designer journey looks different for everyone. Yours reflects who you are and what you bring.</p></div>
+  <div id="tiles" class="abs">
+    <div class="tile" id="tileT" style="position:relative"><div class="l mono">Journey target</div><div class="v">Jun 12</div><div class="y">2027</div><div id="jt"></div></div>
+    <div class="tile"><div class="l mono">Journey pace</div><div class="v">Jun 10</div><div class="y">2027</div></div>
+    <div class="tile"><div class="l mono">Journey progress</div><div class="v">24%</div><div class="y">Complete</div></div>
+  </div>
+  <div id="rule" class="abs"></div>
+  <div id="ph" class="abs"><h2>Pathways</h2><p>Your journey is made up of 5 different pathways</p></div>
+  <svg id="wire" class="abs"><path id="wp" fill="none" stroke="#39f145" stroke-width="1.5"/></svg>
+  <div id="row"></div>
+  <svg id="cursor" class="abs" viewBox="0 0 14 20"><path d="M1 1 L1 16 L5 12.5 L8 19 L10.5 18 L7.6 11.6 L13 11.6 Z" fill="#fff" stroke="#000" stroke-width="1"/></svg>
+</div>
+<script>
+/*MOTION*/
+const U = 1.6;
+const P = [
+  {n:'01',name:'Discovery',st:'Complete',done:'Jun 19 2026'},
+  {n:'02',name:'Cognition',st:'Current',t:'Aug 30 2026',p:'Aug 28 2026',cur:1},
+  {n:'03',name:'Networking',st:'Not started',t:'Nov 15 2026',p:'Nov 13 2026'},
+  {n:'04',name:'Branding',st:'Not started',t:'Feb 21 2027',p:'Feb 19 2027'},
+  {n:'05',name:'Opportunity',st:'Not started',t:'Jun 12 2027',p:'Jun 10 2027'}];
+const X0 = 35.5, CW = 117, GAP = 26;
+const row = document.getElementById('row');
+const cx = i => X0 + i*(CW+GAP);
+const dv = (l,d,c='') => { const [m,dd,y] = d.split(' '); return `<div class="${c}"><div class="l mono">${l}</div><div class="v">${m} ${dd}</div><div class="y">${y}</div></div>`; };
+P.forEach((p,i) => {
+  row.insertAdjacentHTML('beforeend', `<div class="card abs${p.cur?' cur':''}" style="left:${cx(i)*U}px"><div class="st mono">${p.st}</div><div class="nm">${p.name}</div><div class="dt">Details</div><div class="num">${p.n}</div></div>`
+   + `<div class="dates abs" style="left:${cx(i)*U}px">${p.done?dv('Completed',p.done,'c'):dv('Target',p.t)+dv('Pace',p.p)}</div>`);
+  if (i<4) row.insertAdjacentHTML('beforeend', `<div class="link abs" style="left:${(cx(i)+CW)*U}px;width:${GAP*U}px;background:${i<1?'#39f145':'repeating-linear-gradient(90deg,#4a4c48 0 4px,#0000 4px 7px)'}"></div>`);
+});
+const cards = [...row.querySelectorAll('.card')], dates = [...row.querySelectorAll('.dates')];
+const lastV = dates[4].querySelector('.v'); 
+const cursor = document.getElementById('cursor'), wp = document.getElementById('wp'), jt = document.getElementById('jt');
+
+// Timeline, seconds. The cursor visits each card; a hover reveals that card's dates and they hide when it leaves.
+// On the last card its target lights and a line runs up to the journey target, which lights to match.
+const DW = 1.35, MV = 0.55, T0 = 0.6;
+const visit = [0,1,2,3,4].map(i => T0 + MV + i*(DW+MV));       // arrival at card i
+const tEnd = visit[4] + DW;                                     // cursor parks on card 5
+const tLine = visit[4] + 0.5, tHold = tLine + 3.2, T = tHold + 0.9;
+const hx = i => cx(i) + CW*0.62, hy = 236 + 98;
+function render(t){
+  // cursor path: in from below, card to card, then rest
+  const keys = [[0,[hx(0)-60,470]]];
+  visit.forEach((a,i) => keys.push([a-MV, i? [hx(i-1),hy] : [hx(0)-60,470]], [a,[hx(i),hy]]));
+  let x = keys[0][1][0], y = keys[0][1][1];
+  for (let k=1;k<keys.length;k++){ const [ta,a]=keys[k-1],[tb,b]=keys[k]; if (t>=ta){ const p=tb>ta?power3InOut(range(t,ta,tb)):1; x=lerp(a[0],b[0],p); y=lerp(a[1],b[1],p);} }
+  const out = range(t, tHold, T); y += power3InOut(out)*150;
+  cursor.style.transform = `translate(${x*U}px,${y*U}px)`;
+  cursor.style.opacity = 1 - range(t, tHold+0.3, T);
+  // hover reveal: TYPE spring on, quick fade off
+  P.forEach((p,i) => {
+    const on = t - visit[i] + 0.12, off = i<4 ? t - (visit[i]+DW) : t - tHold;
+    let v = p.cur ? 1 : spring(on, TYPE.k, TYPE.d) * (1 - spring(off, UI.k, UI.d));
+    if (on < 0 && !p.cur) v = 0;
+    dates[i].style.opacity = v; dates[i].style.transform = `translateY(${(1-v)*-6*U}px)`;
+    const h = (on>0 && off<0) ? 1 : 0;
+    cards[i].style.borderColor = p.cur ? '' : (h ? '#6a6c68' : '');
+  });
+  // the match
+  const L = spring(t - tLine, HEAVY.k, HEAVY.d) * (1 - range(t, tHold, tHold+0.5));
+  const sx = (cx(4)+CW*0.5-21)*U, sy = (388-2)*U;
+  const ex = 408.5*U, ey = 113*U;
+  const d = `M${sx} ${sy} C ${sx} ${sy-120*U}, ${ex} ${ey+120*U}, ${ex} ${ey}`;
+  wp.setAttribute('d', d); const len = wp.getTotalLength();
+  wp.style.strokeDasharray = len; wp.style.strokeDashoffset = len*(1-clamp(L*1.15));
+  wp.style.opacity = L>0.001 ? 1 - range(t, tHold, tHold+0.5) : 0;
+  const glow = clamp((L-0.8)/0.2);
+  jt.style.opacity = glow * (1 - range(t, tHold, tHold+0.5));
+  lastV.style.color = (t>tLine-0.2 && t<tHold) ? '#39f145' : '';
+}
+let paused = false, start = performance.now();
+window.seek = s => { paused = true; render(s); };
+window.T = T;
+(function loop(now){ if(!paused) render(((now-start)/1000) % T); requestAnimationFrame(loop); })(start);
+const fit = () => { const s = Math.min(innerWidth/(760*U), innerHeight/(470*U), 1); document.getElementById('stage').style.transform = `translate(-50%,-50%) scale(${s})`; };
+addEventListener('resize', fit); fit();
+</script></body></html>
