@@ -23,40 +23,39 @@ Kept out on purpose: the magenta rollover tag (start of week shows it), pace mov
 pace block), buffer flow and start of week by name (the next blocks show them, and both happen without
 falling behind too), the earlier choose what to carry modal (start of week Rollover caption).
 
-## Image for the slot (proposal 2, 3 Nov)
+## Round 5 (3 Nov): ruled-out options cut
 
-No Mondai screen shows this moment: by design there is no missed state, so Saturday night looks like any
-other list (the Action Hub, already shown twice) and the answer is the start of week Rollover template (two
-blocks later). So the slot shows the thinking instead: the four ways a leftover Action Item could go, three
-ruled out, one kept. Text only on his black page, no boxes, a mark under the kept one. Not a matrix (Haven
-has the 2x2).
+His comment on round 4: explaining the options not taken could confuse the reader; use the space for what
+was done and why. The four ways diagram is gone. The space now holds three short columns, all about the
+decision: what rollover is, why it happens on its own, why the week still fits.
 
-Card: Ruled out | Push forward | Everything left lands in next week, which gets heavier right after a hard one.
-Card: Ruled out | Let them pick | They decide what to keep at the moment they are behind.
-Card: Ruled out | Drop it | The leftover disappears and the Pathway slips without anyone seeing it.
-Card: Kept | Carry over | The week stays the size of their capacity.
+Set up for the next two blocks, read from versions/buffer-flow.md and versions/start-of-week.md:
+- The word rollover is introduced here. Start of week uses it as a term (Clean slate, Rollover and
+  Recalibration captions) and his rule is rollover, never leftovers.
+- A short week is set up here (the stakes line). Buffer flow says "after a short week" and Recalibration
+  says "Rollover covers one short week".
+- "The hours someone gave" matches Buffer flow's "the hours a person gave".
+- Left for later blocks: the magenta tag and where pace landed (Rollover caption), repeated short weeks
+  (Recalibration), pace moving (Action Hub), finishing early (Buffer flow).
 
-Preview: .cs2-canvas/falling-behind-preview.html (four columns left, body text column at x 1098 beside them).
-Not in his Figma frame: Figma writes for CS2 text go through the block plan and copy file gates
-(reference/cs2/outline, reference/cs2/copy), which this block has not been through; he pastes.
+Sources: points 1 to 3 above. Column 2 rests on his own flag that a carry forward decision while behind was
+a weird decision making point (reasoning/carry-over.md section 1); column 3 on his constraint that the
+automation was safe only if the week never got heavier (carry-over.md section 3). CONFIRMED.
 
-Source: the three options weighed and the decision, reasoning/calendar-and-schedule.md and
-reasoning/carry-over.md (7 May 2026 weekly assembly). CONFIRMED.
+Preview: .cs2-canvas/falling-behind-preview.html (stakes line at x 40, three columns at x 440, 773, 1106).
+He pastes it into his frame between Personalized timeline and Buffer flow.
 
 ## Version
-Layout: his bridge layout, cards replaced by the one image
 Eyebrow: Falling behind
 Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
 Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
-Text (rollover): So anything left over moves into the next week on its own, and that week takes fewer new Action Items to stay within their capacity.
-Image: the four ways diagram (cards above).
+Column: Rollover | Anything still open on Saturday night rolls over into the next week.
+Column: On its own | It happens without asking, so nobody has to decide what to keep at the moment they're behind.
+Column: Still fits | The next week takes fewer new Action Items to make room and stays the size of the hours someone gave.
 Sources: Soman and Cheema 2004; Mondai design record
 
 ## Checks
-- no-ai-slop run as the skill on the final text (changed: the plan has to decide became it has to go
-  somewhere, an inanimate thing doing a human verb; so ... so became to stay within). The skill's eval.md does
-  not exist in this repo, so the self check ran against SKILL.md patterns only.
-- Reader check: PASS, three Sonnet runs, aggregate V1 PASS (reader-check/runs/2026-11-03-fb, against
-  known-falling-behind.md, which is known-bridge.md without the map block).
-- Diagram cards: no-ai-slop run as the skill (Ask them became Let them pick; the second card lost its trailing
-  appositive). Reader check on the whole block with the cards: PASS (runs/2026-11-03-fb D1 to D3).
+- no-ai-slop run as the skill on the final text (cut the kicker "That's rollover."; the third column's
+  absolute "never followed by a heavier one" became the hours someone gave).
+- Reader check: PASS, three Sonnet runs, aggregate V1 PASS, no flags in any run
+  (reader-check/runs/2026-11-03-fb E1 to E3, copy3).

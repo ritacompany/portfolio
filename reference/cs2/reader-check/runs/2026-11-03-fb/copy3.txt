@@ -1,0 +1,10 @@
+=== Falling behind, what was done and why
+[eyebrow or sub-heading] Falling behind
+[headline] Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
+[eyebrow or sub-heading] Rollover
+Anything still open on Saturday night rolls over into the next week.
+[eyebrow or sub-heading] On its own
+It happens without asking, so nobody has to decide what to keep at the moment they're behind.
+[eyebrow or sub-heading] Still fits
+The next week takes fewer new Action Items to make room and stays the size of the hours someone gave.
