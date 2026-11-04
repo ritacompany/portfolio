@@ -1,4 +1,4 @@
-# Start of week, approved (3 Nov)
+# Start of week, complete (3 Nov)
 
 Approved by him 3 Nov: round 7 with the recap headline he picked (the round 5 headline repeated his column), over his own column text (humanized), captions from round 3. He pastes it into his frame.
 
@@ -45,7 +45,7 @@ Captions round 3 Nov evening (his: say why each exists and tie it to what came b
 Caption 1, Clean slate (his, kept): A clean slate only means something if no day was lost, so a week with a lost day goes to rollover.
 Caption 2, Catching up: Finishing every Action Item doesn't close the gap for someone behind, so this screen shows the days they won back and points to finishing early, until they catch up.
 Caption 3, Rollover: When a week ends unfinished, the rollover Action Items wait in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes unseen.
-Caption 4, Recalibration: Rollover covers one short week. When short weeks keep coming, the screen suggests a capacity that fits the hours someone has been giving. They can take it, set their own or skip it with a warning.
+Caption 4, Recalibration (rewritten 3 Nov after he could not parse "short week"): Rollover handles one unfinished week. When it keeps happening, the screen suggests a capacity that fits the hours someone has been giving. They can take it, set their own or skip it with a warning.
 Caption 5, Reset: After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with progress kept and new target dates. It has one button, because a keep my plan option would win by default.
 Sources: Catching up, start-of-week-states.md sections 2 and 6; Rollover, the silent rollover rejection (start of week dossier Q3); Reset, start-of-week-states.md section 4 (default effect and status quo bias research he commissioned, 23 May). The dropped choice sentence was the product archive's reading of why the decision modal went, not research (carry-over.md section 8).
 
@@ -56,3 +56,5 @@ Reader check 3 Nov, run 2026-11-03c (the frame copy as it stands, plus the propo
 - Only flag: "rollover" untaught (S6 3/3, S8 2/3, V2.S1 3/3). Cause was the known file: K10 described the mechanism without the word, while his Falling behind block carries it as a title. K10 now names it. Copy unchanged.
 - V2.S1 flagged as restating K10. Intended: it is the tie back to rollover that the next sentence builds on.
 - Blind spot: no reviewer flagged "Rollover covers one short week" (S10), which he could not parse. The check only catches product terms; plain words used as shorthand get through. Meaning still needs his read.
+
+Section complete 3 Nov (his word): Recalibration caption above written into his frame at 55px, three lines. Every caption in the frame has now been through the reader check.
