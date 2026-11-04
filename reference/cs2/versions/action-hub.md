@@ -8,7 +8,7 @@ rewrites the text in his voice (docs/VOICE-draft.md). One version, since the lay
 Eyebrow: Action hub
 Headline (unchanged, approved 26 Oct): Most of a person's week happens on one screen, the list of Action Items they come back to nearly every day.
 
-Side text, paragraph 1: The Action Hub is the screen the user lands on when they open Mondai. I designed it as a starting point rather than a traditional home screen, so it answers one question for the user, what do I need to do this week, and leaves the full curriculum to the Growth Journey and Pathway pages.
+Side text, paragraph 1: I designed the Action Hub as a starting point rather than a traditional home screen, so it answers one question for the user, what do I need to do this week, and leaves the full curriculum to the Growth Journey and Pathway pages.
 
 Side text, paragraph 2: Just like on the Pathway page, Action Items are finished in order, so only the one at the top, marked Active, can be checked off. Everything else in the week stays visible below it instead of being locked, which lets the user see what's coming and plan around it. Completed items collapse at the bottom of the list, where the user can still see what they finished and undo it if they need to.
 
@@ -16,7 +16,7 @@ Rail paragraph (built on his line): The panel on the right side of the screen on
 
 Note, Pathway target: Set from the hours the user told Mondai they can give each week, so it stays the same through a normal week and only changes when those hours change.
 Note, Pathway pace: It only updates once a week, so the user isn't watching it shift every time they finish something. In the first week it's the same as the target, since there's no progress to measure yet.
-Note, Days ahead or behind: The gap between the target and the pace, in days, shown under them as ahead of target or behind target. When the pace is earlier than the target the user is ahead, and when it's later they're behind. This is the only place on the screen that shows it.
+Note, Days ahead or behind: The gap between the target and the pace, in days, shown under them as ahead of target or behind target. This is the only place on the screen that shows it.
 
 Sources line: Bandura and Schunk 1981; Latham and Seijts 1999
 
@@ -34,4 +34,6 @@ Ahead of target undefined; his two research sentences repeated each other and th
 journey numbers sentence read as process. The text above is round 2 with those fixed. Round 2 reader check
 (runs/2026-11-04-action-hub-voice-r2): FAIL on the notes only. The target and pace definitions restated the
 competitive analysis and the Ahead of target label read as an undefined term. The notes above are round 3: the
-definitions cut, the third label renamed. Round 3 reader check (runs/2026-11-04-action-hub-voice-r3) not run yet.
+definitions cut, the third label renamed. Round 3 reader check (runs/2026-11-04-action-hub-voice-r3): FAIL on two sentences. The opening line restated the
+competitive analysis home screen card, and the ahead or behind sentence repeated the line before it. Both cut
+in round 4 (runs/2026-11-04-action-hub-voice-r4), not reader checked yet.

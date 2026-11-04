@@ -1,0 +1,3 @@
+V1 FAIL
+  V1.S17 Q5 (2/3) S16 already says ahead or behind from the gap; this restates it; S16 already states ahead when earlier and behind when later; this repeats it
+  V1.S2 Q4 (2/3) K4
