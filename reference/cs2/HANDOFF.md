@@ -14,12 +14,14 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-04 23:15
+Updated: 2026-11-04 23:59
 By: Claude Code
 Section: 3
 Loop step: 3
 
 ## Where it stopped
+
+Action hub voice round, 4 Nov: his notes said the approved block named suggested times, the calendar and the start of week before the page introduces them (2 Nov reorder) and read as AI. Rewritten in his voice, layout and headline kept; text and record in versions/action-hub.md, reader check round 4 PASS (runs/2026-11-04-action-hub-voice-r4, new known-action-hub.md). Voice guide from his own frame copy in docs/VOICE-draft.md, not approved. Waiting on his read; he pastes text into Figma himself.
 
 Growth Journey image paused by him 4 Nov after the direction A mockup (he called it pointless for now). Do not resume it unless he raises it. Clip and page: site/motion-lab/growth-journey, log in docs/motion/growth-journey.
 

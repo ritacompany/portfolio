@@ -36,4 +36,5 @@ journey numbers sentence read as process. The text above is round 2 with those f
 competitive analysis and the Ahead of target label read as an undefined term. The notes above are round 3: the
 definitions cut, the third label renamed. Round 3 reader check (runs/2026-11-04-action-hub-voice-r3): FAIL on two sentences. The opening line restated the
 competitive analysis home screen card, and the ahead or behind sentence repeated the line before it. Both cut
-in round 4 (runs/2026-11-04-action-hub-voice-r4), not reader checked yet.
+in round 4 (runs/2026-11-04-action-hub-voice-r4): PASS. The text above is round 4. Next: his read, then he pastes it
+into his frame (Satoshi) and approves or rejects docs/VOICE-draft.md.
