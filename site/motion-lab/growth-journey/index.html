@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growth Journey dates</title>
+<style>
+  html, body { margin: 0; background: #080908; }
+  #c { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #080908; display: grid; place-items: center; }
+  /* Screen fitted to the frame, keeping the 961.997 x 541.123 ratio of his frame. */
+  .screen { position: relative; width: min(100vw, calc(100vh * 961.997 / 541.123)); aspect-ratio: 961.997 / 541.123; }
+  .screen img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .lit { opacity: 0; }
+  .bar { position: absolute; background: #39f145; transform-origin: 0 50%; transform: scaleX(0); }
+</style>
+</head>
+<body>
+<div id="c">
+  <div class="screen" id="screen">
+    <img src="base.png" alt="">
+  </div>
+</div>
+<script type="module">
+  // CS2 Growth Journey image. Style guide and states: docs/motion/growth-journey/.
+  // base.png and lit.png are 3x exports of his Figma screen with the real timeline (not in git).
+  import { spring, UI, TYPE, clamp } from "../../lib/motion.js";
+
+  const W = 961.997, H = 541.123;
+  const pct = (v, of) => (v / of * 100) + "%";
+  const screen = document.getElementById("screen");
+  // Bars from the Figma copy, frame units. Stroke 2.505, centred on y 335.42.
+  const barsX = [281.58, 421.63, 561.66, 701.7], BW = 25.8, BY = 335.42, BH = 3.4;
+  const bars = barsX.map((x) => {
+    const b = document.createElement("div"); b.className = "bar";
+    Object.assign(b.style, { left: pct(x, W), top: pct(BY - BH / 2, H), width: pct(BW, W), height: pct(BH, H) });
+    screen.appendChild(b); return b;
+  });
+  // Lit layers cut from lit.png: the two journey tiles, and each Pathway's date pair.
+  const inset = (x, y, w, h) => `inset(${pct(y, H)} ${pct(W - x - w, W)} ${pct(H - y - h, H)} ${pct(x, W)})`;
+  const layer = (clip) => {
+    const im = document.createElement("img"); im.src = "lit.png"; im.alt = ""; im.className = "lit";
+    im.style.clipPath = clip; screen.appendChild(im); return im;
+  };
+  const litTiles = layer(inset(495, 47, 237.2, 75.2));
+  const cardsX = [167.34, 307.38, 447.42, 587.47, 727.51];
+  const litDates = cardsX.map((x) => layer(inset(x, 429, 114.24, 16)));
+
+  // Order: Discovery's dates light, the bar after it fills, the next dates light, and so on.
+  // Opportunity's dates and the journey tiles light on the same beat and hold.
+  const T0 = 0.5, STEP = 0.38, LAST = T0 + 4 * STEP, OFF = 4.6, DUR_ = 5.6;
+  const on = (t, at) => (t >= at ? clamp(spring(t - at, TYPE.k, TYPE.d)) : 0);
+  window.seek = (t) => {
+    t = ((t % DUR_) + DUR_) % DUR_;
+    const off = t >= OFF ? clamp(spring(t - OFF, TYPE.k, TYPE.d)) : 0;
+    bars.forEach((b, i) => {
+      const at = T0 + i * STEP + 0.1;
+      const s = t >= at ? spring(t - at, UI.k, UI.d) : 0;
+      b.style.transform = `scaleX(${clamp(s)})`;
+      b.style.opacity = String(1 - off);
+    });
+    litDates.forEach((im, i) => {
+      const at = T0 + i * STEP;
+      // Earlier pairs hand the accent on as the next one lights; the last one keeps it.
+      const v = i < 4 ? on(t, at) * (1 - on(t, at + STEP)) : on(t, at) * (1 - off);
+      im.style.opacity = String(v);
+    });
+    litTiles.style.opacity = String(on(t, LAST) * (1 - off));
+  };
+
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches || location.search.includes("still");
+  window.seek(still ? 3.0 : 0);
+  if (!window.__RENDER__ && !still) {
+    const t0 = performance.now();
+    const loop = (now) => { window.seek((now - t0) / 1000); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+</script>
+</body>
+</html>

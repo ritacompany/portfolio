@@ -97,3 +97,13 @@ c. Digit roll in the tile. As Opportunity lights, the Journey target date rolls 
    apps. Risk: a rolling date suggests the target is changing.
 d. Shared element morph, considered and not recommended. The date travels from card to tile as one element
    (Material container transform). It is the polished version of the floating number he rejected.
+
+## Animation, round 2 build (4 Nov), direction a, fill along the connector
+site/motion-lab/growth-journey/index.html (window.seek, loop 5.6 s). Built on 3x exports of his screen: two
+copies beside his layout on page VC, 4828:15927 (base, real dates) and 4828:16185 (lit). His original is
+untouched. Exports base.png and lit.png sit beside the page and are not in git (public repo); a copy is in the
+main checkout. Every card shows its dates; Discovery's dates light in the accent, the bar after it fills, the
+next dates light and so on; Opportunity's dates and the journey target and pace tiles light on the same beat and
+hold 2.6 s. Discovery shows completed Jun 19 2026 (the label his file already had). Journey pace set to Jun 10
+and progress to 24 percent to match the timeline. Review log: docs/motion/growth-journey/review_log.md (two
+rounds; round 3, 390 render and double render owed). Not yet seen by him.

@@ -30,3 +30,4 @@ output/
 
 # installed packages
 node_modules/
+site/motion-lab/growth-journey/*.png
