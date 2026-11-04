@@ -33,14 +33,14 @@ as a noun, since Start of week's Rollover and Recalibration captions use it that
 ## Version
 Eyebrow: Falling behind
 Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
-Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open moves into the next week on its own, a step called rollover, and that week takes fewer new Action Items so it still fits the hours they gave.
+Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open moves into the next week on its own. This is rollover, and the week it lands in takes fewer new Action Items so it still fits the hours they gave.
 Image: none. His call 3 Nov: a text block; he decides later whether anything goes beside it.
 Layout: headline left at x 40, text column at x 1098 width 302, sources at the bottom.
 Sources: Soman and Cheema 2004; Mondai design record
 
 ## Checks
 - no-ai-slop run as the skill on the two sentences: no change.
-- Reader check with the new Q5 (logic and padding): PASS (runs/2026-11-03-fb2 V2) On the noun wording (So rollover moves anything still open) it FAILED: rollover undefined, 3/3 (runs/2026-11-03-fb3). Rewritten to define it (a step called rollover); that wording has not been through the reader check yet. Q5 also passed the round 5
+- Reader check with the new Q5 (logic and padding): PASS (runs/2026-11-03-fb2 V2) On the noun wording (So rollover moves anything still open) it FAILED: rollover undefined, 3/3 (runs/2026-11-03-fb3). Rewritten to define it, then no-ai-slop run as the skill split the sentence (This is rollover, and the week it lands in). Final wording: reader check PASS, no flags in any run (runs/2026-11-03-fb4). Q5 also passed the round 5
   cards he rejected, so it does not stand in for his read (fixes/2026-11-03-falling-behind-padded-cards.md).
 
 ## Round 5 (superseded)

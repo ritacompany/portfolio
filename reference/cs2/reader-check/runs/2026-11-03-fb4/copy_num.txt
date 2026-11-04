@@ -1,0 +1,7 @@
+VERSION V1: Falling behind, final
+  (label) Falling behind
+V1.S1 Every Action Item in a week is due by Saturday night.
+V1.S2 Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+V1.S3 A week that comes up short can feel like failing, and that feeling makes people less likely to keep going.
+V1.S4 So anything still open moves into the next week on its own.
+V1.S5 This is rollover, and the week it lands in takes fewer new Action Items so it still fits the hours they gave.
