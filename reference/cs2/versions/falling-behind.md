@@ -40,7 +40,7 @@ Sources: Soman and Cheema 2004; Mondai design record
 
 ## Checks
 - no-ai-slop run as the skill on the two sentences: no change.
-- Reader check with the new Q5 (logic and padding): PASS (runs/2026-11-03-fb2 V2) on the wording before rollover became the noun (rolls over into the next week). The noun wording has not been through the reader check; next session runs it. Q5 also passed the round 5
+- Reader check with the new Q5 (logic and padding): PASS (runs/2026-11-03-fb2 V2) and on the final wording (runs/2026-11-03-fb3, PASS). Q5 also passed the round 5
   cards he rejected, so it does not stand in for his read (fixes/2026-11-03-falling-behind-padded-cards.md).
 
 ## Round 5 (superseded)
