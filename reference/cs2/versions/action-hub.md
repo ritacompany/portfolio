@@ -38,3 +38,17 @@ definitions cut, the third label renamed. Round 3 reader check (runs/2026-11-04-
 competitive analysis home screen card, and the ahead or behind sentence repeated the line before it. Both cut
 in round 4 (runs/2026-11-04-action-hub-voice-r4): PASS. The text above is round 4. Next: his read, then he pastes it
 into his frame (Satoshi) and approves or rejects docs/VOICE-draft.md.
+
+## Humanizer pass on round 4 (4 Nov, his ask to try humanizer instead of no-ai-slop)
+
+Rail paragraph: back to his own text, unchanged (he said it was fine): Research shows that a small weekly set keeps people motivated. Keeping the user focused on their current Pathway target rather than a longer term goal enhances user motivation.
+
+Side text, paragraph 1: I designed the Action Hub to work as a starting point instead of a traditional home screen. It answers one question for the user, what do I need to do this week, and the full curriculum stays on the Growth Journey and Pathway pages.
+
+Side text, paragraph 2: Action Items are finished in order here too, the same as on the Pathway page, so only the one at the top marked Active can be checked off. The rest of the week isn't locked, though. The user can see everything coming up and plan around it. Completed items collapse at the bottom of the list, where the user can still see what they finished and undo it if they need to.
+
+Note, Pathway target: This date is set from the hours the user told Mondai they can give each week. It stays the same through a normal week and only moves when those hours change.
+Note, Pathway pace: The pace only updates once a week, so the user isn't watching it shift every time they finish something. In the first week it matches the target because there's no progress to measure yet.
+Note, Days ahead or behind: The gap between the target and the pace, counted in days and shown as ahead of target or behind target. Nothing else on the screen tells the user whether they're ahead or behind.
+
+Not reader checked. His original rail paragraph was flagged in round 1 (its two sentences overlap each other and the competitive analysis), so the block will not read PASS with it; kept on his call.
