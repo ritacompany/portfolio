@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS2 Falling behind, Rebuild</title>
+<style>
+  @font-face { font-family: "Satoshi FB"; font-weight: 500; src: local("Satoshi Medium"), local("Satoshi-Medium"); }
+  html, body { margin: 0; background: #0b0b0c; }
+  #c { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #0b0b0c; }
+  .art { position: absolute; left: 50%; top: 50%; width: 720px; height: 680px; transform-origin: 0 0; }
+  .label { position: absolute; font: 500 16px/1 "Satoshi FB", system-ui, sans-serif; color: #8e8e94; white-space: nowrap; }
+  .rule { position: absolute; width: 300px; height: 1px; background: #1f1f22; }
+  .card { position: absolute; width: 300px; height: 56px; box-sizing: border-box; display: flex; align-items: center; gap: 12px;
+    padding: 0 14px; border: 1px solid #26262a; border-radius: 10px; background: #141416; }
+  .ring { flex: none; width: 18px; height: 18px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid #4a4a50;
+    display: flex; align-items: center; justify-content: center; }
+  .ring svg { width: 55%; height: 55%; }
+  .bar { flex: none; height: 9px; border-radius: 5px; background: #2a2a2e; }
+  .chip { margin-left: auto; flex: none; font: 600 8.5px/1 ui-monospace, Menlo, monospace; letter-spacing: 0.14em; padding: 4px 6px;
+    border-radius: 4px; border: 1px solid #e31ecf; color: #e31ecf; background: #e31ecf1a; }
+  .meta { margin-left: auto; flex: none; height: 7px; width: 34px; border-radius: 4px; background: #202023; }
+  .px { position: absolute; width: 8px; height: 8px; }
+</style>
+</head>
+<body>
+<div id="c"><div class="art" id="art"></div></div>
+<script type="module">
+  // Stills for the Rebuild concept. Style guide and state list: docs/motion/cs2-falling-behind-rebuild/.
+  // seek(t) draws one of three states: t under 1.5 is still 1, under 2.5 still 2, otherwise still 3.
+  import { rng, clamp, lerp, cubicBezier } from "../lib/motion.js";
+  const art = document.getElementById("art");
+  const L = 40, R = 380, TOP = 196, TO_ROWS = 50, STEP = 64;
+  const rowY = (k) => TOP + TO_ROWS + k * STEP;
+  const tick = '<svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8" fill="none" stroke="#0b0b0c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const GLITCH = ["#e31ecf", "#3ad7e8", "#09c916"];
+  const ease = cubicBezier(0.65, 0, 0.35, 1);
+
+  function add(cls, x, y, html) { const d = document.createElement("div"); d.className = cls; d.style.left = x + "px"; d.style.top = y + "px"; if (html) d.innerHTML = html; art.appendChild(d); return d; }
+  function card(x, y, { w = 52, done = false, chip = false, active = false, op = 1 } = {}) {
+    const ring = done ? '<div class="ring" style="background:#78b765;border-color:#78b765">' + tick + "</div>"
+      : active ? '<div class="ring" style="border:3px solid #09c916"></div>' : '<div class="ring"></div>';
+    const end = chip ? '<div class="chip">ROLLOVER</div>' : '<div class="meta"></div>';
+    const c = add("card", x, y, ring + `<div class="bar" style="width:${w}%"></div>` + end);
+    if (active) c.style.borderColor = "#3da342";
+    c.style.opacity = done ? 0.4 * op : op;
+    return c;
+  }
+  function weeks() {
+    add("label", L, TOP).textContent = "This week"; add("rule", L, TOP + 30);
+    add("label", R, TOP).textContent = "Next week"; add("rule", R, TOP + 30);
+  }
+
+  window.seek = (t) => {
+    art.innerHTML = "";
+    weeks();
+    const s = t < 1.5 ? 1 : t < 2.5 ? 2 : 3;
+    // This week: two finished items below the open one.
+    card(L, rowY(1), { w: 44, done: true });
+    card(L, rowY(2), { w: 58, done: true });
+    if (s === 1) {
+      card(L, rowY(0), { w: 50, chip: true });
+      [40, 60, 48].forEach((w, k) => card(R, rowY(k), { w }));
+    }
+    if (s === 2) {
+      // Next week has stepped down one place; its last item is fading out.
+      [40, 60].forEach((w, k) => card(R, rowY(k + 1), { w }));
+      card(R, rowY(3) - 8, { w: 48, op: 0.18 });
+      // The open item as pixel blocks, right columns leading, streaming from the left slot to the right one.
+      const r = rng(7), g = 0.5, cols = 38, rows = 7;
+      for (let c = 0; c < cols; c += 1) for (let q = 0; q < rows; q += 1) {
+        // Mid flight the item travels as one loose cluster: right columns a little ahead, each block a little apart.
+        const p = ease(clamp(g + (c / cols - 0.5) * 0.25 + (r() - 0.5) * 0.12));
+        const jitter = (r() - 0.5) * 10 * Math.sin(Math.PI * p);
+        const x = lerp(L + c * 8, R + c * 8, p), y = rowY(0) + q * 8 + jitter;
+        const edge = q === 0 || q === rows - 1 || c === 0 || c === cols - 1;
+        const roll = r();
+        const b = add("px", x, y);
+        const moving = p > 0.02 && p < 0.98;
+        b.style.background = moving && roll < 0.16 ? GLITCH[Math.floor(roll * 100) % 3] : edge ? "#34343a" : "#1a1a1d";
+        if (moving && roll < 0.16) b.style.width = 8 + Math.round(24 * Math.sin(Math.PI * p)) + "px";
+        b.style.opacity = moving ? 0.9 : 1;
+      }
+    }
+    if (s === 3) {
+      card(R, rowY(0), { w: 50, active: true });
+      [40, 60].forEach((w, k) => card(R, rowY(k + 1), { w }));
+    }
+  };
+  function fit() { const s = Math.min(innerWidth / 720, innerHeight / 680); art.style.transform = `scale(${s}) translate(-360px, -340px)`; }
+  addEventListener("resize", fit); fit();
+  window.ready = document.fonts.load('500 16px "Satoshi FB"');
+  window.seek(Number(new URLSearchParams(location.search).get("t") || 1));
+</script>
+</body>
+</html>
