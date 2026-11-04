@@ -1,0 +1,9 @@
+V1 Q1 yes | V1.S1, V1.S2
+V1.S1 Q2 no | none
+V1.S1 Q3 no
+V1.S1 Q4 no | none
+V1.S1 Q5 no | follows from the label and adds the new point that each Pathway has its own page
+V1.S2 Q2 no | none
+V1.S2 Q3 no
+V1.S2 Q4 no | none
+V1.S2 Q5 no | follows from S1 and states the purpose of the page

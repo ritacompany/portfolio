@@ -1,0 +1,4 @@
+=== Pathway page
+[eyebrow or sub-heading] Pathway
+[headline] One level down from the Growth Journey, every Pathway has its own page, where someone gets a closer look at the stretch they're in right now.
+They come here to see how much of this Pathway is behind them and how much is left before the next one starts.

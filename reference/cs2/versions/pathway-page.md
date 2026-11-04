@@ -99,4 +99,4 @@ They come here to see how much of this Pathway is behind them and how much is le
 Sources: none
 Image: the Pathway page, already in his frame.
 
-Checks: humanizer run as the skill. Reader check not run on round 4 (Q1 waived for this block by him). Not reviewed by him.
+Checks: humanizer run as the skill. Reader check PASS 3/3, no flags on any sentence, Q1 found a decision in both sentences (runs/2026-11-04-pathway-r4). Not reviewed by him.
