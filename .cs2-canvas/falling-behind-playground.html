@@ -146,7 +146,7 @@ const DEFAULTS = {
   introStagger: 0, fadeIn: 300, introRise: 0, introPause: 400,
   checkStagger: 600, checkPop: 320, dimDelay: 260, dimDur: 400,
   weekEndPause: 500, liftDur: 250, lift: 6, liftScale: 1.01, shadowY: 12, shadowBlur: 28, shadowAlpha: 0.5,
-  path: 'around', outX: 400, outDur: 450, downDur: 450, inDur: 500, textOver: true,
+  path: 'around', closeGap: true, closeDelay: 250, closeDur: 500, outX: 400, outDur: 450, downDur: 450, inDur: 500, textOver: true,
   slideDur: 800, settle: 200, fillStagger: 90, fillDur: 500, fillRise: 8,
   hold: 1800, fadeOut: 400, loopGap: 300, loop: true, speed: 1,
   moveEase: 'cubic-bezier(.2,.8,.2,1)', fadeEase: 'cubic-bezier(.2,.8,.2,1)',
@@ -171,6 +171,9 @@ const CONTROLS = [
     ['inDur', 'Back in ms', 0, 2000, 10],
     ['slideDur', 'Straight drop ms', 100, 3000, 10],
     ['textOver', 'Text above the row', 'bool'],
+    ['closeGap', 'Close the gap', 'bool'],
+    ['closeDelay', 'Close gap delay ms', 0, 2000, 10],
+    ['closeDur', 'Close gap ms', 0, 2000, 10],
     ['liftDur', 'Lift ms', 0, 1500, 10],
     ['lift', 'Lift px', 0, 30, 1],
     ['liftScale', 'Lift scale', 1, 1.1, 0.005],
@@ -244,7 +247,7 @@ const META_PATTERN = [0.33, -1, 1, -0.33, 0.33, -1, 1, 0, -0.67, 0.67, -0.33, 0.
 const STORE = 'fb-playground-v2';
 let S = load();
 let t = 0, playing = true, last = null, TL = null, dragMode = 'reorder';
-const els = { rows: [], pre: [], fresh: [] };
+const els = { rows: [], pre: [], fresh: [], zones: [] };
 
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
 function load() {
@@ -333,6 +336,7 @@ function buildTimeline() {
     shiftStart = liftEnd + S.slideDur * 0.35; shiftDur = S.slideDur * 0.65;
     P.push(['Drop', liftEnd]);
   }
+  const closeStart = liftEnd + S.closeDelay;
   const fillStart = moveEnd + S.settle;
   const fillT = [];
   for (let k = 0; k < S.newCount; k += 1) fillT.push(fillStart + k * S.fillStagger);
@@ -342,7 +346,7 @@ function buildTimeline() {
   const fadeEnd = holdEnd + S.fadeOut;
   const T = fadeEnd + S.loopGap;
   P.push(['Hold', fillEnd], ['Fade out', holdEnd], ['Gap', fadeEnd]);
-  return { inStart, preIn, checkT, liftStart, liftEnd, outEnd, downEnd, moveEnd, shiftStart, shiftDur, fillT, holdEnd, fadeEnd, T, phases: P };
+  return { closeStart, inStart, preIn, checkT, liftStart, liftEnd, outEnd, downEnd, moveEnd, shiftStart, shiftDur, fillT, holdEnd, fadeEnd, T, phases: P };
 }
 
 const tickSvg = () => `<svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8" fill="none" stroke="${S.tick}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -377,6 +381,7 @@ function rebuild() {
   document.body.style.background = S.pageBg; block.style.background = S.pageBg;
   document.querySelector('.body').style.zIndex = S.textOver ? 20 : 0;
   stage.innerHTML = '';
+  els.zones = [];
   const zones = [['This week', 0], ['Next week', nextLabelTop()]];
   if (S.weekAfter) zones.push(['Week after', afterLabelTop()]);
   zones.forEach(([txt, top]) => {
@@ -384,6 +389,7 @@ function rebuild() {
     z.style.top = top + 'px'; z.style.color = S.labels; stage.appendChild(z);
     const l = document.createElement('div'); l.className = 'line';
     l.style.top = top + 26 + 'px'; l.style.width = S.rowWidth + 'px'; l.style.background = S.rule; stage.appendChild(l);
+    if (top > 0) els.zones.push([z, l, top]);
   });
   els.rows = [];
   for (let p = 0; p < S.count; p += 1) { const id = S.order[p]; els.rows.push(makeCard(id, 'w' + id)); }
@@ -409,6 +415,8 @@ function render() {
   const fe = easeFn(S.fadeEase), me = easeFn(S.moveEase);
   const o = openIdx();
   const out = 1 - fe(prog(t, TL.holdEnd, S.fadeOut));
+  const gap = S.closeGap ? STEP() * me(prog(t, TL.closeStart, S.closeDur)) : 0;
+  els.zones.forEach(([z, l, top]) => { z.style.top = top - gap + 'px'; l.style.top = top - gap + 26 + 'px'; });
   els.rows.forEach((c, p) => {
     const key = c.dataset.key;
     const a = fe(prog(t, TL.inStart[p], S.fadeIn));
@@ -424,6 +432,7 @@ function render() {
       svg.style.opacity = done ? 1 : 0;
       ch.style.transform = done ? `scale(${lerp(0.6, 1, fe(prog(t, ct, S.checkPop)))})` : 'none';
       op *= lerp(1, S.doneOpacity, fe(prog(t, ct + S.dimDelay, S.dimDur)));
+      if (p > o) y -= gap;
       c.dataset.where = 'this';
     } else {
       ch.style.background = 'transparent'; ch.style.borderColor = S.checkRing; svg.style.opacity = 0; ch.style.transform = 'none';
@@ -436,12 +445,12 @@ function render() {
       } else if (S.path === 'around') {
         const po = me(prog(t, TL.liftEnd, S.outDur)), pd = me(prog(t, TL.outEnd, S.downDur)), pi = me(prog(t, TL.downEnd, S.inDur));
         x = S.outX * po - S.outX * pi;
-        y = lerp(Y1(p) - S.lift, Y2(0), pd);
+        y = lerp(Y1(p) - S.lift, Y2(0) - gap, pd);
         sc = lerp(S.liftScale, 1, pi); shadow = 1 - pi; border = mix(S.liftBorder, S.carriedBorder, pi);
         k = pi;
       } else {
         const sb = me(prog(t, TL.liftEnd, S.slideDur));
-        y = lerp(Y1(p) - S.lift, Y2(0), sb); sc = lerp(S.liftScale, 1, sb); shadow = 1 - sb; border = mix(S.liftBorder, S.carriedBorder, sb);
+        y = lerp(Y1(p) - S.lift, Y2(0) - gap, sb); sc = lerp(S.liftScale, 1, sb); shadow = 1 - sb; border = mix(S.liftBorder, S.carriedBorder, sb);
         k = sb;
       }
       if (k > 0) { const oc = off('carry'); ofs = { x: lerp(ofs.x, oc.x, k), y: lerp(ofs.y, oc.y, k) }; }
@@ -454,13 +463,13 @@ function render() {
     const a = fe(prog(t, TL.preIn[k], S.fadeIn));
     const ofs = off(c.dataset.key);
     c.dataset.where = 'next';
-    place(c, ofs.x, lerp(slotY(k), slotY(k + 1), sh) + ofs.y, (1 - a) * S.introRise, 1, a * out, 0, S.cardBorder);
+    place(c, ofs.x, lerp(slotY(k), slotY(k + 1), sh) - gap + ofs.y, (1 - a) * S.introRise, 1, a * out, 0, S.cardBorder);
   });
   els.fresh.forEach((c, k) => {
     const a = fe(prog(t, TL.fillT[k], S.fillDur));
     const ofs = off(c.dataset.key);
     c.dataset.where = 'next';
-    place(c, ofs.x, slotY(S.preNext + 1 + k) + ofs.y, (1 - a) * S.fillRise, 1, a * out, 0, S.cardBorder);
+    place(c, ofs.x, slotY(S.preNext + 1 + k) - gap + ofs.y, (1 - a) * S.fillRise, 1, a * out, 0, S.cardBorder);
   });
   document.getElementById('scrub').value = Math.round(t / TL.T * 1000);
   document.getElementById('time').textContent = (t / 1000).toFixed(2) + ' s / ' + (TL.T / 1000).toFixed(2) + ' s';
