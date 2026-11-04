@@ -94,12 +94,12 @@ Checked 4 Nov 2026 by reading every skill for what it needs outside itself, then
 
 | Skill | Where it lives | Needs | Status | Proposal |
 |---|---|---|---|---|
-| sleek-design-mobile-apps | account | A Sleek API key | No key set. Cannot work | Switch off |
-| agent-browser | account | The agent-browser program | Not installed. Cannot work, and the built-in browser does the same job | Switch off |
-| morning | account (Anthropic) | Calendar, email and chat connectors | None connected. Cannot work | Switch off |
-| google-workspace | account (Anthropic) | Google Drive, Docs or Sheets connectors | None connected. Cannot work | Switch off |
-| framer, framer-code-components | personal | A one time Framer setup and a Framer site | Setup never run, no Framer site in any repo | Move to `~/.claude/skills-archive/` |
-| watch | personal | yt-dlp and ffmpeg, plus an OpenAI key for videos with no captions | yt-dlp and ffmpeg are installed, no key set. Works on captioned videos only | Keep |
+| sleek-design-mobile-apps | account | A Sleek API key | No key set. Cannot work | Removed by Chadwick, 4 Nov |
+| agent-browser | account | The agent-browser program | Not installed. Cannot work, and the built-in browser does the same job | Removed by Chadwick, 4 Nov |
+| morning | account (Anthropic) | Calendar, email and chat connectors | None connected. Cannot work | Removed by Chadwick, 4 Nov |
+| google-workspace | account (Anthropic) | Google Drive, Docs or Sheets connectors | None connected. Cannot work | Removed by Chadwick, 4 Nov |
+| framer, framer-code-components | personal | A one time Framer setup and a Framer site | Setup never run, no Framer site in any repo | Remove. Not needed, nothing kept for later |
+| watch | personal | yt-dlp and ffmpeg, plus an OpenAI key for videos with no captions | yt-dlp and ffmpeg are installed, no key set. Works on captioned videos only. The key is a paid OpenAI account and is not needed | Keep, free as is |
 
 Everything else that mentions Figma, Notion or Slack mentions it as advice or an optional extra, and works without it. obsidian-vault works: the vault is at `~/Documents/Obsidian Vault`.
 
