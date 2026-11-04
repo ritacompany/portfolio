@@ -100,3 +100,22 @@ Sources: none
 Image: the Pathway page, already in his frame.
 
 Checks: humanizer run as the skill. Reader check PASS 3/3, no flags on any sentence, Q1 found a decision in both sentences (runs/2026-11-04-pathway-r4). Not reviewed by him.
+
+## Round 5 (4 Nov)
+His comments on round 4: do not say why people come here; say what the page is and what lives there, that it
+is not a page people open regularly but they need to be able to come here and see what is next. He asked for the
+Focus Area definition text too (missed in round 4): his frame has a Focus areas label (4840:21143) at x 1207
+y 6577 with the foundation Pathways line still in it as filler (4840:21144, 193px, about 5 lines). Voice
+matched to his own Growth Journey column copy. Pathway text in his frame read 4 Nov: headline is round 4, column
+is round 3.
+
+Eyebrow: Pathway
+Headline: Each Pathway has its own page, with all of its Focus Areas and Action Items laid out in the order someone works through them.
+Text:
+This page was designed to give the user a closer look at the pathway they're on, including which focus area they're in and what's coming up next. They won't need it every week, but it's there whenever they want to look ahead.
+
+Focus areas (label, his block 4840:21143)
+Text: Each pathway is split into focus areas, like user testing or visual design. They run in order and give the user a sense of what that pathway will cover.
+Source for the definition: reasoning/pathways-and-hierarchy.md section 2 (31 Mar page brief: focus areas give an idea of the kinds of things a pathway focuses on; 22 Apr: they are linear). Examples are Focus Area names on his Pathway page screen.
+
+Checks: humanizer run as the skill on both. Reader check not run. Not reviewed by him.
