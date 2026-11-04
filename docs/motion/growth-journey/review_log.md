@@ -26,3 +26,9 @@ Worst three:
    0.02 s after the last dot and the match lights 0.08 s after that.
 3. Readability: one comparison now (Jun 12 2027 in the tile and on Opportunity). Phone size still small because
    the UI text is small; a closer crop stays his call.
+
+## Direction A, round 2 (mockup round)
+Dots and line now sit exactly on his dashes; dots 0.14 s apart, line lands with no pause, the match lights 0.08 s
+later. Scores: motion 8, composition 8, phone readability 7, pacing 8, loop seam 9, fidelity to his screen 8.
+Known mockup flaw: Cognition's 02 keeps a green tint after the card was switched to Complete in the export copy.
+Fixed when his real UI goes in. 390 render and double render deferred to the final, per his correction.
