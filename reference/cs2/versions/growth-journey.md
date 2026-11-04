@@ -23,16 +23,20 @@ Points, from reasoning/dossier-findings-22oct.md, Growth Journey and Pathway pag
 4. Capacity is changed from here, because it moves the journey dates first and the Pathway target follows
    (19 May 2026). Optional: capacity is not met until Personalized timeline.
 
-## Version
+Round 1 comments (3 Nov): the line about both date pairs on one screen being confusing belongs to the Action Hub
+block, which already says the week stays on the Pathway target. Focus this block on why the long term goal is
+kept, how journey and Pathway target and pace relate, and why this is the only place the whole journey's
+progress shows. Summary line dropped.
+
+## Version (round 2)
 Eyebrow: Growth Journey
 Headline: The whole route has a page of its own, one people open now and then to see how far they've come and what's left.
 Text:
-Looking over the whole journey isn't something people do every week, so I kept it off the weekly home screen and gave it this page. The journey's own target and pace only show up here. Putting them next to the Pathway's dates on one screen was confusing, so the week only ever shows the Pathway's.
+People still need to know when they'll finish the whole thing, even if the week only points at the next step. So the journey gets its own target and pace, worked out from every Action Item in it and the hours someone gives, and each Pathway's dates follow from those.
 
-The summary at the top says how someone's background shaped their route, so the same career path still reads as theirs.
+This is the only place the whole journey's progress shows. The weekly screens stay on the Pathway, so the far finish line waits here for whenever someone wants to check it.
 
-Sources: Mondai design record
+Sources: Mondai design record (his words 9 Apr, 28 Apr, 6 May, 17 May and 19 May 2026; dossier-findings-22oct.md, Growth Journey and Pathway page)
 Image: his Growth Journey page, already in his frame.
 
-Checks: none yet. no-ai-slop as the skill, fit measure and the reader check (known-pathway.md, K8 to drop for
-this block) not run; stopped at the usage limit.
+Checks: none yet. no-ai-slop as the skill, fit measure and the reader check owed.
