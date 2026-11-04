@@ -83,3 +83,20 @@ Sources: none (no claim needs one; each fact is on the screen: Focus Areas marke
 Image: the Pathway page, already in his frame.
 
 Checks: no-ai-slop run as the skill. Reader check (runs/2026-11-04-pathway-r3): FAIL on Q1 only, 3/3 found no design decision with a reason, which is by his note (no reasoning for this block). Every sentence clean on terms, process and restating. Q1 waived by him 4 Nov (connector block, no reasoning by design). Approval withdrawn by him 4 Nov: it lists what lives on the page instead of saying what the page is, and it uses Focus Areas as if defined (only their place in the hierarchy has been shown). He is adding a Focus Area definition block in his frame, styled like the foundation Pathways card.
+
+## Round 4 (4 Nov)
+His comments on round 3: it said what lives on the page, not what the page is, and used Focus Areas as if
+defined. He is adding a short Focus Area definition in his frame himself (not part of this copy). Voice pass is
+now the humanizer skill, his switch 4 Nov (closer to his tone than no-ai-slop).
+
+Concept: the Pathway page is the closer look at the stage someone is in now, one level below the whole route.
+
+Eyebrow: Pathway
+Headline: One level down from the Growth Journey, every Pathway has its own page, where someone gets a closer look at the stretch they're in right now.
+Text:
+They come here to see how much of this Pathway is behind them and how much is left before the next one starts.
+
+Sources: none
+Image: the Pathway page, already in his frame.
+
+Checks: humanizer run as the skill. Reader check not run on round 4 (Q1 waived for this block by him). Not reviewed by him.
