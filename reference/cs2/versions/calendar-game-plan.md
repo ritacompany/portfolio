@@ -112,6 +112,45 @@ keeping three blocks, keep the layout of each as it is and apply only the copy f
 
 ## Part 3: build spec for the calendar image
 
+### His correction, 5 Nov: the Action Items sit at the top of the image
+
+More content up higher means the Action Items, not the text column. In his current image the grid opens early
+and the Action Item blocks land low, so a reader sees the top of a calendar with nothing of ours in it. The
+build fixes that in the data, not by cropping:
+- Aisha's preferred hours start at 8am and her focus hours are the morning (both shown on his setup screens;
+  if his boundaries screen says otherwise, use its hours and shift the times below by the same amount).
+- The grid's first row is 8am, the same hour the copy example names.
+- Every Action Item sits in the first three hours of the grid, so all four blocks are visible above the
+  image's midline. Default times, rising with list order and one item per day: Write a discussion guide Mon
+  9am to 10am (done), Conduct usability testing sessions Wed 9am to 10am (Active), Synthesize usability
+  findings Thu 10am to 11am, Update wireframes based on findings Fri 9am to 9:30am (the 30 minute block).
+  This replaces the afternoon defaults in problem 3.
+- Aisha's own events fill the afternoons and a few mornings around the Action Items, so the gaps read as
+  found, not empty.
+
+### The motion idea: let the reader see more than the top of the calendar
+
+His idea: as the reader scrolls onto the calendar, the calendar scrolls too, so more of the day shows. His
+worry: if the reader takes control of the calendar for a moment, they will wonder why they cannot keep
+controlling it.
+
+Recommendation: a scroll linked pan inside the image, with no pinning. The page keeps scrolling normally the
+whole time. While the calendar crosses the screen, its grid moves up inside its frame in step with the
+scroll, from 8am to the evening, then stops when the block leaves. Scrolling back reverses it. The reader
+never takes control of anything, so nothing is taken away from them later, which removes his worry.
+Why this over the alternatives:
+- Pinning the section and scrubbing the calendar while the page stands still is scroll hijacking: the page
+  stops responding the way the reader expects, which is the confusion he named.
+- Letting the reader scroll the calendar with the mouse inside the frame traps the wheel and breaks page
+  scrolling for trackpad users.
+- A taller static image shows the whole day but pushes the text and the small image far down, which undoes
+  the first correction.
+Because the Action Items are at the top, the first frame a reader sees is already the right picture; the pan
+only adds the rest of her day. Reduced motion shows the 8am view with no pan. Build it through the code
+motion skill (the motion rules in .claude/motion-rules.md), from a tall export of his calendar, never a
+redrawn one. The other account works out the exact distance and easing; this is the direction.
+
+
 Source of truth is the Action Hub list view image in his frame (Action hub block). The hub shows no times
 on its cards. The calendar adds times and nothing else new.
 
@@ -174,7 +213,8 @@ Times
 - [ ] Block height follows duration, with both an hour block and a 30 minute block on screen, no title in blocks under 30 minutes.
 - [ ] Action Items green, Mondai events magenta, Aisha's own events in their source colors.
 - [ ] Action Items sit in gaps between her events inside the hours from setup, the sharp hours filled first.
-- [ ] The first row of the grid is the start hour from her setup answer.
+- [ ] The first row of the grid is 8am, the start hour from her setup answer and the copy example.
+- [ ] All four Action Item blocks sit in the first three hours of the grid, visible in the top half of the image.
 - [ ] Nothing on the image implies Mondai wrote into her calendar.
 - [ ] The popover, if open, sits on the Active item and offers Go to action item, Complete (Active only) and Reschedule.
 - [ ] The reschedule picker offers only open time inside the same week.
