@@ -128,8 +128,9 @@ would not use it there, since the hub block is already carrying the most reasoni
 Supersedes round 2 (its "I kept it as simple as I could" read as if he ran out of ideas). His point: the AI that
 writes the Action Items was still being built, so the page had to be built to be filled by an AI whose details
 were not known yet, and the business scope for the MVP was small. He has plenty of ideas for it. The block
-therefore carries the constraint as the reason, then the room to grow. One version. Humanizer rules applied
-(dash scan clean). Not reader checked, no canvas.
+therefore carries the constraint as the reason, then the room to grow. One version. Humanizer run as the skill on
+this round after he asked (the first pass was from memory); two edits: send-off ending and slogan closer
+cut. Dash scan clean. Not reader checked, no canvas.
 
 Where it traces (reasoning/action-item-page.md): curriculum output only, no AI surface on the page, so the AI is
 entirely upstream and the page has to be legible with no interaction (section 2, his 2 May 2026); structure
@@ -140,9 +141,9 @@ his own, said in chat on 5 Nov and not in the record, so it needs his confirmati
 
 Eyebrow: Action Item
 Headline: Someone has to read each piece of work the AI writes, and when I designed the page the AI was still being built.
-Body: I couldn't know yet how the AI would behave or what it would do well. The MVP scope was small too: the AI writes each Action Item as text, with no images or video, and nobody types anything into the page. So the page is a set of plain containers the AI can fill however it turns out to work, and I kept the structure loose in case it couldn't use all of it at first. That keeps the page simple for the MVP and leaves me room to grow it into something richer once the AI is ready.
+Body: I couldn't know yet how the AI would behave or what it would do well. The MVP scope was small too: the AI writes each Action Item as text, with no images or video, and nobody types anything into the page. So the page is a set of plain containers the AI can fill however it turns out to work, and I kept the structure loose in case it couldn't use all of it at first. That keeps the page simple for the MVP and leaves room to build it out once the AI is ready.
 Sources: Mondai design record
-Visual note: The Action Item page in your layout at small size so it reads as a quiet block. A more finished version would be the same page filled with a real Action Item in plain text, since the plainness is the point.
+Visual note: The Action Item page in your layout at small size so it reads as a quiet block. A more finished version would be the same page filled with a real Action Item in plain text, because the page is meant to be plain.
 Covers: AI still in development, small MVP scope (text only, read only), plain containers kept loose, room to grow.
 
 Second place (revised): the ending, one sentence, now carrying the same reason. Wording: Parts of the MVP are
