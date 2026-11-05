@@ -43,7 +43,9 @@ What follows from that:
 
 - Humanizer: run as the skill on all three, final text below.
 - Reader check: known-hero.md, three Sonnet runs, all versions in one COPY file
-  (reader-check/runs/2026-11-05-hero1). Result below.
+  (reader-check/runs/2026-11-05-hero1). A PASS, B PASS, C FAIL on one flag (2 of 3 runs): the second
+  question, "and who decides", was never set up in C. Reworded, not cut, to tie it to the body's point that
+  the plan doesn't control the user's time. The reworded line has not been re-run (a fourth agent needs his ask).
 - Dash scan: clean.
 
 ---
@@ -105,5 +107,22 @@ a week they can finish and a short week doesn't feel like failing.
 Right column:
 This case study is focused on three questions
 How do you show a long route without putting the finish line in front of the user every week?
-How much should one week hold, and who decides?
+How much should one week hold when the plan doesn't control the user's time?
 What happens when a week comes up short or ends early?
+
+---
+
+## Pick: B
+
+B is the only version that shows a stranger the whole system working before naming any of it: one user, 6
+hours, a Saturday deadline, a week that runs short and a week that ends early. That is the page in miniature,
+in his own worked example habit, and it passed the reader check clean. A is the clearest claim about my role
+but reads as a statement the page then has to prove. C has the strongest human stake but leans on research in
+the hero, and the page saves that research for Competitive analysis and Growth Journey.
+
+What would change it: if he wants the hero to stay one or two sentences like his current intro, A, because B
+needs its length to work.
+
+Edge case for him: Background opens with "Mondai is an AI career tool designed to create personalized
+pathways..." right after the hero says what Mondai is. Whichever version he takes, Background's first sentence
+will repeat it and may want trimming.

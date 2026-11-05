@@ -1,0 +1,99 @@
+V1 Q1 yes | V1.S4 V1.S5
+V1.S1 Q2 yes | Mondai (label above, not yet defined)
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | title that frames the block
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | defines the product
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | follows from the product definition
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 no | follows from the route in S3
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | gives the reason for the weekly sizing
+V1.S6 Q2 no
+V1.S6 Q3 no
+V1.S6 Q4 no
+V1.S6 Q5 no | scope item that follows from the route and weeks
+V1.S7 Q2 no
+V1.S7 Q3 no
+V1.S7 Q4 no
+V1.S7 Q5 no | repeats the sizing point as a scope item but still follows
+V1.S8 Q2 no
+V1.S8 Q3 no
+V1.S8 Q4 no
+V1.S8 Q5 no | scope item that follows
+V2 Q1 yes | V2.S4 V2.S5
+V2.S1 Q2 yes | Mondai (label above, not defined until S3)
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | title that frames the block
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | follows from the title
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | sets up why 6 hours cannot hold the whole route
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | follows from S3
+V2.S5 Q2 no
+V2.S5 Q3 no
+V2.S5 Q4 no
+V2.S5 Q5 no | follows from S4
+V2.S6 Q2 no
+V2.S6 Q3 no
+V2.S6 Q4 no
+V2.S6 Q5 no | follows from S5
+V2.S7 Q2 no
+V2.S7 Q3 no
+V2.S7 Q4 no
+V2.S7 Q5 no | states the designer's role after the example
+V2.S8 Q2 no
+V2.S8 Q3 no
+V2.S8 Q4 no
+V2.S8 Q5 no | scope sentence that follows
+V3 Q1 yes | V3.S3 V3.S4 V3.S5
+V3.S1 Q2 yes | Mondai (label above, not yet defined)
+V3.S1 Q3 no
+V3.S1 Q4 no
+V3.S1 Q5 no | title that frames the block
+V3.S2 Q2 no
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | defines the product
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | follows from the product definition
+V3.S4 Q2 no
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | second problem, follows
+V3.S5 Q2 no
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 no | answers both problems
+V3.S6 Q2 no
+V3.S6 Q3 no
+V3.S6 Q4 no
+V3.S6 Q5 no | question follows from the first problem
+V3.S7 Q2 no
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 no | question follows from the weekly sizing
+V3.S8 Q2 no
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | question follows from the second problem
