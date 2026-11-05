@@ -31,8 +31,29 @@ of its own, that plan wins wherever the two differ.
 - Before code, write docs/motion/<piece>/style_guide.md from a reference (a site's code, a frame, a clip): what to take and what not to take. Then docs/motion/<piece>/state_list.md. Then build.
 
 ## Review loop, before Chadwick sees anything
-1. node scripts/render.mjs, then node scripts/motion-review.mjs on the clip.
-2. Look at contact.png, strip.png and phone.png. Always render again at 390 wide too: a scaled down sheet once hid a cropped phone.
-3. Score 1 to 10, harshly: motion quality, composition, readability at phone size, pacing, loop seam, fidelity to Figma.
-4. Fix the 3 worst. At least 3 rounds; every score 8 or more. Log each round in docs/motion/<piece>/review_log.md.
-5. Before shipping, render twice: the two sha256 lines must match.
+Problems are ranked, never scored: a score out of 10 finds nothing to fix (HyperFrames review guide).
+- P0: must fix before anyone sees it. A pop, stutter or jump at a cut or seam, anything cropped or
+  clipped, a broken render contract, unreadable text at 390 wide, a seam that does not loop, a banned look.
+- P1: fix this round unless it would cost more than the piece is worth: pacing, weak composition, a
+  spring that snaps at the start.
+- P2: note it, fix when cheap.
+
+Each round:
+1. Render (node scripts/render.mjs), then again at --width 390.
+2. Make the sheets from the state list: node scripts/motion-review.mjs <clip> --state docs/motion/<piece>/state_list.md --loop
+   (drop --loop for a scrub). That gives the contact sheet, a strip from 0.2 s before to 0.2 s after
+   every cut and the loop seam, and the 360 wide phone sheet. Look at all of them, for both widths.
+3. List your own P0, P1 and P2 problems with times.
+4. Fresh eyes: a subagent on Sonnet that sees only style_guide.md, state_list.md and the review images,
+   never the code or your list. It returns its own P0, P1 and P2 list. Prompt it as a harsh motion director.
+5. Write the round in docs/motion/<piece>/review_log.md:
+   ## Round N
+   Fresh eyes: <one line summary of what the subagent saw>
+   - P0: <time> <problem>
+   - P1: ...
+   (or "No problems found" when both lists are empty)
+6. Fix every P0. Run another round only while a P0 is open. P1 and P2 do not need another round.
+7. Done when both pass:
+   node scripts/motion-check.mjs log docs/motion/<piece>/review_log.md
+   node scripts/motion-check.mjs strips output/motion/<clip>-review --state docs/motion/<piece>/state_list.md --loop
+8. Before shipping, render twice: the two sha256 lines must match.

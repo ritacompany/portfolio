@@ -13,7 +13,9 @@ Rules: .claude/motion-rules.md (a project motion plan wins over it).
    node scripts/render.mjs --page site/motion-lab/spring-sample.html --width 720 --height 900 --fps 60 --dur 4.6
    Scroll scrub: node scripts/render.mjs --page site/motion-lab/scroll-sample.html --mode scroll --scroll "#scene" --start "top top" --end "bottom bottom" --dur 3 --fps 30
    One still: add --still 1.5. Element only: --clip "#c". Retina: --dpr 2.
-4. Review: node scripts/motion-review.mjs output/motion/<clip>.mp4 --every 0.25 --strip <fast moment> --loop
+4. Review: node scripts/motion-review.mjs output/motion/<clip>.mp4 --state docs/motion/<piece>/state_list.md --loop
    Render again at --width 390 and review that clip too. Rounds at 30 fps for speed; the final at 60.
-5. Score, fix the 3 worst, repeat; 3 rounds, all 8 or more, logged in review_log.md.
+5. Rank problems P0, P1, P2 (no scores). Spawn a fresh eyes subagent on Sonnet with only the style
+   guide, state list and review images; log both lists as a round in review_log.md. Fix every P0;
+   another round only while a P0 is open. Done when motion-check log and strips both PASS.
 6. Determinism check before shipping: render twice, the sha256 lines must match. Run at most two renders at once; three in parallel crashed one Chrome.
