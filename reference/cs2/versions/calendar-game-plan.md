@@ -249,10 +249,10 @@ Mondai looks for gaps between the person's own events, inside the hours they cho
 Mondai only reads the calendar. It never writes Action Items into it, because that calendar holds commitments Mondai doesn't own. Action Items and the person's own events each get their own color.
 
 Beside the reschedule picker:
-I wanted people free to move their Action Items. Rescheduling works from the list and from the schedule, and Mondai offers only open time in that week, so nothing lands on a meeting. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
+People can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing lands on a meeting. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
 
-A time only helps someone find room. The week is what counts, so an Action Item with no time is fine, and finishing it counts the same. When a week has no room left, the item stays in the list without a time.
+The week is what counts, so an Action Item with no time is fine, and finishing it counts the same. When a week has no room left, the item stays in the list without a time.
 
 Sources: Mondai design record
 
-Reader check round 1 FAIL, two flags 3/3 (runs/2026-11-05-cal1): the 8am top row line (image detail, reads as a hard limit after setup framed hours as preferences) and the later colors plan (nothing depends on it). Both were his frame lines; both cut above. Re-run owed.
+Reader check round 1 FAIL, two flags 3/3 (runs/2026-11-05-cal1): the 8am top row line (image detail, reads as a hard limit after setup framed hours as preferences) and the later colors plan (nothing depends on it). Both were his frame lines; both cut above. Round 2 FAIL (runs/2026-11-05-cal2): I wanted people free (process voice, 3/3; his frame line) rewritten as People can move their Action Items; A time only helps someone find room (repeats, 2/3) cut. Round 3 owed.
