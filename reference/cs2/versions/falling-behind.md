@@ -38,7 +38,7 @@ Headline: Every Action Item in a week is due by Saturday night. Some weeks, one 
 Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open rolls over into the next week on its own. That week takes fewer new Action Items, so it still fits the hours the person gave.
 Sources: Soman and Cheema 2004; Mondai design record
 
-Checks: humanizer run as the skill. Reader check owed on round 7 (round 6 passed, runs/2026-11-03-fb4).
+Checks: humanizer run as the skill. Reader check PASS, three Sonnet runs, no flags standing (runs/2026-11-05-fb7). Ready for him to paste.
 Not compared with his Figma frame: if he pasted round 6 with his own edits, his edits win.
 
 ## Round 6 (3 Nov): back to the block's job

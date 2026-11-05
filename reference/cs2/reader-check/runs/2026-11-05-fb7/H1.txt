@@ -1,0 +1,21 @@
+V1 Q1 yes | V1.S3, V1.S4, V1.S5
+V1.S1 Q2 no | none
+V1.S1 Q3 no
+V1.S1 Q4 no | none
+V1.S1 Q5 no | follows as the opening fact
+V1.S2 Q2 no | none
+V1.S2 Q3 no
+V1.S2 Q4 no | none
+V1.S2 Q5 no | follows from the Saturday deadline
+V1.S3 Q2 no | none
+V1.S3 Q3 no
+V1.S3 Q4 no | none
+V1.S3 Q5 no | gives the reason the open item matters
+V1.S4 Q2 no | none
+V1.S4 Q3 no
+V1.S4 Q4 no | none
+V1.S4 Q5 no | follows from the reason in S3
+V1.S5 Q2 no | none
+V1.S5 Q3 no
+V1.S5 Q4 no | none
+V1.S5 Q5 no | follows from the rollover and ties to the hours

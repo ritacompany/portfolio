@@ -22,7 +22,7 @@ Loop step: 3
 ## Where it stopped
 
 Finishing push, 5 Nov (weekly usage 88%, he wants every session stopped and saved at 95%). What is left, his list: transition copy, calendar fix, intro, ending. Tactics audit deferred until the case study is finished, then the case study gets updated from it. Running in parallel:
-- Transition (Falling behind) copy: round 7 humanizer pass in versions/falling-behind.md (rollover introduced by the verb, the naming reveal cut). Reader check owed on round 7; waits on his read.
+- Transition (Falling behind) copy: round 7 humanizer pass in versions/falling-behind.md (rollover introduced by the verb, the naming reveal cut). He approved it 5 Nov; reader check PASS (runs/2026-11-05-fb7). Ready for him to paste into Figma.
 - Calendar copy check and build game plan for his other account: session cs2-calendar (local_e7736183-f82d-40ae-b352-86e19a0144fc), output versions/calendar-game-plan.md. The calendar image must match the Action Hub list view image (same items, states, week dates, hidden dates in components); no scheduled times appear in the Action Hub image.
 - Intro and ending round 1, A B C each, humanizer run: session cs2-intro-ending (local_70ffb5be-200d-4df7-b067-d3d885598089), output versions/intro-and-ending.md. Canvas and reader check owed.
 
