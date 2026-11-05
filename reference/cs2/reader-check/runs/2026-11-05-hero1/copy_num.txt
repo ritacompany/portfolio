@@ -1,0 +1,37 @@
+VERSION V1: A, who decides what
+  (label) Mondai MVP
+V1.S1 The AI wrote what the user would learn, and I designed how it fits into their week
+  (label) Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+V1.S2 Mondai is an AI tech career navigator designed for the next generation of hustlers.
+V1.S3 Its AI writes each user a personalized curriculum for getting into tech, a long route of work in a fixed order.
+V1.S4 I designed the framework that turns that route into weeks the user can finish.
+V1.S5 The same route has to work for a user who can give 6 hours a week and for one who can give 10, so each week is sized to the hours the user says they have.
+  (label) This case study is focused on
+V1.S6 How the curriculum is laid out, from the whole route down to a single piece of work
+V1.S7 How each week is sized to the hours the user can give, with or without their calendar
+V1.S8 What happens when the user falls behind or finishes early
+
+VERSION V2: B, one user's week
+  (label) Mondai MVP
+V2.S1 A career plan that still works in a week when the user only has 6 hours
+  (label) Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+V2.S2 Say the user can give 6 hours a week.
+V2.S3 Mondai is an AI tech career navigator designed for the next generation of hustlers, and its AI has already written their whole route into tech, far more than the user could finish in a week.
+V2.S4 So each week they get only what fits in those 6 hours, due by Saturday night and placed around their own calendar if they choose to connect it.
+V2.S5 If something is still open when Saturday comes, it moves into the next week on its own, and that week takes on less so it still fits.
+V2.S6 If they finish early, they can pull next week's work forward.
+V2.S7 I designed the framework behind all of this for Mondai's MVP.
+V2.S8 This case study is focused on how the curriculum is organized, how each week is sized to the user's hours and how the plan adjusts when a week runs short or ends early.
+
+VERSION V3: C, the far off finish line
+  (label) Mondai MVP
+V3.S1 Keeping a user moving toward a career that is still months away
+  (label) Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+V3.S2 Mondai is an AI tech career navigator designed for the next generation of hustlers.
+V3.S3 Its AI writes each user a full curriculum, and the end of it is often months away, which research suggests does little to keep the user going from week to week.
+V3.S4 The user also has a life the plan doesn't control, so some weeks they'll fall short.
+V3.S5 I designed the framework for Mondai's MVP around both problems, so the user is always looking at a week they can finish and a short week doesn't feel like failing.
+  (label) This case study is focused on three questions
+V3.S6 How do you show a long route without putting the finish line in front of the user every week?
+V3.S7 How much should one week hold, and who decides?
+V3.S8 What happens when a week comes up short or ends early?

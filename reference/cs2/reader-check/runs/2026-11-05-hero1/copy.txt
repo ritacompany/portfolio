@@ -1,0 +1,24 @@
+=== A, who decides what
+[eyebrow or sub-heading] Mondai MVP
+[headline] The AI wrote what the user would learn, and I designed how it fits into their week
+[eyebrow or sub-heading] Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+Mondai is an AI tech career navigator designed for the next generation of hustlers. Its AI writes each user a personalized curriculum for getting into tech, a long route of work in a fixed order. I designed the framework that turns that route into weeks the user can finish. The same route has to work for a user who can give 6 hours a week and for one who can give 10, so each week is sized to the hours the user says they have.
+[eyebrow or sub-heading] This case study is focused on
+How the curriculum is laid out, from the whole route down to a single piece of work
+How each week is sized to the hours the user can give, with or without their calendar
+What happens when the user falls behind or finishes early
+=== B, one user's week
+[eyebrow or sub-heading] Mondai MVP
+[headline] A career plan that still works in a week when the user only has 6 hours
+[eyebrow or sub-heading] Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+Say the user can give 6 hours a week. Mondai is an AI tech career navigator designed for the next generation of hustlers, and its AI has already written their whole route into tech, far more than the user could finish in a week. So each week they get only what fits in those 6 hours, due by Saturday night and placed around their own calendar if they choose to connect it. If something is still open when Saturday comes, it moves into the next week on its own, and that week takes on less so it still fits. If they finish early, they can pull next week's work forward. I designed the framework behind all of this for Mondai's MVP.
+This case study is focused on how the curriculum is organized, how each week is sized to the user's hours and how the plan adjusts when a week runs short or ends early.
+=== C, the far off finish line
+[eyebrow or sub-heading] Mondai MVP
+[headline] Keeping a user moving toward a career that is still months away
+[eyebrow or sub-heading] Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+Mondai is an AI tech career navigator designed for the next generation of hustlers. Its AI writes each user a full curriculum, and the end of it is often months away, which research suggests does little to keep the user going from week to week. The user also has a life the plan doesn't control, so some weeks they'll fall short. I designed the framework for Mondai's MVP around both problems, so the user is always looking at a week they can finish and a short week doesn't feel like failing.
+[eyebrow or sub-heading] This case study is focused on three questions
+How do you show a long route without putting the finish line in front of the user every week?
+How much should one week hold, and who decides?
+What happens when a week comes up short or ends early?
