@@ -251,7 +251,7 @@ Mondai only reads the calendar. It never writes Action Items into it, because th
 Beside the reschedule picker:
 People can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing lands on a meeting. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
 
-An Action Item is due by the end of its week, not at its time, so one without a time is fine. When a week has no room left, the item stays in the list without a time.
+An Action Item is due by the end of its week, not at its time, so one without a time is fine, and finishing it still counts toward the week's progress. When a week has no room left, the item stays in the list without a time.
 
 Sources: Mondai design record
 
