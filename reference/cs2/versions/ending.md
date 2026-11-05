@@ -1,5 +1,20 @@
 # CS2 ending, round 2 (5 Nov)
 
+Checks: humanizer run as the skill on all three. Reader check run 2026-11-05-end1 (three Sonnet runs, all
+versions in one COPY file): all three FAILED on Q4 (sentences that only restated the recalibration, rollover
+and reset facts the page already taught) and B.S2 on Q5 (restated the headline). Every flagged sentence was
+reworded to carry a new point, none cut. The reworded text has NOT been re-checked: the cost guard refuses a
+fourth run this turn and weekly usage is at 98 percent. Run the check again on these before the canvas.
+
+Pick: C. It is the only version whose structure is an idea the page never names but every screen relies
+on: the plan starts from what the user says and changes only on what their own weeks show, and the user
+keeps the last word both times. That is the clearest picture of how he thinks (the product never claims
+what it cannot know), it ends on a fact and its seven month price is the one number a reader will carry
+away. A is the warmest and has the bookend image but leans hardest on retelling the templates. B has the
+sharpest sorting rule (one right answer goes to Mondai, more than one stays with the user) but its two
+labelled halves read closer to a feature list. What would change it: if he wants the ending to feel human
+rather than principled, A.
+
 Round 1 (in intro-and-ending.md) was judged generic. This round starts over from the reader.
 
 ## Where the ending sits, and why it is its own block
@@ -34,7 +49,7 @@ Covers: P1 P2 P3 P4, told as one person's year.
 Layout: T1I, media and body. Image 260,0 1156x749; text column 24,431.
 Eyebrow: The long run
 Headline: A plan that runs for more than a year will be wrong about the user's life at some point, and the framework has to be ready when it is.
-Body: I designed the framework so that when the plan and the user's week disagree, the plan is the one that changes. Take Aisha, who set her capacity to 10 hours a week. When one of her weeks comes up short, the unfinished Action Items roll into the next week and that week takes fewer new ones, so it still fits the hours she gave. When short weeks keep happening, start of week shows her she has been averaging around 6.3 hours and recommends 6. Taking it moves her journey target from June 12, 2027 to January 10, 2028, and she sees that new date before she decides, because the plan never changes without her seeing it. She can also set her own number or skip the recommendation, and it comes back the next week. If she then stays away for 24 days, the week rebuilds from today and she picks up at Action Item 19 of 56 with all of her progress kept.
+Body: I designed the framework so that when the plan and the user's week disagree, the plan is the one that changes. Take Aisha, who set her capacity to 10 hours a week. The first time a week comes up short, the plan absorbs it by moving the unfinished Action Items into a lighter next week, and her Pathway target stays where it was. Only when that keeps happening does the plan question the 10 hours, and it does that with her own number, an average of around 6.3 hours, before it recommends 6. Taking it moves her journey target from June 12, 2027 to January 10, 2028, and she sees that new date before she decides, because the plan never changes without her seeing it. She can also set her own number or skip the recommendation, and it comes back the next week. Even a 24 day absence is the plan's problem to solve rather than hers, so the week rebuilds from today and the 18 Action Items she already finished stay finished.
 Image: Aisha's Growth Journey page again, after recalibration: journey target January 10, 2028, progress kept. A bookend to the Growth Journey block near the top, the same screen after her life changed.
 Sources: Mondai design record
 
@@ -44,11 +59,11 @@ Covers: P1 P2 P3 P4, split into two labelled halves.
 Layout: T2I, media and body. Large image 24,0 1090x749; small image 967,773 449x359; text column 1138,0.
 Eyebrow: Who decides
 Headline: Mondai keeps track of the hours, the dates and whatever carries over, while every choice about how the user spends their time stays with them.
-Body: I gave Mondai the parts of the plan that are only arithmetic and kept every choice about the user's time with the user.
+Body: The arithmetic went to Mondai because nobody should have to recount a week just to keep going, and the choices stayed with the user because only they know what their week holds.
 Label: What Mondai does on its own
-It sizes each week to the hours the user gave, moves anything unfinished into the next week and updates the pace once a week. Each start of week shows what moved and why, so none of it happens out of sight.
+On its own, it only does the work that has one right answer, like fitting the week to the hours given or carrying over what was left. Because those changes have one right answer it makes them without asking, and it still lays each one out at the next start of week.
 Label: What only the user decides
-Mondai never moves a scheduled time or writes into the user's calendar, and it never changes their capacity for them. When their weeks keep coming up short, it shows them they have been averaging about 6.3 of the 10 hours they set and recommends 6, along with what that costs: the journey target moves from June 12, 2027 to January 10, 2028. They can take it, set their own number or skip it, and the recommendation comes back the next week. That moment can only lower capacity, because the user is already behind when it appears. Raising it is open from the Growth Journey page whenever their life frees up more time, and it takes effect the following week.
+Mondai never moves a scheduled time or writes into the user's calendar, and it never changes their capacity for them. Where there is more than one right answer, such as how many hours to plan for, Mondai can only propose, so it puts the 6.3 hour average beside the 10 they set, recommends 6 and shows the price: a journey target seven months later, January 10, 2028. They can take it, set their own number or skip it, and the recommendation comes back the next week. That moment can only lower capacity, because the user is already behind when it appears. Raising it is open from the Growth Journey page whenever their life frees up more time, and it takes effect the following week.
 Images: large, a crop of the recalibration choice (Set my own capacity, Skip recalibration, Update capacity) with the what changes panel; small, a rollover Action Item under its magenta tag, the bookkeeping shown in the open.
 Sources: Mondai design record
 
@@ -58,7 +73,7 @@ Covers: P1 P2 P3 P4, built on declared against observed hours.
 Layout: T3I, three media and body. Images 24,0 and 732,0 and 24,701, each 684x677; text in the fourth cell 732,701.
 Eyebrow: Two numbers
 Headline: The plan sizes every week from the hours the user says they have, and it only changes that number once their own weeks give it a reason to.
-Body: During setup the user tells Mondai how many hours they can give each week, anywhere from 4 to 40, and that one number sizes every week and sets every target date. I made it a number the user declares, because a new user has no history yet and anything Mondai estimated on day one would be a guess. The second number only appears once there is something real behind it. After a run of short weeks, start of week shows the user their own average, about 6.3 hours against the 10 they set, and recommends 6. In that moment it can only suggest less, since they are already behind, and they can still set their own number or skip it. Taking the recommendation moves the journey target from June 12, 2027 to January 10, 2028. More hours is always the user's call, made from the Growth Journey page and counted from the following week.
+Body: During setup the user tells Mondai how many hours they can give each week, anywhere from 4 to 40, and that one number sizes every week and sets every target date. I made it a number the user declares, because a new user has no history yet and anything Mondai estimated on day one would be a guess. The second number only appears once there is something real behind it. That second number is the user's own, because after a run of short weeks start of week reads their weeks back as an average of around 6.3 hours and sets it beside the 10 they declared, so the recommendation of 6 comes from their weeks and not from Mondai's opinion. In that moment it can only suggest less, since they are already behind, and they can still set their own number or skip it. Taking it costs seven months, moving the journey target to January 10, 2028, and the screen shows that before they choose because the plan never changes without the user seeing it. More hours is always the user's call, made from the Growth Journey page and counted from the following week.
 Images, in reading order: the capacity input at setup (10 hours a week); the recalibration read back (averaging around 6.3 hours, recommends 6); the capacity control on the Growth Journey page.
 Sources: Mondai design record
 
@@ -72,6 +87,8 @@ Sources: Mondai design record
 - Recalibration can only lower; raising from the Growth Journey page any time, effective the following week: reasoning/CHADWICK_ANSWERS_2026-08-27.md (CONFIRMED).
 - Capacity limits 4 to 40 hours: reasoning/capacity.md section 10 item 3 (CONFIRMED as decided; the frame does not show it, so check it shipped).
 - Declared because a new user has no history: reasoning/THROUGHLINES.md section 7 and capacity.md (CONFIRMED).
+- Seven months: June 12, 2027 to January 10, 2028 (CONFIRMED arithmetic on frame dates).
+- 18 Action Items finished: Reset resumes at 19 of 56 (ESTIMATE, inferred).
 - More than a year: the journey runs from a March 2026 week 3 to June 12, 2027 (ESTIMATE).
 - Aisha as the user's name: the person in every screen on the page.
 - "The parts of the plan that are only arithmetic" in B: PARAPHRASE of the frame's own rollover copy, the math already accounts for them.
