@@ -23,6 +23,21 @@ Kept out on purpose: the magenta rollover tag (start of week shows it), pace mov
 pace block), buffer flow and start of week by name (the next blocks show them, and both happen without
 falling behind too), the earlier choose what to carry modal (start of week Rollover caption).
 
+## Round 8b (5 Nov): B revised, his pick
+
+His comment: going with B, not leaning on Suzie as the example; B went into too much detail instead of
+setting up what comes after; the headline is slightly long. The six hour worked example is cut. The last
+line now sets up Buffer flow without naming it: a short week still moves the pace behind the target (his
+Buffer flow copy: pulling work forward moves the pace back toward the target after a short week; K4).
+
+Eyebrow: Falling behind
+Headline: Everything in a week is due by Saturday night, and some weeks the user doesn't get to all of it.
+Text: A week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going, so the week after has to be one they can finish. Anything still open rolls over into the next week on its own, and that week takes fewer new Action Items to make room, meaning it still fits the hours the user gave. The pace does slip behind the target, though, because everything after the open Action Item now lands a little later.
+Sources: Soman and Cheema 2004; Mondai design record
+
+Checks: not run. Weekly usage was at 99 percent, so the text was saved first. Humanizer and the reader check
+(three Sonnet runs) are still owed before it is final.
+
 ## Round 8 (5 Nov): three versions, thought through
 
 His 5 Nov feedback on CS2 drafts: rushed and generic, think each block through. Where it sits (read 5 Nov,
