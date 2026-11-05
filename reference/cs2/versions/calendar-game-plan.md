@@ -249,7 +249,7 @@ Mondai looks for gaps between the person's own events, inside the hours they cho
 Mondai only reads the calendar. It never writes Action Items into it, because that calendar holds commitments Mondai doesn't own. Action Items and the person's own events each get their own color.
 
 Beside the reschedule picker:
-People can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing lands on a meeting. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
+People can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing overlaps their personal schedule. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
 
 An Action Item is due by the end of its week, not at its time, so one without a time is fine, and finishing it still counts toward the week's progress. When a week has no room left, the item stays in the list without a time.
 
