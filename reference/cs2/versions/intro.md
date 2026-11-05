@@ -6,6 +6,11 @@ Pathways, Focus Areas, Action Items, rollover, buffer flow), the audience writte
 younger, entering tech for the first time, CS2_COMPREHENSION.md), "AI career tool" in place of his own
 wording, the one number gimmick as the hook, and a body that restated the Background block.
 
+## The hero has no eyebrow
+
+Corrected 5 Nov: the hero is the page's opening frame, not a section. Title, role row (Role, Affiliate,
+Focus), the intro and the right column. No eyebrow. Eyebrows removed from all three versions below.
+
 ## What the intro has to do
 
 The reader is a hiring manager or design lead who has never seen Mondai and decides in seconds whether to
@@ -56,7 +61,6 @@ Angle: the split between what the AI decides (what the user learns) and what I d
 Structure: claim title, his sentence, the split, a worked example; right column as a three line list in
 page order.
 
-Eyebrow: Mondai MVP
 Title: The AI wrote what the user would learn, and I designed how it fits into their week
 Role line: Role: Founding designer / Affiliate: Mondai / Focus: Design, research and strategy.
 Body: Mondai is an AI tech career navigator designed for the next generation of hustlers. Its AI writes each
@@ -77,7 +81,6 @@ system before any of it is named.
 Structure: example first, his sentence second, the week told as cause and effect, my role last; right column
 as one sentence.
 
-Eyebrow: Mondai MVP
 Title: A career plan that still works in a week when the user only has 6 hours
 Role line: Role: Founding designer / Affiliate: Mondai / Focus: Design, research and strategy.
 Body: Say the user can give 6 hours a week. Mondai is an AI tech career navigator designed for the next
@@ -96,7 +99,6 @@ Angle: the human problem. A goal months away does little for motivation, and rea
 Structure: problem title, his sentence, two problems with their reasons, the design answer; right column as
 the three questions the page answers.
 
-Eyebrow: Mondai MVP
 Title: Keeping a user moving toward a career that is still months away
 Role line: Role: Founding designer / Affiliate: Mondai / Focus: Design, research and strategy.
 Body: Mondai is an AI tech career navigator designed for the next generation of hustlers. Its AI writes each
