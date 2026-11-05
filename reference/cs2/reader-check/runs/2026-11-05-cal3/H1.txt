@@ -1,0 +1,53 @@
+V1 Q1 yes | V1.S3, V1.S7, V1.S11
+V1.S1 Q2 no |
+V1.S1 Q3 no
+V1.S1 Q4 no |
+V1.S1 Q5 no | follows from the known switch between List and Schedule
+V1.S2 Q2 no |
+V1.S2 Q3 no
+V1.S2 Q4 no |
+V1.S2 Q5 no | short and clear
+V1.S3 Q2 no |
+V1.S3 Q3 no
+V1.S3 Q4 no |
+V1.S3 Q5 no | reason follows from the earlier promise that the plan runs without a calendar
+V1.S4 Q2 no |
+V1.S4 Q3 no
+V1.S4 Q4 no |
+V1.S4 Q5 no | follows from S1
+V1.S5 Q2 no |
+V1.S5 Q3 no
+V1.S5 Q4 no |
+V1.S5 Q5 no | adds a new point about block length
+V1.S6 Q2 no |
+V1.S6 Q3 no
+V1.S6 Q4 no |
+V1.S6 Q5 no | clear
+V1.S7 Q2 no |
+V1.S7 Q3 no
+V1.S7 Q4 no |
+V1.S7 Q5 no | gives the reason for S6
+V1.S8 Q2 no |
+V1.S8 Q3 no
+V1.S8 Q4 no |
+V1.S8 Q5 no | clear
+V1.S9 Q2 no |
+V1.S9 Q3 no
+V1.S9 Q4 no |
+V1.S9 Q5 no | follows from the schedule view
+V1.S10 Q2 no |
+V1.S10 Q3 no
+V1.S10 Q4 no |
+V1.S10 Q5 no | follows from S9
+V1.S11 Q2 no |
+V1.S11 Q3 no
+V1.S11 Q4 no |
+V1.S11 Q5 no | states the decision and its reason
+V1.S12 Q2 no |
+V1.S12 Q3 no
+V1.S12 Q4 no |
+V1.S12 Q5 yes | "the week is what counts" and "counts the same" are not set up earlier, so the reader cannot tell what is being counted
+V1.S13 Q2 no |
+V1.S13 Q3 no
+V1.S13 Q4 no |
+V1.S13 Q5 no | clear edge case

@@ -251,8 +251,8 @@ Mondai only reads the calendar. It never writes Action Items into it, because th
 Beside the reschedule picker:
 People can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing lands on a meeting. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
 
-The week is what counts, so an Action Item with no time is fine, and finishing it counts the same. When a week has no room left, the item stays in the list without a time.
+An Action Item is due by the end of its week, not at its time, so one without a time is fine. When a week has no room left, the item stays in the list without a time.
 
 Sources: Mondai design record
 
-Reader check round 1 FAIL, two flags 3/3 (runs/2026-11-05-cal1): the 8am top row line (image detail, reads as a hard limit after setup framed hours as preferences) and the later colors plan (nothing depends on it). Both were his frame lines; both cut above. Round 2 FAIL (runs/2026-11-05-cal2): I wanted people free (process voice, 3/3; his frame line) rewritten as People can move their Action Items; A time only helps someone find room (repeats, 2/3) cut. Round 3 owed.
+Reader check round 1 FAIL, two flags 3/3 (runs/2026-11-05-cal1): the 8am top row line (image detail, reads as a hard limit after setup framed hours as preferences) and the later colors plan (nothing depends on it). Both were his frame lines; both cut above. Round 2 FAIL (runs/2026-11-05-cal2): I wanted people free (process voice, 3/3; his frame line) rewritten as People can move their Action Items; A time only helps someone find room (repeats, 2/3) cut. Round 3 FAIL (runs/2026-11-05-cal3), one flag 3/3: the week is what counts never said counts toward what. Rewritten to say an Action Item is due by the end of its week, not at its time. Round 4 not run: weekly usage hit 94%, his stop line is 95%.

@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-05 19:55
+Updated: 2026-11-05 21:00
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -23,6 +23,7 @@ Loop step: 3
 
 Finishing push, 5 Nov (weekly usage 88%, he wants every session stopped and saved at 95%). What is left, his list: transition copy, calendar fix, intro, ending. Tactics audit deferred until the case study is finished, then the case study gets updated from it. Running in parallel:
 - Transition (Falling behind) copy: round 7 humanizer pass in versions/falling-behind.md (rollover introduced by the verb, the naming reveal cut). He approved it 5 Nov; reader check PASS (runs/2026-11-05-fb7). Ready for him to paste into Figma.
+- Calendar copy: Part 4 of versions/calendar-game-plan.md, merged Schedule view block, humanizer run. Reader check rounds 1 to 3 each failed on new lines, all fixed; round 4 owed on the current text (known file known-schedule-merged.md). Game plan updated with his correction: Action Items in the top three hours of the image, 8am grid, scroll linked pan with no pinning. Stopped at 94% weekly usage, his line is 95%.
 - Calendar: done 5 Nov in versions/calendar-game-plan.md (session cs2-calendar). Copy verdict per frame line with fixes; layout pick T2I, Schedule view and Scheduled times merged into one block; build spec and checklist for his other account. Five frame problems with defaults wait on him: hub week March 15 to 23 is nine days (default 15 to 21), counter 2/4 against one completed item, times out of Action Item order, work blocks 8pm to 2:30pm, top row hour 6AM against the 8am example. The hub cards hide time layers (leftovers, not part of the hub image).
 - Intro and ending round 1: done 5 Nov in versions/intro-and-ending.md (session cs2-intro-ending), A B C each, humanizer run. Session picks: intro C, ending A. Canvas and reader check owed after his read. Action Item page round 1 also done 5 Nov in versions/action-item-page.md (session cs2-action-item-page): three versions, humanizer run, pick B; it recommends moving the block from the page end to right after the Action Hub, before Calendar setup. Canvas and reader check owed. It read the frame order as Buffer flow then Falling behind, the reverse of the outline; check with him.
 
