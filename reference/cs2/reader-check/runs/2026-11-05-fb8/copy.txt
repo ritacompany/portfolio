@@ -1,0 +1,12 @@
+=== Falling behind, round 8 version A
+[eyebrow or sub-heading] Falling behind
+[headline] Suzie's three Action Items are all due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+A week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going. So anything still open rolls over into the next week on its own. For instance, if the open one is an Action Item estimated at two hours, Suzie's next week starts with it and takes about four hours of new Action Items, so the week is still the six hours she gave. I made sure the week never comes back heavier, because if the open Action Item just landed on top of a full week, Suzie would start that week already behind.
+=== Falling behind, round 8 version B
+[eyebrow or sub-heading] Falling behind
+[headline] Everything in a week is due by Saturday night. When the night comes and an Action Item is still open, the user has come up short, and the Action Item still needs a place to go.
+A week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going, so the week after has to be one they can finish. Anything still open rolls over into the next week on its own, and that week takes fewer new Action Items to make room, meaning it still fits the hours the user gave. A user with six hours a week who didn't finish a two hour Action Item starts the next week with it and about four hours of new ones.
+=== Falling behind, round 8 version C
+[eyebrow or sub-heading] Falling behind
+[headline] Every Action Item in a week is due by 11:59pm on Saturday. Some weeks one is still open by then, and on Sunday a new week starts either way.
+When Saturday ends, anything still open rolls over into the new week on its own. On Sunday the user opens a week that already holds it, with fewer new Action Items so the total still fits the hours they gave. I kept the week from ever coming back heavier, because a week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going. A new week that starts over their hours would most likely end short as well.

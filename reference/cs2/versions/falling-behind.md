@@ -23,6 +23,66 @@ Kept out on purpose: the magenta rollover tag (start of week shows it), pace mov
 pace block), buffer flow and start of week by name (the next blocks show them, and both happen without
 falling behind too), the earlier choose what to carry modal (start of week Rollover caption).
 
+## Round 8 (5 Nov): three versions, thought through
+
+His 5 Nov feedback on CS2 drafts: rushed and generic, think each block through. Frame read 5 Nov: the block
+(node 4712:12325) is no longer in his frame; Personalized timeline (his own copy now, the Suzie example) runs
+straight into Buffer flow. His yes 5 Nov: write it, to sit between those two.
+
+The reader: a stranger who just learned that each week is sized by capacity and cognitive load (Suzie, six
+hours, three Action Items this week). Buffer flow, next, already assumes a short week ("back toward it after a
+short week", "room to catch up"), so this block has to make a short week real and say where the unfinished
+Action Item goes, without naming Buffer flow or Start of week.
+
+Points every version carries:
+1. Every Action Item in a week is due by the end of it, Saturday night (reasoning/calendar-and-schedule.md
+   line 52). CONFIRMED.
+2. A short week can feel like failing, and that makes people less likely to keep going (Soman and Cheema 2004).
+   PARAPHRASE.
+3. Anything still open rolls over into the next week on its own (reasoning/carry-over.md section 4). CONFIRMED.
+4. That week takes fewer new Action Items so it still fits the hours given; the reason is his own constraint
+   that removing the decision was only safe if the week never got heavier, since a user who opens a bigger
+   week than usual starts it behind (carry-over.md section 3). CONFIRMED. The two hour and four hour split
+   is a worked example on his Suzie numbers, not a record figure. INVENTED (illustrative).
+
+Kept out, per his round 4 to 6 comments: the options not taken (the old carry forward modal), any card or
+column that explains a point twice, the magenta tag, pace moving, repeated short weeks (Recalibration).
+
+### A: Suzie, carried on (pick)
+Structure: his worked example from the block above runs through the whole block.
+Eyebrow: Falling behind
+Headline: Suzie's three Action Items are all due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+Text: A week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going. So anything still open rolls over into the next week on its own. For instance, if the open one is an Action Item estimated at two hours, Suzie's next week starts with it and takes about four hours of new Action Items, so the week is still the six hours she gave. I made sure the week never comes back heavier, because if the open Action Item just landed on top of a full week, Suzie would start that week already behind.
+Image: the existing animation (this week and next week stacks, one item rolls right, next week stays the same size).
+Sources: Soman and Cheema 2004; Mondai design record
+
+### B: the feeling first
+Structure: stakes first, then the rule they demand, then one general example.
+Eyebrow: Falling behind
+Headline: Everything in a week is due by Saturday night. When the night comes and an Action Item is still open, the user has come up short, and the Action Item still needs a place to go.
+Text: A week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going, so the week after has to be one they can finish. Anything still open rolls over into the next week on its own, and that week takes fewer new Action Items to make room, meaning it still fits the hours the user gave. A user with six hours a week who didn't finish a two hour Action Item starts the next week with it and about four hours of new ones.
+Image: same animation.
+Sources: Soman and Cheema 2004; Mondai design record
+
+### C: Saturday to Sunday
+Structure: told in time order across the week boundary, the reason last.
+Eyebrow: Falling behind
+Headline: Every Action Item in a week is due by 11:59pm on Saturday. Some weeks one is still open by then, and on Sunday a new week starts either way.
+Text: When Saturday ends, anything still open rolls over into the new week on its own. On Sunday the user opens a week that already holds it, with fewer new Action Items so the total still fits the hours they gave. I kept the week from ever coming back heavier, because a week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going. A new week that starts over their hours would most likely end short as well.
+Image: same animation.
+Sources: Soman and Cheema 2004; Mondai design record
+
+### Pick
+A. It picks up his own Suzie example from the block directly above, so the reader carries one person from
+how a week is built into what happens when it falls short, and the numbers make fewer new Action Items
+concrete instead of abstract (the round 3 reader failure was a bare term). B and C carry the same points;
+C is the better pick if he would rather not lean on Suzie twice in a row.
+
+### Checks
+- Humanizer run as the skill on all three: dropped actually, took in became takes, the repeated Saturday night
+  in A's headline became that night, the clock runs out in C became by then. No facts added.
+CHECKS_PLACEHOLDER
+
 ## Round 7 (5 Nov): humanizer pass
 
 His ask 5 Nov: a copy pass on this block with the humanizer skill, the visuals are his. Humanizer run as the

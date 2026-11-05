@@ -1,0 +1,25 @@
+VERSION V1: Falling behind, round 8 version A
+  (label) Falling behind
+V1.S1 Suzie's three Action Items are all due by Saturday night.
+V1.S2 Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+V1.S3 A week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going.
+V1.S4 So anything still open rolls over into the next week on its own.
+V1.S5 For instance, if the open one is an Action Item estimated at two hours, Suzie's next week starts with it and takes about four hours of new Action Items, so the week is still the six hours she gave.
+V1.S6 I made sure the week never comes back heavier, because if the open Action Item just landed on top of a full week, Suzie would start that week already behind.
+
+VERSION V2: Falling behind, round 8 version B
+  (label) Falling behind
+V2.S1 Everything in a week is due by Saturday night.
+V2.S2 When the night comes and an Action Item is still open, the user has come up short, and the Action Item still needs a place to go.
+V2.S3 A week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going, so the week after has to be one they can finish.
+V2.S4 Anything still open rolls over into the next week on its own, and that week takes fewer new Action Items to make room, meaning it still fits the hours the user gave.
+V2.S5 A user with six hours a week who didn't finish a two hour Action Item starts the next week with it and about four hours of new ones.
+
+VERSION V3: Falling behind, round 8 version C
+  (label) Falling behind
+V3.S1 Every Action Item in a week is due by 11:59pm on Saturday.
+V3.S2 Some weeks one is still open by then, and on Sunday a new week starts either way.
+V3.S3 When Saturday ends, anything still open rolls over into the new week on its own.
+V3.S4 On Sunday the user opens a week that already holds it, with fewer new Action Items so the total still fits the hours they gave.
+V3.S5 I kept the week from ever coming back heavier, because a week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going.
+V3.S6 A new week that starts over their hours would most likely end short as well.
