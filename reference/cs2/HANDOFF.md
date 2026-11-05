@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-05 21:30
+Updated: 2026-11-05 22:00
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -24,6 +24,7 @@ Loop step: 3
 Finishing push, 5 Nov, stopped at 94% weekly usage (his stop line 95%). Left on his list: transition, calendar, intro, ending; tactics audit deferred until the case study is done.
 - Transition (Falling behind): round 7, humanizer, reader check PASS (runs/2026-11-05-fb7). He approved it. Ready to paste into Figma.
 - Calendar copy: Part 4 of versions/calendar-game-plan.md, Schedule view and Scheduled times merged into one block. His comments 5 Nov: a reader check flag on an unclear line means reword it, never cut it (the top row line was restored and reworded: the calendar starts at the first of the setup hours, 8am for instance, so the day opens on the time Mondai can plan in); keep his own wording where it is broader (nothing overlaps their personal schedule, not lands on a meeting). Cut and he has not objected: the post MVP colors line. Rewritten from his frame: I wanted people free (now People can move their Action Items), the tool rather than deadline sentence (now due by the end of its week, not at its time). Reader check rounds 1 to 3 failed on new lines each time, all addressed; the current text has not been checked (known file known-schedule-merged.md, runs/2026-11-05-cal1 to cal3).
+- Calendar paste text, final 5 Nov: Calendar setup body layer 4700:16795 replaced with his own frame text, only the fragment joined (meaning when it can and can't schedule Action Items) and Action Items capitalized; headline layer 4617:10609 unchanged. The picker paragraph now uses his wording (nothing overlaps their personal schedule) and keeps his weekly progress point. His comments 5 Nov: send whole blocks to paste, never fragments; keep his voice and terms (docs/VOICE-draft.md), change only what is broken.
 - Calendar build plan for his other account: Parts 2 and 3 of the same file. His correction 5 Nov: Action Items sit in the top three hours of the image (8am grid, one per day in list order); his scroll idea became a scroll linked pan with no pinning. Five frame problems with defaults wait on his yes (hub week March 15 to 23, 2/4 counter, times out of order, 8pm work blocks, 6AM grid start).
 - Intro and ending: round 1 in versions/intro-and-ending.md (session cs2-intro-ending), A B C each, humanizer run; he has not read them and was confused they existed. Next: show him the versions plainly before anything else.
 - Action Item page: versions/action-item-page.md came from a session the intro session started on its own, not asked for by him; he thinks what he has is fine. Leave it unless he raises it.
