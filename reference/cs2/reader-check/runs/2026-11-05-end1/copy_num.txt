@@ -1,0 +1,35 @@
+VERSION V1: Ending A, the long run
+  (label) The long run
+V1.S1 A plan that runs for more than a year will be wrong about the user's life at some point, and the framework has to be ready when it is.
+V1.S2 I designed the framework so that when the plan and the user's week disagree, the plan is the one that changes.
+V1.S3 Take Aisha, who set her capacity to 10 hours a week.
+V1.S4 When one of her weeks comes up short, the unfinished Action Items roll into the next week and that week takes fewer new ones, so it still fits the hours she gave.
+V1.S5 When short weeks keep happening, start of week shows her she has been averaging around 6.3 hours and recommends 6.
+V1.S6 Taking it moves her journey target from June 12, 2027 to January 10, 2028, and she sees that new date before she decides, because the plan never changes without her seeing it.
+V1.S7 She can also set her own number or skip the recommendation, and it comes back the next week.
+V1.S8 If she then stays away for 24 days, the week rebuilds from today and she picks up at Action Item 19 of 56 with all of her progress kept.
+
+VERSION V2: Ending B, who decides
+  (label) Who decides
+V2.S1 Mondai keeps track of the hours, the dates and whatever carries over, while every choice about how the user spends their time stays with them.
+V2.S2 I gave Mondai the parts of the plan that are only arithmetic and kept every choice about the user's time with the user.
+  (label) What Mondai does on its own
+V2.S3 It sizes each week to the hours the user gave, moves anything unfinished into the next week and updates the pace once a week.
+V2.S4 Each start of week shows what moved and why, so none of it happens out of sight.
+  (label) What only the user decides
+V2.S5 Mondai never moves a scheduled time or writes into the user's calendar, and it never changes their capacity for them.
+V2.S6 When their weeks keep coming up short, it shows them they have been averaging about 6.3 of the 10 hours they set and recommends 6, along with what that costs: the journey target moves from June 12, 2027 to January 10, 2028.
+V2.S7 They can take it, set their own number or skip it, and the recommendation comes back the next week.
+V2.S8 That moment can only lower capacity, because the user is already behind when it appears.
+V2.S9 Raising it is open from the Growth Journey page whenever their life frees up more time, and it takes effect the following week.
+
+VERSION V3: Ending C, two numbers
+  (label) Two numbers
+V3.S1 The plan sizes every week from the hours the user says they have, and it only changes that number once their own weeks give it a reason to.
+V3.S2 During setup the user tells Mondai how many hours they can give each week, anywhere from 4 to 40, and that one number sizes every week and sets every target date.
+V3.S3 I made it a number the user declares, because a new user has no history yet and anything Mondai estimated on day one would be a guess.
+V3.S4 The second number only appears once there is something real behind it.
+V3.S5 After a run of short weeks, start of week shows the user their own average, about 6.3 hours against the 10 they set, and recommends 6.
+V3.S6 In that moment it can only suggest less, since they are already behind, and they can still set their own number or skip it.
+V3.S7 Taking the recommendation moves the journey target from June 12, 2027 to January 10, 2028.
+V3.S8 More hours is always the user's call, made from the Growth Journey page and counted from the following week.
