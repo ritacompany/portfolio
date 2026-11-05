@@ -1,0 +1,19 @@
+VERSION V1: Schedule view, merged block round 1
+  (label) Schedule view
+V1.S1 With a calendar synced, the Action Hub can show the same week as a schedule, with Mondai finding a time for the Action Items that fit around the person's day.
+V1.S2 The list stays the home view.
+V1.S3 Syncing a calendar is optional, so the plan has to work without one, and anyone can switch between the list and the schedule whenever they like.
+V1.S4 Mondai looks for gaps between the person's own events, inside the hours they chose in setup.
+V1.S5 The top row of the calendar is where those hours start, 8am here.
+V1.S6 Each block is as long as its Action Item takes, and this is the only place someone can see how big a piece of work is before they start it.
+V1.S7 Mondai only reads the calendar.
+V1.S8 It never writes Action Items into it, because that calendar holds commitments Mondai doesn't own.
+V1.S9 Action Items and the person's own events each get their own color.
+V1.S10 Later I plan to carry over the colors from their calendar settings.
+V1.S11 I wanted people free to move their Action Items.
+V1.S12 Rescheduling works from the list and from the schedule, and Mondai offers only open time in that week, so nothing lands on a meeting.
+V1.S13 Mondai never moves a time on its own.
+V1.S14 Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
+V1.S15 A time only helps someone find room.
+V1.S16 The week is what counts, so an Action Item with no time is fine, and finishing it counts the same.
+V1.S17 When a week has no room left, the item stays in the list without a time.
