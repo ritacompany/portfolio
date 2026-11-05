@@ -1,3 +1,49 @@
+# CS2 ending, round 3 (5 Nov)
+
+His comment on round 2: these are stories, not an ending. Look at how Haven ends: short and simple. Round 2
+(below, kept for the record) wrote another content block. Round 3 starts over from Haven's ending.
+
+Haven's ending, from ~/Code/portfolio-haven/site/haven/index.html: an eyebrow (Where things stand), one
+line on what the MVP was built around, the two needs in large type, then what was first and what is next.
+No mechanics, no examples, no reasoning.
+
+Concept: the ending tells the reader in two or three lines what the whole case study was for and where it
+stands now, and nothing else. Every version is under 45 words, set in large type, no image (Haven's ending
+has none; that overrides the no text only block rule for this one block, his call). None reuses Haven's
+stepped first phase, next phase typography, so the form does not repeat across case studies.
+
+Checks: humanizer run as the skill on all three, dash scan clean. Reader check NOT run on round 3: weekly
+usage is at 98 percent and the cost guard holds the turn to three runs, already used on round 2.
+
+Pick: A. It does what Haven's ending does, the question the work answered and what comes next, so it reads
+as the end of a case study rather than one more section. The next step is his own words in the Action
+item block (room to grow the page once the AI is ready). B is a clean summary but a summary is what round 1
+was faulted for. C has the most feeling but makes a promise the reader has to check against the page.
+
+## A: the question and what is next
+
+Eyebrow: Where it landed
+Line: Mondai's MVP was built around one question.
+Large: Does the plan fit the week the user actually has?
+Line: This framework was the first answer. What the AI writes inside each Action Item comes next.
+Sources: Background, Action item frame copy.
+
+## B: the one number
+
+Eyebrow: What holds it together
+Large: One number from the user, the hours they can give each week.
+Line: It sizes every week, sets every target date and decides when the plan suggests a change.
+Sources: Personalized timeline, Pathway target, Recalibration frame copy.
+
+## C: the weeks that go wrong
+
+Eyebrow: The weeks that don't go to plan
+Large: A career change takes months, and plenty of those weeks won't go to plan.
+Line: I built the framework so those weeks cost the user a date and never their progress, and so nothing in the plan changes without them seeing it.
+Sources: Falling behind, Rollover, Reset frame copy.
+
+---
+
 # CS2 ending, round 2 (5 Nov)
 
 Checks: humanizer run as the skill on all three. Reader check run 2026-11-05-end1 (three Sonnet runs, all
