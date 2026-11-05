@@ -102,6 +102,7 @@ done. When a week comes up short, the unfinished item rolls over and the next we
 it still fits those hours. When a week finishes early, buffer flow offers next week's work. After several
 short weeks, start of week looks at their progress and suggests fewer hours. Change the number and each of
 these moves with it. That is why I kept it to one input.
+Sources: Mondai design record
 Visual: One line from a big number down to the Action Hub, Pathway target, rollover and recalibration tiles.
 
 ### Ending B: what the system will not guess
@@ -114,6 +115,7 @@ someone worked on a task, so a passed calendar slot does not count as done and a
 the number. Suggestions to lower it come from their progress over several short weeks, never from hours
 spent, and only while they are behind. The same number sizes the week and sets each Pathway date, so one
 honest input keeps every date honest. They can change it whenever their life does.
+Sources: Mondai design record; reasoning/THROUGHLINES.md section 7
 Visual: A settings row showing the hours with an edit control, plain, one grey frame.
 
 ### Ending C: why one number
@@ -126,6 +128,7 @@ mean three heavy items one week and four light ones the next. Asking for the hou
 properly. The person says it once during setup and can change it in settings, and it now sets the week, the
 Pathway dates and when the plan suggests less. I refused to add a step for each of those jobs. One number
 does them all.
+Sources: Mondai design record; reasoning/capacity.md and carry-over.md
 Visual: Two small week columns, one with three heavy items and one with four light, same height. Grey frame.
 
 Pick: A. It is the only version that shows the whole system closing on its single input, which is the claim
