@@ -232,10 +232,11 @@ Fixes from Part 1 applied, Schedule view and Scheduled times merged into one blo
 skill. Reader check owed. Lines marked keep are his frame text unchanged.
 
 ### Calendar setup
-- Intro line: keep.
-- Replaces the preferred time line: The first question asks which hours Mondai may use. That is the person telling it when it can and can't schedule Action Items.
-- Eight hour range line: keep.
-- Sharpest hours line: keep, using whichever word his focus screen shows (sharpest or focus) in both blocks.
+Headline layer (4617:10609): unchanged.
+Body layer (4700:16795), full replacement, his frame text with the fragment joined and Action Items capitalized:
+Setting a preferred time is essentially the user telling the product their own availability, meaning when it can and can't schedule Action Items.
+The range needs at least eight hours, because Mondai can only use the time not already taken by the person's own events. A short range on a busy day leaves none.
+Sharpest hours are more of a suggestion. Mondai will prioritize this time range for scheduling Action Items when a time within that range is available.
 
 ### Schedule view (merged block)
 Eyebrow: Schedule view
