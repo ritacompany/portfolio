@@ -23,6 +23,24 @@ Kept out on purpose: the magenta rollover tag (start of week shows it), pace mov
 pace block), buffer flow and start of week by name (the next blocks show them, and both happen without
 falling behind too), the earlier choose what to carry modal (start of week Rollover caption).
 
+## Round 7 (5 Nov): humanizer pass
+
+His ask 5 Nov: a copy pass on this block with the humanizer skill, the visuals are his. Humanizer run as the
+skill on the round 6 text. What it caught: This is rollover, and the week it lands in is a naming reveal
+(the same move as the That's rollover kicker cut in round 5); they two sentences from its noun. Headline
+unchanged: it is plain and states the problem without the answer. Rollover is now introduced by the verb
+(rolls over into the next week), which explains itself; the round 3 reader check failure was the bare noun
+with no meaning attached. Matches the animation: three items in each week, the open one tagged ROLLOVER moves
+right and the next week stays three.
+
+Eyebrow: Falling behind
+Headline: Every Action Item in a week is due by Saturday night. Some weeks, one of them is still open when that night comes, and it has to go somewhere.
+Text: A week that comes up short can feel like failing, and that feeling makes people less likely to keep going. So anything still open rolls over into the next week on its own. That week takes fewer new Action Items, so it still fits the hours the person gave.
+Sources: Soman and Cheema 2004; Mondai design record
+
+Checks: humanizer run as the skill. Reader check owed on round 7 (round 6 passed, runs/2026-11-03-fb4).
+Not compared with his Figma frame: if he pasted round 6 with his own edits, his edits win.
+
 ## Round 6 (3 Nov): back to the block's job
 
 His comment on round 5: the On its own and Still fits cards over-explain, read like searching for something to
