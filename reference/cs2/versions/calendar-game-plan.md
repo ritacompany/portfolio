@@ -225,3 +225,32 @@ Right rail (only if the image keeps it)
 
 If the rail is dropped for room, say so in the build note so the hub's one target and one pace story is not
 contradicted by a different number elsewhere on the page.
+
+## Part 4: the copy, round 1 (5 Nov)
+
+Fixes from Part 1 applied, Schedule view and Scheduled times merged into one block (T2I). Humanizer run as the
+skill. Reader check owed. Lines marked keep are his frame text unchanged.
+
+### Calendar setup
+- Intro line: keep.
+- Replaces the preferred time line: The first question asks which hours Mondai may use. That is the person telling it when it can and can't schedule Action Items.
+- Eight hour range line: keep.
+- Sharpest hours line: keep, using whichever word his focus screen shows (sharpest or focus) in both blocks.
+
+### Schedule view (merged block)
+Eyebrow: Schedule view
+Headline: With a calendar synced, the Action Hub can show the same week as a schedule, with Mondai finding a time for the Action Items that fit around the person's day.
+
+Beside the calendar:
+The list stays the home view. Syncing a calendar is optional, so the plan has to work without one, and anyone can switch between the list and the schedule whenever they like.
+
+Mondai looks for gaps between the person's own events, inside the hours they chose in setup. The top row of the calendar is where those hours start, 8am here. Each block is as long as its Action Item takes, and this is the only place someone can see how big a piece of work is before they start it.
+
+Mondai only reads the calendar. It never writes Action Items into it, because that calendar holds commitments Mondai doesn't own. Action Items and the person's own events each get their own color. Later I plan to carry over the colors from their calendar settings.
+
+Beside the reschedule picker:
+I wanted people free to move their Action Items. Rescheduling works from the list and from the schedule, and Mondai offers only open time in that week, so nothing lands on a meeting. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
+
+A time only helps someone find room. The week is what counts, so an Action Item with no time is fine, and finishing it counts the same. When a week has no room left, the item stays in the list without a time.
+
+Sources: Mondai design record
