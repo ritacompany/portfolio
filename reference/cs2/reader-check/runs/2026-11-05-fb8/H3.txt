@@ -1,0 +1,71 @@
+V1 Q1 yes | V1.S3, V1.S4, V1.S6
+V1.S1 Q2 no | none
+V1.S1 Q3 no
+V1.S1 Q4 no | K7
+V1.S1 Q5 no | follows from the label
+V1.S2 Q2 no | none
+V1.S2 Q3 no
+V1.S2 Q4 no | none
+V1.S2 Q5 no | sets up the problem
+V1.S3 Q2 no | none
+V1.S3 Q3 no
+V1.S3 Q4 no | none
+V1.S3 Q5 no | gives the reason
+V1.S4 Q2 no | none
+V1.S4 Q3 no
+V1.S4 Q4 no | none
+V1.S4 Q5 no | follows from S3
+V1.S5 Q2 no | none
+V1.S5 Q3 no
+V1.S5 Q4 no | none
+V1.S5 Q5 no | example follows from S4
+V1.S6 Q2 no | none
+V1.S6 Q3 no
+V1.S6 Q4 no | none
+V1.S6 Q5 no | adds the reason for the capped week
+V2 Q1 yes | V2.S3, V2.S4
+V2.S1 Q2 no | none
+V2.S1 Q3 no
+V2.S1 Q4 no | K7
+V2.S1 Q5 no | follows from the label
+V2.S2 Q2 no | none
+V2.S2 Q3 no
+V2.S2 Q4 no | none
+V2.S2 Q5 no | sets up the problem
+V2.S3 Q2 no | none
+V2.S3 Q3 no
+V2.S3 Q4 no | none
+V2.S3 Q5 no | gives the reason
+V2.S4 Q2 no | none
+V2.S4 Q3 no
+V2.S4 Q4 no | none
+V2.S4 Q5 no | follows from S3
+V2.S5 Q2 no | none
+V2.S5 Q3 no
+V2.S5 Q4 no | none
+V2.S5 Q5 no | example follows from S4
+V3 Q1 yes | V3.S4, V3.S5
+V3.S1 Q2 no | none
+V3.S1 Q3 no
+V3.S1 Q4 no | K7
+V3.S1 Q5 no | follows from the label
+V3.S2 Q2 no | none
+V3.S2 Q3 no
+V3.S2 Q4 no | none
+V3.S2 Q5 no | sets up the problem
+V3.S3 Q2 no | none
+V3.S3 Q3 no
+V3.S3 Q4 no | none
+V3.S3 Q5 no | follows from S2
+V3.S4 Q2 no | none
+V3.S4 Q3 no
+V3.S4 Q4 no | none
+V3.S4 Q5 no | follows from S3
+V3.S5 Q2 no | none
+V3.S5 Q3 no
+V3.S5 Q4 no | none
+V3.S5 Q5 no | gives the reason
+V3.S6 Q2 no | none
+V3.S6 Q3 no
+V3.S6 Q4 no | none
+V3.S6 Q5 yes | "starts over their hours" is unclear and the claim is a speculative restatement of the S5 reason

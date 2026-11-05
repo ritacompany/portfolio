@@ -68,7 +68,7 @@ Sources: Soman and Cheema 2004; Mondai design record
 Structure: told in time order across the week boundary, the reason last.
 Eyebrow: Falling behind
 Headline: Every Action Item in a week is due by 11:59pm on Saturday. Some weeks one is still open by then, and on Sunday a new week starts either way.
-Text: When Saturday ends, anything still open rolls over into the new week on its own. On Sunday the user opens a week that already holds it, with fewer new Action Items so the total still fits the hours they gave. I kept the week from ever coming back heavier, because a week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going. A new week that starts over their hours would most likely end short as well.
+Text: When Saturday ends, anything still open rolls over into the new week on its own. On Sunday the user opens a week that already holds it, with fewer new Action Items so the total still fits the hours they gave. I kept the week from ever coming back heavier, because a week that comes up short can easily feel like failing, and that feeling makes the user less likely to keep going. If the open Action Item were simply added on top of a full week, the user would start Sunday with more work than their hours allow, and a second short week would most likely follow.
 Image: same animation.
 Sources: Soman and Cheema 2004; Mondai design record
 
@@ -81,7 +81,13 @@ C is the better pick if he would rather not lean on Suzie twice in a row.
 ### Checks
 - Humanizer run as the skill on all three: dropped actually, took in became takes, the repeated Saturday night
   in A's headline became that night, the clock runs out in C became by then. No facts added.
-CHECKS_PLACEHOLDER
+- Reader check, three Sonnet runs, all versions in one COPY file (runs/2026-11-05-fb8): A PASS, B PASS,
+  C FAIL. C's last line (A new week that starts over their hours would most likely end short as well) was
+  flagged 3/3: starts over their hours is unclear and it repeats the reason before it. Reworded, not cut, to
+  name the cause and the effect plainly (the line above in C's text). The reworded line has not been
+  re-checked: a fourth run needs his ask. One run flagged A's last line as restating the example; 1/3 does
+  not stand.
+- Known file updated to his 5 Nov frame copy (K7 due by end of week, K8 the Suzie example).
 
 ## Round 7 (5 Nov): humanizer pass
 
