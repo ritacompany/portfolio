@@ -25,9 +25,10 @@ falling behind too), the earlier choose what to carry modal (start of week Rollo
 
 ## Round 8 (5 Nov): three versions, thought through
 
-His 5 Nov feedback on CS2 drafts: rushed and generic, think each block through. Frame read 5 Nov: the block
-(node 4712:12325) is no longer in his frame; Personalized timeline (his own copy now, the Suzie example) runs
-straight into Buffer flow. His yes 5 Nov: write it, to sit between those two.
+His 5 Nov feedback on CS2 drafts: rushed and generic, think each block through. Where it sits (read 5 Nov,
+found by its text): block 4817:14749 (layer Start of week | State rules | T3I layout 16) at y 14922, between
+Personalized timeline (y 14075, his Suzie copy) and Buffer flow (y 16074). Round 8 replaces the round 7 text
+in place; he called that text not good writing. Headline node 4817:14752, body node 4817:15121.
 
 The reader: a stranger who just learned that each week is sized by capacity and cognitive load (Suzie, six
 hours, three Action Items this week). Buffer flow, next, already assumes a short week ("back toward it after a
