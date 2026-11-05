@@ -92,3 +92,31 @@ page's "different level" point. C leans on the popover, the one fact in the outl
 file, so it rests on the outline alone and he should confirm it.
 
 Open for him: confirm the popover facts (outline block 6 is the only source).
+
+---
+
+## Round 2 (5 Nov), his note: keep it low key, the point is how simple the MVP is
+
+His direction: frame it and give it little weight. The point of the block is that the MVP page is plain text and
+a space to evolve into something else later. He agrees with the placement (after the Action Hub) and has moved
+his layout there. One version, since he has narrowed. Dropped from round 1: the block types, the right panel,
+frames for heavy blocks, the popover and mark complete (the Action Hub block already covers the last).
+Humanizer rules applied to the final text (dash scan clean). Not reader checked, no canvas. Source for the
+simplicity point: reasoning/action-item-page.md sections 1 and 2 (his 2 May and 13 May 2026: curriculum output
+only, text only, no embedded media, structure kept loose in case the AI cannot use it yet).
+
+Eyebrow: Action Item
+Headline: Behind every Action Item sits a piece of work a person has to understand, and at launch the product could offer only plain text for it.
+Body: For the MVP I kept this page as simple as I could. The AI writes the Action Item as text and the page shows it, with no images or video. It is a space I can grow into something richer later, so I left it open on purpose.
+Sources: Mondai design record
+Visual note: The Action Item page in your layout at small size, so it reads as a quiet block. A more finished version would be the same page filled with a real Action Item in plain text only, since the plainness is the point.
+Covers: text only at launch, built simple on purpose, room to evolve.
+
+### Second place for the idea
+
+Recommendation: the ending block, one sentence. It is the place where the page looks back at what shipped, so
+"simple on purpose, built to grow" lands there as a closing note without a new block. Wording to drop into the
+ending (not edited there, that file is the sibling's): The MVP is the simplest version of each of these
+screens that still works, and the Action Item page shows it most, since it is only text so far. I kept it that
+way so it can grow later. The Action Hub is the alternative: one clause where it names the page it opens. I
+would not use it there, since the hub block is already carrying the most reasoning on the page.
