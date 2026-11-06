@@ -6,6 +6,6 @@ Current chess portrait task: review the original resin reference against the par
 
 Other portfolio work remains queued:
 
-1. Set up Vercel as a separate deployment task.
+1. Set up Vercel as a separate deployment task. First, before 26 Nov 2026: move chadwickfenner.com off Wix (checklist in `learn/going-live/lessons/0002-cost-and-deadline.html`).
 2. Choose the next portfolio implementation scope from current repository evidence and Figma.
    Do not treat the 5 to 6 Sep band, hero or About drafts as active work.

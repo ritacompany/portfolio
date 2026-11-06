@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Going live glossary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<main>
+  <nav class="crumb"><a href="../index.html">Going live</a><span>Reference</span></nav>
+  <h1>Glossary</h1>
+  <p class="note">Every lesson uses these words with these meanings. Grouped by the piece they belong to.</p>
+
+  <h2>The address</h2>
+  <dl class="gloss">
+    <div><dt>Domain</dt><dd>The name people type, such as chadwickfenner.com. Rented a year at a time, never owned outright.</dd></div>
+    <div><dt>Registrar</dt><dd>The company you rent the domain from. Yours is Wix today and Porkbun after the move.</dd></div>
+    <div><dt>Transfer</dt><dd>Moving a domain from one registrar to another. The new one charges a year's rent and adds that year to the expiry date.</dd></div>
+    <div><dt>Transfer code</dt><dd>A one time password the old registrar emails you, proving you own the domain. Also called an auth or EPP code.</dd></div>
+    <div><dt>Transfer lock</dt><dd>A setting that blocks moves. Unlock it in Wix before the move. Separately, changing the owner's name or email adds a 60 day lock.</dd></div>
+    <div><dt>Auto renew</dt><dd>The registrar charges your card each year without asking. Turn it off at Wix when the move starts.</dd></div>
+    <div><dt>Grace period</dt><dd>About 30 days after expiry when you can still renew at the normal price.</dd></div>
+    <div><dt>Redemption</dt><dd>About 30 days after the grace period when recovery costs an extra fee. After it, the name is released to anyone.</dd></div>
+    <div><dt>Privacy</dt><dd>Hides your name and address from the public registry record. Free at Porkbun.</dd></div>
+  </dl>
+
+  <h2>The connection</h2>
+  <dl class="gloss">
+    <div><dt>DNS</dt><dd>The lookup that tells a browser which computer answers for your domain.</dd></div>
+    <div><dt>DNS record</dt><dd>One line in that lookup. Pointing your domain at Vercel takes two of them.</dd></div>
+    <div><dt>Nameservers</dt><dd>The company that answers the DNS lookup for your domain. Usually the registrar.</dd></div>
+    <div><dt>DNSSEC</dt><dd>A tamper seal on DNS answers. It has to be switched off before a move or the address can stop resolving for a while. It is on for your domain today.</dd></div>
+  </dl>
+
+  <h2>The building and what is inside</h2>
+  <dl class="gloss">
+    <div><dt>Hosting</dt><dd>The always on computer that hands your files to visitors. Yours will be Vercel.</dd></div>
+    <div><dt>Static site</dt><dd>A site made only of files, with no database or server code. Yours is one. The simplest and cheapest kind to host.</dd></div>
+    <div><dt>Repo</dt><dd>The GitHub folder holding the code and its full history: ritacompany/portfolio.</dd></div>
+    <div><dt>Branch</dt><dd>A separate copy of the code where a change is made without touching the live version.</dd></div>
+    <div><dt>Pull request</dt><dd>A request to merge a branch into the live version. Where you say yes or no.</dd></div>
+    <div><dt>Build</dt><dd>The step that turns the repo into the exact files that get served. Yours copies the site folder.</dd></div>
+    <div><dt>Deploy</dt><dd>Putting a build on the host. Vercel does it by itself on every save.</dd></div>
+    <div><dt>Preview link</dt><dd>A private web address Vercel makes for each branch, so you can see a change before it is live.</dd></div>
+    <div><dt>Production</dt><dd>The live version, the one at chadwickfenner.com.</dd></div>
+    <div><dt>Rollback</dt><dd>Putting the previous live version back in one click.</dd></div>
+    <div><dt>Noindex</dt><dd>A rule asking search engines not to list the site. On until launch.</dd></div>
+  </dl>
+
+  <nav class="next"><a href="../index.html">Course home</a><a href="launch-sheet.html">Launch sheet</a></nav>
+</main>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Checking work you can't read</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<main>
+  <nav class="crumb"><a href="../index.html">Going live</a><span>Lesson 3 of 3</span><span>6 minutes</span></nav>
+
+  <h1>How you check work you can't read</h1>
+
+  <p class="win"><b>Your win</b>You know what you review, where you review it and which mistakes can be undone. You review the site, the same way you would review a build from an engineer. You never have to read code.</p>
+
+  <h2>Three safety nets</h2>
+  <ol class="path">
+    <li><div><strong>A preview link for every change.</strong> I never change the live site directly. Each change goes on its own branch, and Vercel builds that branch at its own web address before it touches chadwickfenner.com. You open the link on your phone and laptop and say yes or no. Nothing reaches the real address until you approve it. <span class="label confirmed">Confirmed</span><span class="meta">This is your audit. Same skill as design QA on a staging build.</span></div></li>
+    <li><div><strong>An undo button.</strong> GitHub keeps every saved version of the site forever. On the free plan, Vercel can also put the previous live version back in one click if something slips through. <span class="label confirmed">Confirmed</span><span class="meta">Mistakes in code, layout or copy are all reversible.</span></div></li>
+    <li><div><strong>Hidden until launch.</strong> The site already tells search engines to stay away: a noindex rule on every page and a robots file that blocks everything. Launch removes both, in five small file changes that are already written down in <code>docs/SITE_SETUP.md</code>.<span class="meta">So it can sit on your real domain early, unfinished, with nobody finding it.</span></div></li>
+  </ol>
+  <p>On top of that, checks run before you see anything: <code>npm run check</code> fails if any link or image is broken, and browser checks load each page at phone and desktop widths and screenshot them.</p>
+
+  <h2>What can't be undone</h2>
+  <p>Two things: money once it is spent, and letting the domain lapse. Both are in your hands, not mine, and lesson 2's checklist covers both. Everything else in this process can be put back.</p>
+
+  <h2>The skills and tools that help</h2>
+  <p class="note">You already have all of these except one connector. Most of them check my work so that less of the checking falls to you.</p>
+  <div class="wide">
+    <table>
+      <thead><tr><th>Tool</th><th>What it does for this</th></tr></thead>
+      <tbody>
+        <tr><td><code>verification-before-completion</code></td><td>I have to show proof, such as a screenshot or check output, before I say a step is done</td></tr>
+        <tr><td><code>unlazy</code></td><td>For big multi part work like the launch QA, I write the pass conditions first and test against them</td></tr>
+        <tr><td><code>design-qa-checklist</code>, <code>web-design-guidelines</code>, <code>accessibility-audit</code></td><td>The site wide QA pass before launch: states, breakpoints, contrast, keyboard use</td></tr>
+        <tr><td><code>code-review</code></td><td>A second, independent read of a change, so you are not relying on my one pass</td></tr>
+        <tr><td><code>run</code></td><td>Starts the site and screenshots it, so you see results rather than my description of them</td></tr>
+        <tr><td>Vercel connector <span class="label">Not connected</span></td><td>In the claude.ai connector directory. Lets me read your deployments and build errors myself, so you never copy error messages to me. Add it after the Vercel account exists</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Not needed: the Framer skills (already retired) and Vercel's React skills, because the site uses no React.</p>
+
+  <h2>The path from here</h2>
+  <ol class="path">
+    <li><div><strong>Move the domain to Porkbun.</strong><span class="meta">You. This week, by 14 Nov. About $12.</span></div></li>
+    <li><div><strong>Make a Vercel account with your GitHub login and import the portfolio repo.</strong> The holding page goes up at a free vercel.app address.<span class="meta">You click, I guide. About 10 minutes. $0.</span></div></li>
+    <li><div><strong>Point chadwickfenner.com at Vercel.</strong> Two DNS records at Porkbun. The holding page shows at your real address, still hidden from search.<span class="meta">Us together, once the transfer is done. About 15 minutes.</span></div></li>
+    <li><div><strong>Finish the build:</strong> homepage, collection page and case studies. Every change reviewed on its preview link.<span class="meta">The work already on the launch tracker.</span></div></li>
+    <li><div><strong>Site wide QA.</strong><span class="meta">Me with the skills above, you audit the result.</span></div></li>
+    <li><div><strong>Launch.</strong> The five file changes go out, search engines are let in.<span class="meta">Five minutes of work, reversible like everything else.</span></div></li>
+  </ol>
+  <p>Steps 2 and 3 come early on purpose. They prove the whole route from GitHub to your domain works while nothing is at stake, so launch day is a small change instead of a first attempt.</p>
+
+  <section class="quiz" aria-label="Check yourself">
+    <h2>Check yourself</h2>
+
+    <div class="q" data-right="The preview link is the real site with the change in it. Reviewing it is design QA, which you already know how to do." data-wrong="You never need to read code, and nothing reaches chadwickfenner.com before you approve it. You review the preview link.">
+      <p class="ask">1. Where do you review a change before it goes live?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false">In the code diff on GitHub, line by line</button>
+        <button type="button" aria-pressed="false">On chadwickfenner.com, straight after I push the new change</button>
+        <button type="button" aria-pressed="false" data-right="1">On its preview link, on your phone and laptop</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+
+    <div class="q" data-right="Once a domain is released, anyone can register it. Layout bugs and wrong settings are all one click or one change away from fixed." data-wrong="Layout bugs and settings mistakes can both be put back. A domain released after its redemption period cannot.">
+      <p class="ask">2. Which of these can't be undone?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false">A layout change that breaks the phone homepage</button>
+        <button type="button" aria-pressed="false" data-right="1">Letting the domain lapse past its redemption period</button>
+        <button type="button" aria-pressed="false">Connecting the domain to the wrong Vercel project</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+
+    <div class="q" data-right="The noindex rule and the robots file keep search engines out, which is why the site can sit on your domain before launch." data-wrong="The repo is public and the plan puts the site on your domain early. The noindex rule is what keeps search engines out.">
+      <p class="ask">3. What keeps search engines away from the unfinished site?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false">Keeping the GitHub repository set to private mode</button>
+        <button type="button" aria-pressed="false">Leaving the site off the domain until launch</button>
+        <button type="button" aria-pressed="false" data-right="1">A noindex rule, which is removed at launch</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+  </section>
+
+  <div class="source">
+    <span class="k">Read next, 5 minutes</span>
+    <p><a href="https://vercel.com/docs/deployments/environments">Environments</a> in Vercel's docs. Read the Preview and Production sections only; they explain the preview link and how a change becomes live.</p>
+  </div>
+
+  <p class="ask-me">Ask me anything in the chat, including "show me what a preview link looks like." The whole path is also on the <a href="../reference/launch-sheet.html">launch sheet</a>.</p>
+
+  <nav class="next"><a href="0002-cost-and-deadline.html">Lesson 2</a><a href="../index.html">Course home</a></nav>
+</main>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
