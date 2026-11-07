@@ -97,6 +97,8 @@ gets decided without him. Choices inside work whose direction he has already set
 
 ## Where Mondai lives
 
-The Mondai product and design repo is a separate folder, `../Mondai`, with its own rules and
-its own product knowledge archive. Product mechanics are looked up there, never restated from
+The Mondai product and design repo is a separate folder, `../Mondai` on his Mac, with its own rules
+and its own product knowledge archive. In a cloud session it is GitHub repo `ritacompany/mondai`: if it
+is not already at `/home/user/mondai`, attach it with add_repo (read access; allowed in
+`.claude/settings.json`), clone it there and read `mondai/reference/PRODUCT_KNOWLEDGE_ARCHIVE.md`. Product mechanics are looked up there, never restated from
 memory here, and never copied into this repo.
