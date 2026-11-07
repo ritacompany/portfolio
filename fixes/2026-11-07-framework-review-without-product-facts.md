@@ -1,6 +1,6 @@
 # Fix: the Framework CS copy review ran without the Mondai product archive, and its background and ending drafts ignored Haven
 
-Status: not verified
+Status: verified 7 Nov (fresh run)
 
 ## Evidence
 Bad output: the review page (claude.ai/artifact/X7ADaATwdu9Er9x6PEHqdB, What ran section) says "the Mondai repo (ritacompany/mondai) could not be attached in this session ... So the archive and DECISIONS.md are unchecked." Its ending pick reads "When a week and a plan disagree, the plan gives way." Its background pick includes "There was no way to turn a long route into weeks someone could finish, or to show them where they stood."
@@ -36,10 +36,10 @@ Instruction lines: +3 / -2 in CLAUDE.md
 Net growth reason: the cloud path did not exist anywhere; it replaces the Mac only path sentence, net one line.
 
 ## Verification
-Fresh run: not run. This session is past 340k tokens; the restart runs in a new session from HANDOFF.md.
+Fresh run: 7 Nov, new session from HANDOFF.md. ritacompany/mondai attached with add_repo on the first call (no refusal), archive and DECISIONS.md read in full.
 Before: the excerpts in Evidence.
-After: not produced yet.
-Check result after: not run.
+After: round 2 page (artifact version 3). What ran says every product claim was checked against the archive and DECISIONS.md; findings cite Archive:line or a DECISIONS date. Background and ending each name the Haven node they were matched against (hero 5733:19874, Ending base 5733:20831) and show Haven's own text beside the draft.
+Check result after: PASS. No finding or section says unchecked for product facts (searched the page source: 0 matches); both drafts name their Haven section.
 Second case: not run.
 Enforcement test: n/a
 
