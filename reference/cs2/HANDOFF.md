@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-07 01:20
+Updated: 2026-11-07 01:45
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -68,6 +68,8 @@ Still missing from his frame: Get ahead (goes before Opening the week; streak qu
 
 ## Next action
 
+RESTART the Framework CS copy review (his call 7 Nov). His comments on the first review page: the audit is worthless without product facts, so redo it with the Mondai repo attached (he says access is allowed: attach ritacompany/mondai with add_repo and check every claim against mondai/reference/PRODUCT_KNOWLEDGE_ARCHIVE.md and DECISIONS.md). Background: he likes neither A nor B nor his original; A read as pretentious and oddly worded (the no way to turn a long route line, the My role line); wants a balance between the two, modelled on how Haven's hero does it, with the left line shared by all Mondai case studies. Ending: both options were the wrong approach, they are not case study endings; read the ending section of Haven CS Master (5733:19874, page CS, file 5RO0m4bYYrTvbiaOgaU3tI) and use that form. Before drafting read docs/VOICE-draft.md. Keep from round 1: the order verdict as revised (keep his order), typo findings, headline measurement method (Satoshi, tracking minus 4 percent, script approach in the 7 Nov session). Fix record: fixes/2026-11-07-framework-review-without-product-facts.md. Publish the new review to the same artifact link.
+
 Now (7 Nov, a new session): read his marks on the review page (ArtifactData list, collection marks, on https://claude.ai/artifact/X7ADaATwdu9Er9x6PEHqdB) and his streak answer, then run the three run reader check on the accepted text before he pastes it into frame 5763:2448. Below: the 5 Nov list.
 
 Now (5 Nov, a new session): 1. He pastes Falling behind round 7. 2. Reader check round 4 on the current calendar copy (Part 4), rewording any flagged line, never cutting it; then he pastes. 3. His yes on the five calendar frame defaults, then his other account builds the image from Parts 2 and 3. 4. Show him intro and ending round 1 plainly and take his comments. Tactics audit after the case study is finished. Below: the older list, kept for reference.
@@ -110,6 +112,9 @@ Points proposed 29 Oct for the calendar part, his reasoning first: setup 1 why p
 
 ## Read first
 
+- mondai/reference/PRODUCT_KNOWLEDGE_ARCHIVE.md and DECISIONS.md (attach ritacompany/mondai first)
+- Haven CS Master ending section and hero, Figma 5RO0m4bYYrTvbiaOgaU3tI node 5733:19874
+- docs/VOICE-draft.md
 - reference/cs2/WORKING_LOOP.md
 - reference/cs2/versions/map-and-falling-behind.md (the part in hand)
 - reference/cs2/outline/CS2-outline-and-copy.md (The order)
