@@ -14,13 +14,16 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-05 22:40
+Updated: 2026-11-07 01:10
 By: Claude Code
 Section: 3
 Loop step: 3
 
 ## Where it stopped
 
+Copy review, 7 Nov (scheduled task, read only). The case study now lives in Figma file 5RO0m4bYYrTvbiaOgaU3tI, page CS (5658:1061), frame Mondai Framework CS Master (5763:2448); Haven CS Master (5733:19874) is the finished style reference. A full audit of every eyebrow, headline, body and caption is published for him at https://claude.ai/artifact/X7ADaATwdu9Er9x6PEHqdB, with accept and reject marks per finding stored in the page's db (collection marks, doc per finding id). Nothing in Figma or copy was changed. On it: order verdict (move the right rail half of Falling behind up after Action hub as Target and pace; move Personalized timeline before Action hub), Background options (pick A: keep his shared line, right column carries the background, third case study name in brackets), Ending options (pick B: When a week and a plan disagree, the plan gives way), 70 findings with proposed text. Checks run: one Sonnet cold reader on the frame text; humanizer audit; fact check against reference/cs2 (the Mondai repo could not be attached, so archive and DECISIONS.md are unchecked); headline and caption fit measured with Satoshi at tracking calibrated to his frame (minus 4 percent). Not run: the three run reader check on the proposed text. Open question put to him: does Mondai have a streak (approved rail copy says no, Buffer flow mock shows a 3 Week streak chip). Scratch files (cold read, fact check, build script) were in the session scratchpad and are not in git.
+
+Earlier, 5 Nov:
 Finishing push, 5 Nov, stopped at 94% weekly usage (his stop line 95%). Left on his list: transition, calendar, intro, ending; tactics audit deferred until the case study is done.
 - Transition (Falling behind): round 7, humanizer, reader check PASS (runs/2026-11-05-fb7). He approved it. Ready to paste into Figma.
 - Calendar copy: Part 4 of versions/calendar-game-plan.md, Schedule view and Scheduled times merged into one block. His comments 5 Nov: a reader check flag on an unclear line means reword it, never cut it (the top row line was restored and reworded: the calendar starts at the first of the setup hours, 8am for instance, so the day opens on the time Mondai can plan in); keep his own wording where it is broader (nothing overlaps their personal schedule, not lands on a meeting). Cut and he has not objected: the post MVP colors line. Rewritten from his frame: I wanted people free (now People can move their Action Items), the tool rather than deadline sentence (now due by the end of its week, not at its time). Reader check rounds 1 to 3 failed on new lines each time, all addressed; the current text has not been checked (known file known-schedule-merged.md, runs/2026-11-05-cal1 to cal3).
@@ -64,6 +67,8 @@ Earlier, Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, 
 Still missing from his frame: Get ahead (goes before Opening the week; streak question open in core/get-ahead.md), the Growth Journey page and Action Item page builds behind the placeholders. Scheduled times copy still sits in the Action Hub block in Figma; approved 27 Oct to move under the schedule view as his smaller interaction square. He builds Figma himself.
 
 ## Next action
+
+Now (7 Nov, a new session): read his marks on the review page (ArtifactData list, collection marks, on https://claude.ai/artifact/X7ADaATwdu9Er9x6PEHqdB) and his streak answer, then run the three run reader check on the accepted text before he pastes it into frame 5763:2448. Below: the 5 Nov list.
 
 Now (5 Nov, a new session): 1. He pastes Falling behind round 7. 2. Reader check round 4 on the current calendar copy (Part 4), rewording any flagged line, never cutting it; then he pastes. 3. His yes on the five calendar frame defaults, then his other account builds the image from Parts 2 and 3. 4. Show him intro and ending round 1 plainly and take his comments. Tactics audit after the case study is finished. Below: the older list, kept for reference.
 
