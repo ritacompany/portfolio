@@ -31,9 +31,9 @@ Check: reviewer question on the next review page: does any finding or the What r
 Result on bad output: FAIL. What ran says "the archive and DECISIONS.md are unchecked"; neither option names a Haven section.
 
 ## Change
-Files changed: reference/cs2/HANDOFF.md (Read first now lists the Mondai archive, the Haven ending frame and docs/VOICE-draft.md as inputs for the restart; Next action carries the restart brief). Proposed, needs his approval: add ritacompany/mondai to the cloud environment's repositories so every session starts with it.
-Instruction lines: +0 / -0 in process docs
-Net growth reason: n/a
+Files changed: reference/cs2/HANDOFF.md (restart brief and Read first inputs); CLAUDE.md, Where Mondai lives (one sentence replaced: `../Mondai` is his Mac layout; in a cloud session attach ritacompany/mondai and clone to /home/user/mondai). Not changed, refused to the session even with his yes: permissions.allow for add_repo and register_repo_root in .claude/settings.json, which background sessions need; he can paste it himself.
+Instruction lines: +3 / -2 in CLAUDE.md
+Net growth reason: the cloud path did not exist anywhere; it replaces the Mac only path sentence, net one line.
 
 ## Verification
 Fresh run: not run. This session is past 340k tokens; the restart runs in a new session from HANDOFF.md.
