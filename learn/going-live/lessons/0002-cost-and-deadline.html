@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Cost and the domain deadline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<main>
+  <nav class="crumb"><a href="../index.html">Going live</a><span>Lesson 2 of 3</span><span>6 minutes, then 20 minutes of clicking</span></nav>
+
+  <h1>What it costs, and the one deadline</h1>
+
+  <p class="win"><b>Your win</b>You know the whole bill for year one, about $12, and you can move your domain to a cheaper registrar yourself this week.</p>
+
+  <h2>The bill</h2>
+  <div class="wide">
+    <table>
+      <thead><tr><th>Piece</th><th>Choice</th><th class="num">Year one</th></tr></thead>
+      <tbody>
+        <tr><td>Domain</td><td>Move chadwickfenner.com from Wix to Porkbun. The move includes a year, so it runs to Nov 2027 <span class="label confirmed">Confirmed price</span></td><td class="num">$11.81</td></tr>
+        <tr><td>Hosting</td><td>Vercel's free plan. It allows 100 GB of traffic a month; your whole site is about 8 MB <span class="label confirmed">Confirmed</span></td><td class="num">$0</td></tr>
+        <tr><td>Code</td><td>GitHub, where the code already lives</td><td class="num">$0</td></tr>
+        <tr><td>Email at your domain</td><td>Not needed to launch. Skip it for now</td><td class="num">$0</td></tr>
+        <tr class="total"><td>Total</td><td></td><td class="num">about $12</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Porkbun lists .com at $11.81 with free privacy for your contact details. A transfer is normally charged as one year, so expect that figure at checkout. <span class="label estimate">Estimate until checkout</span></p>
+
+  <h2>What you are not doing, and why</h2>
+  <div class="wide">
+    <table>
+      <thead><tr><th>Option</th><th>Why not</th><th class="num">Per year</th></tr></thead>
+      <tbody>
+        <tr><td>Renew at Wix</td><td>Same address, roughly double the price. Fine as an emergency fallback <span class="label estimate">Estimate</span></td><td class="num">about $21</td></tr>
+        <tr><td>Move to Cloudflare</td><td>Cheaper by under a dollar, but it needs extra DNS setup and a day of waiting before the move can start. Not worth it with 20 days left <span class="label estimate">Estimate</span></td><td class="num">about $11</td></tr>
+        <tr><td>Rebuild in Framer</td><td>Its Basic plan is about $10 a month billed yearly, and you would rebuild a site that already exists in code, motion included <span class="label estimate">Estimate</span></td><td class="num">about $120</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>The rule on the free hosting plan</h2>
+  <p>Vercel's free plan is for personal, non commercial sites. Their examples of commercial use are taking payments, advertising a product or service for sale, being paid to build the site, affiliate links and ads. <span class="label confirmed">Confirmed</span> A portfolio that helps you get hired matches none of those. <span class="label inference">My reading</span> If you ever sell freelance services from the site, the hosting moves to Cloudflare Pages, which is also free. You would not pay for Vercel's paid plan, and you do not need it now. Ignore the upgrade prompts.</p>
+
+  <div class="deadline">
+    <span class="when">Deadline: 26 Nov 2026. Start by 14 Nov</span>
+    <p>The move takes up to 7 days once it starts, so starting by 14 Nov leaves room for one retry. If the domain lapses, you get about 30 days to renew at the normal price, then a redemption period with an extra fee, then the name is released for anyone to buy. <span class="label confirmed">Wix's own description</span></p>
+  </div>
+
+  <h2>Move the domain: your checklist</h2>
+  <p class="note">Ticks are saved in this browser, so you can stop and come back.</p>
+  <ol class="steps">
+    <li><input type="checkbox" id="s1"><label for="s1">Make a free account at <a href="https://porkbun.com">porkbun.com</a>.<span class="who">You, 3 minutes</span></label></li>
+    <li><input type="checkbox" id="s2"><label for="s2">In Wix, open Domains, then chadwickfenner.com. Check that the contact email on the domain is an inbox you can open today, because the transfer code goes there. <strong>Do not edit the name or email.</strong> Changing them locks the domain for 60 days.<span class="who">You, 3 minutes</span></label></li>
+    <li><input type="checkbox" id="s3"><label for="s3">If you see Private Registration, turn it off; Wix recommends this so the transfer emails reach you. If you see a DNSSEC setting, turn that off too. If you don't see one, skip it and tell me; I clear it at Porkbun afterwards.<span class="who">You, 2 minutes</span></label></li>
+    <li><input type="checkbox" id="s4"><label for="s4">Turn off auto renew on the domain, so Wix does not charge you about $21 while the move is under way. If the move fails, the 30 day grace period still lets you renew at the normal price.<span class="who">You, 1 minute</span></label></li>
+    <li><input type="checkbox" id="s5"><label for="s5">If Wix shows an Unlock option for the domain, use it. Then open the Domain Actions menu, choose Transfer Away from Wix and confirm both screens. Wix emails you a transfer code.<span class="who">You, 2 minutes</span></label></li>
+    <li><input type="checkbox" id="s6"><label for="s6">In Porkbun, open Transfer, enter chadwickfenner.com and the code, then pay. Expect $11.81.<span class="who">You, 5 minutes</span></label></li>
+    <li><input type="checkbox" id="s7"><label for="s7">Approve any confirmation email from Wix or Porkbun. Then wait; up to 7 days.<span class="who">You, 1 minute, then waiting</span></label></li>
+    <li><input type="checkbox" id="s8"><label for="s8">Tell me "transfer done." I check the public record and we move to lesson 3's next step.<span class="who">You, then me</span></label></li>
+  </ol>
+  <p class="note">Fallback: if Porkbun shows the transfer as rejected and it is 20 Nov or later, renew at Wix for a year so the name is safe. It can move later.</p>
+
+  <section class="quiz" aria-label="Check yourself">
+    <h2>Check yourself</h2>
+
+    <div class="q" data-right="Same name, about $11.81 a year instead of about $21. Wix would happily renew it, and Vercel works with any registrar." data-wrong="Wix would renew it, and Vercel works with a domain from any registrar. The only real difference is price.">
+      <p class="ask">1. Why move the domain instead of renewing at Wix?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false">Wix will not let you renew this domain</button>
+        <button type="button" aria-pressed="false">Vercel only works with domains bought at Porkbun</button>
+        <button type="button" aria-pressed="false" data-right="1">Same address for about half the yearly price</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+
+    <div class="q" data-right="Registrars lock a domain for 60 days after a change to the owner's name or email. Leave those alone until the move is done." data-wrong="Requesting the code and switching off auto renew are both part of the plan. The 60 day lock comes from changing the owner's name or email.">
+      <p class="ask">2. Which edit in Wix would block the move for 60 days?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false" data-right="1">Changing the registrant name or email on the domain</button>
+        <button type="button" aria-pressed="false">Requesting the transfer code from the Wix Domains page</button>
+        <button type="button" aria-pressed="false">Turning off auto renew on the domain in Wix</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+
+    <div class="q" data-right="Pay Wix for a year and the name is safe. Moving it to Porkbun can happen later, with no deadline pressure." data-wrong="A rejected transfer does not retry itself, and a new name throws away the one people may already know. Renewing at Wix keeps it safe.">
+      <p class="ask">3. It is 20 Nov and Porkbun says the transfer was rejected. What now?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false">Wait, because transfers always finish before the expiry</button>
+        <button type="button" aria-pressed="false" data-right="1">Renew at Wix so the address cannot lapse</button>
+        <button type="button" aria-pressed="false">Buy a different domain name at Porkbun instead</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+  </section>
+
+  <div class="source">
+    <span class="k">Read before step 5, 4 minutes</span>
+    <p><a href="https://support.wix.com/en/article/transferring-your-wix-domain-away-from-wix-2477749">Transferring your Wix domain away from Wix</a>, Wix's own help article. Your screens will match it more closely than my description.</p>
+  </div>
+
+  <p class="ask-me">Stuck on a screen? Send me a screenshot in the chat and I will tell you what to click. Prices and sources are on the <a href="../reference/launch-sheet.html">launch sheet</a>.</p>
+
+  <nav class="next"><a href="0001-three-pieces.html">Lesson 1</a><a href="0003-checking-the-work.html">Lesson 3: checking work you can't read</a></nav>
+</main>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

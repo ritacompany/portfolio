@@ -105,7 +105,7 @@ The leadership CS is after launch (C4).
 | S1 | Build the homepage in code | AI | 6 | S0, H7, H9, H10, H16a, H8, H11, F5, H12, H19, F1, F2, F3 | open |
 | S2 | Build the collection page and the case study pages | AI | 6 | S0, H13, C1 | open |
 | S3 | Site wide QA: links, hovers, states, breakpoints | AI, C audits | 7 | S1, S2 | open |
-| S4 | Deploy to Vercel on chadwickfenner.com, indexing on | AI, C for domain access | 8 | S3 | open |
+| S4 | Deploy to Vercel on chadwickfenner.com, indexing on | AI, C for domain access | 8 | S3 | open. 6 Nov: domain still registered at Wix, expires 26 Nov 2026; recommended move to Porkbun by 14 Nov, then Vercel account and DNS early on the holding page. Plan and costs in `learn/going-live/` |
 | C4 | Leadership CS: after launch. Needs more conversations with Michael; the first approach did not land with him. May become smaller pieces about the organizational and process work, under a name other than case study | C | 9 | S4 | after launch |
 
 ## Decisions
