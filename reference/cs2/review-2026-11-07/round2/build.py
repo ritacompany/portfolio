@@ -100,7 +100,7 @@ for s in SECTIONS:
 <div class="now"><span class="tag">{"Do" if unchanged else "New"}</span><span class="t">{E(p)}</span></div></div>
 <p class="why">{E(why)}</p><p class="src">Source: {E(src)}</p>{notebox(fid)}</article>''')
     okhtml = (f'<details class="okbox"><summary>Checked, no change needed ({len(ok)})</summary>'
-              f'<p class="why">These lines were checked against the Mondai archive and are correct as written. Nothing to decide; a note box is there if you want one.</p>{"".join(ok)}</details>') if ok else ''
+              f'<p class="why">These lines were checked against the Mondai archive and are correct as written. Nothing to decide; a note box is there if you want one.</p>{"".join(ok)}</details>') if False else ''
     if not fs: fs.append('<p class="why">No changes proposed in this section.</p>')
     secs.append(f'''<section class="block" id="{s["id"]}"><h2>{E(s["name"])}</h2><div class="split"><div class="cur">{fig}{cur}</div><div class="finds">{"".join(fs)}{okhtml}</div></div></section>''')
 
@@ -201,6 +201,7 @@ CSS = """
 .notein:focus-visible{outline:2px solid var(--fg);outline-offset:1px}
 .notestate{font:400 12px/1.3 var(--mono);color:var(--muted);min-height:1em}
 .opt .find{margin-top:4px}
+.ans{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px}
 .okbox{border:1px dashed var(--line);border-radius:8px;padding:10px 14px}
 .okbox summary{cursor:pointer;font:600 13px/1.3 var(--mono);color:var(--muted)}
 .okbox[open]{display:grid;gap:10px}
@@ -216,8 +217,9 @@ section.block>*{min-width:0}
 SHORT={"s-rail":"Right rail","s-fb":"Rollover","s-end":"Ending frame","s-haven":"Haven","s-sow":"Start of week","s-hero":"Hero"}
 toc = "".join(f'<a href="#{s["id"]}">{E(SHORT.get(s["id"], s["name"]))}</a>' for s in SECTIONS)
 t=open(TEMPLATE).read()
-t=t.replace('<nav id="toc"></nav>', f'<nav id="toc"><a href="#verdict">Order</a><a href="#hero">Background</a><a href="#ending">Ending</a><a href="#checks">What ran</a>{toc}</nav>')
+t=t.replace('<nav id="toc"></nav>', f'<nav id="toc"><a href="#answers">Your notes</a><a href="#verdict">Order</a><a href="#hero">Background</a><a href="#ending">Ending</a><a href="#checks">What ran</a>{toc}</nav>')
 t=t.replace('<h2>Background (hero) options</h2>','<h2>Background (hero), round 2</h2>').replace('<h2>Ending options</h2>','<h2>Ending, round 3</h2>')
+t=t.replace('<section class="block" id="verdict">', '__ANS__<section class="block" id="verdict">')
 t=t.replace('<h2>Verdict on the order</h2>','<h2>Round 2: what changed and the order</h2>')
 t=t.replace('copy review · read only, nothing changed in Figma','copy review round 2 · facts checked against the Mondai archive · nothing changed in Figma')
 t=t.replace("localStorage.getItem('fcs-review')","localStorage.getItem('fcs-review-r2')").replace("localStorage.setItem('fcs-review'","localStorage.setItem('fcs-review-r2'")
@@ -265,6 +267,56 @@ def end3(o):
     marker = f'<div class="find" id="{o["id"]}"><div class="fhead"><span class="num">Ending {o["name"][0]}</span>{controls(o["id"], "Mark ending version")}</div>{notebox(o["id"])}</div>'
     return f'<div class="panel opt{" pick" if o["pick"] else ""}">{tag}<h3>{E(o["name"])}</h3>{mock}<p class="why">{E(o["why"])}</p>{marker}</div>'
 
+ANS = [
+ ("Your call on wording", [
+  ("Card 01, CareerFoundry", "You asked whether it is overboard this early. Not if it stays one plain sentence about dates: it plants the idea that the date comes from the user's hours, which the rail block pays off later. Your forward reference point applies here too, so it names no screens.",
+   "CareerFoundry tracks progress against one fixed deadline. Mondai sets its date from the hours each user has to give, and adds a second date for where their progress is heading."),
+  ("Card 02, Motion research line", "You said the change is not needed. Dropped; your line stays.", ""),
+  ("Card 03, Linear (your forward reference point)", "Agreed, and this is the kind of thing the check should have caught. The reader has not met the Action Hub or the Growth Journey yet. I also had home screen wrong: the Action Hub is the home, so that word is fine. I ran the same check across the whole page; the only other slip is in my own Growth Journey rewrite, fixed below.",
+   "Linear opens straight onto the work in front of you. Research on motivation finds near goals build confidence and progress while a distant goal does little, so the home screen shows only this week's work, and the full route to the goal has its own page."),
+  ("Growth Journey body, paragraph 3 (my rewrite, which you accepted)", "My version named the Action Hub three blocks before the reader meets it. Same point without the name:",
+   "Keeping them here was intentional. Two sets of dates on the weekly screen would compete, so the weekly screen shows only the current Pathway's target and pace, and the journey's sit here for anyone who wants the big picture."),
+  ("Pathway, Focus Areas", "You are not sure whether they run in order, and the archive only says they group Action Items by theme. This wording is true either way; if they do run in order, add it back.",
+   "Focus Areas, like user testing or wireframes, group the Pathway's Action Items by theme and show the user what the Pathway will cover."),
+  ("Action item body, past tense", "You are right: the page shows the MVP, and for the MVP your line is true. Keep your present tense; finding dropped.", ""),
+ ]),
+ ("Corrections to my findings (you were right, the archive is out of date)", [
+  ("Home screen", "There is no separate home: the home page has a different view before the journey starts, and the Action Hub is the home after. My card 03 and Action hub findings were wrong on that. Your Action hub acceptance (cutting the comparison) still reads fine, and default view in Schedule view stays as you accepted.", ""),
+  ("Calendar colors", "Magenta is the user's own calendar events; Mondai events have no color of their own yet. Your line stays as written. On the read only reason, I would keep yours (the calendar holds commitments Mondai doesn't own): it is plainer and in your voice. Finding dropped.", ""),
+  ("Journey progress", "The Growth Journey page does show journey progress. Finding dropped.", ""),
+  ("Buffer flow name", "Renamed to Buffer flow; your eyebrow is right. Finding dropped.", ""),
+  ("Streak", "Found the reasoning in your record (30 Apr, your words): the streak lives only on the Buffer flow screen, because the gap in days already shows ahead or behind and a second count would confuse the offer to get ahead. So the chip stays, and the rail line needs one word changed. The 24 Oct no streak entry in the Mondai DECISIONS log says the opposite; that is your call to correct in the Mondai repo, since entries need your approval.",
+   "Rail, Ahead of target: The gap between the two dates, in days. It is the only ahead or behind signal on the rail. / Optional, Buffer flow body: The streak shows only here, as something to celebrate, because the gap in days already says whether the user is ahead."),
+ ]),
+ ("Your other notes", [
+  ("Calendar floor, eight hours or four", "Both numbers are yours, for different things. Four is the capacity minimum: 4 to 40 hours a week (your words in reasoning/capacity.md). Eight is the scheduling window in calendar setup (your 27 Aug answer: without a floor the AI has no room to place work, and a one hour window cannot work). So eight is right for this block.", ""),
+  ("Schedule view, body 2", "Agreed, the only place line is not true: the list shows it too. Cut. The all day row is obvious from the image, so I left it out.",
+   "Mondai looks for gaps between the user's own events, inside the hours they chose in setup. The calendar starts at the first of those hours, 8am for instance, so the day opens on the time Mondai can plan in. Each block is as long as its Action Item takes."),
+  ("Rollover, the domino sentence", "Yours was trying to connect it all, mine was trying to be exact. Merged, with your journey pace point kept:",
+   "The rollover takes up some of the next week's capacity, so some of that week's Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway's pace, the journey moves with it. The target stays where it was."),
+  ("Capitalizing Rollover", "Yes, capitalize it. The page already capitalizes the named parts of the framework (Action Item, Recalibration, Reset), and Rollover is one of them. Rolled over as a verb stays lowercase. So The Rollover effect stays as you have it, and the Start of week captions change goes to Rollover and the Rollover Action Items. My typo finding is withdrawn.", ""),
+  ("User, everywhere", "Agreed. Every proposed line on this page now uses the user. The frame copy still says person, people and someone in about a dozen places (Action hub, Calendar setup, Schedule view, the rail labels, Buffer flow, Start of week); I will list each with its fix in the reader check round so you paste them in one go.", ""),
+  ("Effort or cognitive load", "Use cognitive load, since it is your label in Personalized timeline, and define it once there in plain words. Everywhere else says cognitive load, not effort.",
+   "Cognitive load: how much effort each Action Item takes, which Mondai sizes item by item. / Example: Aisha's capacity is 6 hours a week. Last week that fit 4 Action Items. This week it fits 3, because this week's carry more cognitive load."),
+  ("Capacity line", "Your fix applied.", "Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub. Everything else is planned from that number."),
+  ("Clean slate caption", "Your copy direction for these screens is coach, not parent, in the register of the Buffer flow screen (your 21 and 31 May notes), and lost day was your own shorthand for a week with a rollover. The caption keeps your sentence and swaps only the shorthand.",
+   "A clean slate only means something when nothing carried over, so a week that ends with an Action Item still open goes to Rollover instead."),
+  ("Sources line on Competitive analysis", "Understood: the line shows where the research comes from, not that every sentence quotes it. My only real concern is one date: the record has Kizilcec 2020, the line says 2017. Worth a two minute check of that one paper; the rest can stand.", ""),
+  ("Recalibration caption", "This one has no mark from you yet. It is the skip with a warning line against the archive's equal weight; your record says the archive is wrong there, so the caption can stay as you wrote it.", ""),
+ ]),
+]
+def ans_html():
+    out = ['<section class="block" id="answers"><h2>Your notes, answered</h2><div class="prose"><p>Every choice and note you made saved on its own; nothing to do to save. Notes on lines that needed no change are ignored, and those lines are gone from the page. Below: my answer to each note, and the text to use where it changed.</p></div>']
+    for title, rows in ANS:
+        out.append(f'<h3>{E(title)}</h3><div class="finds">')
+        for lab, ans, txt in rows:
+            t = f'<div class="pair"><div class="now"><span class="tag">Use</span><span class="t">{E(txt)}</span></div></div>' if txt else ''
+            out.append(f'<article class="ans"><div class="fhead"><span class="num">{E(lab)}</span></div><p class="why" style="color:var(--fg)">{E(ans)}</p>{t}</article>')
+        out.append('</div>')
+    out.append('</section>')
+    return "".join(out)
+ANS_HTML = ans_html()
+
 HERO_HTML = "".join(opt(o,True) for o in HERO)
 END_HTML = ('</div><div class="prose">' + END3_INTRO + '</div><div class="opts">' + "".join(end3(o) for o in END3) + '</div>'
             '<div class="prose">' + PLAN + '</div><h3 style="margin-top:12px">Round 2, withdrawn, for reference</h3><div class="opts">'
@@ -278,7 +330,7 @@ t = t.replace('<span class="count">Accepted <b id="cA">0</b> · Rejected <b id="
               '<span class="count">Accepted <b id="cA">0</b> · With changes <b id="cC">0</b> · Discuss <b id="cD">0</b> · Rejected <b id="cR">0</b> · Open <b id="cO">0</b></span>')
 t = t.replace('Mark each one accept or reject as you read; your marks save to this page and I can read them back.',
               'For each finding pick Accept, Accept with changes, Discuss or Reject, and add a note whenever you want, whatever you pick. Choices and notes save to this page and I read them back.')
-for k,v in {"__VERDICT__":VERDICT,"__ORDER__":ORDER,"__HERO_INTRO__":HERO_INTRO,"__HERO__":HERO_HTML,
+for k,v in {"__ANS__":ANS_HTML,"__VERDICT__":VERDICT,"__ORDER__":ORDER,"__HERO_INTRO__":HERO_INTRO,"__HERO__":HERO_HTML,
             "__END_INTRO__":END_INTRO,"__END__":END_HTML,"__CHECKS__":CHECKS,"__SECTIONS__":"\n".join(secs),"__IDS__":json.dumps(ids)}.items():
     t=t.replace(k,v)
 out=os.path.join(HERE,'framework-cs-review.html')
