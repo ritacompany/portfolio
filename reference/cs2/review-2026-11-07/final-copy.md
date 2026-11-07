@@ -5,7 +5,7 @@ in the page's db, collection marks). Three passes run over the whole page: the u
 someone), effort (never cognitive load) and casing (Action Item, Pathway, Focus Area, Growth Journey, Action Hub,
 Rollover, Recalibration, Reset capitalized as named parts of the framework; rolled over lowercase as a verb).
 CHANGED marks a block that differs from the frame. Not yet run: Satoshi line measurement of changed headlines and
-captions; the three run reader check. Sources line waits on the citation check.
+captions; the three run reader check.
 
 ## Hero (CHANGED)
 Left: Designed as an AI guide for people from underrepresented backgrounds working their way into a tech career.
@@ -21,7 +21,8 @@ Card 02 (his, unchanged): Motion showed me AI could find free time in someone’
 Card 03: Linear opens straight onto the work in front of you. Research on motivation finds near goals build confidence and progress while a distant goal does little, so the home screen shows only this week’s work, and the full route to the goal has its own page.
 Card 04: Every learning app I reviewed, even the most structured, let people fit lessons around their day. Research shows that having a say raises motivation, and that learners with clear goals and plans are more likely to reach them. So the plan sets the goal, and each user decides where in their day the work goes.
   Why card 04 lost target and pace: his overkill point. Card 01 already carries target and pace as the borrowed idea, the Growth Journey block names the journey's pair and the rail block defines them; card 04 was the one repeating it.
-Sources: waiting on the citation check (Kizilcec year; which papers support which card).
+Sources: Harkin et al. 2016; Patall, Cooper and Robinson 2008; Kizilcec, Perez-Sanagustin and Maldonado 2017; Baker, Evans and Dee 2016; Bandura and Schunk 1981
+  Citation check 7 Nov (all seven confirmed by Crossref, findings from abstracts): Kizilcec 2017 is the right year and paper (goal setting and planning in six MOOCs, card 04); the 2020 in the portfolio record is a different paper. Villar 2013 (progress bars in web surveys) and Lally 2010 (habit formation) support no card and are cut. Harkin is card 01, Baker card 02, Bandura and Schunk card 03, Patall and Kizilcec card 04. Harkin is mostly health goals, so card 01 says studies, not learners.
 
 ## The foundation we built on (CHANGED)
 Headline: Mondai calls the whole route to a user’s new career, and the curriculum that gets them there, their Growth Journey.
