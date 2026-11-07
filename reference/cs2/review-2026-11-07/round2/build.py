@@ -84,10 +84,14 @@ for s in SECTIONS:
     b = IMGS.get(s["name"])
     if b:
         fig=f'<figure><img src="data:image/png;base64,{b}" alt="Frame screenshot: {E(s["name"])}" loading="lazy"><figcaption>Figma node {s["node"]}</figcaption></figure>'
-    fs=[]
+    fs=[]; ok=[]
     for i,(k,lab,c,p,why,src) in enumerate(s["f"],1):
         fid=f'r2-{s["id"]}-{i}'; ids.append(fid)
         kn,kc=KIND[k]
+        if p.lower().startswith("unchanged"):
+            ok.append(f'''<div class="find okrow" id="{fid}"><p class="oklab"><b>{E(lab)}</b>: {E(c)}</p>
+<p class="why">{E(why)}</p><p class="src">Source: {E(src)}</p>{notebox(fid)}</div>''')
+            continue
         unchanged = p.lower().startswith(("unchanged","see ","use one","remove the","confirm each","optional"))
         fs.append(f'''<article class="find" id="{fid}">
 <div class="fhead"><span class="num">{s["name"].split(" (")[0].split(",")[0]} {i}</span><span class="chip {kc}">{kn}</span><span class="src">{E(lab)}</span>
@@ -95,7 +99,10 @@ for s in SECTIONS:
 <div class="pair"><div class="was{" nostrike" if unchanged else ""}"><span class="tag">Now</span><span class="t">{E(c)}</span></div>
 <div class="now"><span class="tag">{"Do" if unchanged else "New"}</span><span class="t">{E(p)}</span></div></div>
 <p class="why">{E(why)}</p><p class="src">Source: {E(src)}</p>{notebox(fid)}</article>''')
-    secs.append(f'''<section class="block" id="{s["id"]}"><h2>{E(s["name"])}</h2><div class="split"><div class="cur">{fig}{cur}</div><div class="finds">{"".join(fs)}</div></div></section>''')
+    okhtml = (f'<details class="okbox"><summary>Checked, no change needed ({len(ok)})</summary>'
+              f'<p class="why">These lines were checked against the Mondai archive and are correct as written. Nothing to decide; a note box is there if you want one.</p>{"".join(ok)}</details>') if ok else ''
+    if not fs: fs.append('<p class="why">No changes proposed in this section.</p>')
+    secs.append(f'''<section class="block" id="{s["id"]}"><h2>{E(s["name"])}</h2><div class="split"><div class="cur">{fig}{cur}</div><div class="finds">{"".join(fs)}{okhtml}</div></div></section>''')
 
 def opt(o, hero):
     tag = '<span class="pickTag">My pick</span>' if o.get("pick") else ('<span class="pickTag" style="color:var(--muted)">Reference</span>' if o.get("ref") else '')
@@ -136,7 +143,7 @@ function paint(){
   document.getElementById('cC').textContent = c.change;
   document.getElementById('cD').textContent = c.discuss;
   document.getElementById('cR').textContent = c.reject;
-  document.getElementById('cO').textContent = IDS.length - c.accept - c.change - c.discuss - c.reject;
+  document.getElementById('cO').textContent = document.querySelectorAll('.find .tog').length - c.accept - c.change - c.discuss - c.reject;
 }
 async function push(id, el){
   const st = el && el.querySelector('.notestate');
@@ -194,6 +201,11 @@ CSS = """
 .notein:focus-visible{outline:2px solid var(--fg);outline-offset:1px}
 .notestate{font:400 12px/1.3 var(--mono);color:var(--muted);min-height:1em}
 .opt .find{margin-top:4px}
+.okbox{border:1px dashed var(--line);border-radius:8px;padding:10px 14px}
+.okbox summary{cursor:pointer;font:600 13px/1.3 var(--mono);color:var(--muted)}
+.okbox[open]{display:grid;gap:10px}
+.okrow{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+.oklab{font-size:15px}
 .tog{max-width:100%}
 .prose,.why,.src,.field .txt,.pair .t,.mock p{overflow-wrap:anywhere}
 section.block,.wrap{min-width:0}
