@@ -23,5 +23,5 @@ Scope: the first draft of the design system case study (frame, six sections in h
 - [x] G5: A blind completion check (fresh agent, given the brief and the draft, never this session's report) ran and its findings were fixed or listed
   EVIDENCE: VERIFY.md, Blind completion check: 11 findings, fixed or listed
 
-- [ ] G6: Branch pushed and a draft PR open in ritacompany/portfolio; no PR watch, nothing scheduled
-  EVIDENCE: pending
+- [x] G6: Branch pushed and a draft PR open in ritacompany/portfolio; no PR watch, nothing scheduled
+  EVIDENCE: draft PR #11, branch claude/design-system-cs-draft; no subscribe or schedule call made
