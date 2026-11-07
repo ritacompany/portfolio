@@ -29,3 +29,10 @@ three revisions "in two days" (25 to 27 Sep); the bare edge spacing rule (added)
 which come out before shipping, with marks shown on the page where a number is an ESTIMATE.
 
 C23 was added after the verifier ran; checked by this session against the source file (NEXT-SESSIONS.md, His direction), not independently. The grid audit FAIL detail added to C15 was read from Mondai `ops/check-ledger.md` by this session.
+
+## After NUMBERS.md landed (7 Nov)
+
+C10, C19 and C20 were corrected to the efficiency chat's file (677 was a forecast; 669 moved, 122 then
+30 raw; Mentor events had 69 screens at handoff, not 23; Studio's 4 days run to its approved handoff).
+C24 to C26 are new and cite NUMBERS.md N9, N12, N13 and N25, which that chat claim checked; they were
+not re-verified by an independent agent in this session.

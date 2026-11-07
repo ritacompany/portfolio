@@ -18,7 +18,7 @@ draft PR #11. Read this, then `FRAME.md`, then `DRAFT.md`. Nothing here quotes M
 
 ## Next action
 
-On his review: take his comments on draft 1 section by section, then recheck C19 to C21 against the
-efficiency chat's `NUMBERS.md` (Mondai `design-system-ai/reports/efficiency-numbers/`), asked for on
-7 Nov and not yet saved. After the agent test's after run lands, replace the 31 mistakes card's
-"before" framing with the before and after pair.
+On his review: take his comments on draft 1 section by section. NUMBERS.md landed (Mondai main
+e940fa18) and the draft now uses it: the opening's fault card, the sprint table in section 5, the
+corrected spacing figures and three new imperfect items. When the agent test's after run lands, pair
+it with the 31 mistakes card.

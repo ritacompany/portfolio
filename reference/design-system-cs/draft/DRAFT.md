@@ -26,7 +26,8 @@ count. [C17]
 
 - **105 of 106** components carry a usage description. From 4 of 94 on 1 Oct. [C5] [C14]
 - **425 of 431** variables have a code name an agent or a developer can read. From 0 of 235. [C5] [C14]
-- **122** spacing links on the product screens still point at raw values. From 800. [C10]
+- **0** known system faults in the handed off screens of the last two sprints. From 596 on Journey
+  Advisement, about 6 a screen. [C24]
 - **31 mistakes** a build, on average, when three agents rebuilt one screen from the library. This
   is the before number; the after run is next. [C17]
 
@@ -69,10 +70,10 @@ layout. [C8]
 area, and 48 wherever an edge is bare content rather than a card. I capped it at 48 after seeing the
 eight screens that sat at 64 laid out again at 48. It took three revisions between 25 and 27 Sep. [C9]
 
-**Spacing roles.** 800 links on the product screens pointed at the raw spacing scale, because the
+**Spacing roles.** About 800 links on the product screens pointed at the raw spacing scale, because the
 role ladder had no step for the values they needed. Of three options, I picked filling the gaps in the
-ladder, so 677 of those links got a role with nothing on screen moving. The cost is 122 links still on
-raw values, each waiting on its own decision. [C10]
+ladder. A script then moved 669 raw links onto roles and left 122 for me to decide one by one; 30 are
+still raw. [C10]
 
 **States.** Input fields got one outline ladder and no filled state. The filled state had been
 covering for value text that looked like placeholder text. Now the outline shows the state and the
@@ -128,23 +129,22 @@ screen needed. [C17]
 
 *Image: the three runs by mistake type.*
 
-The time records show where a sprint's work goes, measured from chat transcripts and commits. These
-are estimates, not results. [C19] [C20] [C21]
+The sprint records show where it paid off. [C19] [C20] [C24]
 
-*Table, every row ESTIMATE:*
+*Table: days and screens CONFIRMED, screens a day is arithmetic on them:*
 
-| Sprint [C19] [C20] [C21] | Days of work to handoff | Screens | Fixing and handoff against drawing |
-| --- | --- | --- | --- |
-| Peer Connect | 5 | 55 | no drawing stage recorded |
-| Journey Advisement, mentor side | 10 | 103 | 11.7 hours against 8.8 |
-| Journey Advisement, mentee side | 6, five of them shared | 69 | 3.2 hours against 3.9 |
-| Mentor events | 6 | 23 by 22 Oct | 0.8 hours against 3.9, a floor |
+| Sprint [C19] [C20] [C24] | Days of work to handoff | Screens at handoff | Screens a day | Known faults handed off |
+| --- | --- | --- | --- | --- |
+| Peer Connect | 5 | 39 | 7.8 | not measured |
+| Journey Advisement, mentor side | 10 | 99 | 9.9 | 596 |
+| Journey Advisement, mentee side | 6, five of them shared | 72 | 12.0 | 97 |
+| Mentor events | 6 | 69 | 11.5 | 0 of the agents' own |
+| Studio | 4 | 42 | 10.5 | 0 |
 
-Screens did not get faster: the first three came out at about 10 to 12 a day. Mentor events, at about 4 a day on
-its partial count, was slower. What fell, sprint by sprint, was the time spent fixing against the time
-spent drawing: from more than the drawing to about a fifth of it. Three sprints of different sizes,
-with the rules changing underneath, is a pattern worth testing, not a result.
-[C20] [C21]
+Screens did not get faster: about 8 to 12 a day throughout. What changed is what reached handoff. Since
+Mentor events, a change in Figma is not finished until the check comes back clean, so the faults stop
+before they reach a developer. Studio, the newest sprint, took 4 days against Peer Connect's 5. [C20]
+[C24]
 
 ## Still imperfect, dated so it can be checked
 
@@ -156,8 +156,11 @@ Last updated 7 Nov 2026.
   deprecated name, and one component has no description yet. [C14]
 - **One check still fails its own test.** The grid audit caught 27 of 33 planted mistakes. It misses a
   step one size too wide, an area that should fill and rows nested deep. [C15]
-- **The time numbers are rough.** The rules were changing under Journey Advisement while it was built.
-  Some Mentor events chats were only partly read, so its hours are a floor on both sides of the
-  comparison. Studio is left out because no fixing and handoff stage was recorded. [C19] [C21]
+- **The zero is a gate, not a habit.** Faults stop at handoff because the check has to pass. Agents
+  still make them along the way. [C24]
+- **My reviews did not shrink.** Studio's last review round was its largest, and on Mentor events about
+  half my comments repeated an ask I had made before. [C25]
+- **The library's own components are not wired yet.** Only 6.7% of the gaps and 1.9% of the paddings
+  inside them are bound to spacing tokens (19 Oct). [C26]
 - **I have not measured people.** Whether designers and developers build from the library more than
   before has no number yet.

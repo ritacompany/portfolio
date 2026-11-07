@@ -19,8 +19,8 @@ number in it is a row in `CLAIMS.md`. Nothing here quotes Mondai sources or him:
    the system (names, missing states, rules that lived in his head), not to the agents.
 4. **What was at stake.** Every screen built off the system lands in his review as rework; when
    agents started drawing screens, checks passed screens that were wrong, so the system could fail
-   with every light green. Screens did not get faster; the open question is how much of each sprint
-   goes to fixing, and the records so far show a pattern, not a result.
+   with every light green. Screens did not get faster (8 to 12 a day throughout); what changed is
+   what reached handoff: known system faults went from 596 on Journey Advisement to none.
 
 ## The decisions, in order
 
