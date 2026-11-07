@@ -231,9 +231,9 @@ END3_INTRO = """<p><b>Round 3, written for what this case study is:</b> the firs
 END3 = [
  dict(id="r3-end-a", name="A: status, the measure, the baseline", pick=True,
   eb="Where it stands",
-  head="The framework is [built and live with its first users], so the numbers that would show it working don’t exist yet.",
+  head="The framework is built and Mondai hasn’t launched yet, so the numbers that would show it working don’t exist yet.",
   body=["I decided what success looks like before the first week ran. The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often rollover Action Items clear in the week they land in.",
-        "A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for. The first users are setting the baseline, and their numbers go here as soon as there are enough to count."],
+        "A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for. Testing with the first users comes next, and these are the two numbers I’ll count from it."],
   why="Modelled on the strongest match in the research: status first, a measure named before results, and an honest line that the baseline is being set. When the diary study or first cohort reports, the last sentence becomes a count (for example x of n weeks closed) and nothing else changes."),
  dict(id="r3-end-b", name="B: the hard part, what to validate, how to know", pick=False,
   eb="Looking back",
@@ -260,7 +260,7 @@ PLAN = """<h3 style="margin-top:8px">Getting real numbers fast</h3>
 <p>Ruled out: funding, company milestones, colleague or founder quotes (your rule) and a product market fit survey, which needs about 40 regular users before it says anything.</p>"""
 
 def end3(o):
-    tag = '<span class="pickTag">My pick (if live)</span>' if o["pick"] else ''
+    tag = '<span class="pickTag">You accepted this one</span>' if o["pick"] else ''
     body = "".join(f'<p class="r" style="font-size:15px">{E(x)}</p>' for x in o["body"])
     mock = f'<div class="mock"><p class="eb">{E(o["eb"])}</p><p class="l" style="font-size:22px">{E(o["head"])}</p>{body}</div>'
     ids.append(o["id"])
@@ -310,8 +310,9 @@ def ans_html():
     for title, rows in ANS:
         out.append(f'<h3>{E(title)}</h3><div class="finds">')
         for lab, ans, txt in rows:
+            n = len(ids) ; fid = 'r3-ans-' + re.sub(r'[^a-z0-9]+','-',lab.lower()).strip('-')[:40]; ids.append(fid)
             t = f'<div class="pair"><div class="now"><span class="tag">Use</span><span class="t">{E(txt)}</span></div></div>' if txt else ''
-            out.append(f'<article class="ans"><div class="fhead"><span class="num">{E(lab)}</span></div><p class="why" style="color:var(--fg)">{E(ans)}</p>{t}</article>')
+            out.append(f'<article class="find" id="{fid}"><div class="fhead"><span class="num">{E(lab)}</span>{controls(fid)}</div><p class="why" style="color:var(--fg)">{E(ans)}</p>{t}{notebox(fid)}</article>')
         out.append('</div>')
     out.append('</section>')
     return "".join(out)
