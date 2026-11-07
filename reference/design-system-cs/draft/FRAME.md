@@ -19,8 +19,8 @@ number in it is a row in `CLAIMS.md`. Nothing here quotes Mondai sources or him:
    the system (names, missing states, rules that lived in his head), not to the agents.
 4. **What was at stake.** Every screen built off the system lands in his review as rework; when
    agents started drawing screens, checks passed screens that were wrong, so the system could fail
-   with every light green. Screens did not get faster; the question was how much of each sprint went
-   to fixing.
+   with every light green. Screens did not get faster; the open question is how much of each sprint
+   goes to fixing, and the records so far show a pattern, not a result.
 
 ## The decisions, in order
 
@@ -30,8 +30,8 @@ Ordered by cause (t15): the method first, because it is what found the others.
    usability test (22 Oct). Alternative: library counts. Cost: an honest baseline that looks bad
    (mean 31 mistakes a build) and an after run still owed.
 2. **One grid and spacing roles, with the invented values deleted.** 23 Sep grid; 27 Sep area
-   spacing judged on eight screens; 2 Oct ladder gaps filled. Alternative: remap screens to the old
-   ladder. Cost: 122 links still raw; every desktop layout affected.
+   spacing judged on eight screens; 2 Oct ladder gaps filled. Alternative: two other options he was shown
+   (`process/token-gaps/options.png` in Mondai). Cost: 122 links still raw; every desktop layout affected.
 3. **A component is decided by interaction, not repetition.** 2 and 6 Oct, after 41 element types
    were marked as new components. Alternative: the common three screen rule. Cost: more written
    rules and fewer components, so the rules have to be readable.
@@ -59,6 +59,20 @@ The framework CS owns colour meaning, the mono and Heebo label split and sentenc
 (`reference/cs2/reasoning/design-system-and-voice.md`); this draft does not use them. The leadership
 CS owns the team and the operation; the July 2025 workshop appears only as evidence that the system
 did not carry its own rules. The agent pipeline appears only as a reader of the system.
+
+## Lines he must confirm or strike
+
+Read as his voice but resting on a reading, not a record:
+- "still only I could use it well": his 6 Nov problem definition, stated as fact about two years.
+- "from rules I write and reviews I run": how the AI sessions are framed is his call (GAPS item 2).
+- "The hardest rule was when something becomes a component": a judgment the record does not make.
+
+## Changes after the blind check (7 Nov)
+
+The fixing time card left the opening (it was the two extreme sprints of three, both floors); the
+time numbers are now one table, marked ESTIMATE, with all three sprints and Mentor events' slower
+screen rate. Unsourced lines about his intent were cut or tied to a record. The grid audit's
+27 of 33 is in section 6 as a check that still fails its own test.
 
 ## Open, only he can answer
 
