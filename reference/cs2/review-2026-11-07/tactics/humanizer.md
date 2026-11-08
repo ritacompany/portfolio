@@ -62,3 +62,18 @@ like a gate instead of a guide. Present tense reason, his gate and guide words k
 A one word cut (the first yet). No rewrite.
 
 Dashes: none in any final line (also checked by run-checks.mjs). Curly apostrophes match his frame copy.
+
+## Redo, 8 Nov (both banks)
+
+Hero, Right 2 (t-hero, with steal the thunder). Draft: adds Mondai hasn't launched, so there are no results to show
+yet, as its own sentence. Audit: reader check round 3 says it does not follow from the decision; as a lone flat
+sentence it also reads as a disclaimer dropped in. Final: Mondai hasn’t launched, so this case study shows the
+reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens
+when a week runs short or ends early. Rather than is plain, not a tidy contrast pair. No new fact.
+
+Personalized timeline, Capacity (t-capacity). Draft: ...so they type an exact number of hours instead of picking
+from ready made ranges, and the plan can lower it later if their weeks keep falling short. Audit: the so skips the
+mechanism (reader check, 3 of 3); one sentence carries three ideas. Final: The risk is that users promise more
+time than they have, so the screen has them type an exact number of hours, which makes them count, instead of
+picking a generous range. If their weeks keep falling short, the plan can lower it later. Which makes them count
+is marked ASSUMED in the source line.
