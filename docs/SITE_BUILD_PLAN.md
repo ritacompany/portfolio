@@ -1,6 +1,6 @@
 # Site build plan: from the transported frames to a live site
 
-8 Nov 2026. Status: proposed, waiting on Chadwick's answer to the scope question at the end.
+8 Nov 2026. Status: approved direction (D8); Phase 0 next.
 
 ## Resume here
 
@@ -9,13 +9,13 @@ A new session picks this up from this file alone; the 8 Nov session stopped at i
 - Done: four frames, components, variables and text styles read live; color and type audit below;
   draft PR https://github.com/ritacompany/portfolio/pull/13 (branch `claude/lucid-carson-u56t7v`).
   Nothing in `site/` or Figma changed.
-- Open question to him: is Transported home the launch homepage, with the separate superpowers
-  section and hero elements (tracker H5 to H7) moved to after launch? Recommended yes.
-- Next action, whatever his answer: Phase 0. Write unlazy gates first (`.unlazy/site-build/`), then
+- His call 8 Nov: Transported home is the launch homepage; the old hero plan is parked as context
+  (tracker D8). Earlier homepage work counts only where it is basic motion.
+- Figma: non text layers rebound to local variables; the text pass needs his desktop Figma (see
+  Figma rebinding below).
+- Next action: Phase 0. Write unlazy gates first (`.unlazy/site-build/`), then
   rewrite `site/css/tokens.css` from the Portfolio values and the type table below, add the grid
   utility, and build the component sheet page. Haven keeps its own CSS until Phase 1.
-- On yes: retire H5 to H7 as blockers of S1 in `TRACKER.md` and build Home in Phase 1 after the
-  collection page. On no: build the collection and case study pages first.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
 
@@ -126,10 +126,8 @@ Unstyled text to settle in code:
 2. **Framework CS copy is not final.** The hero body is placeholder text in the frame, and the
    tactics pass has eight proposals waiting on his marks. The page is built from structure now and
    the copy is synced from Figma last.
-3. **The home in these frames differs from the tracker plan.** The tracker schedules a separate
-   superpowers section, a hero element roster and hero motion before any homepage build (H5 to H7,
-   S1). The transported home has none of that: superpowers sit inside About. This is the scope
-   question below.
+3. **The home in these frames differs from the old tracker plan.** Settled 8 Nov (D8): the
+   transported home launches and the old hero rows are parked.
 4. **Button and Small button have one state each.** Hover, pressed and focus get designed together
    in Phase 2; Phase 1 ships the default state plus a visible focus ring.
 
@@ -150,10 +148,18 @@ means tuning twice.
 Hosting needs no new setup: Vercel already deploys this repo from `dist/` and serves the holding
 page in `public/` until Phase 4 flips it.
 
-## Figma fixes for him (optional, nothing in code waits on them)
+## Figma rebinding, 8 Nov
 
-- Rebind the six Haven source pills from Mondai Neutral/200 to Portfolio Neutral/400.
-- Rebind the five Framework diagram lines to Portfolio Neutral/550 and Neutral/700.
-- Delete one copy of each duplicated local text style, and either delete the unused local
-  `Portfolio` collection or swap the frames' `01 Portfolio` bindings to it, so a color change in
-  this file reaches the frames.
+His ask: the frames should use this file's own variables and text styles, not the other account's.
+
+- Done from the cloud session: every non text layer in the four frames and the seven component
+  sets now uses the local `Portfolio` collection (604 paints). A new local `Haven` collection holds
+  the six Haven colors the frames use (Mantis/Bright, Mantis/500, Violet/200, Violet/300,
+  Nimbus/300, Goldfish/500). Re-read after the change: 0 non text layers left on `01 Portfolio` or
+  `02 Haven`. The six Haven source pills now use Portfolio Neutral/400, the five Framework diagram
+  lines Portfolio Neutral/550 and Neutral/700, and the two unbound #040405 fills Neutral/900.
+- Left: 592 text layers (593 fills, 466 style ranges). Figma's cloud runtime has no Satoshi and
+  text cannot be edited without its font. `scripts/figma/rebind-text-to-local.js` does the rest
+  from a session whose Figma connection runs in his desktop app.
+- Not done, on purpose: one copy of each duplicated local text style can be deleted once the text
+  pass has run and nothing on another page uses it. That check needs the whole file.
