@@ -50,3 +50,4 @@ Enforcement test: agent seven in the live run was blocked by the PreToolUse hook
 ## Report
 Verified. Cause: the guard capped a turn at one reader-check round, so a fix could never be re-checked in the same turn. Change at layer 2, the guard: six agents once aggregate.py has actually run in the turn, three before it, a third round waits for his ask. Cost: a turn can now spend up to six Sonnet reader-check agents instead of three, about 550k Sonnet tokens at most.
 Unverified: none.
+Note: in a cloud session the stop guard looks for check-fix-record.mjs under ~/.claude/skills, which is not there; the repo copy at .claude/skills/fix-the-process/scripts/check-fix-record.mjs prints "fix record complete" for this record.
