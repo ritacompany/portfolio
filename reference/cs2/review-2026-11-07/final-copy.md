@@ -1,4 +1,6 @@
-# Framework CS, final copy after his review (7 Nov)
+# Framework CS, final copy after his review (7 Nov) and the tactics pass (8 Nov)
+
+Tactics pass applied 8 Nov, his yes to all nine proposals plus cards 03 and 04 (reference/cs2/review-2026-11-07/tactics/proposals.json).
 
 Every block in frame 5763:2448 in page order, with his decisions from the review page applied (marks and notes
 in the page's db, collection marks). Three passes run over the whole page: the user (never person, people or
@@ -10,19 +12,19 @@ captions; the three run reader check.
 ## Hero (CHANGED)
 Left: Designed as an AI guide for people from underrepresented backgrounds working their way into a tech career.
 Right 1: Mondai builds each user a curriculum for the tech career they choose, called their Growth Journey, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.
-Right 2: This case study covers the weekly framework I designed to turn that curriculum into weeks the user can finish: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.
+Right 2: So I designed a weekly framework that turns that curriculum into weeks the user can finish, planned around the hours they say they can give each week. Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.
 
 ## Competitive analysis (CHANGED)
 Headline: There was no direct model for Mondai, so I looked at learning and task tracking products that each solve part of the problem.
 Card labels: 01. Progress / 02. Calendar integration / 03. Home screen / 04. Timing
 Card 01: Studies find that tracking real progress against a goal helps people reach it. So, like CareerFoundry, Mondai shows two dates side by side: the target date the plan sets and the pace date the user’s progress points to.
-Card 02 (his, unchanged): Motion showed me AI could find free time in someone’s calendar. But research shows that pushing people to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.
+Card 02 (his, user pass applied): Motion showed me AI could find free time in a user’s calendar. But research shows that pushing people to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.
   User pass: "someone’s calendar" becomes "a user’s calendar".
-Card 03: Linear opens straight onto the work in front of you. Research on motivation finds near goals build confidence and progress while a distant goal does little, so the home screen shows only this week’s work, and the full route to the goal has its own page.
-Card 04: Every learning app I reviewed, even the most structured, let people fit lessons around their day. Research shows that having a say raises motivation, and that learners with clear goals and plans are more likely to reach them. So the plan sets the goal, and each user decides where in their day the work goes.
+Card 03: Linear opens straight onto the work in front of you. I borrowed that, so Mondai’s home screen shows only this week’s work, and the full route to the goal has its own page.
+Card 04: Every learning app I reviewed, even the most structured, let learners fit lessons around their day. So the plan sets the goal, and each user decides where in their day the work goes.
   Why card 04 lost target and pace: his overkill point. Card 01 already carries target and pace as the borrowed idea, the Growth Journey block names the journey's pair and the rail block defines them; card 04 was the one repeating it.
-Sources: Harkin et al. 2016; Patall, Cooper and Robinson 2008; Kizilcec, Perez-Sanagustin and Maldonado 2017; Baker, Evans and Dee 2016; Bandura and Schunk 1981
-  Citation check 7 Nov (all seven confirmed by Crossref, findings from abstracts): Kizilcec 2017 is the right year and paper (goal setting and planning in six MOOCs, card 04); the 2020 in the portfolio record is a different paper. Villar 2013 (progress bars in web surveys) and Lally 2010 (habit formation) support no card and are cut. Harkin is card 01, Baker card 02, Bandura and Schunk card 03, Patall and Kizilcec card 04. Harkin is mostly health goals, so card 01 says studies, not learners.
+Sources: Harkin et al. 2016; Baker, Evans and Dee 2016
+  Citation check 7 Nov (all seven confirmed by Crossref, findings from abstracts): Kizilcec 2017 is the right year and paper (goal setting and planning in six MOOCs, card 04); the 2020 in the portfolio record is a different paper. Villar 2013 (progress bars in web surveys) and Lally 2010 (habit formation) support no card and are cut. Harkin is card 01, Baker card 02. After the tactics pass (8 Nov) cards 03 and 04 cite no study, so Bandura and Schunk, Patall and Kizilcec are off the sources line. Harkin is mostly health goals, so card 01 says studies, not learners.
 
 ## The foundation we built on (CHANGED)
 Headline: Mondai calls the whole route to a user’s new career, and the curriculum that gets them there, their Growth Journey.
@@ -34,7 +36,7 @@ Hierarchy: Each Pathway holds Action Items, the individual pieces of work the us
 Headline (his): The whole route has a page of its own, one users open now and then to see how far they’ve come and what’s left.
 Body 1: Users need to see how the Pathway they’re on fits into the whole journey, so this page zooms out to show all of it.
 Body 2 (his): Long term metrics like their journey target, pace and progress sit here out of the user’s immediate view.
-Body 3: Keeping them here was intentional. Two sets of dates on the weekly screen would compete, so the weekly screen shows only the current Pathway’s target and pace, and the journey’s sit here for anyone who wants the big picture.
+Body 3: I kept the journey’s dates here because two sets of dates on the weekly screen would compete.
 
 ## Pathway (CHANGED)
 Headline: Each Pathway has its own page, with all of its Action Items in the order the user works through them, including the ones still locked.
@@ -44,9 +46,9 @@ Focus Areas: Focus Areas, like user testing or wireframes, group the Pathway’s
 ## Action Hub (CHANGED)
 Eyebrow: Action Hub
 Headline: Most of a user’s week happens on one screen: the list of Action Items they come back to nearly every day.
-Body 1: I designed the Action Hub around one question for the user: what do I need to do this week? The full curriculum stays on the Growth Journey and Pathway pages.
+Body 1: I designed the Action Hub around one question for the user: what do I need to do this week?
 Body 2 (his, unchanged): Each week opens with a short headline and a paragraph the AI writes about that week’s work. It should read like a friend telling the user what the week is about before they look at their list, so it talks about the work itself and not about how much they’ve finished.
-Body 3: Each Action Item builds on the one before, so they’re finished in order and only the Active one at the top can be checked off.
+Body 3: Each Action Item builds on the one before, so they’re finished in order and only the one at the top, marked Active, can be checked off.
 
 ## Action Item (CHANGED)
 Eyebrow: Action Item
@@ -55,7 +57,7 @@ Body: I couldn’t know yet how the AI would behave or what it would do well. Th
 
 ## Personalized timeline (CHANGED)
 Headline: How many Action Items a user gets in a week depends on two things, and the user sets one of them.
-Capacity: Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub. Everything else is planned from that number.
+Capacity: Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub. Everything else is planned from that number. Mondai asks instead of learning the number from how the user works, because learning it would leave the first two or three weeks without a real plan. The risk is that users promise more time than they have, so the screen has them type an exact number of hours, which makes them count, instead of picking a generous range. If their weeks keep falling short, the plan can lower it later.
 Effort (label was Cognitive load): How much work each Action Item takes, which Mondai sizes item by item.
 Example: Aisha’s capacity is 6 hours a week. Last week that fit 4 Action Items. This week it fits 3, because this week’s take more effort.
 
@@ -76,16 +78,16 @@ Body 5: Its time is only a suggestion. An Action Item is due by the end of its w
 
 ## Falling behind, part 1: the right rail (CHANGED)
 Headline (Satoshi Medium 40, not DM Sans): The Action Hub keeps two dates for the Pathway the user is on: where they’re aiming and where they’re headed.
-Body: Small visible wins do more for motivation than a distant finish line, so the dates here belong to the current Pathway, not the whole journey. The right rail shows two of them.
+Body: Both sit in a rail down the right side of the Action Hub, and the target stays put on purpose. If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.
 Pathway target (his): The date this Pathway should be done by, set from the hours the user gives each week. It holds steady through an ordinary week and moves when those hours change.
 Pathway pace (his): Where the user’s progress says they will finish. It updates once a week, so nobody watches it tick with every finished item. In week one it matches the target.
 Ahead of target: The gap between the two dates, in days. It is the only ahead or behind signal on the rail.
 
 ## Falling behind, part 2: Rollover (CHANGED)
-Headline (Satoshi Medium 40): Every Action Item is due by Saturday night, and when one is still open, everything after it moves a little later.
+Headline (Satoshi Medium 40): When an Action Item is still open on Saturday night, everything after it moves a little later.
 Rollover label (his): An Action Item still open when the week ends on Saturday night.
 Subhead (his): The Rollover effect
-Body: A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide. A week can only hold the hours the user set aside for it (their capacity). The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.
+Body: A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.
 Sources line to add under the block: Soman and Cheema 2004.
 
 ## Buffer flow (CHANGED)
@@ -108,7 +110,7 @@ Body: This is the first screen a user sees each Sunday, before the Action Hub. I
 
 ## Ending (CHANGED, version A, accepted)
 Eyebrow: Where it stands
-Headline: The framework is built and Mondai hasn’t launched yet, so the numbers that would show it working don’t exist yet.
+Headline: The framework is built and Mondai hasn’t launched, so the numbers that would show it working don’t exist yet.
 Body 1: I decided what success looks like before the first week ran. The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.
 Body 2: A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for. Testing with the first users comes next, and these are the two numbers I’ll count from it.
 

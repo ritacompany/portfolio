@@ -77,3 +77,12 @@ mechanism (reader check, 3 of 3); one sentence carries three ideas. Final: The r
 time than they have, so the screen has them type an exact number of hours, which makes them count, instead of
 picking a generous range. If their weeks keep falling short, the plan can lower it later. Which makes them count
 is marked ASSUMED in the source line.
+
+## Cards 03 and 04, 8 Nov (his yes)
+Card 03 draft: Linear opens straight onto the work in front of you. I borrowed that, so the home screen shows only
+this week's work, and the full route to the goal has its own page. Audit: the home screen could read as Linear's;
+no AI pattern. Final: ...so Mondai’s home screen shows only this week’s work...
+Card 04 draft: Every learning app I reviewed, even the most structured, let learners fit lessons around their day.
+So the plan sets the goal, and each user decides where in their day the work goes. Audit: their day twice reads as
+an echo; kept on purpose, it carries the borrowed idea into Mondai's version. People became learners for his
+wording rule. No new fact in either.

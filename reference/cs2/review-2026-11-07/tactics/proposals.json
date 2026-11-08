@@ -4,9 +4,9 @@
   "block": "Hero",
   "field": "Right 2",
   "cur": "This case study covers the weekly framework I designed to turn that curriculum into weeks the user can finish: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.",
-  "new": "So I designed the weekly framework around the hours the user says they can give each week. Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.",
+  "new": "So I designed a weekly framework that turns that curriculum into weeks the user can finish, planned around the hours they say they can give each week. Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.",
   "tactic": "Steal the thunder (cs-t25); answer first (cs-t06); the nut graf fails as a table of contents (cs-t17)",
-  "why": "Two moves. 1. Answer first: Right 1 ends on the hard part (no steady week), and Right 2 then lists chapters, which the bank names as the nut graf failure: a table of contents, not a decision. The new first sentence answers Right 1 with the decision, joined by so, your habit. 2. Steal the thunder: a hiring manager will notice there are no results, so say it first, in your frame, and the bank's research says a weakness you disclose first is weighed less than one the reader finds. It fails only for a weakness nobody would notice, and this one everyone notices. The three topics stay word for word, now framed as reasoning. The ending still opens on status; that is the status beat a first build ending needs, so the two are a setup and a payoff, not a repeat. Reader check round 3 flagged a separate launch sentence as not following from the decision (3 of 3), so the launch fact now leads into what the case study shows, in one sentence.",
+  "why": "Two moves. 1. Answer first: Right 1 ends on the hard part (no steady week), and Right 2 then lists chapters, which the bank names as the nut graf failure: a table of contents, not a decision. The new first sentence answers Right 1 with the decision, joined by so, your habit. 2. Steal the thunder: a hiring manager will notice there are no results, so say it first, in your frame, and the bank's research says a weakness you disclose first is weighed less than one the reader finds. It fails only for a weakness nobody would notice, and this one everyone notices. The three topics stay word for word, now framed as reasoning. The ending still opens on status; that is the status beat a first build ending needs, so the two are a setup and a payoff, not a repeat. Reader check round 3 flagged a separate launch sentence as not following from the decision (3 of 3), so the launch fact now leads into what the case study shows, in one sentence. Reader check round 4 flagged weekly framework as undefined (2 of 3), so the sentence takes back your original definition: a weekly framework that turns that curriculum into weeks the user can finish.",
   "src": "Capacity in hours per week is the single scheduling input (Archive:66, CONFIRMED); a fixed weekly cadence sets this audience up to fail from week one (Archive:68, CONFIRMED); Mondai has not launched (your 7 Nov correction, final-copy.md ending A)."
  },
  {
@@ -88,5 +88,35 @@
   "tactic": "Not a tactic: a one word fix",
   "why": "Yet appears twice. Nothing else changes: the ending states pre launch status, the two measures and the next step, which the first build endings report says is the honest close. Measured: 3 lines at 708px, the same as now (the ending's real width in Figma is not set yet).",
   "src": "Your accepted ending A, unchanged otherwise."
+ },
+ {
+  "id": "t-card03",
+  "block": "Competitive analysis",
+  "field": "Card 03",
+  "cur": "Linear opens straight onto the work in front of you. Research on motivation finds near goals build confidence and progress while a distant goal does little, so the home screen shows only this week’s work, and the full route to the goal has its own page.",
+  "new": "Linear opens straight onto the work in front of you. I borrowed that, so Mondai’s home screen shows only this week’s work, and the full route to the goal has its own page.",
+  "tactic": "The rationale recital (cs-t48); the inevitable decision (cs-t40)",
+  "why": "His yes 8 Nov. All four cards ran research shows X, so Mondai does Y. Cards 01 and 02 keep their research (01 introduces target and pace, 02 is the only card with a rejected option); 03 and 04 state the lesson borrowed.",
+  "src": "Archive: learning apps and task tools are adjacent products for pattern reference (round 2 finding, CONFIRMED). Bandura and Schunk 1981 now supports no card and leaves the sources line."
+ },
+ {
+  "id": "t-card04",
+  "block": "Competitive analysis",
+  "field": "Card 04",
+  "cur": "Every learning app I reviewed, even the most structured, let people fit lessons around their day. Research shows that having a say raises motivation, and that learners with clear goals and plans are more likely to reach them. So the plan sets the goal, and each user decides where in their day the work goes.",
+  "new": "Every learning app I reviewed, even the most structured, let learners fit lessons around their day. So the plan sets the goal, and each user decides where in their day the work goes.",
+  "tactic": "The rationale recital (cs-t48)",
+  "why": "His yes 8 Nov, as card 03. People becomes learners (his wording rule allows learners for other products' users; the user is kept for Mondai's).",
+  "src": "Patall 2008 and Kizilcec 2017 now support no card and leave the sources line."
+ },
+ {
+  "id": "t-sources",
+  "block": "Competitive analysis",
+  "field": "Sources",
+  "cur": "Sources: Harkin et al. 2016; Patall, Cooper and Robinson 2008; Kizilcec, Perez-Sanagustin and Maldonado 2017; Baker, Evans and Dee 2016; Bandura and Schunk 1981",
+  "new": "Sources: Harkin et al. 2016; Baker, Evans and Dee 2016",
+  "tactic": "Follows t-card03 and t-card04",
+  "why": "Only the studies a card still cites.",
+  "src": "Citation check 7 Nov in final-copy.md: Harkin is card 01, Baker card 02."
  }
 ]
