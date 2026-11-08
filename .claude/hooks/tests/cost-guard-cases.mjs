@@ -18,6 +18,7 @@ const cases = [
   ['re-check round after a combined check is allowed', [user('do the pass'), ...agents(3), agg], 'allow'],
   ['sixth agent of the re-check round is allowed', [user('do the pass'), ...agents(3), agg, ...agents(2, 3)], 'allow'],
   ['third round is denied', [user('do the pass'), ...agents(3), agg, ...agents(3, 3), agg], 'deny'],
+  ['a command that only mentions the combine script does not open a round', [user('do the pass'), ...agents(3), tool('Bash', { command: "grep -n 'aggregate' notes.md" }, 'b2'), tool('Bash', { command: "echo 'six once aggregate' + '.py has run'".replace("' + '", '') }, 'b3')], 'deny'],
   ['his re-run ask still opens a third round', [user('please re-run the check'), ...agents(6), agg], 'allow'],
 ];
 let bad = 0;

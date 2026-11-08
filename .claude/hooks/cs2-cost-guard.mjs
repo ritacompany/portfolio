@@ -2,8 +2,8 @@
 // Cost and process guards (3 Nov, his ask: rules that only live in WORKING_LOOP did not hold).
 // The 3 Nov session ran nine reader-check agents in one turn and grew to 375k tokens on Opus, with every
 // rule against it written down. Each guard below blocks instead of asking.
-//   pre:    PreToolUse. Agent: Sonnet or Haiku only, and at most three per turn, unless his latest message
-//           asks for more or for Opus. Write/Edit on a process doc: fix-the-process must be loaded first.
+//   pre:    PreToolUse. Agent: Sonnet or Haiku only, and at most three per turn (six once aggregate.py has
+//           run in the turn, so one re-check round fits), unless his latest message asks for more or for Opus. Write/Edit on a process doc: fix-the-process must be loaded first.
 //   stop:   Stop. Over 250k tokens: rewrite HANDOFF, commit, push and tell him to start a new session.
 //           A process doc edited this session: a fix record in fixes/ written this session must pass the
 //           skill's checker.
@@ -44,7 +44,9 @@ if (mode === 'pre') {
     const sonnet = /\b(sonnet|haiku)\b/i.test(inp.model || '');
     if (!sonnet && !/\bopus\b/i.test(ask)) out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: 'Sub-agents run on Sonnet (model: "sonnet"); forks and Opus agents need him to ask for Opus. Pass model: "sonnet".' } });
     const before = uses(start).filter(x => (x.name === 'Agent' || x.name === 'Task') && x.id !== p.tool_use_id).length;
-    if (before >= 3 && !/\b(more agents|another round|re-?run|run (it|them|the check) again|fan out|\d+ agents)\b/i.test(ask)) out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: `Three sub-agents already ran this turn (one reader-check round). A re-run waits for him: show him what failed and what you changed, and ask before running another round.` } });
+    const combined = uses(start).some(x => x.name === 'Bash' && /(^|[;&|(]\s*)python3?\s+(-\S+\s+)*\S*aggregate\.py\b/m.test((x.input && x.input.command) || ''));
+    const cap = combined ? 6 : 3;
+    if (before >= cap && !/\b(more agents|another round|re-?run|run (it|them|the check) again|fan out|\d+ agents)\b/i.test(ask)) out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: cap === 3 ? 'Three sub-agents already ran this turn (one reader-check round). Combine it with aggregate.py, fix the flags, then one re-check round is allowed.' : 'Two reader-check rounds already ran this turn. A third waits for him.' } });
   }
   if ((tool === 'Write' || tool === 'Edit' || tool === 'MultiEdit') && PROCESS_DOCS.test(rel(inp.file_path)) && !skillLoaded('fix-the-process')) {
     out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: `${rel(inp.file_path)} is a process doc. Load the fix-the-process skill first: a change to how sessions work needs a cause, a layer and a fix record, and a rule with nothing enforcing it is not a fix.` } });

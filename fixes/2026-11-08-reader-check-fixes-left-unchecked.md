@@ -1,6 +1,6 @@
 # Fix: every round ended with "not re-run yet" and handed him the re-check
 
-Status: not verified
+Status: verified
 
 ## Evidence
 Bad output: my report, 8 Nov round 2: "Not done yet: the reader check hasn't run on the eight replacement lines. It was the third check today and the three-agent limit per turn stopped it." The same line, in other words, ended rounds 1 and 2.
@@ -30,20 +30,23 @@ Check: node .claude/hooks/tests/cost-guard-cases.mjs
 Result on bad output: FAIL. "FAIL re-check round after a combined check is allowed (deny)", "FAIL sixth agent of the re-check round is allowed (deny)", COST_GUARD_CASES_FAIL.
 
 ## Change
-Files changed: .claude/hooks/tests/cost-guard-cases.mjs (new). The guard change itself was refused by auto mode (the session may not edit its own hooks). The exact change, for him to apply: in .claude/hooks/cs2-cost-guard.mjs pre mode, replace the line starting "if (before >= 3" with
+Files changed: .claude/hooks/tests/cost-guard-cases.mjs (new in the first session; one case added in the second), .claude/hooks/cs2-cost-guard.mjs, reference/cs2/WORKING_LOOP.md Checks step 3. The first session's guard edit was refused by auto mode; he approved it on 8 Nov and a second session applied it. Change, in cs2-cost-guard.mjs pre mode, replacing the line starting "if (before >= 3":
   const combined = uses(start).some(x => x.name === 'Bash' && /aggregate\.py/.test((x.input && x.input.command) || ''));
   const cap = combined ? 6 : 3;
   if (before >= cap && !/\b(more agents|another round|re-?run|run (it|them|the check) again|fan out|\d+ agents)\b/i.test(ask)) out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: cap === 3 ? 'Three sub-agents already ran this turn (one reader-check round). Combine it with aggregate.py, fix the flags, then one re-check round is allowed.' : 'Two reader-check rounds already ran this turn. A third waits for him.' } });
-Instruction lines: +0 / -0
+Applied with one change from the line above: the combine test is /(^|[;&|(]\s*)python3?\s+(-\S+\s+)*\S*aggregate\.py\b/m, not /aggregate\.py/. The live run showed why: a Bash heredoc that only mentioned aggregate.py in a comment opened the six cap, so a fourth agent got through before any combine. Case added: "a command that only mentions the combine script does not open a round".
+Guard header comment and WORKING_LOOP Checks step 3 now state the same limit as the code.
+Instruction lines: +1 / -1 (WORKING_LOOP step 3 sentence reworded, one line longer in wrap)
 Net growth reason: n/a
 
 ## Verification
-Fresh run: not run; the guard is unchanged.
+Fresh run: live Agent calls in the applying session (8 Nov). Three Haiku agents ran; aggregate.py ran (python3 -I aggregate.py on three runs); agents five and six were allowed; agent seven was denied with "Two reader-check rounds already ran this turn. A third waits for him."
 Before: COST_GUARD_CASES_FAIL (two cases).
-After: not run.
-Check result after: not run.
-Second case: not run.
-Enforcement test: the cases file covers a third round still being denied and his re-run ask still opening one.
+After: COST_GUARD_CASES_PASS (seven cases).
+Check result after: PASS.
+Second case: the live run surfaced the loose combine match (agent four allowed before any combine). After tightening, the guard replayed on that same live transcript returned deny for a fourth agent, and the new case passes.
+Enforcement test: agent seven in the live run was blocked by the PreToolUse hook. The cases file covers a third round being denied and his re-run ask still opening one.
 
 ## Report
-Unverified: he applies the guard change (or allows this session to), then node .claude/hooks/tests/cost-guard-cases.mjs must print COST_GUARD_CASES_PASS. Cost: a turn can now spend up to six Sonnet reader-check agents instead of three, about 550k Sonnet tokens at most.
+Verified. Cause: the guard capped a turn at one reader-check round, so a fix could never be re-checked in the same turn. Change at layer 2, the guard: six agents once aggregate.py has actually run in the turn, three before it, a third round waits for his ask. Cost: a turn can now spend up to six Sonnet reader-check agents instead of three, about 550k Sonnet tokens at most.
+Unverified: none.
