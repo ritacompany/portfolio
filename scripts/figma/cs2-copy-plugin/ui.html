@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <script>
+    try {
+      window.localStorage.getItem('x')
+    } catch (e) {
+      const store = new Map()
+      const shim = {
+        getItem: (key) => store.has(key) ? store.get(key) : null,
+        setItem: (key, value) => { store.set(key, String(value)) },
+        removeItem: (key) => { store.delete(key) },
+        clear: () => { store.clear() },
+        key: (index) => Array.from(store.keys())[index] ?? null,
+        get length() { return store.size },
+      }
+      Object.defineProperty(window, 'localStorage', { value: shim, configurable: true })
+    }
+  </script>
+  <style>
+    html, body { margin: 0; padding: 0; height: auto; min-height: 0; }
+    body { display: block; }
+    #plugin-root { height: auto; }
+    body > #plugin-root > fig-footer { background-color: var(--figma-color-bg); box-shadow: inset 0 1px 0 0 var(--figma-color-border); border-radius: 0 0 var(--radius-large) var(--radius-large); }
+    #fonts, #result { font-family: var(--font-family); font-size: 11px; color: var(--figma-color-text); line-height: 16px; margin: 0; white-space: pre-wrap; }
+    #result { color: var(--figma-color-text-secondary); }
+  </style>
+</head>
+<body>
+  <div id="plugin-root">
+    <fig-content>
+      <fig-field>
+        <label>Satoshi check</label>
+        <p id="fonts">Checking fonts…</p>
+      </fig-field>
+      <fig-field>
+        <label>Result</label>
+        <p id="result">Applies the reviewed CS2 copy to Transported Framework CS. Layers you edited since 8 Nov are skipped, not overwritten.</p>
+      </fig-field>
+    </fig-content>
+    <fig-footer sticky>
+      <label id="status">Checking</label>
+      <fig-button id="run" type="submit" disabled>Apply copy</fig-button>
+    </fig-footer>
+  </div>
+  <script>
+    const post = (message) => parent.postMessage({ pluginMessage: message }, '*')
+    const $ = (id) => document.getElementById(id)
+    const run = $('run')
+    run.addEventListener('click', () => {
+      if (run.hasAttribute('disabled')) return
+      run.setAttribute('disabled', '')
+      $('status').textContent = 'Applying'
+      post({ type: 'apply' })
+    })
+    window.onmessage = (event) => {
+      const m = event.data.pluginMessage
+      if (!m) return
+      if (m.type === 'fonts') {
+        $('fonts').textContent = m.results.join('\n') + (m.frameOk ? '' : '\nTransported Framework CS frame not found in this file.')
+        if (m.ok && m.frameOk) { $('status').textContent = 'Ready'; run.removeAttribute('disabled') }
+        else $('status').textContent = m.ok ? 'Wrong file' : 'Satoshi missing'
+      }
+      if (m.type === 'done') {
+        if (m.error) { $('status').textContent = 'Stopped'; $('result').textContent = m.error; return }
+        $('status').textContent = 'Done'
+        $('result').textContent =
+          'Changed or already right: ' + m.changed + ' of ' + m.total + ' layers, plus the extras\n' +
+          'Skipped because you edited them since: ' + (m.skipped.length ? m.skipped.join('; ') : 'none') + '\n' +
+          'Missing: ' + (m.missing.length ? m.missing.join(', ') : 'none')
+      }
+    }
+    const root = $('plugin-root')
+    new ResizeObserver(() => {
+      post({ type: 'resize', height: Math.ceil(root.getBoundingClientRect().height) })
+    }).observe(root)
+  </script>
+</body>
+</html>

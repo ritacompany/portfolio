@@ -36,13 +36,17 @@ help.figma.com article 360039956774 (upload fonts to an organization).
 
 ## Routes that work, best first
 
-1. **Generative plugin in Chadwick's Figma account.** Claude writes a plugin with the Figma MCP
-   tool `create_generative_plugin`, then puts each batch of edits into it with
-   `update_generative_plugin`. The plugin runs inside Chadwick's own Figma, which sees Satoshi
-   through the local font helper. His only step per batch: open the link Claude gives him and click
-   Run. No pasting. Status: researched, not built. It needs his yes to create the plugin in
-   "ritadev's team". The ready made copy for Transported Framework CS is already in
-   `scripts/figma/paste-framework-cs.js` and can be wrapped into the plugin as is.
+1. **Generative plugin in Chadwick's Figma account (built 8 Nov).** Plugin "CS2 copy into
+   Transported Framework", id `9bfe0403-a06d-4a2c-92d9-dd1206de5370`, in "ritadev's team", version
+   `18a9e6bfd6e1ca469b5df0d4bcc12385e29ce25a`. It runs inside his own Figma, which sees Satoshi
+   through the local font helper. On open it tries to load Satoshi Regular, Medium and Bold and
+   shows the result; Apply copy stays off unless all three load and the Transported Framework CS
+   frame is found. It then makes the same edits as `scripts/figma/paste-framework-cs.js`, skipping
+   any layer edited since 8 Nov. Open it with
+   `https://www.figma.com/design/5RO0m4bYYrTvbiaOgaU3tI/?node-id=5812-16446&try-tool-resource-content-id=9bfe0403-a06d-4a2c-92d9-dd1206de5370&try-tool-resource-type=gen_tool`.
+   Source is mirrored in `scripts/figma/cs2-copy-plugin/`. For a new batch of edits, a session
+   replaces `code.ts` with the Figma MCP tool `update_generative_plugin` (the repo Figma gate needs
+   Chadwick's message to say build) and he clicks Run again. Not yet run by him as of this note.
 2. **Scripter (works today).** Paste `scripts/figma/paste-framework-cs.js` into the Scripter plugin
    in his own Figma tab and run it. Same font access as route 1, but manual pasting.
 3. **Organization plan plus Satoshi uploaded as a shared font.** The only route where Claude edits
