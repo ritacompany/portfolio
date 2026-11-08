@@ -86,3 +86,17 @@ Card 04 draft: Every learning app I reviewed, even the most structured, let lear
 So the plan sets the goal, and each user decides where in their day the work goes. Audit: their day twice reads as
 an echo; kept on purpose, it carries the borrowed idea into Mondai's version. People became learners for his
 wording rule. No new fact in either.
+
+## Round 3, 8 Nov (repetition, reader flags, fit)
+Run as the skill's loop on every line in proposals-r3.json. Drafts that failed and why:
+- Card 03 draft: I borrowed that, so Mondai's home screen... Audit: reads as process (reader check 2 of 3). Final: Linear opens straight onto the work in front of you, and so does Mondai: its home screen shows only this week’s work.
+- Card 01 draft cut both definitions; audit and reader check: target and pace undefined at first use. Final keeps his gloss, people out.
+- Card 02: showed me becomes uses, people becomes students (the study's subjects). Plain.
+- Competitive analysis headline: Mondai had no direct model, but learning apps and task trackers each solve part of the problem. Audit: but carries the contrast without a tidy pair; no pattern.
+- Rail target and pace: cut restated clauses only; his words kept.
+- Rollover label: An Action Item carried over from last week. Plain, no pattern.
+- Buffer flow body 3: What the screen says depends on the gap. Plain. Body 4: That’s why the screen doesn’t wait for the start of next week. Plain.
+- Clean slate draft: so one open Action Item means Rollover. Audit: the so is a non sequitur (reader check 3 of 3). Final: This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead.
+- Ending draft: The framework is built, and two numbers from its first users will show whether it works. Audit: repeats Body 2's first users. Second draft ended built for after is built: an echo. Final: The framework is built, so the question left is whether it works for the users it was made for.
+- Schedule body 5: An Action Item’s time is only a suggestion. It’s due... Plain.
+No new facts in any line.

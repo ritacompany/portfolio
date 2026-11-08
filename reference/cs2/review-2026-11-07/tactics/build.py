@@ -6,7 +6,10 @@ E = html.escape
 HERE = os.path.dirname(os.path.abspath(__file__))
 R2 = os.path.join(HERE, '..', 'round2', 'build.py')
 TEMPLATE = os.path.join(HERE, '..', 'template.html')
-P = json.load(open(os.path.join(HERE, 'proposals.json')))
+import sys
+PFILE = sys.argv[1] if len(sys.argv) > 1 else 'proposals.json'
+P = json.load(open(os.path.join(HERE, PFILE)))
+R3 = PFILE != 'proposals.json'
 
 src = open(R2).read()
 SCRIPT = re.search(r'SCRIPT = r"""(.*?)"""', src, re.S).group(1).replace("'fcs-review-r2b'", "'fcs-tactics-1'")
@@ -37,9 +40,11 @@ CHECKS = """<ul>
 <li><b>Reader check:</b> Three runs per round. Round 1 (six blocks): hero and ending PASS; flags on Active, the rail and the earlier version sentence. Round 2: Action Hub and Rollover PASS. Round 3 (hero, Growth Journey, Personalized timeline, rail): Growth Journey PASS; flags on the hero launch sentence and the capacity risk sentence, both rewritten; the rail flag (2 of 3) is on your unchanged pace definition, left as is. Kept against the check: the Rollover earlier version sentence, flagged as process story, kept as the page's one wrong turn. <b>Not yet run:</b> the hero and capacity lines in their final form; the per turn agent limit stopped it. They run with whatever you accept, before the paste list.</li>
 </ul>"""
 
+if R3:
+    INTRO = open(os.path.join(HERE,'r3-intro.html')).read(); CHECKS = open(os.path.join(HERE,'r3-checks.html')).read()
 ids = []; arts = []
 for i, p in enumerate(P, 1):
-    fid = 'tx-' + p['id'][2:]; ids.append(fid)
+    fid = ('tz-' + p['id'][3:]) if R3 else ('tx-' + p['id'][2:]); ids.append(fid)
     arts.append(f'''<article class="find" id="{fid}">
 <div class="fhead"><span class="num">{i}. {E(p["block"])}</span><span class="src">{E(p["field"])}</span>{controls(fid)}</div>
 <div class="pair"><div class="was"><span class="tag">Now</span><span class="t">{E(p["cur"])}</span></div>
