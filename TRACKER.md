@@ -160,6 +160,8 @@ At most two besides the coordinator, and only on rows whose Waits on is done.
 
 ## In flight
 
+- **Site build (8 Nov):** he moved the four pages into Figma file `5RO0m4bYYrTvbiaOgaU3tI`, page CS: Transported home `5812:22862`, Multi-CS Model `5812:22999`, Haven CS `5812:21569`, Framework CS `5812:16446`, with the shared components beside them. Plan, color audit and type table in `docs/SITE_BUILD_PLAN.md`. The transported home has no separate superpowers section or hero elements, so the stage plan above (H5 to H7 before S1) may be superseded; waiting on his scope call before rows change.
+
 - **Coordinator (21 Oct, stopped at 87% of the 5 hour limit):** homepage waits on him: D7 headline (the biggest unblock), hero roster, header, footer and collection picks, reviews of the stage 1 and 2 prototypes, and the cleaned master copy `4308:6176`. Design system CS: his answers to GAPS.md are in `reference/design-system-cs/ANSWERS.md`; the angle leans to a system set up so AI can build from it; recommended after image is one token change moving through every screen; tokens finish on the other account within days. Open: the CS2 guard false-flagging git pulls (his yes or no), and the triage session waits on his call about `claude/confident-poincare-b10757` (`claude/journey-map-prototype` is safe to delete).
 
 - **Stage 2 options (16 Oct):** H1, H23, H16 and F9 have pick pages; H8, H16a and H13 are built on defaults, all provisional, in `prototypes/homepage-foundations/` (`headline-options`, `header-styles`, `nav-scroll`, `footer-transitions`, `collection-page`). Nothing touched Figma or `site/`. Open: where the VS Goods header reference lives in Figma.
