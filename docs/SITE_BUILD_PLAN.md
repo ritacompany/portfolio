@@ -21,8 +21,8 @@ A new session picks this up from this file alone.
 - Found while building, listed on the sheet: the Link component's Block Default fill and every Nav
   and Footer hover and pressed fill are still bound to Mondai's remote `Color primitives`
   (Neutral/200 #c9cfc6, Neutral/150 #d9dfd1); the 8 Nov rebinding check covered `01 Portfolio` and
-  `02 Haven` only. Code uses Portfolio Neutral/400 and Neutral/200; the Figma fills still need moving to the local
-  Portfolio variables (asked him 8 Nov). He fixed the footer in Figma 8 Nov: Resume on column 10,
+  `02 Haven` only. Code uses Portfolio Neutral/400 and Neutral/200; the Figma fills were moved to those local
+  Portfolio variables on 8 Nov at his yes; nothing in the Link set is on a remote library now. He fixed the footer in Figma 8 Nov: Resume on column 10,
   LinkedIn on 7, bottom row gap 176; code and the reference renders follow. The copyright reads
   @2026 as drawn.
 - Figma measures text without letter spacing after the last glyph; CSS adds it. Negative tracked
