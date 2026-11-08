@@ -1,30 +1,413 @@
 {
-  "_source": "Figma file 5RO0m4bYYrTvbiaOgaU3tI, page CS, read 9 Nov 2026 through the Plugin API. Boxes are relative to the page frame. A box with a decided field overrides the Figma value on purpose; the reason is beside it.",
-  "pages": {
-    "collection": {
-      "frame": "5812:22999", "url": "/mondai/", "image": "dev/pages/figma/collection.png", "w": 1440, "h": 900,
-      "css": "css/collection.css",
-      "boxes": [
-        { "name": "navbar", "sel": "[data-figma-node='5812:23035']", "x": 0, "y": 20, "w": 1440, "h": 14.04 },
-        { "name": "Mondai mark", "sel": "[data-figma-node='5812:23003']", "x": 40, "y": 167, "w": 40, "h": 40.57 },
-        { "name": "Mondai heading", "sel": "[data-figma-node='5812:23006']", "x": 100, "y": 172.79, "w": 128, "h": 29 },
-        { "name": "intro", "sel": "[data-figma-node='5812:23007']", "x": 40, "y": 247.57, "w": 668.69, "h": 66, "tol": 1.5, "why": "Figma measures three trimmed lines of Heading/20 at 66; the browser at 67.23. One line Heading/40 matches exactly, so this is how Figma rounds multi line trim, not a layout gap" },
-        { "name": "slashes", "sel": "[data-figma-node='5812:23010']", "x": 40, "y": 408, "w": 11, "h": 11 },
-        { "name": "collection label", "sel": "[data-figma-node='5812:23011']", "x": 67, "y": 409, "w": 170, "h": 9 },
-        { "name": "row 1", "sel": "[data-figma-node='5812:23014']", "x": 40, "y": 439, "w": 1360, "h": 131 },
-        { "name": "row 1 title", "sel": "[data-figma-node='5812:23014'] .context__title", "x": 90, "y": 481.5, "w": 394, "h": 46 },
-        { "name": "row 1 icon", "sel": "[data-figma-node='5812:23014'] .context__icon", "x": 520, "y": 481.5, "w": 46, "h": 46 },
-        { "name": "row 1 badge", "sel": "[data-figma-node='5812:23014'] .badge", "x": 602, "y": 475, "w": 132, "h": 59 },
-        { "name": "row 2", "sel": "[data-figma-node='5812:23015']", "x": 40, "y": 570, "w": 1360, "h": 131, "decided": "Figma has this row fixed at 992 while row 1 fills 1360; built full width so the three rows and their lines match" },
-        { "name": "row 2 title", "sel": "[data-figma-node='5812:23015'] .context__title", "x": 90, "y": 612.5, "w": 479, "h": 46 },
-        { "name": "row 2 icon", "sel": "[data-figma-node='5812:23015'] .context__icon", "x": 605, "y": 612.5, "w": 46, "h": 46 },
-        { "name": "row 2 badge", "sel": "[data-figma-node='5812:23015'] .badge", "x": 687, "y": 606, "w": 135, "h": 59 },
-        { "name": "row 3", "sel": "[data-figma-node='5812:23016']", "x": 40, "y": 701, "w": 1360, "h": 131, "decided": "Figma has this row fixed at 992 with its status overflowing to 1390; built full width" },
-        { "name": "row 3 title", "sel": "[data-figma-node='5812:23016'] .context__title", "x": 90, "y": 743.5, "w": 388, "h": 46 },
-        { "name": "row 3 icon", "sel": "[data-figma-node='5812:23016'] .context__icon", "x": 514, "y": 743.5, "w": 46, "h": 46 },
-        { "name": "row 3 badge", "sel": "[data-figma-node='5812:23016'] .badge", "x": 596, "y": 737, "w": 139, "h": 59 },
-        { "name": "row 3 status", "sel": "[data-figma-node='5812:23016'] .context__status", "x": 1180, "y": 758, "w": 210, "h": 17 }
-      ]
+ "_source": "Figma file 5RO0m4bYYrTvbiaOgaU3tI, page CS, read 9 Nov 2026 through the Plugin API. Boxes are relative to the page frame. A box with a decided field overrides the Figma value on purpose; the reason is beside it.",
+ "pages": {
+  "collection": {
+   "frame": "5812:22999",
+   "url": "/mondai/",
+   "image": "dev/pages/figma/collection.png",
+   "w": 1440,
+   "h": 900,
+   "css": "css/collection.css",
+   "boxes": [
+    {
+     "name": "navbar",
+     "sel": "[data-figma-node='5812:23035']",
+     "x": 0,
+     "y": 20,
+     "w": 1440,
+     "h": 14.04
+    },
+    {
+     "name": "Mondai mark",
+     "sel": "[data-figma-node='5812:23003']",
+     "x": 40,
+     "y": 167,
+     "w": 40,
+     "h": 40.57
+    },
+    {
+     "name": "Mondai heading",
+     "sel": "[data-figma-node='5812:23006']",
+     "x": 100,
+     "y": 172.79,
+     "w": 128,
+     "h": 29
+    },
+    {
+     "name": "intro",
+     "sel": "[data-figma-node='5812:23007']",
+     "x": 40,
+     "y": 247.57,
+     "w": 668.69,
+     "h": 66
+    },
+    {
+     "name": "slashes",
+     "sel": "[data-figma-node='5812:23010']",
+     "x": 40,
+     "y": 408,
+     "w": 11,
+     "h": 11
+    },
+    {
+     "name": "collection label",
+     "sel": "[data-figma-node='5812:23011']",
+     "x": 67,
+     "y": 409,
+     "w": 170,
+     "h": 9
+    },
+    {
+     "name": "row 1",
+     "sel": "[data-figma-node='5812:23014']",
+     "x": 40,
+     "y": 439,
+     "w": 1360,
+     "h": 131
+    },
+    {
+     "name": "row 1 title",
+     "sel": "[data-figma-node='5812:23014'] .context__title",
+     "x": 90,
+     "y": 481.5,
+     "w": 394,
+     "h": 46
+    },
+    {
+     "name": "row 1 icon",
+     "sel": "[data-figma-node='5812:23014'] .context__icon",
+     "x": 520,
+     "y": 481.5,
+     "w": 46,
+     "h": 46
+    },
+    {
+     "name": "row 1 badge",
+     "sel": "[data-figma-node='5812:23014'] .badge",
+     "x": 602,
+     "y": 475,
+     "w": 132,
+     "h": 59
+    },
+    {
+     "name": "row 2",
+     "sel": "[data-figma-node='5812:23015']",
+     "x": 40,
+     "y": 570,
+     "w": 1360,
+     "h": 131,
+     "decided": "Figma has this row fixed at 992 while row 1 fills 1360; built full width so the three rows and their lines match"
+    },
+    {
+     "name": "row 2 title",
+     "sel": "[data-figma-node='5812:23015'] .context__title",
+     "x": 90,
+     "y": 612.5,
+     "w": 479,
+     "h": 46
+    },
+    {
+     "name": "row 2 icon",
+     "sel": "[data-figma-node='5812:23015'] .context__icon",
+     "x": 605,
+     "y": 612.5,
+     "w": 46,
+     "h": 46
+    },
+    {
+     "name": "row 2 badge",
+     "sel": "[data-figma-node='5812:23015'] .badge",
+     "x": 687,
+     "y": 606,
+     "w": 135,
+     "h": 59
+    },
+    {
+     "name": "row 3",
+     "sel": "[data-figma-node='5812:23016']",
+     "x": 40,
+     "y": 701,
+     "w": 1360,
+     "h": 131,
+     "decided": "Figma has this row fixed at 992 with its status overflowing to 1390; built full width"
+    },
+    {
+     "name": "row 3 title",
+     "sel": "[data-figma-node='5812:23016'] .context__title",
+     "x": 90,
+     "y": 743.5,
+     "w": 388,
+     "h": 46
+    },
+    {
+     "name": "row 3 icon",
+     "sel": "[data-figma-node='5812:23016'] .context__icon",
+     "x": 514,
+     "y": 743.5,
+     "w": 46,
+     "h": 46
+    },
+    {
+     "name": "row 3 badge",
+     "sel": "[data-figma-node='5812:23016'] .badge",
+     "x": 596,
+     "y": 737,
+     "w": 139,
+     "h": 59
+    },
+    {
+     "name": "row 3 status",
+     "sel": "[data-figma-node='5812:23016'] .context__status",
+     "x": 1180,
+     "y": 758,
+     "w": 210,
+     "h": 17
     }
+   ]
+  },
+  "home": {
+   "frame": "5812:22862",
+   "url": "/",
+   "image": "dev/pages/figma/home.png",
+   "w": 1440,
+   "h": 3724,
+   "css": "css/home.css",
+   "boxes": [
+    {
+     "name": "navbar",
+     "sel": "[data-figma-node='5812:22876']",
+     "x": 0,
+     "y": 15,
+     "w": 1440,
+     "h": 14.04
+    },
+    {
+     "name": "lede",
+     "sel": "[data-figma-node='5812:22877']",
+     "x": 40,
+     "y": 423,
+     "w": 385,
+     "h": 66
+    },
+    {
+     "name": "Chicago",
+     "sel": "[data-figma-node='5812:22880']",
+     "x": 509,
+     "y": 456,
+     "w": 90,
+     "h": 10
+    },
+    {
+     "name": "dolly",
+     "sel": "[data-figma-node='5812:22882']",
+     "x": 509,
+     "y": 475.5,
+     "w": 16,
+     "h": 16
+    },
+    {
+     "name": "relocate",
+     "sel": "[data-figma-node='5812:22884']",
+     "x": 531,
+     "y": 478,
+     "w": 185,
+     "h": 11
+    },
+    {
+     "name": "CHDWCK glyphs",
+     "sel": "[data-figma-node='5812:22885'] img",
+     "x": 0,
+     "y": 535,
+     "w": 1440,
+     "h": 290,
+     "why": "the outlined export, clipped to the frame like Figma; glyph top measured at 535 in the Figma render"
+    },
+    {
+     "name": "works section",
+     "sel": "[data-figma-node='5812:22886']",
+     "x": 0,
+     "y": 899.5,
+     "w": 1440,
+     "h": 1069.99
+    },
+    {
+     "name": "Selected works",
+     "sel": "[data-figma-node='5812:22888']",
+     "x": 40,
+     "y": 1012.5,
+     "w": 403,
+     "h": 46
+    },
+    {
+     "name": "Mondai card",
+     "sel": "[data-figma-node='5812:22891']",
+     "x": 40,
+     "y": 1094.5,
+     "w": 879,
+     "h": 604.99,
+     "tol": 1.5,
+     "why": "the media shows its visible 575.28 of 579.45"
+    },
+    {
+     "name": "Mondai name",
+     "sel": "[data-figma-node='5812:22894']",
+     "x": 40,
+     "y": 1094.5,
+     "w": 65,
+     "h": 14,
+     "tol": 2,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Mondai slashes",
+     "sel": "[data-figma-node='5812:22895']",
+     "x": 116.05,
+     "y": 1096,
+     "w": 11,
+     "h": 11,
+     "tol": 2,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Mondai kind",
+     "sel": "[data-figma-node='5812:22896']",
+     "x": 138.11,
+     "y": 1097,
+     "w": 174,
+     "h": 9,
+     "tol": 4.5,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Mondai desc",
+     "sel": "[data-figma-node='5812:22898']",
+     "x": 612.64,
+     "y": 1096.5,
+     "w": 136,
+     "h": 10,
+     "tol": 3,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Mondai media",
+     "sel": "[data-figma-node='5812:22899']",
+     "x": 40,
+     "y": 1124.21,
+     "w": 879,
+     "h": 575.28
+    },
+    {
+     "name": "Learn more",
+     "sel": "[data-figma-node='5812:22904']",
+     "x": 383.39,
+     "y": 1374.81,
+     "w": 184,
+     "h": 48,
+     "why": "component at full size, centered where Figma draws it at 98.5 percent (384.73, 1375.64, 181.32 by 46.46)"
+    },
+    {
+     "name": "Haven card",
+     "sel": "[data-figma-node='5812:22905']",
+     "x": 957,
+     "y": 1094.5,
+     "w": 435,
+     "h": 604.88,
+     "tol": 1.5,
+     "why": "the link hugs its content in code"
+    },
+    {
+     "name": "Haven name",
+     "sel": "[data-figma-node='5812:22907']",
+     "x": 957,
+     "y": 1234.66,
+     "w": 55,
+     "h": 14,
+     "tol": 2,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Haven desc",
+     "sel": "[data-figma-node='5812:22908']",
+     "x": 1186.79,
+     "y": 1236.66,
+     "w": 138,
+     "h": 10,
+     "tol": 3,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Haven media",
+     "sel": "[data-figma-node='5812:22909']",
+     "x": 957,
+     "y": 1264.38,
+     "w": 435,
+     "h": 435
+    },
+    {
+     "name": "about story row",
+     "sel": "[data-figma-node='5812:22915']",
+     "x": 0,
+     "y": 1968.99,
+     "w": 1440,
+     "h": 568.11
+    },
+    {
+     "name": "About label",
+     "sel": "[data-figma-node='5812:22919']",
+     "x": 40,
+     "y": 2001.99,
+     "w": 53,
+     "h": 14
+    },
+    {
+     "name": "About body",
+     "sel": "[data-figma-node='5812:22920']",
+     "x": 741,
+     "y": 2001.99,
+     "w": 649,
+     "h": 430
+    },
+    {
+     "name": "role row",
+     "sel": "[data-figma-node='5812:22921']",
+     "x": 0,
+     "y": 2537.1,
+     "w": 1440,
+     "h": 194.11
+    },
+    {
+     "name": "Current role",
+     "sel": "[data-figma-node='5812:22925']",
+     "x": 40,
+     "y": 2573.1,
+     "w": 105,
+     "h": 14
+    },
+    {
+     "name": "2024 - current",
+     "sel": "[data-figma-node='5812:22926']",
+     "x": 40,
+     "y": 2598.1,
+     "w": 95,
+     "h": 10
+    },
+    {
+     "name": "role body",
+     "sel": "[data-figma-node='5812:22927']",
+     "x": 740,
+     "y": 2573.1,
+     "w": 650,
+     "h": 92
+    },
+    {
+     "name": "footer",
+     "sel": "[data-figma-node='5812:22998']",
+     "x": 0,
+     "y": 2730.71,
+     "w": 1440,
+     "h": 993
+    }
+   ]
   }
+ }
 }

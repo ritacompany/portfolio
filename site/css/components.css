@@ -10,6 +10,9 @@
    .is-pressed force them on the component sheet. Button and Small button ship their default state
    and the focus ring only; their other states get designed in Phase 2. */
 
+/* Page header: the navbar sits over the page at Figma's offset (15 on Home, 20 elsewhere). */
+.page-header { position: absolute; top: var(--navbar-top, 20px); left: 0; right: 0; z-index: 1; }
+
 /* Navbar, 5812:22709. Variants: PD (home, with the role line) and Base. Use with .grid. */
 .navbar { align-items: center; }
 .navbar__logo { display: block; width: 47.358px; height: 14.037px; }
@@ -159,6 +162,7 @@
   position: absolute; left: 0; top: -133.34px;
   width: 1836.995px; height: 921.389px; max-width: none; object-fit: cover;
 }
+.footer__transition-baked img { top: 0; width: 100%; height: 100%; }
 .footer__main {
   position: relative; height: 776px; overflow: hidden;
   display: flex; flex-direction: column; gap: 176px;

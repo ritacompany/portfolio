@@ -68,7 +68,9 @@
   --heading-40-track: -0.04em;
   --heading-24: 500 24px/1.16 var(--font);
   --heading-24-track: -0.04em;
-  --heading-20: 500 20px/1.32 var(--font);
+  /* Figma sets Heading/20 at 132 percent but lays its lines 26 px apart, not 26.4: measured on the
+     home About body (17 lines, 430 tall trimmed) and the Collection intro (3 lines, 66). */
+  --heading-20: 500 20px/26px var(--font);
   --heading-20-track: -0.02em;
   --body-16: 400 16px/1.4 var(--font);
   --body-16-track: -0.01em;

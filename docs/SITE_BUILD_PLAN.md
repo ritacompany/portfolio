@@ -1,7 +1,7 @@
 # Site build plan: from the transported frames to a live site
 
-9 Nov 2026. Status: Phase 0 approved ("fine enough", 8 Nov). Phase 1 under way: Collection page
-built and passing its gates; Home next.
+9 Nov 2026. Status: Phase 0 approved ("fine enough", 8 Nov). Phase 1 under way: Collection and Home
+built and passing their gates; Framework CS next.
 
 ## Resume here
 
@@ -45,7 +45,21 @@ A new session picks this up from this file alone.
 - Open on Collection: Framework CS and Design system CS link to `#framework` and `#design-system`
   until those pages exist; Design system CS has no page planned in Phase 1. No footer in the frame,
   so Contact me goes to `/#contact`.
-- Next action: Phase 1, Home (Transported home `5812:22862`), then Framework CS, then Haven.
+- Phase 1, Home done 9 Nov: `site/index.html` (replaces the September skeleton) and `site/css/home.css`.
+  Same gates, `node scripts/verify-pages.mjs <mode> home`: 27 of 27 boxes, 1.19 percent pixel
+  difference. Card images and the hero CHDWCK are exports in `site/assets/home/` (cards at 2x; the
+  Mondai card is webp quality 100 because its noise texture is one level deep and lower qualities
+  flatten it).
+- Decided on Home: Heading/20 lines are 26 px apart, as Figma lays them (tokens.css; this also let the
+  Collection intro drop its tolerance). Page background Neutral/900 moved to base.css. Card labels
+  snap to text styles as planned, except the // mark, which uses the Collection's 15.17 px mark
+  token. Learn more is the Small button at full size on Figma's center (Figma draws it at 98.5
+  percent). The home footer instance overrides the band's image filters (warmer, darker shadows), so
+  Home uses a band rendered from that instance; the component and other pages keep the component's.
+  The hero lede reads "change our minds"; Figma says "out minds", a typo to fix there. The clock and
+  the band motion stay static until Phase 2.
+- Next action: Phase 1, Framework CS (`5812:16446`, 1440 by 23917; screenshots as 2x exports), then
+  Haven.
   Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
