@@ -5,8 +5,8 @@
 //   pre:    PreToolUse. Agent: Sonnet or Haiku only, and at most three per turn (six once aggregate.py has
 //           run in the turn, so one re-check round fits), unless his latest message asks for more or for Opus. Write/Edit on a process doc: fix-the-process must be loaded first.
 //   stop:   Stop. Over 250k tokens: rewrite HANDOFF, commit, push and tell him to start a new session.
-//           A process doc edited this session: a fix record in fixes/ written this session must pass the
-//           skill's checker.
+//           A process doc edited this session: a fix record in fixes/ written this session (by Write/Edit, or
+//           changed in git since the session began) must pass the skill's checker, from ~/.claude or the repo.
 //   prompt: UserPromptSubmit. Shows him (not me) a one time notice when the session runs on Opus.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -67,8 +67,15 @@ if (mode === 'stop') {
   }
   const edited = uses(since).filter(x => ['Write', 'Edit', 'MultiEdit'].includes(x.name)).map(x => rel(x.input && x.input.file_path));
   if (edited.some(f => PROCESS_DOCS.test(f))) {
-    const records = [...new Set(edited.filter(f => /(^|\/)fixes\/[^/]+\.md$/.test(f)))];
-    const checker = path.join(os.homedir(), '.claude/skills/fix-the-process/scripts/check-fix-record.mjs');
+    // Records touched this session: by Write/Edit, or seen by git (uncommitted, or committed since the
+    // session began), so a record written through Bash still counts.
+    const began = (rows.find(e => e.timestamp) || {}).timestamp || new Date().toISOString();
+    const viaGit = [...git(['ls-files', '--modified', '--others', '--exclude-standard', '--', 'fixes']).split('\n'),
+      ...git(['log', `--since=${began}`, '--name-only', '--format=', '--', 'fixes']).split('\n')];
+    const records = [...new Set([...edited, ...viaGit].filter(f => /(^|\/)fixes\/[^/]+\.md$/.test(f) && fs.existsSync(path.join(root, f))))];
+    // The skill lives in ~/.claude on his Mac; cloud containers only have the repo's copy.
+    const home = path.join(os.homedir(), '.claude/skills/fix-the-process/scripts/check-fix-record.mjs');
+    const checker = fs.existsSync(home) ? home : path.join(root, '.claude/skills/fix-the-process/scripts/check-fix-record.mjs');
     const ok = records.some(f => /fix record complete/.test(spawnSync('node', [checker, path.join(root, f)], { encoding: 'utf8' }).stdout || ''));
     if (!ok) out({ decision: 'block', reason: 'A process doc changed this session without a passing fix record. Write fixes/YYYY-MM-DD-<slug>.md from the fix-the-process template and run its checker until it prints "fix record complete" (Status: not verified is allowed if you say what is unproven).' });
   }
