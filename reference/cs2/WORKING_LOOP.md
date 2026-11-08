@@ -99,9 +99,8 @@ not say stop or wait (.claude/hooks/figma-build-gate.mjs). No keyword needed.
 - The usage hook gives the 5 hour and weekly numbers. At 75 percent of the 5 hour limit rewrite HANDOFF,
   commit and push. At 90 percent finish the step in hand and stop, unless he says keep going.
 - Prefer editing over redrafting.
-- One session per section or round. Every call resends the whole conversation. Enforced: past 250k tokens
-  the cost guard refuses to end a turn until HANDOFF.md (section, round, his comments on each version, next
-  action) is committed, then tell him to start a new session. He sees a notice when a session runs on Opus.
+- Long sessions keep going: the harness compacts context on its own, so never tell him to start a new
+  session. He sees a notice when a session runs on Opus.
 - Process docs (this file, CLAUDE.md, the rules files, reader-check README) cannot be edited until
   fix-the-process is loaded, and a turn that edited one cannot end without a passing fix record in fixes/.
 
