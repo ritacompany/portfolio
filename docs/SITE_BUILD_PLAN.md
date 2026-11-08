@@ -168,9 +168,10 @@ Unstyled text to settle in code:
 1. **No mobile frames.** The guardrail says mobile is recomposed, not collapsed. Plan: I propose
    390 wide compositions per page in the browser for his review, then he decides whether any need a
    Figma frame.
-2. **Framework CS copy is not final.** The hero body is placeholder text in the frame, and the
-   tactics pass has eight proposals waiting on his marks. The page is built from structure now and
-   the copy is synced from Figma last.
+2. **Framework CS copy is final (8 Nov) and lives in the repo, not Figma.** Take every line from
+   `reference/cs2/review-2026-11-07/final-copy.md` on main (tactics pass done, his two last cuts
+   applied in 1dc70ad). The Figma frame still holds the old copy and placeholder hero text; do not
+   sync copy from Figma.
 3. **The home in these frames differs from the old tracker plan.** Settled 8 Nov (D8): the
    transported home launches and the old hero rows are parked.
 4. **Button and Small button have one state each.** Hover, pressed and focus get designed together
