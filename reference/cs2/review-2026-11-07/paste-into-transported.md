@@ -1,6 +1,6 @@
 # Paste into Transported Framework CS (5812:16446)
 
-In frame order, top to bottom. Find each layer by the text it starts with now, select all its text and paste the new text. Lines in one block that sit in one layer are separated the way the layer already separates them. Two items still wait for your yes on the review page: the hero line called their Growth Journey and the ending sentence I decided what success looks like. Both are pasted below in their current form; cut those words if you accept.
+In frame order, top to bottom. Find each layer by the text it starts with now, select all its text and paste the new text. Lines in one block that sit in one layer are separated the way the layer already separates them. Both cuts (tw-hero, tw-end) accepted 8 Nov and applied below.
 
 **Starts with:** Mondai is an AI tech career navigator
 
@@ -8,7 +8,7 @@ Designed as an AI guide for people from underrepresented backgrounds working the
 
 **Starts with:** asdsdasddfaassdf (the placeholder list under This case study is focused on; hide that label)
 
-Mondai builds each user a curriculum for the tech career they choose, called their Growth Journey, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.
+Mondai builds each user a curriculum for the tech career they choose, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.
 
 So I designed a weekly framework that turns that curriculum into weeks the user can finish, planned around the hours they say they can give each week. Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.
 
@@ -264,7 +264,7 @@ The framework is built, so the question left is whether it works for the users i
 
 **Starts with:** or whatever
 
-I decided what success looks like before the first week ran. The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.
+The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.
 A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for. Testing with the first users comes next, and these are the two numbers I’ll count from it.
 
 **New text layer under the Rollover effect body, in the sources style (Satoshi Regular 12, like the competitive analysis sources):**
