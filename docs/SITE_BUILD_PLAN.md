@@ -161,7 +161,9 @@ His ask: the frames should use this file's own variables and text styles, not th
 - Left: 592 text layers (593 fills, 466 style ranges). Figma's cloud runtime has no Satoshi and
   text cannot be edited without its font. `scripts/figma/rebind-text-to-local.js` does the rest
   from inside his own Figma tab: paste it into the community plugin Scripter and run it there
-  (his browser loads Satoshi through Figma's font helper; the cloud connection cannot). Proposed
-  to him 8 Nov; not yet run.
+  (his browser loads Satoshi through Figma's font helper; the cloud connection cannot). First run
+  8 Nov fixed everything except 92 text layers in Framework CS from the Pathway block down (it
+  stopped on a font). A rerun limited to Framework CS that skips missing fonts was given to him;
+  verify with a read only count of text still on `01 Portfolio` or `03 Mondai` (target 0).
 - Not done, on purpose: one copy of each duplicated local text style can be deleted once the text
   pass has run and nothing on another page uses it. That check needs the whole file.
