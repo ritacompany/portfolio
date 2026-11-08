@@ -17,19 +17,22 @@ A new session picks this up from this file alone.
 - Gates: `.unlazy/site-build/GATES.md` (local, gitignored), 10 of 10 met. Rerun with
   `node scripts/verify-tokens.mjs` and `node scripts/verify-components.mjs grid|sizes|pixels|focus|health|haven`.
   All 27 variants match Figma size within 1 px; every panel is under 4 percent pixel difference
-  (footer 3.4, navbar 2.6, button 3.1, the rest under 1.1).
+  (footer 3.2 and 3.7, button 3.3, navbar 2.3, the rest under 1.1; the pixel check registers within 1 px first).
 - Found while building, listed on the sheet: the Link component's Block Default fill and every Nav
   and Footer hover and pressed fill are still bound to Mondai's remote `Color primitives`
   (Neutral/200 #c9cfc6, Neutral/150 #d9dfd1); the 8 Nov rebinding check covered `01 Portfolio` and
-  `02 Haven` only. Code uses Portfolio Neutral/400 and Neutral/200. Resume sits off grid at 1190 in
-  the footer; code snaps it to column 11. The copyright reads @2026 as drawn.
+  `02 Haven` only. Code uses Portfolio Neutral/400 and Neutral/200; the Figma fills still need moving to the local
+  Portfolio variables (asked him 8 Nov). He fixed the footer in Figma 8 Nov: Resume on column 10,
+  LinkedIn on 7, bottom row gap 176; code and the reference renders follow. The copyright reads
+  @2026 as drawn.
 - Figma measures text without letter spacing after the last glyph; CSS adds it. Negative tracked
   text adds it back as end padding (comment at the top of `components.css`).
 - `npm run check` now skips `site/motion-lab/` (its renders are gitignored, so a fresh clone could
   never pass); it still checks `site/dev/`.
 - His call 8 Nov: Transported home is the launch homepage; the old hero plan is parked as context
   (tracker D8). Earlier homepage work counts only where it is basic motion.
-- Next action: his review of the sheet. Then Phase 1, Collection page first, built from these
+- He looked at the sheet 8 Nov: "fine enough".
+- Next action: Phase 1, Collection page first, built from these
   components. Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.

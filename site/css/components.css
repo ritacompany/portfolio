@@ -158,7 +158,7 @@
 }
 .footer__main {
   position: relative; height: 776px; overflow: hidden;
-  display: flex; flex-direction: column; gap: 183px;
+  display: flex; flex-direction: column; gap: 176px;
   padding-top: 48px;
 }
 .footer__top, .footer__bottom { align-items: start; }

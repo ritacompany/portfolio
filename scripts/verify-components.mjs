@@ -93,6 +93,8 @@ try {
       const stage = await page.$(`[data-stage="${set.key}"]`);
       await stage.scrollIntoViewIfNeeded();
       // Clip to whole pixels at the stage origin so a subpixel page offset cannot add a row.
+      // Browsers snap borders to whole pixels on their own, so a stage at a half pixel offset can
+      // land a row off. The comparison below registers the two images within 1 px before counting.
       const box = await stage.evaluate((e) => { const b = e.getBoundingClientRect(); return { x: b.x + scrollX, y: b.y + scrollY }; });
       const shot = await page.screenshot({ fullPage: true, clip: { x: Math.round(box.x), y: Math.round(box.y), width: set.w, height: set.h } });
       if (shotsDir) writeFileSync(join(shotsDir, `${set.key}-code.png`), shot);
@@ -101,8 +103,16 @@ try {
         const [fig, code] = await Promise.all([load(src), load("data:image/png;base64," + data)]);
         const paint = (img) => { const c = new OffscreenCanvas(w, h), x = c.getContext("2d"); x.fillStyle = "#000"; x.fillRect(0, 0, w, h); x.drawImage(img, 0, 0); return x.getImageData(0, 0, w, h).data; };
         const a = paint(fig), b = paint(code);
-        let diff = 0;
-        for (let i = 0; i < a.length; i += 4) if (Math.abs(a[i] - b[i]) > 64 || Math.abs(a[i + 1] - b[i + 1]) > 64 || Math.abs(a[i + 2] - b[i + 2]) > 64) diff++;
+        let diff = Infinity;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+          let d = 0;
+          for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+            const xs = Math.min(w - 1, Math.max(0, x + dx)), ys = Math.min(h - 1, Math.max(0, y + dy));
+            const i = (y * w + x) * 4, j = (ys * w + xs) * 4;
+            if (Math.abs(a[i] - b[j]) > 64 || Math.abs(a[i + 1] - b[j + 1]) > 64 || Math.abs(a[i + 2] - b[j + 2]) > 64) d++;
+          }
+          diff = Math.min(diff, d);
+        }
         return { diff, total: w * h, fw: fig.naturalWidth, fh: fig.naturalHeight, cw: code.naturalWidth, ch: code.naturalHeight };
       }, { src: new URL(set.image, url).href, data: shot.toString("base64"), w: set.w, h: set.h });
       const share = r.diff / r.total;
