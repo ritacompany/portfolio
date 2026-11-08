@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-08 22:32
+Updated: 2026-11-08 23:54
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -71,6 +71,8 @@ Earlier, Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, 
 Still missing from his frame: Get ahead (goes before Opening the week; streak question open in core/get-ahead.md), the Growth Journey page and Action Item page builds behind the placeholders. Scheduled times copy still sits in the Action Hub block in Figma; approved 27 Oct to move under the schedule view as his smaller interaction square. He builds Figma himself.
 
 ## Next action
+
+Next (9 Nov, 00:00): hero and ending get worked as blocks (his ask: they were only ever drafted inside the review). Session started: Portfolio: CS2 opening and ending (session_01NtNprsxC2Kzua6FztXjUAR), three versions each, every check and re-check before he sees them, results applied to final-copy.md. Fonts: not changing for now (his call 8 Nov); the font notes in final-copy.md are for later.
 
 Next (8 Nov, 23:55): the Figma route is off. The reviewed copy, with his two cuts, is in reference/cs2/review-2026-11-07/final-copy.md and scripts/figma/paste-framework-cs.js (1dc70ad). What went wrong 8 Nov: the parent session (Setup: CS2 cost guard) seeded a new session with a brief framed as Figma font access, then sent it the two cuts to put into a plugin; he had already moved off Figma (his words in that session: put the info on GitHub for his own Claude tomorrow, and for today the other conversation needs to update a copy). A plugin (CS2 copy into Transported Framework, ritadev's team) is uploaded but was never run and lacks the cuts; PR #14 holds docs/FIGMA_FONTS.md and the plugin source, unmerged. The site already self hosts Satoshi (site/assets/fonts). Settled 9 Nov: the website build takes the copy from final-copy.md, not Figma; its plan (docs/SITE_BUILD_PLAN.md on claude/lucid-carson-u56t7v, cadb5fb) now says so. CS2 copy work is done; Figma is out of scope. Cost guard change: applied and verified 8 Nov (2707845; stop guard cloud fix 13b8510).
 
