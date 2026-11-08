@@ -160,6 +160,8 @@ His ask: the frames should use this file's own variables and text styles, not th
   lines Portfolio Neutral/550 and Neutral/700, and the two unbound #040405 fills Neutral/900.
 - Left: 592 text layers (593 fills, 466 style ranges). Figma's cloud runtime has no Satoshi and
   text cannot be edited without its font. `scripts/figma/rebind-text-to-local.js` does the rest
-  from a session whose Figma connection runs in his desktop app.
+  from inside his own Figma tab: paste it into the community plugin Scripter and run it there
+  (his browser loads Satoshi through Figma's font helper; the cloud connection cannot). Proposed
+  to him 8 Nov; not yet run.
 - Not done, on purpose: one copy of each duplicated local text style can be deleted once the text
   pass has run and nothing on another page uses it. That check needs the whole file.
