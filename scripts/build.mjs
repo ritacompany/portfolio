@@ -11,6 +11,7 @@ const outputDirectory = new URL("dist/", projectRoot);
 
 await rm(outputDirectory, { recursive: true, force: true });
 await mkdir(outputDirectory, { recursive: true });
-// site/motion-lab/ holds motion work pages and pipeline samples (.claude/motion-rules.md), never shipped.
-const lab = new URL("site/motion-lab", projectRoot).pathname;
-await cp(sourceDirectory, outputDirectory, { recursive: true, filter: (from) => from !== lab && !from.startsWith(lab + "/") });
+// site/motion-lab/ holds motion work pages and pipeline samples (.claude/motion-rules.md) and
+// site/dev/ holds the component sheet and its Figma references. Neither ever ships.
+const unshipped = ["site/motion-lab", "site/dev"].map((dir) => new URL(dir, projectRoot).pathname);
+await cp(sourceDirectory, outputDirectory, { recursive: true, filter: (from) => !unshipped.some((dir) => from === dir || from.startsWith(dir + "/")) });

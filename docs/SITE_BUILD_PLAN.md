@@ -1,21 +1,36 @@
 # Site build plan: from the transported frames to a live site
 
-8 Nov 2026. Status: approved direction (D8); Phase 0 next.
+8 Nov 2026. Status: Phase 0 built and passing its gates; waiting on his review of the component
+sheet before Phase 1.
 
 ## Resume here
 
-A new session picks this up from this file alone; the 8 Nov session stopped at its token limit.
+A new session picks this up from this file alone.
 
-- Done: four frames, components, variables and text styles read live; color and type audit below;
-  draft PR https://github.com/ritacompany/portfolio/pull/13 (branch `claude/lucid-carson-u56t7v`).
-  Nothing in `site/` or Figma changed.
+- Done: Phase 0. `site/css/tokens.css` rewritten from the local Portfolio and Haven variables and
+  the type table below (names follow Figma: Neutral/550 is `--neutral-550`); `site/css/grid.css`
+  (12 columns, 40 margin, 40 gutter); `site/css/components.css` with Navbar, Footer, Link, Badge,
+  Context list, Button and Small button; exported icons and images in `site/assets/ui/`.
+- Component sheet: `site/dev/components/` (`npm run dev`, then `/dev/components/`). Each Figma set
+  sits beside its coded twin at 1x, variants at their Figma positions. `site/dev/` never ships
+  (`scripts/build.mjs` leaves it out, like `motion-lab`).
+- Gates: `.unlazy/site-build/GATES.md` (local, gitignored), 10 of 10 met. Rerun with
+  `node scripts/verify-tokens.mjs` and `node scripts/verify-components.mjs grid|sizes|pixels|focus|health|haven`.
+  All 27 variants match Figma size within 1 px; every panel is under 4 percent pixel difference
+  (footer 3.4, navbar 2.6, button 3.1, the rest under 1.1).
+- Found while building, listed on the sheet: the Link component's Block Default fill and every Nav
+  and Footer hover and pressed fill are still bound to Mondai's remote `Color primitives`
+  (Neutral/200 #c9cfc6, Neutral/150 #d9dfd1); the 8 Nov rebinding check covered `01 Portfolio` and
+  `02 Haven` only. Code uses Portfolio Neutral/400 and Neutral/200. Resume sits off grid at 1190 in
+  the footer; code snaps it to column 11. The copyright reads @2026 as drawn.
+- Figma measures text without letter spacing after the last glyph; CSS adds it. Negative tracked
+  text adds it back as end padding (comment at the top of `components.css`).
+- `npm run check` now skips `site/motion-lab/` (its renders are gitignored, so a fresh clone could
+  never pass); it still checks `site/dev/`.
 - His call 8 Nov: Transported home is the launch homepage; the old hero plan is parked as context
   (tracker D8). Earlier homepage work counts only where it is basic motion.
-- Figma: every layer in the four frames and the components now uses this file's local Portfolio
-  and Haven variables and local text styles (verified 8 Nov).
-- Next action: Phase 0. Write unlazy gates first (`.unlazy/site-build/`), then
-  rewrite `site/css/tokens.css` from the Portfolio values and the type table below, add the grid
-  utility, and build the component sheet page. Haven keeps its own CSS until Phase 1.
+- Next action: his review of the sheet. Then Phase 1, Collection page first, built from these
+  components. Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
 

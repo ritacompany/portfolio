@@ -1,0 +1,40 @@
+{
+  "_source": "Figma file 5RO0m4bYYrTvbiaOgaU3tI, page CS, read 8 Nov 2026 through the Plugin API. Variant boxes are relative to their component set; the navbar box is shifted 20 px left because its reference image is cropped to the 1440 variants. Footer variants are 1438 wide in Figma.",
+  "sets": [
+    { "key": "navbar", "node": "5812:22709", "image": "figma/navbar.png", "w": 1440, "h": 108, "variants": [
+      { "name": "Property 1=PD", "node": "5812:22710", "x": 0, "y": 20, "w": 1440, "h": 14.04 },
+      { "name": "Property 1=Base", "node": "5812:22730", "x": 0, "y": 64, "w": 1440, "h": 14.04 } ] },
+    { "key": "footer-default", "node": "5812:22749", "image": "figma/footer-default.png", "w": 1440, "h": 993, "variants": [
+      { "name": "Property 1=Default", "node": "5812:22750", "x": 0, "y": 0, "w": 1438, "h": 993 } ] },
+    { "key": "footer-other", "node": "5812:22749", "image": "figma/footer-other.png", "w": 1440, "h": 993, "variants": [
+      { "name": "Property 1=Other pages", "node": "5812:22801", "x": 0, "y": 0, "w": 1438, "h": 993 } ] },
+    { "key": "link", "node": "5812:22559", "image": "figma/link.png", "w": 226, "h": 154, "variants": [
+      { "name": "State=Default, Style=Block", "node": "5812:22560", "x": 0, "y": 0, "w": 47, "h": 24 },
+      { "name": "State=Hover, Style=Block", "node": "5812:22573", "x": 0, "y": 43.5, "w": 47, "h": 24 },
+      { "name": "State=Pressed, Style=Block", "node": "5812:22579", "x": 0, "y": 87, "w": 47, "h": 24 },
+      { "name": "State=Default, Style=Nav", "node": "5812:22565", "x": 67, "y": 0, "w": 32, "h": 10 },
+      { "name": "State=Pressed, Style=Nav", "node": "5812:22575", "x": 67, "y": 43.5, "w": 35, "h": 10 },
+      { "name": "State=Hover, Style=Nav", "node": "5812:22588", "x": 67, "y": 87, "w": 35, "h": 10 },
+      { "name": "State=Default, Style=Footer", "node": "5812:22569", "x": 122, "y": 0, "w": 42, "h": 17 },
+      { "name": "State=Hover, Style=Footer", "node": "5812:22595", "x": 122, "y": 43.5, "w": 42, "h": 17 },
+      { "name": "State=Pressed, Style=Footer", "node": "5812:22584", "x": 122, "y": 87, "w": 42, "h": 17 } ] },
+    { "key": "badge", "node": "5812:22599", "image": "figma/badge.png", "w": 127, "h": 254, "variants": [
+      { "name": "Type=1, Style=White", "node": "5812:22600", "x": 0, "y": 0, "w": 127, "h": 41 },
+      { "name": "Type=2, Style=White", "node": "5812:22606", "x": 0, "y": 53, "w": 127, "h": 59 },
+      { "name": "Type=2, Style=Black", "node": "5812:22602", "x": 0, "y": 124, "w": 127, "h": 59 },
+      { "name": "Type=2, Style=Locked", "node": "5812:22604", "x": 0, "y": 195, "w": 127, "h": 59 } ] },
+    { "key": "context-list", "node": "5812:22608", "image": "figma/context-list.png", "w": 992, "h": 1188, "variants": [
+      { "name": "State=Default, Lines=Bottom", "node": "5812:22609", "x": 0, "y": 0, "w": 992, "h": 131 },
+      { "name": "State=Default, Lines=Top", "node": "5812:22615", "x": 0, "y": 151, "w": 992, "h": 131 },
+      { "name": "State=Default, Lines=Top + bottom", "node": "5812:22621", "x": 0, "y": 302, "w": 992, "h": 131 },
+      { "name": "State=Hover, Lines=Default", "node": "5812:22627", "x": 0, "y": 453, "w": 992, "h": 131 },
+      { "name": "State=Pressed, Lines=Default", "node": "5812:22633", "x": 0, "y": 604, "w": 992, "h": 131 },
+      { "name": "State=Locked, Lines=Bottom", "node": "5812:22639", "x": 0, "y": 755, "w": 992, "h": 131 },
+      { "name": "State=Locked, Lines=Top", "node": "5812:22650", "x": 0, "y": 906, "w": 992, "h": 131 },
+      { "name": "State=Locked, Lines=Top + bottom", "node": "5812:22661", "x": 0, "y": 1057, "w": 992, "h": 131 } ] },
+    { "key": "button", "node": "5812:22672", "image": "figma/button.png", "w": 299, "h": 77, "variants": [
+      { "name": "Property 1=outline", "node": "5812:22691", "x": 0, "y": 0, "w": 299, "h": 76.49 } ] },
+    { "key": "small-button", "node": "5812:22855", "image": "figma/small-button.png", "w": 184, "h": 48, "variants": [
+      { "name": "Property 1=Default", "node": "5812:22856", "x": 0, "y": 0, "w": 184, "h": 48 } ] }
+  ]
+}
