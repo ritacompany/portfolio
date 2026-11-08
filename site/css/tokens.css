@@ -82,6 +82,10 @@
   --label-12-track: 0.04em;
   --label-12-c: 400 12px/1.4 var(--font);
   --label-12-c-track: 0.1em;
+  /* Not a Figma text style: the // before section labels is drawn at 15.17 px Medium (Collection
+     frame, 5812:23010). Kept here so pages never carry raw type values. */
+  --mark-15: 500 15.17px/1.16 var(--font);
+  --mark-15-track: 0.06em;
 
   /* Grid: 12 columns, stretch, 40 margin and 40 gutter at 1440 (Figma layout grid on the CS frames).
      The --grid-* variables in the Figma file are Mondai's grid and do not apply here. */

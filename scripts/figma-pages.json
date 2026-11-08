@@ -1,0 +1,30 @@
+{
+  "_source": "Figma file 5RO0m4bYYrTvbiaOgaU3tI, page CS, read 9 Nov 2026 through the Plugin API. Boxes are relative to the page frame. A box with a decided field overrides the Figma value on purpose; the reason is beside it.",
+  "pages": {
+    "collection": {
+      "frame": "5812:22999", "url": "/mondai/", "image": "dev/pages/figma/collection.png", "w": 1440, "h": 900,
+      "css": "css/collection.css",
+      "boxes": [
+        { "name": "navbar", "sel": "[data-figma-node='5812:23035']", "x": 0, "y": 20, "w": 1440, "h": 14.04 },
+        { "name": "Mondai mark", "sel": "[data-figma-node='5812:23003']", "x": 40, "y": 167, "w": 40, "h": 40.57 },
+        { "name": "Mondai heading", "sel": "[data-figma-node='5812:23006']", "x": 100, "y": 172.79, "w": 128, "h": 29 },
+        { "name": "intro", "sel": "[data-figma-node='5812:23007']", "x": 40, "y": 247.57, "w": 668.69, "h": 66, "tol": 1.5, "why": "Figma measures three trimmed lines of Heading/20 at 66; the browser at 67.23. One line Heading/40 matches exactly, so this is how Figma rounds multi line trim, not a layout gap" },
+        { "name": "slashes", "sel": "[data-figma-node='5812:23010']", "x": 40, "y": 408, "w": 11, "h": 11 },
+        { "name": "collection label", "sel": "[data-figma-node='5812:23011']", "x": 67, "y": 409, "w": 170, "h": 9 },
+        { "name": "row 1", "sel": "[data-figma-node='5812:23014']", "x": 40, "y": 439, "w": 1360, "h": 131 },
+        { "name": "row 1 title", "sel": "[data-figma-node='5812:23014'] .context__title", "x": 90, "y": 481.5, "w": 394, "h": 46 },
+        { "name": "row 1 icon", "sel": "[data-figma-node='5812:23014'] .context__icon", "x": 520, "y": 481.5, "w": 46, "h": 46 },
+        { "name": "row 1 badge", "sel": "[data-figma-node='5812:23014'] .badge", "x": 602, "y": 475, "w": 132, "h": 59 },
+        { "name": "row 2", "sel": "[data-figma-node='5812:23015']", "x": 40, "y": 570, "w": 1360, "h": 131, "decided": "Figma has this row fixed at 992 while row 1 fills 1360; built full width so the three rows and their lines match" },
+        { "name": "row 2 title", "sel": "[data-figma-node='5812:23015'] .context__title", "x": 90, "y": 612.5, "w": 479, "h": 46 },
+        { "name": "row 2 icon", "sel": "[data-figma-node='5812:23015'] .context__icon", "x": 605, "y": 612.5, "w": 46, "h": 46 },
+        { "name": "row 2 badge", "sel": "[data-figma-node='5812:23015'] .badge", "x": 687, "y": 606, "w": 135, "h": 59 },
+        { "name": "row 3", "sel": "[data-figma-node='5812:23016']", "x": 40, "y": 701, "w": 1360, "h": 131, "decided": "Figma has this row fixed at 992 with its status overflowing to 1390; built full width" },
+        { "name": "row 3 title", "sel": "[data-figma-node='5812:23016'] .context__title", "x": 90, "y": 743.5, "w": 388, "h": 46 },
+        { "name": "row 3 icon", "sel": "[data-figma-node='5812:23016'] .context__icon", "x": 514, "y": 743.5, "w": 46, "h": 46 },
+        { "name": "row 3 badge", "sel": "[data-figma-node='5812:23016'] .badge", "x": 596, "y": 737, "w": 139, "h": 59 },
+        { "name": "row 3 status", "sel": "[data-figma-node='5812:23016'] .context__status", "x": 1180, "y": 758, "w": 210, "h": 17 }
+      ]
+    }
+  }
+}

@@ -66,6 +66,7 @@
 .badge > span {
   font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase;
   color: var(--neutral-100); white-space: nowrap;
+  margin-inline-end: calc(-1 * var(--label-12-c-track)); /* Figma leaves tracking off the last glyph */
   text-box: trim-both cap alphabetic;
 }
 .badge-lg { height: 59px; }
@@ -106,7 +107,9 @@
 .context:hover .context__icon::before, .context.is-hover .context__icon::before { background: var(--neutral-050); }
 .context:active .context__icon::before, .context.is-pressed .context__icon::before { background: var(--neutral-300); }
 
-.context-locked { background: var(--neutral-900); color: var(--neutral-590); }
+/* Figma's locked row holds its content in a fixed 1300 wide frame from the left padding, so the
+   status ends 10 px from the row's right edge on a full width row (Collection, 5812:23016). */
+.context-locked { background: var(--neutral-900); color: var(--neutral-590); padding-right: 10px; }
 .context-locked.context-both { box-shadow: inset 0 0 0 1px var(--line); }
 .context-locked .context__icon { background: var(--neutral-590); }
 .context-locked .context__icon::before {

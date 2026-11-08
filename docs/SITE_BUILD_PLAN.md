@@ -1,7 +1,7 @@
 # Site build plan: from the transported frames to a live site
 
-8 Nov 2026. Status: Phase 0 built and passing its gates; waiting on his review of the component
-sheet before Phase 1.
+9 Nov 2026. Status: Phase 0 approved ("fine enough", 8 Nov). Phase 1 under way: Collection page
+built and passing its gates; Home next.
 
 ## Resume here
 
@@ -32,8 +32,21 @@ A new session picks this up from this file alone.
 - His call 8 Nov: Transported home is the launch homepage; the old hero plan is parked as context
   (tracker D8). Earlier homepage work counts only where it is basic motion.
 - He looked at the sheet 8 Nov: "fine enough".
-- Next action: Phase 1, Collection page first, built from these
-  components. Haven keeps its own CSS until Phase 1 moves it.
+- Phase 1, Collection page done 9 Nov: `site/mondai/index.html` and `site/css/collection.css`, page
+  CSS layout only. Gates C1 to C8 in `.unlazy/site-build/GATES.md` (local); rerun with
+  `node scripts/verify-pages.mjs boxes|pixels|health|a11y|shared collection`, spec and Figma boxes in
+  `scripts/figma-pages.json`, reference render in `site/dev/pages/figma/`. 19 of 19 boxes within 1 px
+  (the intro carries 1.5 for Figma's multi line trim), 0.73 percent pixel difference.
+- Decided on Collection: rows 2 and 3 are fixed 992 in Figma while row 1 fills; built all full width.
+  The locked row keeps Figma's fixed 1300 content frame, so its status ends 10 px from the right
+  (now in components.css). Page background is Neutral/900 as the frame fill (base.css has
+  Neutral/1000); promote to base.css if Home agrees. Badge text drops its trailing tracking like
+  Figma (sheet badge diff 0.72 to 0.07 percent).
+- Open on Collection: Framework CS and Design system CS link to `#framework` and `#design-system`
+  until those pages exist; Design system CS has no page planned in Phase 1. No footer in the frame,
+  so Contact me goes to `/#contact`.
+- Next action: Phase 1, Home (Transported home `5812:22862`), then Framework CS, then Haven.
+  Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
 
