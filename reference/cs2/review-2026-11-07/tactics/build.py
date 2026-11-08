@@ -44,7 +44,7 @@ if R3:
     INTRO = open(os.path.join(HERE,'r3-intro.html')).read(); CHECKS = open(os.path.join(HERE,'r3-checks.html')).read()
 ids = []; arts = []
 for i, p in enumerate(P, 1):
-    fid = ('tz-' + p['id'][3:]) if R3 else ('tx-' + p['id'][2:]); ids.append(fid)
+    fid = (('tw-' if 'r4' in PFILE else 'tz-') + p['id'][3:]) if R3 else ('tx-' + p['id'][2:]); ids.append(fid)
     arts.append(f'''<article class="find" id="{fid}">
 <div class="fhead"><span class="num">{i}. {E(p["block"])}</span><span class="src">{E(p["field"])}</span>{controls(fid)}</div>
 <div class="pair"><div class="was"><span class="tag">Now</span><span class="t">{E(p["cur"])}</span></div>

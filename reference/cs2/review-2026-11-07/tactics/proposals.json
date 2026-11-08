@@ -57,7 +57,8 @@
   "new": "Both sit in a rail down the right side of the Action Hub, and the target stays put on purpose. If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.",
   "tactic": "State the warrant (cs-t02); your no repeats rule",
   "why": "The current body repeats twice over: why the dates are the current Pathway's is already made by card 03 (near goals) and Growth Journey body 3 (two sets of dates would compete), and the headline already says the dates belong to the Pathway the user is on. What the page never says is why the target holds still, the question a stranger asks first (why not just move the date?). Your order note puts this block right before Rollover so target and pace connect to what moves them, so this is the line that sets Rollover up: next block, the pace moves and the target stays where it was. It adds the why to your Pathway target definition (holds steady through an ordinary week) without repeating it. Meant to keeps it honest for a product with no users yet. If the layout needs no body at all here, deleting it is the fallback. The opening clause says what the rail is, because the reader check flagged it twice: round 1, on the rail in your Ahead of target line had nothing to point to once the old body was gone (3 of 3); round 2, right rail as an undefined term (3 of 3).",
-  "src": "Archive:84 (PARAPHRASE, archive premise): target does not drift on its own; a rolling target hides the slip; visible drift against a stable target drives get back on pace behavior. Archive:80: a bad week, missed items and Rollover do not move Target (CONFIRMED)."
+  "src": "Archive:84 (PARAPHRASE, archive premise): target does not drift on its own; a rolling target hides the slip; visible drift against a stable target drives get back on pace behavior. Archive:80: a bad week, missed items and Rollover do not move Target (CONFIRMED).",
+  "superseded_by": "r3-rail-body"
  },
  {
   "id": "t-roll-head",
@@ -77,7 +78,8 @@
   "new": "A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.",
   "tactic": "The rationale recital (cs-t48); your no repeats rule. Kept: the earlier version sentence, the page's one wrong turn with its reason (cs-t24, cs-t29).",
   "why": "One sentence out: A week can only hold the hours the user set aside for it (their capacity). Capacity is defined in Personalized timeline and Buffer flow body 2 says it again in your words, so this is the third time; the next sentence already uses capacity, so nothing is lost. Kept on purpose: the earlier version sentence. The reader check flags it as process story (3 of 3), but it is the one place the page shows a wrong turn and why it lost, which the bank ranks among the most credible moves (refute the rejected option, the wrong turn). It names no one and has no who asked whom, so I read it as inside your rule. Your call if you read it the other way.",
-  "src": "Rolled over items count against next week's capacity and the AI picks fewer new items (Archive:106, CONFIRMED). Rest unchanged from your accepted copy."
+  "src": "Rolled over items count against next week's capacity and the AI picks fewer new items (Archive:106, CONFIRMED). Rest unchanged from your accepted copy.",
+  "superseded_by": "r3-roll-earlier"
  },
  {
   "id": "t-end",
@@ -87,7 +89,8 @@
   "new": "The framework is built and Mondai hasn’t launched, so the numbers that would show it working don’t exist yet.",
   "tactic": "Not a tactic: a one word fix",
   "why": "Yet appears twice. Nothing else changes: the ending states pre launch status, the two measures and the next step, which the first build endings report says is the honest close. Measured: 3 lines at 708px, the same as now (the ending's real width in Figma is not set yet).",
-  "src": "Your accepted ending A, unchanged otherwise."
+  "src": "Your accepted ending A, unchanged otherwise.",
+  "superseded_by": "r3-end"
  },
  {
   "id": "t-card03",
@@ -97,7 +100,8 @@
   "new": "Linear opens straight onto the work in front of you. I borrowed that, so Mondai’s home screen shows only this week’s work, and the full route to the goal has its own page.",
   "tactic": "The rationale recital (cs-t48); the inevitable decision (cs-t40)",
   "why": "His yes 8 Nov. All four cards ran research shows X, so Mondai does Y. Cards 01 and 02 keep their research (01 introduces target and pace, 02 is the only card with a rejected option); 03 and 04 state the lesson borrowed.",
-  "src": "Archive: learning apps and task tools are adjacent products for pattern reference (round 2 finding, CONFIRMED). Bandura and Schunk 1981 now supports no card and leaves the sources line."
+  "src": "Archive: learning apps and task tools are adjacent products for pattern reference (round 2 finding, CONFIRMED). Bandura and Schunk 1981 now supports no card and leaves the sources line.",
+  "superseded_by": "r3-card03"
  },
  {
   "id": "t-card04",

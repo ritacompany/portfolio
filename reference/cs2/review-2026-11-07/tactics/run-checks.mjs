@@ -58,7 +58,7 @@ ok(new RegExp('\\baction item\\b').test('one action item'), 'casing rule catches
 
 // 3. Every proposal's current text is really in final-copy.md (so nothing proposes against stale copy).
 const finalCopy = fs.readFileSync(path.join(root, 'reference/cs2/review-2026-11-07/final-copy.md'), 'utf8');
-for (const p of props) ok(mode === 'pending' ? finalCopy.includes(p.cur) : (finalCopy.includes(p.new) && (p.new.includes(p.cur) || !finalCopy.includes(p.cur))), `${p.id}: ${mode === 'pending' ? 'current text found in final-copy.md' : 'applied in final-copy.md (new text present, old text gone)'}`);
+for (const p of props.filter(p => !p.superseded_by)) ok(mode === 'pending' ? finalCopy.includes(p.cur) : (finalCopy.includes(p.new) && (p.new.includes(p.cur) || !finalCopy.includes(p.cur))), `${p.id}: ${mode === 'pending' ? 'current text found in final-copy.md' : 'applied in final-copy.md (new text present, old text gone)'}`);
 ok(!finalCopy.includes('This text is not in the page.'), 'stale text control is absent from final-copy.md');
 
 // 4. The pull and the page pass cover every block of final-copy.md.
