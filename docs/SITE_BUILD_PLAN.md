@@ -11,8 +11,8 @@ A new session picks this up from this file alone; the 8 Nov session stopped at i
   Nothing in `site/` or Figma changed.
 - His call 8 Nov: Transported home is the launch homepage; the old hero plan is parked as context
   (tracker D8). Earlier homepage work counts only where it is basic motion.
-- Figma: non text layers rebound to local variables; the text pass needs his desktop Figma (see
-  Figma rebinding below).
+- Figma: every layer in the four frames and the components now uses this file's local Portfolio
+  and Haven variables and local text styles (verified 8 Nov).
 - Next action: Phase 0. Write unlazy gates first (`.unlazy/site-build/`), then
   rewrite `site/css/tokens.css` from the Portfolio values and the type table below, add the grid
   utility, and build the component sheet page. Haven keeps its own CSS until Phase 1.
@@ -158,12 +158,9 @@ His ask: the frames should use this file's own variables and text styles, not th
   Nimbus/300, Goldfish/500). Re-read after the change: 0 non text layers left on `01 Portfolio` or
   `02 Haven`. The six Haven source pills now use Portfolio Neutral/400, the five Framework diagram
   lines Portfolio Neutral/550 and Neutral/700, and the two unbound #040405 fills Neutral/900.
-- Left: 592 text layers (593 fills, 466 style ranges). Figma's cloud runtime has no Satoshi and
-  text cannot be edited without its font. `scripts/figma/rebind-text-to-local.js` does the rest
-  from inside his own Figma tab: paste it into the community plugin Scripter and run it there
-  (his browser loads Satoshi through Figma's font helper; the cloud connection cannot). First run
-  8 Nov fixed everything except 92 text layers in Framework CS from the Pathway block down (it
-  stopped on a font). A rerun limited to Framework CS that skips missing fonts was given to him;
-  verify with a read only count of text still on `01 Portfolio` or `03 Mondai` (target 0).
+- Text, done 8 Nov: he ran `scripts/figma/rebind-text-to-local.js` in his own Figma tab through the
+  community plugin Scripter (the cloud connection has no Satoshi), then a Framework only rerun.
+  Re-read after: 0 text fills or portfolio text styles left on the other account's libraries.
+  Mondai's own styles and colors inside the screenshots stay on Mondai's library, as intended.
 - Not done, on purpose: one copy of each duplicated local text style can be deleted once the text
   pass has run and nothing on another page uses it. That check needs the whole file.
