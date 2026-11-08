@@ -2,6 +2,23 @@
 
 8 Nov 2026. Status: proposed, waiting on Chadwick's answer to the scope question at the end.
 
+## Resume here
+
+A new session picks this up from this file alone; the 8 Nov session stopped at its token limit.
+
+- Done: four frames, components, variables and text styles read live; color and type audit below;
+  draft PR https://github.com/ritacompany/portfolio/pull/13 (branch `claude/lucid-carson-u56t7v`).
+  Nothing in `site/` or Figma changed.
+- Open question to him: is Transported home the launch homepage, with the separate superpowers
+  section and hero elements (tracker H5 to H7) moved to after launch? Recommended yes.
+- Next action, whatever his answer: Phase 0. Write unlazy gates first (`.unlazy/site-build/`), then
+  rewrite `site/css/tokens.css` from the Portfolio values and the type table below, add the grid
+  utility, and build the component sheet page. Haven keeps its own CSS until Phase 1.
+- On yes: retire H5 to H7 as blockers of S1 in `TRACKER.md` and build Home in Phase 1 after the
+  collection page. On no: build the collection and case study pages first.
+- Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
+  `5658:1061` is 2 MB, so read single frames instead.
+
 ## Source of truth
 
 Figma file `5RO0m4bYYrTvbiaOgaU3tI` (Desktop 1 MVP), page CS (`5658:1061`). Read live on 8 Nov.
