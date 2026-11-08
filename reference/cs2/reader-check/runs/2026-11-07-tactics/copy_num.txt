@@ -1,0 +1,48 @@
+VERSION V1: Hero, right column, with t-hero
+  (label) Designed as an AI guide for people from underrepresented backgrounds working their way into a tech career.
+V1.S1 Mondai builds each user a curriculum for the tech career they choose, called their Growth Journey, and it can take months to finish.
+V1.S2 Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.
+V1.S3 So I designed the weekly framework around the hours the user says they can give each week.
+V1.S4 This case study covers how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.
+
+VERSION V2: Action Hub block, with t-hub
+  (label) Action Hub
+V2.S1 Most of a user’s week happens on one screen: the list of Action Items they come back to nearly every day.
+V2.S2 I designed the Action Hub around one question for the user: what do I need to do this week?
+V2.S3 Each week opens with a short headline and a paragraph the AI writes about that week’s work.
+V2.S4 It should read like a friend telling the user what the week is about before they look at their list, so it talks about the work itself and not about how much they’ve finished.
+V2.S5 Each Action Item builds on the one before, so they’re finished in order and only the Active one at the top can be checked off.
+
+VERSION V3: Right rail block, with t-rail
+V3.S1 The Action Hub keeps two dates for the Pathway the user is on: where they’re aiming and where they’re headed.
+V3.S2 The target stays put on purpose.
+V3.S3 If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.
+  (label) Pathway target
+V3.S4 The date this Pathway should be done by, set from the hours the user gives each week.
+V3.S5 It holds steady through an ordinary week and moves when those hours change.
+  (label) Pathway pace
+V3.S6 Where the user’s progress says they will finish.
+V3.S7 It updates once a week, so nobody watches it tick with every finished item.
+V3.S8 In week one it matches the target.
+  (label) Ahead of target
+V3.S9 The gap between the two dates, in days.
+V3.S10 It is the only ahead or behind signal on the rail.
+
+VERSION V4: Rollover block, with t-roll-head and t-roll-body
+V4.S1 When an Action Item is still open on Saturday night, everything after it moves a little later.
+  (label) Rollover: An Action Item still open when the week ends on Saturday night.
+  (label) The Rollover effect
+V4.S2 A week that comes up short can feel like failing, and that feeling makes users less likely to keep going.
+V4.S3 So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own.
+V4.S4 An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide.
+V4.S5 The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too.
+V4.S6 That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it.
+V4.S7 The target stays where it was.
+
+VERSION V5: Ending, with t-end
+  (label) Where it stands
+V5.S1 The framework is built and Mondai hasn’t launched, so the numbers that would show it working don’t exist yet.
+V5.S2 I decided what success looks like before the first week ran.
+V5.S3 The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.
+V5.S4 A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for.
+V5.S5 Testing with the first users comes next, and these are the two numbers I’ll count from it.

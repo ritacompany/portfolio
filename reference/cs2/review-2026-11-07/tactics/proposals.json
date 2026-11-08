@@ -1,0 +1,82 @@
+[
+ {
+  "id": "t-hero",
+  "block": "Hero",
+  "field": "Right 2",
+  "cur": "This case study covers the weekly framework I designed to turn that curriculum into weeks the user can finish: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.",
+  "new": "So I designed the weekly framework around the hours the user says they can give each week. This case study covers how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.",
+  "tactic": "Answer first (cs-t06); fails as a table of contents (cs-t17)",
+  "why": "Right 1 ends on the hard part: no steady week, so a steady plan has the user behind from week one. Right 2 then lists chapters, so the first screen never says what you decided. The new first sentence answers Right 1 with the decision (plan from the hours the user can give), joined by so, your habit. The three topics stay word for word. Nothing new for the reader to decode: hours per week is defined in Personalized timeline, and the hero only names it.",
+  "src": "Capacity in hours per week is the single scheduling input (Archive:66, CONFIRMED); a fixed weekly cadence sets this audience up to fail from week one (Archive:68, CONFIRMED)."
+ },
+ {
+  "id": "t-gj",
+  "block": "Growth Journey",
+  "field": "Body 3",
+  "cur": "Keeping them here was intentional. Two sets of dates on the weekly screen would compete, so the weekly screen shows only the current Pathway’s target and pace, and the journey’s sit here for anyone who wants the big picture.",
+  "new": "I kept the journey’s dates here because two sets of dates on the weekly screen would compete.",
+  "tactic": "Your no repeats rule; nothing leans on a screen the reader has not met",
+  "why": "Two fixes. It follows your Body 2 (long term metrics sit here), so the journey's dates reads as those metrics. 1. The middle clause explained what the weekly screen shows before the reader has met it, and the right rail headline then says it again (reader check round 1 flagged the rail headline as only restating it, 2 of 3). The rail block owns it. 2. Reader check round 2 flagged Keeping them here was intentional 3 of 3: it says nothing until the next sentence gives the reason, and them is vague. One sentence now carries the decision and its reason with because, your habit. For anyone who wants the big picture goes: the headline and Body 1 already say the page is the zoomed out view.",
+  "src": "No new claim. Repetition checked against the rail headline in final-copy.md."
+ },
+ {
+  "id": "t-hub",
+  "block": "Action Hub",
+  "field": "Body 1",
+  "cur": "I designed the Action Hub around one question for the user: what do I need to do this week? The full curriculum stays on the Growth Journey and Pathway pages.",
+  "new": "I designed the Action Hub around one question for the user: what do I need to do this week?",
+  "tactic": "Cut between decisions (cs-t30); your no repeats rule",
+  "why": "The second sentence is the third time the page says the long view lives elsewhere: card 03 (the full route has its own page), the Growth Journey headline (the whole route has a page of its own) and here. The reader has just come from the Growth Journey and Pathway blocks. Cut, the question stands on its own and leads straight into your AI paragraph.",
+  "src": "No new claim. Repetition checked against final-copy.md card 03 and the Growth Journey headline."
+ },
+ {
+  "id": "t-hub-active",
+  "block": "Action Hub",
+  "field": "Body 3",
+  "cur": "Each Action Item builds on the one before, so they’re finished in order and only the Active one at the top can be checked off.",
+  "new": "Each Action Item builds on the one before, so they’re finished in order and only the one at the top, marked Active, can be checked off.",
+  "tactic": "Curse of knowledge (cs-t38): gloss the term the argument depends on",
+  "why": "Not one of my changes: the reader check flagged Active 3 of 3 as a product term nobody has defined. Saying it is the label on the top item defines it in place, with no extra sentence.",
+  "src": "Only the Active Action Item can be completed (your accepted copy; HANDOFF calendar notes: only the active Action Item can be completed, matching the sequence). Label text on the screen is Active (your frame)."
+ },
+ {
+  "id": "t-rail",
+  "block": "Falling behind, part 1: the right rail",
+  "field": "Body",
+  "cur": "Small visible wins do more for motivation than a distant finish line, so the dates here belong to the current Pathway, not the whole journey. The right rail shows two of them.",
+  "new": "Both sit in a rail down the right side of the Action Hub, and the target stays put on purpose. If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.",
+  "tactic": "State the warrant (cs-t02); your no repeats rule",
+  "why": "The current body repeats twice over: why the dates are the current Pathway's is already made by card 03 (near goals) and Growth Journey body 3 (two sets of dates would compete), and the headline already says the dates belong to the Pathway the user is on. What the page never says is why the target holds still, the question a stranger asks first (why not just move the date?). Your order note puts this block right before Rollover so target and pace connect to what moves them, so this is the line that sets Rollover up: next block, the pace moves and the target stays where it was. It adds the why to your Pathway target definition (holds steady through an ordinary week) without repeating it. Meant to keeps it honest for a product with no users yet. If the layout needs no body at all here, deleting it is the fallback. The opening clause says what the rail is, because the reader check flagged it twice: round 1, on the rail in your Ahead of target line had nothing to point to once the old body was gone (3 of 3); round 2, right rail as an undefined term (3 of 3).",
+  "src": "Archive:84 (PARAPHRASE, archive premise): target does not drift on its own; a rolling target hides the slip; visible drift against a stable target drives get back on pace behavior. Archive:80: a bad week, missed items and Rollover do not move Target (CONFIRMED)."
+ },
+ {
+  "id": "t-roll-head",
+  "block": "Falling behind, part 2: Rollover",
+  "field": "Headline (Satoshi Medium 40)",
+  "cur": "Every Action Item is due by Saturday night, and when one is still open, everything after it moves a little later.",
+  "new": "When an Action Item is still open on Saturday night, everything after it moves a little later.",
+  "tactic": "Stress position (cs-t16); your no repeats rule",
+  "why": "Schedule view body 5 now says an Action Item is due by the end of its week, Saturday night, so opening this headline on that rule spends the first clause on what the reader just read. The new one opens on the moment and ends on the consequence, and still names no solution, so it stays a problem headline. Measured: 3 lines at 708px, Satoshi Medium 40, tracking minus 4 percent (breaks after open on and it moves a), same as now.",
+  "src": "Week runs Sunday to Saturday (Archive:100, CONFIRMED). Consequence wording is yours, unchanged."
+ },
+ {
+  "id": "t-roll-body",
+  "block": "Falling behind, part 2: Rollover",
+  "field": "Body",
+  "cur": "A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide. A week can only hold the hours the user set aside for it (their capacity). The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.",
+  "new": "A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.",
+  "tactic": "The rationale recital (cs-t48); your no repeats rule. Already doing: refute the rejected option (cs-t24), the earlier version that asked users to choose.",
+  "why": "Two changes. 1. One sentence out: A week can only hold the hours the user set aside for it (their capacity). Capacity is defined in Personalized timeline and Buffer flow body 2 says it again in your words, so this is the third time; the next sentence already uses capacity, so nothing is lost. 2. The reader check flagged the earlier version sentence 3 of 3 as process story (what was tried first, then cut). The rejected option and its reason are the strongest move in the block (refute the rejected option), so they stay; only the history goes, and the sentence now states why choosing in the moment loses.",
+  "src": "Rolled over items count against next week's capacity and the AI picks fewer new items (Archive:106, CONFIRMED). Rest unchanged from your accepted copy."
+ },
+ {
+  "id": "t-end",
+  "block": "Ending",
+  "field": "Headline",
+  "cur": "The framework is built and Mondai hasn’t launched yet, so the numbers that would show it working don’t exist yet.",
+  "new": "The framework is built and Mondai hasn’t launched, so the numbers that would show it working don’t exist yet.",
+  "tactic": "Not a tactic: a one word fix",
+  "why": "Yet appears twice. The ending already does what the research says a first build ending should: real status first, the two measures, the next step, and no outcome claims (rp-end-4, rp-met-5, cs-t25). Measured: 3 lines at 708px, the same as now (the ending's real width in Figma is not set yet).",
+  "src": "Your accepted ending A, unchanged otherwise."
+ }
+]

@@ -1,0 +1,40 @@
+VERSION V1: Growth Journey block, with t-gj
+V1.S1 The whole route has a page of its own, one users open now and then to see how far they’ve come and what’s left.
+V1.S2 Users need to see how the Pathway they’re on fits into the whole journey, so this page zooms out to show all of it.
+V1.S3 Long term metrics like their journey target, pace and progress sit here out of the user’s immediate view.
+V1.S4 Keeping them here was intentional.
+V1.S5 Two sets of dates on the weekly screen would compete, so the journey’s sit here for anyone who wants the big picture.
+
+VERSION V2: Action Hub block, with t-hub and t-hub-active
+  (label) Action Hub
+V2.S1 Most of a user’s week happens on one screen: the list of Action Items they come back to nearly every day.
+V2.S2 I designed the Action Hub around one question for the user: what do I need to do this week?
+V2.S3 Each week opens with a short headline and a paragraph the AI writes about that week’s work.
+V2.S4 It should read like a friend telling the user what the week is about before they look at their list, so it talks about the work itself and not about how much they’ve finished.
+V2.S5 Each Action Item builds on the one before, so they’re finished in order and only the one at the top, marked Active, can be checked off.
+
+VERSION V3: Right rail block, with t-rail
+V3.S1 The Action Hub keeps two dates for the Pathway the user is on: where they’re aiming and where they’re headed.
+V3.S2 The right rail shows both, and the target stays put on purpose.
+V3.S3 If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.
+  (label) Pathway target
+V3.S4 The date this Pathway should be done by, set from the hours the user gives each week.
+V3.S5 It holds steady through an ordinary week and moves when those hours change.
+  (label) Pathway pace
+V3.S6 Where the user’s progress says they will finish.
+V3.S7 It updates once a week, so nobody watches it tick with every finished item.
+V3.S8 In week one it matches the target.
+  (label) Ahead of target
+V3.S9 The gap between the two dates, in days.
+V3.S10 It is the only ahead or behind signal on the rail.
+
+VERSION V4: Rollover block, with t-roll-head and t-roll-body
+V4.S1 When an Action Item is still open on Saturday night, everything after it moves a little later.
+  (label) Rollover: An Action Item still open when the week ends on Saturday night.
+  (label) The Rollover effect
+V4.S2 A week that comes up short can feel like failing, and that feeling makes users less likely to keep going.
+V4.S3 So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own.
+V4.S4 Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide.
+V4.S5 The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too.
+V4.S6 That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it.
+V4.S7 The target stays where it was.

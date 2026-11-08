@@ -1,0 +1,129 @@
+V1 Q1 yes | V1.S2, V1.S3
+V1.S1 Q2 no
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | follows from the label and opens the block
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | follows from the months-long curriculum
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | direct answer to the problem in S2
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 no | scope line that follows the decision
+V2 Q1 yes | V2.S5, V2.S4
+V2.S1 Q2 no
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | opens the block under its label
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | follows from S1
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | follows from the one question
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | gives the reason for the headline design
+V2.S5 Q2 yes | Active
+V2.S5 Q3 no
+V2.S5 Q4 no
+V2.S5 Q5 no | new decision about the list with its reason
+V3 Q1 yes | V3.S2, V3.S3
+V3.S1 Q2 no
+V3.S1 Q3 no
+V3.S1 Q4 yes | K6
+V3.S1 Q5 no | opens the block
+V3.S2 Q2 no
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | follows from the two dates
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | reason for S2
+V3.S4 Q2 no
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | adds that it is set from weekly hours
+V3.S5 Q2 no
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 no | adds when it moves
+V3.S6 Q2 no
+V3.S6 Q3 no
+V3.S6 Q4 yes | K2
+V3.S6 Q5 yes | repeats "where they're headed" from S1 and the pace date already known
+V3.S7 Q2 no
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 no | adds update cadence and reason
+V3.S8 Q2 no
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | short new fact about week one
+V3.S9 Q2 no
+V3.S9 Q3 no
+V3.S9 Q4 no
+V3.S9 Q5 no | defines the label
+V3.S10 Q2 yes | the rail
+V3.S10 Q3 no
+V3.S10 Q4 no
+V3.S10 Q5 no | follows from the gap definition
+V4 Q1 yes | V4.S3, V4.S2
+V4.S1 Q2 no
+V4.S1 Q3 no
+V4.S1 Q4 no
+V4.S1 Q5 no | opens the block
+V4.S2 Q2 no
+V4.S2 Q3 no
+V4.S2 Q4 no
+V4.S2 Q5 no | gives the reason
+V4.S3 Q2 no
+V4.S3 Q3 no
+V4.S3 Q4 no
+V4.S3 Q5 no | decision following the reason
+V4.S4 Q2 no
+V4.S4 Q3 yes
+V4.S4 Q4 no
+V4.S4 Q5 yes | history of a rejected version, not needed to follow the point
+V4.S5 Q2 no
+V4.S5 Q3 no
+V4.S5 Q4 no
+V4.S5 Q5 no | explains the mechanism
+V4.S6 Q2 no
+V4.S6 Q3 no
+V4.S6 Q4 no
+V4.S6 Q5 no | consequence of S5
+V4.S7 Q2 no
+V4.S7 Q3 no
+V4.S7 Q4 no
+V4.S7 Q5 no | closes the effect
+V5 Q1 yes | V5.S3, V5.S4
+V5.S1 Q2 no
+V5.S1 Q3 no
+V5.S1 Q4 no
+V5.S1 Q5 no | opens the block
+V5.S2 Q2 no
+V5.S2 Q3 yes
+V5.S2 Q4 no
+V5.S2 Q5 yes | only introduces what S3 states
+V5.S3 Q2 no
+V5.S3 Q3 no
+V5.S3 Q4 no
+V5.S3 Q5 no | states the measure and its reason
+V5.S4 Q2 no
+V5.S4 Q3 no
+V5.S4 Q4 no
+V5.S4 Q5 no | ties the measure to Recalibration
+V5.S5 Q2 no
+V5.S5 Q3 no
+V5.S5 Q4 no
+V5.S5 Q5 no | next step
