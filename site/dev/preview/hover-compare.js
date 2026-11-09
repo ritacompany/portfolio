@@ -1,36 +1,48 @@
 // Preview only. Press O to switch the hover text back to the old drawing and compare.
-// Press W for the hover weight dial (proposal 10): a hairline outline on the highlighted text, set by eye.
+// Press W for the dials: the block text weight (proposal 10) and the bold amount for the small links (13).
+// Press 1, 2, 3 or 4 for the small links' hover: block, colour only, line, bolder (the default).
 (() => {
-  const KEY = "hover-weight-v2", root = document.documentElement;
-  const load = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
-  const save = (v) => { try { localStorage.setItem(KEY, v); } catch {} };
-  const set = (v) => root.style.setProperty("--hover-weight", v + "px");
-  const saved = load(); if (saved !== null) set(saved);
+  const root = document.documentElement;
+  const get = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
+  const put = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
+
   const box = document.createElement("div");
   box.style.cssText = "position:fixed;left:12px;bottom:12px;z-index:99999;padding:8px 10px;font:12px/1.4 system-ui;background:#fff;color:#000;display:none;-webkit-font-smoothing:auto";
-  const label = document.createElement("div");
-  const dial = Object.assign(document.createElement("input"), { type: "range", min: 0, max: 0.4, step: 0.01, value: saved ?? 0.05 });
-  dial.style.cssText = "display:none;width:220px";
-  const show = () => {
-    const old = root.classList.contains("hover-old");
-    label.textContent = old ? "Hover: old drawing (press O for the proposal)" : `Hover weight: ${Number(dial.value).toFixed(2)} px (0 is none)`;
-    box.style.display = "block"; if (!box.isConnected) { box.append(label, dial); document.body.append(box); }
+  const status = document.createElement("div");
+  const dials = document.createElement("div");
+  dials.style.display = "none";
+  box.append(status, dials);
+
+  const dial = (key, cssVar, def, max, name) => {
+    const saved = get(key);
+    if (saved !== null) root.style.setProperty(cssVar, saved + "px");
+    const label = document.createElement("div");
+    const input = Object.assign(document.createElement("input"), { type: "range", min: 0, max, step: 0.01, value: saved ?? def });
+    input.style.cssText = "display:block;width:240px";
+    const paint = () => { label.textContent = `${name}: ${Number(input.value).toFixed(2)} px`; };
+    input.addEventListener("input", () => { root.style.setProperty(cssVar, input.value + "px"); put(key, input.value); paint(); });
+    paint(); dials.append(label, input);
   };
-  // Small links: 1 block, 2 colour only, 3 line. Remembered in this browser.
-  const SMALL = "hover-small-v1", NAMES = { 1: "1, block", 2: "2, colour only", 3: "3, line" };
-  const showSmall = (k) => { show(); label.textContent = `Small links: option ${NAMES[k]}  (press 1, 2 or 3)`; };
-  let small = null; try { small = localStorage.getItem(SMALL); } catch {}
-  if (small === "2" || small === "3") root.classList.add("small-" + small);
-  dial.addEventListener("input", () => { set(dial.value); save(dial.value); show(); });
+  dial("hover-weight-v2", "--hover-weight", 0.05, 0.4, "Block text weight");
+  dial("hover-bold-v1", "--bold-weight", 0.36, 0.8, "Small links bolder (0.36 Medium, 0.78 Bold)");
+
+  const NAMES = { 1: "1, block", 2: "2, colour only", 3: "3, line", 4: "4, bolder" };
+  const SMALL = "hover-small-v2";
+  let small = get(SMALL) || "4";
+  const apply = () => { root.classList.remove("small-2", "small-3", "small-4"); if (small !== "1") root.classList.add("small-" + small); };
+  apply();
+
+  const show = () => {
+    status.textContent = root.classList.contains("hover-old")
+      ? "Hover: old drawing (press O to go back)"
+      : `Small links: option ${NAMES[small]} (press 1 to 4)`;
+    box.style.display = "block"; if (!box.isConnected) document.body.append(box);
+  };
   document.addEventListener("keydown", (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest("input, textarea, [contenteditable]")) return;
     const k = e.key.toLowerCase();
     if (k === "o") { root.classList.toggle("hover-old"); show(); }
-    if (k === "w") { dial.style.display = dial.style.display === "none" ? "block" : "none"; show(); }
-    if (k === "1" || k === "2" || k === "3") {
-      root.classList.remove("small-2", "small-3"); if (k !== "1") root.classList.add("small-" + k);
-      try { localStorage.setItem(SMALL, k); } catch {}
-      showSmall(k);
-    }
+    if (k === "w") { dials.style.display = dials.style.display === "none" ? "block" : "none"; show(); }
+    if (NAMES[k]) { small = k; put(SMALL, k); apply(); show(); }
   });
 })();

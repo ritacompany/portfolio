@@ -120,3 +120,30 @@ html.small-3 :is(.footer__out, .footer__back):is(:hover, :active) img { filter: 
 html.small-3 :is(.link-nav, .footer__out span, .footer__back span) { text-decoration: underline 1px transparent; text-underline-offset: 4px; }
 html.small-3 :is(.link-nav, .footer__out, .footer__back):is(:hover, :active),
 html.small-3 :is(.footer__out, .footer__back):is(:hover, :active) span { text-decoration-color: currentColor; }
+
+/* 13. The small all-caps links get bolder on hover instead of the block (his ask, 9 Nov): the nav, LinkedIn
+       and Back to top. Option 4, now the default; 1, 2 and 3 are still there to compare. Satoshi's real
+       Medium and Bold are wider than Regular, which made the word change shape, so the extra weight is
+       drawn as an outline in the text's own colour: the strokes thicken, the letters keep their exact
+       widths and places. Measured in the font files: Regular's stems are 0.072 of the type size, Medium's
+       0.098, Bold's 0.128. At 14 px that is 0.36 px more for Medium and 0.78 px more for Bold. The
+       default is Medium's 0.36; press W and use the second dial to set it. Colour does not change. */
+html.small-4 :is(.link-nav, .footer__out, .footer__back):is(:hover, :active) {
+  background: none; box-shadow: none;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  -webkit-text-stroke: var(--bold-weight, 0.36px) currentColor;
+}
+html.small-4 .link-nav:is(:hover, :active) { color: var(--neutral-050); }
+html.small-4 .site-nav.is-on-light .link-nav:is(:hover, :active) { color: var(--neutral-900); -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
+html.small-4 .footer__out:is(:hover, :active) { color: var(--neutral-100); }
+html.small-4 .footer__back:is(:hover, :active) { color: var(--neutral-550); }
+html.small-4 :is(.footer__out, .footer__back):is(:hover, :active) img { filter: none; }
+
+/* 14. The block is the text's own resting colour (his ask, 9 Nov). It was Neutral/200 (#dedee5) for every
+       link. Now: footer links, the email and LinkedIn rest at Neutral/100 (#e8e7ee), so their block is
+       Neutral/100; the nav rests at Neutral/050, Back to top at Neutral/550, and options 1 uses those. */
+.link-footer:is(:hover, :active) { background: var(--neutral-100); box-shadow: 0 0.02em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100); }
+.footer__email:is(:hover, :active) { background: var(--neutral-100); box-shadow: 0 0.4em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100); }
+.footer__out:is(:hover, :active) { background: var(--neutral-100); box-shadow: 0 0.02em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100); }
+.link-nav:is(:hover, :active) { background: var(--neutral-050); box-shadow: 0 0.02em 0 var(--neutral-050), 0 -0.02em 0 var(--neutral-050); }
+.footer__back:is(:hover, :active) { background: var(--neutral-550); box-shadow: 0 0.02em 0 var(--neutral-550), 0 -0.02em 0 var(--neutral-550); }
