@@ -146,6 +146,11 @@ A new session picks this up from this file alone.
     shorter labels would be a copy change for him.
   - Collection rows wrap: tablet keeps title, arrow and badge on one line with the locked status
     below; mobile puts the badge over the title, arrow on the right.
+- His first look at the phone layouts (9 Nov, one picture of the first screen of Home, Mondai page and
+  Framework CS): the hero needs rethinking; case study titles in the Mondai list must never wrap; the
+  list layout reads weird. He wants to go through each page with him one by one, after everything else
+  is in place. He also flagged that Phase 3 was built without checking in with him first: see
+  fixes/2026-11-09-phase-3-built-without-his-checkpoint.md. Nothing in Phase 3 is approved.
 - Next action: his review of the 390 versions (`docs/responsive/*-390.webp`, or `npm run dev` at 390).
   Then Phase 2 as he unparks it, then Phase 4.
 - Phase 2, 9 Nov, the rest: Home work cards carry the H11 states (image eases in 3.5 percent, text white,
@@ -174,6 +179,29 @@ in this list blocks a phase.
   Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
+
+## Review loop (his yes, 9 Nov)
+
+Every piece of site work, at every stage, runs this loop. Nothing is done because checks pass.
+
+1. **Propose.** In plain words: what changes, why and what it is based on (a Figma frame, his reference,
+   an earlier pick). Put a working version in `site/motion-lab/` or `site/dev/` and publish it to the
+   preview link, so he can try it rather than look at a picture of it.
+2. **His yes.** `.claude/hooks/site-review-gate.mjs` refuses changes to the shipped site (everything in
+   the site folder except dev and motion-lab, plus `scripts/framework-page/`) until his recent message
+   approves, or he answers Yes to a question card tagged [site change]. Tested by
+   `node .claude/hooks/tests/site-review-gate-cases.mjs` (SITE_GATE_OK).
+3. **Build** into the real pages, run the checks, republish the preview link.
+4. **He tries it** on the preview link, on his laptop and his phone, and gives notes. Back to 3 until it
+   feels right.
+5. **Done on his yes only.** Write his yes and the date next to the piece in this file.
+
+Preview link: https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST (private to him). Rebuild with
+`node scripts/build-preview.mjs site <dir>`, then publish to that same url.
+
+Approved so far: Phase 0 sheet ("fine enough", 8 Nov); Small button option A and the Contact button
+gooey split (picks, 9 Nov). Not yet approved by him: the Phase 1 pages as built, everything else in
+Phase 2, all of Phase 3.
 
 ## Source of truth
 
