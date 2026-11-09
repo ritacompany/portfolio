@@ -9,6 +9,7 @@
 1440 h-mvp-body [p.body, flow, 359px, 400 16px/22.4px, -0.16px]: page 3 to 4 lines, standalone 3 to 4: fits
 1440 h-wires [p.h40, flow, 755px, 500 40px/46px, -1.6px]: page 4 to 4 lines, standalone 4 to 4: fits
 1440 h-test-head [p.h40, flow, 283px, 500 40px/46px, -1.6px]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-test-i1 [p.tcard__body, slot, 268px, 500 16px/22.4px, normal]: page 3 to 3 lines, standalone 3 to 3: fits
 1440 h-test-i4 [p.tcard__body, slot, 268px, 500 16px/22.4px, normal]: page 3 to 3 lines, standalone 3 to 3: fits
 1440 h-bridge [p.h64, flow, 1081px, 700 64px/69.76px, -2.56px]: page 4 to 3 lines, standalone 4 to 3: fits
 1440 h-program-head [p.h40, flow, 646px, 500 40px/46px, -1.6px]: page 3 to 3 lines, standalone 3 to 3: fits
@@ -33,6 +34,7 @@
 390 h-mvp-body [p.body, flow, 358px, 400 16px/22.4px, -0.16px]: page 3 to 4 lines, standalone 3 to 4: fits
 390 h-wires [p.h40, flow, 358px, 500 28px/32.2px, -1.12px]: page 6 to 6 lines, standalone 6 to 6: fits
 390 h-test-head [p.h40, flow, 283px, 500 28px/32.2px, -1.12px]: page 2 to 2 lines, standalone 2 to 2: fits
+390 h-test-i1 [p.tcard__body, slot, 307px, 500 16px/22.4px, normal]: page 3 to 2 lines, standalone 3 to 2: fits
 390 h-test-i4 [p.tcard__body, slot, 307px, 500 16px/22.4px, normal]: page 3 to 2 lines, standalone 3 to 2: fits
 390 h-bridge [p.h64, flow, 334px, 700 32px/34.88px, -0.96px]: page 5 to 4 lines, standalone 5 to 4: fits
 390 h-program-head [p.h40, flow, 358px, 500 28px/32.2px, -1.12px]: page 4 to 3 lines, standalone 4 to 3: fits

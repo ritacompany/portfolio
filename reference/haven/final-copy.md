@@ -7,7 +7,7 @@ Figma master is Haven CS Master, node 5733:19874, page CS, file 5RO0m4bYYrTvbiaO
 this file was pulled from. The copy went through earlier AI edit passes, so these are not guaranteed to be his
 own words.
 
-His marks from the tactics pass (reference/haven/tactics/marks.json) were applied 9 Nov: 19 accepted, the MVP body rewritten from his note, Usability testing Insight 1 kept until he answers.
+His marks from the tactics pass (reference/haven/tactics/marks.json) were applied 9 Nov: 19 accepted, the MVP body rewritten from his note, Usability testing Insight 1 settled with him after (he confirmed testers were unsure between text, voice and video).
 
 The shared nav and footer (About, Work, Contact, the email, Chicago and NYC line, LinkedIn, Resume) are site
 chrome, not case study copy, and are left out.
@@ -79,7 +79,7 @@ Task: 02 | Select a Confidante
 Task: 03 | Schedule a chat
 Ticker: KEY INSIGHTS
 Hidden heading: Key insights from testing
-Card: Insight 1 | Users were unsure of what mode of communication they would be chatting with the expert through.
+Card: Insight 1 | Users weren’t sure whether they’d talk to the expert by text, voice or video.
 Card: Insight 2 | Users had trouble understanding the duration section of the scheduling page.
 Card: Insight 3 | Users were concerned that the design lacked enough security features.
 Card: Insight 4 | Users wanted to know more about each Confidante before choosing one.

@@ -64,7 +64,8 @@
   "note": "His note, 9 Nov: an interview showed both elements were needed and could not be separated, and there was not enough time to do all of it, so he divided it. No mark set; rewritten from his note."
  },
  "h-test-i1": {
-  "choice": "discuss",
-  "note": "He is unsure the new line is clear on the mode of communication. Kept as it stands until he answers."
+  "choice": "change",
+  "final": "Users weren’t sure whether they’d talk to the expert by text, voice or video.",
+  "note": "Discuss on the page; his yes, 9 Nov: testers were unsure whether chats would be by text, voice or video."
  }
 }

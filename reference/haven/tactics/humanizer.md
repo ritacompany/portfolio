@@ -77,6 +77,9 @@ Draft: Users weren't sure how they would be talking to the expert.
 Audit: mode of communication is the stiff phrase this replaces. Plain. No new fact.
 Final: Users weren’t sure how they would be talking to the expert.
 
+His mark (9 Nov): Discuss. He was unsure the plain line kept the point, the mode of communication; it does not. He confirmed testers were unsure between text, voice and video, so the options are named. It also sets up the Chat block (by text, not voice or video). No fact beyond his answer.
+Final (applied, his answer): Users weren’t sure whether they’d talk to the expert by text, voice or video.
+
 ## h-test-i4
 Draft: Users wanted to know more about each Confidante before choosing one.
 Audit: in order to determine the right choice is filler. No new fact.
