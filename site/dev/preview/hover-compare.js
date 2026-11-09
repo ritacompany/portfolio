@@ -16,11 +16,21 @@
     label.textContent = old ? "Hover: old drawing (press O for the proposal)" : `Hover weight: ${Number(dial.value).toFixed(2)} px (0 is none)`;
     box.style.display = "block"; if (!box.isConnected) { box.append(label, dial); document.body.append(box); }
   };
+  // Small links: 1 block, 2 colour only, 3 line. Remembered in this browser.
+  const SMALL = "hover-small-v1", NAMES = { 1: "1, block", 2: "2, colour only", 3: "3, line" };
+  const showSmall = (k) => { show(); label.textContent = `Small links: option ${NAMES[k]}  (press 1, 2 or 3)`; };
+  let small = null; try { small = localStorage.getItem(SMALL); } catch {}
+  if (small === "2" || small === "3") root.classList.add("small-" + small);
   dial.addEventListener("input", () => { set(dial.value); save(dial.value); show(); });
   document.addEventListener("keydown", (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest("input, textarea, [contenteditable]")) return;
     const k = e.key.toLowerCase();
     if (k === "o") { root.classList.toggle("hover-old"); show(); }
     if (k === "w") { dial.style.display = dial.style.display === "none" ? "block" : "none"; show(); }
+    if (k === "1" || k === "2" || k === "3") {
+      root.classList.remove("small-2", "small-3"); if (k !== "1") root.classList.add("small-" + k);
+      try { localStorage.setItem(SMALL, k); } catch {}
+      showSmall(k);
+    }
   });
 })();
