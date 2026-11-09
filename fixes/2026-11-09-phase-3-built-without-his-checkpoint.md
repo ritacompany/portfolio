@@ -1,6 +1,6 @@
 # Fix: a whole phase of visual work was built and reported with no check-in with him
 
-Status: not verified
+Status: verified
 
 ## Evidence
 Bad output: from his one message ("I feel like we should still be making moves forward... the button takes less priority than just setting things up"), the session picked Phase 3 by itself and built phone, tablet and laptop layouts for Home, the Mondai page and the Framework case study. It pushed them and opened a draft PR without showing him a single picture along the way. Then it ended with "Do the 390 versions in docs/responsive/ (home-390.webp, collection-390.webp, framework-390.webp) read right to you?". His reply: "390 versions of what? ... You're not showing me anything at any point to this process ... there's been no confirmation with me at all."
@@ -32,17 +32,17 @@ Check: yes or no question for a separate reviewer reading the transcript: "Befor
 Result on bad output: FAIL. The first site/ change (site/css/tokens.css breakpoints) came before any picture. The first picture he was pointed to was a folder of nine screenshots, offered after the push.
 
 ## Change
-Files changed: this record only. The proposed enforcement is for him to decide: a PreToolUse hook on writes under site/css, site/*.html and scripts/framework-page/ that blocks unless his latest message approves that work (the same pattern as figma-build-gate.mjs and decision D5). Its cost is that it would also stop the other session's Phase 2 edits until he approves them.
-Instruction lines: +0 / -0
-Net growth reason: n/a
+Files changed: .claude/hooks/site-review-gate.mjs (new: refuses changes to the shipped site without his approval), .claude/settings.json (registers it on Write, Edit, MultiEdit, NotebookEdit and Bash), .claude/hooks/tests/site-review-gate-cases.mjs (20 cases), docs/SITE_BUILD_PLAN.md (Review loop section, the one place the loop is written), scripts/build-preview.mjs (rebuilds the preview link he tries things on). His yes to "loop plus block" came through a question card on 9 Nov.
+Instruction lines: +17 / -0
+Net growth reason: the loop did not exist anywhere as steps; the 17 lines are the loop itself plus the preview link and the approved and unapproved list. The block, not the text, holds step 2.
 
 ## Verification
-Fresh run: not done. The fix is not applied until he picks it.
-Before: built the whole phase, then asked "Do the 390 versions in docs/responsive/ ... read right to you?"
-After: not available.
-Check result after: not run.
-Second case: not run.
-Enforcement test: not run.
+Fresh run: a subagent in a fresh context was asked to edit site/css/collection.css. The hook refused it with the loop message, and the file is unchanged (git diff clean).
+Before: Phase 3 tokens.css and layout changes went in with no approval from him anywhere in the transcript.
+After: "Blocked by the site review loop: Chadwick has not approved a change to the site in his recent messages ..." on an Edit in this session (his latest message was a question, not a yes) and in the fresh subagent.
+Check result after: PASS. node .claude/hooks/tests/site-review-gate-cases.mjs prints SITE_GATE_OK 20/20: approvals, an expired yes, a stop after a yes, untagged and tagged question cards, shell writes and reads, and a docs write that only mentions the site folder.
+Second case: a Bash write into the site (redirect, cp, python open with w, running the Framework generator) is blocked; the same writes into site/motion-lab, where proposals go, stay open.
+Enforcement test: the live Edit above, refused in this session; and the subagent's Edit, refused.
 
 ## Report
-Unverified: everything. He decides whether to add the site/ approval gate. If he does, it gets built and tested by blocking a write to site/css without his approval, then allowing it after a yes. Until then, the only enforcement is him.
+Unverified: the block lives on branch claude/relaxed-ride-5mlbdu. It reaches the other site build session and new sessions only once that branch is merged into the branch they work from (claude/lucid-carson-u56t7v, and main at launch). Approval is read from his recent words, so a yes about something else within his last three messages would let a change through; the session still has to show him the piece first.

@@ -157,6 +157,29 @@ A new session picks this up from this file alone.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
 
+## Review loop (his yes, 9 Nov)
+
+Every piece of site work, at every stage, runs this loop. Nothing is done because checks pass.
+
+1. **Propose.** In plain words: what changes, why and what it is based on (a Figma frame, his reference,
+   an earlier pick). Put a working version in `site/motion-lab/` or `site/dev/` and publish it to the
+   preview link, so he can try it rather than look at a picture of it.
+2. **His yes.** `.claude/hooks/site-review-gate.mjs` refuses changes to the shipped site (everything in
+   the site folder except dev and motion-lab, plus `scripts/framework-page/`) until his recent message
+   approves, or he answers Yes to a question card tagged [site change]. Tested by
+   `node .claude/hooks/tests/site-review-gate-cases.mjs` (SITE_GATE_OK).
+3. **Build** into the real pages, run the checks, republish the preview link.
+4. **He tries it** on the preview link, on his laptop and his phone, and gives notes. Back to 3 until it
+   feels right.
+5. **Done on his yes only.** Write his yes and the date next to the piece in this file.
+
+Preview link: https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST (private to him). Rebuild with
+`node scripts/build-preview.mjs site <dir>`, then publish to that same url.
+
+Approved so far: Phase 0 sheet ("fine enough", 8 Nov); Small button option A and the Contact button
+gooey split (picks, 9 Nov). Not yet approved by him: the Phase 1 pages as built, everything else in
+Phase 2, all of Phase 3.
+
 ## Source of truth
 
 Figma file `5RO0m4bYYrTvbiaOgaU3tI` (Desktop 1 MVP), page CS (`5658:1061`). Read live on 8 Nov.
