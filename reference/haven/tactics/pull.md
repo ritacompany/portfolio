@@ -14,8 +14,8 @@ repeats another block.
 
 ## Hero
 Job: what Haven is for and what made it hard, on the first screen.
-Fits: cs-t06 answer first and cs-t17 the nut graf: the page's driving constraint (being found out) first appears
-two blocks down. cs-t38 the curse of knowledge: Confidante is used in Usability testing before anything defines
+Fits: cs-t06 answer first and cs-t17 the nut graf: the first screen has no decision, and the page's driving
+constraint (being found out) first appears two blocks down. cs-t38 the curse of knowledge: Confidante is used in Usability testing before anything defines
 it, and the hero's own expert line is the place to name it. cs-t03 qualify the scope: often leads to claims a
 cause the data block does not show.
 Considered and dropped: cs-t25 steal the thunder (bootcamp is already said); re-t38 (no real number belongs here).

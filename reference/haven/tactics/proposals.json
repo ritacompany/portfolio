@@ -16,11 +16,11 @@
   "block": "Hero",
   "field": "Right 2",
   "cur": "This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert.",
-  "new": "This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante. If a disapproving guardian or peer found Haven on a user’s phone, it could out them, so privacy drives many of the decisions that follow.",
+  "new": "This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante. Just having Haven on their phone could put a user at risk, so I designed it to stay hidden and to keep every chat by text.",
   "also": [],
   "tactic": "cs-t06 Answer first, with cs-t17 the nut graf and cs-t38 the curse of knowledge",
-  "why": "The first screen says what Haven is for but not what made it hard, and the constraint that drives the page (being found out) waits until Demographic access. One sentence names it on the first screen, and every privacy decision below pays it off. It also says once what a Confidante is: the word is used in Usability testing before the page explains it.",
-  "src": "Insight 5 (guardians or peers may find out), Demographic access headline (would out the teens). Confidante as the expert: the brief line plus The Confidante program. CONFIRMED on the page. Many, not every: matching decisions (quiz, profile, flow) are not privacy decisions.",
+  "why": "The first screen says what Haven is for but no decision and nothing that made it hard. One sentence gives the constraint and the decision it forced (Haven stays hidden, chats are by text), and the blocks below pay it off. It leaves who the risk comes from to Insight 5, which is the evidence; the first draft named guardians and peers here and the reader check then found Insight 5 only repeated it. It also says once what a Confidante is: the word is used in Usability testing before the page explains it.",
+  "src": "Insight 5 (guardians or peers may find out), Demographic access headline (would out the teens). Stays hidden: the disguise icon and app switcher screens; by text: Scheduling and Chat. Confidante as the expert: the brief line plus The Confidante program. CONFIRMED on the page.",
   "pick": "accept"
  },
  {
@@ -225,10 +225,10 @@
   "block": "Scheduling a chat",
   "field": "Body",
   "cur": "Testing showed confusion about how chats would work. The scheduling screen explains that they happen by text, last 30 minutes and can end early, so people can choose a private time. With selection moved after the chats, users can book introductions with different Confidantes. Your events lists each upcoming chat with the Confidante’s name and time.",
-  "new": "Testing showed confusion about how chats would work and how long they would last. The scheduling screen now explains that they happen by text, last a set 30 minutes and can end early, so users can pick a time when they can be alone. Your events lists each upcoming chat with the Confidante’s name and time.",
+  "new": "Testers were confused about how chats would work and how long they would last, so the scheduling screen now says they happen by text, last a set 30 minutes and can end early. That lets users pick a time when they can be alone.",
   "also": [],
   "tactic": "cs-t48 The rationale recital (a repeat cut), with cs-t18 Chekhov’s rifle paid off",
-  "why": "With selection moved after the chats repeats the Testing synthesis block one screen up. Cut it. Testing insight 2 (the duration section confused users) is tagged here but the body never answers it; a set 30 minutes does, and it pays off the wireframe’s chat length picker. People becomes users, and a private time becomes Insight 4’s own words (a time when they can be alone).",
+  "why": "With selection moved after the chats repeats the Testing synthesis block one screen up. Cut it. Testing insight 2 (the duration section confused users) is tagged here but the body never answers it; a set 30 minutes does, and it pays off the wireframe’s chat length picker. People becomes users, and a private time becomes Insight 4’s own words (a time when they can be alone). The Your events sentence also goes: the reader check found it an unexplained name that does not follow from the point (3 of 3), and the screen beside the text already shows it.",
   "src": "Testing insight 2, Interview insight 4 (tags on this block). Wireframe 1 alt (15 to 60 minute options). Last 30 minutes: this body. CONFIRMED on the page; set is my word for a single length.",
   "pick": "accept"
  },

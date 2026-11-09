@@ -6,7 +6,7 @@ met where they are first stated. The reader check round 2 runs the same page in 
 
 ## Hero
 Introduces: LGBTQIA+ teens, affirming environments, the bootcamp brief, the expert (named Confidante by
-h-hero-r2), the risk of being outed by a guardian or peer, privacy behind the decisions.
+h-hero-r2), the risk of just having the app, and the decision it forced (Haven stays hidden, chats by text).
 FORWARD: none. Before h-hero-r2, nothing on the page defined Confidante before Usability testing used it.
 REPEAT: none.
 
@@ -18,8 +18,8 @@ REPEAT: the links line repeats in the ending. Kept: it is a resource pointer, no
 ## Demographic access
 Introduces: guardian consent, proxy groups, 6 interviews, Insights 1 to 5.
 FORWARD: none (expert met in the hero).
-REPEAT: Insight 5 (guardians or peers may find out) is the evidence for the stake the hero now states. Kept: the
-card is the finding, the hero line is the frame. Watched in the reader check.
+REPEAT: none. The first h-hero-r2 draft named guardians and peers, and the round 1 reader check then found Insight 5
+only restated it (2 of 3). Fixed in h-hero-r2: the hero gives the risk and the decision, Insight 5 gives who.
 
 ## Designing an MVP
 Introduces: the two phases, identity first. With h-mvp-body, matching on who the user is.
@@ -58,7 +58,8 @@ Leans on: shared experiences (quiz), testing (Testing insight 4), swiping (h-wir
 ## Scheduling a chat
 Introduces: by text, a set 30 minutes, can end early, Your events (shown on the screen beside it).
 FORWARD: none.
-REPEAT before h-sched-body: With selection moved after the chats repeated Testing synthesis body 4. Fixed.
+REPEAT before h-sched-body: With selection moved after the chats repeated Testing synthesis body 4. Fixed. Round 1
+also flagged the opening sentence as only restating Testing insights 1 and 2; now it carries the decision.
 
 ## Chat-based interactions
 Leans on: by text, set length, can end early (Scheduling), Insight 2.
@@ -77,5 +78,5 @@ each caption is one line beside its screen. FORWARD: none.
 REPEAT: by design (his recap cards). Not proposed.
 
 Result: no forward reference left (h-hero-r2 fixes the one found, Confidante before its definition); repeats fixed
-by h-mvp-head with h-mvp-body, h-quiz-body, h-sched-body and h-chat-body. One echo kept and sent to the reader
-check: Insight 5 against the new hero line.
+by h-mvp-head with h-mvp-body, h-quiz-body, h-sched-body and h-chat-body. The Insight 5 echo found in round 1 is fixed in
+h-hero-r2. Round 2 of the reader check ran this page in order.

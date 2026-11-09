@@ -18,7 +18,10 @@ Draft: This project was developed as part of a UX bootcamp. The brief was to cre
 Audit: the research, the chats and the setup is a built rule of three, and the setup means nothing to a reader on the first screen. Fact check: privacy shaped the research overstates; the proxy groups came from the consent rule, which is about outing, so it holds, but the list invites a check on every item. Haven itself could out a user is a thing doing a person's job.
 Draft 2: ...which Haven calls a Confidante. If a disapproving guardian or peer found Haven on a user's phone, it could out them, so privacy drives many of the decisions that follow.
 Audit: many, not every, because the quiz, profile and flow decisions are about matching, not privacy (checked block by block). Disapproving guardians or peers is Insight 5's wording. No new fact.
-Final: This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante. If a disapproving guardian or peer found Haven on a user’s phone, it could out them, so privacy drives many of the decisions that follow.
+Reader check round 1: the hero states no design decision (Q1 no, 3 of 3), and Insight 5 now only restates the hero (Q4, 2 of 3), because the hero said guardians or peers first.
+Draft 3: ...which Haven calls a Confidante. Just having Haven on their phone could put a user at risk, so I designed it to stay hidden on the phone and to keep every chat by text.
+Audit: one decision with its reason, I as the subject, and the who (guardians or peers) left to Insight 5, which is the evidence for it. on their phone and on the phone in one sentence; the second goes. Fact check: stays hidden (the disguise icon and app switcher screens) and chats by text (Scheduling, Chat) are both on the page. No new fact.
+Final: This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante. Just having Haven on their phone could put a user at risk, so I designed it to stay hidden and to keep every chat by text.
 
 ## h-data-cap1
 Draft: lower odds of a suicide attempt.
@@ -101,7 +104,11 @@ Final: Users needed to know what to expect before booking an introductory chat.
 ## h-sched-body
 Draft: Testing showed confusion about how chats would work and about the duration picker, so I replaced the picker with a set 30 minutes. The scheduling screen explains that chats happen by text, last 30 minutes and can end early, so users can choose a time when they can be alone. Your events lists each upcoming chat with the Confidante's name and time.
 Audit: 30 minutes twice in two sentences. Fact check: I replaced the picker states a change nobody wrote down; the page shows a picker in the wireframes and a 30 minute chat in the final, which supports a set length, not a story of replacing it.
-Final: Testing showed confusion about how chats would work and how long they would last. The scheduling screen now explains that they happen by text, last a set 30 minutes and can end early, so users can pick a time when they can be alone. Your events lists each upcoming chat with the Confidante’s name and time.
+Final (round 1): Testing showed confusion about how chats would work and how long they would last. The scheduling screen now explains that they happen by text, last a set 30 minutes and can end early, so users can pick a time when they can be alone. Your events lists each upcoming chat with the Confidante’s name and time.
+Reader check round 1: sentence 1 only restates Testing insights 1 and 2 (Q4, 2 of 3); Your events is an unexplained name that does not follow from the point (Q2 and Q5, 3 of 3). The Your events sentence was his, kept by my rewrite; it names the screen the image already shows, so it goes.
+Draft 2: Testers were confused about how chats would work and how long they would last, so the scheduling screen now says they happen by text, last a set 30 minutes and can end early, which lets users pick a time when they can be alone.
+Audit: one long sentence with the reason inside it, his habit; the insights are named to carry the decision, not restated. Testers, not users, for people in a test. which lets is a loose join; keeps it plain. No new fact.
+Final: Testers were confused about how chats would work and how long they would last, so the scheduling screen now says they happen by text, last a set 30 minutes and can end early. That lets users pick a time when they can be alone.
 
 ## h-chat-body
 Draft: Chats happen by text, not voice or video, so users never have to say anything sensitive out loud. Each chat has a set length and can end early, which leaves users in control of when and how much they share.
