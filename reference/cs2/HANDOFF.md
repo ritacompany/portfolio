@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-09 01:10
+Updated: 2026-11-09 01:40
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -74,7 +74,7 @@ Still missing from his frame: Get ahead (goes before Opening the week; streak qu
 
 ## Next action
 
-Next (9 Nov): read his marks (ArtifactData list, collection marks, on https://claude.ai/artifact/X2A6EJTCnu7saeGFMari44). Apply the accepted hero and ending to reference/cs2/review-2026-11-07/final-copy.md (Hero and Ending blocks), plus paste-list.md if it still mirrors final-copy. If he picks ending A, apply its Body 1 fix first and run one reader check round on it. Re-check what changed: run-checks.mjs, measure.mjs, and the reader check on the changed blocks against reader-check/runs/2026-11-09-hero-end/known-end.md. Then commit, push and tell him it is done.
+Done 9 Nov: he picked hero A and ending C (question card in chat). Both applied word for word to reference/cs2/review-2026-11-07/final-copy.md and paste-list.md; verified by an exact text match (old text gone), run-checks.mjs OK and measure.mjs OK. The applied text is the text that passed both reader check rounds, so no new round ran. Not updated: scripts/figma/paste-framework-cs.js still holds the old hero and ending (the Figma route is off). Hero and ending copy is done; nothing open on them.
 
 Next (9 Nov, 00:00): hero and ending get worked as blocks (his ask: they were only ever drafted inside the review). Session started: Portfolio: CS2 opening and ending (session_01NtNprsxC2Kzua6FztXjUAR), three versions each, every check and re-check before he sees them, results applied to final-copy.md. Fonts: not changing for now (his call 8 Nov); the font notes in final-copy.md are for later.
 
