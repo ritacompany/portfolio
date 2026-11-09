@@ -1,0 +1,45 @@
+/* Collection page (Mondai), Figma 5812:22999 at 1440 by 900. Layout only: color and type come from
+   tokens.css, the parts from components.css. */
+
+.collection { min-height: 100vh; align-content: start; padding-top: 167px; padding-bottom: 25px; }
+
+.collection__brand { display: flex; align-items: center; gap: 20px; }
+/* The mark's ring stroke bleeds 0.79 px past its 40 by 40.57 Figma box; the box keeps Figma's size. */
+.collection__mark { flex: none; position: relative; width: 40px; height: 40.57px; }
+.collection__mark img { position: absolute; left: -0.793px; top: -0.793px; width: 41.586px; height: 42.156px; max-width: none; }
+.collection__brand h1 {
+  font: var(--heading-40); letter-spacing: var(--heading-40-track);
+  color: var(--neutral-050); padding-inline-end: 0.04em;
+  text-box: trim-both cap alphabetic;
+}
+.collection__intro {
+  width: min(668.69px, 100%); margin-top: 40px;
+  font: var(--heading-20); letter-spacing: var(--heading-20-track);
+  color: var(--neutral-300);
+  text-box: trim-both cap alphabetic;
+}
+
+.collection__list { margin-top: 94.43px; }
+.collection__label { display: flex; align-items: center; gap: 16px; }
+.collection__slashes {
+  font: var(--mark-15); letter-spacing: var(--mark-15-track); color: var(--neutral-500);
+  text-box: trim-both cap alphabetic;
+}
+.collection__label h2 {
+  font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase;
+  color: var(--neutral-400); font-weight: 400;
+  text-box: trim-both cap alphabetic;
+}
+.collection__rows { list-style: none; padding: 0; margin-top: 20px; }
+
+/* Phase 3: the page keeps its order and spacing rhythm; only the top padding and gaps tighten. */
+@media (max-width: 1199.98px) {
+  .collection { padding-top: 136px; padding-bottom: 64px; }
+  .collection__list { margin-top: 72px; }
+}
+@media (max-width: 767.98px) {
+  .collection { padding-top: 112px; }
+  .collection__brand { gap: 16px; }
+  .collection__intro { margin-top: 28px; }
+  .collection__list { margin-top: 56px; }
+}

@@ -10,7 +10,9 @@ const pages = [];
 (function walk(dir) {
   for (const name of readdirSync(dir)) {
     const path = join(dir, name);
-    if (statSync(path).isDirectory()) { if (name !== "vendor") walk(path); }
+    // motion-lab is never shipped and its renders are gitignored (.gitignore), so a fresh clone
+    // cannot resolve them; the build leaves it out for the same reason.
+    if (statSync(path).isDirectory()) { if (name !== "vendor" && path !== join(root, "motion-lab")) walk(path); }
     else if (name.endsWith(".html")) pages.push(path);
   }
 })(root);

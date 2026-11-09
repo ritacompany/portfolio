@@ -1,0 +1,6 @@
+/* Liquid Contact button (site/js/contact-liquid.js). Once the script runs, the pill borders go
+   transparent and an SVG layer behind the content draws the outline, the body and the hidden colour.
+   Without the script, or with reduced motion, the plain borders stay. */
+.button.is-liquid { position: relative; }
+.button.is-liquid .button__icon, .button.is-liquid .button__label { border-color: transparent; position: relative; z-index: 1; }
+.liquid-layer { z-index: 0; max-width: none; }

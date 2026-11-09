@@ -1,0 +1,24 @@
+/* Type review tool on the preview link only. Light panel so it never reads as part of the dark site. */
+.tr-ui { position: fixed; right: 16px; bottom: 16px; z-index: 2147483000; font: 13px/1.4 system-ui, sans-serif; color: #18181b; letter-spacing: 0; text-transform: none; }
+.tr-ui * { box-sizing: border-box; font: inherit; letter-spacing: 0; text-transform: none; }
+.tr-toggle { display: block; margin-left: auto; padding: 8px 14px; border: 0; border-radius: 999px; background: #f4f4f5; color: #18181b; cursor: pointer; box-shadow: 0 2px 10px rgb(0 0 0 / 0.35); }
+.tr-toggle[aria-pressed="true"] { background: #fde047; }
+.tr-panel { width: min(320px, calc(100vw - 32px)); max-height: min(70vh, 640px); overflow: auto; margin-bottom: 8px; padding: 14px; border-radius: 12px; background: #fafafa; box-shadow: 0 8px 30px rgb(0 0 0 / 0.45); display: grid; gap: 10px; order: -1; }
+.tr-ui { display: flex; flex-direction: column-reverse; align-items: flex-end; }
+.tr-panel[hidden], .tr-sel[hidden], .tr-hint[hidden] { display: none; }
+.tr-sel { display: grid; gap: 8px; }
+.tr-text { font-weight: 600; }
+.tr-now { color: #52525b; }
+.tr-bad { color: #dc2626; }
+.tr-panel label { display: grid; gap: 3px; color: #3f3f46; }
+.tr-panel .tr-allrow { display: flex; align-items: center; gap: 6px; }
+.tr-panel select, .tr-panel input[type="number"], .tr-panel input:not([type]) { padding: 6px 8px; border: 1px solid #d4d4d8; border-radius: 6px; background: #fff; color: #18181b; }
+.tr-new { display: grid; gap: 6px; }
+.tr-new summary { cursor: pointer; font-weight: 600; }
+.tr-new[open] { display: grid; gap: 8px; }
+.tr-panel button { padding: 7px 10px; border: 1px solid #d4d4d8; border-radius: 6px; background: #fff; color: #18181b; cursor: pointer; }
+.tr-actions { display: flex; gap: 8px; }
+.tr-log { margin: 0; padding-left: 18px; color: #3f3f46; }
+.tr-on .tr-picked { outline: 2px solid #fde047 !important; outline-offset: 2px; }
+.tr-on .tr-unstyled-mark { outline: 2px dashed #ef4444 !important; outline-offset: 2px; }
+.tr-on body *:not(.tr-ui):not(.tr-ui *):hover { cursor: text; }

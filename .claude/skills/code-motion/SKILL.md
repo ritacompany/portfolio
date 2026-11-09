@@ -1,6 +1,6 @@
 ---
 name: code-motion
-description: Build, render and review a portfolio animation from code. Use for any case study motion, a looping mockup, a scroll driven moment, a rotating phone or a clip rendered to MP4.
+description: Build, render and review a portfolio animation from code. Use for any case study motion, a looping mockup, a scroll driven moment, a rotating phone, a clip rendered to MP4, or an interactive hover or press effect on a site component.
 ---
 
 # Code motion

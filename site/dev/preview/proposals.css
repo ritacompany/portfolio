@@ -1,0 +1,52 @@
+/* Proposals on the preview link only, for Chadwick to try before anything moves into the site (review
+   loop step 1). Each block goes into site/css once he says yes, and is deleted here. */
+
+/* 1. Mondai card label "Case study collection" on Home: Label/12 C, Neutral/300 (his ask, 9 Nov).
+      Today it is Label/12 C in Bold at Neutral/200. */
+.work-card__kind { font-weight: 400; color: var(--neutral-300); }
+
+/* 2. Hover rule for every link (his ruling, 9 Nov): a highlight is the text colour and the light block
+      behind it, nothing else. No weight, spacing, size or position change on any element, ever.
+      Checked letter by letter by scripts/verify-hover-still.mjs.
+      The swap is instant, in and out (his note, 9 Nov: a flicker when moving away). The 200 ms fade
+      showed about ten frames where the text and the block were both mid grey, which read as a flicker. */
+.link-nav, .link-footer, .link-block, .footer__email, .footer__out, .footer__out img, .footer__back, .footer__back img { transition: none; }
+/*    Same for the case study rows and the Small button fill (a fade there shows the same grey on grey
+      frames). The Small button keeps its 98 percent press, which is a press, not a hover. */
+.context, .context__icon, .context__icon::before { transition: none; }
+.button-sm { transition: transform 120ms var(--ease-quart-out); }
+
+/* 3. Footer email gets the same cover effect as the footer links (his comment, 9 Nov): the light block
+      behind it and dark text. */
+/* Same weight and underline at rest and on hover (his comment: the underline vanished and the shape
+   changed). The block is trimmed to the baseline, so it is extended down past the underline with a
+   shadow of the same colour; nothing in the layout moves. */
+.footer__email:hover, .footer__email:active { color: var(--neutral-900); background: var(--neutral-200); box-shadow: 0 0.4em 0 var(--neutral-200); }
+
+/* 4. Footer portraits: no light edge around the pills (his comment, 9 Nov: "neither should have a
+      stroke"). The pill background was clipped separately from the photo, so its light grey leaked
+      into the curved edge as a thin rim, most visible against the black suit. Clipping the pill and
+      its photo as one shape removes the rim. */
+.footer__pill { border-radius: 0; overflow: visible; clip-path: inset(0 round 66.349px); }
+
+/* 5. LinkedIn (and Resume, when it is back) get the same cover effect (his comment, 9 Nov): light block,
+      dark text, and the arrow turns dark with the text so it stays visible. */
+.footer__out { justify-self: start; }
+.footer__out:hover, .footer__out:active { color: var(--neutral-900); background: var(--neutral-200); }
+.footer__out:hover img, .footer__out:active img { filter: brightness(0); }
+
+/* 6. Back to top gets the same cover effect (his comment, 9 Nov): light block, dark text, the arrow turns
+      dark with it. Colour and block only; nothing moves. */
+.footer__back:hover, .footer__back:active { color: var(--neutral-900); background: var(--neutral-200); }
+.footer__back:hover img, .footer__back:active img { filter: brightness(0); }
+
+/* 7. Haven's nav faded its text colour over 0.3 s so it could ease to dark over the light bridge. That
+      same fade ran on hover and showed the grey flicker, so the nav colour now swaps at once, on hover
+      and when it turns dark over the bridge. */
+.site-nav .link-nav { transition: none; }
+
+/* 8. Case study end bar links get the cover highlight too (his yes, 9 Nov). The bar is light, so the
+      highlight is inverted: dark block, light text. The arrows keep their white squares. Instant swap. */
+.ending-bar a { transition: none; }
+.ending-bar__prev { justify-self: start; }
+.ending-bar a:hover, .ending-bar a:active { color: var(--neutral-050); background: var(--neutral-900); }

@@ -7,6 +7,9 @@
 <meta name="description" content="Haven, a UX bootcamp case study: an MVP that helps LGBTQIA+ youth reach affirming environments through a Confidante program.">
 <link rel="preload" href="../assets/satoshi-medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/nav-logo.svg">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/grid.css">
+<link rel="stylesheet" href="/css/components.css">
 <link rel="stylesheet" href="haven.css">
 <link rel="stylesheet" href="current.css">
 <script>
@@ -17,13 +20,15 @@
 <body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-nav">
-  <a class="site-nav__logo" href="../" aria-label="Chadwick Fenner, home"><img src="assets/nav-logo.svg" width="47.358" height="14.037" alt=""></a>
-  <nav aria-label="Primary"><ul class="site-nav__links">
-    <li><a href="../#about" aria-label="About">ABOU<span class="flipped">7</span></a></li>
-    <li><a href="../#work" aria-label="Work">WORK<span class="flipped">5</span></a></li>
-    <li><a href="mailto:hello@chadwickfenner.com" aria-label="Contact me">CONTACT M<span class="flipped">3</span></a></li>
-  </ul></nav>
+<header class="page-header site-nav">
+  <nav class="navbar grid" aria-label="Main">
+    <a class="navbar__logo col-1" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+    <ul class="navbar__links col-8 span-5">
+      <li><a class="link-nav" href="/#about" aria-label="About"><span aria-hidden="true">Abou<span class="mirror">7</span></span></a></li>
+      <li><a class="link-nav" href="/#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
+      <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
+    </ul>
+  </nav>
 </header>
 
 <main id="main">
@@ -382,22 +387,60 @@ a chat</span></li>
 
     </div>
   </div>
-  <footer class="case-footer" id="contact" data-node="4659:13190">
-    <img class="footer-transition" src="assets/footer-transition.png" width="1440" height="217" alt="">
-    <div class="footer-content">
-      <div class="footer-top"><div class="footer-left"><a class="back-top" href="#top">↑ Back to top</a><nav aria-label="Footer"><a href="../#about">About</a><a href="../#work">Selected works</a><a href="mailto:hello@chadwickfenner.com">Contact</a></nav></div>
-      <div class="footer-contact"><p class="footer-label">Contact</p><div><a class="footer-email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a><p class="footer-location"><span>I’m currently living in Chicago, IL</span><br>and seeking opportunities in NYC.</p></div><a class="contact-button" href="mailto:hello@chadwickfenner.com"><span><img src="assets/contact-icon.svg" width="40" height="40" alt=""></span><span>Contact</span></a></div>
-      <div class="footer-social"><p class="footer-label">Social</p><ul><li><span>↗ Linkedin</span></li><li><span>↗ Resume</span></li></ul></div></div>
-      <div class="footer-meta"><span>©2026, Chadwick Fenner</span><time id="chicago-time">10:24pm CST</time></div>
-      <img class="footer-wordmark" src="assets/footer-wordmark.svg" alt="CHDWCK" width="1548" height="378">
-    </div>
-  </footer>
 </main>
+
+<nav class="ending-bar" data-figma-node="5812:22557" aria-label="More case studies">
+  <a class="ending-bar__prev" href="/mondai/"><img src="/assets/ui/chevron-left.svg" alt=""><span>Mondai: design system case study</span></a>
+  <a class="ending-bar__all" href="/#work">Explore more case studies</a>
+  <a class="ending-bar__next" href="/mondai/framework/"><span>Mondai: framework case study</span><img src="/assets/ui/chevron-left.svg" alt=""></a>
+</nav>
+
+          <footer class="footer" data-figma-node="5812:22558" id="contact">
+            <div class="footer__transition" aria-hidden="true" data-bleed><img src="/assets/ui/footer-transition.png" alt="" width="1024" height="514"></div>
+            <div class="footer__main">
+              <div class="footer__top grid">
+                <div class="col-1 span-5">
+                  <a class="footer__back" href="#top"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>
+                  <ul class="footer__nav">
+                <li><a class="link-footer" href="/">Home</a></li>
+                <li><a class="link-footer" href="/#about">About</a></li>
+                <li><a class="link-footer" href="/#work">Selected works</a></li>
+                <li><a class="link-footer" href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="footer__contact col-6 span-3">
+                  <p class="footer__label">Contact</p>
+                  <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+                  <div class="footer__note">
+                    <p>I’m currently living in Chicago, IL</p>
+                    <p>and seeking opportunities in NYC.</p>
+                  </div>
+                  <a class="button" href="mailto:hello@chadwickfenner.com">
+                    <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+                    <span class="button__label">Contact</span>
+                  </a>
+                </div>
+                <div class="footer__portraits col-10 span-3" aria-hidden="true">
+                  <span class="footer__pill"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                  <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                </div>
+              </div>
+              <img class="footer__wordmark" data-bleed src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <div class="footer__bottom grid">
+                <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
+                <p class="footer__meta col-4 span-3"><time id="chicago-time">10:24pm CST</time></p>
+                <a class="footer__out col-7 span-3" href="https://www.linkedin.com/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+                <a class="footer__out col-10 span-3" href="#resume" hidden data-hidden-until="his resume file"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+              </div>
+            </div>
+          </footer>
+
 
 
 <script src="vendor/lenis.min.js"></script>
 <script src="vendor/gsap.min.js"></script>
 <script src="haven.js"></script>
 <script type="module" src="current.js"></script>
+<script type="module" src="/js/contact-goo.js"></script>
 </body>
 </html>
