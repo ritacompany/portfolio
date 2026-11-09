@@ -228,3 +228,24 @@
 }
 .footer__out img { width: 10.833px; height: 10.833px; flex: none; }
 .footer__out span { text-box: trim-both cap alphabetic; }
+
+/* Ending base, 5733:14576: the bar between a case study and the footer. Three columns of 414 at
+   1440 (40 margin, 59 gap); the arrows sit on white squares as drawn. */
+.ending-bar {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 59px; align-items: center;
+  height: 44px; padding: 10px var(--grid-margin); background: var(--neutral-050); color: var(--neutral-1000);
+}
+.ending-bar a { color: inherit; text-decoration: none; }
+.ending-bar__prev, .ending-bar__next { display: flex; align-items: center; gap: 4px; }
+.ending-bar__next { justify-self: end; }
+.ending-bar__prev img, .ending-bar__next img { width: 24px; height: 24px; background: var(--neutral-000); }
+.ending-bar__next img { transform: scaleX(-1); }
+.ending-bar__prev span, .ending-bar__next span {
+  font: var(--label-14-c); font-weight: 700; letter-spacing: var(--label-14-c-track); text-transform: uppercase;
+  white-space: nowrap; text-box: trim-both cap alphabetic;
+}
+.ending-bar__all {
+  justify-self: center;
+  font: var(--body-16); font-weight: 700; letter-spacing: var(--body-16-track); white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}

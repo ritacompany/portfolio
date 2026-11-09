@@ -408,6 +408,847 @@
      "h": 993
     }
    ]
+  },
+  "framework": {
+   "frame": "5812:16446",
+   "url": "/mondai/framework/",
+   "image": "dev/pages/figma/framework.png",
+   "w": 1440,
+   "h": 18743,
+   "css": "css/framework.css",
+   "_image": "The Figma render with the four extra Start of week frames (y 17267.56 to 22487.56) cut out; they are slides of the one carousel in code. Boxes below that cut are shifted up 5220.",
+   "boxes": [
+    {
+     "name": "Framework CS",
+     "sel": "[data-figma-node='5812:16453']",
+     "x": 22,
+     "y": 136,
+     "h": 152,
+     "w": 1357
+    },
+    {
+     "name": "Role",
+     "sel": "[data-figma-node='5812:16456']",
+     "x": 40,
+     "y": 369,
+     "h": 9
+    },
+    {
+     "name": "Founding designer",
+     "sel": "[data-figma-node='5812:16457']",
+     "x": 40,
+     "y": 394,
+     "h": 11
+    },
+    {
+     "name": "Affiliate",
+     "sel": "[data-figma-node='5812:16459']",
+     "x": 312,
+     "y": 369,
+     "h": 9
+    },
+    {
+     "name": "Mondai",
+     "sel": "[data-figma-node='5812:16460']",
+     "x": 312,
+     "y": 394,
+     "h": 11
+    },
+    {
+     "name": "Focus",
+     "sel": "[data-figma-node='5812:16462']",
+     "x": 507,
+     "y": 369,
+     "h": 9
+    },
+    {
+     "name": "Design, research and strateg",
+     "sel": "[data-figma-node='5812:16463']",
+     "x": 507,
+     "y": 394,
+     "h": 11
+    },
+    {
+     "name": "Mondai is an AI tech career ",
+     "sel": "[data-figma-node='5812:16466']",
+     "x": 40,
+     "y": 494,
+     "h": 45,
+     "w": 439.87
+    },
+    {
+     "name": "This case study is focused o",
+     "sel": "[data-figma-node='5812:16468']",
+     "x": 624.87,
+     "y": 494,
+     "h": 11,
+     "w": 473
+    },
+    {
+     "name": "asdsdasddfaassdf\nasdfsafdass",
+     "sel": "[data-figma-node='5812:16469']",
+     "x": 624.87,
+     "y": 545,
+     "h": 87,
+     "w": 473
+    },
+    {
+     "name": "Competitive analysis",
+     "sel": "[data-figma-node='5812:16473']",
+     "x": 273,
+     "y": 777,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "There was no direct model fo",
+     "sel": "[data-figma-node='5812:16474']",
+     "x": 273,
+     "y": 830,
+     "h": 121,
+     "w": 791
+    },
+    {
+     "name": "01. Progress",
+     "sel": "[data-figma-node='5812:16480']",
+     "x": 273,
+     "y": 1073,
+     "h": 10
+    },
+    {
+     "name": "CareerFoundry",
+     "sel": "[data-figma-node='5812:16481']",
+     "x": 273,
+     "y": 1099,
+     "h": 14
+    },
+    {
+     "name": "Studies find that tracking r",
+     "sel": "[data-figma-node='5812:16482']",
+     "x": 273,
+     "y": 1137,
+     "h": 77,
+     "w": 420
+    },
+    {
+     "name": "02. calendar integration",
+     "sel": "[data-figma-node='5812:16485']",
+     "x": 739,
+     "y": 1073,
+     "h": 10
+    },
+    {
+     "name": "Motion",
+     "sel": "[data-figma-node='5812:16486']",
+     "x": 739,
+     "y": 1099,
+     "h": 14
+    },
+    {
+     "name": "Motion showed me AI could fi",
+     "sel": "[data-figma-node='5812:16487']",
+     "x": 739,
+     "y": 1137,
+     "h": 99,
+     "w": 420
+    },
+    {
+     "name": "03. Home screen",
+     "sel": "[data-figma-node='5812:16491']",
+     "x": 273,
+     "y": 1292,
+     "h": 10
+    },
+    {
+     "name": "Linear",
+     "sel": "[data-figma-node='5812:16492']",
+     "x": 273,
+     "y": 1318,
+     "h": 14
+    },
+    {
+     "name": "Linear opens straight onto t",
+     "sel": "[data-figma-node='5812:16493']",
+     "x": 273,
+     "y": 1356,
+     "h": 99,
+     "w": 420
+    },
+    {
+     "name": "04. timing",
+     "sel": "[data-figma-node='5812:16496']",
+     "x": 739,
+     "y": 1292,
+     "h": 10
+    },
+    {
+     "name": "Learning apps",
+     "sel": "[data-figma-node='5812:16497']",
+     "x": 739,
+     "y": 1318,
+     "h": 14
+    },
+    {
+     "name": "Every learning app I reviewe",
+     "sel": "[data-figma-node='5812:16498']",
+     "x": 739,
+     "y": 1356,
+     "h": 99,
+     "w": 424
+    },
+    {
+     "name": "Sources: Harkin et al. 2016;",
+     "sel": "[data-figma-node='5812:16500']",
+     "x": 273,
+     "y": 1676,
+     "h": 26,
+     "w": 901
+    },
+    {
+     "name": "The foundation we built on",
+     "sel": "[data-figma-node='5812:16504']",
+     "x": 159,
+     "y": 1791,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "The user’s route to their ne",
+     "sel": "[data-figma-node='5812:16505']",
+     "x": 159,
+     "y": 1845,
+     "h": 121,
+     "w": 760
+    },
+    {
+     "name": "Pathways",
+     "sel": "[data-figma-node='5812:16510']",
+     "x": 160,
+     "y": 2090,
+     "h": 14,
+     "w": 314
+    },
+    {
+     "name": "The growth journey was based",
+     "sel": "[data-figma-node='5812:16511']",
+     "x": 160,
+     "y": 2124,
+     "h": 33,
+     "w": 435
+    },
+    {
+     "name": "Hierarchy",
+     "sel": "[data-figma-node='5812:16588']",
+     "x": 1095.31,
+     "y": 2413,
+     "h": 14,
+     "w": 282
+    },
+    {
+     "name": "Each pathway has two additio",
+     "sel": "[data-figma-node='5812:16589']",
+     "x": 1095.31,
+     "y": 2447,
+     "h": 55,
+     "w": 211
+    },
+    {
+     "name": "Growth Journey",
+     "sel": "[data-figma-node='5812:16593']",
+     "x": 41,
+     "y": 2818.13,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "The whole route has a page o",
+     "sel": "[data-figma-node='5812:16594']",
+     "x": 41,
+     "y": 2872.13,
+     "w": 802,
+     "why": "fixed size text box in Figma; the text inside is what lines up"
+    },
+    {
+     "name": "People need to understand ho",
+     "sel": "[data-figma-node='5812:16597']",
+     "x": 40,
+     "y": 3185.13,
+     "h": 417,
+     "w": 270
+    },
+    {
+     "name": "Pathway",
+     "sel": "[data-figma-node='5812:16772']",
+     "x": 390,
+     "y": 4061.13,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "Each Pathway has its own pag",
+     "sel": "[data-figma-node='5812:16773']",
+     "x": 390,
+     "y": 4115.13,
+     "w": 842,
+     "why": "fixed size text box in Figma; the text inside is what lines up"
+    },
+    {
+     "name": "This page was designed to gi",
+     "sel": "[data-figma-node='5812:16777']",
+     "x": 1207,
+     "y": 4440.13,
+     "h": 187,
+     "w": 193
+    },
+    {
+     "name": "Focus areas",
+     "sel": "[data-figma-node='5812:16779']",
+     "x": 1207,
+     "y": 4723.13,
+     "h": 14,
+     "w": 193
+    },
+    {
+     "name": "Each pathway is split into f",
+     "sel": "[data-figma-node='5812:16780']",
+     "x": 1207,
+     "y": 4757.13,
+     "h": 121,
+     "w": 193
+    },
+    {
+     "name": "Action hub",
+     "sel": "[data-figma-node='5812:16785']",
+     "x": 40,
+     "y": 5310.68,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "Most of a person's week happ",
+     "sel": "[data-figma-node='5812:16786']",
+     "x": 40,
+     "y": 5364.68,
+     "h": 121,
+     "w": 727.25
+    },
+    {
+     "name": "I designed the Action Hub to",
+     "sel": "[data-figma-node='5812:16965']",
+     "x": 1207,
+     "y": 5711.68,
+     "w": 193,
+     "why": "Figma text ends in an empty paragraph that adds 38 to its box"
+    },
+    {
+     "name": "Action item",
+     "sel": "[data-figma-node='5812:16970']",
+     "x": 502,
+     "y": 6710.68,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "Someone has to read each pie",
+     "sel": "[data-figma-node='5812:16971']",
+     "x": 502,
+     "y": 6764.68,
+     "w": 719,
+     "why": "fixed size text box in Figma; the text inside is what lines up"
+    },
+    {
+     "name": "I couldn’t know yet how the ",
+     "sel": "[data-figma-node='5812:17083']",
+     "x": 973,
+     "y": 7127.68,
+     "h": 165,
+     "w": 427
+    },
+    {
+     "name": "Personalized timeline",
+     "sel": "[data-figma-node='5812:17086']",
+     "x": 159,
+     "y": 8489.56,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "The amount of action items e",
+     "sel": "[data-figma-node='5812:17087']",
+     "x": 159,
+     "y": 8543.56,
+     "h": 121,
+     "w": 660
+    },
+    {
+     "name": "Capacity",
+     "sel": "[data-figma-node='5812:17121']",
+     "x": 505,
+     "y": 8816.56,
+     "h": 15,
+     "w": 255
+    },
+    {
+     "name": "Each user sets their own cap",
+     "sel": "[data-figma-node='5812:17122']",
+     "x": 505,
+     "y": 8851.56,
+     "h": 55,
+     "w": 255
+    },
+    {
+     "name": "Cognitive load",
+     "sel": "[data-figma-node='5812:17124']",
+     "x": 787,
+     "y": 8816.56,
+     "h": 15,
+     "w": 255
+    },
+    {
+     "name": "The complexity of an action ",
+     "sel": "[data-figma-node='5812:17125']",
+     "x": 787,
+     "y": 8851.56,
+     "h": 33,
+     "w": 228
+    },
+    {
+     "name": "Example:",
+     "sel": "[data-figma-node='5812:17127']",
+     "x": 525,
+     "y": 8999.56,
+     "h": 9
+    },
+    {
+     "name": "Suzie’s capacity is set to 6",
+     "sel": "[data-figma-node='5812:17128']",
+     "x": 525,
+     "y": 9024.56,
+     "h": 50,
+     "w": 449
+    },
+    {
+     "name": "Calendar setup",
+     "sel": "[data-figma-node='5812:17133']",
+     "x": 274,
+     "y": 9299.56,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "Calendar sync is optional. P",
+     "sel": "[data-figma-node='5812:17134']",
+     "x": 274,
+     "y": 9353.56,
+     "w": 887.49,
+     "why": "fixed size text box in Figma; the text inside is what lines up"
+    },
+    {
+     "name": "Setting a preferred time is ",
+     "sel": "[data-figma-node='5812:17137']",
+     "x": 40,
+     "y": 9862.56,
+     "h": 329,
+     "w": 256
+    },
+    {
+     "name": "Schedule view",
+     "sel": "[data-figma-node='5812:17146']",
+     "x": 154,
+     "y": 10802.56,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "With a calendar synced, the ",
+     "sel": "[data-figma-node='5812:17147']",
+     "x": 154,
+     "y": 10856.56,
+     "h": 121,
+     "w": 906
+    },
+    {
+     "name": "The list stays the home view",
+     "sel": "[data-figma-node='5812:17150']",
+     "x": 154,
+     "y": 11157.56,
+     "h": 33,
+     "w": 700
+    },
+    {
+     "name": "Mondai looks for gaps betwee",
+     "sel": "[data-figma-node='5812:20111']",
+     "x": 159,
+     "y": 11956.56,
+     "h": 99,
+     "w": 501
+    },
+    {
+     "name": "Mondai only reads the calend",
+     "sel": "[data-figma-node='5812:20112']",
+     "x": 740,
+     "y": 11956.56,
+     "h": 77,
+     "w": 426
+    },
+    {
+     "name": "Reschedudling an action item",
+     "sel": "[data-figma-node='5812:20246']",
+     "x": 817,
+     "y": 12226.56,
+     "h": 14
+    },
+    {
+     "name": "People can move their Action",
+     "sel": "[data-figma-node='5812:20247']",
+     "x": 817,
+     "y": 12272.56,
+     "h": 203,
+     "w": 448
+    },
+    {
+     "name": "Falling behind",
+     "sel": "[data-figma-node='5812:20254']",
+     "x": 273,
+     "y": 12903.56,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "The Action Hub’s right rail ",
+     "sel": "[data-figma-node='5812:20255']",
+     "x": 272,
+     "y": 12957.56,
+     "w": 928,
+     "decided": "set in DM Sans in Figma, unlike every other headline; built in Satoshi Heading/40, so it wraps differently"
+    },
+    {
+     "name": "Research shows that a small ",
+     "sel": "[data-figma-node='5812:20258']",
+     "x": 40,
+     "y": 13289.56,
+     "h": 181,
+     "w": 259
+    },
+    {
+     "name": "Pathway target",
+     "sel": "[data-figma-node='5812:20296']",
+     "x": 902,
+     "y": 13282.37,
+     "h": 10,
+     "w": 389.33
+    },
+    {
+     "name": "The date this Pathway should",
+     "sel": "[data-figma-node='5812:20297']",
+     "x": 902,
+     "y": 13312.37,
+     "w": 437,
+     "why": "fixed size text box in Figma; the text inside is what lines up"
+    },
+    {
+     "name": "Pathway pace",
+     "sel": "[data-figma-node='5812:20299']",
+     "x": 902,
+     "y": 13398.76,
+     "h": 10
+    },
+    {
+     "name": "Where the person's progress ",
+     "sel": "[data-figma-node='5812:20300']",
+     "x": 902,
+     "y": 13428.76,
+     "h": 55,
+     "w": 437
+    },
+    {
+     "name": "Ahead of target",
+     "sel": "[data-figma-node='5812:20302']",
+     "x": 902,
+     "y": 13515.76,
+     "h": 10,
+     "w": 389.33
+    },
+    {
+     "name": "The gap between the two date",
+     "sel": "[data-figma-node='5812:20303']",
+     "x": 902,
+     "y": 13545.76,
+     "h": 33,
+     "w": 437
+    },
+    {
+     "name": "Falling behind",
+     "sel": "[data-figma-node='5812:20308']",
+     "x": 41,
+     "y": 13874.56,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "When a week ends with work l",
+     "sel": "[data-figma-node='5812:20309']",
+     "x": 40,
+     "y": 13928.56,
+     "w": 708,
+     "decided": "set in DM Sans in Figma, unlike every other headline; built in Satoshi Heading/40, so it wraps differently"
+    },
+    {
+     "name": "Rollover",
+     "sel": "[data-figma-node='5812:20314']",
+     "x": 67,
+     "y": 14226.56,
+     "h": 10,
+     "w": 239
+    },
+    {
+     "name": "An Action Item still open wh",
+     "sel": "[data-figma-node='5812:20315']",
+     "x": 67,
+     "y": 14260.56,
+     "h": 33,
+     "w": 239
+    },
+    {
+     "name": "A week that comes up short c",
+     "sel": "[data-figma-node='5812:20350']",
+     "x": 389.97,
+     "y": 14502.24,
+     "h": 121,
+     "w": 659
+    },
+    {
+     "name": "Buffer flow",
+     "sel": "[data-figma-node='5812:20353']",
+     "x": 275,
+     "y": 14874.56,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "Finish the week’s work early",
+     "sel": "[data-figma-node='5812:20354']",
+     "x": 275,
+     "y": 14928.56,
+     "h": 121,
+     "w": 721
+    },
+    {
+     "name": "The moment the last Action I",
+     "sel": "[data-figma-node='5812:20357']",
+     "x": 40,
+     "y": 15237.56,
+     "h": 389,
+     "w": 292
+    },
+    {
+     "name": "Start of week",
+     "sel": "[data-figma-node='5812:20500']",
+     "x": 158,
+     "y": 16026.56,
+     "h": 14,
+     "w": 660
+    },
+    {
+     "name": "Whether someone finished las",
+     "sel": "[data-figma-node='5812:20501']",
+     "x": 158,
+     "y": 16080.56,
+     "h": 121,
+     "w": 766
+    },
+    {
+     "name": "Template 1 of 5",
+     "sel": "[data-figma-node='5812:20702']",
+     "x": 486,
+     "y": 16923.56,
+     "h": 9
+    },
+    {
+     "name": "Clean slate",
+     "sel": "[data-figma-node='5812:20703']",
+     "x": 492,
+     "y": 16944.56,
+     "h": 15,
+     "tol": 2.5,
+     "why": "centered bold title; the browser draws Satoshi Bold 4 px narrower, so its left edge moves 2 while its center holds"
+    },
+    {
+     "name": "A clean slate only means som",
+     "sel": "[data-figma-node='5812:20704']",
+     "x": 412,
+     "y": 16983.56,
+     "h": 55,
+     "w": 259
+    },
+    {
+     "name": "This is the first screen som",
+     "sel": "[data-figma-node='5812:20715']",
+     "x": 1098,
+     "y": 16452.56,
+     "h": 121,
+     "w": 309
+    },
+    {
+     "name": "In reflection ?/?",
+     "sel": "[data-figma-node='5812:21563']",
+     "x": 156,
+     "y": 17331.56,
+     "h": 14
+    },
+    {
+     "name": "Ending section",
+     "sel": "[data-figma-node='5812:21564']",
+     "x": 149,
+     "y": 17401.56,
+     "h": 69,
+     "w": 1291
+    },
+    {
+     "name": "or whatever",
+     "sel": "[data-figma-node='5812:21566']",
+     "x": 272,
+     "y": 17550.56,
+     "h": 17
+    },
+    {
+     "name": "figure 5812:16512",
+     "sel": "[data-figma-node='5812:16512']",
+     "x": 160,
+     "y": 2213,
+     "w": 895.5,
+     "h": 377
+    },
+    {
+     "name": "figure 5812:16598",
+     "sel": "[data-figma-node='5812:16598']",
+     "x": 350,
+     "y": 3137,
+     "w": 1090,
+     "h": 695
+    },
+    {
+     "name": "figure 5812:16775",
+     "sel": "[data-figma-node='5812:16775']",
+     "x": 0,
+     "y": 4380,
+     "w": 1167,
+     "h": 692
+    },
+    {
+     "name": "figure 5812:16790",
+     "sel": "[data-figma-node='5812:16790']",
+     "x": 0,
+     "y": 5650,
+     "w": 1166,
+     "h": 734
+    },
+    {
+     "name": "figure 5812:16973",
+     "sel": "[data-figma-node='5812:16973']",
+     "x": 40,
+     "y": 7030,
+     "w": 892,
+     "h": 1194
+    },
+    {
+     "name": "figure 5812:17089",
+     "sel": "[data-figma-node='5812:17089']",
+     "x": 158,
+     "y": 8797,
+     "w": 308,
+     "h": 298
+    },
+    {
+     "name": "figure 5812:17138",
+     "sel": "[data-figma-node='5812:17138']",
+     "x": 351,
+     "y": 9619,
+     "w": 1089,
+     "h": 955
+    },
+    {
+     "name": "figure 5812:17152",
+     "sel": "[data-figma-node='5812:17152']",
+     "x": 0,
+     "y": 11215,
+     "w": 1440,
+     "h": 686
+    },
+    {
+     "name": "figure 5812:20114",
+     "sel": "[data-figma-node='5812:20114']",
+     "x": 154,
+     "y": 12167,
+     "w": 547,
+     "h": 509
+    },
+    {
+     "name": "figure 5812:20260",
+     "sel": "[data-figma-node='5812:20260']",
+     "x": 392,
+     "y": 13217,
+     "w": 466,
+     "h": 428
+    },
+    {
+     "name": "figure 5812:20316",
+     "sel": "[data-figma-node='5812:20316']",
+     "x": 350,
+     "y": 14174,
+     "w": 789,
+     "h": 201
+    },
+    {
+     "name": "figure 5812:20346",
+     "sel": "[data-figma-node='5812:20346']",
+     "x": 390,
+     "y": 14448,
+     "w": 195,
+     "h": 31
+    },
+    {
+     "name": "figure 5812:20358",
+     "sel": "[data-figma-node='5812:20358']",
+     "x": 390,
+     "y": 15182,
+     "w": 1050,
+     "h": 616
+    },
+    {
+     "name": "figure 5812:20504",
+     "sel": "[data-figma-node='5812:20504']",
+     "x": 33,
+     "y": 16333.56,
+     "w": 1017,
+     "h": 705
+    },
+    {
+     "name": "figure 5812:20705",
+     "sel": "[data-figma-node='5812:20705']",
+     "x": 357,
+     "y": 17071,
+     "w": 369,
+     "h": 35
+    },
+    {
+     "name": "ending bar",
+     "sel": "[data-figma-node='5812:21567']",
+     "x": 0,
+     "y": 17705.56,
+     "w": 1440,
+     "h": 44
+    },
+    {
+     "name": "footer",
+     "sel": "[data-figma-node='5812:21568']",
+     "x": 0,
+     "y": 17749.56,
+     "w": 1440,
+     "h": 993,
+     "why": "Figma instance is 1438 wide; the footer fills the page in code"
+    }
+   ]
   }
  }
 }

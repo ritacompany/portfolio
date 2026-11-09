@@ -44,6 +44,10 @@
   /* Color: Portfolio, aliases */
   --metadata-12: var(--neutral-100); /* Metadata/12 */
 
+  /* Color: Mondai. Only for portfolio labels keyed to the green in Mondai screens beside them
+     (Framework CS, Falling behind). */
+  --mondai-green-400: #39f145;
+
   /* Color: Haven. Haven keeps its own CSS until Phase 1; these are here so it can move over. */
   --haven-violet-200: #db98ff;
   --haven-violet-300: #d080fc;
@@ -58,31 +62,33 @@
   /* Text styles. Each is a font shorthand plus a tracking value. Figma gives line height and
      tracking as a percent of size, so line height is unitless and tracking is in em.
      Use: font: var(--heading-40); letter-spacing: var(--heading-40-track); */
-  --display-212: 400 212px/0.83 var(--font);
+  --display-212: 400 212px/176px var(--font);
   --display-212-track: -0.055em;
-  --display-96: 500 96px/0.98 var(--font);
+  --display-96: 500 96px/94px var(--font);
   --display-96-track: -0.04em;
-  --heading-64: 500 64px/1.09 var(--font);
+  --heading-64: 500 64px/70px var(--font);
   --heading-64-track: -0.04em;
-  --heading-40: 500 40px/1.15 var(--font);
+  --heading-40: 500 40px/46px var(--font);
   --heading-40-track: -0.04em;
-  --heading-24: 500 24px/1.16 var(--font);
+  --heading-24: 500 24px/28px var(--font);
   --heading-24-track: -0.04em;
-  /* Figma sets Heading/20 at 132 percent but lays its lines 26 px apart, not 26.4: measured on the
-     home About body (17 lines, 430 tall trimmed) and the Collection intro (3 lines, 66). */
+  /* Line heights are whole pixels: Figma rounds each style's percentage to the nearest pixel when it
+     lays out lines (Heading/20 132% is 26, Body/16 140% is 22, Heading/24 116% is 28). Measured on
+     multi line text across Home, Collection and Framework CS, where the trimmed heights only add up
+     with rounded values. */
   --heading-20: 500 20px/26px var(--font);
   --heading-20-track: -0.02em;
-  --body-16: 400 16px/1.4 var(--font);
+  --body-16: 400 16px/22px var(--font);
   --body-16-track: -0.01em;
-  --body-16-m: 500 16px/1.32 var(--font);
+  --body-16-m: 500 16px/21px var(--font);
   --body-16-m-track: -0.01em;
-  --label-14: 400 14px/1.4 var(--font);
+  --label-14: 400 14px/20px var(--font);
   --label-14-track: 0.02em;
-  --label-14-c: 400 14px/1 var(--font);   /* the C styles are set in capitals */
+  --label-14-c: 400 14px/14px var(--font);   /* the C styles are set in capitals */
   --label-14-c-track: 0.06em;
-  --label-12: 400 12px/1.4 var(--font);
+  --label-12: 400 12px/17px var(--font);
   --label-12-track: 0.04em;
-  --label-12-c: 400 12px/1.4 var(--font);
+  --label-12-c: 400 12px/17px var(--font);
   --label-12-c-track: 0.1em;
   /* Not a Figma text style: the // before section labels is drawn at 15.17 px Medium (Collection
      frame, 5812:23010). Kept here so pages never carry raw type values. */

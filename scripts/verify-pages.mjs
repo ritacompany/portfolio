@@ -2,7 +2,7 @@
 //   boxes   every listed element sits within 1 px of its Figma box at 1440 (a box may carry a
 //           wider tol with its reason in why)
 //   pixels  the page render against the Figma render, under 4 percent differing pixels
-//   health  no horizontal scroll, failed request or console error at 1440
+//   health  no horizontal scroll, failed request, console error or unrendered image at 1440
 //   a11y    lang, one h1, alt on every img, named links, locked rows take no focus
 //   shared  page CSS holds layout only: no hex colors and no font values outside tokens
 // Each mode prints its success token only after every assertion passed, and exits 1 otherwise.
@@ -56,6 +56,11 @@ page.on("requestfailed", (r) => failed.push(r.url()));
 page.on("response", (r) => { if (r.status() >= 400) failed.push(`${r.status()} ${r.url()}`); });
 await page.goto(base + spec.url, { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
+// Lazy images below the fold would render empty in a full page shot: make them eager, then wait
+// until every image has decoded (or 15 s pass, which the health mode then reports).
+await page.evaluate(() => document.querySelectorAll("img[loading=lazy]").forEach((i) => { i.loading = "eager"; }));
+await page.waitForFunction(() => [...document.images].every((i) => i.complete && i.naturalWidth > 0), null, { timeout: 15000 }).catch(() => {});
+await page.evaluate(() => Promise.all([...document.images].map((i) => i.decode().catch(() => {}))));
 
 const problems = [];
 let token = "";
@@ -66,7 +71,7 @@ try {
       const els = await page.$$(b.sel);
       if (els.length !== 1) { problems.push(`${b.name}: ${els.length} matches for ${b.sel}`); continue; }
       const box = await els[0].evaluate((e) => { const r = e.getBoundingClientRect(); return { x: r.x + scrollX, y: r.y + scrollY, w: r.width, h: r.height }; });
-      const off = ["x", "y", "w", "h"].filter((k) => Math.abs(box[k] - b[k]) > (b.tol || 1));
+      const off = ["x", "y", "w", "h"].filter((k) => k in b && Math.abs(box[k] - b[k]) > (b.tol || 1));
       if (off.length) problems.push(`${b.name}: ${off.map((k) => `${k} ${box[k].toFixed(2)} vs Figma ${b[k]}`).join(", ")}`);
       else ok++;
     }
@@ -105,6 +110,8 @@ try {
     if (sw.s > sw.c) problems.push(`horizontal scroll: ${sw.s} > ${sw.c}`);
     if (failed.length) problems.push(`failed requests:\n${failed.join("\n")}`);
     if (consoleErrors.length) problems.push(`console errors:\n${consoleErrors.join("\n")}`);
+    const blank = await page.evaluate(() => [...document.images].filter((i) => !i.naturalWidth).map((i) => i.src));
+    if (blank.length) problems.push(`images that did not render:\n${blank.join("\n")}`);
     token = "HEALTH_OK";
   }
 
