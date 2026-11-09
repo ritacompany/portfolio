@@ -15,8 +15,13 @@ the CS2 tactics pass of 8 and 9 Nov, run on Haven with every check).
   MVP body had introduced matching). Fixed to their top three Confidantes (the wireframe's own alt wording), fit
   and copy checks rerun, round 4 clear of it. Remaining flags are the ones stated on the review page.
 
+- h-test-i1 settled with him 9 Nov (testers were unsure between text, voice and video): applied, copy and fit
+  checks pass, reader check round 5 raises nothing on it.
+
 ## Next action
-Settle h-test-i1 (Usability testing Insight 1) with him; it still shows the old text on the page.
+None open on the Haven tactics pass. All 21 proposals are settled and applied to final-copy.md and
+site/haven/index.html. The Security body (hidden by current.css) and a line on what testing could not show
+were raised with him on the review page and are his call.
 
 ## Earlier state
 ### Before his marks
