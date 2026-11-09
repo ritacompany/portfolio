@@ -94,18 +94,24 @@ A new session picks this up from this file alone.
   18920) before this move; left as is, since this step was not to change Haven's spacing.
 - Phase 2 started 9 Nov: three button options on `site/dev/buttons/`. His call: Small button takes option A
   (fill on hover, Neutral/300 and 98 percent on press), now in components.css. The big Button (Contact) gets the liquid effect from his pinned session "Liquid button
-  effects recreation" (branch claude/cool-albattani-5v7t70). The first build (9 Nov) skipped the motion
+  effects recreation" (branch claude/cool-albattani-5v7t70; his recordings and frame sheets are in
+  `reference/buttons/` on main). The first build (9 Nov) skipped the motion
   studio and did not match the reference; it is removed from the pages. Rebuilt through the studio:
   docs/motion/contact-button/ (style guide and state list from his two Framer recordings, review log,
-  three rounds with fresh eyes, no P0 open), site/motion-lab/contact-button.html (A gooey split, B
-  liquid outline, deterministic seek), clip output/motion/contact-button.mp4 (60 fps, renders matched
-  sha256). A live tuning page is published for him. His pick (9 Nov): A, the gooey split, at the default
-  settings. Shipped as site/js/contact-goo.js on Home, Framework and Haven; the lab page now runs that
-  same module, so the lab render is the shipped motion (two renders matched sha256). Reduced motion and
+  rounds with fresh eyes), site/motion-lab/contact-button.html (A gooey split, B liquid outline, deterministic
+  seek). His pick (9 Nov): A, the gooey split. Shipped as site/js/contact-goo.js on Home, Framework and Haven;
+  the lab page runs that same module, so the lab render is the shipped motion. Reduced motion and
   no script keep the plain borders. At rest the two pills join with a liquid neck, a decided change from
-  the Figma footer; page pixel gates still pass. Not done: he tunes it on the tuner
-  (scripts/motion-tuner/contact-goo.py, published at https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG) and
-  his Copy settings output goes into GOO in contact-goo.js.
+  the Figma footer; page pixel gates still pass. Taken over by the Contact button session (branch
+  claude/contact-button-liquid, 9 Nov): the recording measured frame by frame showed the first spring
+  snapped (90 percent in 0.10 s, 28 percent overshoot, a second bounce) where the reference is one 0.38 s
+  back ease with a 10 percent tuck first and one 8 percent overshoot; the module now uses that ease, the
+  neck thread is rendered crisper (threshold 40/18), pull is 28 px (judgment call, in the style guide).
+  Gates: scripts/verify-contact-goo.mjs (timing on the real footer) and scripts/motion-tuner/verify-tuner.mjs
+  (the tuner runs the shipped module byte for byte, every slider live, 1440 and 390, reduced motion on and off).
+  Not done until he has felt it: the tuner (scripts/motion-tuner/contact-goo.py builds
+  site/motion-lab/contact-goo-tuner.html, published at https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG)
+  gives a Copy settings line that replaces the GOO line in contact-goo.js.
 - Next action: link and card hovers, Haven motion carry over, Falling behind and the footer
   transition. Then Phase 3 (390, 768, 1200).
   Haven keeps its own CSS until Phase 1 moves it.

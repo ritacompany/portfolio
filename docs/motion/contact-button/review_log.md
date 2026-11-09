@@ -56,3 +56,46 @@ His pick: A, the gooey split, default settings (pull 32, tilt 18, blur 9, stiffn
 squeeze 6). Ported to site/js/contact-goo.js; the lab imports it, so lab and site share one code path.
 Checked live on Home, Framework and Haven at 1440: rest neck, split on hover, tilt, press squeeze, flows
 back on leave, no console errors. Lab rendered twice, sha256 matched. Page, sheet and Haven gates pass.
+
+## Round 4
+9 Nov 2026, Contact button session (branch claude/contact-button-liquid). The gooey recording measured frame by
+frame (reference/buttons/gooey-liquid-button-recording.mov, 60 fps, button height 139 px in the capture): hover is
+one back ease of about 0.38 s, tuck 6 px (10 percent) at 0.07 s, launch, 60 px (0.43 H) with a 5 px (8 percent)
+overshoot at 0.29 s, settled at 0.36 s, no second bounce; the neck thins over three frames and snaps with the
+circle 60 percent of the way out; leave is the same curve back (push out 5 px, flow back, sink 6 px past rest).
+The shipped spring (stiffness 0.075, damping 0.82) measured against that: 90 percent of the pull in 0.10 s, a 28
+percent overshoot at 0.20 s, a second dip and 0.68 s to settle. It read as a snap and a wobble, not the recording.
+Changed: the spring is replaced by the back ease (dur 380 ms, bounce 1.7), pull 32 to 28 (style guide says why),
+blur 9 to 12 and threshold 26/12 to 40/18 so the thinning neck stays a crisp thread (at 26/12 the thread rendered
+as a grey smear at 2x), press on a 140 ms ease out instead of a second spring. Rendered 560 by 520 and 390 by 520
+at 30 fps, sub 1; seam PSNR 48.8 dB (560) and 48.5 dB (390), clean.
+Fresh eyes: Sonnet, with the style guide, state list, references and sheets only. Rest, pull, snap, tilt and the outline read
+well against the reference; it called both leaves a pop and asked for a slower snap and a visible overshoot.
+- Raised as P0 by fresh eyes: 1.20 to 1.23 s and 4.67 to 4.70 s, the circle rejoins in one frame of the 30 fps sheet.
+  Checked on the 60 fps final clip (frames 1.100 to 1.383): the circle holds split while the pointer leaves and the
+  curve tucks outward, then closes over three frames (1.200, 1.217, 1.233) and the neck reforms as a bump at 1.233,
+  continuous at every frame. That is the ease's mid section, the same three frames the enter takes, and slower per
+  frame than the recording (0.08 H per frame here, 0.11 H per frame in the recording, frames 29 to 33). Not a pop;
+  the 30 fps review sheet halves the frames. Kept.
+- P1: 0.80 to 0.83 s, the snap lands in one frame. Checked at 60 fps: the neck goes 97 to 79 to 47 px high to gone
+  over 0.767, 0.783, 0.800 and 0.817 s, three frames, as in the recording. Kept.
+- P1: 0.83 to 1.00 s, no visible overshoot. Checked: the icon reaches 30.8 px at 0.90 s and settles at 28 px by
+  1.0 s, 10 percent, the recording's 8 percent; too small to see at sheet scale. scripts/verify-contact-goo.mjs
+  asserts the tuck, one overshoot and settling under 0.6 s on the real footer. Kept.
+- P1: 1.02 to 1.20 s, the circle lags the leave by 0.18 s. Checked: the half way point comes 0.19 s after the
+  pointer leaves (half of the 0.38 s move); in the recording the circle rejoins 0.18 s after the leave starts
+  (frames 100 to 111). Kept.
+- P2: 3.80 and 4.20 s, the press squeeze is hard to see on A. It is 6 px on both shapes, asserted by the gate and
+  visible at 2x; a slider on the tuner if he wants more.
+- P2: pointer ring over the letters and the row captions. Lab framing only, not on the site.
+- P2: the rest neck is fuller than the reference neck. Noted in the style guide (3 px seam against a third of the
+  circle sunk); the Goo amount slider moves it.
+- P2 (B, comparison only): pointed peak at 1.9 s and a flat wedge at 4.5 s. Not shipped.
+Mine: no P0. P1: none beyond the above. P2: the 30 fps review sheets are too coarse for a 0.05 s snap; the
+60 fps final clip and the 2x stills are what the judgement rests on.
+
+## Handover, 9 Nov (not done)
+Final clip rendered twice at 60 fps, sha256 matched (scripts/motion-tuner/render-twice.mjs). Gates in
+.unlazy/contact-button/GATES.md. The tuner (scripts/motion-tuner/contact-goo.py builds site/motion-lab/contact-goo-tuner.html,
+published at https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG) runs the shipped module byte for byte with sliders
+for every value he would feel. Open until he has felt it and sent the Copy settings line or said it feels right.

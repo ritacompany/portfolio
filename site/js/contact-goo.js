@@ -2,14 +2,28 @@
 // site/motion-lab/contact-button.html; review log docs/motion/contact-button/review_log.md).
 // The two pill borders go transparent; a shape layer behind the content paints both pills filled,
 // and one SVG filter blurs, thresholds and erodes them so only the outline of their union shows.
-// At rest the seam is a liquid neck. On hover the icon circle pulls away to the left, the neck
-// stretches and snaps, the icon tips; on leave it flows back. Press squeezes both shapes.
+// At rest the seam is a liquid neck. On hover the icon circle tucks in a touch, pulls away to the
+// left, the neck stretches and snaps, the icon tips; on leave it pushes out a touch and flows back.
+// Press squeezes both shapes. Timing is read off his gooey recording (reference/buttons/, frames
+// 22 to 44): one eased move of about 0.38 s with a 10 percent tuck first and an 8 percent
+// overshoot at the end, settled, no second bounce. That is a back ease, not a spring.
 // Fixed 60 Hz steps, so the motion lab replays it frame for frame through window.seek(t).
 // Reduced motion: never starts, the CSS borders stay.
-// Tuned on the live tuner (site/motion-lab/contact-goo-tuner.html); its Copy settings output pastes here.
-export const GOO = { pull: 32, tilt: 18, blur: 9, merge: 26, cut: 12, line: 3, stiff: 0.075, damp: 0.82, squeeze: 6, pressStiff: 0.2, pressDamp: 0.72 };
+// Tuned on the live tuner (site/motion-lab/contact-goo-tuner.html); its Copy settings line replaces the GOO line below.
+export const GOO = { pull: 28, tilt: 18, dur: 380, bounce: 1.7, blur: 12, merge: 40, cut: 18, line: 3, squeeze: 6, pressDur: 140 };
 const NS = "http://www.w3.org/2000/svg";
 const PAD = 60;
+const HZ = 60;
+
+// Back ease, in and out. bounce 0 is a plain cubic ease; 1.7 is the recording (tuck and overshoot
+// both near 10 percent of the move).
+export function easeBack(x, bounce) {
+  const k = bounce * 1.525;
+  return x < 0.5
+    ? ((2 * x) ** 2 * ((k + 1) * 2 * x - k)) / 2
+    : ((2 * x - 2) ** 2 * ((k + 1) * (2 * x - 2) + k) + 2) / 2;
+}
+const easeOut = (x) => 1 - (1 - x) ** 3;
 
 // Writes the goo values into the filter, so the tuner can change them live.
 export function applyFilter() {
@@ -34,6 +48,22 @@ function ensureFilter() {
   applyFilter();
 }
 
+// One eased move per target change: from where the shape is now to the new target, over dur ms.
+// A target change mid move starts a new move from the current position, so a quick in and out
+// never jumps.
+function mover(ease, durOf) {
+  const m = { v: 0, from: 0, to: 0, n: 0 };
+  return {
+    get v() { return m.v; },
+    reset() { m.v = m.from = m.to = m.n = 0; },
+    step(target) {
+      if (target !== m.to) { m.from = m.v; m.to = target; m.n = 0; }
+      const steps = Math.max(1, Math.round((durOf() / 1000) * HZ));
+      if (m.n < steps) { m.n++; m.v = m.from + (m.to - m.from) * ease(m.n / steps); }
+    },
+  };
+}
+
 export function gooey(btn) {
   ensureFilter();
   const icon = btn.querySelector(".button__icon"), label = btn.querySelector(".button__label"), img = icon.querySelector("img");
@@ -47,18 +77,19 @@ export function gooey(btn) {
     bi = box(icon); bl = box(label);
   };
   measure();
-  const st = { g: 0, v: 0, q: 0, qv: 0 };
+  const pull = mover((x) => easeBack(x, GOO.bounce), () => GOO.dur);
+  const press = mover(easeOut, () => GOO.pressDur);
   return {
     btn, measure,
-    reset() { st.g = st.v = st.q = st.qv = 0; },
+    reset() { pull.reset(); press.reset(); },
     step(ptr) {
       const W = btn.offsetWidth, H = btn.offsetHeight;
       const inside = ptr && ptr.x >= -4 && ptr.x <= W + 4 && ptr.y >= -4 && ptr.y <= H + 4;
-      st.v = (st.v + ((inside ? GOO.pull : 0) - st.g) * GOO.stiff) * GOO.damp; st.g += st.v;
-      st.qv = (st.qv + ((ptr && ptr.down && inside ? GOO.squeeze : 0) - st.q) * GOO.pressStiff) * GOO.pressDamp; st.q += st.qv;
+      pull.step(inside ? GOO.pull : 0);
+      press.step(ptr && ptr.down && inside ? GOO.squeeze : 0);
     },
     paint() {
-      const g = st.g, q = st.q;
+      const g = pull.v, q = press.v;
       const place = (s, b, dx) => { s.style.left = `${b.x + dx + q}px`; s.style.top = `${b.y + q}px`; s.style.width = `${b.w - 2 * q}px`; s.style.height = `${b.h - 2 * q}px`; };
       // The icon moves by transform, so its layout box (bi) stays where it rests.
       place(sIcon, bi, -g); place(sLabel, bl, 0);
@@ -87,7 +118,7 @@ export function startContactGoo(root = document, { speed = () => 1, force = fals
     let last = performance.now(), acc = 0;
     const loop = (now) => {
       acc += Math.min(0.1, (now - last) / 1000) * speed(); last = now;
-      while (acc >= 1 / 60) { units.forEach((u) => u.step(ptr.get(u) || null)); acc -= 1 / 60; }
+      while (acc >= 1 / HZ) { units.forEach((u) => u.step(ptr.get(u) || null)); acc -= 1 / HZ; }
       units.forEach((u) => u.paint());
       requestAnimationFrame(loop);
     };

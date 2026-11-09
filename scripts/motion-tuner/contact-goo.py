@@ -53,7 +53,7 @@ pre{white-space:pre-wrap;word-break:break-word;font:12px/1.5 ui-monospace,Menlo,
 </style>
 <div class="wrap">
 <header><h1>Contact button tuner</h1>
-<p>This is the real footer button running the code that ships. Hover it, wiggle in and out, press and hold, then leave. Drag a slider and hover again to feel the change. When it feels right, copy the settings and paste them to me.</p></header>
+<p>This is the real footer button running the code that ships. Hover it, wiggle in and out, press and hold, then leave. Drag a slider and hover again to feel the change. Slow motion and 2x zoom are for looking closely; judge at 1x and actual size. When it feels right, copy the settings and paste the line to me. The effect runs here even with reduced motion on, so you can tune it; the site keeps plain borders under reduced motion.</p></header>
 <div class="stage" id="stage"><div class="zoomer"><a class="button" id="btn" href="#" aria-label="Contact"><span class="button__icon" aria-hidden="true"><img src="ICON" alt=""></span><span class="button__label">Contact</span></a></div></div>
 <div class="bar">
 <span class="label">Speed</span><div class="seg" id="speed"><button type="button" data-v="0.25" aria-pressed="false">¼×</button><button type="button" data-v="0.5" aria-pressed="false">½×</button><button type="button" data-v="1" aria-pressed="true">1×</button></div>
@@ -65,17 +65,18 @@ pre{white-space:pre-wrap;word-break:break-word;font:12px/1.5 ui-monospace,Menlo,
 <script type="module">
 MODULE
 const SHIPPED = { ...GOO };
+window.GOO = GOO; // for scripts/motion-tuner/verify-tuner.mjs
 const GROUPS = [
- ["Shape at rest", "How the two pills melt together and how thick the line is.", [
-  ["blur", "Goo amount", 3, 16, 0.5, ""], ["merge", "Neck strength", 8, 60, 1, ""], ["cut", "Neck cutoff", 2, 40, 0.5, ""], ["line", "Line weight", 1, 6, 0.5, "px"]]],
- ["Hover", "How far the circle pulls, how it tips and how springy it is.", [
-  ["pull", "Pull distance", 0, 70, 1, "px"], ["tilt", "Icon tilt", 0, 60, 1, "deg"], ["stiff", "Spring stiffness", 0.02, 0.25, 0.005, ""], ["damp", "Spring damping", 0.55, 0.97, 0.01, ""]]],
- ["Press", "How much the shapes squeeze while you hold.", [
-  ["squeeze", "Press squeeze", 0, 14, 0.5, "px"], ["pressStiff", "Press stiffness", 0.05, 0.5, 0.01, ""], ["pressDamp", "Press damping", 0.4, 0.95, 0.01, ""]]],
+ ["Shape at rest", "How the two pills melt into one body and how the line is drawn.", [
+  ["blur", "Goo amount", 3, 18, 0.5, ""], ["merge", "Edge sharpness", 8, 60, 1, ""], ["cut", "Neck cutoff", 2, 40, 0.5, ""], ["line", "Line weight", 1, 6, 0.5, "px"]]],
+ ["Hover", "How far the circle pulls, how long the move takes, how much it tucks in first and overshoots, and how the icon tips.", [
+  ["pull", "Pull distance", 0, 70, 1, "px"], ["dur", "Move time", 120, 900, 10, "ms"], ["bounce", "Tuck and overshoot", 0, 3, 0.1, ""], ["tilt", "Icon tilt", 0, 60, 1, "deg"]]],
+ ["Press", "How much the shapes squeeze while you hold, and how fast.", [
+  ["squeeze", "Press squeeze", 0, 14, 0.5, "px"], ["pressDur", "Press time", 60, 400, 10, "ms"]]],
 ];
 const KEY = "contact-goo-tuning";
 try { Object.assign(GOO, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch {}
-const dump = () => { const t = "GOO = " + JSON.stringify(GOO); document.getElementById("dump").textContent = t; try { localStorage.setItem(KEY, JSON.stringify(GOO)); } catch {} return t; };
+const dump = () => { const t = "export const GOO = " + JSON.stringify(GOO).replace(/"/g, "").replace(/,/g, ", ").replace(/:/g, ": ").replace("{", "{ ").replace("}", " }") + ";"; document.getElementById("dump").textContent = t; try { localStorage.setItem(KEY, JSON.stringify(GOO)); } catch {} return t; };
 const groups = document.getElementById("groups");
 const build = () => { groups.innerHTML = ""; for (const [title, hint, sl] of GROUPS) {
   const fs = document.createElement("fieldset"); fs.innerHTML = `<legend>${title}</legend><p class="hint">${hint}</p>`;
