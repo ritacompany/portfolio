@@ -1,7 +1,7 @@
 // Preview only. Press O to switch the hover text back to the old drawing and compare.
 // Press W for the hover weight dial (proposal 10): a hairline outline on the highlighted text, set by eye.
 (() => {
-  const KEY = "hover-weight-v1", root = document.documentElement;
+  const KEY = "hover-weight-v2", root = document.documentElement;
   const load = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
   const save = (v) => { try { localStorage.setItem(KEY, v); } catch {} };
   const set = (v) => root.style.setProperty("--hover-weight", v + "px");
@@ -9,7 +9,7 @@
   const box = document.createElement("div");
   box.style.cssText = "position:fixed;left:12px;bottom:12px;z-index:99999;padding:8px 10px;font:12px/1.4 system-ui;background:#fff;color:#000;display:none;-webkit-font-smoothing:auto";
   const label = document.createElement("div");
-  const dial = Object.assign(document.createElement("input"), { type: "range", min: 0, max: 0.4, step: 0.01, value: saved ?? 0.15 });
+  const dial = Object.assign(document.createElement("input"), { type: "range", min: 0, max: 0.4, step: 0.01, value: saved ?? 0.05 });
   dial.style.cssText = "display:none;width:220px";
   const show = () => {
     const old = root.classList.contains("hover-old");

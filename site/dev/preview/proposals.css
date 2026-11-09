@@ -80,28 +80,28 @@ html.hover-old .footer__out, html.hover-old .footer__back, html.hover-old .endin
 .link-footer:hover, .link-footer:active,
 .footer__email:hover, .footer__email:active,
 .footer__out:hover, .footer__out:active,
-.footer__back:hover, .footer__back:active { -webkit-text-stroke: var(--hover-weight, 0.15px) currentColor; }
+.footer__back:hover, .footer__back:active { -webkit-text-stroke: var(--hover-weight, 0.05px) currentColor; }
 html.hover-old .link-nav, html.hover-old .link-footer, html.hover-old .footer__email,
 html.hover-old .footer__out, html.hover-old .footer__back { -webkit-text-stroke: 0 !important; }
 
-/* 11. The block was cutting the letters (his screenshots, 9 Nov: "Selected works", Back to top, About).
-       The block is trimmed to run from the top of the capitals to the baseline. Everything that reaches
-       past those lines (the tall strokes of l, d, k and t, the curves of S, O and C, which overshoot both
-       lines slightly by design, and any tail below the line) is still drawn in the dark hover colour, but
-       on the black page, so it disappears. That shaves each letter differently, which reads as the text
-       shifting. Fix: the block reaches a little past the letters on every side, drawn as a shadow in the
-       block colour, so nothing in the layout moves. 0.2 of the type size each way, 0.15 at the sides. */
+/* 11. The block hugs the letters again (his note, 9 Nov: "the style that I had before with it like really
+       close is actually part of the point"). It is trimmed from the top of the capitals to the baseline,
+       as before, and now reaches 0.02 of the type size further each way. Measured in the Satoshi files:
+       the curves of O, C and S and the tall strokes of l, d and k reach 0.013 above the capitals and
+       0.012 below the baseline; those slivers were drawn dark on the black page. The extra 0.02 covers
+       them and nothing more, so the close look stays. A shadow in the block colour; the layout does
+       not move. (Version 12 had a roomier block; this replaces it.) */
 .link-nav:is(:hover, :active), .link-footer:is(:hover, :active),
 .footer__out:is(:hover, :active), .footer__back:is(:hover, :active) {
-  box-shadow: 0 0 0 0.2em var(--neutral-200), 0.15em 0 0 0.2em var(--neutral-200), -0.15em 0 0 0.2em var(--neutral-200);
+  box-shadow: 0 0.02em 0 var(--neutral-200), 0 -0.02em 0 var(--neutral-200);
 }
 .footer__email:is(:hover, :active) {
-  box-shadow: 0 0 0 0.2em var(--neutral-200), 0 0.4em 0 0.2em var(--neutral-200), 0.15em 0 0 0.2em var(--neutral-200), -0.15em 0 0 0.2em var(--neutral-200);
+  box-shadow: 0 0.4em 0 var(--neutral-200), 0 -0.02em 0 var(--neutral-200);
 }
 
 /* 12. Three ways to highlight the small links (nav, Back to top, LinkedIn), his ask, 9 Nov. Switch with
        1, 2 and 3 on the preview. The big footer links and email keep the block either way.
-       1. Block: the light block with room round the letters (11 above). The default.
+       1. Block: the close light block (11 above). The default.
        2. Colour only: no block. Back to top goes from grey to white; the nav and LinkedIn, already
           white, go to mid grey. His suggestion for Back to top.
        3. Line: no block. A 1 px line appears under the word, in the text colour. */
