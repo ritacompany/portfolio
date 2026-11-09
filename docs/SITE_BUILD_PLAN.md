@@ -6,6 +6,38 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### Handoff, 9 Nov evening (from session "Portfolio: site build Phase 3 responsive")
+He asked for a new session to carry the site build on, starting with the hover highlight. In order:
+1. **Hover highlight.** His rule: on hover a link changes only its text colour and gets the light block
+   behind it; nothing moves, ever. He still sees a bigger gap between letters on hover (his example:
+   Contact in the footer). The letters measure identical in headless Chromium on Linux, but he views
+   on a Mac, so that measurement is not proof. Find what differs and the craft answer, with sources.
+   Proposals: site/dev/preview/proposals.css. Checks: scripts/verify-hover-still.mjs, run by
+   scripts/build-preview.mjs. Records: fixes/2026-11-09-hover-fade-flicker-called-still.md.
+2. **Ship the preview proposals** once he says yes: card label Label/12 C Neutral/300, cover highlight on
+   the email, LinkedIn, Back to top and the end bar, instant swaps, Haven nav swap, portrait pills with
+   no rim. Move each block from proposals.css into site/css, delete it there, rerun
+   node scripts/verify-1440.mjs and node scripts/verify-responsive.mjs <mode> all.
+3. **Work card hover** (his spec: image only at rest; on hover a 75 percent black overlay, then Learn more
+   loads in). Motion process under way: docs/motion/card-hover/style_guide.md and state_list.md written;
+   module and CSS in site/motion-lab/card-hover/. Next: lab page with window.seek, renders at 1440 and
+   390, review rounds with a fresh eyes subagent, motion-check, determinism, then a tuner and the
+   preview. He sees nothing until the review passes.
+4. **Heading/20 split:** headers keep Medium; body text moves to a new Regular Body/20. Wait for his Figma.
+5. **Unstyled text in the case studies:** a later pass; the preview's Type review tool marks it.
+6. **Phone layouts:** his notes (hero needs rethinking; list titles never wrap; list layout reads weird).
+   Go through each page with him one by one, after the rest is in place.
+7. **Small things to confirm with him:** Haven's nav now turns dark over the bridge at once instead of
+   fading; the cw logo has no hover.
+8. **Parked to the end, at his ask:** Contact button motion (tuners linked below), footer band motion.
+
+How to work: the review loop and the block (below). Preview link https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST:
+read it with the Artifact tool, rebuild with node scripts/build-preview.mjs site <dir>, publish to that
+url. He comments on it, and comments sent to Claude arrive as turns. Branch: claude/relaxed-ride-5mlbdu
+(commits after 9aa1315 are not yet in claude/lucid-carson-u56t7v). The Phase 2 session is finished and
+holding.
+
+
 A new session picks this up from this file alone.
 
 - Done: Phase 0. `site/css/tokens.css` rewritten from the local Portfolio and Haven variables and
