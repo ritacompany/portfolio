@@ -48,7 +48,7 @@ t = re.sub(r'<section class="block" id="verdict">.*?</section>\s*<section class=
            f'<section class="block" id="intro"><h2>What this pass found</h2><div class="prose">{INTRO}</div></section>', t, flags=re.S)
 t = t.replace('<h1>Framework CS copy review</h1>', '<h1>Haven tactics pass</h1>')
 t = t.replace('Mondai framework case study · copy review · read only, nothing changed in Figma', 'Haven case study · tactics pass · nothing changed in Figma or on the page yet')
-t = re.sub(r'<p class="lede">.*?</p>', '<p class="lede">Each proposal shows the text as it stands on the coded Haven page, the new text, the tactic and why, with my pick marked. Pick Accept, Accept with changes, Discuss or Reject, and add a note whenever you want. Choices and notes save to this page and I read them back.</p>', t, flags=re.S)
+t = re.sub(r'<p class="lede">.*?</p>', '<p class="lede">Each proposal shows the text as it stands on the coded Haven page, the new text and the tactic behind it, with why and my pick. Pick Accept, Accept with changes, Discuss or Reject. Add a note whenever you want. Choices and notes save to this page and I read them back.</p>', t, flags=re.S)
 t = t.replace('<span class="count">Accepted <b id="cA">0</b> · Rejected <b id="cR">0</b> · Open <b id="cO">0</b></span>',
               '<span class="count">Accepted <b id="cA">0</b> · With changes <b id="cC">0</b> · Discuss <b id="cD">0</b> · Rejected <b id="cR">0</b> · Open <b id="cO">0</b></span>')
 t = t.replace('<nav id="toc"></nav>', '<nav id="toc"><a href="#intro">What this pass found</a><a href="#checks">What ran</a><a href="#props">Proposals</a></nav>')
