@@ -64,33 +64,10 @@
     return { x: (a[1] + (b[1] - a[1]) * p) * W, y: (a[2] + (b[2] - a[2]) * p) * H, down: !!a[3] && p < 1 ? true : !!a[3] };
   }
 
-  // A: gooey split
-  function makeGooey(host) {
-    const btn = host.querySelector(".button"), icon = btn.querySelector(".button__icon"), label = btn.querySelector(".button__label");
-    const img = icon.querySelector("img");
-    const layer = document.createElement("span"); layer.className = "goo-shapes"; layer.setAttribute("aria-hidden", "true");
-    const sIcon = document.createElement("span"), sLabel = document.createElement("span");
-    layer.append(sIcon, sLabel); btn.style.position = "relative"; btn.prepend(layer);
-    const box = (el) => ({ x: el.offsetLeft + 60, y: el.offsetTop + 60, w: el.offsetWidth, h: el.offsetHeight });
-    const bi = box(icon), bl = box(label);
-    const PULL = 32, SQUEEZE = 6;
-    const K = 0.075, D = 0.82;          // per step at 60 Hz: quick, one small overshoot
-    const st = { gap: 0, v: 0, sq: 0, sv: 0 };
-    function reset() { st.gap = st.v = st.sq = st.sv = 0; }
-    function step(ptr, W, H) {
-      const inside = ptr && ptr.x >= -4 && ptr.x <= W + 4 && ptr.y >= -4 && ptr.y <= H + 4;
-      st.v = (st.v + ((inside ? PULL : 0) - st.gap) * K) * D; st.gap += st.v;
-      st.sv = (st.sv + ((ptr && ptr.down && inside ? SQUEEZE : 0) - st.sq) * 0.2) * 0.72; st.sq += st.sv;
-    }
-    function paint() {
-      const g = st.gap, q = st.sq;
-      const place = (s, b, dx) => { s.style.left = `${b.x + dx + q}px`; s.style.top = `${b.y + q}px`; s.style.width = `${b.w - 2 * q}px`; s.style.height = `${b.h - 2 * q}px`; };
-      place(sIcon, bi, -g); place(sLabel, bl, 0);
-      icon.style.transform = `translateX(${-g}px)`;
-      img.style.transform = `rotate(${-(g / PULL) * 18}deg)`;
-    }
-    return { host, btn, reset, step, paint };
-  }
+  // A: gooey split, the shipped module (site/js/contact-goo.js), so the lab renders what ships.
+  window.__GOO_MANUAL__ = true;
+  const { gooey } = await import("../js/contact-goo.js");
+  const makeGooey = (host) => { const u = gooey(host.querySelector(".button")); return { host, btn: u.btn, reset: u.reset, step: (p) => u.step(p), paint: u.paint }; };
 
   // B: liquid outline
   const NS = "http://www.w3.org/2000/svg";

@@ -99,7 +99,11 @@ A new session picks this up from this file alone.
   docs/motion/contact-button/ (style guide and state list from his two Framer recordings, review log,
   three rounds with fresh eyes, no P0 open), site/motion-lab/contact-button.html (A gooey split, B
   liquid outline, deterministic seek), clip output/motion/contact-button.mp4 (60 fps, renders matched
-  sha256). A live tuning page is published for him. Waiting on his pick and settings before it ships.
+  sha256). A live tuning page is published for him. His pick (9 Nov): A, the gooey split, at the default
+  settings. Shipped as site/js/contact-goo.js on Home, Framework and Haven; the lab page now runs that
+  same module, so the lab render is the shipped motion (two renders matched sha256). Reduced motion and
+  no script keep the plain borders. At rest the two pills join with a liquid neck, a decided change from
+  the Figma footer; page pixel gates still pass.
 - Next action: link and card hovers, Haven motion carry over, Falling behind and the footer
   transition. Then Phase 3 (390, 768, 1200).
   Haven keeps its own CSS until Phase 1 moves it.

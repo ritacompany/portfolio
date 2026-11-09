@@ -79,5 +79,6 @@
           </footer>
 
   </div>
+<script type="module" src="/js/contact-goo.js"></script>
 </body>
 </html>

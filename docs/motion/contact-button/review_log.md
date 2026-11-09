@@ -49,3 +49,10 @@ Fresh eyes: No P0. No cropping at either width, no glow or fill, no blurred text
 - P1: state list said A returns at 2.2 s; A returns when the pointer leaves the button at about 1.1 s. State list corrected.
 - P2: press barely visible at sheet scale (visible at 2x). Pointer ring over the letters for about 1 s.
 Mine: agree, no P0 open, so no fourth round.
+
+## Ship, 9 Nov
+
+His pick: A, the gooey split, default settings (pull 32, tilt 18, blur 9, stiffness 0.075, damping 0.82,
+squeeze 6). Ported to site/js/contact-goo.js; the lab imports it, so lab and site share one code path.
+Checked live on Home, Framework and Haven at 1440: rest neck, split on hover, tilt, press squeeze, flows
+back on leave, no console errors. Lab rendered twice, sha256 matched. Page, sheet and Haven gates pass.
