@@ -89,3 +89,12 @@ outline moves 9 (dent), and the gap takes the hidden colour. Where the gap reach
 the text colour, his idea for the large type. Defaults: Neutral 300 behind, Neutral 900 letters, body in
 the page colour. All four live in GOO (hiddenOn, deep, hiddenColor, bodyColor, textColor); the lab page
 has a tryout panel for them. The depth can go under the letters; 30 reaches the baseline of CONTACT.
+
+## Rest and render, 9 Nov (rounds 6 and 7)
+His correction: at rest the footer looks like the default. So the rest state is the Figma frame exactly,
+two rings crossing by 3 px, each its own outline. The rings melt into one body only while the circle
+moves and a neck can exist (the tuck, the pull to the snap, the return from the thread to home), then
+separate again. The melt is a crossfade of about 0.14 s over the two rings, never a cut.
+The piece is rendered from `site/motion-lab/contact-button-footer.html` in render mode (window.seek, the
+scripted pointer in its script, clip `#stage`): 1440 by 1000 at 60 fps and 390 by 1400 at 30 fps, 8.5 s
+loop. On a narrow screen the pull is capped so the circle keeps 12 px from the screen edge.

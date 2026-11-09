@@ -107,3 +107,40 @@ letters the letters take a colour; a place in the preview to play with both colo
 - Fixed on the way: the colour layer first painted over the ring (layer order), and a hairline of the
   hidden colour along the whole edge at rest (the body now reaches 1.5 px under the ring).
 - Live gate as before plus the membrane: bulge 15 px, stretch 10 px, settle 0.02 px. Site check OK.
+
+## Round 6
+9 Nov 2026. First render of the mix on the Home footer as built: contact-footer-1440 (60 fps) and
+contact-footer-390 (30 fps), 8.5 s loop, sheets from the new state list. His correction before this
+round: at rest the button is the Figma default, two rings crossing by 3 px, nothing merged.
+Mine:
+- P0: 0.00 to 0.40 s: the body melted into one shape at rest for the first 0.4 s after load, then separated. A fresh mover counted as mid move. Fixed: a mover is settled until a target changes.
+- P0: 4.80 to 5.60 s: the colour behind never showed. The leaving catch from 3.3 s never let go because the pointer stayed within 48 px, so the press in never fired. Fixed: the catch lets go when the pointer stops moving away.
+- P1: 7.60 to 7.90 s: the scripted pointer crossed the button on its way back to the start and fired a second hover. Fixed: the path goes around.
+- P1: 390, every frame: the clip box reached past the viewport, so the 390 render was garbage. Fixed: the box is kept inside the viewport.
+Fresh eyes: at 390 the circle slid to 3 px from the screen edge; at 390 it read a 3 px gap at rest (checked: it is the Figma crossing); the icon looked squashed during the tuck (checked: the pointer ring sat on the icon); the colour spilled past the outline and the letters barely changed; the list times ran ahead of the pointer; the press read as a drift; the leave stretch, snap and melt landed inside 0.25 s.
+- P0: 390, 1.50 to 3.25 s: the split circle came to 3 px from the screen edge. Fixed: the pull is capped so the circle keeps its room.
+- P1: 0.50 to 1.00 s: the pointer ring covered the mail icon and read as a smeared glyph. Fixed: the pointer path meets the icon low on its left.
+- P1: 4.75 to 5.50 s: the colour fringed past the ring by a pixel. Fixed: the colour stops 1 px inside the ring's edge.
+- P1: 6.30 and 6.60 s: the press read as a drift. Fixed: squeeze 6 to 9 px.
+- P1: 3.25 to 3.50 s: stretch, snap and melt inside 0.25 s. Fixed: the pointer leaves at 80 px a second so the point and the let go read.
+- P1: 5.75 and 6.75 s: list times ran ahead of the pointer. Fixed: the list now carries the edge crossing times.
+- P2: 1.50 to 2.00 s: the pill goes lumpy with the hump left of the pointer. Kept: the liquid reference goes lumpy the same way.
+- P2: 2.00 to 2.50 s: the pointer ring sat on the A. Fixed in the path.
+- P2: 390: the clipped portraits at the bottom of the frame. Fixed: the clip box is 44 px tall around the button.
+
+## Round 7
+9 Nov 2026. Re-render after the round 6 fixes, both widths, same state list.
+Mine:
+- P1: 390, 1.50 to 2.00 s: the circle still came to 8 px from the screen edge. Fixed: the cap keeps 12 px.
+- P1: every frame: the clip cut the caption line above the button. Fixed: the clip box starts 44 px above the button, below the caption.
+- P2: 3.50 and 7.50 s: the reforming neck pinches to a bowtie for two frames. Kept: that is the thread the gooey recording shows before the snap, in reverse.
+Fresh eyes: no P0. The crop cut the caption and a portrait; the circle started splitting before the listed inward crossing (checked: the hit area is the button box plus 4 px, the listed time was wrong by 0.24 s); a grey sliver at the circle at 390, 5.75 s (checked at 2x: not reproduced); the bottom edge started stretching before the listed 3.30 s (the edge crossing is 3.25 s); 390 crowding at 8 px; the colour mound clustered where the pointer is (that is the reference's behaviour); the bowtie neck; the pointer velocity jumps at the seam.
+- P1: 0.00 to 8.50 s, both widths: the crop cut the caption at the top and a portrait at the bottom. Fixed: the clip box is 44 px above and below the button.
+- P1: 5.93 to 6.03 s: the split began 0.24 s before the listed crossing. Fixed: the list time is the edge crossing, 5.88 s.
+- P1: 3.00 to 3.25 s: the stretch began before the listed 3.30 s. Fixed: the list time is the edge crossing, 3.25 s.
+- P1: 390, 1.50 to 2.00 s: crowded at 8 px from the edge. Fixed: the pull is capped so the circle keeps 12 px.
+- P1: 5.00 to 5.75 s: the colour behind reads as a mound where the pointer is, and the letter colour change is small. Kept: the mound under the pointer is what the liquid reference does; the depth and both colours are on the lab page's tryout panel for him.
+- P2: 3.50 and 7.50 s: bowtie neck for two frames. Kept.
+- P2: 8.50 to 0.00 s: the pointer's speed jumps at the seam. Kept: the frames match and nothing on the button moves there.
+- P2: 390 at 30 fps: the press and the early melt skip frames. Kept: a review rate; the page runs at 60.
+Render after these fixes: the two renders of one build do not hash the same on this machine even for a 0.5 s clip of frames that are pixel identical across browser launches (checked at 0 s and 2 s), so the difference is in the encode, not in the page. Noted, not resolved here.

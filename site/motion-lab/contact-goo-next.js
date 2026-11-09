@@ -10,10 +10,12 @@
 // so only the outline of their union shows. The label pill is a membrane, a ring of points on springs.
 //
 // What it does:
-//   Rest     one body: the circle sits in a wide liquid fillet on the pill (gooey recording, rest).
-//   Hover    the circle tucks in a touch, pulls away along the recording's own per frame curve, the
-//            neck thins to a thread and snaps a little past half way, the circle overshoots and
-//            settles; the icon tips. Leave is the same move back (gooey recording).
+//   Rest     the Figma default exactly: two outlined pills, the circle crossing the pill by 3 px, each
+//            with its own ring (his ask, 9 Nov: at rest the footer looks like the default).
+//   Hover    the two rings melt into one body as the circle tucks in, then the circle pulls away along
+//            the gooey recording's own per frame curve, the neck thins to a thread and snaps a little
+//            past half way, the circle overshoots and settles; the icon tips. Leave is the same move
+//            back: the circle lands, the body melts around it, then the two rings separate again.
 //   Inside   the outline near the pointer bulges outward over it and the hump follows the pointer; the
 //            far edge moves a little too (liquid recording, pointer inside).
 //   Leaving  the edge sticks to the pointer, stretches after it into a soft point, lets go past the
@@ -26,7 +28,7 @@
 //   Text     never moves. Reduced motion: never starts, the CSS borders stay.
 // Fixed 60 Hz steps, so the motion lab replays it frame for frame through window.seek(t).
 export const GOO = {
-  pull: 28, tilt: 20, blur: 8, merge: 48, cut: 24, line: 3, squeeze: 6, pressDur: 140,
+  pull: 28, tilt: 20, blur: 8, merge: 48, cut: 24, line: 3, squeeze: 9, pressDur: 140,
   // Membrane: bulge and its reach (px) with the pointer inside; stretch after a leaving pointer and
   // the distance at which the edge lets go; the press in from just outside; spring speed and bounce.
   bulge: 16, reach: 46, drag: 22, dragSpan: 30, release: 48, dent: 9, dentReach: 40,
@@ -34,7 +36,10 @@ export const GOO = {
   // Colour behind: on or off, how deep the body presses in from just outside (px, the outline itself
   // only moves dent), the colour in the gap, the page colour the body is drawn in and the colour the
   // letters take where the gap reaches them.
-  hiddenOn: 1, deep: 30, hiddenColor: "#d2d2db", bodyColor: "#040405", textColor: "#040405",
+  hiddenOn: 1, deep: 30, hiddenColor: "#90909d", bodyColor: "#040405", textColor: "#040405",
+  // The press in builds as the pointer comes near and drains slowly once it is inside (liquid
+  // recording: the colour lingers for a moment after the pointer crosses in).
+  deepT: 0.55, deepBounce: 0.35, meltT: 0.14,
 };
 const NS = "http://www.w3.org/2000/svg";
 const PAD = 60;
@@ -94,14 +99,18 @@ function ensureFilter() {
 // One move per target change, from where the value is now to the new target, along the curve. A
 // target change mid move starts a new move from the current value, so a quick in and out never jumps.
 function mover(curve, durOf) {
-  const m = { v: 0, from: 0, to: 0, n: 0 };
+  // Settled until a target changes: a fresh mover is at rest, not mid move.
+  const m = { v: 0, from: 0, to: 0, n: 0, moving: false };
   return {
     get v() { return m.v; },
-    reset() { m.v = m.from = m.to = m.n = 0; },
+    get moving() { return m.moving; },
+    reset() { m.v = m.from = m.to = m.n = 0; m.moving = false; },
     step(target) {
-      if (target !== m.to) { m.from = m.v; m.to = target; m.n = 0; }
+      if (target !== m.to) { m.from = m.v; m.to = target; m.n = 0; m.moving = true; }
+      if (!m.moving) return;
       const steps = Math.max(1, Math.round((durOf() / 1000) * HZ));
-      if (m.n < steps) { m.n++; m.v = m.from + (m.to - m.from) * curve(m.n / steps); }
+      m.n++; m.v = m.from + (m.to - m.from) * curve(m.n / steps);
+      if (m.n >= steps) { m.v = m.to; m.moving = false; }
     },
   };
 }
@@ -145,6 +154,17 @@ export function gooey(btn) {
   svg.style.cssText = "position:absolute;inset:0;width:100%;height:100%;overflow:visible;display:block";
   const sNeck = document.createElementNS(NS, "rect"), sIcon = document.createElementNS(NS, "rect"), sLabel = document.createElementNS(NS, "path");
   svg.append(sNeck, sIcon, sLabel); layer.append(svg);
+  // Rest layer: the same two shapes, each through its own ring filter, so at rest the pills keep their
+  // own outlines and cross as in Figma. The union layer above fades in only while the body melts.
+  const sep = document.createElement("span");
+  sep.className = "goo-sep"; sep.setAttribute("aria-hidden", "true");
+  sep.style.cssText = "position:absolute;inset:-60px;pointer-events:none";
+  const ssvg = document.createElementNS(NS, "svg");
+  ssvg.style.cssText = "position:absolute;inset:0;width:100%;height:100%;overflow:visible;display:block";
+  const gI = document.createElementNS(NS, "g"), gL = document.createElementNS(NS, "g");
+  gI.setAttribute("filter", "url(#goo-ring)"); gL.setAttribute("filter", "url(#goo-ring)");
+  const rIcon = document.createElementNS(NS, "rect"), rLabel = document.createElementNS(NS, "path");
+  gI.append(rIcon); gL.append(rLabel); ssvg.append(gI, gL); sep.append(ssvg);
   // Colour layer, unfiltered: the outline shape in the hidden colour with the pressed body drawn over
   // it in the page colour, so only the gap shows. Sits behind the content like the goo layer.
   const tint = document.createElement("span");
@@ -159,14 +179,17 @@ export function gooey(btn) {
   clone.className = label.className + " button__label-tint"; clone.setAttribute("aria-hidden", "true");
   clone.style.cssText = "position:absolute;pointer-events:none;border-color:transparent;z-index:2;clip-path:path(evenodd, 'M0 0Z')";
   // The colour sits under the goo outline, so the gap shows up to the ring and the ring stays whole.
-  btn.prepend(tint, layer); btn.append(clone); btn.classList.add("is-goo");
-  let bi, bl, W, H, P;
+  btn.prepend(tint, sep, layer); btn.append(clone); btn.classList.add("is-goo");
+  let bi, bl, W, H, P, room = 1e9;
   const measure = () => {
     W = btn.offsetWidth; H = btn.offsetHeight;
+    // On a narrow screen the circle must not slide off the left edge: the pull is capped by the room.
+    room = Math.max(6, btn.getBoundingClientRect().left - 12);
     svg.setAttribute("viewBox", `${-PAD} ${-PAD} ${W + 2 * PAD} ${H + 2 * PAD}`);
     tsvg.setAttribute("viewBox", `${-PAD} ${-PAD} ${W + 2 * PAD} ${H + 2 * PAD}`);
+    ssvg.setAttribute("viewBox", `${-PAD} ${-PAD} ${W + 2 * PAD} ${H + 2 * PAD}`);
     const fill = getComputedStyle(btn).color;
-    for (const s of [sNeck, sIcon, sLabel]) s.setAttribute("fill", fill);
+    for (const s of [sNeck, sIcon, sLabel, rIcon, rLabel]) s.setAttribute("fill", fill);
     const box = (el) => ({ x: el.offsetLeft, y: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight });
     bi = box(icon); bl = box(label); P = ring(bl);
     clone.style.left = `${bl.x}px`; clone.style.top = `${bl.y}px`; clone.style.width = `${bl.w}px`; clone.style.height = `${bl.h}px`;
@@ -174,23 +197,33 @@ export function gooey(btn) {
   measure();
   const pull = mover(tableEase, () => DUR);
   const press = mover(easeOut, () => GOO.pressDur);
-  const mem = { was: false, caught: false };
+  const mem = { was: false, caught: false, melt: 0, sd: 1e5, still: 0 };
   return {
     btn, measure,
-    reset() { pull.reset(); press.reset(); mem.was = mem.caught = false; for (const p of P) p.u = p.v = p.b = p.bv = 0; },
+    reset() { pull.reset(); press.reset(); mem.was = mem.caught = false; mem.melt = 0; mem.sd = 1e5; mem.still = 0; for (const p of P) p.u = p.v = p.b = p.bv = 0; },
     step(ptr) {
       // The circle slides left, so the hit area follows it.
       const inside = ptr && ptr.x >= -4 - pull.v && ptr.x <= W + 4 && ptr.y >= -4 && ptr.y <= H + 4;
-      pull.step(inside ? GOO.pull : 0);
+      const PULL = Math.min(GOO.pull, room);
+      pull.step(inside ? PULL : 0);
       press.step(ptr && ptr.down && inside ? GOO.squeeze : 0);
+      // The body is one melted shape while the circle moves and a neck can exist; at rest and once the
+      // circle is clear, the two rings stand on their own.
+      const pNow = PULL ? pull.v / PULL : 0;
+      const meltT = pull.moving && neckHeight(pNow) > 0 ? 1 : 0;
+      mem.melt += (meltT - mem.melt) * (1 - Math.exp(-1 / (HZ * Math.max(0.03, GOO.meltT / 3))));
 
       // Membrane on the label pill. The pointer's signed distance to the pill decides the mode.
-      const c = GOO, sp = springK(c.memT, c.memBounce);
+      const c = GOO, sp = springK(c.memT, c.memBounce), sb = springK(c.deepT, c.deepBounce);
       const px = ptr ? ptr.x : -1e5, py = ptr ? ptr.y : -1e5;
       const sd = ptr ? pillDist(bl, px, py) : 1e5, within = sd <= 0;
-      if (mem.was && !within && ptr && !ptr.down) mem.caught = true;
-      if (mem.caught && (within || !ptr || sd > c.release)) mem.caught = false;
-      mem.was = within;
+      // Leaving from inside catches the edge. It lets go past the release distance, or as soon as the
+      // pointer stops moving away (a few frames still or turning back), so a pointer that lingers near
+      // the button is free to press the body in.
+      if (mem.was && !within && ptr && !ptr.down) { mem.caught = true; mem.still = 0; }
+      mem.still = sd > mem.sd + 0.05 ? 0 : mem.still + 1;
+      if (mem.caught && (within || !ptr || sd > c.release || mem.still > 4)) mem.caught = false;
+      mem.was = within; mem.sd = sd;
       // Over the icon circle the pill is left alone, so the snapped circle has nothing tugging at it.
       const nearLabel = ptr && px >= bl.x - 4;
       const n = P.length;
@@ -209,18 +242,23 @@ export function gooey(btn) {
         const nb = (P[(i - 1 + n) % n].u + P[(i + 1) % n].u) / 2 - p.u;
         p.v = (p.v + (t - p.u) * sp.k + nb * c.couple) * sp.d;
         const nbb = (P[(i - 1 + n) % n].b + P[(i + 1) % n].b) / 2 - p.b;
-        p.bv = (p.bv + (tb - p.b) * sp.k + nbb * c.couple) * sp.d;
+        p.bv = (p.bv + (tb - p.b) * sb.k + nbb * c.couple) * sb.d;
       }
       for (const p of P) { p.u += p.v; p.b += p.bv; }
     },
     paint() {
-      const g = pull.v, q = press.v, p = GOO.pull ? g / GOO.pull : 0;
+      const PULL = Math.min(GOO.pull, room);
+      const g = pull.v, q = press.v, p = PULL ? g / PULL : 0;
       const rect = (s, b, dx) => { s.setAttribute("x", b.x + dx + q); s.setAttribute("y", b.y + q); s.setAttribute("width", Math.max(0, b.w - 2 * q)); s.setAttribute("height", Math.max(0, b.h - 2 * q)); s.setAttribute("rx", 999); };
       // The icon moves by transform, so its layout box (bi) stays where it rests.
-      rect(sIcon, bi, -g);
+      rect(sIcon, bi, -g); rect(rIcon, bi, -g);
+      // Melt crossfade: the union ring fades in over the two rings, which stay until it is whole.
+      const h = mem.melt < 0.01 ? 0 : mem.melt > 0.99 ? 1 : mem.melt;
+      layer.style.display = h === 0 ? "none" : ""; layer.style.opacity = h;
+      sep.style.display = h === 1 ? "none" : "";
       // The label pill is the membrane: each point sits on its normal, pressed in by the squeeze.
       const outer = smooth(P.map((pt) => [pt.x + pt.nx * (pt.u - q), pt.y + pt.ny * (pt.u - q)]));
-      sLabel.setAttribute("d", outer);
+      sLabel.setAttribute("d", outer); rLabel.setAttribute("d", outer);
       // Colour behind: the body sits inside the outline by the press depth; the gap takes the hidden
       // colour and the letters inside the gap take the text colour.
       const on = GOO.hiddenOn && P.some((pt) => pt.b < -0.5);
@@ -228,7 +266,8 @@ export function gooey(btn) {
       if (on) {
         // The body reaches 1.5 px under the ring, so no hairline of colour shows along the edge at rest.
         const body = smooth(P.map((pt) => [pt.x + pt.nx * (pt.u - q + 1.5 + Math.min(0, pt.b)), pt.y + pt.ny * (pt.u - q + 1.5 + Math.min(0, pt.b))]));
-        tOuter.setAttribute("d", outer); tOuter.setAttribute("fill", GOO.hiddenColor);
+        // The colour stops 1 px inside the ring's outer edge, so none of it fringes past the outline.
+        tOuter.setAttribute("d", smooth(P.map((pt) => [pt.x + pt.nx * (pt.u - q - 1), pt.y + pt.ny * (pt.u - q - 1)]))); tOuter.setAttribute("fill", GOO.hiddenColor);
         tBody.setAttribute("d", body); tBody.setAttribute("fill", GOO.bodyColor);
         clone.style.color = GOO.textColor;
         // clip-path coordinates are the clone's own box, which is the label box.

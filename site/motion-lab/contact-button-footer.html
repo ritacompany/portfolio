@@ -27,6 +27,13 @@
     .tryout output { min-width: 2ch; text-align: right; color: var(--neutral-500); }
     .tryout button { justify-self: start; padding: 5px 10px; border: 1px solid var(--neutral-600); border-radius: 6px; background: none; color: inherit; font: inherit; cursor: pointer; }
     .tryout p { margin: 0; color: var(--neutral-550); font-size: 12px; }
+    /* Render mode (scripts/render.mjs): the pointer is drawn as a ring and the clip is the stage box. */
+    .pointer { position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+      border: 2px solid var(--neutral-000); box-shadow: 0 0 0 2px var(--neutral-900); pointer-events: none; display: none; z-index: 6; }
+    .is-render .pointer { display: block; }
+    .is-render .tryout { display: none; }
+    .is-render .button { cursor: none; }
+    #stage { position: absolute; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -70,7 +77,7 @@
           </footer>
   </div>
   <form class="tryout" id="tryout" aria-label="Colour tryout">
-    <label>Colour behind <input type="color" id="t-hidden" value="#d2d2db"></label>
+    <label>Colour behind <input type="color" id="t-hidden" value="#90909d"></label>
     <label>Letters in the gap <input type="color" id="t-text" value="#040405"></label>
     <label>Depth <input type="range" id="t-deep" min="0" max="44" step="1" value="30"><output id="o-deep">30</output></label>
     <label><input type="checkbox" id="t-on" checked> Colour on</label>
@@ -92,6 +99,38 @@
   el("t-deep").addEventListener("input", (e) => { GOO.deep = +e.target.value; el("o-deep").textContent = GOO.deep; save(); });
   el("t-on").addEventListener("change", (e) => { GOO.hiddenOn = e.target.checked ? 1 : 0; save(); });
   el("t-reset").addEventListener("click", () => { Object.assign(GOO, DEF); show(); save(); });
+</script>
+<script type="module">
+  // Render mode: window.seek(t) replays a scripted pointer from 0 to t in fixed 60 Hz steps, so any frame
+  // renders the same (motion rules, render contract). Live mode leaves the module to the real pointer.
+  if (window.__RENDER__) {
+    window.__GOO_MANUAL__ = true;
+    document.body.classList.add("is-render");
+    const { gooey } = await import("./contact-goo-next.js");
+    await document.fonts.ready;
+    const btn = document.querySelector("a.button"), u = gooey(btn), HZ = 60;
+    const W = btn.offsetWidth, H = btn.offsetHeight;
+    // [t, x, y, down] in button px. Enter over the icon's lower left, hold, onto the pill's top edge and
+    // along it, down the right end and back along the bottom, leave below slowly, hold, come up to 8 px
+    // under the edge from outside, hold, enter, press, leave through the right end, then around to the
+    // start clear of the button and the caption.
+    const K = [[0, -90, 38, 0], [0.5, 14, 58, 0], [1.1, 14, 58, 0], [1.6, 120, 12, 0], [2.2, 250, 12, 0], [2.7, 250, 64, 0], [3.1, 170, 64, 0],
+      [3.9, 170, 128, 0], [4.4, 170, 128, 0], [5.0, 236, 84, 0], [5.8, 236, 84, 0], [6.2, 236, 44, 0], [6.5, 236, 44, 1], [6.8, 236, 44, 0],
+      [7.4, 330, 44, 0], [7.8, 330, -80, 0], [8.1, -90, -80, 0], [8.4, -90, 38, 0], [8.5, -90, 38, 0]];
+    const at = (t) => { let i = 0; while (i < K.length - 2 && K[i + 1][0] <= t) i++; const a = K[i], c = K[i + 1], f = Math.min(1, Math.max(0, (t - a[0]) / (c[0] - a[0]))); return { x: a[1] + (c[1] - a[1]) * f, y: a[2] + (c[2] - a[2]) * f, down: !!a[3] }; };
+    const ring = document.createElement("span"); ring.className = "pointer"; btn.appendChild(ring);
+    const stage = document.createElement("div"); stage.id = "stage"; btn.appendChild(stage);
+    // The clip box: 110 px either side and 44 px above and below the button, kept inside the viewport.
+    const r = btn.getBoundingClientRect(), x0 = Math.max(0, r.left - 110), x1 = Math.min(innerWidth, r.right + 110);
+    stage.style.cssText = `position:absolute;left:${x0 - r.left}px;top:${-44}px;width:${x1 - x0}px;height:${H + 88}px;pointer-events:none`;
+    window.seek = (t) => {
+      u.reset(); const n = Math.round(t * HZ);
+      for (let s = 0; s < n; s++) u.step(at(s / HZ));
+      u.paint(); const q = at(t);
+      ring.style.transform = `translate(${q.x}px, ${q.y}px) scale(${q.down ? 0.75 : 1})`;
+    };
+    window.seek(0);
+  }
 </script>
 <script type="module" src="contact-goo-next.js"></script>
 </body>
