@@ -5,16 +5,17 @@
       Today it is Label/12 C in Bold at Neutral/200. */
 .work-card__kind { font-weight: 400; color: var(--neutral-300); }
 
-/* 2. Highlighted links read as dark text on a light block, which looks lighter than light text on black,
-      so on highlight the text goes one weight heavier (his comment, 9 Nov; no stroke).
-      Footer links: Heading/24 Medium to Bold. Nav links: Regular to Medium. */
-.link-footer:hover, .link-footer.is-hover, .link-footer:active, .link-footer.is-pressed { font-weight: 700; }
-.link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed { font-weight: 500; }
+/* 2. Hover rule for every link (his ruling, 9 Nov): a highlight is the text colour and the light block
+      behind it, nothing else. No weight, spacing, size or position change on any element, ever.
+      Checked letter by letter by scripts/verify-hover-still.mjs. */
 
 /* 3. Footer email gets the same cover effect as the footer links (his comment, 9 Nov): the light block
-      behind it, dark text, one weight heavier, same easing. */
+      behind it and dark text, same easing. */
 .footer__email { transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out); }
-.footer__email:hover, .footer__email:active { color: var(--neutral-900); background: var(--neutral-200); font-weight: 700; }
+/* Same weight and underline at rest and on hover (his comment: the underline vanished and the shape
+   changed). The block is trimmed to the baseline, so it is extended down past the underline with a
+   shadow of the same colour; nothing in the layout moves. */
+.footer__email:hover, .footer__email:active { color: var(--neutral-900); background: var(--neutral-200); box-shadow: 0 0.4em 0 var(--neutral-200); }
 
 /* 4. Footer portraits: no light edge around the pills (his comment, 9 Nov: "neither should have a
       stroke"). The pill background was clipped separately from the photo, so its light grey leaked
@@ -23,8 +24,15 @@
 .footer__pill { border-radius: 0; overflow: visible; clip-path: inset(0 round 66.349px); }
 
 /* 5. LinkedIn (and Resume, when it is back) get the same cover effect (his comment, 9 Nov): light block,
-      dark text one weight heavier, and the arrow turns dark with the text so it stays visible. */
+      dark text, and the arrow turns dark with the text so it stays visible. */
 .footer__out { justify-self: start; transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out); }
 .footer__out img { transition: filter 200ms var(--ease-quart-out); }
-.footer__out:hover, .footer__out:active { color: var(--neutral-900); background: var(--neutral-200); font-weight: 500; }
+.footer__out:hover, .footer__out:active { color: var(--neutral-900); background: var(--neutral-200); }
 .footer__out:hover img, .footer__out:active img { filter: brightness(0); }
+
+/* 6. Back to top gets the same cover effect (his comment, 9 Nov): light block, dark text, the arrow turns
+      dark with it. Colour and block only; nothing moves. */
+.footer__back { transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out); }
+.footer__back img { transition: filter 200ms var(--ease-quart-out); }
+.footer__back:hover, .footer__back:active { color: var(--neutral-900); background: var(--neutral-200); }
+.footer__back:hover img, .footer__back:active img { filter: brightness(0); }

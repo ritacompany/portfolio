@@ -28,3 +28,8 @@ for (const f of walk(out).filter((f) => f.endsWith(".html"))) {
   writeFileSync(f, s);
 }
 console.log("preview at", out, walk(out).length, "files");
+// His hover rule: nothing moves on hover, ever. The preview is not built if any hover moves a letter.
+import { spawnSync } from "node:child_process";
+const check = spawnSync(process.execPath, [new URL("verify-hover-still.mjs", import.meta.url).pathname, out], { encoding: "utf8" });
+process.stdout.write(check.stdout); process.stderr.write(check.stderr);
+if (check.status !== 0) { console.error("preview refused: a hover moves something (scripts/verify-hover-still.mjs)"); process.exit(1); }
