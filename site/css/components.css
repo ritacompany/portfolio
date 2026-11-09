@@ -7,8 +7,8 @@
    (0.04em for the -4% styles, 0.01em for -1%). Measured on Selected works: 150.03 plus 0.96 is
    Figma's 151.
    Hover and pressed states for Link and Context list are the Figma variants; .is-hover and
-   .is-pressed force them on the component sheet. Button and Small button ship their default state
-   and the focus ring only; their other states get designed in Phase 2. */
+   .is-pressed force them on the component sheet. Small button fills on hover (his pick, 9 Nov).
+   Button keeps its default state and focus ring until the liquid effect is built in Phase 2. */
 
 /* Page header: the navbar sits over the page at Figma's offset (15 on Home, 20 elsewhere). */
 .page-header { position: absolute; top: var(--navbar-top, 20px); left: 0; right: 0; z-index: 1; }
@@ -153,7 +153,12 @@
   font: 700 24px/1.16 var(--font); letter-spacing: var(--heading-24-track); text-transform: uppercase;
   color: var(--neutral-100); background: none; white-space: nowrap; text-decoration: none; cursor: pointer;
   text-box: trim-both cap alphabetic;
+  transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out), border-color 200ms var(--ease-quart-out), transform 120ms var(--ease-quart-out);
 }
+/* States, his pick 9 Nov (option A on site/dev/buttons/): the outline fills and the text turns dark;
+   pressed sinks to Neutral/300 and scales to 98 percent. */
+.button-sm:hover, .button-sm.is-hover { background: var(--neutral-100); color: var(--neutral-900); }
+.button-sm:active, .button-sm.is-pressed { background: var(--neutral-300); border-color: var(--neutral-300); color: var(--neutral-900); transform: scale(0.98); }
 
 /* Footer, 5812:22749. Variants: Default and Other pages (adds Home to the list). */
 .footer { background: var(--neutral-900); color: var(--neutral-100); overflow: hidden; }
