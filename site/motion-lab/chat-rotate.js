@@ -89,10 +89,11 @@ export async function mountChatPhone(section) {
   const block = section.querySelector(".cr-block");
   const para = section.querySelector(".cr-para");
   const chip = section.querySelector(".cr-pill");
+  const stage = section.querySelector(".cr-stage");
   const holder = section.querySelector(".cr-phone");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: !!navigator.webdriver });
   renderer.setClearColor(0x000000, 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -109,10 +110,11 @@ export async function mountChatPhone(section) {
     R1[0][0], R1[0][1], R1[0][2], 0, R1[1][0], R1[1][1], R1[1][2], 0, R1[2][0], R1[2][1], R1[2][2], 0, 0, 0, 0, 1));
   const q2 = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI / 2);   // face on
 
-  let size = 0;
+  let size = 0, Lo = null, last = NaN, paints = 0;
   // Where everything sits, in block px. Wide screens follow the Figma frames scaled by g. Narrow screens
   // have no Figma frame: the phone is centred and sized to the screen and the paragraph sits under it.
-  const layout = () => {
+  // Everything that reads or writes layout happens here, on resize only, never per frame.
+  const measure = () => {
     const w = section.clientWidth, vh = innerHeight, narrow = w < 768;
     let L1;
     if (!narrow) {
@@ -134,34 +136,36 @@ export async function mountChatPhone(section) {
       renderer.setSize(L1.box, L1.box);
     }
     para.style.width = `${L1.pw}px`;
-    const end = Math.max(L1.y1 + L1.drop + 324 * L1.ppm2 / F2.ppm, L1.py + para.offsetHeight);
-    block.style.height = `${Math.ceil(end + 24 + L1.hold)}px`;
-    return L1;
+    const stageH = Math.ceil(Math.max(L1.y1 + L1.drop + 324 * L1.ppm2 / F2.ppm, L1.py + para.offsetHeight) + 24);
+    stage.style.height = `${stageH}px`;
+    block.style.height = `${stageH + L1.hold}px`;
+    // sGo: the phone's centre reaches the bottom of the screen and it starts its own motion.
+    // sMeet: they meet in frame 2. Wide: phone centre mid screen. Narrow: phone and paragraph centred as a pair.
+    const top = block.getBoundingClientRect().top + scrollY;
+    const mid = L1.drop ? L1.y1 + L1.drop : (L1.y1 - L / 2 * L1.ppm2 + L1.py + para.offsetHeight) / 2;
+    L1.sGo = top + L1.y1 - vh;
+    L1.sMeet = top + mid - vh / 2;
+    // The hold is CSS sticky, so the browser keeps the pair still and no script can make it shake.
+    stage.style.top = reduced ? "" : `${vh / 2 - mid}px`;
+    Object.assign(section.dataset, { go: L1.sGo.toFixed(1), meet: L1.sMeet.toFixed(1), holdLen: L1.hold.toFixed(1) });
+    Lo = L1; last = NaN;
   };
 
   // The paragraph is part of the page and only scrolls. The phone travels down the page to it while it
-  // turns, they meet in the frame 2 layout with the phone in the middle of the screen, hold there for
-  // HOLD screens of scroll, then leave together. On screen the phone rises slower than the page, so the
-  // paragraph scrolls up into it.
-  //   sGo: the phone's centre reaches the bottom of the screen and it starts its own motion.
-  //   sMeet: they meet in frame 2 and the hold starts.
+  // turns, they meet in the frame 2 layout, the stage sticks for HOLD screens of scroll, then they leave
+  // together. Nothing is written or drawn when the scroll is outside the travel.
   const draw = () => {
-    const Lo = layout(), vh = innerHeight;
-    const top = block.getBoundingClientRect().top + scrollY;
-    // Wide: phone centre mid screen. Narrow: the phone and the paragraph under it centred as a pair.
-    const mid = Lo.drop ? Lo.y1 + Lo.drop : (Lo.y1 - L / 2 * Lo.ppm2 + Lo.py + para.offsetHeight) / 2;
-    const sMeet = top + mid - vh / 2;
-    const sGo = top + Lo.y1 - vh;
-    const u = reduced ? 1 : range(scrollY, sGo, sMeet);
+    const u = reduced ? 1 : range(scrollY, Lo.sGo, Lo.sMeet);
+    if (u === last) return;
+    last = u;
     const k = ease(u);                                    // turn and slide: sine in out
     // Travel down the page: leaves at page speed and arrives at rest on screen exactly as the hold starts,
     // so the phone lands without overshooting. Cubic with slope 0 at the start and c at the end.
-    const c = Lo.drop ? (sMeet - sGo) / Lo.drop : 1, fall = (3 - c) * u * u + (c - 2) * u * u * u;
-    const hold = reduced ? 0 : clamp(scrollY - sMeet, 0, Lo.hold);   // pair stays put on screen
-    const cx = lerp(Lo.x1, Lo.x2, k), cy = Lo.y1 + fall * Lo.drop + hold;
+    const c = Lo.drop ? (Lo.sMeet - Lo.sGo) / Lo.drop : 1, fall = (3 - c) * u * u + (c - 2) * u * u * u;
+    const cx = lerp(Lo.x1, Lo.x2, k), cy = Lo.y1 + fall * Lo.drop;
     const ppm = lerp(Lo.ppm1, Lo.ppm2, k), turn = k;
     holder.style.transform = `translate(${cx - Lo.box / 2}px, ${cy - Lo.box / 2}px)`;
-    para.style.transform = `translate(${Lo.px}px, ${Lo.py + hold}px)`;
+    para.style.transform = `translate(${Lo.px}px, ${Lo.py}px)`;
     // The chip names the insight, so it rides with the phone: same spot above it as in each Figma frame.
     const above = Lo.drop ? lerp(CHIP[0], CHIP[1], k) * Lo.g : Lo.y1;
     chip.style.transform = `translateY(${cy - above}px)`;
@@ -170,11 +174,20 @@ export async function mountChatPhone(section) {
     camera.updateProjectionMatrix();
     phone.quaternion.slerpQuaternions(q1, q2, turn);
     renderer.render(scene, camera);
-    section.dataset.turn = turn.toFixed(4);
-    Object.assign(section.dataset, { hold: hold.toFixed(1), go: sGo.toFixed(1), meet: sMeet.toFixed(1), holdLen: Lo.hold.toFixed(1) });
+    Object.assign(section.dataset, { turn: turn.toFixed(4), y: String(scrollY), paints: String(++paints) });
   };
+  const remeasure = () => { measure(); draw(); };
   addEventListener("scroll", draw, { passive: true });
-  addEventListener("resize", draw);
-  draw();
+  // Runs after Lenis moves the page in the same tick (haven.js adds Lenis first), so the phone is never a
+  // frame behind the scroll.
+  if (window.gsap) window.gsap.ticker.add(draw);
+  // A phone's address bar sliding away is a height only resize; re-measuring on it would jump the pin.
+  let rw = innerWidth, rh = innerHeight;
+  addEventListener("resize", () => {
+    if (innerWidth === rw && Math.abs(innerHeight - rh) < 160 && matchMedia("(pointer: coarse)").matches) return;
+    rw = innerWidth; rh = innerHeight; remeasure();
+  });
+  new ResizeObserver(remeasure).observe(section.parentElement);
+  remeasure();
   return { draw, para };
 }

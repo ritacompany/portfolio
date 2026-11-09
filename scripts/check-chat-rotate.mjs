@@ -1,5 +1,5 @@
 // Checks the chat phone study against the agreed state list (docs/motion/chat-rotate/state_list.md).
-//   node scripts/check-chat-rotate.mjs start|end|text|path|hold|chip|reduced
+//   node scripts/check-chat-rotate.mjs start|end|text|path|hold|chip|smooth|reduced
 // start / end: the phone's rendered outline against the Mokker phone from Figma frame 1 (scroll 0) or frame 2
 //   (the moment they meet), placed where that frame puts it relative to the phone centre. IoU 0.96 or more.
 // text: the paragraph's offset from the phone centre at both ends against the Figma frames, within 4 px,
@@ -10,6 +10,8 @@
 //   page speed together.
 // chip: the insight chip sits where each Figma frame puts it above the phone centre, right aligned, and
 //   holds with the pair.
+// smooth: the live page on the GPU with Lenis and wheel input. The phone is never a frame behind the scroll,
+//   the pair does not shake through the hold, nothing repaints during it and frames hold 60 fps.
 // reduced: with reduced motion the phone shows frame 2 and does not move inside the block while scrolling.
 // CHECK_PLANT=1 plants a mistake for the chosen check (the other frame's phone for start and end, a changed
 // line of chat-rotate.js for the rest); the check must then fail.
@@ -21,7 +23,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const which = process.argv[2];
-if (!["start", "end", "text", "path", "hold", "chip", "reduced"].includes(which)) { console.error("usage: start|end|text|path|hold|chip|reduced"); process.exit(2); }
+if (!["start", "end", "text", "path", "hold", "chip", "smooth", "reduced"].includes(which)) { console.error("usage: start|end|text|path|hold|chip|smooth|reduced"); process.exit(2); }
 
 // Figma, block coordinates at 1440: frame 1 phone centre, frame 2 phone centre relative to the paragraph,
 // and each Mokker rectangle's top left relative to its phone centre.
@@ -46,15 +48,17 @@ const server = createServer(async (req, res) => {
 });
 await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const base = `http://127.0.0.1:${server.address().port}`;
-const browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--force-color-profile=srgb", "--hide-scrollbars"] });
-const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1, reducedMotion: which === "reduced" ? "reduce" : "no-preference" });
+const live = which === "smooth";   // real GPU and not flagged as automation, so Lenis and the entrances run as on the page
+const browser = await chromium.launch({ channel: "chrome", headless: true, args: [...(live ? ["--use-angle=metal", "--enable-gpu", "--ignore-gpu-blocklist", "--disable-blink-features=AutomationControlled"] : ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"]), "--force-color-profile=srgb", "--hide-scrollbars"] });
+const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: live ? 2 : 1, reducedMotion: which === "reduced" ? "reduce" : "no-preference" });
 const page = await ctx.newPage();
 const plant = process.env.CHECK_PLANT === "1";
 const PLANTS = {
   text: ["px: 274 * g", "px: 300 * g"],                                  // paragraph off its Figma spot
-  path: ["const sGo = top + Lo.y1 - vh;", "const sGo = top + Lo.y1 - Lo.half - vh;"],   // starts early (round 6)
+  path: ["L1.sGo = top + L1.y1 - vh;", "L1.sGo = top + L1.y1 - L1.half - vh;"],   // starts early (round 6)
   hold: ["const HOLD = 1.0;", "const HOLD = 0.75;"],                      // the round 7 draft hold
   reduced: ["const u = reduced ? 1 :", "const u = reduced ? 0 :"],        // reduced shows frame 1
+  smooth: ["if (window.gsap) window.gsap.ticker.add(draw);", ""],         // scroll event only: a frame behind
   chip: ["chip.style.transform = `translateY(${cy - above}px)`;", ""],   // chip left at the block top
 };
 if (plant && PLANTS[which]) await page.route("**/chat-rotate.js", async (route) => {
@@ -123,6 +127,21 @@ if (which === "start" || which === "end") {
   out = { holdLen: meet.holdLen, vh: meet.vh, phoneY: [meet.sy, ...mids.map((m) => m.sy), off.sy], paraY: [meet.spy, ...mids.map((m) => m.spy), off.spy], after: [after.sy - off.sy, after.spy - off.spy] };
   const put = out.phoneY.every((y) => Math.abs(y - meet.sy) < 0.5) && out.paraY.every((y) => Math.abs(y - meet.spy) < 0.5);
   ok = put && meet.holdLen >= meet.vh - 0.5 && Math.abs(out.after[0] + 200) < 0.5 && Math.abs(out.after[1] + 200) < 0.5 && meet.turn === 1;
+} else if (which === "smooth") {
+  await page.evaluate(() => { const h = document.querySelector(".cr-phone"), pa = document.querySelector(".cr-para"), sec = document.getElementById("chat-rotate");
+    window.__haven.lenis.scrollTo(+sec.dataset.go - 300, { immediate: true }); window.__s = [];
+    window.gsap.ticker.add(() => { const d = sec.dataset, r = h.getBoundingClientRect(); window.__s.push([performance.now(), scrollY, r.top + r.height / 2, pa.getBoundingClientRect().top, +d.paints, +d.y]); }); });
+  await page.waitForTimeout(400); await page.mouse.move(720, 450);
+  const d = await page.evaluate(() => { const x = document.getElementById("chat-rotate").dataset; return { go: +x.go, meet: +x.meet, len: +x.holdLen }; });
+  const end = d.meet + d.len + 150, t0 = Date.now();
+  while (Date.now() - t0 < 30000 && await page.evaluate(() => scrollY) < end) { await page.mouse.wheel(0, 19); await page.waitForTimeout(25); }
+  const s = await page.evaluate(() => window.__s);
+  const dts = s.slice(1).map((r, i) => r[0] - s[i][0]).sort((a, b) => a - b), p95 = dts[Math.floor(dts.length * 0.95)];
+  const moved = s.filter((r, i) => i && r[1] !== s[i - 1][1]);
+  const hold = moved.filter((r) => r[1] > d.meet + 20 && r[1] < d.meet + d.len - 20), travel = moved.filter((r) => r[1] > d.go + 20 && r[1] < d.meet - 20);
+  const spread = (a) => Math.max(...a) - Math.min(...a);
+  out = { frames: s.length, p95, holdFrames: hold.length, phoneShake: spread(hold.map((r) => r[2])), paraShake: spread(hold.map((r) => r[3])), holdPaints: hold.at(-1)[4] - hold[0][4], travelFrames: travel.length, stale: travel.filter((r) => r[5] !== r[1]).length };
+  ok = hold.length > 30 && travel.length > 30 && out.phoneShake < 0.5 && out.paraShake < 0.5 && out.holdPaints === 0 && out.stale === 0 && p95 < 20;
 } else if (which === "chip") {
   const a = await state("start"), m = await state("meet"), mid = await state("meet", m.holdLen / 2), off = await state("off");
   out = { start: a.chOff, end: m.chOff, want: CHIP, right: [a.chRight, m.chRight], heldY: [m.chy, mid.chy, off.chy] };
@@ -137,5 +156,5 @@ if (which === "start" || which === "end") {
 console.log(JSON.stringify(out));
 if (errors.length) { console.log("page errors:", errors.join(" | ")); ok = false; }
 await browser.close(); server.close();
-console.log(ok ? { start: "START_MATCH", end: "END_MATCH", text: "TEXT_MATCH", path: "PATH_RISES", hold: "HOLD_SCREEN", chip: "CHIP_RIDES", reduced: "REDUCED_STILL" }[which] : "FAILED");
+console.log(ok ? { start: "START_MATCH", end: "END_MATCH", text: "TEXT_MATCH", path: "PATH_RISES", hold: "HOLD_SCREEN", chip: "CHIP_RIDES", smooth: "SMOOTH_LIVE", reduced: "REDUCED_STILL" }[which] : "FAILED");
 process.exit(ok ? 0 : 1);

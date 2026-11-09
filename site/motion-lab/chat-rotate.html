@@ -18,6 +18,7 @@
   .cr__text .h40 { max-width: 767px; }
   /* Block coordinates follow the Figma frames in 1440 px, scaled by --g. */
   .cr-block { position: relative; margin-top: calc(182 * var(--g)); }   /* height set by chat-rotate.js */
+  .cr-stage { position: sticky; }   /* holds the pair; top and height set by chat-rotate.js */
   .cr-pill { position: absolute; top: 0; right: 0; z-index: 1; will-change: transform; }
   .cr-para { position: absolute; left: 0; top: 0; will-change: transform; }
   .cr-para .tb-item { text-box: normal; }
@@ -41,9 +42,11 @@
       <p class="h40">When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.</p>
     </div>
     <div class="cr-block">
+      <div class="cr-stage">
       <span class="pill cr-pill">Interview insight 2</span>
       <div class="cr-phone" data-screen="../haven/assets/chat-screen.webp" role="img" aria-label="A phone showing an introduction chat by text with a Confidante."></div>
       <p class="body body-400 cr-para"><span class="tb-item">The final concept uses text-based sessions, not voice or video, so users can engage without speaking sensitive information aloud. A bounded chat format gives users more control over when and how much they share, responding directly to concerns about being overheard.</span></p>
+      </div>
     </div>
   </section>
   <!-- The real next section of the Haven page with its own scroll triggered entrances (haven.js), so the

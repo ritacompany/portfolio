@@ -85,3 +85,10 @@ position only follows the phone.
 All seven checks pass (entrances are off for the renderer and checks, which step frames). Clip chat-r9-live
 is a real time screencast of the live page on the GPU at about 53 fps, because time based entrances cannot
 be stepped by the renderer, so it has no two render hash.
+
+## Round 10, 9 Nov (Chadwick: make sure the real animation feels smooth)
+The renderer steps frames, so it cannot see live jitter. Measured live instead (GPU, Lenis, wheel): 60 fps, but
+the phone shook 3 to 4 px through the hold because it was drawn a frame behind the scroll.
+Fixes: the hold is CSS sticky, the phone draws in the same tick as Lenis, layout is read on resize only, nothing
+repaints outside the travel. After: phone shake 0, paragraph shake 0, 0 repaints in the hold, p95 frame 17.7 ms.
+New check SMOOTH_LIVE; fails when the phone is a frame behind. Render review for this round not yet scored.
