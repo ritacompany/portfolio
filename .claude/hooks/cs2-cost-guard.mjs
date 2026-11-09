@@ -4,8 +4,7 @@
 // rule against it written down. Each guard below blocks instead of asking.
 //   pre:    PreToolUse. Agent: Sonnet or Haiku only, and at most three per turn (six once aggregate.py has
 //           run in the turn, so one re-check round fits), unless his latest message asks for more or for Opus. Write/Edit on a process doc: fix-the-process must be loaded first.
-//   stop:   Stop. Over 250k tokens: rewrite HANDOFF, commit, push and tell him to start a new session.
-//           A process doc edited this session: a fix record in fixes/ written this session (by Write/Edit, or
+//   stop:   Stop. A process doc edited this session: a fix record in fixes/ written this session (by Write/Edit, or
 //           changed in git since the session began) must pass the skill's checker, from ~/.claude or the repo.
 //   prompt: UserPromptSubmit. Shows him (not me) a one time notice when the session runs on Opus.
 import fs from 'node:fs';
@@ -56,15 +55,7 @@ if (mode === 'pre') {
 
 if (mode === 'stop') {
   if (p.stop_hook_active) process.exit(0);
-  const last = [...rows].reverse().find(e => e.type === 'assistant' && !e.isSidechain && e.message && e.message.usage);
-  const u = last ? last.message.usage : {};
-  const ctx = (u.input_tokens || 0) + (u.cache_read_input_tokens || 0) + (u.cache_creation_input_tokens || 0);
   const git = a => spawnSync('git', a, { cwd: root, encoding: 'utf8' }).stdout.trim();
-  if (ctx > 250000) {
-    const handoffAt = Number(git(['log', '-1', '--format=%ct', 'HEAD', '--', 'reference/cs2/HANDOFF.md'])) * 1000;
-    const turnAt = Date.parse(rows[start] && rows[start].timestamp) || 0;
-    if (!(handoffAt >= turnAt - 60000)) out({ decision: 'block', reason: `This session is at ${Math.round(ctx / 1000)}k tokens, so every message now costs about ${Math.round(ctx / 1000)}k. Rewrite reference/cs2/HANDOFF.md (section, round, his comments on each version, next action), commit and push it, then tell him to start a new session for the next step.` });
-  }
   const edited = uses(since).filter(x => ['Write', 'Edit', 'MultiEdit'].includes(x.name)).map(x => rel(x.input && x.input.file_path));
   if (edited.some(f => PROCESS_DOCS.test(f))) {
     // Records touched this session: by Write/Edit, or seen by git (uncommitted, or committed since the
