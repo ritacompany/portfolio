@@ -80,5 +80,6 @@
 
   </div>
 <script type="module" src="/js/contact-goo.js"></script>
+<script src="/js/site.js" defer></script>
 </body>
 </html>

@@ -37,6 +37,13 @@
   display: inline-block; text-decoration: none; white-space: nowrap;
   text-box: trim-both cap alphabetic;
 }
+/* State easing (Phase 2): links and context rows ease between their Figma states over 200 ms, the same
+   curve and length as the Small button, so hover reads as one system. Press snaps faster. */
+.link-block, .link-nav, .link-footer, .context, .context__icon, .context__icon::before {
+  transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out);
+}
+.link-block:active, .link-nav:active, .link-footer:active, .context:active { transition-duration: 80ms; }
+
 .link-block {
   padding: 7px 6px;
   font: 700 14px/1 var(--font); letter-spacing: var(--label-14-c-track); text-transform: uppercase;

@@ -56,3 +56,15 @@
 .panel-example { border-radius: 12px; background: var(--neutral-850); }
 .panel-card { border-radius: 16px; background: var(--neutral-900); box-shadow: inset 0 0 0 1px var(--neutral-600); }
 .vrule { background: var(--neutral-700); }
+
+/* Start of week dots and hint, 5812:20705 (was a baked image until Phase 2). The dots follow the
+   carousel and jump to a template; each dot is 7 px drawn with a 24 px target. site/js/site.js. */
+.week-nav { position: absolute; width: 369px; height: 35px; }
+.week-dots { position: absolute; left: 151px; top: 0; display: flex; gap: 8px; }
+.week-dot { position: relative; width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: var(--neutral-600); cursor: pointer; transition: background-color 200ms var(--ease-quart-out); }
+.week-dot::after { content: ""; position: absolute; inset: -8.5px -4px; }
+.week-dot[aria-current="true"] { background: var(--neutral-200); }
+.week-dot:hover { background: var(--neutral-525); }
+.week-dot[aria-current="true"]:hover { background: var(--neutral-200); }
+.week-dot:focus-visible { outline: 2px solid var(--neutral-100); outline-offset: 3px; }
+.week-hint { position: absolute; left: 0; right: 0; top: 18px; text-align: center; font: var(--label-12); letter-spacing: var(--label-12-track); color: var(--neutral-525); white-space: nowrap; }
