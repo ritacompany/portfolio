@@ -75,3 +75,13 @@ keeps its spot above the phone and holds with it.
 New check CHIP_RIDES (both offsets within 2 px, right edge on the block, still through the hold, on screen);
 it fails on the chip left at the block top (CHECK_PLANT=1). All seven checks pass.
 Final 1440 clip chat-r8-final, 12 s at 30 fps, rendered twice: sha256 a18ca637 both times.
+
+## Round 9, 9 Nov (Chadwick: on plain black you cannot see the pair leave; show the next content arriving, scroll triggered)
+The study now has the page's real next section under it (Security features, copied from index.html) and loads
+haven.js, so the smooth scroll and the scroll triggered text and image entrances are the page's own, not a
+copy. The chat paragraph is exempt from the fade. The divider sits just below the fold when the hold ends;
+the Security text starts its fade about 230 px after the hold. Chip confirmed: no entrance of its own, its
+position only follows the phone.
+All seven checks pass (entrances are off for the renderer and checks, which step frames). Clip chat-r9-live
+is a real time screencast of the live page on the GPU at about 53 fps, because time based entrances cannot
+be stepped by the renderer, so it has no two render hash.

@@ -174,12 +174,6 @@ export async function mountChatPhone(section) {
     Object.assign(section.dataset, { hold: hold.toFixed(1), go: sGo.toFixed(1), meet: sMeet.toFixed(1), holdLen: Lo.hold.toFixed(1) });
   };
   addEventListener("scroll", draw, { passive: true });
-  // The Haven page's smooth scroll (same Lenis lerp as haven.js), so the study feels like the page.
-  // Off for reduced motion, for the renderer and checks (webdriver) and with ?smooth=0.
-  if (window.Lenis && !reduced && !navigator.webdriver && new URLSearchParams(location.search).get("smooth") !== "0") {
-    const lenis = new window.Lenis({ lerp: 0.1, wheelMultiplier: 1 });
-    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
-  }
   addEventListener("resize", draw);
   draw();
   return { draw, para };

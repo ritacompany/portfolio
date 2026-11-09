@@ -6,6 +6,10 @@
 <title>Chat phone turn</title>
 <!-- Study for the Haven chat section (Figma 4262:4967): the phone travels down to the paragraph while it
      turns from the frame 1 tilt to face the reader, the insight chip riding above it, then they hold. Scroll driven; see chat-rotate.js. -->
+<script>
+  // As on the Haven page: entrances only when motion runs. Off for the renderer and checks, which step frames.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !navigator.webdriver) document.documentElement.classList.add("js-motion");
+</script>
 <link rel="stylesheet" href="../haven/haven.css">
 <style>
   .spacer { height: 70vh; }
@@ -17,6 +21,7 @@
   .cr-pill { position: absolute; top: 0; right: 0; z-index: 1; will-change: transform; }
   .cr-para { position: absolute; left: 0; top: 0; will-change: transform; }
   .cr-para .tb-item { text-box: normal; }
+  .js-motion .cr-para .tb-item { opacity: 1; visibility: visible; }   /* plain page text, never faded */
   .cr-phone { position: absolute; left: 0; top: 0; will-change: transform; pointer-events: none; }
   .cr-phone canvas { display: block; }
   @media (max-width: 767px) {
@@ -30,7 +35,7 @@
 <body>
 <main>
   <div class="spacer"></div>
-  <section class="cr" id="chat-rotate" aria-labelledby="cr-title">
+  <section class="cr rule-b" id="chat-rotate" aria-labelledby="cr-title">
     <div class="cr__text">
       <h2 class="eyebrow" id="cr-title">Chat-based interactions</h2>
       <p class="h40">When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.</p>
@@ -41,9 +46,36 @@
       <p class="body body-400 cr-para"><span class="tb-item">The final concept uses text-based sessions, not voice or video, so users can engage without speaking sensitive information aloud. A bounded chat format gives users more control over when and how much they share, responding directly to concerns about being overheard.</span></p>
     </div>
   </section>
+  <!-- The real next section of the Haven page with its own scroll triggered entrances (haven.js), so the
+       pair has something to leave against. Keep in step with site/haven/index.html. -->
+  <section data-node="3300:13477" class="security rule-b" aria-labelledby="security-title">
+    <div class="security__text" data-tb>
+      <h2 class="eyebrow tb-item" id="security-title">Security features</h2>
+      <p class="h40 tb-item">Privacy is a condition for access. Users need safeguards that protect the app before, during and after a conversation.</p>
+    </div>
+    <div class="security__block">
+      <ul class="pills security__pills" data-tb>
+        <li class="tb-item"><span class="pill">Interview insight 5</span></li>
+        <li class="tb-item"><span class="pill">Testing insight 3</span></li>
+      </ul>
+      <div class="security__row">
+        <div class="security__media">
+          <figure class="mask security__a" data-mask>
+            <div class="mask__scale"><img src="../haven/assets/security-discreet.webp" width="501" height="651" loading="lazy" alt="Keep Haven discreet: choose a disguise icon, hide Haven in the app switcher and keep notifications off."></div>
+          </figure>
+          <figure class="mask security__b" data-mask data-delay="0.2">
+            <div class="mask__scale"><img src="../haven/assets/security-pin.webp" width="464" height="651" loading="lazy" alt="Create a security PIN, with the option to use Face ID."></div>
+          </figure>
+        </div>
+        <p class="body body-400 security__body" data-tb><span class="tb-item">Interviews showed that discovery by guardians or peers could stop someone from using Haven at all, and testing showed the early concepts did not communicate enough protection. The final setup disguises the app icon, hides Haven in the app switcher, keeps notifications off until the user turns them on and adds a security PIN with Face ID. Privacy is visible when users need it, not buried in a later settings screen.</span></p>
+      </div>
+    </div>
+  </section>
   <div class="spacer"></div>
 </main>
 <script src="../haven/vendor/lenis.min.js"></script>
+<script src="../haven/vendor/gsap.min.js"></script>
+<script src="../haven/haven.js"></script>
 <script type="module">
   import { mountChatPhone } from "./chat-rotate.js";
   window.ready = mountChatPhone(document.getElementById("chat-rotate"));
