@@ -4,13 +4,13 @@ In frame order, top to bottom. Find each layer by the text it starts with now, s
 
 **Starts with:** Mondai is an AI tech career navigator
 
-Designed as an AI guide for people from underrepresented backgrounds working their way into a tech career.
+Designed as an AI guide for newcomers from underrepresented backgrounds finding their way into tech.
 
 **Starts with:** asdsdasddfaassdf (the placeholder list under This case study is focused on; hide that label)
 
-Mondai builds each user a curriculum for the tech career they choose, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.
+There’s no set path into tech, so Mondai’s AI writes each user a curriculum for the career they choose, and it can take months. Most users don’t have the same hours free every week, so a plan that expects a steady pace would leave them behind from week one.
 
-So I designed a weekly framework that turns that curriculum into weeks the user can finish, planned around the hours they say they can give each week. Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.
+When I started on the MVP, the curriculum was a list in a fixed order, with calendar integration planned and nothing connecting them. I designed the weekly framework that turns it into weeks each user can finish. Mondai hasn’t launched, so this case study shows the reasoning rather than results.
 
 **Starts with:** There was no direct model for Mondai
 
@@ -256,16 +256,16 @@ After a long absence, the old plan is too far behind to catch up to, so the week
 
 **Starts with:** In reflection ?/?
 
-Where it stands
+What’s still open
 
 **Starts with:** Ending section
 
-The framework is built, so the question left is whether it works for the users it was made for.
+The least settled rule is the one for when Recalibration steps in, because no user had lived a week with the plan yet.
 
 **Starts with:** or whatever
 
-The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.
-A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for. Testing with the first users comes next, and these are the two numbers I’ll count from it.
+Right now it steps in after three weeks in a row where a user finishes less than about half the hours they set. That line is a starting point, and the first users’ weeks will move it.
+It comes too early if most users who see it skip it and catch up anyway, and too late if users stop coming back before it ever shows.
 
 **New text layer under the Rollover effect body, in the sources style (Satoshi Regular 12, like the competitive analysis sources):**
 

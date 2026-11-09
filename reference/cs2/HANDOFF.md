@@ -74,7 +74,7 @@ Still missing from his frame: Get ahead (goes before Opening the week; streak qu
 
 ## Next action
 
-Done 9 Nov: he picked hero A and ending C (question card in chat). Both applied word for word to reference/cs2/review-2026-11-07/final-copy.md and paste-list.md; verified by an exact text match (old text gone), run-checks.mjs OK and measure.mjs OK. The applied text is the text that passed both reader check rounds, so no new round ran. Not updated: scripts/figma/paste-framework-cs.js still holds the old hero and ending (the Figma route is off). Hero and ending copy is done; nothing open on them.
+Done 9 Nov: he picked hero A and ending C (question card in chat). Both applied word for word to reference/cs2/review-2026-11-07/final-copy.md and paste-list.md; verified by an exact text match (old text gone), run-checks.mjs OK and measure.mjs OK. The applied text is the text that passed both reader check rounds, so no new round ran. Also updated on his yes: scripts/figma/paste-framework-cs.js and paste-into-transported.md now hold the same hero and ending (verified by text match; the script passes node --check). Hero and ending copy is done; nothing open on them.
 
 Next (9 Nov, 00:00): hero and ending get worked as blocks (his ask: they were only ever drafted inside the review). Session started: Portfolio: CS2 opening and ending (session_01NtNprsxC2Kzua6FztXjUAR), three versions each, every check and re-check before he sees them, results applied to final-copy.md. Fonts: not changing for now (his call 8 Nov); the font notes in final-copy.md are for later.
 
