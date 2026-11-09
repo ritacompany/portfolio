@@ -120,6 +120,12 @@ A new session picks this up from this file alone.
 - Waiting on him: Falling behind (his tuned settings from the editor,
   site/motion-lab/cs2-falling-behind-editor.html).
 
+- Pre launch check, 9 Nov (built site in dist/): every page has a title and description; the portfolio
+  logo is now the favicon on every page (Haven already used it); Haven's profile scroll study page no
+  longer ships. Open for launch: Resume links to #resume on every page with nothing there (needs his
+  resume file or URL); Collection's Design system row links to #design-system; no social preview image
+  (og:image) on any page.
+
 ## Details (end of build)
 
 His call 9 Nov: polish pieces he wants to recreate himself wait here until the build is done. Nothing
