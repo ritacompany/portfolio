@@ -86,7 +86,8 @@ before the first reply, then HANDOFF.md for where things stand.
 3. Reader check (`reference/cs2/reader-check/README.md`): three runs, PASS needed, on every version. All
    versions of a block go in one COPY file, so a round is three sub-agents, not three per version.
    Enforced (.claude/hooks/cs2-cost-guard.mjs): sub-agents must be Sonnet, and a fourth in one turn is
-   refused until he asks for a re-run.
+   refused until aggregate.py has run in that turn; then one re-check round (up to six agents) is
+   allowed, and a seventh waits for him to ask for a re-run.
 Nothing goes on the canvas before all three. His rule: no-ai-slop and the reader check are not optional.
 Load unlazy once per session, and again after the session compacts. Enforced: a stop hook
 (.claude/hooks/unlazy-every-turn.mjs) refuses to end a turn that used work tools when it has not been

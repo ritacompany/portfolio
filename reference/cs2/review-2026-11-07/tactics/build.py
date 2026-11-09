@@ -6,7 +6,10 @@ E = html.escape
 HERE = os.path.dirname(os.path.abspath(__file__))
 R2 = os.path.join(HERE, '..', 'round2', 'build.py')
 TEMPLATE = os.path.join(HERE, '..', 'template.html')
-P = json.load(open(os.path.join(HERE, 'proposals.json')))
+import sys
+PFILE = sys.argv[1] if len(sys.argv) > 1 else 'proposals.json'
+P = json.load(open(os.path.join(HERE, PFILE)))
+R3 = PFILE != 'proposals.json'
 
 src = open(R2).read()
 SCRIPT = re.search(r'SCRIPT = r"""(.*?)"""', src, re.S).group(1).replace("'fcs-review-r2b'", "'fcs-tactics-1'")
@@ -24,8 +27,8 @@ def notebox(fid):
             f'<textarea class="notein" id="n-{fid}" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea>'
             '<span class="notestate" aria-live="polite"></span>')
 
-INTRO = """<p><b>Tactics pass, 7 Nov.</b> I went through every block of the final copy (your review decisions applied) against the tactics banks, asking what each block has to do for a hiring manager reading cold and whether a tactic makes it do that better. Most blocks already do the move, so they are not listed here: competitive analysis already refutes the option it rejected, the foundation glosses the terms, Action Item judges the page by what was known then, Personalized timeline has the Aisha example, Schedule view says why automatic moving lost, Buffer flow and Start of week give each screen its reason, and the ending already states pre launch status, two measures and the next step.</p>
-<p>Eight proposals below. The biggest is your overkill point: the page said three times that the long view lives somewhere else and that the weekly dates are the Pathway's. After these, each of those points is made once, by the block that owns it, and the right rail body says the one thing no block says: why the target holds still.</p>"""
+INTRO = """<p><b>Tactics pass, redone 8 Nov.</b> Both banks read in full, entry by entry: the case study tactics bank (49 entries, for making a reader believe a decision was sound) and the reader effect tactics bank (44 entries, built for the About page; its trust, evidence, pacing and memory entries can carry over, its recognition and form entries mostly cannot). The copy was not written with either bank, so I assumed no block uses a tactic and asked, block by block, which entry would make it do its job better for a hiring manager reading cold.</p>
+<p>Nine proposals below, each naming the entry it comes from. Where no entry fixed something a block is missing, there is no proposal; the per block reasoning is in tactics/pull.md. One I did not propose and want your read on: all four competitive analysis cards run the same shape (research shows X, so Mondai does Y), which the bank calls the rationale recital and says makes each choice read as obvious. Fixing it means rewriting four cards whose citations were checked one by one, so it is yours to call.</p>"""
 
 CHECKS = """<ul>
 <li><b>Dashes and Oxford commas:</b> check-copy.mjs and the copy-check.sh hook run on every new line, after both were shown to catch a planted em dash, a planted double hyphen and a planted Oxford comma, and to pass a clean control line (run-checks.mjs).</li>
@@ -33,13 +36,15 @@ CHECKS = """<ul>
 <li><b>Humanizer:</b> loaded as the skill and run as draft, audit, final on every proposed line; the drafts and audits are in tactics/humanizer.md.</li>
 <li><b>Forward references and repeats:</b> a written pass over the whole page in order, with these proposals applied (tactics/page-pass.md).</li>
 <li><b>Facts:</b> every product fact checked against the Mondai archive (cited by line), with your 7 Nov corrections winning where the archive is out of date.</li>
-<li><b>Fit:</b> the two changed headlines measured in Satoshi Medium 40, tracking minus 4 percent, at 708px: both 3 lines, same as now. No caption changed.</li>
-<li><b>Reader check:</b> three runs, round 1 on six blocks: hero and ending PASS; flags on Active, the rail and the earlier version sentence, all fixed here. Round 2: Action Hub and Rollover PASS; two flags (Keeping them here was intentional, right rail undefined), both fixed. <b>Not yet run:</b> a round 3 on those two fixed lines (Growth Journey body 3 and the rail body); the per turn agent limit stopped it. It runs on whatever you accept, before the paste list.</li>
+<li><b>Fit:</b> the Personalized timeline capacity line is longer than its slot now; not measured, since the slot width is not in the repo. The two changed headlines measured in Satoshi Medium 40, tracking minus 4 percent, at 708px: both 3 lines, same as now. No caption changed.</li>
+<li><b>Reader check:</b> Three runs per round. Round 1 (six blocks): hero and ending PASS; flags on Active, the rail and the earlier version sentence. Round 2: Action Hub and Rollover PASS. Round 3 (hero, Growth Journey, Personalized timeline, rail): Growth Journey PASS; flags on the hero launch sentence and the capacity risk sentence, both rewritten; the rail flag (2 of 3) is on your unchanged pace definition, left as is. Kept against the check: the Rollover earlier version sentence, flagged as process story, kept as the page's one wrong turn. <b>Not yet run:</b> the hero and capacity lines in their final form; the per turn agent limit stopped it. They run with whatever you accept, before the paste list.</li>
 </ul>"""
 
+if R3:
+    INTRO = open(os.path.join(HERE,'r3-intro.html')).read(); CHECKS = open(os.path.join(HERE,'r3-checks.html')).read()
 ids = []; arts = []
 for i, p in enumerate(P, 1):
-    fid = 'tx-' + p['id'][2:]; ids.append(fid)
+    fid = (('tw-' if 'r4' in PFILE else 'tz-') + p['id'][3:]) if R3 else ('tx-' + p['id'][2:]); ids.append(fid)
     arts.append(f'''<article class="find" id="{fid}">
 <div class="fhead"><span class="num">{i}. {E(p["block"])}</span><span class="src">{E(p["field"])}</span>{controls(fid)}</div>
 <div class="pair"><div class="was"><span class="tag">Now</span><span class="t">{E(p["cur"])}</span></div>

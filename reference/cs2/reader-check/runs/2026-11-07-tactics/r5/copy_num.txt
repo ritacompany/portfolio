@@ -1,0 +1,96 @@
+VERSION V1: Competitive analysis block
+V1.S1 Mondai had no direct model, but learning apps and task trackers each solve part of the problem.
+  (label) 01. Progress
+V1.S2 Studies find that tracking real progress against a goal makes reaching it more likely.
+V1.S3 So, like CareerFoundry, Mondai shows two dates side by side: a target date and a pace date.
+  (label) 02. Calendar integration
+V1.S4 Motion uses AI to find free time in a user’s calendar.
+V1.S5 But research shows that pushing students to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.
+  (label) 03. Home screen
+V1.S6 Linear opens straight onto the work in front of you.
+V1.S7 I borrowed that, so Mondai’s home screen shows only this week’s work.
+  (label) 04. Timing
+V1.S8 Every learning app I reviewed, even the most structured, let learners fit lessons around their day.
+V1.S9 So the plan sets the goal, and each user decides where in their day the work goes.
+
+VERSION V2: Schedule view block
+V2.S1 With a calendar synced, the Action Hub can show the same week as a schedule, with Mondai finding times for Action Items around the user’s day.
+V2.S2 The list stays the default view, and the user can switch between the list and the schedule whenever they like.
+V2.S3 Mondai looks for gaps between the user’s own events, inside the hours they chose in setup.
+V2.S4 The calendar starts at the first of those hours, 8am for instance, so the day opens on the time Mondai can plan in.
+V2.S5 Each block is as long as its Action Item takes.
+V2.S6 Mondai only reads the calendar.
+V2.S7 It never writes Action Items into it, because that calendar holds commitments Mondai doesn’t own.
+V2.S8 Action Items and the user’s own events each get their own color.
+  (label) Rescheduling an Action Item
+V2.S9 Users can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing overlaps their personal schedule.
+V2.S10 Mondai never moves a time on its own.
+V2.S11 Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
+V2.S12 Its time is only a suggestion.
+V2.S13 An Action Item is due by the end of its week, Saturday night, so one without a time is fine, and finishing it still counts.
+V2.S14 When a week has no room left, the item stays in the list without a time.
+
+VERSION V3: Right rail block
+V3.S1 The Action Hub keeps two dates for the Pathway the user is on: where they’re aiming and where they’re headed.
+V3.S2 Both sit in a rail down the right side of the Action Hub.
+V3.S3 If the target moved every time a week went badly, the user would never see that they’d slipped, and seeing their pace fall behind it is what’s meant to get them back on track.
+  (label) Pathway target
+V3.S4 The date this Pathway should be done by, set from the user’s capacity.
+V3.S5 It holds steady through an ordinary week and moves when their capacity changes.
+  (label) Pathway pace
+V3.S6 Where the user’s progress says they will finish.
+V3.S7 It updates once a week, so nobody watches it tick with every finished item.
+V3.S8 In week one it matches the target.
+  (label) Ahead of target
+V3.S9 The gap between the two dates, in days.
+V3.S10 It is the only ahead or behind signal on the rail.
+
+VERSION V4: Rollover block
+V4.S1 When an Action Item is still open on Saturday night, everything after it moves a little later.
+  (label) Rollover: An Action Item carried over from last week.
+  (label) The Rollover effect
+V4.S2 A week that comes up short can feel like failing, and that feeling makes users less likely to keep going.
+V4.S3 So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own.
+V4.S4 An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide.
+V4.S5 The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too.
+V4.S6 That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it.
+V4.S7 The target stays where it was.
+
+VERSION V5: Buffer flow block
+V5.S1 Finish the week’s work early and the days that are left become room to catch up or to get further ahead.
+V5.S2 The moment the last Action Item of the week is done, this screen celebrates it and offers next week’s Action Items to pull forward.
+V5.S3 A week only holds as much as the user’s capacity, so finishing early leaves nothing left to do.
+V5.S4 Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.
+V5.S5 So the message depends on the gap.
+V5.S6 A user who is ahead is told they can widen their lead.
+V5.S7 A user who is behind still gets the finish celebrated, then hears that pulling work forward is how they close the gap.
+V5.S8 That’s why the screen doesn’t wait for the start of next week: how much a user can pull forward depends on the days left.
+
+VERSION V6: Start of week block
+V6.S1 Whether a user finished last week early or fell short, the next week starts with a recap and a plan for the week.
+V6.S2 This is the first screen a user sees each Sunday, before the Action Hub.
+V6.S3 It picks one of five versions depending on how last week went.
+V6.S4 If they’re on track, it says less.
+V6.S5 If they’re behind their target, it offers ways to catch up.
+  (label) 1 of 5, Clean slate
+V6.S6 A clean slate only means something when nothing carried over, so one open Action Item means Rollover.
+  (label) 2 of 5, Catching up
+V6.S7 Finishing every Action Item doesn’t close the gap for a user who is behind, so this screen shows how many days they made up last week and points them to finishing early until they’re back on target.
+  (label) 3 of 5, Rollover
+V6.S8 When a week ends unfinished, the Rollover Action Items wait in the new week under a magenta tag.
+V6.S9 The screen shows where the pace landed and what carried over, so the plan never changes unseen.
+  (label) 4 of 5, Recalibration
+V6.S10 Rollover handles one unfinished week.
+V6.S11 When it keeps happening, the screen suggests a capacity that fits the hours the user has been giving.
+V6.S12 They can take it, set their own or skip it with a warning.
+  (label) 5 of 5, Reset
+V6.S13 After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with their progress kept.
+V6.S14 It has one button, because most users would pick keep my plan just because it’s the default.
+
+VERSION V7: Ending block
+  (label) Where it stands
+V7.S1 The framework is built, but the numbers that would show whether it works don’t exist yet.
+V7.S2 I decided what success looks like before the first week ran.
+V7.S3 The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.
+V7.S4 A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for.
+V7.S5 Testing with the first users comes next, and these are the two numbers I’ll count from it.

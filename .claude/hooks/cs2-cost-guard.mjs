@@ -2,10 +2,10 @@
 // Cost and process guards (3 Nov, his ask: rules that only live in WORKING_LOOP did not hold).
 // The 3 Nov session ran nine reader-check agents in one turn and grew to 375k tokens on Opus, with every
 // rule against it written down. Each guard below blocks instead of asking.
-//   pre:    PreToolUse. Agent: Sonnet or Haiku only, and at most three per turn, unless his latest message
-//           asks for more or for Opus. Write/Edit on a process doc: fix-the-process must be loaded first.
-//   stop:   Stop. A process doc edited this session: a fix record in fixes/ written this session must pass the
-//           skill's checker.
+//   pre:    PreToolUse. Agent: Sonnet or Haiku only, and at most three per turn (six once aggregate.py has
+//           run in the turn, so one re-check round fits), unless his latest message asks for more or for Opus. Write/Edit on a process doc: fix-the-process must be loaded first.
+//   stop:   Stop. A process doc edited this session: a fix record in fixes/ written this session (by Write/Edit, or
+//           changed in git since the session began) must pass the skill's checker, from ~/.claude or the repo.
 //   prompt: UserPromptSubmit. Shows him (not me) a one time notice when the session runs on Opus.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -43,7 +43,9 @@ if (mode === 'pre') {
     const sonnet = /\b(sonnet|haiku)\b/i.test(inp.model || '');
     if (!sonnet && !/\bopus\b/i.test(ask)) out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: 'Sub-agents run on Sonnet (model: "sonnet"); forks and Opus agents need him to ask for Opus. Pass model: "sonnet".' } });
     const before = uses(start).filter(x => (x.name === 'Agent' || x.name === 'Task') && x.id !== p.tool_use_id).length;
-    if (before >= 3 && !/\b(more agents|another round|re-?run|run (it|them|the check) again|fan out|\d+ agents)\b/i.test(ask)) out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: `Three sub-agents already ran this turn (one reader-check round). A re-run waits for him: show him what failed and what you changed, and ask before running another round.` } });
+    const combined = uses(start).some(x => x.name === 'Bash' && /(^|[;&|(]\s*)python3?\s+(-\S+\s+)*\S*aggregate\.py\b/m.test((x.input && x.input.command) || ''));
+    const cap = combined ? 6 : 3;
+    if (before >= cap && !/\b(more agents|another round|re-?run|run (it|them|the check) again|fan out|\d+ agents)\b/i.test(ask)) out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: cap === 3 ? 'Three sub-agents already ran this turn (one reader-check round). Combine it with aggregate.py, fix the flags, then one re-check round is allowed.' : 'Two reader-check rounds already ran this turn. A third waits for him.' } });
   }
   if ((tool === 'Write' || tool === 'Edit' || tool === 'MultiEdit') && PROCESS_DOCS.test(rel(inp.file_path)) && !skillLoaded('fix-the-process')) {
     out({ hookSpecificOutput: { hookEventName: 'PreToolUse', permissionDecision: 'deny', permissionDecisionReason: `${rel(inp.file_path)} is a process doc. Load the fix-the-process skill first: a change to how sessions work needs a cause, a layer and a fix record, and a rule with nothing enforcing it is not a fix.` } });
@@ -53,10 +55,18 @@ if (mode === 'pre') {
 
 if (mode === 'stop') {
   if (p.stop_hook_active) process.exit(0);
+  const git = a => spawnSync('git', a, { cwd: root, encoding: 'utf8' }).stdout.trim();
   const edited = uses(since).filter(x => ['Write', 'Edit', 'MultiEdit'].includes(x.name)).map(x => rel(x.input && x.input.file_path));
   if (edited.some(f => PROCESS_DOCS.test(f))) {
-    const records = [...new Set(edited.filter(f => /(^|\/)fixes\/[^/]+\.md$/.test(f)))];
-    const checker = path.join(os.homedir(), '.claude/skills/fix-the-process/scripts/check-fix-record.mjs');
+    // Records touched this session: by Write/Edit, or seen by git (uncommitted, or committed since the
+    // session began), so a record written through Bash still counts.
+    const began = (rows.find(e => e.timestamp) || {}).timestamp || new Date().toISOString();
+    const viaGit = [...git(['ls-files', '--modified', '--others', '--exclude-standard', '--', 'fixes']).split('\n'),
+      ...git(['log', `--since=${began}`, '--name-only', '--format=', '--', 'fixes']).split('\n')];
+    const records = [...new Set([...edited, ...viaGit].filter(f => /(^|\/)fixes\/[^/]+\.md$/.test(f) && fs.existsSync(path.join(root, f))))];
+    // The skill lives in ~/.claude on his Mac; cloud containers only have the repo's copy.
+    const home = path.join(os.homedir(), '.claude/skills/fix-the-process/scripts/check-fix-record.mjs');
+    const checker = fs.existsSync(home) ? home : path.join(root, '.claude/skills/fix-the-process/scripts/check-fix-record.mjs');
     const ok = records.some(f => /fix record complete/.test(spawnSync('node', [checker, path.join(root, f)], { encoding: 'utf8' }).stdout || ''));
     if (!ok) out({ decision: 'block', reason: 'A process doc changed this session without a passing fix record. Write fixes/YYYY-MM-DD-<slug>.md from the fix-the-process template and run its checker until it prints "fix record complete" (Status: not verified is allowed if you say what is unproven).' });
   }

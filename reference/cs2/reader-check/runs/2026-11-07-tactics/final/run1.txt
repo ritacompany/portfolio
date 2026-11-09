@@ -1,0 +1,451 @@
+V1 Q1 yes | V1.S3, V1.S4
+V1.S1 Q2 no
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | follows as the opening
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | follows
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | follows
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 no | follows
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | follows
+V2 Q1 yes | V2.S3, V2.S5, V2.S8
+V2.S1 Q2 no
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | follows
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | follows
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | follows
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | follows
+V2.S5 Q2 no
+V2.S5 Q3 no
+V2.S5 Q4 no
+V2.S5 Q5 no | follows
+V2.S6 Q2 no
+V2.S6 Q3 no
+V2.S6 Q4 no
+V2.S6 Q5 no | follows
+V2.S7 Q2 no
+V2.S7 Q3 no
+V2.S7 Q4 no
+V2.S7 Q5 no | follows
+V2.S8 Q2 no
+V2.S8 Q3 no
+V2.S8 Q4 no
+V2.S8 Q5 no | follows
+V3 Q1 no | definitions only, no decision with a reason
+V3.S1 Q2 no
+V3.S1 Q3 no
+V3.S1 Q4 yes | K1
+V3.S1 Q5 yes | explains the Growth Journey the reader already knows
+V3.S2 Q2 no
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | follows
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | follows
+V4 Q1 yes | V4.S2, V4.S4
+V4.S1 Q2 no
+V4.S1 Q3 no
+V4.S1 Q4 no
+V4.S1 Q5 no | follows
+V4.S2 Q2 no
+V4.S2 Q3 no
+V4.S2 Q4 no
+V4.S2 Q5 no | follows
+V4.S3 Q2 no
+V4.S3 Q3 no
+V4.S3 Q4 no
+V4.S3 Q5 no | follows
+V4.S4 Q2 no
+V4.S4 Q3 no
+V4.S4 Q4 no
+V4.S4 Q5 no | follows
+V5 Q1 yes | V5.S1, V5.S3, V5.S4
+V5.S1 Q2 yes | locked
+V5.S1 Q3 no
+V5.S1 Q4 no
+V5.S1 Q5 no | follows
+V5.S2 Q2 no
+V5.S2 Q3 no
+V5.S2 Q4 no
+V5.S2 Q5 no | follows
+V5.S3 Q2 no
+V5.S3 Q3 no
+V5.S3 Q4 no
+V5.S3 Q5 no | follows
+V5.S4 Q2 no
+V5.S4 Q3 no
+V5.S4 Q4 no
+V5.S4 Q5 no | adds examples
+V6 Q1 yes | V6.S2, V6.S4, V6.S5
+V6.S1 Q2 no
+V6.S1 Q3 no
+V6.S1 Q4 no
+V6.S1 Q5 no | follows
+V6.S2 Q2 no
+V6.S2 Q3 no
+V6.S2 Q4 no
+V6.S2 Q5 no | follows
+V6.S3 Q2 no
+V6.S3 Q3 no
+V6.S3 Q4 no
+V6.S3 Q5 no | follows
+V6.S4 Q2 no
+V6.S4 Q3 no
+V6.S4 Q4 no
+V6.S4 Q5 no | follows
+V6.S5 Q2 no
+V6.S5 Q3 no
+V6.S5 Q4 no
+V6.S5 Q5 no | follows
+V7 Q1 yes | V7.S2, V7.S4, V7.S5
+V7.S1 Q2 no
+V7.S1 Q3 no
+V7.S1 Q4 no
+V7.S1 Q5 no | follows
+V7.S2 Q2 no
+V7.S2 Q3 no
+V7.S2 Q4 no
+V7.S2 Q5 no | follows
+V7.S3 Q2 no
+V7.S3 Q3 no
+V7.S3 Q4 no
+V7.S3 Q5 no | follows
+V7.S4 Q2 no
+V7.S4 Q3 no
+V7.S4 Q4 no
+V7.S4 Q5 no | follows
+V7.S5 Q2 no
+V7.S5 Q3 no
+V7.S5 Q4 no
+V7.S5 Q5 no | follows
+V8 Q1 yes | V8.S4, V8.S5
+V8.S1 Q2 no
+V8.S1 Q3 no
+V8.S1 Q4 no
+V8.S1 Q5 no | follows
+V8.S2 Q2 no
+V8.S2 Q3 no
+V8.S2 Q4 no
+V8.S2 Q5 no | follows
+V8.S3 Q2 no
+V8.S3 Q3 no
+V8.S3 Q4 no
+V8.S3 Q5 no | follows
+V8.S4 Q2 no
+V8.S4 Q3 no
+V8.S4 Q4 no
+V8.S4 Q5 no | follows
+V8.S5 Q2 no
+V8.S5 Q3 no
+V8.S5 Q4 no
+V8.S5 Q5 no | follows
+V8.S6 Q2 no
+V8.S6 Q3 no
+V8.S6 Q4 no
+V8.S6 Q5 no | follows
+V8.S7 Q2 no
+V8.S7 Q3 no
+V8.S7 Q4 no
+V8.S7 Q5 no | label and sentence define Effort
+V8.S8 Q2 yes | capacity
+V8.S8 Q3 no
+V8.S8 Q4 no
+V8.S8 Q5 yes | uses capacity as if defined and introduces Aisha without setup
+V8.S9 Q2 no
+V8.S9 Q3 no
+V8.S9 Q4 no
+V8.S9 Q5 no | follows
+V8.S10 Q2 no
+V8.S10 Q3 no
+V8.S10 Q4 no
+V8.S10 Q5 no | follows
+V9 Q1 yes | V9.S3, V9.S4
+V9.S1 Q2 no
+V9.S1 Q3 no
+V9.S1 Q4 no
+V9.S1 Q5 no | follows
+V9.S2 Q2 no
+V9.S2 Q3 no
+V9.S2 Q4 no
+V9.S2 Q5 no | follows
+V9.S3 Q2 no
+V9.S3 Q3 no
+V9.S3 Q4 no
+V9.S3 Q5 no | follows
+V9.S4 Q2 no
+V9.S4 Q3 no
+V9.S4 Q4 no
+V9.S4 Q5 no | follows
+V9.S5 Q2 no
+V9.S5 Q3 no
+V9.S5 Q4 no
+V9.S5 Q5 no | illustrates S4
+V9.S6 Q2 no
+V9.S6 Q3 no
+V9.S6 Q4 no
+V9.S6 Q5 no | follows
+V9.S7 Q2 no
+V9.S7 Q3 no
+V9.S7 Q4 no
+V9.S7 Q5 no | follows
+V10 Q1 yes | V10.S6, V10.S7, V10.S10, V10.S11
+V10.S1 Q2 no
+V10.S1 Q3 no
+V10.S1 Q4 no
+V10.S1 Q5 no | follows
+V10.S2 Q2 no
+V10.S2 Q3 no
+V10.S2 Q4 no
+V10.S2 Q5 no | follows
+V10.S3 Q2 no
+V10.S3 Q3 no
+V10.S3 Q4 no
+V10.S3 Q5 no | follows
+V10.S4 Q2 no
+V10.S4 Q3 no
+V10.S4 Q4 no
+V10.S4 Q5 no | follows
+V10.S5 Q2 no
+V10.S5 Q3 no
+V10.S5 Q4 no
+V10.S5 Q5 no | follows
+V10.S6 Q2 no
+V10.S6 Q3 no
+V10.S6 Q4 no
+V10.S6 Q5 no | follows
+V10.S7 Q2 no
+V10.S7 Q3 no
+V10.S7 Q4 no
+V10.S7 Q5 no | follows
+V10.S8 Q2 no
+V10.S8 Q3 no
+V10.S8 Q4 no
+V10.S8 Q5 no | new point but readable
+V10.S9 Q2 no
+V10.S9 Q3 no
+V10.S9 Q4 no
+V10.S9 Q5 no | follows
+V10.S10 Q2 no
+V10.S10 Q3 no
+V10.S10 Q4 no
+V10.S10 Q5 no | follows
+V10.S11 Q2 no
+V10.S11 Q3 no
+V10.S11 Q4 no
+V10.S11 Q5 no | follows
+V10.S12 Q2 no
+V10.S12 Q3 no
+V10.S12 Q4 no
+V10.S12 Q5 no | follows
+V10.S13 Q2 no
+V10.S13 Q3 no
+V10.S13 Q4 no
+V10.S13 Q5 no | follows
+V10.S14 Q2 no
+V10.S14 Q3 no
+V10.S14 Q4 no
+V10.S14 Q5 no | follows
+V11 Q1 yes | V11.S3
+V11.S1 Q2 no
+V11.S1 Q3 no
+V11.S1 Q4 no
+V11.S1 Q5 no | follows
+V11.S2 Q2 no
+V11.S2 Q3 no
+V11.S2 Q4 no
+V11.S2 Q5 no | follows
+V11.S3 Q2 no
+V11.S3 Q3 no
+V11.S3 Q4 no
+V11.S3 Q5 no | follows
+V11.S4 Q2 no
+V11.S4 Q3 no
+V11.S4 Q4 no
+V11.S4 Q5 no | follows
+V11.S5 Q2 no
+V11.S5 Q3 no
+V11.S5 Q4 no
+V11.S5 Q5 no | follows
+V11.S6 Q2 no
+V11.S6 Q3 no
+V11.S6 Q4 no
+V11.S6 Q5 no | follows
+V11.S7 Q2 no
+V11.S7 Q3 no
+V11.S7 Q4 no
+V11.S7 Q5 no | follows
+V11.S8 Q2 no
+V11.S8 Q3 no
+V11.S8 Q4 no
+V11.S8 Q5 no | follows
+V12 Q1 yes | V12.S3, V12.S4, V12.S5
+V12.S1 Q2 no
+V12.S1 Q3 no
+V12.S1 Q4 no
+V12.S1 Q5 no | follows
+V12.S2 Q2 no
+V12.S2 Q3 no
+V12.S2 Q4 no
+V12.S2 Q5 no | label defines it
+V12.S3 Q2 no
+V12.S3 Q3 no
+V12.S3 Q4 no
+V12.S3 Q5 no | follows
+V12.S4 Q2 no
+V12.S4 Q3 no
+V12.S4 Q4 no
+V12.S4 Q5 no | follows
+V12.S5 Q2 no
+V12.S5 Q3 no
+V12.S5 Q4 no
+V12.S5 Q5 no | follows
+V12.S6 Q2 no
+V12.S6 Q3 no
+V12.S6 Q4 no
+V12.S6 Q5 no | follows
+V12.S7 Q2 no
+V12.S7 Q3 no
+V12.S7 Q4 no
+V12.S7 Q5 no | follows
+V12.S8 Q2 no
+V12.S8 Q3 no
+V12.S8 Q4 no
+V12.S8 Q5 no | follows
+V13 Q1 yes | V13.S3, V13.S4, V13.S8
+V13.S1 Q2 no
+V13.S1 Q3 no
+V13.S1 Q4 no
+V13.S1 Q5 no | follows
+V13.S2 Q2 no
+V13.S2 Q3 no
+V13.S2 Q4 no
+V13.S2 Q5 no | follows
+V13.S3 Q2 no
+V13.S3 Q3 no
+V13.S3 Q4 no
+V13.S3 Q5 no | follows
+V13.S4 Q2 no
+V13.S4 Q3 no
+V13.S4 Q4 no
+V13.S4 Q5 no | follows
+V13.S5 Q2 no
+V13.S5 Q3 no
+V13.S5 Q4 no
+V13.S5 Q5 no | follows
+V13.S6 Q2 no
+V13.S6 Q3 no
+V13.S6 Q4 no
+V13.S6 Q5 no | follows
+V13.S7 Q2 no
+V13.S7 Q3 no
+V13.S7 Q4 no
+V13.S7 Q5 no | follows
+V13.S8 Q2 no
+V13.S8 Q3 no
+V13.S8 Q4 no
+V13.S8 Q5 no | follows
+V14 Q1 yes | V14.S8, V14.S14, V14.S15
+V14.S1 Q2 no
+V14.S1 Q3 no
+V14.S1 Q4 no
+V14.S1 Q5 no | follows
+V14.S2 Q2 no
+V14.S2 Q3 no
+V14.S2 Q4 no
+V14.S2 Q5 no | follows
+V14.S3 Q2 no
+V14.S3 Q3 no
+V14.S3 Q4 no
+V14.S3 Q5 no | follows
+V14.S4 Q2 no
+V14.S4 Q3 no
+V14.S4 Q4 no
+V14.S4 Q5 no | follows
+V14.S5 Q2 no
+V14.S5 Q3 no
+V14.S5 Q4 no
+V14.S5 Q5 no | follows
+V14.S6 Q2 no
+V14.S6 Q3 no
+V14.S6 Q4 no
+V14.S6 Q5 no | follows
+V14.S7 Q2 no
+V14.S7 Q3 no
+V14.S7 Q4 no
+V14.S7 Q5 no | follows
+V14.S8 Q2 no
+V14.S8 Q3 no
+V14.S8 Q4 no
+V14.S8 Q5 no | follows
+V14.S9 Q2 no
+V14.S9 Q3 no
+V14.S9 Q4 no
+V14.S9 Q5 no | follows
+V14.S10 Q2 no
+V14.S10 Q3 no
+V14.S10 Q4 no
+V14.S10 Q5 no | follows
+V14.S11 Q2 no
+V14.S11 Q3 no
+V14.S11 Q4 no
+V14.S11 Q5 no | follows
+V14.S12 Q2 no
+V14.S12 Q3 no
+V14.S12 Q4 no
+V14.S12 Q5 no | follows
+V14.S13 Q2 no
+V14.S13 Q3 no
+V14.S13 Q4 no
+V14.S13 Q5 no | follows
+V14.S14 Q2 no
+V14.S14 Q3 no
+V14.S14 Q4 no
+V14.S14 Q5 no | follows
+V14.S15 Q2 no
+V14.S15 Q3 no
+V14.S15 Q4 no
+V14.S15 Q5 no | follows
+V15 Q1 yes | V15.S3
+V15.S1 Q2 no
+V15.S1 Q3 no
+V15.S1 Q4 no
+V15.S1 Q5 no | follows
+V15.S2 Q2 no
+V15.S2 Q3 yes
+V15.S2 Q4 no
+V15.S2 Q5 no | follows
+V15.S3 Q2 no
+V15.S3 Q3 no
+V15.S3 Q4 no
+V15.S3 Q5 no | follows
+V15.S4 Q2 no
+V15.S4 Q3 no
+V15.S4 Q4 no
+V15.S4 Q5 no | follows
+V15.S5 Q2 no
+V15.S5 Q3 no
+V15.S5 Q4 no
+V15.S5 Q5 no | follows

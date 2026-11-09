@@ -1,0 +1,35 @@
+VERSION V1: Hero, right column
+  (label) Designed as an AI guide for people from underrepresented backgrounds working their way into a tech career.
+V1.S1 Mondai builds each user a curriculum for the tech career they choose, called their Growth Journey, and it can take months to finish.
+V1.S2 Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.
+V1.S3 So I designed the weekly framework around the hours the user says they can give each week.
+V1.S4 Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.
+
+VERSION V2: Competitive analysis block
+V2.S1 There was no direct model for Mondai, so I looked at learning and task tracking products that each solve part of the problem.
+  (label) 01. Progress
+V2.S2 Studies find that tracking real progress against a goal helps people reach it.
+V2.S3 So, like CareerFoundry, Mondai shows two dates side by side: the target date the plan sets and the pace date the user’s progress points to.
+  (label) 02. Calendar integration
+V2.S4 Motion showed me AI could find free time in a user’s calendar.
+V2.S5 But research shows that pushing people to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.
+  (label) 03. Home screen
+V2.S6 Linear opens straight onto the work in front of you.
+V2.S7 I borrowed that, so Mondai’s home screen shows only this week’s work, and the full route to the goal has its own page.
+  (label) 04. Timing
+V2.S8 Every learning app I reviewed, even the most structured, let learners fit lessons around their day.
+V2.S9 So the plan sets the goal, and each user decides where in their day the work goes.
+
+VERSION V3: Personalized timeline block
+V3.S1 How many Action Items a user gets in a week depends on two things, and the user sets one of them.
+  (label) Capacity
+V3.S2 Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub.
+V3.S3 Everything else is planned from that number.
+V3.S4 Mondai asks instead of learning the number from how the user works, because learning it would leave the first two or three weeks without a real plan.
+V3.S5 The risk is that users promise more time than they have, so the screen has them type an exact number of hours, which makes them count, instead of picking a generous range.
+V3.S6 If their weeks keep falling short, the plan can lower it later.
+  (label) Effort
+V3.S7 How much work each Action Item takes, which Mondai sizes item by item.
+V3.S8 Aisha’s capacity is 6 hours a week.
+V3.S9 Last week that fit 4 Action Items.
+V3.S10 This week it fits 3, because this week’s take more effort.

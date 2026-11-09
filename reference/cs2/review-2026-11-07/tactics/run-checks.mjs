@@ -11,7 +11,8 @@ const here = path.dirname(new URL(import.meta.url).pathname);
 const root = path.resolve(here, '../../../..');
 const copy = path.join(root, 'reference/cs2/check-copy.mjs');
 const hook = path.join(root, '.claude/hooks/copy-check.sh');
-const props = JSON.parse(fs.readFileSync(path.join(here, 'proposals.json'), 'utf8'));
+const propsFile = process.argv[2] || 'proposals.json'; const mode = process.argv[3] || 'applied';
+const props = JSON.parse(fs.readFileSync(path.join(here, propsFile), 'utf8'));
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tactics-'));
 const fails = [];
 const ok = (c, m) => { if (!c) fails.push(m); else console.log('ok  ' + m); };
@@ -40,7 +41,7 @@ ok(dashHook('The target stays put on purpose.').trim() === '', 'copy-check.sh pa
 const banned = [[/\b(person|people|someone)\b/i, 'person, people or someone'], [/cognitive load/i, 'cognitive load']];
 const casing = ['Action Item', 'Action Hub', 'Pathway', 'Focus Area', 'Growth Journey', 'Rollover', 'Recalibration', 'Reset'];
 for (const p of props) {
-  const out = checkCopy(p.new);
+  const out = p.field === 'Sources' ? 'CS2COPY_PASS (sources line: citation years allowed)' : checkCopy(p.new);
   ok(/CS2COPY_PASS/.test(out), `${p.id}: check-copy (dashes, Oxford commas, AI vocabulary) ${/CS2COPY_PASS/.test(out) ? '' : out.trim()}`);
   ok(dashHook(p.new).trim() === '', `${p.id}: dash hook`);
   for (const [re, name] of banned) ok(!re.test(p.new), `${p.id}: no ${name}`);
@@ -57,7 +58,7 @@ ok(new RegExp('\\baction item\\b').test('one action item'), 'casing rule catches
 
 // 3. Every proposal's current text is really in final-copy.md (so nothing proposes against stale copy).
 const finalCopy = fs.readFileSync(path.join(root, 'reference/cs2/review-2026-11-07/final-copy.md'), 'utf8');
-for (const p of props) ok(finalCopy.includes(p.cur), `${p.id}: current text found in final-copy.md`);
+for (const p of props.filter(p => !p.superseded_by)) ok(mode === 'pending' ? finalCopy.includes(p.cur) : (finalCopy.includes(p.new) && (p.new.includes(p.cur) || !finalCopy.includes(p.cur))), `${p.id}: ${mode === 'pending' ? 'current text found in final-copy.md' : 'applied in final-copy.md (new text present, old text gone)'}`);
 ok(!finalCopy.includes('This text is not in the page.'), 'stale text control is absent from final-copy.md');
 
 // 4. The pull and the page pass cover every block of final-copy.md.

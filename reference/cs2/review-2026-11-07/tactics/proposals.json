@@ -4,10 +4,10 @@
   "block": "Hero",
   "field": "Right 2",
   "cur": "This case study covers the weekly framework I designed to turn that curriculum into weeks the user can finish: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.",
-  "new": "So I designed the weekly framework around the hours the user says they can give each week. This case study covers how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.",
-  "tactic": "Answer first (cs-t06); fails as a table of contents (cs-t17)",
-  "why": "Right 1 ends on the hard part: no steady week, so a steady plan has the user behind from week one. Right 2 then lists chapters, so the first screen never says what you decided. The new first sentence answers Right 1 with the decision (plan from the hours the user can give), joined by so, your habit. The three topics stay word for word. Nothing new for the reader to decode: hours per week is defined in Personalized timeline, and the hero only names it.",
-  "src": "Capacity in hours per week is the single scheduling input (Archive:66, CONFIRMED); a fixed weekly cadence sets this audience up to fail from week one (Archive:68, CONFIRMED)."
+  "new": "So I designed a weekly framework that turns that curriculum into weeks the user can finish, planned around the hours they say they can give each week. Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.",
+  "tactic": "Steal the thunder (cs-t25); answer first (cs-t06); the nut graf fails as a table of contents (cs-t17)",
+  "why": "Two moves. 1. Answer first: Right 1 ends on the hard part (no steady week), and Right 2 then lists chapters, which the bank names as the nut graf failure: a table of contents, not a decision. The new first sentence answers Right 1 with the decision, joined by so, your habit. 2. Steal the thunder: a hiring manager will notice there are no results, so say it first, in your frame, and the bank's research says a weakness you disclose first is weighed less than one the reader finds. It fails only for a weakness nobody would notice, and this one everyone notices. The three topics stay word for word, now framed as reasoning. The ending still opens on status; that is the status beat a first build ending needs, so the two are a setup and a payoff, not a repeat. Reader check round 3 flagged a separate launch sentence as not following from the decision (3 of 3), so the launch fact now leads into what the case study shows, in one sentence. Reader check round 4 flagged weekly framework as undefined (2 of 3), so the sentence takes back your original definition: a weekly framework that turns that curriculum into weeks the user can finish.",
+  "src": "Capacity in hours per week is the single scheduling input (Archive:66, CONFIRMED); a fixed weekly cadence sets this audience up to fail from week one (Archive:68, CONFIRMED); Mondai has not launched (your 7 Nov correction, final-copy.md ending A)."
  },
  {
   "id": "t-gj",
@@ -15,8 +15,8 @@
   "field": "Body 3",
   "cur": "Keeping them here was intentional. Two sets of dates on the weekly screen would compete, so the weekly screen shows only the current Pathway’s target and pace, and the journey’s sit here for anyone who wants the big picture.",
   "new": "I kept the journey’s dates here because two sets of dates on the weekly screen would compete.",
-  "tactic": "Your no repeats rule; nothing leans on a screen the reader has not met",
-  "why": "Two fixes. It follows your Body 2 (long term metrics sit here), so the journey's dates reads as those metrics. 1. The middle clause explained what the weekly screen shows before the reader has met it, and the right rail headline then says it again (reader check round 1 flagged the rail headline as only restating it, 2 of 3). The rail block owns it. 2. Reader check round 2 flagged Keeping them here was intentional 3 of 3: it says nothing until the next sentence gives the reason, and them is vague. One sentence now carries the decision and its reason with because, your habit. For anyone who wants the big picture goes: the headline and Body 1 already say the page is the zoomed out view.",
+  "tactic": "Put the agent in the sentence (cs-t27); your no repeats rule",
+  "why": "Two fixes. It follows your Body 2 (long term metrics sit here), so the journey's dates reads as those metrics. 1. The middle clause explained what the weekly screen shows before the reader has met it, and the right rail headline then says it again (reader check round 1 flagged the rail headline as only restating it, 2 of 3). The rail block owns it. 2. Reader check round 2 flagged Keeping them here was intentional 3 of 3: it says nothing until the next sentence gives the reason, and them is vague. Keeping them here was intentional also hides who decided; the bank's agent entry says grammar assigns authorship. One sentence now carries the decision and its reason with because, your habit. For anyone who wants the big picture goes: the headline and Body 1 already say the page is the zoomed out view.",
   "src": "No new claim. Repetition checked against the rail headline in final-copy.md."
  },
  {
@@ -25,8 +25,8 @@
   "field": "Body 1",
   "cur": "I designed the Action Hub around one question for the user: what do I need to do this week? The full curriculum stays on the Growth Journey and Pathway pages.",
   "new": "I designed the Action Hub around one question for the user: what do I need to do this week?",
-  "tactic": "Cut between decisions (cs-t30); your no repeats rule",
-  "why": "The second sentence is the third time the page says the long view lives elsewhere: card 03 (the full route has its own page), the Growth Journey headline (the whole route has a page of its own) and here. The reader has just come from the Growth Journey and Pathway blocks. Cut, the question stands on its own and leads straight into your AI paragraph.",
+  "tactic": "Answer first (cs-t06) and the one line paragraph (re-t40); your no repeats rule",
+  "why": "The second sentence is the third time the page says the long view lives elsewhere: card 03 (the full route has its own page), the Growth Journey headline and here. Cut it, and the question stands alone as its own line, the cheapest emphasis the reader effect bank lists, right where the page turns from structure to the week.",
   "src": "No new claim. Repetition checked against final-copy.md card 03 and the Growth Journey headline."
  },
  {
@@ -40,6 +40,16 @@
   "src": "Only the Active Action Item can be completed (your accepted copy; HANDOFF calendar notes: only the active Action Item can be completed, matching the sequence). Label text on the screen is Active (your frame)."
  },
  {
+  "id": "t-capacity",
+  "block": "Personalized timeline",
+  "field": "Capacity",
+  "cur": "Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub. Everything else is planned from that number.",
+  "new": "Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub. Everything else is planned from that number. Mondai asks instead of learning the number from how the user works, because learning it would leave the first two or three weeks without a real plan. The risk is that users promise more time than they have, so the screen has them type an exact number of hours, which makes them count, instead of picking a generous range. If their weeks keep falling short, the plan can lower it later.",
+  "tactic": "Refute the rejected option (cs-t24); name what it cost (cs-t21); Chekhov's rifle (cs-t18)",
+  "why": "This is the input the whole framework hangs on, and the page never says why the user declares it instead of Mondai learning it, the first thing a hiring manager would ask. The archive has the rejected option with its reason (learning it means two or three weeks with no real plan) and the cost of the choice (users overestimate their time), with the fix for each. Naming the cost is what makes the choice read as judgment; the bank says a decision with no cost reads as an observation. It also plants a rifle that fires later: the plan can lower it later is paid off by Recalibration in Start of week, named there and not here, so nothing leans on a concept the reader has not met. Written as how Mondai works, not as I decided, because the archive holds this reasoning and your record does not show it as your argument. Longer than the label slot now; if it does not fit, the last sentence is the one to keep. Reader check round 3 flagged the so in the risk sentence 3 of 3 (why would typing a number help?), so the sentence now says how: typing makes them count.",
+  "src": "Archive:70 (PARAPHRASE, archive premise): observed capacity has a two to three week cold start; declared capacity builds a real plan on day one and is revised later through Recalibration; planning fallacy is a real risk, so the screen uses manual hour input rather than pre filled buckets. Recalibration only lowers capacity (round 2 review finding, CONFIRMED). Which makes them count is my reading of why manual input answers planning fallacy (ASSUMED; the archive gives the choice, not the mechanism)."
+ },
+ {
   "id": "t-rail",
   "block": "Falling behind, part 1: the right rail",
   "field": "Body",
@@ -47,7 +57,8 @@
   "new": "Both sit in a rail down the right side of the Action Hub, and the target stays put on purpose. If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.",
   "tactic": "State the warrant (cs-t02); your no repeats rule",
   "why": "The current body repeats twice over: why the dates are the current Pathway's is already made by card 03 (near goals) and Growth Journey body 3 (two sets of dates would compete), and the headline already says the dates belong to the Pathway the user is on. What the page never says is why the target holds still, the question a stranger asks first (why not just move the date?). Your order note puts this block right before Rollover so target and pace connect to what moves them, so this is the line that sets Rollover up: next block, the pace moves and the target stays where it was. It adds the why to your Pathway target definition (holds steady through an ordinary week) without repeating it. Meant to keeps it honest for a product with no users yet. If the layout needs no body at all here, deleting it is the fallback. The opening clause says what the rail is, because the reader check flagged it twice: round 1, on the rail in your Ahead of target line had nothing to point to once the old body was gone (3 of 3); round 2, right rail as an undefined term (3 of 3).",
-  "src": "Archive:84 (PARAPHRASE, archive premise): target does not drift on its own; a rolling target hides the slip; visible drift against a stable target drives get back on pace behavior. Archive:80: a bad week, missed items and Rollover do not move Target (CONFIRMED)."
+  "src": "Archive:84 (PARAPHRASE, archive premise): target does not drift on its own; a rolling target hides the slip; visible drift against a stable target drives get back on pace behavior. Archive:80: a bad week, missed items and Rollover do not move Target (CONFIRMED).",
+  "superseded_by": "r3-rail-body"
  },
  {
   "id": "t-roll-head",
@@ -64,10 +75,11 @@
   "block": "Falling behind, part 2: Rollover",
   "field": "Body",
   "cur": "A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide. A week can only hold the hours the user set aside for it (their capacity). The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.",
-  "new": "A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.",
-  "tactic": "The rationale recital (cs-t48); your no repeats rule. Already doing: refute the rejected option (cs-t24), the earlier version that asked users to choose.",
-  "why": "Two changes. 1. One sentence out: A week can only hold the hours the user set aside for it (their capacity). Capacity is defined in Personalized timeline and Buffer flow body 2 says it again in your words, so this is the third time; the next sentence already uses capacity, so nothing is lost. 2. The reader check flagged the earlier version sentence 3 of 3 as process story (what was tried first, then cut). The rejected option and its reason are the strongest move in the block (refute the rejected option), so they stay; only the history goes, and the sentence now states why choosing in the moment loses.",
-  "src": "Rolled over items count against next week's capacity and the AI picks fewer new items (Archive:106, CONFIRMED). Rest unchanged from your accepted copy."
+  "new": "A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.",
+  "tactic": "The rationale recital (cs-t48); your no repeats rule. Kept: the earlier version sentence, the page's one wrong turn with its reason (cs-t24, cs-t29).",
+  "why": "One sentence out: A week can only hold the hours the user set aside for it (their capacity). Capacity is defined in Personalized timeline and Buffer flow body 2 says it again in your words, so this is the third time; the next sentence already uses capacity, so nothing is lost. Kept on purpose: the earlier version sentence. The reader check flags it as process story (3 of 3), but it is the one place the page shows a wrong turn and why it lost, which the bank ranks among the most credible moves (refute the rejected option, the wrong turn). It names no one and has no who asked whom, so I read it as inside your rule. Your call if you read it the other way.",
+  "src": "Rolled over items count against next week's capacity and the AI picks fewer new items (Archive:106, CONFIRMED). Rest unchanged from your accepted copy.",
+  "superseded_by": "r3-roll-earlier"
  },
  {
   "id": "t-end",
@@ -76,7 +88,39 @@
   "cur": "The framework is built and Mondai hasn’t launched yet, so the numbers that would show it working don’t exist yet.",
   "new": "The framework is built and Mondai hasn’t launched, so the numbers that would show it working don’t exist yet.",
   "tactic": "Not a tactic: a one word fix",
-  "why": "Yet appears twice. The ending already does what the research says a first build ending should: real status first, the two measures, the next step, and no outcome claims (rp-end-4, rp-met-5, cs-t25). Measured: 3 lines at 708px, the same as now (the ending's real width in Figma is not set yet).",
-  "src": "Your accepted ending A, unchanged otherwise."
+  "why": "Yet appears twice. Nothing else changes: the ending states pre launch status, the two measures and the next step, which the first build endings report says is the honest close. Measured: 3 lines at 708px, the same as now (the ending's real width in Figma is not set yet).",
+  "src": "Your accepted ending A, unchanged otherwise.",
+  "superseded_by": "r3-end"
+ },
+ {
+  "id": "t-card03",
+  "block": "Competitive analysis",
+  "field": "Card 03",
+  "cur": "Linear opens straight onto the work in front of you. Research on motivation finds near goals build confidence and progress while a distant goal does little, so the home screen shows only this week’s work, and the full route to the goal has its own page.",
+  "new": "Linear opens straight onto the work in front of you. I borrowed that, so Mondai’s home screen shows only this week’s work, and the full route to the goal has its own page.",
+  "tactic": "The rationale recital (cs-t48); the inevitable decision (cs-t40)",
+  "why": "His yes 8 Nov. All four cards ran research shows X, so Mondai does Y. Cards 01 and 02 keep their research (01 introduces target and pace, 02 is the only card with a rejected option); 03 and 04 state the lesson borrowed.",
+  "src": "Archive: learning apps and task tools are adjacent products for pattern reference (round 2 finding, CONFIRMED). Bandura and Schunk 1981 now supports no card and leaves the sources line.",
+  "superseded_by": "r3-card03"
+ },
+ {
+  "id": "t-card04",
+  "block": "Competitive analysis",
+  "field": "Card 04",
+  "cur": "Every learning app I reviewed, even the most structured, let people fit lessons around their day. Research shows that having a say raises motivation, and that learners with clear goals and plans are more likely to reach them. So the plan sets the goal, and each user decides where in their day the work goes.",
+  "new": "Every learning app I reviewed, even the most structured, let learners fit lessons around their day. So the plan sets the goal, and each user decides where in their day the work goes.",
+  "tactic": "The rationale recital (cs-t48)",
+  "why": "His yes 8 Nov, as card 03. People becomes learners (his wording rule allows learners for other products' users; the user is kept for Mondai's).",
+  "src": "Patall 2008 and Kizilcec 2017 now support no card and leave the sources line."
+ },
+ {
+  "id": "t-sources",
+  "block": "Competitive analysis",
+  "field": "Sources",
+  "cur": "Sources: Harkin et al. 2016; Patall, Cooper and Robinson 2008; Kizilcec, Perez-Sanagustin and Maldonado 2017; Baker, Evans and Dee 2016; Bandura and Schunk 1981",
+  "new": "Sources: Harkin et al. 2016; Baker, Evans and Dee 2016",
+  "tactic": "Follows t-card03 and t-card04",
+  "why": "Only the studies a card still cites.",
+  "src": "Citation check 7 Nov in final-copy.md: Harkin is card 01, Baker card 02."
  }
 ]

@@ -1,0 +1,155 @@
+VERSION V1: Hero
+  (label) Left
+V1.S1 Designed as an AI guide for people from underrepresented backgrounds working their way into a tech career.
+V1.S2 Mondai builds each user a curriculum for the tech career they choose, called their Growth Journey, and it can take months to finish.
+V1.S3 Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.
+V1.S4 So I designed a weekly framework that turns that curriculum into weeks the user can finish, planned around the hours they say they can give each week.
+V1.S5 Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.
+
+VERSION V2: Competitive analysis
+V2.S1 Mondai had no direct model, but learning apps and task trackers each solve part of the problem.
+V2.S2 Studies find that tracking real progress against a goal makes reaching it more likely.
+V2.S3 So, like CareerFoundry, Mondai shows two dates side by side: the target date the plan sets and the pace date the user’s progress points to.
+V2.S4 Motion uses AI to find free time in a user’s calendar.
+V2.S5 But research shows that pushing students to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.
+V2.S6 Linear opens straight onto the work in front of you, and so does Mondai: its home screen shows only this week’s work.
+V2.S7 Every learning app I reviewed, even the most structured, let learners fit lessons around their day.
+V2.S8 So the plan sets the goal, and each user decides where in their day the work goes.
+
+VERSION V3: The foundation we built on
+V3.S1 Mondai calls the whole route to a user’s new career, and the curriculum that gets them there, their Growth Journey.
+V3.S2 The Growth Journey is made up of five Pathways, taken one at a time and in order, each covering a different part of getting into tech.
+V3.S3 Each Pathway holds Action Items, the individual pieces of work the user does, grouped into Focus Areas by theme.
+
+VERSION V4: Growth Journey
+V4.S1 The whole route has a page of its own, one users open now and then to see how far they’ve come and what’s left.
+V4.S2 Users need to see how the Pathway they’re on fits into the whole journey, so this page zooms out to show all of it.
+V4.S3 Long term metrics like their journey target, pace and progress sit here out of the user’s immediate view.
+V4.S4 I kept the journey’s dates here because two sets of dates on the weekly screen would compete.
+
+VERSION V5: Pathway
+V5.S1 Each Pathway has its own page, with all of its Action Items in the order the user works through them, including the ones still locked.
+V5.S2 This page shows the Pathway the user is on up close: its target and pace, what’s coming up next and the Focus Areas it covers.
+V5.S3 They won’t need it every week, but it’s there whenever they want to look ahead.
+  (label) Focus Areas
+V5.S4 Focus Areas, like user testing or wireframes, group the Pathway’s Action Items by theme and show the user what the Pathway will cover.
+
+VERSION V6: Action Hub
+  (label) Eyebrow
+V6.S1 Most of a user’s week happens on one screen: the list of Action Items they come back to nearly every day.
+V6.S2 I designed the Action Hub around one question for the user: what do I need to do this week?
+V6.S3 Each week opens with a short headline and a paragraph the AI writes about that week’s work.
+V6.S4 It should read like a friend telling the user what the week is about before they look at their list, so it talks about the work itself and not about how much they’ve finished.
+V6.S5 Each Action Item builds on the one before, so they’re finished in order and only the one at the top, marked Active, can be checked off.
+
+VERSION V7: Action Item
+  (label) Eyebrow
+V7.S1 Every Action Item is a piece of work the AI writes for one user, and when I designed its page the AI was still being built.
+V7.S2 I couldn’t know yet how the AI would behave or what it would do well.
+V7.S3 The MVP scope was small too: the AI writes each Action Item as text, with no images or video, and nobody types anything into the page.
+V7.S4 So the page is built from ten kinds of plain text containers, like a short intro, a set of steps or a list of links, that the AI fills however the content needs, and I kept the structure loose in case it couldn’t use all of it at first.
+V7.S5 That keeps the page simple for the MVP and leaves me room to grow it into something richer once the AI is ready.
+
+VERSION V8: Personalized timeline
+V8.S1 How many Action Items a user gets in a week depends on two things, and the user sets one of them.
+V8.S2 Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub.
+V8.S3 Everything else is planned from that number.
+V8.S4 Mondai asks instead of learning the number from how the user works, because learning it would leave the first two or three weeks without a real plan.
+V8.S5 The risk is that users promise more time than they have, so the screen has them type an exact number of hours, which makes them count, instead of picking a generous range.
+V8.S6 If their weeks keep falling short, the plan can lower it later.
+  (label) Effort
+V8.S7 How much work each Action Item takes, which Mondai sizes item by item.
+V8.S8 Aisha’s capacity is 6 hours a week.
+V8.S9 Last week that fit 4 Action Items.
+V8.S10 This week it fits 3, because this week’s take more effort.
+
+VERSION V9: Calendar setup
+V9.S1 Calendar sync is optional.
+V9.S2 Users who turn it on answer two quick questions about their day, and Mondai plans around the answers.
+V9.S3 The first question sets a time range, and Mondai only places Action Items inside it.
+V9.S4 The range has to leave room, because Mondai can only use the time not already taken by the user’s own events.
+V9.S5 A short range on a busy day leaves none.
+V9.S6 The second asks for their sharpest hours, when they focus best.
+V9.S7 Mondai fills those first when they’re free, but nothing is locked to them.
+
+VERSION V10: Schedule view
+V10.S1 With a calendar synced, the Action Hub can show the same week as a schedule, with Mondai finding times for Action Items around the user’s day.
+V10.S2 The list stays the default view, and the user can switch between the list and the schedule whenever they like.
+V10.S3 Mondai looks for gaps between the user’s own events, inside the hours they chose in setup.
+V10.S4 The calendar starts at the first of those hours, 8am for instance, so the day opens on the time Mondai can plan in.
+V10.S5 Each block is as long as its Action Item takes.
+V10.S6 Mondai only reads the calendar.
+V10.S7 It never writes Action Items into it, because that calendar holds commitments Mondai doesn’t own.
+V10.S8 Action Items and the user’s own events each get their own color.
+  (label) Subhead
+V10.S9 Users can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing overlaps their personal schedule.
+V10.S10 Mondai never moves a time on its own.
+V10.S11 Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.
+V10.S12 An Action Item’s time is only a suggestion.
+V10.S13 It’s due by the end of its week, Saturday night, so one without a time is fine, and finishing it still counts.
+V10.S14 When a week has no room left, the item stays in the list without a time.
+
+VERSION V11: Falling behind, part 1: the right rail
+V11.S1 The Action Hub keeps two dates for the Pathway the user is on: where they’re aiming and where they’re headed.
+V11.S2 Both sit in a rail down the right side of the Action Hub.
+V11.S3 If the target moved every time a week went badly, the user would never see that they’d slipped, and seeing their pace fall behind it is what’s meant to get them back on track.
+  (label) Pathway target
+V11.S4 Set from the user’s capacity, it holds steady through an ordinary week and moves when their capacity changes.
+  (label) Pathway pace
+V11.S5 It updates once a week, so nobody watches it tick with every finished item.
+V11.S6 In week one it matches the target.
+  (label) Ahead of target
+V11.S7 The gap between the two dates, in days.
+V11.S8 It is the only ahead or behind signal on the rail.
+
+VERSION V12: Falling behind, part 2: Rollover
+V12.S1 When an Action Item is still open on Saturday night, everything after it moves a little later.
+  (label) Rollover label
+V12.S2 An Action Item carried over from last week.
+  (label) Subhead
+V12.S3 A week that comes up short can feel like failing, and that feeling makes users less likely to keep going.
+V12.S4 So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own.
+V12.S5 Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide.
+V12.S6 The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too.
+V12.S7 That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it.
+V12.S8 The target stays where it was.
+
+VERSION V13: Buffer flow
+V13.S1 Finish the week’s work early and the days that are left become room to catch up or to get further ahead.
+V13.S2 The moment the last Action Item of the week is done, this screen celebrates it and offers next week’s Action Items to pull forward.
+V13.S3 A week only holds as much as the user’s capacity, so finishing early leaves nothing left to do.
+V13.S4 Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.
+V13.S5 What the screen says depends on the gap.
+V13.S6 A user who is ahead is told they can widen their lead.
+V13.S7 A user who is behind still gets the finish celebrated, then hears that pulling work forward is how they close the gap.
+V13.S8 That’s why the screen doesn’t wait for the start of next week: how much a user can pull forward depends on the days left.
+
+VERSION V14: Start of week
+V14.S1 Whether a user finished last week early or fell short, the next week starts with a recap and a plan for the week.
+V14.S2 This is the first screen a user sees each Sunday, before the Action Hub.
+V14.S3 It picks one of five versions depending on how last week went.
+V14.S4 If they’re on track, it says less.
+V14.S5 If they’re behind their target, it offers ways to catch up.
+  (label) 1 of 5, Clean slate
+V14.S6 This one only shows when nothing carried over.
+V14.S7 A week with an open Action Item gets Rollover instead.
+  (label) 2 of 5, Catching up
+V14.S8 Finishing every Action Item doesn’t close the gap for a user who is behind, so this screen shows how many days they made up last week and points them to finishing early until they’re back on target.
+  (label) 3 of 5, Rollover
+V14.S9 When a week ends unfinished, the Rollover Action Items wait in the new week under a magenta tag.
+V14.S10 The screen shows where the pace landed and what carried over, so the plan never changes unseen.
+  (label) 4 of 5, Recalibration
+V14.S11 Rollover handles one unfinished week.
+V14.S12 When it keeps happening, the screen suggests a capacity that fits the hours the user has been giving.
+V14.S13 They can take it, set their own or skip it with a warning.
+  (label) 5 of 5, Reset
+V14.S14 After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with their progress kept.
+V14.S15 It has one button, because most users would pick keep my plan just because it’s the default.
+
+VERSION V15: Ending
+  (label) Eyebrow
+V15.S1 The framework is built, so the question left is whether it works for the users it was made for.
+V15.S2 I decided what success looks like before the first week ran.
+V15.S3 The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.
+V15.S4 A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for.
+V15.S5 Testing with the first users comes next, and these are the two numbers I’ll count from it.

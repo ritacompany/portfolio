@@ -1,0 +1,293 @@
+<title>Framework CS tactics</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a working review sheet. Each section is a split row, the frame text as it stands on the left and numbered findings on the right, like a copy editor's margin. */
+:root{
+  --bg:#f3f4f1; --surface:#ffffff; --fg:#141513; --muted:#5d6259; --line:#d9dcd4;
+  --accent:#0e7d14; --accent-soft:#e2f2e1; --mag:#b0139f; --mag-soft:#f8e4f5;
+  --warn:#9a5b00; --warn-soft:#fbefd9; --bad:#a3271d; --bad-soft:#f8e2df;
+  --ins:#0e7d14; --del:#a3271d;
+  --display:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1240px;margin:0 auto}
+header.top{padding-block:40px 24px;border-bottom:1px solid var(--line);display:grid;gap:12px}
+.kicker{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(28px,4vw,44px)/1.08 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font:700 24px/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 13px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin:0;color:var(--muted)}
+p{margin:0}
+.lede{max-width:70ch;color:var(--muted)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;padding-block:10px;font:500 13px/1.3 var(--mono)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar .count b{font-variant-numeric:tabular-nums}
+.bar .status{color:var(--muted)}
+.bar nav{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;min-width:0;flex:1 1 100%;padding-bottom:2px}
+.bar nav a{white-space:nowrap}
+.bar nav a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px}
+.bar nav a:hover,.bar nav a:focus-visible{color:var(--fg);border-color:var(--fg)}
+section.block{padding-block:40px;border-bottom:1px solid var(--line);display:grid;gap:20px;scroll-margin-top:56px}
+.prose{display:grid;gap:12px;max-width:72ch}
+.prose ul,.prose ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.order{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.order ol{margin:0;padding-left:22px;display:grid;gap:4px;font-size:15px}
+.order li.moved{color:var(--accent);font-weight:600}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:10px;min-width:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.opt{position:relative}
+.opt.pick{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.pickTag{font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.mock{display:grid;gap:8px;padding:12px;border-radius:6px;background:#0b0b0b;color:#f2f2f2}
+.mock .l{font:500 18px/1.2 var(--display)}
+.mock .r{font:400 14px/1.45 var(--body);color:#cfcfcf}
+.mock .eb{font:500 13px/1 var(--body);color:#9a9a9a}
+.mock .big{font:500 30px/1.02 var(--display);letter-spacing:-.02em}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.cur{display:grid;gap:10px;position:sticky;top:64px}
+@media (max-width:860px){.cur{position:static}}
+.cur figure{margin:0}
+.cur img{display:block;width:100%;border-radius:6px;border:1px solid var(--line);background:#000}
+.cur figcaption{font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:4px}
+.field{display:grid;gap:2px}
+.field .lab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field .txt{white-space:pre-wrap;font-size:15px}
+.field.hl .txt{font:500 19px/1.25 var(--display)}
+.finds{display:grid;gap:12px;counter-reset:f}
+.find{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.find[data-state="accept"]{border-color:var(--accent)}
+.find[data-state="reject"]{opacity:.62}
+.fhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.num{font:600 13px/1 var(--mono);font-variant-numeric:tabular-nums}
+.chip{font:600 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:4px 7px;border-radius:4px}
+.k-order{background:var(--accent-soft);color:var(--accent)}
+.k-clarity{background:var(--warn-soft);color:var(--warn)}
+.k-ai{background:var(--mag-soft);color:var(--mag)}
+.k-fact{background:var(--bad-soft);color:var(--bad)}
+.k-typo{background:var(--line);color:var(--fg)}
+.tog{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tog button{font:600 12px/1 var(--mono);padding:7px 10px;background:transparent;color:var(--muted);border:0;cursor:pointer}
+.tog button+button{border-left:1px solid var(--line)}
+.tog button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
+.tog button[aria-pressed="true"].a{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"].r{background:var(--bad);color:var(--bg)}
+.pair{display:grid;gap:6px}
+.pair .was,.pair .now{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;font-size:15px}
+.pair .tag{font:600 11px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pair .was .t{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--del);text-decoration-thickness:1px}
+.pair .was.nostrike .t{text-decoration:none}
+.pair .now .t{color:var(--fg)}
+.why{font-size:14px;color:var(--muted)}
+.why b{color:var(--fg);font-weight:600}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted)}
+.note{font-size:14px;border-left:3px solid var(--warn);padding-left:10px;color:var(--fg)}
+footer{padding-block:32px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.tog{flex-wrap:wrap}
+.tog button[aria-pressed="true"][data-v="accept"]{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="change"]{background:var(--warn);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="discuss"]{background:var(--mag);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="reject"]{background:var(--bad);color:var(--bg)}
+.find[data-state="change"]{border-color:var(--warn)}
+.find[data-state="discuss"]{border-color:var(--mag)}
+.notelab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.notein{width:100%;font:15px/1.45 var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;resize:vertical;min-height:44px}
+.notein:focus-visible{outline:2px solid var(--fg);outline-offset:1px}
+.notestate{font:400 12px/1.3 var(--mono);color:var(--muted);min-height:1em}
+.opt .find{margin-top:4px}
+.ans{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px}
+.okbox{border:1px dashed var(--line);border-radius:8px;padding:10px 14px}
+.okbox summary{cursor:pointer;font:600 13px/1.3 var(--mono);color:var(--muted)}
+.okbox[open]{display:grid;gap:10px}
+.okrow{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+.oklab{font-size:15px}
+.tog{max-width:100%}
+.prose,.why,.src,.field .txt,.pair .t,.mock p{overflow-wrap:anywhere}
+section.block,.wrap{min-width:0}
+section.block>*{min-width:0}
+@media (max-width:640px){.tog{margin-left:0;width:100%}.tog button{flex:1 1 40%;min-height:40px}.tog button+button{border-left:1px solid var(--line)}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="kicker">Mondai framework case study · tactics pass · nothing changed in Figma</div>
+  <h1>Framework CS tactics pass</h1>
+  <p class="lede">Each proposal shows the text as it stands in the final copy, the new text, the tactic and why. Pick Accept, Accept with changes, Discuss or Reject, and add a note whenever you want. Choices and notes save to this page and I read them back. Nothing is changed in Figma.</p>
+</header>
+
+<div class="bar" id="bar">
+  <span class="count">Accepted <b id="cA">0</b> · With changes <b id="cC">0</b> · Discuss <b id="cD">0</b> · Rejected <b id="cR">0</b> · Open <b id="cO">0</b></span>
+  <span class="status" id="saveState">Marks save on this device</span>
+  <nav id="toc"></nav>
+</div>
+
+<section class="block" id="intro"><h2>What this pass found</h2><div class="prose"><p><b>Round 3, 8 Nov.</b> What you asked for: the pace repeat fixed, a real repetition check, every remaining reader check flag fixed and humanized for you to accept, every headline and caption measured, and one more full pass of both banks.</p>
+<ul>
+<li><b>Repetition:</b> I listed every point the page makes and where it is made, sentence by sentence. Nine points were said in more than one block; eight are fixed below and one (pulling work forward closes the gap) is kept on purpose, because each place says something different. The pace repeat you flagged was part of a bigger one: card 01 and the rail both defined target and pace. The card keeps the short gloss, since that is where the reader first meets the two dates, and the rail definitions keep only what is new.</li>
+<li><b>Reader check flags:</b> every one is here as a proposal. Aisha stays as she is, your call.</li>
+<li><b>Fit:</b> every headline and caption measured at its real width in your frame. All headlines are 3 lines. One caption was over: Clean slate ran 4 lines; its fix is below.</li>
+<li><b>Both banks again, entry by entry:</b> all 93 entries checked against the page (tactics/bank-walk.md). Nothing new beyond what is already applied and the repetition fixes below. The reason, briefly: most entries the page could still use need things your rules rule out (colleagues, quotes, dates in copy, outcomes) or belong to the About page (recognition, surprise, form).</li>
+</ul>
+<p>Accept means I apply it. Every item says what it fixes. The one where my pick is Reject is marked.</p>
+</div></section>
+
+<section class="block" id="checks">
+  <h2>What ran and what did not</h2>
+  <div class="prose"><ul>
+<li><b>Dashes, Oxford commas, wording, casing, evidence:</b> run-checks.mjs on every new line, proven again on planted mistakes first. Pass.</li>
+<li><b>Humanizer:</b> loaded as the skill, draft, audit and final on every new line; four drafts were replaced after the audit (tactics/humanizer.md).</li>
+<li><b>Fit:</b> every headline and caption on the page measured at its frame width (tactics/measure-r3.md).</li>
+<li><b>Reader check:</b> three runs over seven blocks with round 3's first drafts. Rail block PASS. Eight flags, every one fixed in the text below. Those eight fixes run through the reader check again with whatever you accept, before the paste list; the per turn agent limit stopped a sixth round today.</li>
+</ul>
+</div>
+</section>
+
+<section class="block" id="props"><h2>Proposals, in page order</h2><div class="finds"><article class="find" id="tz-comp-head">
+<div class="fhead"><span class="num">1. Competitive analysis</span><span class="src">Headline</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">There was no direct model for Mondai, so I looked at learning and task tracking products that each solve part of the problem.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Mondai had no direct model, but learning apps and task trackers each solve part of the problem.</span></div></div>
+<p class="why"><b>Tactic:</b> Reader check flag: process story</p><p class="why">Flagged 3 of 3 as process story (so I looked at tells how the work was done). The new headline states the finding the cards show. Measured: 3 lines at 791px.</p><p class="src">Source: Archive:493 to :495: no direct reference class; learning apps and task tools are adjacent products for pattern reference (CONFIRMED).</p><label class="notelab" for="n-tz-comp-head">Your note</label><textarea class="notein" id="n-tz-comp-head" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-card01">
+<div class="fhead"><span class="num">2. Competitive analysis</span><span class="src">Card 01</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Studies find that tracking real progress against a goal helps people reach it. So, like CareerFoundry, Mondai shows two dates side by side: the target date the plan sets and the pace date the user’s progress points to.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Studies find that tracking real progress against a goal makes reaching it more likely. So, like CareerFoundry, Mondai shows two dates side by side: the target date the plan sets and the pace date the user’s progress points to.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule (the pace definition you flagged); your wording rule</p><p class="why">The reader check flagged the rail&#x27;s pace definition as a restatement of this card (2 of 3). I first cut the definitions here, and the next check said target date and pace date were then undefined at first use (2 of 3). So this card keeps the short gloss, since it is where the reader first meets the two dates, and the rail definitions drop their restated first clauses and keep only what is new (see the two rail items). Only change here: people becomes makes reaching it more likely, for your wording rule.</p><p class="src">Source: CareerFoundry has a target and pace concept (your 7 Nov correction). Harkin et al. 2016 (citation check 7 Nov).</p><label class="notelab" for="n-tz-card01">Your note</label><textarea class="notein" id="n-tz-card01" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-card02">
+<div class="fhead"><span class="num">3. Competitive analysis</span><span class="src">Card 02</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Motion showed me AI could find free time in a user’s calendar. But research shows that pushing people to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Motion uses AI to find free time in a user’s calendar. But research shows that pushing students to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.</span></div></div>
+<p class="why"><b>Tactic:</b> Reader check flag: process story; your wording rule</p><p class="why">Flagged 3 of 3 as process story (showed me tells how you learned it). Now it states what Motion does, like the other cards. People becomes students: the Baker study was students in an online course.</p><p class="src">Source: Baker, Evans and Dee 2016 (citation check 7 Nov: scheduling nudges in an online course).</p><label class="notelab" for="n-tz-card02">Your note</label><textarea class="notein" id="n-tz-card02" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-card03">
+<div class="fhead"><span class="num">4. Competitive analysis</span><span class="src">Card 03</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Linear opens straight onto the work in front of you. I borrowed that, so Mondai’s home screen shows only this week’s work, and the full route to the goal has its own page.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Linear opens straight onto the work in front of you, and so does Mondai: its home screen shows only this week’s work.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule</p><p class="why">The full route to the goal has its own page is said again, almost word for word, by the Growth Journey headline two blocks later (the whole route has a page of its own). That block owns it. Also, I borrowed that read as process story to the reader check (2 of 3), so the card now states the match plainly.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tz-card03">Your note</label><textarea class="notein" id="n-tz-card03" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-schedule">
+<div class="fhead"><span class="num">5. Schedule view</span><span class="src">Body 1</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">The list stays the default view. Syncing a calendar is optional, so the plan has to work without one, and the user can switch between the list and the schedule whenever they like.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">The list stays the default view, and the user can switch between the list and the schedule whenever they like.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule</p><p class="why">Third time the page says sync is optional and the plan works without it: card 02, the Calendar setup headline, here. The reader has just read the setup headline, so the reason for the default is already in their head.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tz-schedule">Your note</label><textarea class="notein" id="n-tz-schedule" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-schedule-b5">
+<div class="fhead"><span class="num">6. Schedule view</span><span class="src">Body 5</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Its time is only a suggestion. An Action Item is due by the end of its week, Saturday night, so one without a time is fine, and finishing it still counts. When a week has no room left, the item stays in the list without a time.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">An Action Item’s time is only a suggestion. It’s due by the end of its week, Saturday night, so one without a time is fine, and finishing it still counts. When a week has no room left, the item stays in the list without a time.</span></div></div>
+<p class="why"><b>Tactic:</b> Reader check flag: unclear reference</p><p class="why">Flagged 3 of 3: Its has no clear antecedent after the sentence about automatic moving. Naming the Action Item fixes it; the rest is your text.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tz-schedule-b5">Your note</label><textarea class="notein" id="n-tz-schedule-b5" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-rail-body">
+<div class="fhead"><span class="num">7. Falling behind, part 1: the right rail</span><span class="src">Body</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Both sit in a rail down the right side of the Action Hub, and the target stays put on purpose. If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Both sit in a rail down the right side of the Action Hub. If the target moved every time a week went badly, the user would never see that they’d slipped, and seeing their pace fall behind it is what’s meant to get them back on track.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule (my own line from round 2)</p><p class="why">My round 2 line said the target stays put, and your Pathway target definition right under it says it holds steady. Same block, same point. The body now gives only the why; the definition gives the what.</p><p class="src">Source: Archive:80 and :84 (unchanged from round 2).</p><label class="notelab" for="n-tz-rail-body">Your note</label><textarea class="notein" id="n-tz-rail-body" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-rail-target">
+<div class="fhead"><span class="num">8. Falling behind, part 1: the right rail</span><span class="src">Pathway target</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">The date this Pathway should be done by, set from the hours the user gives each week. It holds steady through an ordinary week and moves when those hours change.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Set from the user’s capacity, it holds steady through an ordinary week and moves when their capacity changes.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule</p><p class="why">Two repeats out: the date this Pathway should be done by restates card 01&#x27;s target date the plan sets, and the hours the user gives each week re-explains capacity, which Personalized timeline defined. What is left is only what is new: what sets it and when it moves.</p><p class="src">Source: Capacity moves the target (Archive:86, CONFIRMED).</p><label class="notelab" for="n-tz-rail-target">Your note</label><textarea class="notein" id="n-tz-rail-target" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-rail-pace">
+<div class="fhead"><span class="num">9. Falling behind, part 1: the right rail</span><span class="src">Pathway pace</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Where the user’s progress says they will finish. It updates once a week, so nobody watches it tick with every finished item. In week one it matches the target.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">It updates once a week, so nobody watches it tick with every finished item. In week one it matches the target.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule (the one you flagged)</p><p class="why">The first sentence restates card 01 (the pace date the user&#x27;s progress points to); the reader check flagged it 2 of 3. The label above it, Pathway pace, is what it refers to, so the definition keeps only the two new facts.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tz-rail-pace">Your note</label><textarea class="notein" id="n-tz-rail-pace" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-roll-label">
+<div class="fhead"><span class="num">10. Falling behind, part 2: Rollover</span><span class="src">Rollover label</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">An Action Item still open when the week ends on Saturday night.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">An Action Item carried over from last week.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule</p><p class="why">The label repeated the headline right above it (still open on Saturday night). It now says what the Rollover tag marks on the screen, which nothing else in the block says.</p><p class="src">Source: Rolled over items carry into next week (Archive:106, CONFIRMED).</p><label class="notelab" for="n-tz-roll-label">Your note</label><textarea class="notein" id="n-tz-roll-label" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-roll-earlier">
+<div class="fhead"><span class="num">11. Falling behind, part 2: Rollover</span><span class="src">Body, third sentence</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide.</span></div></div>
+<p class="why"><b>Tactic:</b> Reader check flag: process story, against refute the rejected option (cs-t24) and the wrong turn (cs-t29)</p><p class="why">Flagged 3 of 3 again as process story (an earlier version was cut). The new sentence keeps the rejected option and its reason and drops the history. What it loses: the page&#x27;s one admitted wrong turn, which the case study bank ranks among the most credible moves. My pick is Reject, keep yours; Accept if you read the history as process story.</p><p class="src">Source: Your accepted copy.</p><label class="notelab" for="n-tz-roll-earlier">Your note</label><textarea class="notein" id="n-tz-roll-earlier" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-buffer-b2">
+<div class="fhead"><span class="num">12. Buffer flow</span><span class="src">Body 2</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">A week only holds the hours a user gave, so finishing early leaves nothing left to do. Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">A week only holds as much as the user’s capacity, so finishing early leaves nothing left to do. Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule</p><p class="why">Same as the target line: the hours a user gave re-explains capacity. Your sentence otherwise unchanged.</p><p class="src">Source: Dynamic weekly bundling never exceeds declared capacity (Archive:104, CONFIRMED).</p><label class="notelab" for="n-tz-buffer-b2">Your note</label><textarea class="notein" id="n-tz-buffer-b2" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-buffer-b3">
+<div class="fhead"><span class="num">13. Buffer flow</span><span class="src">Body 3</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">So the message depends on the gap. A user who is ahead is told they can widen their lead. A user who is behind still gets the finish celebrated, then hears that pulling work forward is how they close the gap.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">What the screen says depends on the gap. A user who is ahead is told they can widen their lead. A user who is behind still gets the finish celebrated, then hears that pulling work forward is how they close the gap.</span></div></div>
+<p class="why"><b>Tactic:</b> Reader check flag: unclear reference</p><p class="why">Flagged 3 of 3: the message has no antecedent, and So does not follow from Body 2. The rest is your text.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tz-buffer-b3">Your note</label><textarea class="notein" id="n-tz-buffer-b3" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-buffer-b4">
+<div class="fhead"><span class="num">14. Buffer flow</span><span class="src">Body 4</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">That’s why the screen shows up the moment the week’s work is done instead of at the start of next week: how much a user can pull forward depends on the days left.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">That’s why the screen doesn’t wait for the start of next week: how much a user can pull forward depends on the days left.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule</p><p class="why">Body 1 already says the screen appears the moment the last Action Item is done. Body 4 keeps only the new part, the reason.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tz-buffer-b4">Your note</label><textarea class="notein" id="n-tz-buffer-b4" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-clean">
+<div class="fhead"><span class="num">15. Start of week</span><span class="src">1 of 5, Clean slate</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">A clean slate only means something when nothing carried over, so a week that ends with an Action Item still open goes to Rollover instead.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead.</span></div></div>
+<p class="why"><b>Tactic:</b> Fit: your three line caption limit</p><p class="why">Measured at its frame width, 259px: 4 lines, over your three line limit. My first fix (so one open Action Item means Rollover) was flagged 3 of 3 as not following, so this one says plainly when the template shows and what happens otherwise. 3 lines.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tz-clean">Your note</label><textarea class="notein" id="n-tz-clean" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tz-end">
+<div class="fhead"><span class="num">16. Ending</span><span class="src">Headline</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">The framework is built and Mondai hasn’t launched, so the numbers that would show it working don’t exist yet.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">The framework is built, so the question left is whether it works for the users it was made for.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule</p><p class="why">The hero now says Mondai hasn&#x27;t launched, and the reader check flagged the ending headline as restating it (2 of 3). The headline now poses the open question, and Body 1 and 2 answer it with the two numbers and the next step. Measured: 3 lines at 708px.</p><p class="src">Source: Pre launch (your 7 Nov correction).</p><label class="notelab" for="n-tz-end">Your note</label><textarea class="notein" id="n-tz-end" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article></div></section>
+
+<footer>Source text: reference/cs2/review-2026-11-07/final-copy.md, 7 Nov, for Figma frame 5763:2448. Working files: reference/cs2/review-2026-11-07/tactics/.</footer>
+</div>
+
+<script>
+const IDS = ["tz-comp-head", "tz-card01", "tz-card02", "tz-card03", "tz-schedule", "tz-schedule-b5", "tz-rail-body", "tz-rail-target", "tz-rail-pace", "tz-roll-label", "tz-roll-earlier", "tz-buffer-b2", "tz-buffer-b3", "tz-buffer-b4", "tz-clean", "tz-end"];
+const state = {};   // id -> {mark, note}
+let db = null;
+const KEY = 'fcs-tactics-1';
+function load(){ try{ Object.assign(state, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){} }
+function saveLocal(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function get(id){ return state[id] || (state[id] = {mark:'', note:''}); }
+function paint(){
+  const c = {accept:0, change:0, discuss:0, reject:0};
+  document.querySelectorAll('.find').forEach(el=>{
+    const s = get(el.id);
+    el.dataset.state = s.mark;
+    el.querySelectorAll('.tog button').forEach(b=> b.setAttribute('aria-pressed', String(b.dataset.v === s.mark)));
+    const ta = el.querySelector('.notein');
+    if (ta && document.activeElement !== ta && ta.value !== (s.note||'')) ta.value = s.note || '';
+    if (c[s.mark] !== undefined) c[s.mark]++;
+  });
+  document.getElementById('cA').textContent = c.accept;
+  document.getElementById('cC').textContent = c.change;
+  document.getElementById('cD').textContent = c.discuss;
+  document.getElementById('cR').textContent = c.reject;
+  document.getElementById('cO').textContent = document.querySelectorAll('.find .tog').length - c.accept - c.change - c.discuss - c.reject;
+}
+async function push(id, el){
+  const st = el && el.querySelector('.notestate');
+  if (!db){ if (st) st.textContent = 'Saved on this device only'; return; }
+  const s = get(id);
+  try{
+    await db.doc('marks/'+id).set({finding:id, mark:s.mark||'', note:s.note||'', at:Date.now()});
+    if (st) st.textContent = 'Saved for Claude';
+    document.getElementById('saveState').textContent = 'Saved for Claude to read';
+  }catch(e){ if (st) st.textContent = 'Not saved for Claude, kept on this device'; }
+}
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.tog button'); if(!b) return;
+  const el = b.closest('.find'); const s = get(el.id);
+  s.mark = (s.mark === b.dataset.v) ? '' : b.dataset.v;
+  saveLocal(); paint(); push(el.id, el);
+  if (s.mark === 'change' || s.mark === 'discuss'){ const ta = el.querySelector('.notein'); if (ta && !ta.value) ta.focus(); }
+});
+const timers = {};
+document.addEventListener('input', e=>{
+  const ta = e.target.closest('.notein'); if(!ta) return;
+  const el = ta.closest('.find'); get(el.id).note = ta.value; saveLocal();
+  const st = el.querySelector('.notestate'); if (st) st.textContent = 'Typing';
+  clearTimeout(timers[el.id]); timers[el.id] = setTimeout(()=>push(el.id, el), 900);
+});
+document.addEventListener('focusout', e=>{
+  const ta = e.target.closest && e.target.closest('.notein'); if(!ta) return;
+  const el = ta.closest('.find'); clearTimeout(timers[el.id]); push(el.id, el);
+});
+load(); paint();
+(async()=>{
+  const t = setTimeout(()=>{ document.getElementById('saveState').textContent = 'Saved on this device only'; }, 10000);
+  try{
+    db = window.claude ? await window.claude.use('db') : null;
+    if(!db){ clearTimeout(t); document.getElementById('saveState').textContent = 'Saved on this device only'; return; }
+    const snap = await db.collection('marks').get();
+    clearTimeout(t);
+    (snap.docs||[]).forEach(d=>{ const x = d.data(); if (x && x.finding && IDS.includes(x.finding)) state[x.finding] = {mark:x.mark||'', note:x.note||''}; });
+    saveLocal(); paint();
+    document.getElementById('saveState').textContent = 'Choices and notes save for Claude to read';
+  }catch(e){ clearTimeout(t); document.getElementById('saveState').textContent = 'Saved on this device only'; }
+})();
+</script>

@@ -62,3 +62,41 @@ like a gate instead of a guide. Present tense reason, his gate and guide words k
 A one word cut (the first yet). No rewrite.
 
 Dashes: none in any final line (also checked by run-checks.mjs). Curly apostrophes match his frame copy.
+
+## Redo, 8 Nov (both banks)
+
+Hero, Right 2 (t-hero, with steal the thunder). Draft: adds Mondai hasn't launched, so there are no results to show
+yet, as its own sentence. Audit: reader check round 3 says it does not follow from the decision; as a lone flat
+sentence it also reads as a disclaimer dropped in. Final: Mondai hasn’t launched, so this case study shows the
+reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens
+when a week runs short or ends early. Rather than is plain, not a tidy contrast pair. No new fact.
+
+Personalized timeline, Capacity (t-capacity). Draft: ...so they type an exact number of hours instead of picking
+from ready made ranges, and the plan can lower it later if their weeks keep falling short. Audit: the so skips the
+mechanism (reader check, 3 of 3); one sentence carries three ideas. Final: The risk is that users promise more
+time than they have, so the screen has them type an exact number of hours, which makes them count, instead of
+picking a generous range. If their weeks keep falling short, the plan can lower it later. Which makes them count
+is marked ASSUMED in the source line.
+
+## Cards 03 and 04, 8 Nov (his yes)
+Card 03 draft: Linear opens straight onto the work in front of you. I borrowed that, so the home screen shows only
+this week's work, and the full route to the goal has its own page. Audit: the home screen could read as Linear's;
+no AI pattern. Final: ...so Mondai’s home screen shows only this week’s work...
+Card 04 draft: Every learning app I reviewed, even the most structured, let learners fit lessons around their day.
+So the plan sets the goal, and each user decides where in their day the work goes. Audit: their day twice reads as
+an echo; kept on purpose, it carries the borrowed idea into Mondai's version. People became learners for his
+wording rule. No new fact in either.
+
+## Round 3, 8 Nov (repetition, reader flags, fit)
+Run as the skill's loop on every line in proposals-r3.json. Drafts that failed and why:
+- Card 03 draft: I borrowed that, so Mondai's home screen... Audit: reads as process (reader check 2 of 3). Final: Linear opens straight onto the work in front of you, and so does Mondai: its home screen shows only this week’s work.
+- Card 01 draft cut both definitions; audit and reader check: target and pace undefined at first use. Final keeps his gloss, people out.
+- Card 02: showed me becomes uses, people becomes students (the study's subjects). Plain.
+- Competitive analysis headline: Mondai had no direct model, but learning apps and task trackers each solve part of the problem. Audit: but carries the contrast without a tidy pair; no pattern.
+- Rail target and pace: cut restated clauses only; his words kept.
+- Rollover label: An Action Item carried over from last week. Plain, no pattern.
+- Buffer flow body 3: What the screen says depends on the gap. Plain. Body 4: That’s why the screen doesn’t wait for the start of next week. Plain.
+- Clean slate draft: so one open Action Item means Rollover. Audit: the so is a non sequitur (reader check 3 of 3). Final: This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead.
+- Ending draft: The framework is built, and two numbers from its first users will show whether it works. Audit: repeats Body 2's first users. Second draft ended built for after is built: an echo. Final: The framework is built, so the question left is whether it works for the users it was made for.
+- Schedule body 5: An Action Item’s time is only a suggestion. It’s due... Plain.
+No new facts in any line.

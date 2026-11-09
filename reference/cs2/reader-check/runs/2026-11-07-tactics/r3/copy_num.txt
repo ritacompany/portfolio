@@ -1,0 +1,41 @@
+VERSION V1: Hero, right column, with t-hero
+  (label) Designed as an AI guide for people from underrepresented backgrounds working their way into a tech career.
+V1.S1 Mondai builds each user a curriculum for the tech career they choose, called their Growth Journey, and it can take months to finish.
+V1.S2 Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.
+V1.S3 So I designed the weekly framework around the hours the user says they can give each week.
+V1.S4 Mondai hasn’t launched, so there are no results to show yet.
+V1.S5 This case study covers the reasoning behind how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.
+
+VERSION V2: Growth Journey block, with t-gj
+V2.S1 The whole route has a page of its own, one users open now and then to see how far they’ve come and what’s left.
+V2.S2 Users need to see how the Pathway they’re on fits into the whole journey, so this page zooms out to show all of it.
+V2.S3 Long term metrics like their journey target, pace and progress sit here out of the user’s immediate view.
+V2.S4 I kept the journey’s dates here because two sets of dates on the weekly screen would compete.
+
+VERSION V3: Personalized timeline block, with t-capacity
+V3.S1 How many Action Items a user gets in a week depends on two things, and the user sets one of them.
+  (label) Capacity
+V3.S2 Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub.
+V3.S3 Everything else is planned from that number.
+V3.S4 Mondai asks instead of learning the number from how the user works, because learning it would leave the first two or three weeks without a real plan.
+V3.S5 The risk is that users promise more time than they have, so they type an exact number of hours instead of picking from ready made ranges, and the plan can lower it later if their weeks keep falling short.
+  (label) Effort
+V3.S6 How much work each Action Item takes, which Mondai sizes item by item.
+V3.S7 Aisha’s capacity is 6 hours a week.
+V3.S8 Last week that fit 4 Action Items.
+V3.S9 This week it fits 3, because this week’s take more effort.
+
+VERSION V4: Right rail block, with t-rail
+V4.S1 The Action Hub keeps two dates for the Pathway the user is on: where they’re aiming and where they’re headed.
+V4.S2 Both sit in a rail down the right side of the Action Hub, and the target stays put on purpose.
+V4.S3 If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.
+  (label) Pathway target
+V4.S4 The date this Pathway should be done by, set from the hours the user gives each week.
+V4.S5 It holds steady through an ordinary week and moves when those hours change.
+  (label) Pathway pace
+V4.S6 Where the user’s progress says they will finish.
+V4.S7 It updates once a week, so nobody watches it tick with every finished item.
+V4.S8 In week one it matches the target.
+  (label) Ahead of target
+V4.S9 The gap between the two dates, in days.
+V4.S10 It is the only ahead or behind signal on the rail.

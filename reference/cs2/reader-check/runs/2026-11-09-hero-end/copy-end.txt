@@ -1,0 +1,15 @@
+=== A: what success is, the two counts and where I'd look first
+[eyebrow or sub-heading] Where it stands
+[headline] The framework is meant to give each user weeks they can finish, so the first thing I’ll count is how many they do.
+Testing with the first users comes next, and I’ll count two things: how many planned weeks close with every Action Item done, and how often a Rollover Action Item gets done in the week it lands in.
+Those counts become the baseline. If they’re low for most users, the first place I’d look is how much effort each Action Item is given, since that decides how many fit into a week.
+=== B: the hardest call and the test it still needs
+[eyebrow or sub-heading] Looking back
+[headline] The hardest call was what to do when a user can’t finish a week, because every answer costs them something.
+I chose to move the work forward and keep the target where it was, and it’s the decision I most want real weeks to test.
+What I’ll be looking for is whether Rollover helps a user recover or slowly piles up on them: whether a user whose work rolls over finishes the next week, or rolls it over again.
+=== C: the least settled number and what would move it
+[eyebrow or sub-heading] What’s still open
+[headline] The least settled rule is the one for when Recalibration steps in, because no user had lived a week with the plan yet.
+Right now it steps in after three weeks in a row where a user finishes less than about half the hours they set. That line is a starting point, and the first users’ weeks will move it.
+It comes too early if most users who see it skip it and catch up anyway, and too late if users stop coming back before it ever shows.
