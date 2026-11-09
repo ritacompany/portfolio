@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liquid buttons</title>
+<style>
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: Satoshi; src: url(fonts/satoshi-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+  :root {
+    --black: #000;
+    --white: #fff;
+    --n400: #c9c9d4;
+    --n500: #aeaeb4;
+    --rule: #23232d;
+    --pill: #e4e4e4;
+    --ink: #111;
+    --quart-out: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--black); color: var(--white); font-family: Satoshi, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+
+  .notes { max-width: 1360px; margin: 0 auto; padding: 56px 40px 0; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.96px; text-transform: uppercase; color: var(--n500); }
+  h1 { font-size: 20px; line-height: 1.32; margin-top: 16px; }
+  .notes p { font-size: 15px; line-height: 1.5; color: var(--n400); margin-top: 12px; max-width: 640px; }
+
+  .stage { max-width: 1360px; margin: 0 auto; padding: 48px 40px 96px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .cell { border: 1px solid var(--rule); border-radius: 16px; min-height: 360px; display: grid; place-items: center; position: relative; }
+  .cell .tag { position: absolute; top: 16px; left: 20px; font-size: 12px; color: var(--n500); letter-spacing: 0.5px; }
+  .cell .how { position: absolute; bottom: 16px; left: 20px; right: 20px; font-size: 13px; line-height: 1.45; color: var(--n500); }
+
+  /* Button one: the gooey split.
+     Two layers, same geometry. The shape layer carries the goo filter and only paints
+     background shapes, so the blur and threshold never touch the text. The content layer
+     sits on top, unfiltered, and moves its icon by the same amount. */
+  .goo {
+    --gap: -10px;          /* rest: icon circle sunk into the pill, merged by the filter */
+    --gap-hover: 14px;     /* hover: icon pulls free */
+    --h: 56px;
+    --pad: 24px;
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: auto var(--h);
+    align-items: center;
+    height: var(--h);
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: var(--ink);
+    cursor: pointer;
+    isolation: isolate;
+  }
+  .goo:focus-visible { outline: 2px solid var(--white); outline-offset: 10px; border-radius: 999px; }
+  .goo-shapes { position: absolute; inset: 0; filter: url(#goo); pointer-events: none; }
+  .goo-pill, .goo-dot { position: absolute; top: 0; height: var(--h); background: var(--pill); border-radius: 999px; }
+  .goo-pill { left: 0; right: var(--h); }
+  .goo-dot { right: 0; width: var(--h); transform: translateX(var(--gap)); transition: transform 560ms var(--quart-out); }
+  .goo-label { position: relative; padding: 0 var(--pad); font-size: 16px; font-weight: 500; white-space: nowrap; }
+  .goo-icon { position: relative; width: var(--h); height: var(--h); display: grid; place-items: center; transform: translateX(var(--gap)); transition: transform 560ms var(--quart-out); }
+  .goo-icon svg { width: 20px; height: 20px; transition: transform 560ms var(--quart-out); }
+  .goo:hover .goo-dot, .goo:focus-visible .goo-dot,
+  .goo:hover .goo-icon, .goo:focus-visible .goo-icon { transform: translateX(var(--gap-hover)); }
+  .goo:hover .goo-icon svg { transform: translateX(2px); }
+  .goo:active .goo-shapes { transform: scale(0.97); }
+
+  /* Button two: the liquid outline.
+     A real button for the label and the click. Behind it, an SVG path that is a ring of
+     points on springs. The pointer pushes the points; the ring settles back on its own.
+     No fill, by his ask: the outline is the whole effect. */
+  .liquid {
+    --w: 200px;
+    --h: 56px;
+    --reach: 48px;      /* how far outside the pill the pointer still pulls the outline */
+    position: relative;
+    display: inline-block;
+    width: var(--w);
+    height: var(--h);
+    padding: var(--reach);
+    box-sizing: content-box;
+  }
+  .liquid svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .liquid path { fill: none; stroke: var(--white); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+  .liquid button {
+    position: absolute; inset: var(--reach);
+    border: 0; border-radius: 999px; background: transparent; color: var(--white);
+    font: inherit; font-size: 14px; letter-spacing: 0.2px; cursor: pointer;
+  }
+  .liquid button:focus-visible { outline: 2px solid var(--white); outline-offset: 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .goo-dot, .goo-icon, .goo-icon svg { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="goo" x="-20%" y="-50%" width="140%" height="200%" color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <section class="notes">
+    <p class="eyebrow">Buttons</p>
+    <h1>Two free rebuilds of the paid Framer buttons</h1>
+    <p>Left is the five dollar one: label and icon sit merged at rest and pull apart on hover. Right is the ten dollar one: the outline bends around the pointer and settles back. The blue fill from the original is left out on purpose. Both are plain HTML, CSS and a little JavaScript, no library.</p>
+  </section>
+
+  <section class="stage">
+    <div class="cell">
+      <span class="tag">Gooey split, CSS and one SVG filter</span>
+      <button class="goo" type="button" id="goo-btn">
+        <span class="goo-shapes" aria-hidden="true"><span class="goo-pill"></span><span class="goo-dot"></span></span>
+        <span class="goo-label">Gooey liquid button</span>
+        <span class="goo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </button>
+      <p class="how">The blur plus a hard alpha threshold is what fuses the two shapes. Hover moves the circle 24px and the filter does the rest.</p>
+    </div>
+
+    <div class="cell">
+      <span class="tag">Liquid outline, SVG path on springs</span>
+      <div class="liquid" id="liquid">
+        <svg viewBox="0 0 296 152" aria-hidden="true"><path id="liquid-path" d=""/></svg>
+        <button type="button">Liquid button</button>
+      </div>
+      <p class="how">Sixty points on the pill's edge, each on a spring to its rest spot and tied to its neighbours. The pointer pushes nearby points; damping brings them home.</p>
+    </div>
+  </section>
+
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var host = document.getElementById('liquid');
+  var path = document.getElementById('liquid-path');
+
+  // Geometry in SVG units, which equal CSS px here (viewBox matches the padded box).
+  var reach = 48, w = 200, h = 56, r = h / 2;
+  var cfg = {
+    count: 60,        // points around the ring
+    tension: 0.06,    // pull toward the target position
+    neighbour: 0.10,  // pull toward the neighbours' displacement, carries the wave along the edge
+    damping: 0.84,    // velocity kept per frame; lower is thicker liquid
+    radius: 72,       // pointer influence distance
+    pushMax: 16,      // how far outward the edge can bulge, in px
+    follow: 0.18,     // how much the pointer's own motion drags the edge sideways
+    fill: 'none'      // the original shows a blue fill here; left out on purpose
+  };
+
+  // Rest positions: walk the rounded rect perimeter at equal arc length.
+  var straight = w - h, arc = Math.PI * r, total = 2 * straight + 2 * arc;
+  var pts = [];
+  for (var i = 0; i < cfg.count; i++) {
+    var s = (i / cfg.count) * total;
+    var x, y, nx, ny;
+    if (s < straight) { x = r + s; y = 0; nx = 0; ny = -1; }
+    else if (s < straight + arc) { var a = (s - straight) / r - Math.PI / 2; nx = Math.cos(a); ny = Math.sin(a); x = w - r + nx * r; y = r + ny * r; }
+    else if (s < 2 * straight + arc) { x = w - r - (s - straight - arc); y = h; nx = 0; ny = 1; }
+    else { var b = (s - 2 * straight - arc) / r + Math.PI / 2; nx = Math.cos(b); ny = Math.sin(b); x = r + nx * r; y = r + ny * r; }
+    pts.push({ rx: x + reach, ry: y + reach, nx: nx, ny: ny, x: x + reach, y: y + reach, vx: 0, vy: 0 });
+  }
+
+  var mouse = { x: -1e4, y: -1e4, px: -1e4, py: -1e4, inside: false };
+  host.addEventListener('pointermove', function (e) {
+    var b = host.getBoundingClientRect();
+    mouse.x = (e.clientX - b.left) * (296 / b.width);
+    mouse.y = (e.clientY - b.top) * (152 / b.height);
+    mouse.inside = true;
+    wake();
+  });
+  host.addEventListener('pointerleave', function () { mouse.inside = false; mouse.x = mouse.y = -1e4; });
+
+  function draw() {
+    // Closed Catmull-Rom spline through the points, as cubic beziers.
+    var n = pts.length, d = 'M' + pts[0].x.toFixed(2) + ' ' + pts[0].y.toFixed(2);
+    for (var i = 0; i < n; i++) {
+      var p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+      var c1x = p1.x + (p2.x - p0.x) / 6, c1y = p1.y + (p2.y - p0.y) / 6;
+      var c2x = p2.x - (p3.x - p1.x) / 6, c2y = p2.y - (p3.y - p1.y) / 6;
+      d += 'C' + c1x.toFixed(2) + ' ' + c1y.toFixed(2) + ' ' + c2x.toFixed(2) + ' ' + c2y.toFixed(2) + ' ' + p2.x.toFixed(2) + ' ' + p2.y.toFixed(2);
+    }
+    path.setAttribute('d', d + 'Z');
+  }
+
+  var running = false, still = 0;
+  function wake() { if (!running && !reduced) { running = true; still = 0; requestAnimationFrame(step); } }
+
+  function step() {
+    var mvx = mouse.inside && mouse.px > -1e3 ? mouse.x - mouse.px : 0;
+    var mvy = mouse.inside && mouse.py > -1e3 ? mouse.y - mouse.py : 0;
+    var energy = 0, n = pts.length;
+    for (var i = 0; i < n; i++) {
+      var p = pts[i], prev = pts[(i - 1 + n) % n], next = pts[(i + 1) % n];
+      // The pointer sets a target: the edge bulges outward along its rest normal, more the
+      // closer the pointer is, never more than pushMax. Outside the pill that reads as the
+      // edge reaching for the cursor; inside, as a bubble pushed out.
+      var tx = p.rx, ty = p.ry, f = 0;
+      if (mouse.inside) {
+        var dist = Math.hypot(p.rx - mouse.x, p.ry - mouse.y);
+        if (dist < cfg.radius) { f = 1 - dist / cfg.radius; f = f * f * (3 - 2 * f); tx += p.nx * f * cfg.pushMax; ty += p.ny * f * cfg.pushMax; }
+      }
+      var dx = tx - p.x, dy = ty - p.y;
+      // Spring to the target, plus a pull toward the neighbours' displacement so the bulge spreads as a wave.
+      var ndx = ((prev.x - prev.rx) + (next.x - next.rx)) / 2 - (p.x - p.rx);
+      var ndy = ((prev.y - prev.ry) + (next.y - next.ry)) / 2 - (p.y - p.ry);
+      p.vx += dx * cfg.tension + ndx * cfg.neighbour + mvx * cfg.follow * f;
+      p.vy += dy * cfg.tension + ndy * cfg.neighbour + mvy * cfg.follow * f;
+      p.vx *= cfg.damping; p.vy *= cfg.damping;
+      p.x += p.vx; p.y += p.vy;
+      energy += Math.abs(p.vx) + Math.abs(p.vy) + Math.abs(p.rx - p.x) + Math.abs(p.ry - p.y);
+    }
+    mouse.px = mouse.x; mouse.py = mouse.y;
+    draw();
+    if (energy < 0.05 * n && !mouse.inside) { still++; } else { still = 0; }
+    if (still > 10) { for (var k = 0; k < n; k++) { pts[k].x = pts[k].rx; pts[k].y = pts[k].ry; pts[k].vx = pts[k].vy = 0; } draw(); running = false; return; }
+    requestAnimationFrame(step);
+  }
+
+  path.style.fill = cfg.fill;
+  draw();
+})();
+</script>
+</body>
+</html>
