@@ -93,12 +93,13 @@ A new session picks this up from this file alone.
 - Haven against its Figma frame: the coded body was already 368 px shorter than the frame (18552 to
   18920) before this move; left as is, since this step was not to change Haven's spacing.
 - Phase 2 started 9 Nov: three button options on `site/dev/buttons/`. His call: Small button takes option A
-  (fill on hover, Neutral/300 and 98 percent on press), now in components.css. The big Button (Contact)
-  has the liquid outline from his pinned session "Liquid button effects recreation" (branch
-  claude/cool-albattani-5v7t70, prototypes/homepage-foundations/liquid-buttons.html): both pill
-  outlines are rings of points on springs that bulge toward the pointer and squeeze on press, in
-  `site/js/liquid-button.js`, loaded on every page with a footer. Reduced motion keeps the CSS borders.
-  Rest state renders identically to the CSS border; all page and sheet gates rerun clean.
+  (fill on hover, Neutral/300 and 98 percent on press), now in components.css. The big Button (Contact) gets the liquid effect from his pinned session "Liquid button
+  effects recreation" (branch claude/cool-albattani-5v7t70). The first build (9 Nov) skipped the motion
+  studio and did not match the reference; it is removed from the pages. Rebuilt through the studio:
+  docs/motion/contact-button/ (style guide and state list from his two Framer recordings, review log,
+  three rounds with fresh eyes, no P0 open), site/motion-lab/contact-button.html (A gooey split, B
+  liquid outline, deterministic seek), clip output/motion/contact-button.mp4 (60 fps, renders matched
+  sha256). A live tuning page is published for him. Waiting on his pick and settings before it ships.
 - Next action: link and card hovers, Haven motion carry over, Falling behind and the footer
   transition. Then Phase 3 (390, 768, 1200).
   Haven keeps its own CSS until Phase 1 moves it.

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Contact button motion</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="contact-button.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="goo-ring" x="-10%" y="-30%" width="120%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -12" result="goo"/>
+      <feMorphology in="goo" operator="erode" radius="3" result="inner"/>
+      <feComposite in="goo" in2="inner" operator="out"/>
+    </filter>
+  </defs>
+</svg>
+<div id="c">
+  <section class="row">
+    <h2>A. Gooey split</h2>
+    <div class="host gooey" id="a">
+      <a class="button" href="mailto:hello@chadwickfenner.com">
+        <span class="button__icon" aria-hidden="true"><img src="../assets/ui/mail-asterisk.svg" alt=""></span>
+        <span class="button__label">Contact</span>
+      </a>
+      <span class="cursor"></span>
+    </div>
+  </section>
+  <section class="row">
+    <h2>B. Liquid outline</h2>
+    <div class="host liquid" id="b">
+      <a class="button" href="mailto:hello@chadwickfenner.com">
+        <span class="button__icon" aria-hidden="true"><img src="../assets/ui/mail-asterisk.svg" alt=""></span>
+        <span class="button__label">Contact</span>
+      </a>
+      <span class="cursor"></span>
+    </div>
+  </section>
+</div>
+<script type="module">
+  const DUR = 6;
+  const HZ = 60;               // fixed simulation rate; the spring constants are tuned per step
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.body.classList.toggle("is-render", !!window.__RENDER__);
+
+  // Scripted pointer, in button local px, as fractions of the button box (W, H). Linear between keys.
+  // [t, fx, fy, down]
+  const PATH = [
+    [0.0, -0.55, 1.1, 0], [0.6, -0.02, 0.5, 0], [1.0, 0.55, -0.03, 0], [1.4, 0.6, -0.5, 0],
+    [1.9, 0.85, -0.45, 0], [2.2, 0.9, -1.4, 0], [2.4, 1.4, -0.5, 0], [2.7, 1.2, 1.8, 0],
+    [3.0, 0.6, 1.05, 0], [3.3, 0.6, 0.6, 0], [3.8, 0.6, 0.55, 0], [3.8001, 0.6, 0.55, 1],
+    [4.2, 0.6, 0.55, 1], [4.2001, 0.6, 0.55, 0], [4.8, 1.5, 0.4, 0], [5.2, 1.5, 2.6, 0],
+    [5.6, -0.55, 2.6, 0], [5.7, -0.55, 1.1, 0], [6.0, -0.55, 1.1, 0],
+  ];
+  function pointerAt(t, W, H) {
+    let i = 0; while (i < PATH.length - 2 && PATH[i + 1][0] <= t) i++;
+    const a = PATH[i], b = PATH[i + 1], p = Math.min(1, Math.max(0, (t - a[0]) / (b[0] - a[0])));
+    return { x: (a[1] + (b[1] - a[1]) * p) * W, y: (a[2] + (b[2] - a[2]) * p) * H, down: !!a[3] && p < 1 ? true : !!a[3] };
+  }
+
+  // A: gooey split
+  function makeGooey(host) {
+    const btn = host.querySelector(".button"), icon = btn.querySelector(".button__icon"), label = btn.querySelector(".button__label");
+    const img = icon.querySelector("img");
+    const layer = document.createElement("span"); layer.className = "goo-shapes"; layer.setAttribute("aria-hidden", "true");
+    const sIcon = document.createElement("span"), sLabel = document.createElement("span");
+    layer.append(sIcon, sLabel); btn.style.position = "relative"; btn.prepend(layer);
+    const box = (el) => ({ x: el.offsetLeft + 60, y: el.offsetTop + 60, w: el.offsetWidth, h: el.offsetHeight });
+    const bi = box(icon), bl = box(label);
+    const PULL = 32, SQUEEZE = 6;
+    const K = 0.075, D = 0.82;          // per step at 60 Hz: quick, one small overshoot
+    const st = { gap: 0, v: 0, sq: 0, sv: 0 };
+    function reset() { st.gap = st.v = st.sq = st.sv = 0; }
+    function step(ptr, W, H) {
+      const inside = ptr && ptr.x >= -4 && ptr.x <= W + 4 && ptr.y >= -4 && ptr.y <= H + 4;
+      st.v = (st.v + ((inside ? PULL : 0) - st.gap) * K) * D; st.gap += st.v;
+      st.sv = (st.sv + ((ptr && ptr.down && inside ? SQUEEZE : 0) - st.sq) * 0.2) * 0.72; st.sq += st.sv;
+    }
+    function paint() {
+      const g = st.gap, q = st.sq;
+      const place = (s, b, dx) => { s.style.left = `${b.x + dx + q}px`; s.style.top = `${b.y + q}px`; s.style.width = `${b.w - 2 * q}px`; s.style.height = `${b.h - 2 * q}px`; };
+      place(sIcon, bi, -g); place(sLabel, bl, 0);
+      icon.style.transform = `translateX(${-g}px)`;
+      img.style.transform = `rotate(${-(g / PULL) * 18}deg)`;
+    }
+    return { host, btn, reset, step, paint };
+  }
+
+  // B: liquid outline
+  const NS = "http://www.w3.org/2000/svg";
+  function makeLiquid(host) {
+    const btn = host.querySelector(".button");
+    const R = 60;   // reach around each pill for the svg box
+    const rings = [...btn.querySelectorAll(".button__icon, .button__label")].map((el) => {
+      const sw = parseFloat(getComputedStyle(el).borderTopWidth) || 3;
+      const w = el.offsetWidth, h = el.offsetHeight;
+      const svg = document.createElementNS(NS, "svg"); svg.setAttribute("class", "ring"); svg.setAttribute("aria-hidden", "true");
+      svg.setAttribute("viewBox", `0 0 ${w + 2 * R} ${h + 2 * R}`);
+      svg.style.cssText = `left:${-R - sw}px;top:${-R - sw}px;width:${w + 2 * R}px;height:${h + 2 * R}px`;
+      const path = document.createElementNS(NS, "path"); path.setAttribute("stroke-width", String(sw)); svg.appendChild(path); el.appendChild(svg);
+      const iw = w - sw, ih = h - sw, r = Math.min(iw, ih) / 2, o = R + sw / 2;
+      const straight = Math.max(0, iw - 2 * r), arc = Math.PI * r, total = 2 * straight + 2 * arc, n = Math.max(32, Math.round(total / 5));
+      const pts = [];
+      for (let i = 0; i < n; i++) {
+        const s = (i / n) * total; let x, y, nx, ny;
+        if (s < straight) { x = r + s; y = 0; nx = 0; ny = -1; }
+        else if (s < straight + arc) { const a = (s - straight) / r - Math.PI / 2; nx = Math.cos(a); ny = Math.sin(a); x = iw - r + nx * r; y = r + ny * r; }
+        else if (s < 2 * straight + arc) { x = iw - r - (s - straight - arc); y = ih; nx = 0; ny = 1; }
+        else { const b = (s - 2 * straight - arc) / r + Math.PI / 2; nx = Math.cos(b); ny = Math.sin(b); x = r + nx * r; y = r + ny * r; }
+        pts.push({ rx: x + o, ry: y + o, nx, ny, x: x + o, y: y + o, vx: 0, vy: 0, caught: false });
+      }
+      // offset of this ring's svg origin from the button's top-left, to turn pointer coords into ring coords
+      return { el, path, pts, ox: el.offsetLeft - R - sw, oy: el.offsetTop - R - sw };
+    });
+    // Caught edge, one anchor per ring: when the pointer comes within CATCH of the edge the nearest
+    // rest point is caught; it follows the pointer (capped at MAXOUT outward, MAXIN inward so it never
+    // crosses the label) and its neighbours follow on a smooth falloff along the edge (SIGMA px).
+    // The anchor slides to whichever point is nearest, and lets go past RELEASE; springs bring it home.
+    const CATCH = 18, RELEASE = 46, SIGMA = 26, MAXOUT = 27, MAXIN = 8;
+    const TENSION = 0.085, NEIGHBOUR = 0.04, DAMP = 0.8, PRESS = 6;
+    for (const rg of rings) { rg.caught = false; rg.anchor = 0; let L = 0; rg.arc = rg.pts.map((q, i, a) => { if (i) L += Math.hypot(q.rx - a[i - 1].rx, q.ry - a[i - 1].ry); return L; }); rg.len = L + Math.hypot(rg.pts[0].rx - rg.pts[rg.pts.length - 1].rx, rg.pts[0].ry - rg.pts[rg.pts.length - 1].ry); }
+    function reset() { for (const rg of rings) { rg.caught = false; for (const q of rg.pts) { q.x = q.rx; q.y = q.ry; q.vx = q.vy = 0; } } }
+    function step(ptr) {
+      for (const rg of rings) {
+        const p = rg.pts, n = p.length;
+        const mx = ptr ? ptr.x - rg.ox : -1e5, my = ptr ? ptr.y - rg.oy : -1e5;
+        let j = 0, best = Infinity;
+        for (let i = 0; i < n; i++) { const d = Math.hypot(p[i].rx - mx, p[i].ry - my); if (d < best) { best = d; j = i; } }
+        if (!rg.caught && best < CATCH) rg.caught = true;
+        if (rg.caught && best > RELEASE) rg.caught = false;
+        let vx = 0, vy = 0;
+        if (rg.caught && !(ptr && ptr.down)) {
+          rg.anchor = j;
+          const a = p[j]; vx = mx - a.rx; vy = my - a.ry;
+          const out = vx * a.nx + vy * a.ny, cap = out >= 0 ? MAXOUT : MAXIN, m = Math.hypot(vx, vy);
+          if (m > cap) { vx *= cap / m; vy *= cap / m; }
+        }
+        const pressing = ptr && ptr.down && best < RELEASE;
+        for (let i = 0; i < n; i++) {
+          const q = p[i];
+          let tx = q.rx, ty = q.ry;
+          if (pressing) { tx -= q.nx * PRESS; ty -= q.ny * PRESS; }
+          else if (rg.caught) {
+            let da = Math.abs(rg.arc[i] - rg.arc[rg.anchor]); da = Math.min(da, rg.len - da);
+            const g = Math.exp(-(da * da) / (SIGMA * SIGMA));
+            tx += vx * g; ty += vy * g;
+          }
+          const prev = p[(i - 1 + n) % n], next = p[(i + 1) % n];
+          const ndx = ((prev.x - prev.rx) + (next.x - next.rx)) / 2 - (q.x - q.rx);
+          const ndy = ((prev.y - prev.ry) + (next.y - next.ry)) / 2 - (q.y - q.ry);
+          q.vx = (q.vx + (tx - q.x) * TENSION + ndx * NEIGHBOUR) * DAMP;
+          q.vy = (q.vy + (ty - q.y) * TENSION + ndy * NEIGHBOUR) * DAMP;
+        }
+        for (const q of p) { q.x += q.vx; q.y += q.vy; }
+      }
+    }
+    function paint() {
+      for (const rg of rings) {
+        const p = rg.pts, n = p.length; let d = `M${p[0].x.toFixed(2)} ${p[0].y.toFixed(2)}`;
+        for (let i = 0; i < n; i++) {
+          const p0 = p[(i - 1 + n) % n], p1 = p[i], p2 = p[(i + 1) % n], p3 = p[(i + 2) % n];
+          d += `C${(p1.x + (p2.x - p0.x) / 6).toFixed(2)} ${(p1.y + (p2.y - p0.y) / 6).toFixed(2)} ${(p2.x - (p3.x - p1.x) / 6).toFixed(2)} ${(p2.y - (p3.y - p1.y) / 6).toFixed(2)} ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
+        }
+        rg.path.setAttribute("d", d + "Z");
+      }
+    }
+    return { host, btn, reset, step, paint };
+  }
+
+  await document.fonts.ready;
+  const units = [makeGooey(document.getElementById("a")), makeLiquid(document.getElementById("b"))];
+  const size = (u) => ({ W: u.btn.offsetWidth, H: u.btn.offsetHeight });
+
+  // Render mode: replay the scripted pointer from 0 to t in fixed steps. Pure function of t.
+  window.seek = (t) => {
+    t = ((t % DUR) + DUR) % DUR;
+    const steps = Math.round(t * HZ);
+    for (const u of units) {
+      const { W, H } = size(u); u.reset();
+      for (let s = 0; s < steps; s++) u.step(pointerAt(s / HZ, W, H), W, H);
+      u.paint();
+      const ptr = pointerAt(t, W, H), cur = u.host.querySelector(".cursor");
+      cur.style.transform = `translate(${ptr.x}px, ${ptr.y}px) scale(${ptr.down ? 0.8 : 1})`;
+    }
+  };
+
+  units.forEach((u) => u.paint());
+  if (!window.__RENDER__ && !reduced) {
+    // Live: the real pointer, same fixed steps.
+    const live = new Map(units.map((u) => [u, null]));
+    let down = false;
+    addEventListener("pointermove", (e) => { for (const u of units) { const b = u.btn.getBoundingClientRect(); live.set(u, { x: e.clientX - b.left, y: e.clientY - b.top, down }); } }, { passive: true });
+    addEventListener("pointerdown", () => { down = true; for (const [u, p] of live) if (p) p.down = true; });
+    addEventListener("pointerup", () => { down = false; for (const [u, p] of live) if (p) p.down = false; });
+    document.addEventListener("pointerleave", () => { for (const u of units) live.set(u, null); });
+    let last = performance.now(), acc = 0;
+    const loop = (now) => {
+      acc += Math.min(0.1, (now - last) / 1000); last = now;
+      while (acc >= 1 / HZ) { for (const u of units) { const { W, H } = size(u); u.step(live.get(u), W, H); } acc -= 1 / HZ; }
+      units.forEach((u) => u.paint());
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+</script>
+</body>
+</html>

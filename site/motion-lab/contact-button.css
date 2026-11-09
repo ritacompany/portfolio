@@ -1,0 +1,27 @@
+/* Motion lab page, not shipped. Style guide, state list and review log: docs/motion/contact-button/.
+     Two versions of the liquid effect on the real Contact button (components.css .button), from his
+     two Framer references: A gooey split, B liquid outline. Both are fixed step simulations driven by
+     a pointer: window.seek(t) replays the scripted pointer from 0 to t, so any frame renders the same;
+     live mode uses the real pointer. */
+/* Contact button motion lab page. Layout only. */
+  html, body { background: var(--neutral-900); }
+  #c { position: relative; min-height: 100vh; display: grid; align-content: center; gap: 56px; padding: 24px 16px; overflow: hidden; }
+  .row { display: grid; justify-items: center; gap: 20px; }
+  .row h2 { font: var(--label-14-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; color: var(--neutral-550); }
+  .host { position: relative; }
+  .cursor { position: absolute; left: 0; top: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%;
+    border: 2px solid var(--neutral-000); box-shadow: 0 0 0 2px var(--neutral-900); pointer-events: none; display: none; }
+  .is-render .cursor { display: block; }
+  .is-render .button { cursor: none; }
+
+  /* A, gooey split: the borders go transparent and a shape layer behind the content paints both
+     pills filled; one SVG filter blurs, thresholds and erodes them so only the outline of their
+     union shows. The content (icon, label) sits on top unfiltered. */
+  .gooey .button__icon, .gooey .button__label { border-color: transparent; position: relative; z-index: 1; }
+  .goo-shapes { position: absolute; inset: -60px; filter: url(#goo-ring); pointer-events: none; }
+  .goo-shapes span { position: absolute; background: var(--neutral-100); border-radius: 999px; }
+
+  /* B, liquid outline: each pill's border is replaced by an SVG ring on springs. */
+  .liquid .button__icon, .liquid .button__label { border-color: transparent; position: relative; }
+  .liquid svg.ring { position: absolute; overflow: visible; pointer-events: none; max-width: none; }
+  .liquid svg.ring path { fill: none; stroke: var(--neutral-100); }
