@@ -63,7 +63,7 @@ Alt: Timeline of twelve columns. Phase 1, Identity, runs empathize, define, idea
 
 ## Wireframes
 Eyebrow: Wireframes
-Headline: My first wireframes gave users a chat length to pick, a passcode as their only security and top matches to swipe through. Testing changed all three.
+Headline: My first wireframes gave users a chat length to pick, a passcode as their only security and their top three Confidantes to swipe through. Testing changed all three.
 Aria: Five wireframes, scrolls sideways on small screens
 Alt: Wireframe: set chat duration, with 15, 30, 45 and 60 minute options.
 Alt: Wireframe: the original security step, a passcode only.

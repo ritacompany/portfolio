@@ -107,7 +107,7 @@ if (mode === 'pending') {
     ok(!oxford(m.final), `${id} his final: own Oxford rule`);
     for (const [re, name] of banned) ok(!re.test(m.final), `${id} his final: no ${name}`);
     ok(casingBad(m.final).length === 0 && sentenceCase(m.final), `${id} his final: casing and sentence case`);
-    ok(((humBlocks[id] || '').match(/^Final \(applied, his note\): (.*)$/m) || [])[1] === m.final, `${id} his final: humanizer record matches`);
+    ok(((humBlocks[id] || '').match(/^Final \(applied[^)]*\): (.*)$/m) || [])[1] === m.final, `${id} his final: humanizer record matches`);
   }
   for (const p of props) {
     const m = marks[p.id]; const take = m && (m.choice === 'accept' || m.choice === 'change');

@@ -54,7 +54,9 @@
   "choice": "accept"
  },
  "h-wires": {
-  "choice": "accept"
+  "choice": "change",
+  "final": "My first wireframes gave users a chat length to pick, a passcode as their only security and their top three Confidantes to swipe through. Testing changed all three.",
+  "note": "He accepted it. After his marks, the round 3 reader check flagged top matches as unexplained (2 of 3): the MVP body that used to introduce matching is gone. Swapped for the wireframe alt wording, top three Confidantes."
  },
  "h-mvp-body": {
   "choice": "change",

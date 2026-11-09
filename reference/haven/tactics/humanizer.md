@@ -64,6 +64,9 @@ Draft: My first wireframes gave users a chat length to pick, a passcode as the o
 Audit: Testing changed all three is a short closer, but a single one carrying a real fact, not a run of fragments. The only security step reads technical; as their only security is plainer. Fact check: the three are the wireframe alts (duration 15 to 60 minutes, passcode only, top three matches swiped up and down) and each changed later on the page (30 minutes, the full privacy setup, suggested Confidantes replacing swiping).
 Final: My first wireframes gave users a chat length to pick, a passcode as their only security and top matches to swipe through. Testing changed all three.
 
+After his marks (9 Nov): he accepted it. The round 3 reader check then found top matches unexplained (2 of 3), because the MVP body that introduced matching was replaced with his note. A two word swap from the wireframe's own alt text (top three matches), with Confidantes, which the hero defines. No new fact.
+Final (applied, after round 3): My first wireframes gave users a chat length to pick, a passcode as their only security and their top three Confidantes to swipe through. Testing changed all three.
+
 ## h-test-head
 Draft: Six participants tested three key flows.
 Audit: a count that matches the three tasks listed under it, and a full stop like every other headline. No new fact.
