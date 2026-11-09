@@ -161,7 +161,8 @@ for sid, sy, sh, label in SECS:
                 f'<p class="t s-body-16 c-neutral-300 week__desc" style="width:{[259,461,529,487,529][i]}px"{" data-figma-node=\"5812:20704\"" if i == 0 else ""}>{html.escape(desc)}</p>'
                 f'</li>')
         items.append(("fig", 33, 371, 1017, 705, '<ul class="week" data-figma-node="5812:20504" aria-label="Start of week templates, scroll sideways for more" tabindex="0" style="left:33px;top:371px">' + "".join(slides) + '</ul>'))
-        items.append(("fig", 357, 17071 - sy, 369, 35, f'<img class="fig" data-figma-node="5812:20705" src="/assets/framework/week-scroll-hint@2x.webp" alt="" width="369" height="35" style="left:357px;top:{fmt(17071 - sy)}px;width:369px;height:35px">'))
+        dots = "".join(f'<button type="button" class="week-dot" aria-label="Show template {i + 1} of 5"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(5))
+        items.append(("fig", 357, 17071 - sy, 369, 35, f'<div class="week-nav" data-figma-node="5812:20705" style="left:357px;top:{fmt(17071 - sy)}px"><div class="week-dots">{dots}</div><p class="week-hint">Scroll to view more templates</p></div>'))
     parts += [i[5] for i in flow_order(items)]
     sh = SEC_H.get(sid, sh)
     out.append(f'      <section class="fw-sec" data-figma-node="{sid}" aria-label="{html.escape(label)}" style="height:{fmt(sh)}px">\n        ' + "\n        ".join(parts) + "\n      </section>")

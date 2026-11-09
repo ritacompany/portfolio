@@ -112,8 +112,8 @@ A new session picks this up from this file alone.
   Framework and Haven at default settings, the lab page and the tuner. Resume point: he tunes it on
   the tuner (https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG), his Copy settings output goes into
   `GOO` in `contact-goo.js`, then `node scripts/verify-contact-goo.mjs` and the 1440 suite. Phase 3 did
-  not touch the button, its script or the lab. The rest of Phase 2 also waits on him: card hovers (H11
-  prototype awaiting review), Falling behind (his editor settings), the footer transition (H16 pick).
+  not touch the button, its script or the lab. The rest of Phase 2 also waited on him: card hovers (H11
+  prototype, since built) and the footer transition (now in Details).
   Link and Context list hovers already work from Phase 0.
 - Contact button, later on 9 Nov (the button session, still running when Phase 3 merged), his ask: mix the gooey split with the liquid outline, no neck at rest, react to
   where the pointer is, the hidden colour as a setting. Built in new files (another session owns
@@ -153,6 +153,29 @@ A new session picks this up from this file alone.
   fixes/2026-11-09-phase-3-built-without-his-checkpoint.md. Nothing in Phase 3 is approved.
 - Next action: his review of the 390 versions (`docs/responsive/*-390.webp`, or `npm run dev` at 390).
   Then Phase 2 as he unparks it, then Phase 4.
+- Phase 2, 9 Nov, the rest: Home work cards carry the H11 states (image eases in 3.5 percent, text white,
+  Learn more fills, focus ring, press settles; reduced motion keeps colour only). Links and context rows
+  ease over 200 ms like the Small button. The footer clock is live Chicago time on Home and Framework
+  (site/js/site.js; Haven keeps its own). The Start of week dots are HTML, follow the carousel and jump
+  on click; the hint text matches the old export to the pixel. Haven's motion is unchanged. Gate:
+  node scripts/verify-phase2.mjs cards|links|clock|dots|regress, all pass.
+
+- Pre launch check, 9 Nov (built site in dist/): every page has a title and description; the portfolio
+  logo is now the favicon on every page (Haven already used it); Haven's profile scroll study page no
+  longer ships. Resume is hidden in the footer on every page at his call (9 Nov) until he provides his resume; the
+  link stays in the markup with hidden and data-hidden-until. Open for launch: Collection's Design system row links to #design-system; no social preview image
+  (og:image) on any page.
+
+## Details (end of build)
+
+His call 9 Nov: polish pieces he wants to recreate himself wait here until the build is done. Nothing
+in this list blocks a phase.
+- Contact button effect. The pages run the gooey split (site/js/contact-goo.js). Two tuners exist: the
+  gooey split (session "Portfolio: Contact button liquid effect",
+  https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG) and the liquid mix
+  (https://claude.ai/artifact/BdG5yNZuFnkSDSfgQneXnU, site/js/contact-liquid.js). He has something he
+  wants to try recreating.
+- Footer halftone band motion. The band ships static as drawn in Figma. He has a reference to show.
   Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
@@ -303,7 +326,7 @@ means tuning twice.
 |---|---|---|
 | 0 Foundation | Rewrite `tokens.css` from the Portfolio values and the type table; 12 column grid utility (40 margin, 40 gutter); shared components in HTML and CSS: Navbar (PD, Base), Footer (Default, Other pages), Link (3 styles by 3 states), Badge, Context list, Button, Small button | A component sheet page in `site/` matches each Figma variant side by side at 1440 |
 | 1 Pages, static | Collection page first (smallest, uses most components), then Home, then Framework CS (screenshots as 2x image exports), then Haven moved onto the shared nav, footer and tokens without changing its spacing or motion | Each page matches its frame at 1440, `npm run check` passes, no Figma asset URL in the code |
-| 2 Interactions and motion | Button and Small button states designed together; link and card hovers; carry over what exists (Haven motion, Falling behind, the footer transition); new motion only after his pick | Each piece passes the motion review loop in `.claude/motion-rules.md` |
+| 2 Interactions and motion | Button and Small button states designed together; link and card hovers; carry over what exists (Haven motion); new motion only after his pick | Each piece passes the motion review loop in `.claude/motion-rules.md` |
 | 3 Responsive | 390 wide recompositions per page, then 768 and 1200 (built 9 Nov, ahead of the parked Phase 2 items) | No horizontal scroll at 390, 768, 1200 and 1440; he approves the 390 versions |
 | 4 Launch | Point `npm run build` at `site/`, remove the noindex header, robots allow, domain on Vercel (steps in `docs/SITE_SETUP.md`) | chadwickfenner.com serves the site, indexing on |
 
