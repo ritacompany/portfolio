@@ -6,12 +6,22 @@
 // stretches and snaps, the icon tips; on leave it flows back. Press squeezes both shapes.
 // Fixed 60 Hz steps, so the motion lab replays it frame for frame through window.seek(t).
 // Reduced motion: never starts, the CSS borders stay.
-export const GOO = { pull: 32, tilt: 18, blur: 9, stiff: 0.075, damp: 0.82, squeeze: 6 };
+// Tuned on the live tuner (site/motion-lab/contact-goo-tuner.html); its Copy settings output pastes here.
+export const GOO = { pull: 32, tilt: 18, blur: 9, merge: 26, cut: 12, line: 3, stiff: 0.075, damp: 0.82, squeeze: 6, pressStiff: 0.2, pressDamp: 0.72 };
 const NS = "http://www.w3.org/2000/svg";
 const PAD = 60;
 
+// Writes the goo values into the filter, so the tuner can change them live.
+export function applyFilter() {
+  const f = document.getElementById("goo-ring");
+  if (!f) return;
+  f.querySelector("feGaussianBlur").setAttribute("stdDeviation", GOO.blur);
+  f.querySelector("feColorMatrix").setAttribute("values", `1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ${GOO.merge} ${-GOO.cut}`);
+  f.querySelector("feMorphology").setAttribute("radius", GOO.line);
+}
+
 function ensureFilter() {
-  if (document.getElementById("goo-ring")) return;
+  if (document.getElementById("goo-ring")) { applyFilter(); return; }
   const svg = document.createElementNS(NS, "svg");
   svg.setAttribute("width", "0"); svg.setAttribute("height", "0"); svg.setAttribute("aria-hidden", "true");
   svg.style.position = "absolute";
@@ -21,6 +31,7 @@ function ensureFilter() {
     <feMorphology in="goo" operator="erode" radius="3" result="inner"/>
     <feComposite in="goo" in2="inner" operator="out"/></filter></defs>`;
   document.body.prepend(svg);
+  applyFilter();
 }
 
 export function gooey(btn) {
@@ -44,7 +55,7 @@ export function gooey(btn) {
       const W = btn.offsetWidth, H = btn.offsetHeight;
       const inside = ptr && ptr.x >= -4 && ptr.x <= W + 4 && ptr.y >= -4 && ptr.y <= H + 4;
       st.v = (st.v + ((inside ? GOO.pull : 0) - st.g) * GOO.stiff) * GOO.damp; st.g += st.v;
-      st.qv = (st.qv + ((ptr && ptr.down && inside ? GOO.squeeze : 0) - st.q) * 0.2) * 0.72; st.q += st.qv;
+      st.qv = (st.qv + ((ptr && ptr.down && inside ? GOO.squeeze : 0) - st.q) * GOO.pressStiff) * GOO.pressDamp; st.q += st.qv;
     },
     paint() {
       const g = st.g, q = st.q;
@@ -52,20 +63,21 @@ export function gooey(btn) {
       // The icon moves by transform, so its layout box (bi) stays where it rests.
       place(sIcon, bi, -g); place(sLabel, bl, 0);
       icon.style.transform = `translateX(${-g}px)`;
-      img.style.transform = `rotate(${-(g / GOO.pull) * GOO.tilt}deg)`;
+      img.style.transform = `rotate(${GOO.pull ? -(g / GOO.pull) * GOO.tilt : 0}deg)`;
     },
   };
 }
 
-export function startContactGoo(root = document) {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+// speed is for the tuner's slow motion only; the site runs at 1.
+export function startContactGoo(root = document, { speed = () => 1, force = false } = {}) {
+  if (!force && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const run = () => {
     const units = [...root.querySelectorAll(".button")].map(gooey);
     if (!units.length) return;
     units.forEach((u) => u.paint());
     const ptr = new Map();
     let down = false;
-    const track = (e) => { for (const u of units) { const b = u.btn.getBoundingClientRect(); ptr.set(u, { x: e.clientX - b.left, y: e.clientY - b.top, down }); } };
+    const track = (e) => { for (const u of units) { const b = u.btn.getBoundingClientRect(); const k = b.width / u.btn.offsetWidth || 1; ptr.set(u, { x: (e.clientX - b.left) / k, y: (e.clientY - b.top) / k, down }); } };
     addEventListener("pointermove", track, { passive: true });
     addEventListener("pointerdown", (e) => { down = true; track(e); });
     addEventListener("pointerup", (e) => { down = false; track(e); });
@@ -74,7 +86,7 @@ export function startContactGoo(root = document) {
     addEventListener("resize", () => units.forEach((u) => u.measure()));
     let last = performance.now(), acc = 0;
     const loop = (now) => {
-      acc += Math.min(0.1, (now - last) / 1000); last = now;
+      acc += Math.min(0.1, (now - last) / 1000) * speed(); last = now;
       while (acc >= 1 / 60) { units.forEach((u) => u.step(ptr.get(u) || null)); acc -= 1 / 60; }
       units.forEach((u) => u.paint());
       requestAnimationFrame(loop);

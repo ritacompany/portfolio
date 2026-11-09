@@ -103,7 +103,9 @@ A new session picks this up from this file alone.
   settings. Shipped as site/js/contact-goo.js on Home, Framework and Haven; the lab page now runs that
   same module, so the lab render is the shipped motion (two renders matched sha256). Reduced motion and
   no script keep the plain borders. At rest the two pills join with a liquid neck, a decided change from
-  the Figma footer; page pixel gates still pass.
+  the Figma footer; page pixel gates still pass. Not done: he tunes it on the tuner
+  (scripts/motion-tuner/contact-goo.py, published at https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG) and
+  his Copy settings output goes into GOO in contact-goo.js.
 - Next action: link and card hovers, Haven motion carry over, Falling behind and the footer
   transition. Then Phase 3 (390, 768, 1200).
   Haven keeps its own CSS until Phase 1 moves it.
