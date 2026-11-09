@@ -42,6 +42,8 @@ const sources = ['copy', 'layout'].flatMap(d => {
   const dir = path.join(cs2, d);
   return fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith('.md')).map(f => norm(fs.readFileSync(path.join(dir, f), 'utf8'))) : [];
 });
+// His reviewed copy (his call, 9 Nov): the final text for the framework frame lives here, outside copy/.
+sources.push(norm(fs.readFileSync(path.join(cs2, 'review-2026-11-07/final-copy.md'), 'utf8')));
 const problems = [];
 for (const s of strings)
   if (s.split(/\s+/).length >= 4 && !sources.some(src => src.includes(norm(s))))
