@@ -199,6 +199,14 @@ Every piece of site work, at every stage, runs this loop. Nothing is done becaus
 Preview link: https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST (private to him). Rebuild with
 `node scripts/build-preview.mjs site <dir>`, then publish to that same url.
 
+Loop log:
+- 9 Nov, nav hover (first piece through the loop). His note on the preview: the hover changes the word's
+  shape, the letters widen and space differently. Cause: the Figma Nav hover variant is Bold. His yes
+  (card): keep the weight, only the block and text colour change. Built in components.css; measured: no
+  nav word moves on hover. Waiting on him to try it. The Figma component still draws Bold.
+- 9 Nov, he could not open the preview full screen in claude.ai, which also shows him the tablet layout.
+  Open: whether to put the preview on a Vercel address instead.
+
 Approved so far: Phase 0 sheet ("fine enough", 8 Nov); Small button option A and the Contact button
 gooey split (picks, 9 Nov). Not yet approved by him: the Phase 1 pages as built, everything else in
 Phase 2, all of Phase 3.

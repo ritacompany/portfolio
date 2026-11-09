@@ -56,8 +56,11 @@
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
   color: var(--neutral-050);
 }
+/* Hover and pressed keep the default weight (his note, 9 Nov): the Figma variant switches to Bold, which
+   widens the word and shifts its neighbours, so it reads as the word changing shape rather than a
+   highlight. Only the block behind the word and the text colour change. */
 .link-nav:hover, .link-nav.is-hover,
-.link-nav:active, .link-nav.is-pressed { font-weight: 700; color: var(--neutral-900); background: var(--neutral-200); }
+.link-nav:active, .link-nav.is-pressed { color: var(--neutral-900); background: var(--neutral-200); }
 .link-nav .gap { margin-left: 4px; }
 
 .link-footer {
