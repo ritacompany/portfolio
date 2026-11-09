@@ -154,8 +154,10 @@ A new session picks this up from this file alone.
   (site/js/site.js; Haven keeps its own). The Start of week dots are HTML, follow the carousel and jump
   on click; the hint text matches the old export to the pixel. Haven's motion is unchanged. Gate:
   node scripts/verify-phase2.mjs cards|links|clock|dots|regress, all pass.
-- Waiting on him: Falling behind (his tuned settings from the editor,
-  site/motion-lab/cs2-falling-behind-editor.html).
+- Falling behind (Framework CS section 5812:20248) ships as his Figma frame draws it: the right rail
+  and rollover images, no animation. The 4 to 5 Nov animation editor
+  (site/motion-lab/cs2-falling-behind-editor.html, reference/cs2/HANDOFF.md) was never tuned and is
+  not in the frame; dropped from Phase 2 on 9 Nov. Revive only if he asks.
 
 - Pre launch check, 9 Nov (built site in dist/): every page has a title and description; the portfolio
   logo is now the favicon on every page (Haven already used it); Haven's profile scroll study page no
