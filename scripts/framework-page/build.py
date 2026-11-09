@@ -50,12 +50,19 @@ PANELS = {  # frames that draw behind HTML text: node: (section, class, x, y, w,
  "5812:20343": ("5812:20248", "vrule", 349.97, 14415.56, 1, 230),
 }
 
+# Final copy (reference/cs2/review-2026-11-07/final-copy.md) runs longer than the Figma copy in three
+# places. These move what sits below the longer text and grow the section, keeping Figma's gaps:
+# hero right column (+87), Capacity body over the Example box (gap 73 kept), Ending body under a three
+# line headline (gap 80 kept).
+DY = {"5812:17126": 286, "5812:17127": 286, "5812:17128": 286, "5812:21566": 188}
+SEC_H = {"5812:16447": 656, "5812:17084": 1133, "5812:21559": 810}
+
 TEMPLATES = [
- ("week-clean-slate", "Template 1 of 5", "Clean slate", "A clean slate only means something if no day was lost, so a week with a lost day goes to rollover."),
- ("week-catching-up", "Template 2 of 5", "Catching up", "Finishing every Action Item doesn’t close the gap for someone behind, so this screen shows the days they won back and points to finishing early, until they catch up."),
- ("week-rollover", "Template 3 of 5", "Rollover", "When a week ends unfinished, the rollover Action Items wait in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes unseen."),
- ("week-recalibration", "Template 4 of 5", "Recalibration", "Rollover handles one unfinished week. When it keeps happening, the screen suggests a capacity that fits the hours someone has been giving. They can take it, set their own or skip it with a warning."),
- ("week-reset", "Template 5 of 5", "Reset", "After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with progress kept and new target dates. It has one button, because a keep my plan option would win by default."),
+ ("week-clean-slate", "Template 1 of 5", "Clean slate", "This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead."),
+ ("week-catching-up", "Template 2 of 5", "Catching up", "Finishing every Action Item doesn’t close the gap for a user who is behind, so this screen shows how many days they made up last week and points them to finishing early until they’re back on target."),
+ ("week-rollover", "Template 3 of 5", "Rollover", "When a week ends unfinished, the Rollover Action Items wait in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes unseen."),
+ ("week-recalibration", "Template 4 of 5", "Recalibration", "Rollover handles one unfinished week. When it keeps happening, the screen suggests a capacity that fits the hours the user has been giving. They can take it, set their own or skip it with a warning."),
+ ("week-reset", "Template 5 of 5", "Reset", "After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with their progress kept. It has one button, because most users would pick keep my plan just because it’s the default."),
 ]
 CAROUSEL_TEXT_IDS = {"5812:20702", "5812:20703", "5812:20704"}
 
@@ -77,6 +84,7 @@ def fmt(v):
 spec = {s["id"]: s for s in json.load(open(SPEC))}
 
 def text_el(t, sy, tag="p"):
+    sy = sy - DY.get(t["id"], 0)
     cls = ["t", STYLE[t["style"]], color(t["color"])]
     if t["font"] == "Bold": cls.append("w-bold")
     if t["align"] == "CENTER": cls.append("a-center")
@@ -98,7 +106,7 @@ for sid, sy, sh, label in SECS:
     parts = []
     for node, (sec, cls, x, y, w, h) in PANELS.items():
         if sec == sid:
-            parts.append(f'<span class="{cls}" data-figma-node="{node}" aria-hidden="true" style="left:{fmt(x)}px;top:{fmt(y - sy)}px;width:{fmt(w)}px;height:{fmt(h)}px"></span>')
+            parts.append(f'<span class="{cls}" data-figma-node="{node}" aria-hidden="true" style="left:{fmt(x)}px;top:{fmt(y - sy + DY.get(node, 0))}px;width:{fmt(w)}px;height:{fmt(h)}px"></span>')
     texts = s["texts"]
     for t in texts:
         if t["id"] in CAROUSEL_TEXT_IDS: continue
@@ -124,6 +132,7 @@ for sid, sy, sh, label in SECS:
                 f'</li>')
         parts.append('<ul class="week" data-figma-node="5812:20504" aria-label="Start of week templates, scroll sideways for more" tabindex="0" style="left:33px;top:371px">' + "".join(slides) + '</ul>')
         parts.append(f'<img class="fig" data-figma-node="5812:20705" src="/assets/framework/week-scroll-hint@2x.webp" alt="" width="369" height="35" style="left:357px;top:{fmt(17071 - sy)}px;width:369px;height:35px">')
+    sh = SEC_H.get(sid, sh)
     out.append(f'      <section class="fw-sec" data-figma-node="{sid}" aria-label="{html.escape(label)}" style="height:{fmt(sh)}px">\n        ' + "\n        ".join(parts) + "\n      </section>")
 
 sections = "\n".join(out)

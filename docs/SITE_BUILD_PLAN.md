@@ -71,10 +71,19 @@ A new session picks this up from this file alone.
   passing. The page gate now loads lazy images before its shot and fails on any image that did not
   render (the first run passed at 2.67 percent with three figures missing, because dark screenshots
   sit under the 64 level pixel threshold).
-- Copy in the Framework frame, kept as drawn for the copy pass: the hero's focus list is placeholder
-  ("asdsdasddfaassdf"), the ending is "Ending section / or whatever / In reflection ?/?",
-  "Reschedudling an action item", "it’s required effort", "their pace dates gets pushed out".
-  The Collection's Framework row now links here.
+- Copy: every line comes from `reference/cs2/review-2026-11-07/final-copy.md` on main (spec.json and
+  the template captions in build.py), not the Figma frame. Three places run longer than Figma's text,
+  so what sits below moves down and the section grows with Figma's gap kept: hero right column
+  (+87), the Capacity body pushes the Example box down 286, the Ending body sits under a three line
+  headline (+188). The page gate compares boxes and pixels section by section from each section's
+  top for that reason; text heights are not compared where the copy changed.
+- Still from Figma and stale against final-copy.md, because they are baked into exports: the
+  foundation diagram (Branding should come before Networking; Focus Areas and Action Items
+  capitalized) and the Buffer mock line ("Every task, every week, no gaps." should read "Every Action
+  Item, every week, no gaps."). Fix both in the Figma frame, then re-export those two figures.
+  Optional Body 5 (streak) is left out. The Capacity body is now 15 lines in a 255 wide column; the
+  layout wants a wider column there, his call in Figma.
+- The Collection's Framework row now links here.
 - Next action: Phase 1, Haven moved onto the shared nav, footer and tokens without changing its
   spacing or motion (`5812:21569`).
   Haven keeps its own CSS until Phase 1 moves it.

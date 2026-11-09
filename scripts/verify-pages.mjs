@@ -71,6 +71,9 @@ try {
       const els = await page.$$(b.sel);
       if (els.length !== 1) { problems.push(`${b.name}: ${els.length} matches for ${b.sel}`); continue; }
       const box = await els[0].evaluate((e) => { const r = e.getBoundingClientRect(); return { x: r.x + scrollX, y: r.y + scrollY, w: r.width, h: r.height }; });
+      // A box measured against its section: the section may sit lower in code than in Figma when
+      // copy above it runs longer, so y is compared from the section's top.
+      if (b.rel) { const top = await page.$eval(b.rel.sel, (e) => e.getBoundingClientRect().y + scrollY); box.y = box.y - top + b.rel.y; }
       const off = ["x", "y", "w", "h"].filter((k) => k in b && Math.abs(box[k] - b[k]) > (b.tol || 1));
       if (off.length) problems.push(`${b.name}: ${off.map((k) => `${k} ${box[k].toFixed(2)} vs Figma ${b[k]}`).join(", ")}`);
       else ok++;
@@ -79,28 +82,40 @@ try {
   }
 
   if (mode === "pixels") {
-    const shot = await page.screenshot({ fullPage: true, clip: { x: 0, y: 0, width: spec.w, height: spec.h } });
-    if (shotsDir) { mkdirSync(shotsDir, { recursive: true }); writeFileSync(join(shotsDir, `${key}-code.png`), shot); }
-    const r = await page.evaluate(async ({ src, data, w, h }) => {
+    // Pages with sections compare section by section, each aligned on its own top, so a section that
+    // grew for longer copy does not shift every section below it out of register.
+    const full = await page.screenshot({ fullPage: true });
+    if (shotsDir) { mkdirSync(shotsDir, { recursive: true }); writeFileSync(join(shotsDir, `${key}-code.png`), full); }
+    const regions = spec.sections
+      ? await Promise.all(spec.sections.map(async (r) => ({ ...r, cy: await page.$eval(r.sel, (e) => Math.round(e.getBoundingClientRect().y + scrollY)), ch: await page.$eval(r.sel, (e) => Math.round(e.getBoundingClientRect().height)) })))
+      : [{ name: key, y: 0, h: spec.h, cy: 0, ch: spec.h }];
+    const r = await page.evaluate(async ({ src, data, w, regions }) => {
       const load = (s) => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = s; });
       const [fig, code] = await Promise.all([load(src), load("data:image/png;base64," + data)]);
-      const paint = (img) => { const c = new OffscreenCanvas(w, h), x = c.getContext("2d"); x.fillStyle = "#000"; x.fillRect(0, 0, w, h); x.drawImage(img, 0, 0); return x.getImageData(0, 0, w, h).data; };
-      const a = paint(fig), b = paint(code);
-      let diff = Infinity;
-      for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
-        let d = 0;
-        for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-          const xs = Math.min(w - 1, Math.max(0, x + dx)), ys = Math.min(h - 1, Math.max(0, y + dy));
-          const i = (y * w + x) * 4, j = (ys * w + xs) * 4;
-          if (Math.abs(a[i] - b[j]) > 64 || Math.abs(a[i + 1] - b[j + 1]) > 64 || Math.abs(a[i + 2] - b[j + 2]) > 64) d++;
+      const out = [];
+      for (const g of regions) {
+        const h = Math.min(g.h, g.ch);
+        const paint = (img, y0) => { const c = new OffscreenCanvas(w, h), x = c.getContext("2d"); x.fillStyle = "#000"; x.fillRect(0, 0, w, h); x.drawImage(img, 0, -y0); return x.getImageData(0, 0, w, h).data; };
+        const a = paint(fig, Math.round(g.y)), b = paint(code, g.cy);
+        let diff = Infinity;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+          let d = 0;
+          for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+            const xs = Math.min(w - 1, Math.max(0, x + dx)), ys = Math.min(h - 1, Math.max(0, y + dy));
+            const i = (y * w + x) * 4, j = (ys * w + xs) * 4;
+            if (Math.abs(a[i] - b[j]) > 64 || Math.abs(a[i + 1] - b[j + 1]) > 64 || Math.abs(a[i + 2] - b[j + 2]) > 64) d++;
+          }
+          diff = Math.min(diff, d);
         }
-        diff = Math.min(diff, d);
+        out.push({ name: g.name, diff, total: w * h });
       }
-      return { diff, total: w * h, fw: fig.naturalWidth, fh: fig.naturalHeight };
-    }, { src: `${base}/${spec.image}`, data: shot.toString("base64"), w: spec.w, h: spec.h });
-    const share = r.diff / r.total;
+      return { out, fw: fig.naturalWidth };
+    }, { src: `${base}/${spec.image}`, data: full.toString("base64"), w: spec.w, regions });
+    let diff = 0, total = 0;
+    for (const g of r.out) { diff += g.diff; total += g.total; if (spec.sections) console.log(`  ${g.name} ${(100 * g.diff / g.total).toFixed(2)}%`); }
+    const share = diff / total;
     console.log(`${key} ${(share * 100).toFixed(2)}%`);
-    if (r.fw !== spec.w || r.fh !== spec.h) problems.push(`Figma image is ${r.fw}x${r.fh}, want ${spec.w}x${spec.h}`);
+    if (r.fw !== spec.w) problems.push(`Figma image is ${r.fw} wide, want ${spec.w}`);
     if (share > 0.04) problems.push(`${(share * 100).toFixed(2)}% of pixels differ, limit 4%`);
     token = "PIXELS_OK";
   }
