@@ -75,3 +75,21 @@ real footer at the same frames and set beside it.
   in and out returns to 0.00; reduced motion keeps the plain borders. No console errors.
 - Not copied into the shipped module yet: the site review gate (docs/SITE_BUILD_PLAN.md) needs his
   yes in the session that copies it over. The lab file is the shipping file byte for byte.
+
+## Round 4, the mix
+9 Nov 2026. His correction: the two recordings are one effect. The left part separates (gooey), then
+with the cursor on the main part of the button the outline does the liquid effect, and no colour behind
+it. Read the liquid recording at 60 fps (frames 132 to 246, pointer inside and leaving; 366 to 426,
+pointer just outside): inside, the outline near the pointer bulges outward over it and the hump
+follows the pointer, the far edge moving a little too; leaving, the edge sticks to the pointer and
+stretches into a soft point, lets go and wobbles back in about 0.4 s; just outside an edge the body
+presses in, which is where the cyan showed.
+- Built into the same lab module: the label pill is now a ring of points on springs (speed 0.36 s,
+  bounce 0.6, neighbour coupling for the travelling wave), drawn as an SVG path through the same goo
+  filter, so the outline stays one 3 px line and the goo split is untouched. Inside: bulge 16 px over a
+  46 px reach. Leaving: stretch up to 22 px, let go at 48 px. Just outside: press in 9 px, no colour.
+  Over the icon circle the pill is left alone. Offsets capped at 20 px out and 8 px in, clear of the text.
+- Checked live with a real pointer: bulge 15 px at the top edge with the pointer 12 px inside it,
+  stretch 10 px after a leaving pointer, settled to 0.02 px within 0.8 s, hover and leave curve as in
+  round 3, press, quick in and out, reduced motion. No console errors.
+- Still in the lab, not in the shipped module: the site review gate needs his yes.

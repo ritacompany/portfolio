@@ -66,3 +66,18 @@ Where it is built: the motion lab file `contact-goo-next.js` is the shipping mod
 motion lab page `contact-button-footer.html` (the Home footer as built). On his yes it is copied over
 the shipped `contact-goo.js` in the site's js folder; `components.css` needs no change, the neck is a
 third span under the same `.goo-shapes span` rule.
+
+## The mix, 9 Nov (round 4)
+His correction: the gooey split and the liquid outline are one effect, in sequence. Hovering splits the
+circle off (gooey recording, the curve above). With the cursor on the label pill the outline is a
+membrane (liquid recording, read frames 132 to 246 and 366 to 426 at 60 fps):
+- Inside: the outline nearest the pointer bulges outward over it, about 0.2 H, and the hump follows the
+  pointer along the edge; with the pointer mid pill both edges move a little.
+- Leaving: the edge sticks to the pointer and stretches after it into a soft point, lets go about 0.6 H
+  away and wobbles back, settled in about 0.4 s. One or two small wobbles, not a ripple.
+- Just outside an edge: the body presses in a little. In the reference that is where the cyan layer
+  showed; here nothing is coloured, only the outline moves (his 17 Oct ask).
+- The icon circle stays rigid and the text never moves.
+At the portfolio size (H 76): bulge 16 px, reach 46 px, stretch up to 22 px, release at 48 px, press in
+9 px within 40 px, spring speed 0.36 s and bounce 0.6, caps 20 px out and 8 px in. All in GOO at the
+top of the lab module, so sliders can follow if he wants it less liquid.
