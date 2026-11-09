@@ -17,6 +17,7 @@ for p in P:
     else:
         new = p['new']
     for cur, nw in [(p['cur'], new)] + [tuple(a) for a in p['also']]:
+        if cur not in fc and nw in fc: continue  # already applied to final-copy.md
         assert cur in fc, p['id']; fc = fc.replace(cur, nw)
 SKIP = ('Alt', 'Aria', 'Ticker', 'Hidden heading', 'Links', 'Links intro', 'Legend', 'Chart', 'Labels', 'Flow', 'Title', 'Meta')
 out = []

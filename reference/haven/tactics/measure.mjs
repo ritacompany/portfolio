@@ -20,8 +20,11 @@ const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const here = path.dirname(new URL(import.meta.url).pathname);
 const root = path.resolve(here, '../../..');
-const site = path.join(root, 'site');
-const props = JSON.parse(fs.readFileSync(path.join(here, 'proposals.json'), 'utf8'));
+const site = process.env.HAVEN_SITE || path.join(root, 'site');
+let props = JSON.parse(fs.readFileSync(path.join(here, 'proposals.json'), 'utf8'));
+// --marks: measure what he accepted (his final text where he changed it), against the page as it was before
+// (HAVEN_SITE pointing at a copy of site/ with the pre-apply index.html).
+if (process.argv.includes('--marks')) { const mk = JSON.parse(fs.readFileSync(path.join(here, 'marks.json'), 'utf8')); props = props.filter(p => ['accept', 'change'].includes((mk[p.id] || {}).choice)).map(p => ({ ...p, new: mk[p.id].final || p.new })); }
 const types = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.woff2': 'font/woff2', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg' };
 const server = http.createServer((q, r) => {
   let f = path.join(site, decodeURIComponent(q.url.split('?')[0]));

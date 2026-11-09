@@ -99,6 +99,16 @@ if (mode === 'pending') {
   for (const p of props) for (const [cur] of [[p.cur], ...p.also]) ok(finalCopy.includes(cur), `${p.id}: current text found in final-copy.md`);
 } else {
   const marks = JSON.parse(fs.readFileSync(path.join(here, 'marks.json'), 'utf8'));
+  // His changed lines get every copy rule too, and their humanizer record.
+  for (const [id, m] of Object.entries(marks).filter(([, m]) => m.final)) {
+    const out = checkCopy(m.final);
+    ok(/CS2COPY_PASS/.test(out), `${id} his final: check-copy ${/CS2COPY_PASS/.test(out) ? '' : out.trim()}`);
+    ok(dashHook(m.final).trim() === '', `${id} his final: dash hook`);
+    ok(!oxford(m.final), `${id} his final: own Oxford rule`);
+    for (const [re, name] of banned) ok(!re.test(m.final), `${id} his final: no ${name}`);
+    ok(casingBad(m.final).length === 0 && sentenceCase(m.final), `${id} his final: casing and sentence case`);
+    ok(((humBlocks[id] || '').match(/^Final \(applied, his note\): (.*)$/m) || [])[1] === m.final, `${id} his final: humanizer record matches`);
+  }
   for (const p of props) {
     const m = marks[p.id]; const take = m && (m.choice === 'accept' || m.choice === 'change');
     const want = take ? (m.final || p.new) : null;

@@ -54,6 +54,11 @@ Draft 2: Identity comes first because Haven matches each user with a Confidante 
 Audit: fit: 5 lines at 1440 against 3 now (measure.mjs). Splitting the work this way is filler; the two phases says it in fewer words.
 Final: Identity comes first because Haven matches each user with a Confidante through who they are. The two phases let me decide which features mattered most now and which could wait until after the MVP.
 
+His mark (9 Nov): no choice set, with a note. The real reason, in his words: an interview made it clear both elements were needed and could not be separated, but there was not enough time to do all of it, so he divided it. He asked whether an old copy of that interview exists; none is in the repo, its git history or GitHub search, and his rule keeps quotes out of the copy anyway.
+Draft (his note): An interview made it clear that Haven needs identity and community together, and that one can't replace the other. There wasn't time to design both, so I split them into two phases.
+Audit: one can't replace the other is my gloss on could not be separated, a tidy paired clause; together says it. The draft lost the old body's point (which features mattered most now), which is the decision; put back. No fact beyond his note: no claim about why identity went first, since he did not give one.
+Final (applied, his note): An interview made it clear that Haven needs identity and community together. There wasn’t time to design both, so I split them into two phases and decided which features mattered most now.
+
 ## h-wires
 Draft: My first wireframes gave users a chat length to pick, a passcode as the only security step and top matches to swipe through. Testing changed all three.
 Audit: Testing changed all three is a short closer, but a single one carrying a real fact, not a run of fragments. The only security step reads technical; as their only security is plainer. Fact check: the three are the wireframe alts (duration 15 to 60 minutes, passcode only, top three matches swiped up and down) and each changed later on the page (30 minutes, the full privacy setup, suggested Confidantes replacing swiping).
