@@ -146,6 +146,13 @@
   text-box: trim-both cap alphabetic;
 }
 
+/* Liquid outline (site/js/liquid-button.js): once the script draws the rings, the CSS borders go
+   transparent so the spring path is the only outline. Without the script, or with reduced motion,
+   the borders stay. */
+.button__icon, .button__label { position: relative; }
+.button__icon.is-liquid, .button__label.is-liquid { border-color: transparent; }
+.button__icon.is-liquid > img { position: relative; }
+
 /* Small button, 5812:22855. Default state. */
 .button-sm {
   display: inline-block; padding: 12px calc(16px + 0.04em) 12px 16px;

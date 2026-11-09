@@ -94,10 +94,13 @@ A new session picks this up from this file alone.
   18920) before this move; left as is, since this step was not to change Haven's spacing.
 - Phase 2 started 9 Nov: three button options on `site/dev/buttons/`. His call: Small button takes option A
   (fill on hover, Neutral/300 and 98 percent on press), now in components.css. The big Button (Contact)
-  gets the liquid button effect from a chat he has pinned in claude.ai, not in this repo; waiting on
-  that reference before building it.
-- Next action: build the liquid Contact button from his reference; then link and card hovers, Haven
-  motion, Falling behind and the footer transition. Then Phase 3 (390, 768, 1200).
+  has the liquid outline from his pinned session "Liquid button effects recreation" (branch
+  claude/cool-albattani-5v7t70, prototypes/homepage-foundations/liquid-buttons.html): both pill
+  outlines are rings of points on springs that bulge toward the pointer and squeeze on press, in
+  `site/js/liquid-button.js`, loaded on every page with a footer. Reduced motion keeps the CSS borders.
+  Rest state renders identically to the CSS border; all page and sheet gates rerun clean.
+- Next action: link and card hovers, Haven motion carry over, Falling behind and the footer
+  transition. Then Phase 3 (390, 768, 1200).
   Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.

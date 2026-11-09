@@ -79,5 +79,6 @@
           </footer>
 
   </div>
+  <script type="module" src="/js/liquid-button.js"></script>
 </body>
 </html>
