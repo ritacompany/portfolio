@@ -159,8 +159,8 @@ A new session picks this up from this file alone.
 
 - Pre launch check, 9 Nov (built site in dist/): every page has a title and description; the portfolio
   logo is now the favicon on every page (Haven already used it); Haven's profile scroll study page no
-  longer ships. Open for launch: Resume links to #resume on every page with nothing there (needs his
-  resume file or URL); Collection's Design system row links to #design-system; no social preview image
+  longer ships. Resume is hidden in the footer on every page at his call (9 Nov) until he provides his resume; the
+  link stays in the markup with hidden and data-hidden-until. Open for launch: Collection's Design system row links to #design-system; no social preview image
   (og:image) on any page.
 
 ## Details (end of build)
