@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/css/grid.css">
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/framework.css">
+  <script src="/js/fit-desktop.js"></script>
 </head>
 <body>
   <div class="canvas framework" id="top" data-figma-node="5812:16446">
@@ -40,7 +41,7 @@
     </nav>
 
           <footer class="footer" data-figma-node="5812:21568" id="contact">
-            <div class="footer__transition" aria-hidden="true"><img src="/assets/ui/footer-transition.png" alt="" width="1024" height="514"></div>
+            <div class="footer__transition" aria-hidden="true" data-bleed><img src="/assets/ui/footer-transition.png" alt="" width="1024" height="514"></div>
             <div class="footer__main">
               <div class="footer__top grid">
                 <div class="col-1 span-5">
@@ -69,7 +70,7 @@
                   <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
                 </div>
               </div>
-              <img class="footer__wordmark" src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <img class="footer__wordmark" data-bleed src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
               <div class="footer__bottom grid">
                 <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
                 <p class="footer__meta col-4 span-3"><time>10:24pm CST</time></p>

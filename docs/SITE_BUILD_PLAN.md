@@ -1,7 +1,8 @@
 # Site build plan: from the transported frames to a live site
 
 9 Nov 2026. Status: Phase 0 approved ("fine enough", 8 Nov). Phase 1 built: Collection, Home, Framework
-CS and Haven pass their gates. Next is Phase 2 (interactions and motion).
+CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Parked below). Phase 3
+(responsive) built 9 Nov for Collection, Home and Framework CS, awaiting his review of the 390 versions.
 
 ## Resume here
 
@@ -106,11 +107,47 @@ A new session picks this up from this file alone.
   the Figma footer; page pixel gates still pass. Not done: he tunes it on the tuner
   (scripts/motion-tuner/contact-goo.py, published at https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG) and
   his Copy settings output goes into GOO in contact-goo.js.
-- Contact button, 9 Nov, his ask: mix the gooey split with the liquid outline, no neck at rest, react to
+- **Parked 9 Nov, at his call ("I don't want to stop progress for a button effect"):** the Contact
+  button motion. What exists and works: the gooey split in `site/js/contact-goo.js` on Home,
+  Framework and Haven at default settings, the lab page and the tuner. Resume point: he tunes it on
+  the tuner (https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG), his Copy settings output goes into
+  `GOO` in `contact-goo.js`, then `node scripts/verify-contact-goo.mjs` and the 1440 suite. Phase 3 did
+  not touch the button, its script or the lab. The rest of Phase 2 also waits on him: card hovers (H11
+  prototype awaiting review), Falling behind (his editor settings), the footer transition (H16 pick).
+  Link and Context list hovers already work from Phase 0.
+- Contact button, later on 9 Nov (the button session, still running when Phase 3 merged), his ask: mix the gooey split with the liquid outline, no neck at rest, react to
   where the pointer is, the hidden colour as a setting. Built in new files (another session owns
   contact-goo.js): site/js/contact-liquid.js, lab site/motion-lab/contact-liquid.html, tuner published at
   https://claude.ai/artifact/BdG5yNZuFnkSDSfgQneXnU (built by scripts/motion-tuner/contact-liquid.py),
   plan docs/motion/contact-liquid/. Not on the pages and not done until he has tuned it.
+- **Phase 3 built 9 Nov** (responsive, before the remaining motion: motion is tuned against final
+  layout, so layout first means tuning once). Gates in `.unlazy/site-responsive/GATES.md` (local):
+  `node scripts/verify-responsive.mjs fit|overlap|size|health all` checks Home, Collection, Framework
+  CS and Haven's shared parts at 390, 768, 1024, 1200 and 1366 (20 of 20 each: nothing cut off or past
+  the window, no text on text or on a content image, no text under 12 px below 1200 or 10 px from
+  1200, no horizontal scroll or failed request). `node scripts/verify-1440.mjs` reruns every Phase 0
+  and 1 check: 23 of 23, so 1440 is unchanged. Screenshots at 390, 768 and 1200 in `docs/responsive/`.
+- Decided in Phase 3 (each reversible; his call on the 390 versions):
+  - Breakpoints: desktop 1200 and up keeps the Figma grid (12 columns, 40 and 40); tablet 768 to 1199
+    is 8 columns, 32 margin, 24 gutter; mobile under 768 is 4 columns, 20 margin, 16 gutter. Only the
+    large styles step down (tokens.css): Heading/64 to 56 then 40, Display/96 to 64 then 40, Heading/40
+    to 28 and Heading/24 to 20 on mobile; Display/212 sizes to the content width.
+  - Home and Collection between 1200 and 1440 scale fluidly: card widths, the card description offset
+    and Learn more are shares of Figma's sizes, so 1440 still lands on Figma's pixels.
+  - Framework CS between 1200 and 1440 keeps the 1440 composition scaled to the window
+    (`site/js/fit-desktop.js`); body lands at 13.3 px and labels at 10 px at 1200. The other way was the
+    stacked layout from 1440 down, which would show most laptops (1280, 1366) a phone layout. Under 1200
+    it stacks: the generator now writes each section in reading order (`flow_order` in build.py, which
+    also fixes the screen reader order, where every figure used to come last), frames drawn only behind
+    desktop text are hidden and the Example box draws itself around its text.
+  - Navbar: mobile drops the "Product Designer" line on Home and keeps all three links (they fit at
+    390, so no menu). Footer stacks; the CHDWCK wordmark keeps the share that shows at 1440. Ending bar:
+    previous and next on one line, Explore more under them; at 390 the long labels run to four lines,
+    shorter labels would be a copy change for him.
+  - Collection rows wrap: tablet keeps title, arrow and badge on one line with the locked status
+    below; mobile puts the badge over the title, arrow on the right.
+- Next action: his review of the 390 versions (`docs/responsive/*-390.webp`, or `npm run dev` at 390).
+  Then Phase 2 as he unparks it, then Phase 4.
 - Phase 2, 9 Nov, the rest: Home work cards carry the H11 states (image eases in 3.5 percent, text white,
   Learn more fills, focus ring, press settles; reduced motion keeps colour only). Links and context rows
   ease over 200 ms like the Small button. The footer clock is live Chicago time on Home and Framework
@@ -136,7 +173,6 @@ in this list blocks a phase.
   (https://claude.ai/artifact/BdG5yNZuFnkSDSfgQneXnU, site/js/contact-liquid.js). He has something he
   wants to try recreating.
 - Footer halftone band motion. The band ships static as drawn in Figma. He has a reference to show.
-- Phase 3 (390, 768, 1200) runs in another session.
   Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
@@ -265,7 +301,7 @@ means tuning twice.
 | 0 Foundation | Rewrite `tokens.css` from the Portfolio values and the type table; 12 column grid utility (40 margin, 40 gutter); shared components in HTML and CSS: Navbar (PD, Base), Footer (Default, Other pages), Link (3 styles by 3 states), Badge, Context list, Button, Small button | A component sheet page in `site/` matches each Figma variant side by side at 1440 |
 | 1 Pages, static | Collection page first (smallest, uses most components), then Home, then Framework CS (screenshots as 2x image exports), then Haven moved onto the shared nav, footer and tokens without changing its spacing or motion | Each page matches its frame at 1440, `npm run check` passes, no Figma asset URL in the code |
 | 2 Interactions and motion | Button and Small button states designed together; link and card hovers; carry over what exists (Haven motion, Falling behind, the footer transition); new motion only after his pick | Each piece passes the motion review loop in `.claude/motion-rules.md` |
-| 3 Responsive | 390 wide recompositions per page, then 768 and 1200 | No horizontal scroll at 390, 768, 1200 and 1440; he approves the 390 versions |
+| 3 Responsive | 390 wide recompositions per page, then 768 and 1200 (built 9 Nov, ahead of the parked Phase 2 items) | No horizontal scroll at 390, 768, 1200 and 1440; he approves the 390 versions |
 | 4 Launch | Point `npm run build` at `site/`, remove the noindex header, robots allow, domain on Vercel (steps in `docs/SITE_SETUP.md`) | chadwickfenner.com serves the site, indexing on |
 
 Hosting needs no new setup: Vercel already deploys this repo from `dist/` and serves the holding

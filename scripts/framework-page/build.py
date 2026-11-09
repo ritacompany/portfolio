@@ -100,12 +100,42 @@ def text_el(t, sy, tag="p"):
         inner = html.escape(body)
     return f'<{tag} class="{" ".join(cls)}" data-figma-node="{t["id"]}" style="{style}">{inner}</{tag}>'
 
+def flow_order(items):
+    """Reading order for a section, used for the DOM (screen readers) and for the stacked layout under
+    1200, where the absolute positions fall away. Items whose vertical ranges overlap, or sit within 28 px of each other
+    (a label over its value, a title over its body), form one band;
+    bands read top to bottom. Inside a band, text comes before figures (the text introduces the
+    screen), text reads column by column (lefts within 40 px are one column) and top to bottom inside
+    a column; figures follow, left to right. At 1440 the positions are absolute, so this order changes
+    nothing on screen except paint order, which the pixel gate covers."""
+    rest = sorted(items, key=lambda i: (i[2], i[1]))
+    bands, cur, bottom = [], [], None
+    for it in rest:
+        if cur and it[2] >= bottom + 28:
+            bands.append(cur); cur = []
+        cur.append(it)
+        bottom = it[2] + it[4] if len(cur) == 1 else max(bottom, it[2] + it[4])
+    if cur: bands.append(cur)
+    ordered = []
+    for band in bands:
+        texts = sorted([i for i in band if i[0] == "text"], key=lambda i: i[1])
+        cols = []
+        for t in texts:
+            if cols and abs(t[1] - cols[-1][0][1]) <= 40: cols[-1].append(t)
+            else: cols.append([t])
+        for c in cols: ordered += sorted(c, key=lambda i: i[2])
+        ordered += sorted([i for i in band if i[0] != "text"], key=lambda i: (i[1], i[2]))
+    return ordered
+
 out = []
 for sid, sy, sh, label in SECS:
     s = spec[sid]
-    parts = []
+    parts = []   # decorative frames drawn behind text, first so they paint underneath
+    items = []   # (kind, x, top, w, h, html): content, written out in reading order (see flow_order)
     for node, (sec, cls, x, y, w, h) in PANELS.items():
-        if sec == sid:
+        if sec == sid and cls == "rule":
+            items.append(("rule", x, y - sy, w, h, f'<span class="{cls}" data-figma-node="{node}" aria-hidden="true" style="left:{fmt(x)}px;top:{fmt(y - sy + DY.get(node, 0))}px;width:{fmt(w)}px;height:{fmt(h)}px"></span>'))
+        elif sec == sid:
             parts.append(f'<span class="{cls}" data-figma-node="{node}" aria-hidden="true" style="left:{fmt(x)}px;top:{fmt(y - sy + DY.get(node, 0))}px;width:{fmt(w)}px;height:{fmt(h)}px"></span>')
     texts = s["texts"]
     for t in texts:
@@ -114,12 +144,12 @@ for sid, sy, sh, label in SECS:
         if t["style"] == "Display/212": tag = "h1"
         elif t["style"] == "Heading/20" and t["color"] in ("Neutral/525", "Neutral/500") and t["w"] == 660: tag = "h2"
         elif t["style"] in ("Heading/40", "") and t["w"] >= 650: tag = "p"
-        parts.append(text_el(t, sy, tag))
+        items.append(("text", t["x"], t["y"] - sy + DY.get(t["id"], 0), t["w"], t["h"], text_el(t, sy, tag)))
     for node, (sec, f, x, y, w, h, alt) in FIGS.items():
         if sec != sid: continue
-        parts.append(f'<img class="fig" data-figma-node="{node}" src="/assets/framework/{f}@2x.webp" alt="{html.escape(alt)}" width="{round(w)}" height="{round(h)}" loading="lazy" decoding="async" style="left:{fmt(x)}px;top:{fmt(y - sy)}px;width:{fmt(w)}px;height:{fmt(h)}px">')
+        items.append(("fig", x, y - sy, w, h, f'<img class="fig" data-figma-node="{node}" src="/assets/framework/{f}@2x.webp" alt="{html.escape(alt)}" width="{round(w)}" height="{round(h)}" loading="lazy" decoding="async" style="left:{fmt(x)}px;top:{fmt(y - sy)}px;width:{fmt(w)}px;height:{fmt(h)}px">'))
     if sid == "5812:16447":
-        parts.append('<span class="rule" aria-hidden="true" style="top:293px"></span>')
+        items.append(("rule", 0, 293, 1440, 1, '<span class="rule" aria-hidden="true" style="top:293px"></span>'))
     if sid == "5812:20498":
         slides = []
         for i, (f, lab, title, desc) in enumerate(TEMPLATES):
@@ -130,9 +160,10 @@ for sid, sy, sh, label in SECS:
                 f'<p class="t s-heading-20 w-bold c-neutral-100 week__title"{" data-figma-node=\"5812:20703\"" if i == 0 else ""}>{html.escape(title)}</p>'
                 f'<p class="t s-body-16 c-neutral-300 week__desc" style="width:{[259,461,529,487,529][i]}px"{" data-figma-node=\"5812:20704\"" if i == 0 else ""}>{html.escape(desc)}</p>'
                 f'</li>')
-        parts.append('<ul class="week" data-figma-node="5812:20504" aria-label="Start of week templates, scroll sideways for more" tabindex="0" style="left:33px;top:371px">' + "".join(slides) + '</ul>')
+        items.append(("fig", 33, 371, 1017, 705, '<ul class="week" data-figma-node="5812:20504" aria-label="Start of week templates, scroll sideways for more" tabindex="0" style="left:33px;top:371px">' + "".join(slides) + '</ul>'))
         dots = "".join(f'<button type="button" class="week-dot" aria-label="Show template {i + 1} of 5"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(5))
-        parts.append(f'<div class="week-nav" data-figma-node="5812:20705" style="left:357px;top:{fmt(17071 - sy)}px"><div class="week-dots">{dots}</div><p class="week-hint">Scroll to view more templates</p></div>')
+        items.append(("fig", 357, 17071 - sy, 369, 35, f'<div class="week-nav" data-figma-node="5812:20705" style="left:357px;top:{fmt(17071 - sy)}px"><div class="week-dots">{dots}</div><p class="week-hint">Scroll to view more templates</p></div>'))
+    parts += [i[5] for i in flow_order(items)]
     sh = SEC_H.get(sid, sh)
     out.append(f'      <section class="fw-sec" data-figma-node="{sid}" aria-label="{html.escape(label)}" style="height:{fmt(sh)}px">\n        ' + "\n        ".join(parts) + "\n      </section>")
 
