@@ -33,10 +33,10 @@ Scope: the CS2 tactics pass run on the Haven case study: copy pulled, both banks
 - [x] G7: review page published with Accept, Accept with changes, Discuss, Reject and a note per proposal, saved to the page db collection marks
   EVIDENCE: https://claude.ai/artifact/AuuSGfYV3TaATwVgjhii51, capabilities db; ArtifactData list marks returned empty, collection reachable
 
-- [ ] G8: his marks applied to final-copy.md and site/haven/index.html, changed lines re-checked
+- [x] G8: his marks applied to final-copy.md and site/haven/index.html, changed lines re-checked
   CHECK: node reference/haven/tactics/run-checks.mjs proposals.json applied
   EXPECT: HAVEN_TACTICS_CHECKS_OK
-  EVIDENCE: pending
+  EVIDENCE: run 9 Nov, exit 0, HAVEN_TACTICS_CHECKS_OK applied (19 accepted applied, h-mvp-body from his note, h-wires two word fix after round 3, h-test-i1 kept on Discuss); PULL_OK; HAVEN_FIT_OK against the pre-apply page (measure-applied.txt); reader check r3 then r4 on the applied page in order: MVP and every block he changed PASS except the flags already stated on the review page (wireframes process story, ending recap, no decision in non decision blocks, his Testing synthesis headline)
 
 - [ ] G9: work committed and pushed to main with HANDOFF.md current
   CHECK: node reference/haven/tactics/pushed-check.mjs

@@ -11,8 +11,12 @@ the CS2 tactics pass of 8 and 9 Nov, run on Haven with every check).
 - Re-checked: run-checks.mjs applied HAVEN_TACTICS_CHECKS_OK, pull-check PULL_OK, measure.mjs --marks against the
   pre-apply page HAVEN_FIT_OK (measure-applied.txt). Reader check round 3 (reader-check/r3) on the applied page.
 
+- Round 3 passed the new MVP body and flagged top matches in the wireframes headline as unexplained (2 of 3, the old
+  MVP body had introduced matching). Fixed to their top three Confidantes (the wireframe's own alt wording), fit
+  and copy checks rerun, round 4 clear of it. Remaining flags are the ones stated on the review page.
+
 ## Next action
-Aggregate reader-check/r3, record it, then settle h-test-i1 with him.
+Settle h-test-i1 (Usability testing Insight 1) with him; it still shows the old text on the page.
 
 ## Earlier state
 ### Before his marks
