@@ -1,0 +1,283 @@
+V1 Q1 no | none
+V1.S1 Q2 no
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | follows
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | follows
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | follows
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 no | follows
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | follows
+V1.S6 Q2 no
+V1.S6 Q3 no
+V1.S6 Q4 no
+V1.S6 Q5 no | follows
+V2 Q1 no | none
+V2.S1 Q2 no
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | follows
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | follows
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | follows
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | follows
+V2.S5 Q2 no
+V2.S5 Q3 no
+V2.S5 Q4 no
+V2.S5 Q5 no | follows
+V3 Q1 yes | V3.S1, V3.S2
+V3.S1 Q2 no
+V3.S1 Q3 no
+V3.S1 Q4 no
+V3.S1 Q5 no | follows
+V3.S2 Q2 no
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | follows
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | follows
+V3.S4 Q2 no
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | follows
+V3.S5 Q2 no
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 no | follows
+V3.S6 Q2 no
+V3.S6 Q3 no
+V3.S6 Q4 no
+V3.S6 Q5 no | follows
+V3.S7 Q2 no
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 no | follows
+V3.S8 Q2 no
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | follows
+V4 Q1 yes | V4.S1, V4.S2, V4.S3
+V4.S1 Q2 no
+V4.S1 Q3 no
+V4.S1 Q4 no
+V4.S1 Q5 no | follows
+V4.S2 Q2 no
+V4.S2 Q3 no
+V4.S2 Q4 no
+V4.S2 Q5 no | follows
+V4.S3 Q2 no
+V4.S3 Q3 no
+V4.S3 Q4 no
+V4.S3 Q5 no | follows
+V5 Q1 no | none
+V5.S1 Q2 no
+V5.S1 Q3 yes
+V5.S1 Q4 no
+V5.S1 Q5 no | follows
+V5.S2 Q2 no
+V5.S2 Q3 yes
+V5.S2 Q4 no
+V5.S2 Q5 no | follows
+V6 Q1 no | none
+V6.S1 Q2 no
+V6.S1 Q3 no
+V6.S1 Q4 no
+V6.S1 Q5 no | follows
+V6.S2 Q2 no
+V6.S2 Q3 no
+V6.S2 Q4 no
+V6.S2 Q5 no | follows
+V6.S3 Q2 no
+V6.S3 Q3 no
+V6.S3 Q4 no
+V6.S3 Q5 no | follows
+V6.S4 Q2 no
+V6.S4 Q3 no
+V6.S4 Q4 no
+V6.S4 Q5 no | follows
+V6.S5 Q2 no
+V6.S5 Q3 no
+V6.S5 Q4 no
+V6.S5 Q5 no | follows
+V6.S6 Q2 no
+V6.S6 Q3 no
+V6.S6 Q4 no
+V6.S6 Q5 no | follows
+V7 Q1 no | none
+V7.S1 Q2 no
+V7.S1 Q3 no
+V7.S1 Q4 no
+V7.S1 Q5 no | follows
+V7.S2 Q2 no
+V7.S2 Q3 no
+V7.S2 Q4 no
+V7.S2 Q5 no | follows
+V8 Q1 yes | V8.S1
+V8.S1 Q2 no
+V8.S1 Q3 no
+V8.S1 Q4 no
+V8.S1 Q5 no | follows
+V8.S2 Q2 no
+V8.S2 Q3 no
+V8.S2 Q4 no
+V8.S2 Q5 no | follows
+V8.S3 Q2 no
+V8.S3 Q3 no
+V8.S3 Q4 no
+V8.S3 Q5 no | follows
+V9 Q1 yes | V9.S2, V9.S3, V9.S4
+V9.S1 Q2 yes | introductory chat
+V9.S1 Q3 yes
+V9.S1 Q4 no
+V9.S1 Q5 no | follows
+V9.S2 Q2 no
+V9.S2 Q3 no
+V9.S2 Q4 no
+V9.S2 Q5 no | follows
+V9.S3 Q2 no
+V9.S3 Q3 no
+V9.S3 Q4 no
+V9.S3 Q5 no | follows
+V9.S4 Q2 no
+V9.S4 Q3 no
+V9.S4 Q4 no
+V9.S4 Q5 no | follows
+V9.S5 Q2 no
+V9.S5 Q3 no
+V9.S5 Q4 no
+V9.S5 Q5 no | follows
+V10 Q1 yes | V10.S4, V10.S5
+V10.S1 Q2 no
+V10.S1 Q3 no
+V10.S1 Q4 yes | K6
+V10.S1 Q5 no | follows
+V10.S2 Q2 no
+V10.S2 Q3 no
+V10.S2 Q4 no
+V10.S2 Q5 no | follows
+V10.S3 Q2 no
+V10.S3 Q3 no
+V10.S3 Q4 no
+V10.S3 Q5 no | follows
+V10.S4 Q2 no
+V10.S4 Q3 no
+V10.S4 Q4 no
+V10.S4 Q5 no | follows
+V10.S5 Q2 no
+V10.S5 Q3 no
+V10.S5 Q4 no
+V10.S5 Q5 no | follows
+V11 Q1 yes | V11.S2, V11.S3
+V11.S1 Q2 no
+V11.S1 Q3 no
+V11.S1 Q4 no
+V11.S1 Q5 no | follows
+V11.S2 Q2 no
+V11.S2 Q3 no
+V11.S2 Q4 yes | K6
+V11.S2 Q5 no | follows
+V11.S3 Q2 no
+V11.S3 Q3 no
+V11.S3 Q4 no
+V11.S3 Q5 no | follows
+V11.S4 Q2 yes | Your events
+V11.S4 Q3 no
+V11.S4 Q4 no
+V11.S4 Q5 yes | switches to a different screen unrelated to the scheduling decision
+V12 Q1 yes | V12.S1, V12.S2, V12.S3
+V12.S1 Q2 no
+V12.S1 Q3 no
+V12.S1 Q4 no
+V12.S1 Q5 no | follows
+V12.S2 Q2 no
+V12.S2 Q3 no
+V12.S2 Q4 no
+V12.S2 Q5 no | follows
+V12.S3 Q2 no
+V12.S3 Q3 no
+V12.S3 Q4 no
+V12.S3 Q5 no | follows
+V13 Q1 yes | V13.S1, V13.S2
+V13.S1 Q2 no
+V13.S1 Q3 no
+V13.S1 Q4 no
+V13.S1 Q5 no | follows
+V13.S2 Q2 no
+V13.S2 Q3 no
+V13.S2 Q4 no
+V13.S2 Q5 no | follows
+V14 Q1 yes | V14.S5, V14.S6
+V14.S1 Q2 no
+V14.S1 Q3 no
+V14.S1 Q4 no
+V14.S1 Q5 no | follows
+V14.S2 Q2 no
+V14.S2 Q3 no
+V14.S2 Q4 no
+V14.S2 Q5 no | follows
+V14.S3 Q2 no
+V14.S3 Q3 no
+V14.S3 Q4 yes | K8
+V14.S3 Q5 no | follows
+V14.S4 Q2 no
+V14.S4 Q3 no
+V14.S4 Q4 yes | K10
+V14.S4 Q5 no | follows
+V14.S5 Q2 no
+V14.S5 Q3 no
+V14.S5 Q4 yes | K11
+V14.S5 Q5 no | follows
+V14.S6 Q2 no
+V14.S6 Q3 no
+V14.S6 Q4 yes | K9
+V14.S6 Q5 no | follows
+V14.S7 Q2 no
+V14.S7 Q3 no
+V14.S7 Q4 yes | K13
+V14.S7 Q5 yes | jumps to the disguise icon with no link to the intro chat point
+V14.S8 Q2 no
+V14.S8 Q3 no
+V14.S8 Q4 yes | K4
+V14.S8 Q5 no | follows
+V14.S9 Q2 no
+V14.S9 Q3 no
+V14.S9 Q4 yes | K4
+V14.S9 Q5 no | follows
+V15 Q1 yes | V15.S2, V15.S3
+V15.S1 Q2 no
+V15.S1 Q3 yes
+V15.S1 Q4 no
+V15.S1 Q5 no | follows
+V15.S2 Q2 no
+V15.S2 Q3 no
+V15.S2 Q4 yes | K9
+V15.S2 Q5 yes | hesitation over picking a Confidante does not follow from a sentence about rethinking scheduling and repeats a known fact
+V15.S3 Q2 yes | Haven Shield toggle, Pulse score
+V15.S3 Q3 no
+V15.S3 Q4 no
+V15.S3 Q5 yes | Haven Shield toggle and Pulse score do not follow from the hesitation and are unexplained
+V15.S4 Q2 yes | weekly digest
+V15.S4 Q3 yes
+V15.S4 Q4 no
+V15.S4 Q5 yes | weekly digest is unrelated to anything before it

@@ -1,0 +1,50 @@
+/* Mesh drift background test and its editor. Dev only: site/dev never ships.
+   The canvas sits fixed behind the page; the page content sits above it. The footer keeps its own
+   neutral-900 fill, so the shader stops where the footer band begins, as the page is designed. */
+.md-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; z-index: 0; pointer-events: none; }
+.md-on .canvas { position: relative; z-index: 1; }
+
+/* ---------- Editor ---------- */
+.md-panel {
+  --md-bg: rgba(18, 18, 20, 0.94); --md-line: var(--neutral-590); --md-text: var(--neutral-100); --md-dim: var(--neutral-500);
+  position: fixed; z-index: 50; top: max(12px, env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px));
+  width: 300px; max-height: calc(100vh - 88px); /* clears the preview's Type review button */ display: flex; flex-direction: column;
+  background: var(--md-bg); border: 1px solid var(--neutral-700); border-radius: 8px;
+  color: var(--md-text); font: var(--label-14); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.md-panel.is-closed { width: auto; }
+.md-panel.is-closed .md-body { display: none; }
+.md-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; }
+.md-title { font: var(--label-12-c); text-transform: uppercase; letter-spacing: 0.06em; color: var(--md-dim); }
+.md-panel.is-closed .md-title { display: none; }
+.md-body { overflow-y: auto; overscroll-behavior: contain; padding: 0 12px 12px; display: grid; gap: 14px; }
+.md-group { display: grid; gap: 10px; padding-top: 12px; border-top: 1px solid var(--neutral-700); }
+.md-group h2 { font: var(--label-12-c); text-transform: uppercase; letter-spacing: 0.06em; color: var(--md-dim); }
+.md-field { display: grid; gap: 4px; }
+.md-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.md-row-start { justify-content: flex-start; flex-wrap: wrap; }
+.md-label, .md-field label { color: var(--md-text); }
+.md-field output { font-variant-numeric: tabular-nums; color: var(--md-dim); }
+.md-hint { font: var(--label-12); color: var(--md-dim); }
+.md-field input[type="range"] { width: 100%; accent-color: var(--neutral-100); margin: 2px 0; }
+
+.md-seg { display: flex; flex-wrap: wrap; gap: 4px; }
+.md-panel button { font: var(--label-12); color: var(--md-text); background: none; border: 1px solid var(--md-line); border-radius: 4px; padding: 6px 9px; cursor: pointer; }
+.md-panel button:hover { border-color: var(--neutral-400); }
+.md-panel button[aria-pressed="true"] { background: var(--neutral-100); border-color: var(--neutral-100); color: var(--neutral-900); }
+.md-panel button:disabled { opacity: 0.4; cursor: default; }
+.md-toggle { white-space: nowrap; }
+
+.md-swatches { display: grid; gap: 6px; }
+.md-swatch { display: grid; grid-template-columns: 34px 1fr 30px; gap: 6px; align-items: center; }
+.md-swatch input[type="color"] { width: 34px; height: 28px; padding: 0; border: 1px solid var(--md-line); border-radius: 4px; background: none; cursor: pointer; }
+.md-swatch input[type="text"] { min-width: 0; font: var(--label-14); font-variant-numeric: tabular-nums; color: var(--md-text); background: var(--neutral-900); border: 1px solid var(--neutral-700); border-radius: 4px; padding: 4px 8px; }
+.md-panel .md-x { padding: 4px 0; font-size: 16px; line-height: 1; }
+.md-copy { width: 100%; font: var(--label-12); color: var(--md-text); background: var(--neutral-900); border: 1px solid var(--neutral-700); border-radius: 4px; padding: 8px; resize: vertical; }
+
+/* Phone: a sheet along the bottom, closed by default so the page shows first. */
+@media (max-width: 700px) {
+  .md-panel { top: auto; left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px));
+              bottom: calc(max(8px, env(safe-area-inset-bottom, 0px)) + 56px); width: auto; max-height: 60vh; }
+  .md-panel.is-closed { right: auto; bottom: max(8px, env(safe-area-inset-bottom, 0px)); }
+}

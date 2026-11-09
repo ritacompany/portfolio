@@ -1,0 +1,70 @@
+{
+ "h-access-i1": {
+  "choice": "accept"
+ },
+ "h-access-i4": {
+  "choice": "accept"
+ },
+ "h-bridge": {
+  "choice": "accept"
+ },
+ "h-chat-body": {
+  "choice": "accept"
+ },
+ "h-data-cap1": {
+  "choice": "accept"
+ },
+ "h-end-cap3": {
+  "choice": "accept"
+ },
+ "h-hero-r1": {
+  "choice": "accept"
+ },
+ "h-hero-r2": {
+  "choice": "accept"
+ },
+ "h-journey": {
+  "choice": "accept"
+ },
+ "h-links": {
+  "choice": "accept"
+ },
+ "h-mvp-head": {
+  "choice": "accept"
+ },
+ "h-program-head": {
+  "choice": "accept"
+ },
+ "h-quiz-body": {
+  "choice": "accept"
+ },
+ "h-quiz-head": {
+  "choice": "accept"
+ },
+ "h-sched-body": {
+  "choice": "accept"
+ },
+ "h-sched-head": {
+  "choice": "accept"
+ },
+ "h-test-head": {
+  "choice": "accept"
+ },
+ "h-test-i4": {
+  "choice": "accept"
+ },
+ "h-wires": {
+  "choice": "change",
+  "final": "My first wireframes gave users a chat length to pick, a passcode as their only security and their top three Confidantes to swipe through. Testing changed all three.",
+  "note": "He accepted it. After his marks, the round 3 reader check flagged top matches as unexplained (2 of 3): the MVP body that used to introduce matching is gone. Swapped for the wireframe alt wording, top three Confidantes."
+ },
+ "h-mvp-body": {
+  "choice": "change",
+  "final": "An interview made it clear that Haven needs identity and community together. There wasn’t time to design both, so I split them into two phases and decided which features mattered most now.",
+  "note": "His note, 9 Nov: an interview showed both elements were needed and could not be separated, and there was not enough time to do all of it, so he divided it. No mark set; rewritten from his note."
+ },
+ "h-test-i1": {
+  "choice": "discuss",
+  "note": "He is unsure the new line is clear on the mode of communication. Kept as it stands until he answers."
+ }
+}

@@ -1,0 +1,39 @@
+V1 FAIL | Q1 no decision
+V10 PASS
+V11 FAIL
+  V11.S2 Q4 (2/3) K6
+  V11.S4 Q2 (3/3) Your events
+  V11.S4 Q5 (3/3) introduces Your events, a new feature unconnected to the scheduling point before it; introduces a separate screen the version has not set up and the point about expectations at booking does not need it; switches to a different screen unrelated to the scheduling decision
+V12 PASS
+V13 PASS
+V14 FAIL
+  V14.S3 Q4 (3/3) K8
+  V14.S4 Q4 (3/3) K10
+  V14.S5 Q4 (3/3) K11
+  V14.S6 Q4 (3/3) K9
+  V14.S7 Q4 (3/3) K13
+  V14.S8 Q4 (3/3) K4
+  V14.S9 Q4 (3/3) K4
+V15 FAIL
+  V15.S1 Q3 (3/3) 
+  V15.S1 Q5 (2/3) the calendar change is never explained and nothing after it follows from it; the calendar change is never explained and scheduling is not what the rest of the version covers
+  V15.S2 Q4 (3/3) K9
+  V15.S2 Q5 (2/3) hesitation over picking a Confidante does not follow from a sentence about rethinking scheduling and repeats a known fact; jumps from the calendar to choosing a Confidante
+  V15.S3 Q2 (3/3) Haven Shield toggle, Pulse score; Haven Shield, Pulse score
+  V15.S3 Q5 (3/3) Haven Shield and Pulse score do not follow from hesitating over which Confidante to pick; Haven Shield toggle and Pulse score do not follow from the hesitation and are unexplained; a toggle and score do not follow from hesitation over choosing a Confidante
+  V15.S4 Q2 (3/3) weekly digest
+  V15.S4 Q3 (3/3) 
+  V15.S4 Q5 (3/3) a dropped idea unrelated to the point; a weekly digest was never mentioned and nothing connects it to the rest; weekly digest is unrelated to anything before it
+V2 FAIL | Q1 no decision
+V3 FAIL
+  V3.S8 Q4 (2/3) K1
+V4 PASS
+V5 FAIL | Q1 no decision
+  V5.S1 Q3 (3/3) 
+  V5.S2 Q3 (3/3) 
+V6 FAIL | Q1 no decision
+V7 FAIL | Q1 no decision
+V8 PASS
+V9 FAIL
+  V9.S1 Q2 (2/3) introductory chat
+  V9.S1 Q3 (3/3) 

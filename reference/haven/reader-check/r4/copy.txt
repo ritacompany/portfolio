@@ -1,0 +1,103 @@
+=== Hero
+Designed as a way for LGBTQIA+ youth to gain access to affirming environments.
+For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience. The lack of affirming environments at home and in their communities is linked to a higher risk of suicide.
+This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante. Just having Haven on their phone could put a user at risk, so I designed it to stay hidden and to keep every chat by text.
+=== The data
+[eyebrow or sub-heading] The data
+[headline] The Trevor Project studied how affirming spaces and accepting adults relate to that risk.
+[eyebrow or sub-heading] Affirming spaces
+[eyebrow or sub-heading] 35%
+Lower odds of a suicide attempt.
+LGBTQ youth who reported at least one affirming space had 35% lower odds of reporting a suicide attempt.
+[eyebrow or sub-heading] Source: The Trevor Project
+[eyebrow or sub-heading] Accepting adults
+[eyebrow or sub-heading] 40%
+Less likely to attempt suicide.
+LGBTQ youth who had at least one affirming adult in their home were 40% less likely to attempt suicide.
+[eyebrow or sub-heading] Source: The Trevor Project
+=== Demographic access
+[eyebrow or sub-heading] Demographic access
+[headline] Minors need a guardian’s consent to join a study. Asking would out the teens who need Haven most, so I interviewed two proxy groups instead.
+[eyebrow or sub-heading] 3 Subject matter experts
+[eyebrow or sub-heading] 3 LGBTQIA+ college students
+[eyebrow or sub-heading] 6 Total interviews
+[eyebrow or sub-heading] 5 key insights
+[eyebrow or sub-heading] Insight 1, Humanizing experts
+When choosing between experts, users look for what makes each one feel human. They want to know the expert will understand them.
+[eyebrow or sub-heading] Insight 2, Sensitive conversations
+Users were uncomfortable discussing sensitive identity topics aloud, especially when someone nearby could overhear.
+[eyebrow or sub-heading] Insight 3, Unique identities
+A one size fits all identity model could flatten the demographic differences that shape each user’s unique experience.
+[eyebrow or sub-heading] Insight 4, Scheduling concerns
+Users need to pick a time when they can be alone and feel safe talking to an expert.
+[eyebrow or sub-heading] Insight 5, Personal security
+Users are concerned with using an LGBTQIA+ product in case disapproving guardians or peers may find out.
+=== Designing an MVP
+[eyebrow or sub-heading] Designing an MVP
+[headline] Because the subject is complicated and sensitive, I planned Haven as an MVP in two phases: identity first, then community.
+An interview made it clear that Haven needs identity and community together. There wasn’t time to design both, so I split them into two phases and decided which features mattered most now.
+=== Wireframes
+[eyebrow or sub-heading] Wireframes
+[headline] My first wireframes gave users a chat length to pick, a passcode as their only security and their top three Confidantes to swipe through. Testing changed all three.
+=== Usability testing
+[eyebrow or sub-heading] Usability testing
+[headline] Six participants tested three key flows.
+[eyebrow or sub-heading] 01 Confidante match enrollment
+[eyebrow or sub-heading] 02 Select a Confidante
+[eyebrow or sub-heading] 03 Schedule a chat
+[eyebrow or sub-heading] Insight 1
+Users were unsure of what mode of communication they would be chatting with the expert through.
+[eyebrow or sub-heading] Insight 2
+Users had trouble understanding the duration section of the scheduling page.
+[eyebrow or sub-heading] Insight 3
+Users were concerned that the design lacked enough security features.
+[eyebrow or sub-heading] Insight 4
+Users wanted to know more about each Confidante before choosing one.
+Each solution below is tagged with the interview and testing insights that shaped it.
+=== The Confidante program
+[eyebrow or sub-heading] The Confidante program
+[headline] The Confidante program is built to adapt to each user’s needs and comfort.
+Confidantes support the user in two capacities:
+[eyebrow or sub-heading] 01 A community liaison that connects the user to different people and communities.
+[eyebrow or sub-heading] 02 A source of support for users who need guidance or someone to talk to.
+=== Primary identity quiz
+[eyebrow or sub-heading] Primary identity quiz
+[headline] One identity model for every user would flatten the differences that shape their experience, so the quiz matches users on the experiences they pick.
+[eyebrow or sub-heading] Tags: Interview insight 1, Interview insight 3, Confidante role 1
+The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.
+=== Testing synthesis
+[eyebrow or sub-heading] Testing synthesis
+[headline] Haven’s early flow asked users to choose a Confidante before they could have an introductory chat.
+[eyebrow or sub-heading] Tags: Interview insight 1, Testing insight 4
+[eyebrow or sub-heading] Confidante selection journey flow
+Testing showed users hesitating over which Confidante to pick. They went back and forth between profiles, and some undid their choice after making it. I moved selection after the introductory chat, which exists to help them decide. In the revised flow, users can chat with more than one Confidante before choosing one.
+=== Confidante profile
+[eyebrow or sub-heading] Confidante profile
+[headline] Users need to understand who the Confidante is before making a decision. They need to feel understood, represented and safe.
+[eyebrow or sub-heading] Tags: Interview insight 1, Interview insight 3, Testing insight 4
+Shared experiences, differences and humanized bios help users compare Confidantes and decide whom to schedule a chat with. Testing showed that those details needed more prominence. I made shared experiences the focus of the page and replaced vertical swiping with suggested Confidantes along the bottom, so users could switch between profiles.
+=== Scheduling a chat
+[eyebrow or sub-heading] Scheduling a chat
+[headline] Users needed to know what to expect before booking an introductory chat.
+Testers were confused about how chats would work and how long they would last, so the scheduling screen now says they happen by text, last a set 30 minutes and can end early. That lets users pick a time when they can be alone.
+[eyebrow or sub-heading] Tags: Interview insight 4, Testing insight 1, Testing insight 2
+=== Chat-based interactions
+[eyebrow or sub-heading] Chat-based interactions
+[headline] When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.
+[eyebrow or sub-heading] Tags: Interview insight 2
+Chats happen by text, not voice or video, so users don’t have to say anything sensitive out loud. Each chat has a set length and can end early, which leaves users in control of when and how much they share.
+=== Security features
+[eyebrow or sub-heading] Security features
+[headline] Privacy is a condition for access. Users need safeguards that protect the app before, during and after a conversation.
+[eyebrow or sub-heading] Tags: Interview insight 5, Testing insight 3
+=== Where things stand
+[eyebrow or sub-heading] Where things stand
+[headline] Haven’s initial MVP phase was built around two needs:
+To be understood and to be safe.
+A quiz pairs users with Confidantes who share their experiences.
+Profiles lead with the experiences a user and Confidante share.
+Intro chats happen by text, at a time the user can be alone.
+An intro chat comes first, so users can see if it feels right.
+Haven can hide behind a different icon on the user’s phone.
+Identity was the first phase.
+Community is the next.
