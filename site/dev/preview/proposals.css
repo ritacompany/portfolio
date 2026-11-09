@@ -70,3 +70,16 @@
 /*    Before and after: press O on the preview to switch back to the old drawing and compare. */
 html.hover-old .link-nav, html.hover-old .link-footer, html.hover-old .footer__email,
 html.hover-old .footer__out, html.hover-old .footer__back, html.hover-old .ending-bar a { -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; }
+
+/* 10. A touch more weight on the highlighted text (his note, 9 Nov: closer, but the highlighted text still
+       reads a little lighter). A hairline outline in the text's own colour thickens every stroke without
+       touching any letter's width or place, which is what a heavier grade of the font would do; Satoshi
+       has no grades. The amount is a dial on the preview (press W) so he can set it by eye on his Mac.
+       Dark text on the light block only; the end bar is left as it is. */
+.link-nav:hover, .link-nav:active,
+.link-footer:hover, .link-footer:active,
+.footer__email:hover, .footer__email:active,
+.footer__out:hover, .footer__out:active,
+.footer__back:hover, .footer__back:active { -webkit-text-stroke: var(--hover-weight, 0.15px) currentColor; }
+html.hover-old .link-nav, html.hover-old .link-footer, html.hover-old .footer__email,
+html.hover-old .footer__out, html.hover-old .footer__back { -webkit-text-stroke: 0 !important; }
