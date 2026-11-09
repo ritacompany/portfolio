@@ -44,3 +44,9 @@
       same fade ran on hover and showed the grey flicker, so the nav colour now swaps at once, on hover
       and when it turns dark over the bridge. */
 .site-nav .link-nav { transition: none; }
+
+/* 8. Case study end bar links get the cover highlight too (his yes, 9 Nov). The bar is light, so the
+      highlight is inverted: dark block, light text. The arrows keep their white squares. Instant swap. */
+.ending-bar a { transition: none; }
+.ending-bar__prev { justify-self: start; }
+.ending-bar a:hover, .ending-bar a:active { color: var(--neutral-050); background: var(--neutral-900); }
