@@ -3,10 +3,15 @@
 // the copy works at the artifact address. Usage: node scripts/build-preview.mjs site <out dir>, then
 // publish <out dir>/index.html with the Artifact tool to https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST
 // (root <out dir>, every other file in files).
-import { cpSync, readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
+// Review tools and proposals in site/dev/preview/ (the type review tool, CSS he tries before a change
+// moves into the site) are copied to preview/ and added to every page. They never reach the real site.
+import { cpSync, readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative, dirname } from "node:path";
 const [src, out] = process.argv.slice(2);
 cpSync(src, out, { recursive: true, filter: (p) => !/\/(dev|motion-lab|lib)(\/|$)/.test(relative(src, p) ? "/" + relative(src, p) : "") });
+const tools = join(src, "dev/preview");
+const extras = existsSync(tools) ? readdirSync(tools).filter((f) => /\.(css|js)$/.test(f)).sort() : [];
+if (extras.length) cpSync(tools, join(out, "preview"), { recursive: true });
 const walk = (d) => readdirSync(d).flatMap((f) => statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]);
 for (const f of walk(out).filter((f) => f.endsWith(".html"))) {
   const up = relative(dirname(f), out) || ".";
@@ -16,6 +21,10 @@ for (const f of walk(out).filter((f) => f.endsWith(".html"))) {
     if (path === "" || path.endsWith("/")) path += "index.html";
     return `${a}="${up}/${path}${hash !== undefined ? "#" + hash : ""}"`;
   });
+  if (extras.length && !relative(out, f).startsWith("preview/")) {
+    s = s.replace("</head>", extras.filter((x) => x.endsWith(".css")).map((x) => `  <link rel="stylesheet" href="${up}/preview/${x}">\n`).join("") + "</head>");
+    s = s.replace("</body>", extras.filter((x) => x.endsWith(".js")).map((x) => `<script src="${up}/preview/${x}" defer></script>\n`).join("") + "</body>");
+  }
   writeFileSync(f, s);
 }
 console.log("preview at", out, walk(out).length, "files");

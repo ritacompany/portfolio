@@ -1,0 +1,15 @@
+/* Proposals on the preview link only, for Chadwick to try before anything moves into the site (review
+   loop step 1). Each block goes into site/css once he says yes, and is deleted here. */
+
+/* 1. Mondai card label "Case study collection" on Home: Label/12 C, Neutral/300 (his ask, 9 Nov).
+      Today it is Label/12 C in Bold at Neutral/200. */
+.work-card__kind { font-weight: 400; color: var(--neutral-300); }
+
+/* 2. Nav hover, second pass (his note, 9 Nov: Contact me looks thinner and wider on hover). Dark text on
+      the light block reads lighter than light text on black, so the word looks thinner and the gaps
+      between letters look bigger. A hairline stroke adds back that weight without changing the width
+      of any letter, so nothing moves. */
+.link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed {
+  -webkit-text-stroke: 0.35px currentColor;
+  paint-order: stroke fill;
+}

@@ -207,6 +207,23 @@ Loop log:
 - 9 Nov, he could not open the preview full screen in claude.ai, which also shows him the tablet layout.
   Open: whether to put the preview on a Vercel address instead.
 
+- 9 Nov, his notes from the preview, full screen now works:
+  - Mondai card label "Case study collection" on Home: he asked for Label/12 C, Neutral/300 (it is Bold,
+    Neutral/200). On the preview as a proposal (site/dev/preview/proposals.css); goes into home.css on
+    his yes.
+  - Nav hover, second pass: Contact me looks thinner and wider on hover. Cause: dark text on the light
+    block reads lighter than light text on black. Proposal on the preview: a hairline stroke that adds
+    weight without moving any letter (measured: widths unchanged).
+  - Work cards, his idea, not built yet: at rest only the image; on hover a 75 percent black overlay
+    and Learn more loads in over it. Learn more is no longer shown by default. Next piece for the loop.
+  - Heading/20: he is splitting it in Figma. Headers keep Medium; body text that uses it today moves to a
+    new Regular style, Body/20. Wait for his Figma change, then map it into tokens.css.
+  - Some text in the case studies has no text style attached in Figma. A pass to do later, without
+    stopping progress. The preview's Type review tool marks unstyled text on any page.
+  - He asked for a review tool to pick any text, see its style, try any style or colour and add styles.
+    Built on the preview only: site/dev/preview/type-review.js and .css, added to every preview page by
+    scripts/build-preview.mjs. Changes stay in his browser; Copy my notes gives a list to send back.
+
 Approved so far: Phase 0 sheet ("fine enough", 8 Nov); Small button option A and the Contact button
 gooey split (picks, 9 Nov). Not yet approved by him: the Phase 1 pages as built, everything else in
 Phase 2, all of Phase 3.
