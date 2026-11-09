@@ -50,3 +50,23 @@
 .ending-bar a { transition: none; }
 .ending-bar__prev { justify-self: start; }
 .ending-bar a:hover, .ending-bar a:active { color: var(--neutral-050); background: var(--neutral-900); }
+
+/* 9. Hover text weight (his note, 9 Nov: "contact when I hover, I can tell there's a bigger gap between
+      the letters"). Nothing moves; the letters draw thinner. base.css turns off the Mac's normal text
+      smoothing for the whole page (-webkit-font-smoothing: antialiased). That setting suits light text on
+      a dark page, which a Mac otherwise draws a little heavy. On dark text over a light block it makes the
+      strokes noticeably thinner, and our eyes already see dark on light as thinner than light on dark, so
+      the same word looks lighter and more spaced out. Fix: the Mac's normal smoothing wherever text is dark
+      on light, the thin setting only where it is light on dark. Only the way the strokes are drawn
+      changes; every letter keeps its exact width and place. Mac only (Windows and Linux ignore both
+      properties). The end bar is the other way round: dark text at rest, light text on hover. */
+.link-nav:hover, .link-nav:active,
+.link-footer:hover, .link-footer:active,
+.footer__email:hover, .footer__email:active,
+.footer__out:hover, .footer__out:active,
+.footer__back:hover, .footer__back:active,
+.ending-bar a { -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
+.ending-bar a:hover, .ending-bar a:active { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/*    Before and after: press O on the preview to switch back to the old drawing and compare. */
+html.hover-old .link-nav, html.hover-old .link-footer, html.hover-old .footer__email,
+html.hover-old .footer__out, html.hover-old .footer__back, html.hover-old .ending-bar a { -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; }
