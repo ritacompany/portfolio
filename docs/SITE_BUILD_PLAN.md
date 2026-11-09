@@ -112,8 +112,8 @@ A new session picks this up from this file alone.
   Framework and Haven at default settings, the lab page and the tuner. Resume point: he tunes it on
   the tuner (https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG), his Copy settings output goes into
   `GOO` in `contact-goo.js`, then `node scripts/verify-contact-goo.mjs` and the 1440 suite. Phase 3 did
-  not touch the button, its script or the lab. The rest of Phase 2 also waits on him: card hovers (H11
-  prototype awaiting review), Falling behind (his editor settings), the footer transition (H16 pick).
+  not touch the button, its script or the lab. The rest of Phase 2 also waited on him: card hovers (H11
+  prototype, since built) and the footer transition (now in Details).
   Link and Context list hovers already work from Phase 0.
 - Contact button, later on 9 Nov (the button session, still running when Phase 3 merged), his ask: mix the gooey split with the liquid outline, no neck at rest, react to
   where the pointer is, the hidden colour as a setting. Built in new files (another session owns
@@ -154,10 +154,6 @@ A new session picks this up from this file alone.
   (site/js/site.js; Haven keeps its own). The Start of week dots are HTML, follow the carousel and jump
   on click; the hint text matches the old export to the pixel. Haven's motion is unchanged. Gate:
   node scripts/verify-phase2.mjs cards|links|clock|dots|regress, all pass.
-- Falling behind (Framework CS section 5812:20248) ships as his Figma frame draws it: the right rail
-  and rollover images, no animation. The 4 to 5 Nov animation editor
-  (site/motion-lab/cs2-falling-behind-editor.html, reference/cs2/HANDOFF.md) was never tuned and is
-  not in the frame; dropped from Phase 2 on 9 Nov. Revive only if he asks.
 
 - Pre launch check, 9 Nov (built site in dist/): every page has a title and description; the portfolio
   logo is now the favicon on every page (Haven already used it); Haven's profile scroll study page no
@@ -302,7 +298,7 @@ means tuning twice.
 |---|---|---|
 | 0 Foundation | Rewrite `tokens.css` from the Portfolio values and the type table; 12 column grid utility (40 margin, 40 gutter); shared components in HTML and CSS: Navbar (PD, Base), Footer (Default, Other pages), Link (3 styles by 3 states), Badge, Context list, Button, Small button | A component sheet page in `site/` matches each Figma variant side by side at 1440 |
 | 1 Pages, static | Collection page first (smallest, uses most components), then Home, then Framework CS (screenshots as 2x image exports), then Haven moved onto the shared nav, footer and tokens without changing its spacing or motion | Each page matches its frame at 1440, `npm run check` passes, no Figma asset URL in the code |
-| 2 Interactions and motion | Button and Small button states designed together; link and card hovers; carry over what exists (Haven motion, Falling behind, the footer transition); new motion only after his pick | Each piece passes the motion review loop in `.claude/motion-rules.md` |
+| 2 Interactions and motion | Button and Small button states designed together; link and card hovers; carry over what exists (Haven motion); new motion only after his pick | Each piece passes the motion review loop in `.claude/motion-rules.md` |
 | 3 Responsive | 390 wide recompositions per page, then 768 and 1200 (built 9 Nov, ahead of the parked Phase 2 items) | No horizontal scroll at 390, 768, 1200 and 1440; he approves the 390 versions |
 | 4 Launch | Point `npm run build` at `site/`, remove the noindex header, robots allow, domain on Vercel (steps in `docs/SITE_SETUP.md`) | chadwickfenner.com serves the site, indexing on |
 
