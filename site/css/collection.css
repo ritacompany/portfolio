@@ -13,7 +13,7 @@
   text-box: trim-both cap alphabetic;
 }
 .collection__intro {
-  width: 668.69px; margin-top: 40px;
+  width: min(668.69px, 100%); margin-top: 40px;
   font: var(--heading-20); letter-spacing: var(--heading-20-track);
   color: var(--neutral-300);
   text-box: trim-both cap alphabetic;
@@ -31,3 +31,15 @@
   text-box: trim-both cap alphabetic;
 }
 .collection__rows { list-style: none; padding: 0; margin-top: 20px; }
+
+/* Phase 3: the page keeps its order and spacing rhythm; only the top padding and gaps tighten. */
+@media (max-width: 1199.98px) {
+  .collection { padding-top: 136px; padding-bottom: 64px; }
+  .collection__list { margin-top: 72px; }
+}
+@media (max-width: 767.98px) {
+  .collection { padding-top: 112px; }
+  .collection__brand { gap: 16px; }
+  .collection__intro { margin-top: 28px; }
+  .collection__list { margin-top: 56px; }
+}

@@ -56,3 +56,55 @@
 .panel-example { border-radius: 12px; background: var(--neutral-850); }
 .panel-card { border-radius: 16px; background: var(--neutral-900); box-shadow: inset 0 0 0 1px var(--neutral-600); }
 .vrule { background: var(--neutral-700); }
+
+/* Phase 3.
+   1200 to 1439: the 1440 composition is kept and scaled to the window (site/js/fit-desktop.js sets
+   --fw-scale to the window width over 1440; without the script it falls back to the 1200 scale).
+   Body text lands at 13.3 to 15.2 px and labels at 10 to 11.4 px across that range.
+   Under 1200: the absolute positions fall away and each section stacks in reading order, which the
+   generator writes as the DOM order (scripts/framework-page/build.py, flow_order). Figures keep their
+   own width up to the content width; frames drawn only to sit behind desktop text are hidden, the
+   Example box becomes a box around its own text. Inline styles carry the desktop positions, hence
+   the !important on the overrides. */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+  .fw { zoom: var(--fw-scale, 0.8333); }
+}
+@media (max-width: 1199.98px) {
+  .fw { padding-top: 112px; }
+  .fw-sec {
+    height: auto !important; display: flex; flex-direction: column; align-items: flex-start;
+    padding: 72px var(--grid-margin);
+  }
+  .fw-sec:first-child { padding-top: 0; }
+  .fw-sec > * { position: static !important; width: auto !important; height: auto !important; max-width: 100%; }
+  .fw-sec > .nowrap { white-space: normal; }
+  .fw-sec > * + * { margin-top: 24px; }
+  .fw-sec > .s-heading-40, .fw-sec > .s-display-96 { max-width: 760px; }
+  .fw-sec > .s-body-16, .fw-sec > .s-heading-24, .fw-sec > .s-label-14, .fw-sec > .s-label-12-c { max-width: 640px; }
+  .fw-sec > h2 + * { margin-top: 20px; }
+  .fw-sec > .s-heading-40 + *, .fw-sec > .s-display-96 + * { margin-top: 40px; }
+  .fw-sec > .s-label-12 + .s-body-16, .fw-sec > .s-label-14-c + *, .fw-sec > .s-heading-20:not(h2) + .s-body-16 { margin-top: 10px; }
+  .fw-sec > .s-label-12 { margin-top: 24px; }
+  .fw-sec > .s-label-14-c, .fw-sec > .s-heading-20:not(h2) { margin-top: 36px; }
+  .fw-sec > .fig, .fw-sec > .week { margin-top: 40px; }
+  .fw-sec > .fig + .s-body-16, .fw-sec > .fig + .s-label-12-c { margin-top: 32px; }
+  .fw-sec > .s-label-12-c:last-child { margin-top: 40px; }
+  .fw-sec > h1 { margin-bottom: 16px; }
+  .fig { width: auto !important; height: auto !important; }
+  .rule { align-self: stretch; margin: 48px calc(-1 * var(--grid-margin)) !important; max-width: none; height: 1px !important; }
+  .fw-sec > .rule + * { margin-top: 0; }
+  .panel-card, .vrule, .panel-example, [data-figma-node="5812:20346"] { display: none; }
+  /* The Example box: the panel behind it is hidden, so its label and text draw the box themselves. */
+  [data-figma-node="5812:17127"] { margin-top: 40px !important; padding: 20px 20px 0; background: var(--neutral-850); border-radius: 12px 12px 0 0; }
+  [data-figma-node="5812:17128"] { margin-top: 0 !important; padding: 10px 20px 20px; background: var(--neutral-850); border-radius: 0 0 12px 12px; }
+  .week { width: 100% !important; }
+  .week__slide { width: 100%; height: auto; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .week__slide img { width: 100%; height: auto; margin-bottom: 30px; }
+  .week__label, .week__title, .week__desc { position: static; transform: none; }
+  .week__desc { width: auto !important; max-width: 529px; }
+}
+@media (max-width: 767.98px) {
+  .fw { padding-top: 96px; }
+  .fw-sec { padding-block: 56px; }
+  .fw-sec > .fig, .fw-sec > .week { margin-top: 32px; }
+}

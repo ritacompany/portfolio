@@ -109,7 +109,29 @@
   --ease-expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
 }
 
-/* Smaller screens get their own grid values in Phase 3; this keeps the page usable meanwhile. */
-@media (max-width: 640px) {
-  :root { --grid-margin: 16px; --grid-gutter: 16px; }
+/* Phase 3 breakpoints. Desktop (1200 and up) is the Figma grid and type above; nothing below changes
+   it. Tablet, 768 to 1199: 8 columns, 32 margin, 24 gutter. Mobile, under 768: 4 columns, 20 margin,
+   16 gutter. Only the large styles step down; Heading/20, Body and Labels keep their size everywhere.
+   Display/212 is sized to the content width, so "Framework CS" spans the page as it does at 1440
+   (1357 px of text at 212 px: 0.15 of the width per px leaves it at 96 percent of the content width). */
+@media (max-width: 1199.98px) {
+  :root {
+    --grid-columns: 8;
+    --grid-margin: 32px;
+    --grid-gutter: 24px;
+    --display-212: 400 calc((100vw - 2 * var(--grid-margin)) * 0.15)/0.83 var(--font);
+    --display-96: 500 64px/66px var(--font);
+    --heading-64: 500 56px/62px var(--font);
+  }
+}
+@media (max-width: 767.98px) {
+  :root {
+    --grid-columns: 4;
+    --grid-margin: 20px;
+    --grid-gutter: 16px;
+    --display-96: 500 40px/44px var(--font);
+    --heading-64: 500 40px/44px var(--font);
+    --heading-40: 500 28px/34px var(--font);
+    --heading-24: 500 20px/26px var(--font);
+  }
 }

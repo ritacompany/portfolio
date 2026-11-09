@@ -262,3 +262,63 @@
   font: var(--body-16); font-weight: 700; letter-spacing: var(--body-16-track); white-space: nowrap;
   text-box: trim-both cap alphabetic;
 }
+
+/* Phase 3, under 1200. Desktop above is untouched; these rules only recompose.
+   Navbar: tablet keeps the role line on 8 columns; mobile drops it (the hero lede already says what
+   he does) and keeps all three links, which fit at 390 without a menu.
+   Context list: the row wraps. Tablet keeps title, arrow and badge on one line and puts the locked
+   status under them; mobile stacks badge over title with the arrow on the right.
+   Footer: columns stack, the bottom row moves above the CHDWCK wordmark, which keeps the share of its
+   height that shows at 1440 (227 of 378 px; the crop is 40 percent of 26.28 percent of the width).
+   Ending bar: previous and next share the first line, Explore more sits under them. */
+@media (max-width: 1199.98px) {
+  .navbar__logo { grid-column: 1 / span 2; }
+  .navbar__role { grid-column: 3 / span 3; }
+  .navbar__links { grid-column: 6 / -1; gap: 20px; justify-content: flex-end; }
+  .navbar__links li { flex: none; }
+
+  .context { flex-wrap: wrap; gap: 16px 24px; padding: 32px 24px; }
+  .context__title { white-space: normal; }
+  .context .badge { margin-left: auto; }
+  .context-locked { padding-right: 24px; }
+  .context__status { flex-basis: 100%; margin-left: 0; white-space: normal; }
+
+  .footer__main { height: auto; gap: 64px; padding-bottom: 0; }
+  .footer__top { row-gap: 56px; }
+  .footer__top > :first-child { grid-column: 1 / span 4; }
+  .footer__contact { grid-column: 5 / span 4; }
+  .footer__portraits { grid-column: 1 / -1; justify-self: start; }
+  .footer__email { overflow-wrap: anywhere; }
+  .footer__note { width: auto; max-width: 316.782px; }
+  .footer__bottom { order: 1; row-gap: 20px; }
+  .footer__bottom > :nth-child(1) { grid-column: 1 / span 3; }
+  .footer__bottom > :nth-child(2) { grid-column: 4 / span 2; }
+  .footer__bottom > :nth-child(3) { grid-column: 6 / span 2; }
+  .footer__bottom > :nth-child(4) { grid-column: 8 / span 1; justify-self: end; }
+  .footer__wordmark { order: 2; position: relative; top: auto; margin-top: -47px; margin-bottom: -10.5%; }
+
+  .ending-bar { grid-template-columns: 1fr 1fr; grid-template-areas: "prev next" "all all"; row-gap: 12px; height: auto; padding-block: 12px; }
+  .ending-bar__prev { grid-area: prev; }
+  .ending-bar__next { grid-area: next; text-align: right; }
+  .ending-bar__all { grid-area: all; }
+  .ending-bar__prev span, .ending-bar__next span { white-space: normal; }
+}
+
+@media (max-width: 767.98px) {
+  .navbar__logo { grid-column: 1; }
+  .navbar__role { display: none; }
+  .navbar__links { grid-column: 2 / -1; }
+
+  .context { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding: 24px 12px; }
+  .context .badge { grid-row: 1; grid-column: 1; justify-self: start; margin-left: 0; height: 41px; }
+  .context__title { grid-row: 2; grid-column: 1; }
+  .context__icon { grid-row: 1 / span 2; grid-column: 2; align-self: center; }
+  .context__status { grid-row: 3; grid-column: 1 / -1; }
+  .context-locked { padding-right: 12px; }
+
+  .footer__top > :first-child, .footer__contact { grid-column: 1 / -1; }
+  .footer__bottom > :nth-child(1) { grid-column: 1 / -1; }
+  .footer__bottom > :nth-child(2) { grid-column: 1 / -1; }
+  .footer__bottom > :nth-child(3) { grid-column: 1 / span 2; }
+  .footer__bottom > :nth-child(4) { grid-column: 3 / span 2; justify-self: start; }
+}
