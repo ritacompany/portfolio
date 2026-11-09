@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Component sheet</title>
+  <link rel="preload" href="/assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/satoshi-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/grid.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+  <div class="canvas" id="top">
+    <header class="sheet__head">
+      <h1>Component sheet</h1>
+      <p>Phase 0. Each Figma component set from page CS (file 5RO0m4bYYrTvbiaOgaU3tI) beside its coded twin, at 1x, on the page background. Variants sit at the same positions as in Figma, so the two panels line up. Hover and pressed variants are forced with classes here; on the pages they run on real hover and press. Never shipped: the build leaves site/dev out.</p>
+    </header>
+
+    <main>
+      <section class="sheet__set is-wide" data-set="grid">
+        <h2>Grid <span>12 columns, 40 margin, 40 gutter</span></h2>
+        <div class="grid sheet__grid" data-grid-test>
+          <div class="sheet__col" data-grid-col="1"><span>1</span></div>
+          <div class="sheet__col" data-grid-col="2"><span>2</span></div>
+          <div class="sheet__col" data-grid-col="3"><span>3</span></div>
+          <div class="sheet__col" data-grid-col="4"><span>4</span></div>
+          <div class="sheet__col" data-grid-col="5"><span>5</span></div>
+          <div class="sheet__col" data-grid-col="6"><span>6</span></div>
+          <div class="sheet__col" data-grid-col="7"><span>7</span></div>
+          <div class="sheet__col" data-grid-col="8"><span>8</span></div>
+          <div class="sheet__col" data-grid-col="9"><span>9</span></div>
+          <div class="sheet__col" data-grid-col="10"><span>10</span></div>
+          <div class="sheet__col" data-grid-col="11"><span>11</span></div>
+          <div class="sheet__col" data-grid-col="12"><span>12</span></div>
+        </div>
+      </section>
+
+      <section class="sheet__set is-wide" data-set="navbar">
+        <h2>Navbar <span>5812:22709</span></h2>
+        <ul class="sheet__notes"><li>PD on top, Base below. Logo on column 1, the role line on column 4, links across columns 8 to 12: the Figma frame lands on those columns within a pixel.</li><li>The last letter of each label is a mirrored digit, as drawn. Screen readers hear About, Work and Contact me.</li></ul>
+        <div class="sheet__pair">
+          <figure>
+            <figcaption>Figma</figcaption>
+            <img class="stage" src="figma/navbar.png" alt="Figma render of Navbar" width="1440" height="108">
+          </figure>
+          <figure>
+            <figcaption>Code</figcaption>
+            <div class="stage" data-stage="navbar" style="width:1440px;height:108px">
+            <nav class="navbar grid" data-figma-node="5812:22710" data-variant="Property 1=PD" aria-label="Main" style="top:20px;left:0;width:1440px">
+              <a class="navbar__logo col-1" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+              <p class="navbar__role col-4 span-3">Product Designer</p>
+              <ul class="navbar__links col-8 span-5">
+                <li><a class="link-nav" href="/#about" aria-label="About"><span aria-hidden="true">Abou<span class="mirror">7</span></span></a></li>
+                <li><a class="link-nav" href="/#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
+                <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
+              </ul>
+            </nav>
+            <nav class="navbar grid" data-figma-node="5812:22730" data-variant="Property 1=Base" aria-label="Main" style="top:64px;left:0;width:1440px">
+              <a class="navbar__logo col-1" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+              <ul class="navbar__links col-8 span-5">
+                <li><a class="link-nav" href="/#about" aria-label="About"><span aria-hidden="true">Abou<span class="mirror">7</span></span></a></li>
+                <li><a class="link-nav" href="/#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
+                <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
+              </ul>
+            </nav>
+            </div>
+          </figure>
+        </div>
+      </section>
+      <section class="sheet__set is-wide" data-set="footer-default">
+        <h2>Footer, Default <span>5812:22750</span></h2>
+        <ul class="sheet__notes"><li>Columns: list on 1, contact on 6, portraits end on 12, time on 4, LinkedIn on 7 (Figma 739, column 740), Resume on 10 (Figma 1088, column 1090).</li><li>Resume on column 10 and the bottom row 7 px higher (gap 176), from his 8 Nov Figma fix.</li><li>The transition band is the still image for now; its motion carries over in Phase 2. The clock is static here and goes live on the pages.</li><li>The CHDWCK wordmark scales with the footer width (107.52 percent, 1548 at 1440).</li><li>The copyright line reads @2026 as drawn in Figma; © would be the usual mark.</li></ul>
+        <div class="sheet__pair">
+          <figure>
+            <figcaption>Figma</figcaption>
+            <img class="stage" src="figma/footer-default.png" alt="Figma render of Footer, Default" width="1440" height="993">
+          </figure>
+          <figure>
+            <figcaption>Code</figcaption>
+            <div class="stage" data-stage="footer-default" style="width:1440px;height:993px">
+          <footer class="footer" data-figma-node="5812:22750" data-variant="Property 1=Default" style="left:0;top:0;width:1438px">
+            <div class="footer__transition" aria-hidden="true"><img src="/assets/ui/footer-transition.png" alt="" width="1024" height="514"></div>
+            <div class="footer__main">
+              <div class="footer__top grid">
+                <div class="col-1 span-5">
+                  <a class="footer__back" href="#top"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>
+                  <ul class="footer__nav">
+                <li><a class="link-footer" href="/#about">About</a></li>
+                <li><a class="link-footer" href="/#work">Selected works</a></li>
+                <li><a class="link-footer" href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="footer__contact col-6 span-3">
+                  <p class="footer__label">Contact</p>
+                  <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+                  <div class="footer__note">
+                    <p>I’m currently living in Chicago, IL</p>
+                    <p>and seeking opportunities in NYC.</p>
+                  </div>
+                  <a class="button" href="mailto:hello@chadwickfenner.com">
+                    <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+                    <span class="button__label">Contact</span>
+                  </a>
+                </div>
+                <div class="footer__portraits col-10 span-3" aria-hidden="true">
+                  <span class="footer__pill"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                  <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                </div>
+              </div>
+              <img class="footer__wordmark" src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <div class="footer__bottom grid">
+                <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
+                <p class="footer__meta col-4 span-3"><time>10:24pm CST</time></p>
+                <a class="footer__out col-7 span-3" href="https://www.linkedin.com/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+                <a class="footer__out col-10 span-3" href="#resume"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+              </div>
+            </div>
+          </footer>
+
+            </div>
+          </figure>
+        </div>
+      </section>
+      <section class="sheet__set is-wide" data-set="footer-other">
+        <h2>Footer, Other pages <span>5812:22801</span></h2>
+        <ul class="sheet__notes"><li>Adds Home to the list.</li></ul>
+        <div class="sheet__pair">
+          <figure>
+            <figcaption>Figma</figcaption>
+            <img class="stage" src="figma/footer-other.png" alt="Figma render of Footer, Other pages" width="1440" height="993">
+          </figure>
+          <figure>
+            <figcaption>Code</figcaption>
+            <div class="stage" data-stage="footer-other" style="width:1440px;height:993px">
+          <footer class="footer" data-figma-node="5812:22801" data-variant="Property 1=Other pages" style="left:0;top:0;width:1438px">
+            <div class="footer__transition" aria-hidden="true"><img src="/assets/ui/footer-transition.png" alt="" width="1024" height="514"></div>
+            <div class="footer__main">
+              <div class="footer__top grid">
+                <div class="col-1 span-5">
+                  <a class="footer__back" href="#top"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>
+                  <ul class="footer__nav">
+                <li><a class="link-footer" href="/">Home</a></li>
+                <li><a class="link-footer" href="/#about">About</a></li>
+                <li><a class="link-footer" href="/#work">Selected works</a></li>
+                <li><a class="link-footer" href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="footer__contact col-6 span-3">
+                  <p class="footer__label">Contact</p>
+                  <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+                  <div class="footer__note">
+                    <p>I’m currently living in Chicago, IL</p>
+                    <p>and seeking opportunities in NYC.</p>
+                  </div>
+                  <a class="button" href="mailto:hello@chadwickfenner.com">
+                    <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+                    <span class="button__label">Contact</span>
+                  </a>
+                </div>
+                <div class="footer__portraits col-10 span-3" aria-hidden="true">
+                  <span class="footer__pill"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                  <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                </div>
+              </div>
+              <img class="footer__wordmark" src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <div class="footer__bottom grid">
+                <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
+                <p class="footer__meta col-4 span-3"><time>10:24pm CST</time></p>
+                <a class="footer__out col-7 span-3" href="https://www.linkedin.com/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+                <a class="footer__out col-10 span-3" href="#resume"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+              </div>
+            </div>
+          </footer>
+
+            </div>
+          </figure>
+        </div>
+      </section>
+      <section class="sheet__set" data-set="link">
+        <h2>Link <span>5812:22559</span></h2>
+        <ul class="sheet__notes"><li>Columns: Block, Nav, Footer. Rows follow Figma: Block is Default, Hover, Pressed; Nav is Default, Pressed, Hover; Footer is Default, Hover, Pressed.</li><li>Block Default uses Portfolio Neutral/400; Nav and Footer hover and pressed use Neutral/200. Moved off Mondai's Color primitives in Figma on 8 Nov, so both panels now match.</li></ul>
+        <div class="sheet__pair">
+          <figure>
+            <figcaption>Figma</figcaption>
+            <img class="stage" src="figma/link.png" alt="Figma render of Link" width="226" height="154">
+          </figure>
+          <figure>
+            <figcaption>Code</figcaption>
+            <div class="stage" data-stage="link" style="width:226px;height:154px">
+            <a class="link-block" href="#link" data-figma-node="5812:22560" data-variant="State=Default, Style=Block" style="left:0px;top:0px">Link</a>
+            <a class="link-block is-hover" href="#link" data-figma-node="5812:22573" data-variant="State=Hover, Style=Block" style="left:0px;top:43.5px">Link</a>
+            <a class="link-block is-pressed" href="#link" data-figma-node="5812:22579" data-variant="State=Pressed, Style=Block" style="left:0px;top:87px">Link</a>
+            <a class="link-nav" href="#link" data-figma-node="5812:22565" data-variant="State=Default, Style=Nav" style="left:67px;top:0px">Link</a>
+            <a class="link-nav is-pressed" href="#link" data-figma-node="5812:22575" data-variant="State=Pressed, Style=Nav" style="left:67px;top:43.5px">Link</a>
+            <a class="link-nav is-hover" href="#link" data-figma-node="5812:22588" data-variant="State=Hover, Style=Nav" style="left:67px;top:87px">Link</a>
+            <a class="link-footer" href="#link" data-figma-node="5812:22569" data-variant="State=Default, Style=Footer" style="left:122px;top:0px">Link</a>
+            <a class="link-footer is-hover" href="#link" data-figma-node="5812:22595" data-variant="State=Hover, Style=Footer" style="left:122px;top:43.5px">Link</a>
+            <a class="link-footer is-pressed" href="#link" data-figma-node="5812:22584" data-variant="State=Pressed, Style=Footer" style="left:122px;top:87px">Link</a>
+            </div>
+          </figure>
+        </div>
+      </section>
+      <section class="sheet__set" data-set="badge">
+        <h2>Badge <span>5812:22599</span></h2>
+        <ul class="sheet__notes"><li>Type 1 White, then Type 2 White, Black, Locked. Badges hug longer labels with 127 as the minimum width.</li><li>Black is made for the light hover and pressed rows of the context list, so it nearly disappears on this background in both panels.</li></ul>
+        <div class="sheet__pair">
+          <figure>
+            <figcaption>Figma</figcaption>
+            <img class="stage" src="figma/badge.png" alt="Figma render of Badge" width="127" height="254">
+          </figure>
+          <figure>
+            <figcaption>Code</figcaption>
+            <div class="stage" data-stage="badge" style="width:127px;height:254px">
+            <span class="badge" data-figma-node="5812:22600" data-variant="Type=1, Style=White" style="left:0px;top:0px"><span>Badge</span></span>
+            <span class="badge badge-lg" data-figma-node="5812:22606" data-variant="Type=2, Style=White" style="left:0px;top:53px"><span>Badge</span></span>
+            <span class="badge badge-lg badge-black" data-figma-node="5812:22602" data-variant="Type=2, Style=Black" style="left:0px;top:124px"><span>Badge</span></span>
+            <span class="badge badge-lg badge-locked" data-figma-node="5812:22604" data-variant="Type=2, Style=Locked" style="left:0px;top:195px"><span>Badge</span></span>
+            </div>
+          </figure>
+        </div>
+      </section>
+      <section class="sheet__set is-wide" data-set="context-list">
+        <h2>Context list <span>5812:22608</span></h2>
+        <ul class="sheet__notes"><li>Locked rows show Currently unavailable at the right edge, as on the collection page. In the Figma set it sits past the 992 frame, so the reference crops it.</li></ul>
+        <div class="sheet__pair">
+          <figure>
+            <figcaption>Figma</figcaption>
+            <img class="stage" src="figma/context-list.png" alt="Figma render of Context list" width="992" height="1188">
+          </figure>
+          <figure>
+            <figcaption>Code</figcaption>
+            <div class="stage" data-stage="context-list" style="width:992px;height:1188px">
+            <a class="context context-bottom" href="#link" data-figma-node="5812:22609" data-variant="State=Default, Lines=Bottom" style="left:0px;top:0px">
+              <span class="context__title">Item title</span><span class="context__icon" aria-hidden="true"></span>
+              <span class="badge badge-lg"><span>Badge</span></span>
+            </a>
+            <a class="context context-top" href="#link" data-figma-node="5812:22615" data-variant="State=Default, Lines=Top" style="left:0px;top:151px">
+              <span class="context__title">Item title</span><span class="context__icon" aria-hidden="true"></span>
+              <span class="badge badge-lg"><span>Badge</span></span>
+            </a>
+            <a class="context context-both" href="#link" data-figma-node="5812:22621" data-variant="State=Default, Lines=Top + bottom" style="left:0px;top:302px">
+              <span class="context__title">Item title</span><span class="context__icon" aria-hidden="true"></span>
+              <span class="badge badge-lg"><span>Badge</span></span>
+            </a>
+            <a class="context is-hover" href="#link" data-figma-node="5812:22627" data-variant="State=Hover, Lines=Default" style="left:0px;top:453px">
+              <span class="context__title">Item title</span><span class="context__icon" aria-hidden="true"></span>
+              <span class="badge badge-lg badge-black"><span>Badge</span></span>
+            </a>
+            <a class="context is-pressed" href="#link" data-figma-node="5812:22633" data-variant="State=Pressed, Lines=Default" style="left:0px;top:604px">
+              <span class="context__title">Item title</span><span class="context__icon" aria-hidden="true"></span>
+              <span class="badge badge-lg badge-black"><span>Badge</span></span>
+            </a>
+            <div class="context context-locked context-bottom" aria-disabled="true" data-figma-node="5812:22639" data-variant="State=Locked, Lines=Bottom" style="left:0px;top:755px">
+              <span class="context__title">Item title</span><span class="context__icon" aria-hidden="true"></span>
+              <span class="badge badge-lg badge-locked"><span>Badge</span></span>
+              <span class="context__status">Currently unavailable</span>
+            </div>
+            <div class="context context-locked context-top" aria-disabled="true" data-figma-node="5812:22650" data-variant="State=Locked, Lines=Top" style="left:0px;top:906px">
+              <span class="context__title">Item title</span><span class="context__icon" aria-hidden="true"></span>
+              <span class="badge badge-lg badge-locked"><span>Badge</span></span>
+              <span class="context__status">Currently unavailable</span>
+            </div>
+            <div class="context context-locked context-both" aria-disabled="true" data-figma-node="5812:22661" data-variant="State=Locked, Lines=Top + bottom" style="left:0px;top:1057px">
+              <span class="context__title">Item title</span><span class="context__icon" aria-hidden="true"></span>
+              <span class="badge badge-lg badge-locked"><span>Badge</span></span>
+              <span class="context__status">Currently unavailable</span>
+            </div>
+            </div>
+          </figure>
+        </div>
+      </section>
+      <section class="sheet__set" data-set="button">
+        <h2>Button <span>5812:22672</span></h2>
+        <ul class="sheet__notes"><li>Default state and focus ring only. Hover and pressed get designed together in Phase 2. Tab to it to see the ring.</li></ul>
+        <div class="sheet__pair">
+          <figure>
+            <figcaption>Figma</figcaption>
+            <img class="stage" src="figma/button.png" alt="Figma render of Button" width="299" height="77">
+          </figure>
+          <figure>
+            <figcaption>Code</figcaption>
+            <div class="stage" data-stage="button" style="width:299px;height:77px">
+            <a class="button" href="mailto:hello@chadwickfenner.com" data-figma-node="5812:22691" data-variant="Property 1=outline" style="left:0px;top:0px">
+              <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+              <span class="button__label">Contact</span>
+            </a>
+            </div>
+          </figure>
+        </div>
+      </section>
+      <section class="sheet__set" data-set="small-button">
+        <h2>Small button <span>5812:22855</span></h2>
+        <ul class="sheet__notes"><li>Default state and focus ring only, as above.</li></ul>
+        <div class="sheet__pair">
+          <figure>
+            <figcaption>Figma</figcaption>
+            <img class="stage" src="figma/small-button.png" alt="Figma render of Small button" width="184" height="48">
+          </figure>
+          <figure>
+            <figcaption>Code</figcaption>
+            <div class="stage" data-stage="small-button" style="width:184px;height:48px">
+            <button class="button-sm" type="button" data-figma-node="5812:22856" data-variant="Property 1=Default" style="left:0px;top:0px">Learn more</button>
+            </div>
+          </figure>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

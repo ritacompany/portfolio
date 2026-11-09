@@ -1,0 +1,73 @@
+/* Phase 2 options for Button and Small button states. Dev only: the chosen option moves into
+   components.css. Each option scopes its rules under .opt-a, .opt-b or .opt-c. Forced state classes
+   (.is-hover, .is-pressed, .is-focus) show each state side by side; live hover and press work too. */
+
+body { padding: 48px var(--grid-margin) 96px; }
+.page-head h1 { font: var(--heading-40); letter-spacing: var(--heading-40-track); color: var(--neutral-050); }
+.page-head p { margin-top: 16px; max-width: 760px; font: var(--body-16); letter-spacing: var(--body-16-track); color: var(--neutral-500); }
+
+.opt { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--neutral-800); }
+.opt h2 { font: var(--heading-24); letter-spacing: var(--heading-24-track); color: var(--neutral-050); }
+.opt > p { margin-top: 12px; max-width: 760px; font: var(--body-16); letter-spacing: var(--body-16-track); color: var(--neutral-400); }
+.states { display: grid; grid-template-columns: repeat(4, max-content); gap: 16px 24px; align-items: center; margin-top: 32px; }
+.states span.lab { grid-column: 1 / -1; margin-top: 16px; }
+.states > * { justify-self: start; }
+.states span.lab { font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; color: var(--neutral-550); }
+.states .col { font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; color: var(--neutral-550); }
+.try { margin-top: 28px; display: flex; gap: 40px; align-items: center; }
+.try > span { font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; color: var(--neutral-550); }
+
+.button, .button-sm { cursor: pointer; }
+.button__icon, .button__label, .button-sm { transition-timing-function: var(--ease-quart-out); }
+
+/* A. Fill. The outline fills with Neutral/100 and the text and icon turn dark, icon pill first and the
+   label 60 ms behind. Pressed sinks to Neutral/300 and scales to 98 percent. */
+.opt-a .button__icon, .opt-a .button__label { transition-property: background-color, color; transition-duration: 200ms; }
+.opt-a .button__label { transition-delay: 60ms; }
+.opt-a .button__icon img { transition: filter 200ms var(--ease-quart-out); }
+.opt-a .button { transition: transform 120ms var(--ease-quart-out); }
+.opt-a .button:hover .button__icon, .opt-a .button.is-hover .button__icon,
+.opt-a .button:hover .button__label, .opt-a .button.is-hover .button__label { background: var(--neutral-100); color: var(--neutral-900); }
+.opt-a .button:hover .button__icon img, .opt-a .button.is-hover .button__icon img { filter: invert(1); }
+.opt-a .button:active, .opt-a .button.is-pressed { transform: scale(0.98); }
+.opt-a .button:active .button__icon, .opt-a .button.is-pressed .button__icon,
+.opt-a .button:active .button__label, .opt-a .button.is-pressed .button__label { background: var(--neutral-300); border-color: var(--neutral-300); color: var(--neutral-900); }
+.opt-a .button:active .button__icon img, .opt-a .button.is-pressed .button__icon img { filter: invert(1); }
+.opt-a .button-sm { transition-property: background-color, color, transform; transition-duration: 200ms; }
+.opt-a .button-sm:hover, .opt-a .button-sm.is-hover { background: var(--neutral-100); color: var(--neutral-900); }
+.opt-a .button-sm:active, .opt-a .button-sm.is-pressed { background: var(--neutral-300); border-color: var(--neutral-300); color: var(--neutral-900); transform: scale(0.98); }
+
+/* B. Roll. The outline stays; the label rolls up and the same word rolls in from below, and the mail
+   icon tips 12 degrees. Pressed thickens the stroke to 4 px inward. The memorable one. */
+.opt-b .roll { display: inline-grid; overflow: hidden; vertical-align: top; }
+.opt-b .roll > span { grid-area: 1 / 1; transition: transform 320ms var(--ease-expo-out); }
+.opt-b .roll > span + span { transform: translateY(110%); }
+.opt-b .button:hover .roll > span, .opt-b .button.is-hover .roll > span,
+.opt-b .button-sm:hover .roll > span, .opt-b .button-sm.is-hover .roll > span { transform: translateY(-110%); }
+.opt-b .button:hover .roll > span + span, .opt-b .button.is-hover .roll > span + span,
+.opt-b .button-sm:hover .roll > span + span, .opt-b .button-sm.is-hover .roll > span + span { transform: translateY(0); }
+.opt-b .button__icon img { transition: transform 320ms var(--ease-expo-out); }
+.opt-b .button:hover .button__icon img, .opt-b .button.is-hover .button__icon img { transform: rotate(-12deg); }
+.opt-b .button__icon, .opt-b .button__label, .opt-b .button-sm { transition-property: box-shadow; transition-duration: 120ms; }
+.opt-b .button:active .button__icon, .opt-b .button.is-pressed .button__icon,
+.opt-b .button:active .button__label, .opt-b .button.is-pressed .button__label,
+.opt-b .button-sm:active, .opt-b .button-sm.is-pressed { box-shadow: inset 0 0 0 1px var(--neutral-100); }
+.opt-b .button.is-pressed .roll > span, .opt-b .button-sm.is-pressed .roll > span { transform: translateY(-110%); }
+.opt-b .button.is-pressed .roll > span + span, .opt-b .button-sm.is-pressed .roll > span + span { transform: translateY(0); }
+
+/* C. Join. The two pills close their seam into one shape: the label slides left under the icon by 12 px
+   and the icon's ring fades, so it reads as one button. Small button squares its corners from 32 to 10.
+   Pressed fills with Neutral/800. */
+.opt-c .button__label { transition: margin 260ms var(--ease-expo-out), background-color 120ms; position: relative; }
+.opt-c .button__icon { transition: border-color 260ms var(--ease-expo-out), background-color 120ms; position: relative; z-index: 1; }
+.opt-c .button:hover .button__label, .opt-c .button.is-hover .button__label,
+.opt-c .button:active .button__label, .opt-c .button.is-pressed .button__label { margin-left: -12px; padding-left: 30px; }
+.opt-c .button:hover .button__icon, .opt-c .button.is-hover .button__icon,
+.opt-c .button:active .button__icon, .opt-c .button.is-pressed .button__icon { border-color: transparent; }
+.opt-c .button:active .button__label, .opt-c .button.is-pressed .button__label { background: var(--neutral-800); }
+.opt-c .button-sm { transition: border-radius 260ms var(--ease-expo-out), background-color 120ms; }
+.opt-c .button-sm:hover, .opt-c .button-sm.is-hover { border-radius: 10px; }
+.opt-c .button-sm:active, .opt-c .button-sm.is-pressed { border-radius: 10px; background: var(--neutral-800); }
+
+/* Focus, every option: the shared 2 px white ring, offset 4. Forced here with .is-focus. */
+.is-focus { outline: 2px solid var(--neutral-000); outline-offset: 4px; }

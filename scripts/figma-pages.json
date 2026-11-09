@@ -1,0 +1,1749 @@
+{
+ "_source": "Figma file 5RO0m4bYYrTvbiaOgaU3tI, page CS, read 9 Nov 2026 through the Plugin API. Boxes are relative to the page frame. A box with a decided field overrides the Figma value on purpose; the reason is beside it.",
+ "pages": {
+  "collection": {
+   "frame": "5812:22999",
+   "url": "/mondai/",
+   "image": "dev/pages/figma/collection.png",
+   "w": 1440,
+   "h": 900,
+   "css": "css/collection.css",
+   "boxes": [
+    {
+     "name": "navbar",
+     "sel": "[data-figma-node='5812:23035']",
+     "x": 0,
+     "y": 20,
+     "w": 1440,
+     "h": 14.04
+    },
+    {
+     "name": "Mondai mark",
+     "sel": "[data-figma-node='5812:23003']",
+     "x": 40,
+     "y": 167,
+     "w": 40,
+     "h": 40.57
+    },
+    {
+     "name": "Mondai heading",
+     "sel": "[data-figma-node='5812:23006']",
+     "x": 100,
+     "y": 172.79,
+     "w": 128,
+     "h": 29
+    },
+    {
+     "name": "intro",
+     "sel": "[data-figma-node='5812:23007']",
+     "x": 40,
+     "y": 247.57,
+     "w": 668.69,
+     "h": 66
+    },
+    {
+     "name": "slashes",
+     "sel": "[data-figma-node='5812:23010']",
+     "x": 40,
+     "y": 408,
+     "w": 11,
+     "h": 11
+    },
+    {
+     "name": "collection label",
+     "sel": "[data-figma-node='5812:23011']",
+     "x": 67,
+     "y": 409,
+     "w": 170,
+     "h": 9
+    },
+    {
+     "name": "row 1",
+     "sel": "[data-figma-node='5812:23014']",
+     "x": 40,
+     "y": 439,
+     "w": 1360,
+     "h": 131
+    },
+    {
+     "name": "row 1 title",
+     "sel": "[data-figma-node='5812:23014'] .context__title",
+     "x": 90,
+     "y": 481.5,
+     "w": 394,
+     "h": 46
+    },
+    {
+     "name": "row 1 icon",
+     "sel": "[data-figma-node='5812:23014'] .context__icon",
+     "x": 520,
+     "y": 481.5,
+     "w": 46,
+     "h": 46
+    },
+    {
+     "name": "row 1 badge",
+     "sel": "[data-figma-node='5812:23014'] .badge",
+     "x": 602,
+     "y": 475,
+     "w": 132,
+     "h": 59
+    },
+    {
+     "name": "row 2",
+     "sel": "[data-figma-node='5812:23015']",
+     "x": 40,
+     "y": 570,
+     "w": 1360,
+     "h": 131,
+     "decided": "Figma has this row fixed at 992 while row 1 fills 1360; built full width so the three rows and their lines match"
+    },
+    {
+     "name": "row 2 title",
+     "sel": "[data-figma-node='5812:23015'] .context__title",
+     "x": 90,
+     "y": 612.5,
+     "w": 479,
+     "h": 46
+    },
+    {
+     "name": "row 2 icon",
+     "sel": "[data-figma-node='5812:23015'] .context__icon",
+     "x": 605,
+     "y": 612.5,
+     "w": 46,
+     "h": 46
+    },
+    {
+     "name": "row 2 badge",
+     "sel": "[data-figma-node='5812:23015'] .badge",
+     "x": 687,
+     "y": 606,
+     "w": 135,
+     "h": 59
+    },
+    {
+     "name": "row 3",
+     "sel": "[data-figma-node='5812:23016']",
+     "x": 40,
+     "y": 701,
+     "w": 1360,
+     "h": 131,
+     "decided": "Figma has this row fixed at 992 with its status overflowing to 1390; built full width"
+    },
+    {
+     "name": "row 3 title",
+     "sel": "[data-figma-node='5812:23016'] .context__title",
+     "x": 90,
+     "y": 743.5,
+     "w": 388,
+     "h": 46
+    },
+    {
+     "name": "row 3 icon",
+     "sel": "[data-figma-node='5812:23016'] .context__icon",
+     "x": 514,
+     "y": 743.5,
+     "w": 46,
+     "h": 46
+    },
+    {
+     "name": "row 3 badge",
+     "sel": "[data-figma-node='5812:23016'] .badge",
+     "x": 596,
+     "y": 737,
+     "w": 139,
+     "h": 59
+    },
+    {
+     "name": "row 3 status",
+     "sel": "[data-figma-node='5812:23016'] .context__status",
+     "x": 1180,
+     "y": 758,
+     "w": 210,
+     "h": 17
+    }
+   ]
+  },
+  "home": {
+   "frame": "5812:22862",
+   "url": "/",
+   "image": "dev/pages/figma/home.png",
+   "w": 1440,
+   "h": 3724,
+   "css": "css/home.css",
+   "boxes": [
+    {
+     "name": "navbar",
+     "sel": "[data-figma-node='5812:22876']",
+     "x": 0,
+     "y": 15,
+     "w": 1440,
+     "h": 14.04
+    },
+    {
+     "name": "lede",
+     "sel": "[data-figma-node='5812:22877']",
+     "x": 40,
+     "y": 423,
+     "w": 385,
+     "h": 66
+    },
+    {
+     "name": "Chicago",
+     "sel": "[data-figma-node='5812:22880']",
+     "x": 509,
+     "y": 456,
+     "w": 90,
+     "h": 10
+    },
+    {
+     "name": "dolly",
+     "sel": "[data-figma-node='5812:22882']",
+     "x": 509,
+     "y": 475.5,
+     "w": 16,
+     "h": 16
+    },
+    {
+     "name": "relocate",
+     "sel": "[data-figma-node='5812:22884']",
+     "x": 531,
+     "y": 478,
+     "w": 185,
+     "h": 11
+    },
+    {
+     "name": "CHDWCK glyphs",
+     "sel": "[data-figma-node='5812:22885'] img",
+     "x": 0,
+     "y": 535,
+     "w": 1440,
+     "h": 290,
+     "why": "the outlined export, clipped to the frame like Figma; glyph top measured at 535 in the Figma render"
+    },
+    {
+     "name": "works section",
+     "sel": "[data-figma-node='5812:22886']",
+     "x": 0,
+     "y": 899.5,
+     "w": 1440,
+     "h": 1069.99
+    },
+    {
+     "name": "Selected works",
+     "sel": "[data-figma-node='5812:22888']",
+     "x": 40,
+     "y": 1012.5,
+     "w": 403,
+     "h": 46
+    },
+    {
+     "name": "Mondai card",
+     "sel": "[data-figma-node='5812:22891']",
+     "x": 40,
+     "y": 1094.5,
+     "w": 879,
+     "h": 604.99,
+     "tol": 1.5,
+     "why": "the media shows its visible 575.28 of 579.45"
+    },
+    {
+     "name": "Mondai name",
+     "sel": "[data-figma-node='5812:22894']",
+     "x": 40,
+     "y": 1094.5,
+     "w": 65,
+     "h": 14,
+     "tol": 2,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Mondai slashes",
+     "sel": "[data-figma-node='5812:22895']",
+     "x": 116.05,
+     "y": 1096,
+     "w": 11,
+     "h": 11,
+     "tol": 2,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Mondai kind",
+     "sel": "[data-figma-node='5812:22896']",
+     "x": 138.11,
+     "y": 1097,
+     "w": 174,
+     "h": 9,
+     "tol": 4.5,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Mondai desc",
+     "sel": "[data-figma-node='5812:22898']",
+     "x": 612.64,
+     "y": 1096.5,
+     "w": 136,
+     "h": 10,
+     "tol": 3,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Mondai media",
+     "sel": "[data-figma-node='5812:22899']",
+     "x": 40,
+     "y": 1124.21,
+     "w": 879,
+     "h": 575.28
+    },
+    {
+     "name": "Learn more",
+     "sel": "[data-figma-node='5812:22904']",
+     "x": 383.39,
+     "y": 1374.81,
+     "w": 184,
+     "h": 48,
+     "why": "component at full size, centered where Figma draws it at 98.5 percent (384.73, 1375.64, 181.32 by 46.46)"
+    },
+    {
+     "name": "Haven card",
+     "sel": "[data-figma-node='5812:22905']",
+     "x": 957,
+     "y": 1094.5,
+     "w": 435,
+     "h": 604.88,
+     "tol": 1.5,
+     "why": "the link hugs its content in code"
+    },
+    {
+     "name": "Haven name",
+     "sel": "[data-figma-node='5812:22907']",
+     "x": 957,
+     "y": 1234.66,
+     "w": 55,
+     "h": 14,
+     "tol": 2,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Haven desc",
+     "sel": "[data-figma-node='5812:22908']",
+     "x": 1186.79,
+     "y": 1236.66,
+     "w": 138,
+     "h": 10,
+     "tol": 3,
+     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+    },
+    {
+     "name": "Haven media",
+     "sel": "[data-figma-node='5812:22909']",
+     "x": 957,
+     "y": 1264.38,
+     "w": 435,
+     "h": 435
+    },
+    {
+     "name": "about story row",
+     "sel": "[data-figma-node='5812:22915']",
+     "x": 0,
+     "y": 1968.99,
+     "w": 1440,
+     "h": 568.11
+    },
+    {
+     "name": "About label",
+     "sel": "[data-figma-node='5812:22919']",
+     "x": 40,
+     "y": 2001.99,
+     "w": 53,
+     "h": 14
+    },
+    {
+     "name": "About body",
+     "sel": "[data-figma-node='5812:22920']",
+     "x": 741,
+     "y": 2001.99,
+     "w": 649,
+     "h": 430
+    },
+    {
+     "name": "role row",
+     "sel": "[data-figma-node='5812:22921']",
+     "x": 0,
+     "y": 2537.1,
+     "w": 1440,
+     "h": 194.11
+    },
+    {
+     "name": "Current role",
+     "sel": "[data-figma-node='5812:22925']",
+     "x": 40,
+     "y": 2573.1,
+     "w": 105,
+     "h": 14
+    },
+    {
+     "name": "2024 - current",
+     "sel": "[data-figma-node='5812:22926']",
+     "x": 40,
+     "y": 2598.1,
+     "w": 95,
+     "h": 10
+    },
+    {
+     "name": "role body",
+     "sel": "[data-figma-node='5812:22927']",
+     "x": 740,
+     "y": 2573.1,
+     "w": 650,
+     "h": 92
+    },
+    {
+     "name": "footer",
+     "sel": "[data-figma-node='5812:22998']",
+     "x": 0,
+     "y": 2730.71,
+     "w": 1440,
+     "h": 993
+    }
+   ]
+  },
+  "framework": {
+   "frame": "5812:16446",
+   "url": "/mondai/framework/",
+   "image": "dev/pages/figma/framework.png",
+   "w": 1440,
+   "h": 18743,
+   "css": "css/framework.css",
+   "_image": "The Figma render with the four extra Start of week frames (y 17267.56 to 22487.56) cut out; they are slides of the one carousel in code. Boxes below that cut are shifted up 5220. Text in the render is the old Figma copy; the page carries the final copy, so text regions differ by design.",
+   "boxes": [
+    {
+     "name": "Framework CS",
+     "sel": "[data-figma-node='5812:16453']",
+     "x": 22,
+     "y": 136,
+     "h": 152,
+     "w": 1357,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     }
+    },
+    {
+     "name": "Role",
+     "sel": "[data-figma-node='5812:16456']",
+     "x": 40,
+     "y": 369,
+     "h": 9,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     }
+    },
+    {
+     "name": "Founding designer",
+     "sel": "[data-figma-node='5812:16457']",
+     "x": 40,
+     "y": 394,
+     "h": 11,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     }
+    },
+    {
+     "name": "Affiliate",
+     "sel": "[data-figma-node='5812:16459']",
+     "x": 312,
+     "y": 369,
+     "h": 9,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     }
+    },
+    {
+     "name": "Mondai",
+     "sel": "[data-figma-node='5812:16460']",
+     "x": 312,
+     "y": 394,
+     "h": 11,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     }
+    },
+    {
+     "name": "Focus",
+     "sel": "[data-figma-node='5812:16462']",
+     "x": 507,
+     "y": 369,
+     "h": 9,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     }
+    },
+    {
+     "name": "Design, research and strateg",
+     "sel": "[data-figma-node='5812:16463']",
+     "x": 507,
+     "y": 394,
+     "h": 11,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     }
+    },
+    {
+     "name": "Designed as an AI guide for ",
+     "sel": "[data-figma-node='5812:16466']",
+     "x": 40,
+     "y": 494,
+     "w": 439.87,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Mondai builds each user a cu",
+     "sel": "[data-figma-node='5812:16468']",
+     "x": 624.87,
+     "y": 494,
+     "w": 473,
+     "rel": {
+      "sel": "[data-figma-node='5812:16447']",
+      "y": 136
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Competitive analysis",
+     "sel": "[data-figma-node='5812:16473']",
+     "x": 273,
+     "y": 777,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     }
+    },
+    {
+     "name": "Mondai had no direct model, ",
+     "sel": "[data-figma-node='5812:16474']",
+     "x": 273,
+     "y": 830,
+     "w": 791,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "01. Progress",
+     "sel": "[data-figma-node='5812:16480']",
+     "x": 273,
+     "y": 1073,
+     "h": 10,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     }
+    },
+    {
+     "name": "CareerFoundry",
+     "sel": "[data-figma-node='5812:16481']",
+     "x": 273,
+     "y": 1099,
+     "h": 14,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     }
+    },
+    {
+     "name": "Studies find that tracking r",
+     "sel": "[data-figma-node='5812:16482']",
+     "x": 273,
+     "y": 1137,
+     "w": 420,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "02. Calendar integration",
+     "sel": "[data-figma-node='5812:16485']",
+     "x": 739,
+     "y": 1073,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Motion",
+     "sel": "[data-figma-node='5812:16486']",
+     "x": 739,
+     "y": 1099,
+     "h": 14,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     }
+    },
+    {
+     "name": "Motion uses AI to find free ",
+     "sel": "[data-figma-node='5812:16487']",
+     "x": 739,
+     "y": 1137,
+     "w": 420,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "03. Home screen",
+     "sel": "[data-figma-node='5812:16491']",
+     "x": 273,
+     "y": 1292,
+     "h": 10,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     }
+    },
+    {
+     "name": "Linear",
+     "sel": "[data-figma-node='5812:16492']",
+     "x": 273,
+     "y": 1318,
+     "h": 14,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     }
+    },
+    {
+     "name": "Linear opens straight onto t",
+     "sel": "[data-figma-node='5812:16493']",
+     "x": 273,
+     "y": 1356,
+     "w": 420,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "04. Timing",
+     "sel": "[data-figma-node='5812:16496']",
+     "x": 739,
+     "y": 1292,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Learning apps",
+     "sel": "[data-figma-node='5812:16497']",
+     "x": 739,
+     "y": 1318,
+     "h": 14,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     }
+    },
+    {
+     "name": "Every learning app I reviewe",
+     "sel": "[data-figma-node='5812:16498']",
+     "x": 739,
+     "y": 1356,
+     "w": 424,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Sources: Harkin et al. 2016;",
+     "sel": "[data-figma-node='5812:16500']",
+     "x": 273,
+     "y": 1676,
+     "w": 901,
+     "rel": {
+      "sel": "[data-figma-node='5812:16470']",
+      "y": 705
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "The foundation we built on",
+     "sel": "[data-figma-node='5812:16504']",
+     "x": 159,
+     "y": 1791,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:16501']",
+      "y": 1727
+     }
+    },
+    {
+     "name": "Mondai calls the whole route",
+     "sel": "[data-figma-node='5812:16505']",
+     "x": 159,
+     "y": 1845,
+     "w": 760,
+     "rel": {
+      "sel": "[data-figma-node='5812:16501']",
+      "y": 1727
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Pathways",
+     "sel": "[data-figma-node='5812:16510']",
+     "x": 160,
+     "y": 2090,
+     "h": 14,
+     "w": 314,
+     "rel": {
+      "sel": "[data-figma-node='5812:16501']",
+      "y": 1727
+     }
+    },
+    {
+     "name": "The Growth Journey is made u",
+     "sel": "[data-figma-node='5812:16511']",
+     "x": 160,
+     "y": 2124,
+     "w": 435,
+     "rel": {
+      "sel": "[data-figma-node='5812:16501']",
+      "y": 1727
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Hierarchy",
+     "sel": "[data-figma-node='5812:16588']",
+     "x": 1095.31,
+     "y": 2413,
+     "h": 14,
+     "w": 282,
+     "rel": {
+      "sel": "[data-figma-node='5812:16501']",
+      "y": 1727
+     }
+    },
+    {
+     "name": "Each Pathway holds Action It",
+     "sel": "[data-figma-node='5812:16589']",
+     "x": 1095.31,
+     "y": 2447,
+     "w": 211,
+     "rel": {
+      "sel": "[data-figma-node='5812:16501']",
+      "y": 1727
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Growth Journey",
+     "sel": "[data-figma-node='5812:16593']",
+     "x": 41,
+     "y": 2818.13,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:16590']",
+      "y": 2754.13
+     }
+    },
+    {
+     "name": "The whole route has a page o",
+     "sel": "[data-figma-node='5812:16594']",
+     "x": 41,
+     "y": 2872.13,
+     "w": 802,
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "rel": {
+      "sel": "[data-figma-node='5812:16590']",
+      "y": 2754.13
+     }
+    },
+    {
+     "name": "Users need to see how the Pa",
+     "sel": "[data-figma-node='5812:16597']",
+     "x": 40,
+     "y": 3185.13,
+     "w": 270,
+     "rel": {
+      "sel": "[data-figma-node='5812:16590']",
+      "y": 2754.13
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Pathway",
+     "sel": "[data-figma-node='5812:16772']",
+     "x": 390,
+     "y": 4061.13,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:16769']",
+      "y": 3997.13
+     }
+    },
+    {
+     "name": "Each Pathway has its own pag",
+     "sel": "[data-figma-node='5812:16773']",
+     "x": 390,
+     "y": 4115.13,
+     "w": 842,
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "rel": {
+      "sel": "[data-figma-node='5812:16769']",
+      "y": 3997.13
+     }
+    },
+    {
+     "name": "This page shows the Pathway ",
+     "sel": "[data-figma-node='5812:16777']",
+     "x": 1207,
+     "y": 4440.13,
+     "w": 193,
+     "rel": {
+      "sel": "[data-figma-node='5812:16769']",
+      "y": 3997.13
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Focus Areas",
+     "sel": "[data-figma-node='5812:16779']",
+     "x": 1207,
+     "y": 4723.13,
+     "w": 193,
+     "rel": {
+      "sel": "[data-figma-node='5812:16769']",
+      "y": 3997.13
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Focus Areas, like user testi",
+     "sel": "[data-figma-node='5812:16780']",
+     "x": 1207,
+     "y": 4757.13,
+     "w": 193,
+     "rel": {
+      "sel": "[data-figma-node='5812:16769']",
+      "y": 3997.13
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Action Hub",
+     "sel": "[data-figma-node='5812:16785']",
+     "x": 40,
+     "y": 5310.68,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:16782']",
+      "y": 5236.68
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Most of a user’s week happen",
+     "sel": "[data-figma-node='5812:16786']",
+     "x": 40,
+     "y": 5364.68,
+     "w": 727.25,
+     "rel": {
+      "sel": "[data-figma-node='5812:16782']",
+      "y": 5236.68
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "I designed the Action Hub ar",
+     "sel": "[data-figma-node='5812:16965']",
+     "x": 1207,
+     "y": 5711.68,
+     "w": 193,
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "rel": {
+      "sel": "[data-figma-node='5812:16782']",
+      "y": 5236.68
+     }
+    },
+    {
+     "name": "Action Item",
+     "sel": "[data-figma-node='5812:16970']",
+     "x": 502,
+     "y": 6710.68,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:16966']",
+      "y": 6646.68
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Every Action Item is a piece",
+     "sel": "[data-figma-node='5812:16971']",
+     "x": 502,
+     "y": 6764.68,
+     "w": 719,
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "rel": {
+      "sel": "[data-figma-node='5812:16966']",
+      "y": 6646.68
+     }
+    },
+    {
+     "name": "I couldn’t know yet how the ",
+     "sel": "[data-figma-node='5812:17083']",
+     "x": 973,
+     "y": 7127.68,
+     "w": 427,
+     "rel": {
+      "sel": "[data-figma-node='5812:16966']",
+      "y": 6646.68
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Personalized timeline",
+     "sel": "[data-figma-node='5812:17086']",
+     "x": 159,
+     "y": 8489.56,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     }
+    },
+    {
+     "name": "How many Action Items a user",
+     "sel": "[data-figma-node='5812:17087']",
+     "x": 159,
+     "y": 8543.56,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Capacity",
+     "sel": "[data-figma-node='5812:17121']",
+     "x": 505,
+     "y": 8816.56,
+     "h": 15,
+     "w": 255,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     }
+    },
+    {
+     "name": "Each user tells Mondai how m",
+     "sel": "[data-figma-node='5812:17122']",
+     "x": 505,
+     "y": 8851.56,
+     "w": 255,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Effort",
+     "sel": "[data-figma-node='5812:17124']",
+     "x": 787,
+     "y": 8816.56,
+     "w": 255,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "How much work each Action It",
+     "sel": "[data-figma-node='5812:17125']",
+     "x": 787,
+     "y": 8851.56,
+     "w": 228,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Example:",
+     "sel": "[data-figma-node='5812:17127']",
+     "x": 525,
+     "y": 9285.56,
+     "h": 9,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     },
+     "decided": "moved down 286 under the longer final copy, keeping the Figma gap"
+    },
+    {
+     "name": "Aisha’s capacity is 6 hours ",
+     "sel": "[data-figma-node='5812:17128']",
+     "x": 525,
+     "y": 9310.56,
+     "w": 449,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "decided": "moved down 286 under the longer final copy, keeping the Figma gap"
+    },
+    {
+     "name": "Calendar setup",
+     "sel": "[data-figma-node='5812:17133']",
+     "x": 274,
+     "y": 9299.56,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:17129']",
+      "y": 9235.56
+     }
+    },
+    {
+     "name": "Calendar sync is optional. U",
+     "sel": "[data-figma-node='5812:17134']",
+     "x": 274,
+     "y": 9353.56,
+     "w": 887.49,
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "rel": {
+      "sel": "[data-figma-node='5812:17129']",
+      "y": 9235.56
+     }
+    },
+    {
+     "name": "The first question sets a ti",
+     "sel": "[data-figma-node='5812:17137']",
+     "x": 40,
+     "y": 9862.56,
+     "w": 256,
+     "rel": {
+      "sel": "[data-figma-node='5812:17129']",
+      "y": 9235.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Schedule view",
+     "sel": "[data-figma-node='5812:17146']",
+     "x": 154,
+     "y": 10802.56,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     }
+    },
+    {
+     "name": "With a calendar synced, the ",
+     "sel": "[data-figma-node='5812:17147']",
+     "x": 154,
+     "y": 10856.56,
+     "w": 906,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "The list stays the default v",
+     "sel": "[data-figma-node='5812:17150']",
+     "x": 154,
+     "y": 11157.56,
+     "w": 700,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Mondai looks for gaps betwee",
+     "sel": "[data-figma-node='5812:20111']",
+     "x": 159,
+     "y": 11956.56,
+     "w": 501,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Mondai only reads the calend",
+     "sel": "[data-figma-node='5812:20112']",
+     "x": 740,
+     "y": 11956.56,
+     "w": 426,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Rescheduling an Action Item",
+     "sel": "[data-figma-node='5812:20246']",
+     "x": 817,
+     "y": 12226.56,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Users can move their Action ",
+     "sel": "[data-figma-node='5812:20247']",
+     "x": 817,
+     "y": 12272.56,
+     "w": 448,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Falling behind",
+     "sel": "[data-figma-node='5812:20254']",
+     "x": 273,
+     "y": 12903.56,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "The Action Hub keeps two dat",
+     "sel": "[data-figma-node='5812:20255']",
+     "x": 272,
+     "y": 12957.56,
+     "w": 928,
+     "decided": "set in DM Sans in Figma, unlike every other headline; built in Satoshi Heading/40, so it wraps differently",
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Both sit in a rail down the ",
+     "sel": "[data-figma-node='5812:20258']",
+     "x": 40,
+     "y": 13289.56,
+     "w": 259,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Pathway target",
+     "sel": "[data-figma-node='5812:20296']",
+     "x": 902,
+     "y": 13282.37,
+     "h": 10,
+     "w": 389.33,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "Set from the user’s capacity",
+     "sel": "[data-figma-node='5812:20297']",
+     "x": 902,
+     "y": 13312.37,
+     "w": 437,
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "Pathway pace",
+     "sel": "[data-figma-node='5812:20299']",
+     "x": 902,
+     "y": 13398.76,
+     "h": 10,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "It updates once a week, so n",
+     "sel": "[data-figma-node='5812:20300']",
+     "x": 902,
+     "y": 13428.76,
+     "w": 437,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Ahead of target",
+     "sel": "[data-figma-node='5812:20302']",
+     "x": 902,
+     "y": 13515.76,
+     "h": 10,
+     "w": 389.33,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "The gap between the two date",
+     "sel": "[data-figma-node='5812:20303']",
+     "x": 902,
+     "y": 13545.76,
+     "w": 437,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Falling behind",
+     "sel": "[data-figma-node='5812:20308']",
+     "x": 41,
+     "y": 13874.56,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "When an Action Item is still",
+     "sel": "[data-figma-node='5812:20309']",
+     "x": 40,
+     "y": 13928.56,
+     "w": 708,
+     "decided": "set in DM Sans in Figma, unlike every other headline; built in Satoshi Heading/40, so it wraps differently",
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Rollover",
+     "sel": "[data-figma-node='5812:20314']",
+     "x": 67,
+     "y": 14226.56,
+     "h": 10,
+     "w": 239,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "An Action Item carried over ",
+     "sel": "[data-figma-node='5812:20315']",
+     "x": 67,
+     "y": 14260.56,
+     "w": 239,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "A week that comes up short c",
+     "sel": "[data-figma-node='5812:20350']",
+     "x": 389.97,
+     "y": 14502.24,
+     "w": 659,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Buffer flow",
+     "sel": "[data-figma-node='5812:20353']",
+     "x": 275,
+     "y": 14874.56,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:20351']",
+      "y": 14810.56
+     }
+    },
+    {
+     "name": "Finish the week’s work early",
+     "sel": "[data-figma-node='5812:20354']",
+     "x": 275,
+     "y": 14928.56,
+     "h": 121,
+     "w": 721,
+     "rel": {
+      "sel": "[data-figma-node='5812:20351']",
+      "y": 14810.56
+     }
+    },
+    {
+     "name": "The moment the last Action I",
+     "sel": "[data-figma-node='5812:20357']",
+     "x": 40,
+     "y": 15237.56,
+     "w": 292,
+     "rel": {
+      "sel": "[data-figma-node='5812:20351']",
+      "y": 14810.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Start of week",
+     "sel": "[data-figma-node='5812:20500']",
+     "x": 158,
+     "y": 16026.56,
+     "h": 14,
+     "w": 660,
+     "rel": {
+      "sel": "[data-figma-node='5812:20498']",
+      "y": 15962.56
+     }
+    },
+    {
+     "name": "Whether a user finished last",
+     "sel": "[data-figma-node='5812:20501']",
+     "x": 158,
+     "y": 16080.56,
+     "w": 766,
+     "rel": {
+      "sel": "[data-figma-node='5812:20498']",
+      "y": 15962.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Template 1 of 5",
+     "sel": "[data-figma-node='5812:20702']",
+     "x": 486,
+     "y": 16923.56,
+     "h": 9,
+     "rel": {
+      "sel": "[data-figma-node='5812:20498']",
+      "y": 15962.56
+     }
+    },
+    {
+     "name": "Clean slate",
+     "sel": "[data-figma-node='5812:20703']",
+     "x": 492,
+     "y": 16944.56,
+     "h": 15,
+     "tol": 2.5,
+     "why": "centered bold title; the browser draws Satoshi Bold 4 px narrower, so its left edge moves 2 while its center holds",
+     "rel": {
+      "sel": "[data-figma-node='5812:20498']",
+      "y": 15962.56
+     }
+    },
+    {
+     "name": "A clean slate only means som",
+     "sel": "[data-figma-node='5812:20704']",
+     "x": 412,
+     "y": 16983.56,
+     "h": 55,
+     "w": 259,
+     "rel": {
+      "sel": "[data-figma-node='5812:20498']",
+      "y": 15962.56
+     }
+    },
+    {
+     "name": "This is the first screen a u",
+     "sel": "[data-figma-node='5812:20715']",
+     "x": 1098,
+     "y": 16452.56,
+     "w": 309,
+     "rel": {
+      "sel": "[data-figma-node='5812:20498']",
+      "y": 15962.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "Where it stands",
+     "sel": "[data-figma-node='5812:21563']",
+     "x": 156,
+     "y": 17331.56,
+     "rel": {
+      "sel": "[data-figma-node='5812:21559']",
+      "y": 17267.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "The framework is built, so t",
+     "sel": "[data-figma-node='5812:21564']",
+     "x": 149,
+     "y": 17401.56,
+     "w": 1291,
+     "rel": {
+      "sel": "[data-figma-node='5812:21559']",
+      "y": 17267.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+    },
+    {
+     "name": "The framework is meant to gi",
+     "sel": "[data-figma-node='5812:21566']",
+     "x": 272,
+     "y": 17738.56,
+     "rel": {
+      "sel": "[data-figma-node='5812:21559']",
+      "y": 17267.56
+     },
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "decided": "moved down 188 under the longer final copy, keeping the Figma gap",
+     "w": 760
+    },
+    {
+     "name": "figure 5812:16512",
+     "sel": "[data-figma-node='5812:16512']",
+     "x": 160,
+     "y": 2213,
+     "w": 895.5,
+     "h": 377,
+     "rel": {
+      "sel": "[data-figma-node='5812:16501']",
+      "y": 1727
+     }
+    },
+    {
+     "name": "figure 5812:16598",
+     "sel": "[data-figma-node='5812:16598']",
+     "x": 350,
+     "y": 3137,
+     "w": 1090,
+     "h": 695,
+     "rel": {
+      "sel": "[data-figma-node='5812:16590']",
+      "y": 2754.13
+     }
+    },
+    {
+     "name": "figure 5812:16775",
+     "sel": "[data-figma-node='5812:16775']",
+     "x": 0,
+     "y": 4380,
+     "w": 1167,
+     "h": 692,
+     "rel": {
+      "sel": "[data-figma-node='5812:16769']",
+      "y": 3997.13
+     }
+    },
+    {
+     "name": "figure 5812:16790",
+     "sel": "[data-figma-node='5812:16790']",
+     "x": 0,
+     "y": 5650,
+     "w": 1166,
+     "h": 734,
+     "rel": {
+      "sel": "[data-figma-node='5812:16782']",
+      "y": 5236.68
+     }
+    },
+    {
+     "name": "figure 5812:16973",
+     "sel": "[data-figma-node='5812:16973']",
+     "x": 40,
+     "y": 7030,
+     "w": 892,
+     "h": 1194,
+     "rel": {
+      "sel": "[data-figma-node='5812:16966']",
+      "y": 6646.68
+     }
+    },
+    {
+     "name": "figure 5812:17089",
+     "sel": "[data-figma-node='5812:17089']",
+     "x": 158,
+     "y": 8797,
+     "w": 308,
+     "h": 298,
+     "rel": {
+      "sel": "[data-figma-node='5812:17084']",
+      "y": 8388.56
+     }
+    },
+    {
+     "name": "figure 5812:17138",
+     "sel": "[data-figma-node='5812:17138']",
+     "x": 351,
+     "y": 9619,
+     "w": 1089,
+     "h": 955,
+     "rel": {
+      "sel": "[data-figma-node='5812:17129']",
+      "y": 9235.56
+     }
+    },
+    {
+     "name": "figure 5812:17152",
+     "sel": "[data-figma-node='5812:17152']",
+     "x": 0,
+     "y": 11215,
+     "w": 1440,
+     "h": 686,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     }
+    },
+    {
+     "name": "figure 5812:20114",
+     "sel": "[data-figma-node='5812:20114']",
+     "x": 154,
+     "y": 12167,
+     "w": 547,
+     "h": 509,
+     "rel": {
+      "sel": "[data-figma-node='5812:17143']",
+      "y": 10738.56
+     }
+    },
+    {
+     "name": "figure 5812:20260",
+     "sel": "[data-figma-node='5812:20260']",
+     "x": 392,
+     "y": 13217,
+     "w": 466,
+     "h": 428,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "figure 5812:20316",
+     "sel": "[data-figma-node='5812:20316']",
+     "x": 350,
+     "y": 14174,
+     "w": 789,
+     "h": 201,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "figure 5812:20346",
+     "sel": "[data-figma-node='5812:20346']",
+     "x": 390,
+     "y": 14448,
+     "w": 195,
+     "h": 31,
+     "rel": {
+      "sel": "[data-figma-node='5812:20248']",
+      "y": 12839.56
+     }
+    },
+    {
+     "name": "figure 5812:20358",
+     "sel": "[data-figma-node='5812:20358']",
+     "x": 390,
+     "y": 15182,
+     "w": 1050,
+     "h": 616,
+     "rel": {
+      "sel": "[data-figma-node='5812:20351']",
+      "y": 14810.56
+     }
+    },
+    {
+     "name": "figure 5812:20504",
+     "sel": "[data-figma-node='5812:20504']",
+     "x": 33,
+     "y": 16333.56,
+     "w": 1017,
+     "h": 705,
+     "rel": {
+      "sel": "[data-figma-node='5812:20498']",
+      "y": 15962.56
+     }
+    },
+    {
+     "name": "figure 5812:20705",
+     "sel": "[data-figma-node='5812:20705']",
+     "x": 357,
+     "y": 17071,
+     "w": 369,
+     "h": 35,
+     "rel": {
+      "sel": "[data-figma-node='5812:20498']",
+      "y": 15962.56
+     }
+    },
+    {
+     "name": "ending bar",
+     "sel": "[data-figma-node='5812:21567']",
+     "x": 0,
+     "w": 1440,
+     "h": 44,
+     "why": "y follows the grown sections"
+    },
+    {
+     "name": "footer",
+     "sel": "[data-figma-node='5812:21568']",
+     "x": 0,
+     "w": 1440,
+     "h": 993,
+     "why": "Figma instance is 1438 wide; the footer fills the page in code ; y follows the grown sections"
+    }
+   ],
+   "sections": [
+    {
+     "name": "5812:16447",
+     "sel": "[data-figma-node='5812:16447']",
+     "y": 136,
+     "h": 569
+    },
+    {
+     "name": "5812:16470",
+     "sel": "[data-figma-node='5812:16470']",
+     "y": 705,
+     "h": 1022
+    },
+    {
+     "name": "5812:16501",
+     "sel": "[data-figma-node='5812:16501']",
+     "y": 1727,
+     "h": 1027.13
+    },
+    {
+     "name": "5812:16590",
+     "sel": "[data-figma-node='5812:16590']",
+     "y": 2754.13,
+     "h": 1243
+    },
+    {
+     "name": "5812:16769",
+     "sel": "[data-figma-node='5812:16769']",
+     "y": 3997.13,
+     "h": 1239.56
+    },
+    {
+     "name": "5812:16782",
+     "sel": "[data-figma-node='5812:16782']",
+     "y": 5236.68,
+     "h": 1410
+    },
+    {
+     "name": "5812:16966",
+     "sel": "[data-figma-node='5812:16966']",
+     "y": 6646.68,
+     "h": 1741.88
+    },
+    {
+     "name": "5812:17084",
+     "sel": "[data-figma-node='5812:17084']",
+     "y": 8388.56,
+     "h": 847
+    },
+    {
+     "name": "5812:17129",
+     "sel": "[data-figma-node='5812:17129']",
+     "y": 9235.56,
+     "h": 1503
+    },
+    {
+     "name": "5812:17143",
+     "sel": "[data-figma-node='5812:17143']",
+     "y": 10738.56,
+     "h": 2101
+    },
+    {
+     "name": "5812:20248",
+     "sel": "[data-figma-node='5812:20248']",
+     "y": 12839.56,
+     "h": 1971
+    },
+    {
+     "name": "5812:20351",
+     "sel": "[data-figma-node='5812:20351']",
+     "y": 14810.56,
+     "h": 1152
+    },
+    {
+     "name": "5812:20498",
+     "sel": "[data-figma-node='5812:20498']",
+     "y": 15962.56,
+     "h": 1305
+    },
+    {
+     "name": "5812:21559",
+     "sel": "[data-figma-node='5812:21559']",
+     "y": 17267.56,
+     "h": 438
+    }
+   ]
+  }
+ }
+}

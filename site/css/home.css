@@ -1,0 +1,107 @@
+/* Home, Figma 5812:22862 (Transported home) at 1440 by 3724. Layout only: color and type come from
+   tokens.css, the parts from components.css. Sections overlap by half a pixel, as in Figma. */
+
+.home { --navbar-top: 15px; }
+
+/* Hero, 5812:22863 */
+.hero { position: relative; height: 900px; }
+.hero__intro { position: absolute; top: 423px; left: 0; right: 0; align-items: end; }
+/* Labels hug their text like Figma's auto width layers. */
+.hero__city, .about__label, .about__when { justify-self: start; width: fit-content; }
+.hero__lede {
+  width: 385px;
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-050);
+  text-box: trim-both cap alphabetic;
+}
+/* Figma puts this block at x 509, 2.33 past the start of column 5. */
+.hero__where { display: flex; flex-direction: column; gap: 12px; margin-left: 2.33px; }
+.hero__city {
+  font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
+  color: var(--neutral-550); white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+.hero__move { display: flex; align-items: center; gap: 6px; height: 11px; }
+.hero__move img { flex: none; width: 16px; height: 16px; }
+.hero__move span {
+  font: var(--body-16); letter-spacing: var(--body-16-track); color: var(--neutral-100);
+  white-space: nowrap; padding-inline-end: 0.01em;
+  text-box: trim-both cap alphabetic;
+}
+.hero__name { position: absolute; top: 535px; left: 0; width: 100%; }
+.hero__name img { width: 100%; height: auto; overflow: visible; }
+
+/* Selected works, 5812:22886 */
+.works {
+  margin-top: -0.5px; padding: 112px 0 270px;
+  box-shadow: inset 0 1px 0 var(--neutral-800);
+}
+.works__title {
+  justify-self: start;
+  font: var(--heading-64); letter-spacing: var(--heading-64-track); color: var(--neutral-100);
+  padding-inline-end: 0.04em;
+  text-box: trim-both cap alphabetic;
+}
+.works__cards { display: flex; align-items: stretch; gap: 38px; margin-top: 36px; padding-inline: var(--grid-margin); }
+
+.work-card { display: flex; flex-direction: column; gap: 15.71px; color: inherit; text-decoration: none; }
+.work-card-mondai { width: 879px; }
+.work-card-haven { width: 435px; justify-content: flex-end; }
+.work-card__head { position: relative; display: flex; align-items: center; gap: 11.06px; height: 14px; }
+.work-card__name {
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-200);
+  white-space: nowrap; padding-inline-end: 0.02em;
+  text-box: trim-both cap alphabetic;
+}
+.work-card__slashes {
+  font: var(--mark-15); letter-spacing: var(--mark-15-track); color: var(--neutral-200);
+  text-box: trim-both cap alphabetic;
+}
+.work-card__kind {
+  font: var(--label-12-c); letter-spacing: var(--label-12-c-track); font-weight: 700; text-transform: uppercase;
+  color: var(--neutral-200); white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+.work-card__desc {
+  position: absolute; top: 2px; left: var(--desc-x);
+  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-200);
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+.work-card-mondai .work-card__desc { --desc-x: 572.64px; }
+.work-card-haven .work-card__desc { --desc-x: 229.79px; }
+.work-card__media { position: relative; overflow: hidden; }
+.work-card-mondai .work-card__media { height: 575.28px; }
+.work-card-haven .work-card__media { height: 435px; }
+.work-card__media > img { width: 100%; height: auto; }
+/* Learn more keeps its Figma center (the frame draws the button at 98.5 percent scale). */
+.work-card__media .button-sm { position: absolute; left: 343.39px; top: 250.6px; }
+
+/* About, 5812:22913 */
+.about { margin-top: -0.5px; }
+.about__row { align-items: start; box-shadow: inset 0 1px 0 var(--neutral-800); }
+.about-story { height: 568.11px; padding-top: 33px; }
+.about-role { height: 194.11px; padding-top: 36px; }
+.about__label {
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-300);
+  white-space: nowrap; padding-inline-end: 0.02em;
+  text-box: trim-both cap alphabetic;
+}
+.about-role .about__label { color: var(--neutral-200); }
+.about__when {
+  margin-top: 11px;
+  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-050);
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+.about__body {
+  width: 650px;
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-300);
+  text-box: trim-both cap alphabetic;
+}
+.about-story .about__body { width: 649px; margin-left: 1px; }
+.about__body > * + * { margin-top: 26px; }
+.about__body ul { padding-left: 30px; }
+
+.home .footer { margin-top: -0.5px; }
+/* The home footer instance overrides the band's image filters in Figma (temperature 0, shadows -84
+   against the component's temperature -19), so Home uses the band rendered from that instance. */

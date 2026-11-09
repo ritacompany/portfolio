@@ -4,24 +4,133 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Chadwick Fenner</title>
+  <title>Chadwick Fenner, product designer</title>
+  <meta name="description" content="Chadwick Fenner is a system-minded product designer in Chicago.">
+  <link rel="preload" href="/assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/satoshi-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/base.css">
-  <script src="/vendor/gsap-3.13.0.min.js" defer></script>
-  <script src="/vendor/lenis-1.1.20.min.js" defer></script>
-  <script type="module" src="/js/main.js"></script>
+  <link rel="stylesheet" href="/css/grid.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
-  <div class="canvas">
-    <main id="top">
-      <section id="hero" aria-label="Introduction" data-figma-node="4289:36506"></section>
-      <section id="superpowers" aria-label="Superpowers" data-figma-node="4270:5765"></section>
-      <section id="work" aria-label="Work" data-figma-node="4283:25471"></section>
+  <div class="canvas home" id="top" data-figma-node="5812:22862">
+    <header class="page-header">
+      <nav class="navbar grid" data-figma-node="5812:22876" aria-label="Main">
+        <a class="navbar__logo col-1" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+        <p class="navbar__role col-4 span-3">Product Designer</p>
+        <ul class="navbar__links col-8 span-5">
+          <li><a class="link-nav" href="#about" aria-label="About"><span aria-hidden="true">Abou<span class="mirror">7</span></span></a></li>
+          <li><a class="link-nav" href="#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
+          <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Introduction" data-figma-node="5812:22863">
+        <div class="hero__intro grid">
+          <p class="hero__lede col-1 span-4" data-figma-node="5812:22877">I’m a system-minded designer who designs for what we know now, while leaving space for what may change our minds.</p>
+          <div class="hero__where col-5 span-4" data-figma-node="5812:22878">
+            <p class="hero__city" data-figma-node="5812:22880">Chicago, IL</p>
+            <p class="hero__move"><img src="/assets/ui/dolly.svg" alt="" data-figma-node="5812:22882"><span data-figma-node="5812:22884">Looking to relocate to NYC</span></p>
+          </div>
+        </div>
+        <h1 class="hero__name" data-figma-node="5812:22885"><img src="/assets/home/chdwck-hero.svg" alt="Chadwick Fenner" width="1440" height="290"></h1>
+      </section>
+
+      <section class="works" id="work" aria-labelledby="works-title" data-figma-node="5812:22886">
+        <div class="grid"><h2 class="works__title col-1 span-6" id="works-title" data-figma-node="5812:22888">Selected works</h2></div>
+        <div class="works__cards">
+          <a class="work-card work-card-mondai" href="/mondai/" data-figma-node="5812:22891">
+            <span class="work-card__head">
+              <span class="work-card__name" data-figma-node="5812:22894">Mondai</span>
+              <span class="work-card__slashes" aria-hidden="true" data-figma-node="5812:22895">//</span>
+              <span class="work-card__kind" data-figma-node="5812:22896">Case study collection</span>
+              <span class="work-card__desc" data-figma-node="5812:22898">Tech career navigator</span>
+            </span>
+            <span class="work-card__media" data-figma-node="5812:22899">
+              <img src="/assets/home/mondai-card@2x.webp" alt="" width="879" height="576">
+              <span class="button-sm" data-figma-node="5812:22904">Learn more</span>
+            </span>
+          </a>
+          <a class="work-card work-card-haven" href="/haven/" data-figma-node="5812:22905">
+            <span class="work-card__head">
+              <span class="work-card__name" data-figma-node="5812:22907">Haven</span>
+              <span class="work-card__desc" data-figma-node="5812:22908">LGBTQIA + youth app</span>
+            </span>
+            <span class="work-card__media" data-figma-node="5812:22909">
+              <img src="/assets/home/haven-card@2x.webp" alt="The Haven app on a phone, wrapped in a glowing purple cable" width="435" height="435">
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <section class="about" id="about" aria-label="About" data-figma-node="5812:22913">
+        <div class="about__row about-story grid" data-figma-node="5812:22915">
+          <h2 class="about__label col-1 span-3" data-figma-node="5812:22919">About</h2>
+          <div class="about__body col-7 span-6" data-figma-node="5812:22920">
+            <p>I’m convinced that people would be happier if we encouraged one another to discover our superpowers. I’m lucky enough to have met some of the right people to help discover some of mine.</p>
+            <ul>
+              <li>The eye to see what’s quietly moving the needle.</li>
+              <li>A proclivity for pattern recognition.</li>
+              <li>The kind of energy that pulls people in.</li>
+            </ul>
+            <p>I studied psychology before I studied design, and the thing that stuck was that a cause and an effect are never a fixed pair. Whether two variables stay connected, flip or quietly stop mattering changes depending on what else is in the room.</p>
+            <p>I believe that now more than ever, product design requires the ability to always be two steps ahead. I design with systematic, future-focused intentionality. Building proactive, AI-scaleable solutions for the modern landscape.</p>
+          </div>
+        </div>
+        <div class="about__row about-role grid" data-figma-node="5812:22921">
+          <div class="col-1 span-3">
+            <h2 class="about__label" data-figma-node="5812:22925">Current role</h2>
+            <p class="about__when" data-figma-node="5812:22926">2024 - current</p>
+          </div>
+          <p class="about__body col-7 span-6" data-figma-node="5812:22927">Founding designer at Mondai, a tech career tool that the industry forgot to map. Two years, one of four people deciding what it becomes. I met the founder when he was my mentor. I still consider him a mentor, now I'm just one of the voices in the room that he “argues” with.</p>
+        </div>
+      </section>
     </main>
-    <footer id="contact" data-figma-node="4294:36562">
-      <p>Chicago, IL <time data-chicago-clock>10:24pm CST</time></p>
-    </footer>
+
+          <footer class="footer" data-figma-node="5812:22998" id="contact">
+            <div class="footer__transition footer__transition-baked" aria-hidden="true"><img src="/assets/home/footer-band-home@2x.webp" alt="" width="1440" height="217"></div>
+            <div class="footer__main">
+              <div class="footer__top grid">
+                <div class="col-1 span-5">
+                  <a class="footer__back" href="#top"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>
+                  <ul class="footer__nav">
+                <li><a class="link-footer" href="#about">About</a></li>
+                <li><a class="link-footer" href="#work">Selected works</a></li>
+                <li><a class="link-footer" href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="footer__contact col-6 span-3">
+                  <p class="footer__label">Contact</p>
+                  <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+                  <div class="footer__note">
+                    <p>I’m currently living in Chicago, IL</p>
+                    <p>and seeking opportunities in NYC.</p>
+                  </div>
+                  <a class="button" href="mailto:hello@chadwickfenner.com">
+                    <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+                    <span class="button__label">Contact</span>
+                  </a>
+                </div>
+                <div class="footer__portraits col-10 span-3" aria-hidden="true">
+                  <span class="footer__pill"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                  <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                </div>
+              </div>
+              <img class="footer__wordmark" src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <div class="footer__bottom grid">
+                <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
+                <p class="footer__meta col-4 span-3"><time>10:24pm CST</time></p>
+                <a class="footer__out col-7 span-3" href="https://www.linkedin.com/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+                <a class="footer__out col-10 span-3" href="#resume"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+              </div>
+            </div>
+          </footer>
   </div>
+<script type="module" src="/js/contact-goo.js"></script>
 </body>
 </html>
