@@ -4,7 +4,7 @@ Read on demand for any animation work on any page of the portfolio. If a case st
 of its own, that plan wins wherever the two differ.
 
 ## Scope
-- These rules cover motion inside media: loops, a rotating phone, scroll driven mockups and any clip rendered to video.
+- These rules cover motion inside media (loops, a rotating phone, scroll driven mockups, any clip rendered to video) and interactive UI motion such as a hover or press effect on a button: those get a scripted pointer through window.seek(t) so they render and review the same way, plus a live page he can use.
 - Page entrances that already run on the browser clock (text fades, image reveals, smooth scroll) stay as built. The renderer cannot capture them frame by frame, so they are reviewed in the browser, not rewritten to fit this contract.
 
 ## Reduced motion
