@@ -5,11 +5,26 @@
       Today it is Label/12 C in Bold at Neutral/200. */
 .work-card__kind { font-weight: 400; color: var(--neutral-300); }
 
-/* 2. Nav hover, second pass (his note, 9 Nov: Contact me looks thinner and wider on hover). Dark text on
-      the light block reads lighter than light text on black, so the word looks thinner and the gaps
-      between letters look bigger. A hairline stroke adds back that weight without changing the width
-      of any letter, so nothing moves. */
-.link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed {
-  -webkit-text-stroke: 0.35px currentColor;
-  paint-order: stroke fill;
-}
+/* 2. Highlighted links read as dark text on a light block, which looks lighter than light text on black,
+      so on highlight the text goes one weight heavier (his comment, 9 Nov; no stroke).
+      Footer links: Heading/24 Medium to Bold. Nav links: Regular to Medium. */
+.link-footer:hover, .link-footer.is-hover, .link-footer:active, .link-footer.is-pressed { font-weight: 700; }
+.link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed { font-weight: 500; }
+
+/* 3. Footer email gets the same cover effect as the footer links (his comment, 9 Nov): the light block
+      behind it, dark text, one weight heavier, same easing. */
+.footer__email { transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out); }
+.footer__email:hover, .footer__email:active { color: var(--neutral-900); background: var(--neutral-200); font-weight: 700; }
+
+/* 4. Footer portraits: no light edge around the pills (his comment, 9 Nov: "neither should have a
+      stroke"). The pill background was clipped separately from the photo, so its light grey leaked
+      into the curved edge as a thin rim, most visible against the black suit. Clipping the pill and
+      its photo as one shape removes the rim. */
+.footer__pill { border-radius: 0; overflow: visible; clip-path: inset(0 round 66.349px); }
+
+/* 5. LinkedIn (and Resume, when it is back) get the same cover effect (his comment, 9 Nov): light block,
+      dark text one weight heavier, and the arrow turns dark with the text so it stays visible. */
+.footer__out { justify-self: start; transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out); }
+.footer__out img { transition: filter 200ms var(--ease-quart-out); }
+.footer__out:hover, .footer__out:active { color: var(--neutral-900); background: var(--neutral-200); font-weight: 500; }
+.footer__out:hover img, .footer__out:active img { filter: brightness(0); }
