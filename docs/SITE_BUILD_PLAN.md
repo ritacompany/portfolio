@@ -115,6 +115,11 @@ A new session picks this up from this file alone.
   not touch the button, its script or the lab. The rest of Phase 2 also waits on him: card hovers (H11
   prototype awaiting review), Falling behind (his editor settings), the footer transition (H16 pick).
   Link and Context list hovers already work from Phase 0.
+- Contact button, later on 9 Nov (the button session, still running when Phase 3 merged), his ask: mix the gooey split with the liquid outline, no neck at rest, react to
+  where the pointer is, the hidden colour as a setting. Built in new files (another session owns
+  contact-goo.js): site/js/contact-liquid.js, lab site/motion-lab/contact-liquid.html, tuner published at
+  https://claude.ai/artifact/BdG5yNZuFnkSDSfgQneXnU (built by scripts/motion-tuner/contact-liquid.py),
+  plan docs/motion/contact-liquid/. Not on the pages and not done until he has tuned it.
 - **Phase 3 built 9 Nov** (responsive, before the remaining motion: motion is tuned against final
   layout, so layout first means tuning once). Gates in `.unlazy/site-responsive/GATES.md` (local):
   `node scripts/verify-responsive.mjs fit|overlap|size|health all` checks Home, Collection, Framework
