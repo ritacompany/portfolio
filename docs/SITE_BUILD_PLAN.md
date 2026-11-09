@@ -106,6 +106,11 @@ A new session picks this up from this file alone.
   the Figma footer; page pixel gates still pass. Not done: he tunes it on the tuner
   (scripts/motion-tuner/contact-goo.py, published at https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG) and
   his Copy settings output goes into GOO in contact-goo.js.
+- Contact button, 9 Nov, his ask: mix the gooey split with the liquid outline, no neck at rest, react to
+  where the pointer is, the hidden colour as a setting. Built in new files (another session owns
+  contact-goo.js): site/js/contact-liquid.js, lab site/motion-lab/contact-liquid.html, tuner published at
+  https://claude.ai/artifact/BdG5yNZuFnkSDSfgQneXnU (built by scripts/motion-tuner/contact-liquid.py),
+  plan docs/motion/contact-liquid/. Not on the pages and not done until he has tuned it.
 - Next action: link and card hovers, Haven motion carry over, Falling behind and the footer
   transition. Then Phase 3 (390, 768, 1200).
   Haven keeps its own CSS until Phase 1 moves it.

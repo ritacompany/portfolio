@@ -20,11 +20,11 @@ export const DEFAULTS = {
   // Colours
   lineColor: "#e8e7ee", bodyColor: "#040405", hiddenColor: "#22d3ee", hiddenOn: 1, hiddenAlpha: 1,
   // Pointer inside: the outline bulges toward it
-  bulge: 14, reach: 50, outT: 0.36, outBounce: 0.6, ripple: 0.04,
+  bulge: 18, reach: 54, outT: 0.36, outBounce: 0.6, ripple: 0.04,
   // Pointer leaving: the edge sticks and stretches after it
   drag: 24, dragSpan: 30, release: 52,
   // Pointer outside: a dent with the hidden colour in it
-  dent: 18, dentReach: 52, dentSpan: 36, dentT: 0.55, dentBounce: 0.35,
+  dent: 22, dentReach: 52, dentSpan: 44, dentT: 0.55, dentBounce: 0.35,
   // Mail circle
   pull: 32, pullDir: 0, follow: 0.12, tilt: 18, iconT: 0.38, iconBounce: 0.65,
   // Press

@@ -125,11 +125,11 @@ const DEFAULTS = {
   // Colours
   lineColor: "#e8e7ee", bodyColor: "#040405", hiddenColor: "#22d3ee", hiddenOn: 1, hiddenAlpha: 1,
   // Pointer inside: the outline bulges toward it
-  bulge: 14, reach: 50, outT: 0.36, outBounce: 0.6, ripple: 0.04,
+  bulge: 18, reach: 54, outT: 0.36, outBounce: 0.6, ripple: 0.04,
   // Pointer leaving: the edge sticks and stretches after it
   drag: 24, dragSpan: 30, release: 52,
   // Pointer outside: a dent with the hidden colour in it
-  dent: 18, dentReach: 52, dentSpan: 36, dentT: 0.55, dentBounce: 0.35,
+  dent: 22, dentReach: 52, dentSpan: 44, dentT: 0.55, dentBounce: 0.35,
   // Mail circle
   pull: 32, pullDir: 0, follow: 0.12, tilt: 18, iconT: 0.38, iconBounce: 0.65,
   // Press
@@ -318,7 +318,7 @@ const DEMO = [
   [0, 0.1, -1.6, 0], [0.5, 0.16, -0.5, 0], [0.9, 0.2, -0.12, 0], [1.3, 0.24, 0.25, 0], [2.0, 0.55, 0.45, 0],
   [2.6, 0.82, 0.62, 0], [3.0, 0.78, 1.05, 0], [3.5, 0.72, 1.6, 0], [4.1, 0.72, 2.6, 0], [4.6, 0.5, 1.25, 0],
   [5.0, 0.5, 1.12, 0], [5.4, 0.48, 0.5, 0], [5.6, 0.48, 0.5, 1], [6.3, 0.48, 0.5, 1], [6.5, 0.48, 0.5, 0],
-  [7.1, 1.15, 0.45, 0], [7.6, 1.5, 0.4, 0], [8.4, 1.9, 0.4, 0], [9.0, 0.1, -1.6, 0],
+  [7.1, 1.15, 0.45, 0], [7.6, 1.5, 0.4, 0], [8.0, 1.9, 0.4, 0], [8.25, 1.9, -1.6, 0], [8.5, 0.1, -1.6, 0], [9.0, 0.1, -1.6, 0],
 ];
 function demoAt(t, W, H) {
   const T = DEMO[DEMO.length - 1][0], u = ((t % T) + T) % T;
