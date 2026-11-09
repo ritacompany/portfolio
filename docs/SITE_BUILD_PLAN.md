@@ -1,7 +1,7 @@
 # Site build plan: from the transported frames to a live site
 
-9 Nov 2026. Status: Phase 0 approved ("fine enough", 8 Nov). Phase 1 under way: Collection, Home and
-Framework CS built and passing their gates; Haven next.
+9 Nov 2026. Status: Phase 0 approved ("fine enough", 8 Nov). Phase 1 built: Collection, Home, Framework
+CS and Haven pass their gates. Next is Phase 2 (interactions and motion).
 
 ## Resume here
 
@@ -84,8 +84,17 @@ A new session picks this up from this file alone.
   Optional Body 5 (streak) is left out. The Capacity body is now 15 lines in a 255 wide column; the
   layout wants a wider column there, his call in Figma.
 - The Collection's Framework row now links here.
-- Next action: Phase 1, Haven moved onto the shared nav, footer and tokens without changing its
-  spacing or motion (`5812:21569`).
+- Phase 1, Haven done 9 Nov: the shared navbar (fixed at 24 and still turning dark over the bridge),
+  the Ending base bar (now a shared component, `.ending-bar` in components.css) and the Other pages
+  footer replace Haven's own; Haven's neutrals point at tokens.css (only Neutral/800 changes value,
+  #18181b to the Portfolio #121214). Checked by `node scripts/verify-haven.mjs files|body|motion`:
+  only index.html, haven.css and current.css changed; the body renders as before with no pixel off by
+  more than 64 levels (0.08 percent faint, the Neutral/800 change); clock live, nav inverts, no errors.
+- Haven against its Figma frame: the coded body was already 368 px shorter than the frame (18552 to
+  18920) before this move; left as is, since this step was not to change Haven's spacing.
+- Next action: Phase 2. Button and Small button states designed together with him; link and card
+  hovers; carry over Haven motion, Falling behind and the footer transition; new motion only after
+  his pick. Then Phase 3 (390, 768, 1200).
   Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.

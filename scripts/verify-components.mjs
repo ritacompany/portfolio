@@ -4,7 +4,7 @@
 //   pixels  each coded stage against its Figma reference image
 //   focus   Button and Small button take keyboard focus and show a ring of 2 px or more
 //   health  no horizontal scroll, failed request or console error at 1440
-//   haven   nothing under site/haven changed since the Phase 0 start commit
+//   haven   nothing under site/haven changed since the Phase 0 start commit, apart from the Phase 1 move
 // Each mode prints its success token only after every assertion passed, and exits 1 otherwise.
 // Usage: node scripts/verify-components.mjs <mode> [--shots <dir>]
 
@@ -21,7 +21,10 @@ const fail = (msg) => { console.error(msg); process.exit(1); };
 
 if (mode === "haven") {
   const base = "05af44f";
-  const out = execFileSync("git", ["diff", "--name-only", base, "--", "site/haven"], { cwd: repo, encoding: "utf8" }).trim();
+  // Phase 1 moved Haven onto the shared nav, footer and tokens in these three files on purpose;
+  // scripts/verify-haven.mjs checks that move. Anything else under site/haven still fails here.
+  const moved = ["site/haven/index.html", "site/haven/haven.css", "site/haven/current.css"];
+  const out = execFileSync("git", ["diff", "--name-only", base, "--", "site/haven"], { cwd: repo, encoding: "utf8" }).trim().split("\n").filter((f) => f && !moved.includes(f)).join("\n");
   const untracked = execFileSync("git", ["ls-files", "--others", "--exclude-standard", "site/haven"], { cwd: repo, encoding: "utf8" }).trim();
   if (out || untracked) fail(`site/haven changed since ${base}:\n${out}\n${untracked}`);
   console.log("HAVEN_UNCHANGED");

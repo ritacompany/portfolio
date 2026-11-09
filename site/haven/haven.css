@@ -9,19 +9,19 @@
 
 :root {
   /* Portfolio neutrals, same values as the homepage tokens */
-  --n900: #040405;
-  --n800: #18181b;
-  --n675: #28282b;
-  --n600: #36363c;
-  --n575: #65656e;
-  --n550: #7b7b86;
-  --n525: #90909d;
-  --n500: #aeaeb4;
-  --n400: #c9c9d4;
-  --n300: #d2d2db;
-  --n200: #dedee5;
-  --n100: #e8e7ee;
-  --n050: #f2f1f8;
+  --n900: var(--neutral-900);
+  --n800: var(--neutral-800);
+  --n675: var(--neutral-675);
+  --n600: var(--neutral-600);
+  --n575: var(--neutral-575);
+  --n550: var(--neutral-550);
+  --n525: var(--neutral-525);
+  --n500: var(--neutral-500);
+  --n400: var(--neutral-400);
+  --n300: var(--neutral-300);
+  --n200: var(--neutral-200);
+  --n100: var(--neutral-100);
+  --n050: var(--neutral-050);
   --lavender: #a2a2d4;
   --phase-identity: #482cff;
   --phase-community: #aa21f4;
@@ -60,8 +60,8 @@ img { display: block; width: 100%; height: auto; }
 
 /* ---------- Canvas and scale ---------- */
 body { container-type: inline-size; }
-.site-nav, main { width: min(100%, 1920px); margin-inline: auto; }
-main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
+main { width: min(100%, 1920px); margin-inline: auto; }
+main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 
 /* ---------- Type roles, Figma text styles ---------- */
 .display, .h64, .h40, .h24, .h20, .eyebrow, .body, .meta dt, .meta dd, .card p, .tcard p, .task span, .pill, .legend span, .role span, .stat span {
@@ -91,16 +91,7 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .js-motion [data-mask], .js-motion [data-mask] > .mask__scale { will-change: clip-path, transform; }
 
 /* ---------- Navigation ---------- */
-.site-nav { position: fixed; left: 0; right: 0; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 24px var(--m) 24px; pointer-events: none; transition: color 0.3s ease; }
 /* Over the light feedback block the nav turns dark instead of carrying a scrim */
-.site-nav.is-on-light .site-nav__links a { color: var(--n900); }
-.site-nav.is-on-light .site-nav__logo img { filter: invert(1); }
-.site-nav__links a, .site-nav__logo img { transition: color 0.3s ease, filter 0.3s ease; }
-.site-nav a { pointer-events: auto; }
-.site-nav__logo { display: block; width: 60.458px; padding-block: 13px; margin-block: -13px; }
-.site-nav__links { display: flex; gap: 76px; }
-.site-nav__links a { display: inline-block; padding-block: 15px; margin-block: -15px; font-size: 14px; line-height: 1; letter-spacing: 0.02em; font-weight: 400; text-transform: uppercase; color: var(--n100); }
-.site-nav__links a:hover { color: var(--n050); text-decoration: underline; text-underline-offset: 4px; }
 
 /* ---------- Pills and insight tooltips ---------- */
 .pills { display: flex; flex-wrap: wrap; gap: 14px; }
@@ -337,15 +328,6 @@ main, .site-nav { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)
 .ending__close b { font-weight: 700; color: var(--n100); }
 
 /* ---------- Footer, Figma 4076:3827 ---------- */
-.case-footer { padding: 306px var(--m) 24px; }
-.case-footer__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
-.case-footer__where, .case-footer__links { display: flex; flex-direction: column; gap: 12px; }
-.case-footer__where span, .case-footer__link { font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; font-weight: 400; text-transform: uppercase; color: var(--n100); text-box: trim-both cap alphabetic; }
-.case-footer__links { align-items: flex-end; }
-.case-footer__link { display: inline-flex; align-items: center; gap: 8px; padding-block: 6px; margin-block: -6px; }
-.case-footer__link img { width: 13px; height: 13px; transform: scaleY(-1); }
-/* Figma 4076:3837 flips the arrow vertically, as on the homepage footer */
-a.case-footer__link:hover { color: var(--n050); text-decoration: underline; text-underline-offset: 4px; }
 
 /* ================= Tablet, 768 to 1159: one column story, media at full measure ================= */
 @media (max-width: 1159px) {
@@ -456,14 +438,11 @@ a.case-footer__link:hover { color: var(--n050); text-decoration: underline; text
   .ending__needs { margin-left: 0; margin-top: 40px; }
   .ending__cards { margin-top: 64px; }
   .ending__close { margin: 56px var(--m) 0; }
-  .case-footer { padding-top: 160px; }
 }
 
 /* ================= Mobile, up to 767 ================= */
 @media (max-width: 767px) {
   main, .site-nav { --m: 16px; }
-  .site-nav__links { gap: 24px; }
-  .site-nav__links a { font-size: 12px; }
   .h64 { font-size: 32px; letter-spacing: -0.03em; }
   .h40 { font-size: 28px; }
   .h24 { font-size: 20px; }
@@ -549,9 +528,6 @@ a.case-footer__link:hover { color: var(--n050); text-decoration: underline; text
   .ending { padding: 88px 0; }
   .ending__cards { width: 100%; overflow-x: auto; aspect-ratio: auto; }
   .ending__cards .mask__scale { width: 900px; }
-  .case-footer { padding-top: 120px; }
-  .case-footer__row { flex-direction: column; align-items: flex-start; }
-  .case-footer__links { align-items: flex-start; }
 }
 
 /* Journey flow on a phone turns vertical so the whole shuffle stays on screen. haven.js swaps the axis below 560 */
@@ -567,3 +543,11 @@ a.case-footer__link:hover { color: var(--n050); text-decoration: underline; text
 @media (prefers-reduced-motion: reduce) {
   .ticker__track { animation: none !important; }
 }
+
+/* Shared navbar (components.css) stays fixed here and turns dark over the light bridge, as the Haven
+   nav did; haven.js toggles is-on-light on .site-nav. */
+.page-header.site-nav { position: fixed; top: 24px; z-index: 30; pointer-events: none; }
+.site-nav a { pointer-events: auto; }
+.site-nav .link-nav, .site-nav .navbar__logo img { transition: color 0.3s ease, filter 0.3s ease; }
+.site-nav.is-on-light .link-nav { color: var(--neutral-900); }
+.site-nav.is-on-light .navbar__logo img { filter: invert(1); }
