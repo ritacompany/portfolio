@@ -146,6 +146,11 @@ A new session picks this up from this file alone.
     shorter labels would be a copy change for him.
   - Collection rows wrap: tablet keeps title, arrow and badge on one line with the locked status
     below; mobile puts the badge over the title, arrow on the right.
+- His first look at the phone layouts (9 Nov, one picture of the first screen of Home, Mondai page and
+  Framework CS): the hero needs rethinking; case study titles in the Mondai list must never wrap; the
+  list layout reads weird. He wants to go through each page with him one by one, after everything else
+  is in place. He also flagged that Phase 3 was built without checking in with him first: see
+  fixes/2026-11-09-phase-3-built-without-his-checkpoint.md. Nothing in Phase 3 is approved.
 - Next action: his review of the 390 versions (`docs/responsive/*-390.webp`, or `npm run dev` at 390).
   Then Phase 2 as he unparks it, then Phase 4.
   Haven keeps its own CSS until Phase 1 moves it.
