@@ -111,8 +111,16 @@ A new session picks this up from this file alone.
   contact-goo.js): site/js/contact-liquid.js, lab site/motion-lab/contact-liquid.html, tuner published at
   https://claude.ai/artifact/BdG5yNZuFnkSDSfgQneXnU (built by scripts/motion-tuner/contact-liquid.py),
   plan docs/motion/contact-liquid/. Not on the pages and not done until he has tuned it.
-- Next action: link and card hovers, Haven motion carry over, Falling behind and the footer
-  transition. Then Phase 3 (390, 768, 1200).
+- Phase 2, 9 Nov, the rest: Home work cards carry the H11 states (image eases in 3.5 percent, text white,
+  Learn more fills, focus ring, press settles; reduced motion keeps colour only). Links and context rows
+  ease over 200 ms like the Small button. The footer clock is live Chicago time on Home and Framework
+  (site/js/site.js; Haven keeps its own). The Start of week dots are HTML, follow the carousel and jump
+  on click; the hint text matches the old export to the pixel. Haven's motion is unchanged. Gate:
+  node scripts/verify-phase2.mjs cards|links|clock|dots|regress, all pass.
+- Waiting on him: the footer band motion (the Figma footer now has a halftone band, so the October
+  stripes and bars options no longer apply) and Falling behind (his tuned settings from the editor,
+  site/motion-lab/cs2-falling-behind-editor.html). The Contact button is parked to the end.
+- Phase 3 (390, 768, 1200) runs in another session.
   Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
   `5658:1061` is 2 MB, so read single frames instead.
