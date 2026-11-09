@@ -117,9 +117,19 @@ A new session picks this up from this file alone.
   (site/js/site.js; Haven keeps its own). The Start of week dots are HTML, follow the carousel and jump
   on click; the hint text matches the old export to the pixel. Haven's motion is unchanged. Gate:
   node scripts/verify-phase2.mjs cards|links|clock|dots|regress, all pass.
-- Waiting on him: the footer band motion (the Figma footer now has a halftone band, so the October
-  stripes and bars options no longer apply) and Falling behind (his tuned settings from the editor,
-  site/motion-lab/cs2-falling-behind-editor.html). The Contact button is parked to the end.
+- Waiting on him: Falling behind (his tuned settings from the editor,
+  site/motion-lab/cs2-falling-behind-editor.html).
+
+## Details (end of build)
+
+His call 9 Nov: polish pieces he wants to recreate himself wait here until the build is done. Nothing
+in this list blocks a phase.
+- Contact button effect. The pages run the gooey split (site/js/contact-goo.js). Two tuners exist: the
+  gooey split (session "Portfolio: Contact button liquid effect",
+  https://claude.ai/artifact/1UZGKKtRGbZMBgv7BhBPQG) and the liquid mix
+  (https://claude.ai/artifact/BdG5yNZuFnkSDSfgQneXnU, site/js/contact-liquid.js). He has something he
+  wants to try recreating.
+- Footer halftone band motion. The band ships static as drawn in Figma. He has a reference to show.
 - Phase 3 (390, 768, 1200) runs in another session.
   Haven keeps its own CSS until Phase 1 moves it.
 - Figma reads: file `5RO0m4bYYrTvbiaOgaU3tI`, call `create_session` first; `get_metadata` on page
