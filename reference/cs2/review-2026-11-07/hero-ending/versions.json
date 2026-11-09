@@ -1,0 +1,53 @@
+[
+ {"id": "he-hero-a", "block": "Hero", "letter": "A", "pick": true,
+  "name": "A: the user's situation, then the project (Haven's order)",
+  "fields": [
+   ["Left", "Designed as an AI guide for newcomers from underrepresented backgrounds finding their way into tech."],
+   ["Right 1", "There’s no set path into tech, so Mondai’s AI writes each user a curriculum for the career they choose, and it can take months. Most users don’t have the same hours free every week, so a plan that expects a steady pace would leave them behind from week one."],
+   ["Right 2", "When I started on the MVP, the curriculum was a list in a fixed order, with calendar integration planned and nothing connecting them. I designed the weekly framework that turns it into weeks each user can finish. Mondai hasn’t launched, so this case study shows the reasoning rather than results."]
+  ],
+  "note": "My pick. Haven's exact job split: the left line says who Mondai is for and what it is, paragraph 1 is the user's situation, paragraph 2 is the project's context. Paragraph 2 is your own Background text from the old frame (fixed order, calendar integration planned, nothing connecting them), so the starting point is in your words. No list of topics: the page shows them, so the hero does not preview them. The left line drops people for newcomers, which covers a student and a career changer alike (your 28 Aug note: a situation, not a person). Tactics: answer first and steal the thunder (the stage is said once, here), and the uneven week is planted for capacity, Rollover and Recalibration to pay off."},
+ {"id": "he-hero-b", "block": "Hero", "letter": "B", "pick": false,
+  "name": "B: what existed, the question it left, then the answer",
+  "fields": [
+   ["Left", "Designed as an AI career navigator for the next generation of hustlers from underrepresented backgrounds."],
+   ["Right 1", "When I started on Mondai’s MVP, the curriculum its AI writes for each user already had a fixed order, and calendar integration was planned. There was no way yet to decide how much of it belongs in a single week, and the whole curriculum can take months."],
+   ["Right 2", "The answer depends on the user, because most of them don’t have the same hours free every week. So I designed a weekly framework that plans each week around the hours they say they can give and still holds when a week runs short. Mondai hasn’t launched, so what follows is the reasoning behind each decision rather than results."]
+  ],
+  "note": "Opens on the project instead of the user: what was there when you started and the one question it left open, so the reader meets the design problem as a question before the answer. The left line is your own frame wording (AI tech career navigator, the next generation of hustlers) with the audience added, so it keeps your voice on the line every Mondai case study shares. Weaker than A because the user's situation arrives second, after the reader has already been told about a fixed order and calendar plans they have no reason to care about yet."},
+ {"id": "he-hero-c", "block": "Hero", "letter": "C", "pick": false,
+  "name": "C: two users, one curriculum",
+  "fields": [
+   ["Left", "Designed as a way for newcomers from underrepresented backgrounds to find a path into tech that fits around their life."],
+   ["Right 1", "Two users can choose the same tech career and have very different weeks. One can give 5 hours a week and the other 15, and either can have a week where almost nothing gets done. Mondai’s AI writes each of them a curriculum that can take months, so one framework has to work for both."],
+   ["Right 2", "I designed the weekly framework that turns it into weeks they can finish, planned from the hours they say they can give. Mondai hasn’t launched, so this case study shows the reasoning: how much lands in a week and what happens when a week runs short."]
+  ],
+  "note": "A worked contrast first, your habit of real numbers: 5 hours against 15 is the archive's own example of why the plan has to come from the user. The left line copies Haven's Designed as a way for form word for word in shape. The most memorable opening of the three, but it keeps the three topic preview at the end, which the page then delivers anyway, and the left line runs longest."},
+ {"id": "he-end-a", "block": "Ending", "letter": "A", "pick": false,
+  "name": "A: what success is, the two counts and where I'd look first",
+  "fields": [
+   ["Eyebrow", "Where it stands"],
+   ["Headline", "The framework is meant to give each user weeks they can finish, so the first thing I’ll count is how many they do."],
+   ["Body 1", "Testing with the first users comes next, and I’ll count two things: how many planned weeks close with every Action Item done, and how often a Rollover Action Item gets done in the week it lands in."],
+   ["Body 2", "Those counts become the baseline. If they’re low for most users, the first place I’d look is how much effort each Action Item is given, since that decides how many fit into a week."]
+  ],
+  "note": "Failed the reader check re-check: all three readers said it states no design decision (in round 1 it passed 2 of 3), because two counts read as a measure, not a choice with a reason. That is why it is not my pick any more. If you want it, the fix is one line: Body 1 says I chose those two counts because each shows whether a week actually fit; I run it through the check before it goes into final-copy.md. What it is: the version you accepted on 7 Nov, rebuilt: the headline now says what the framework is for, instead of telling the reader it has not launched again (the hero already does), and the second paragraph swaps the line that re-explained Recalibration for what the counts would tell you and where you would look first if they come back low. That turns a missing result into a test with a next step. It closes the whole case study, since finishing weeks is what every block was for. When counts exist, Body 2's first sentence becomes x of n and nothing else moves."},
+ {"id": "he-end-b", "block": "Ending", "letter": "B", "pick": false,
+  "name": "B: the hardest call and the test it still needs",
+  "fields": [
+   ["Eyebrow", "Looking back"],
+   ["Headline", "The hardest call was what to do when a user can’t finish a week, because every answer costs them something."],
+   ["Body 1", "I chose to move the work forward and keep the target where it was, and it’s the decision I most want real weeks to test."],
+   ["Body 2", "What I’ll be looking for is whether Rollover helps a user recover or slowly piles up on them: whether a user whose work rolls over finishes the next week, or rolls it over again."]
+  ],
+  "note": "The reflection shape: the hard part, what to validate and how you would know. It reads the most like you talking. The catch: hardest call is your judgment, not something in the record, so it ships only if it is true for you. If another decision was harder, the headline changes and the rest holds."},
+ {"id": "he-end-c", "block": "Ending", "letter": "C", "pick": true,
+  "name": "C: the least settled number and what would move it",
+  "fields": [
+   ["Eyebrow", "What’s still open"],
+   ["Headline", "The least settled rule is the one for when Recalibration steps in, because no user had lived a week with the plan yet."],
+   ["Body 1", "Right now it steps in after three weeks in a row where a user finishes less than about half the hours they set. That line is a starting point, and the first users’ weeks will move it."],
+   ["Body 2", "It comes too early if most users who see it skip it and catch up anyway, and too late if users stop coming back before it ever shows."]
+  ],
+  "note": "My pick. The most specific of the three: a real rule from the archive that the page never states (three weeks under about half the hours set, marked directional there), with a test that can go wrong in both directions, each one something you can watch happen. It is the most honest way to close a first build: it names what you don't know yet instead of what you hope. It passed the reader check in both rounds, where A did not, and unlike B it claims nothing that is only your judgment. The risk: it closes on one rule rather than the whole case study, so it reads like a last word on Recalibration. What would change it: if you want the ending to speak for the whole page, A with its one line fix."}
+]

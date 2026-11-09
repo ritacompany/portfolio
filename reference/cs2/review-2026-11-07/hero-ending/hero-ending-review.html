@@ -1,0 +1,245 @@
+<title>Framework CS hero and ending</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a working review sheet. Each section is a split row, the frame text as it stands on the left and numbered findings on the right, like a copy editor's margin. */
+:root{
+  --bg:#f3f4f1; --surface:#ffffff; --fg:#141513; --muted:#5d6259; --line:#d9dcd4;
+  --accent:#0e7d14; --accent-soft:#e2f2e1; --mag:#b0139f; --mag-soft:#f8e4f5;
+  --warn:#9a5b00; --warn-soft:#fbefd9; --bad:#a3271d; --bad-soft:#f8e2df;
+  --ins:#0e7d14; --del:#a3271d;
+  --display:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1240px;margin:0 auto}
+header.top{padding-block:40px 24px;border-bottom:1px solid var(--line);display:grid;gap:12px}
+.kicker{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(28px,4vw,44px)/1.08 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font:700 24px/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 13px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin:0;color:var(--muted)}
+p{margin:0}
+.lede{max-width:70ch;color:var(--muted)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;padding-block:10px;font:500 13px/1.3 var(--mono)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar .count b{font-variant-numeric:tabular-nums}
+.bar .status{color:var(--muted)}
+.bar nav{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;min-width:0;flex:1 1 100%;padding-bottom:2px}
+.bar nav a{white-space:nowrap}
+.bar nav a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px}
+.bar nav a:hover,.bar nav a:focus-visible{color:var(--fg);border-color:var(--fg)}
+section.block{padding-block:40px;border-bottom:1px solid var(--line);display:grid;gap:20px;scroll-margin-top:56px}
+.prose{display:grid;gap:12px;max-width:72ch}
+.prose ul,.prose ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.order{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.order ol{margin:0;padding-left:22px;display:grid;gap:4px;font-size:15px}
+.order li.moved{color:var(--accent);font-weight:600}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:10px;min-width:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.opt{position:relative}
+.opt.pick{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.pickTag{font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.mock{display:grid;gap:8px;padding:12px;border-radius:6px;background:#0b0b0b;color:#f2f2f2}
+.mock .l{font:500 18px/1.2 var(--display)}
+.mock .r{font:400 14px/1.45 var(--body);color:#cfcfcf}
+.mock .eb{font:500 13px/1 var(--body);color:#9a9a9a}
+.mock .big{font:500 30px/1.02 var(--display);letter-spacing:-.02em}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.cur{display:grid;gap:10px;position:sticky;top:64px}
+@media (max-width:860px){.cur{position:static}}
+.cur figure{margin:0}
+.cur img{display:block;width:100%;border-radius:6px;border:1px solid var(--line);background:#000}
+.cur figcaption{font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:4px}
+.field{display:grid;gap:2px}
+.field .lab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field .txt{white-space:pre-wrap;font-size:15px}
+.field.hl .txt{font:500 19px/1.25 var(--display)}
+.finds{display:grid;gap:12px;counter-reset:f}
+.find{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.find[data-state="accept"]{border-color:var(--accent)}
+.find[data-state="reject"]{opacity:.62}
+.fhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.num{font:600 13px/1 var(--mono);font-variant-numeric:tabular-nums}
+.chip{font:600 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:4px 7px;border-radius:4px}
+.k-order{background:var(--accent-soft);color:var(--accent)}
+.k-clarity{background:var(--warn-soft);color:var(--warn)}
+.k-ai{background:var(--mag-soft);color:var(--mag)}
+.k-fact{background:var(--bad-soft);color:var(--bad)}
+.k-typo{background:var(--line);color:var(--fg)}
+.tog{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tog button{font:600 12px/1 var(--mono);padding:7px 10px;background:transparent;color:var(--muted);border:0;cursor:pointer}
+.tog button+button{border-left:1px solid var(--line)}
+.tog button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
+.tog button[aria-pressed="true"].a{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"].r{background:var(--bad);color:var(--bg)}
+.pair{display:grid;gap:6px}
+.pair .was,.pair .now{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;font-size:15px}
+.pair .tag{font:600 11px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pair .was .t{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--del);text-decoration-thickness:1px}
+.pair .was.nostrike .t{text-decoration:none}
+.pair .now .t{color:var(--fg)}
+.why{font-size:14px;color:var(--muted)}
+.why b{color:var(--fg);font-weight:600}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted)}
+.note{font-size:14px;border-left:3px solid var(--warn);padding-left:10px;color:var(--fg)}
+footer{padding-block:32px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.tog{flex-wrap:wrap}
+.tog button[aria-pressed="true"][data-v="accept"]{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="change"]{background:var(--warn);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="discuss"]{background:var(--mag);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="reject"]{background:var(--bad);color:var(--bg)}
+.find[data-state="change"]{border-color:var(--warn)}
+.find[data-state="discuss"]{border-color:var(--mag)}
+.notelab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.notein{width:100%;font:15px/1.45 var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;resize:vertical;min-height:44px}
+.notein:focus-visible{outline:2px solid var(--fg);outline-offset:1px}
+.notestate{font:400 12px/1.3 var(--mono);color:var(--muted);min-height:1em}
+.opt .find{margin-top:4px}
+.ans{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px}
+.okbox{border:1px dashed var(--line);border-radius:8px;padding:10px 14px}
+.okbox summary{cursor:pointer;font:600 13px/1.3 var(--mono);color:var(--muted)}
+.okbox[open]{display:grid;gap:10px}
+.okrow{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+.oklab{font-size:15px}
+.tog{max-width:100%}
+.prose,.why,.src,.field .txt,.pair .t,.mock p{overflow-wrap:anywhere}
+section.block,.wrap{min-width:0}
+section.block>*{min-width:0}
+@media (max-width:640px){.tog{margin-left:0;width:100%}.tog button{flex:1 1 40%;min-height:40px}.tog button+button{border-left:1px solid var(--line)}}
+
+.vfield{display:grid;grid-template-columns:96px 1fr;gap:4px 16px;margin:6px 0}
+.vfield .k{font-size:12px;letter-spacing:.04em;text-transform:uppercase;opacity:.7;padding-top:3px}
+.vfield .t{min-width:0}
+.pickTag{display:inline-block;margin-left:10px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border:1px solid currentColor;border-radius:4px}
+.nowref{opacity:.75;font-size:14px}
+@media (max-width:560px){.vfield{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="kicker">Mondai framework case study · hero and ending · copy only, the site build takes it from final-copy.md</div>
+  <h1>Framework CS hero and ending</h1>
+  <p class="lede">Three versions of each block, each built differently. Pick Accept, Accept with changes, Discuss or Reject on any version and add a note whenever you want. Choices and notes save to this page and I read them back, then apply them to final-copy.md.</p>
+</header>
+
+<div class="bar" id="bar">
+  <span class="count">Accepted <b id="cA">0</b> · With changes <b id="cC">0</b> · Discuss <b id="cD">0</b> · Rejected <b id="cR">0</b> · Open <b id="cO">0</b></span>
+  <span class="status" id="saveState">Marks save on this device</span>
+  <nav id="toc"></nav>
+</div>
+
+<section class="block" id="intro"><h2>What this round is</h2><div class="prose"><p><b>The hero and the ending, worked as blocks for the first time.</b> Until now both were only drafted inside the copy review. Three versions of each, built differently rather than reworded, in your voice from docs/VOICE-draft.md: the user as subject, the reason inside the sentence, your casing and effort, never person, people or someone.</p>
+<p><b>Hero.</b> Modelled on how Haven's hero works, not on its words: the left line says who Mondai is for and what it is, then the right column gives the user's situation and the project's context. The left line is shared by every Mondai case study, so each version's left line says nothing about the framework. The hero comes first, so it uses no product name the page introduces later (no Growth Journey, Pathway, Action Item or capacity), and none of them previews the mechanics the page explains. It says once that Mondai hasn't launched, which is why no ending says it again.</p>
+<p><b>Ending.</b> It closes a first build with no metrics and no before and after. Each version turns the missing result into something a reader can check: A names what will be counted and where you'd look if it comes back low, B is the hardest call and the test it still needs, C is the one rule the archive marks as unsettled and what would move it. All three come from the research on how founding designers end first build case studies (reports/How first build case studies end.md); the weak endings there, funding, colleague quotes and words like improved, are ruled out.</p>
+<p><b>My picks:</b> hero A and ending C. Hero A because it does Haven's job in your own Background words and doesn't preview in a list what the page goes on to show. Ending C because it names the one rule nobody can know is right yet and how real weeks would prove it wrong, and it passed the reader check in both rounds. Ending A, the one you accepted on 7 Nov, failed the re-check: all three readers found no design decision in it. Its fix is one line, written in its note, and gets checked before it goes into final-copy.md if you pick it. What would change my picks: for the hero that sounds most like you, B, since its left line is your own frame wording; if the hardest call in ending B is true for you, B is the warmer ending.</p>
+</div></section>
+
+<section class="block" id="checks">
+  <h2>What ran and what did not</h2>
+  <div class="prose"><ul>
+<li><b>Dashes, Oxford commas, your wording and casing:</b> checked on every field after the script caught a planted em dash, en dash, double hyphen, Oxford comma, people and a lowercase action item. It caught one real Oxford comma in hero C, now rewritten. It also checks the hero uses no product name the page introduces later.</li>
+<li><b>Humanizer:</b> loaded as the skill and run as draft, audit, final on all six. It took out a thing doing a person's job in hero B, a tailing not results, a subjectless fragment in ending A and two tidy If sentences in ending C.</li>
+<li><b>Facts:</b> every product claim checked against the Mondai archive or your own words (your old Background text, your hero line, your 28 Aug audience note). Hardest call in ending B is your judgment, not a fact, and is marked so.</li>
+<li><b>Fit:</b> Satoshi at your widths. Every left line is 3 lines at 440, every right column 10 lines at 473 (Haven's is 9), every ending headline 3 lines at 708. The measure reproduced the 8 Nov numbers on the current text before it was trusted.</li>
+<li><b>Reader check:</b> three runs, then a re-check round with a planted bad version in each block, which failed on every planted fault in all three runs. Hero A, B and C and ending B and C passed both rounds. Ending A failed the re-check: no design decision, 3 of 3. It is shown as checked, unfixed, because a third round needs your go; its fix is in its note.</li>
+</ul>
+</div>
+</section>
+
+<section class="block" id="hero"><h2>Hero, three versions</h2><details><summary>The current text in final-copy.md</summary><p class="nowref">Left: Designed as an AI guide for people from underrepresented backgrounds working their way into a tech career.</p><p class="nowref">Right 1: Mondai builds each user a curriculum for the tech career they choose, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.</p><p class="nowref">Right 2: So I designed a weekly framework that turns that curriculum into weeks the user can finish, planned around the hours they say they can give each week. Mondai hasn’t launched, so this case study shows the reasoning rather than results: how much lands in each week, how it fits around their calendar and what happens when a week runs short or ends early.</p></details><div class="finds"><article class="find" id="he-hero-a">
+<div class="fhead"><span class="num">A: the user&#x27;s situation, then the project (Haven&#x27;s order)<span class="pickTag">My pick</span></span><span class="tog" role="group" aria-label="Mark version"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="vfield"><span class="k">Left</span><span class="t">Designed as an AI guide for newcomers from underrepresented backgrounds finding their way into tech.</span></div><div class="vfield"><span class="k">Right 1</span><span class="t">There’s no set path into tech, so Mondai’s AI writes each user a curriculum for the career they choose, and it can take months. Most users don’t have the same hours free every week, so a plan that expects a steady pace would leave them behind from week one.</span></div><div class="vfield"><span class="k">Right 2</span><span class="t">When I started on the MVP, the curriculum was a list in a fixed order, with calendar integration planned and nothing connecting them. I designed the weekly framework that turns it into weeks each user can finish. Mondai hasn’t launched, so this case study shows the reasoning rather than results.</span></div><p class="why">My pick. Haven&#x27;s exact job split: the left line says who Mondai is for and what it is, paragraph 1 is the user&#x27;s situation, paragraph 2 is the project&#x27;s context. Paragraph 2 is your own Background text from the old frame (fixed order, calendar integration planned, nothing connecting them), so the starting point is in your words. No list of topics: the page shows them, so the hero does not preview them. The left line drops people for newcomers, which covers a student and a career changer alike (your 28 Aug note: a situation, not a person). Tactics: answer first and steal the thunder (the stage is said once, here), and the uneven week is planted for capacity, Rollover and Recalibration to pay off.</p><label class="notelab" for="n-he-hero-a">Your note</label><textarea class="notein" id="n-he-hero-a" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="he-hero-b">
+<div class="fhead"><span class="num">B: what existed, the question it left, then the answer</span><span class="tog" role="group" aria-label="Mark version"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="vfield"><span class="k">Left</span><span class="t">Designed as an AI career navigator for the next generation of hustlers from underrepresented backgrounds.</span></div><div class="vfield"><span class="k">Right 1</span><span class="t">When I started on Mondai’s MVP, the curriculum its AI writes for each user already had a fixed order, and calendar integration was planned. There was no way yet to decide how much of it belongs in a single week, and the whole curriculum can take months.</span></div><div class="vfield"><span class="k">Right 2</span><span class="t">The answer depends on the user, because most of them don’t have the same hours free every week. So I designed a weekly framework that plans each week around the hours they say they can give and still holds when a week runs short. Mondai hasn’t launched, so what follows is the reasoning behind each decision rather than results.</span></div><p class="why">Opens on the project instead of the user: what was there when you started and the one question it left open, so the reader meets the design problem as a question before the answer. The left line is your own frame wording (AI tech career navigator, the next generation of hustlers) with the audience added, so it keeps your voice on the line every Mondai case study shares. Weaker than A because the user&#x27;s situation arrives second, after the reader has already been told about a fixed order and calendar plans they have no reason to care about yet.</p><label class="notelab" for="n-he-hero-b">Your note</label><textarea class="notein" id="n-he-hero-b" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="he-hero-c">
+<div class="fhead"><span class="num">C: two users, one curriculum</span><span class="tog" role="group" aria-label="Mark version"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="vfield"><span class="k">Left</span><span class="t">Designed as a way for newcomers from underrepresented backgrounds to find a path into tech that fits around their life.</span></div><div class="vfield"><span class="k">Right 1</span><span class="t">Two users can choose the same tech career and have very different weeks. One can give 5 hours a week and the other 15, and either can have a week where almost nothing gets done. Mondai’s AI writes each of them a curriculum that can take months, so one framework has to work for both.</span></div><div class="vfield"><span class="k">Right 2</span><span class="t">I designed the weekly framework that turns it into weeks they can finish, planned from the hours they say they can give. Mondai hasn’t launched, so this case study shows the reasoning: how much lands in a week and what happens when a week runs short.</span></div><p class="why">A worked contrast first, your habit of real numbers: 5 hours against 15 is the archive&#x27;s own example of why the plan has to come from the user. The left line copies Haven&#x27;s Designed as a way for form word for word in shape. The most memorable opening of the three, but it keeps the three topic preview at the end, which the page then delivers anyway, and the left line runs longest.</p><label class="notelab" for="n-he-hero-c">Your note</label><textarea class="notein" id="n-he-hero-c" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article></div></section><section class="block" id="ending"><h2>Ending, three versions</h2><details><summary>The current text in final-copy.md</summary><p class="nowref">Eyebrow: Where it stands</p><p class="nowref">Headline: The framework is built, so the question left is whether it works for the users it was made for.</p><p class="nowref">Body 1: The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.</p><p class="nowref">Body 2: A user whose work keeps rolling over is the sign the plan doesn’t fit their life, which is the case Recalibration was built for. Testing with the first users comes next, and these are the two numbers I’ll count from it.</p></details><div class="finds"><article class="find" id="he-end-a">
+<div class="fhead"><span class="num">A: what success is, the two counts and where I&#x27;d look first</span><span class="tog" role="group" aria-label="Mark version"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="vfield"><span class="k">Eyebrow</span><span class="t">Where it stands</span></div><div class="vfield"><span class="k">Headline</span><span class="t">The framework is meant to give each user weeks they can finish, so the first thing I’ll count is how many they do.</span></div><div class="vfield"><span class="k">Body 1</span><span class="t">Testing with the first users comes next, and I’ll count two things: how many planned weeks close with every Action Item done, and how often a Rollover Action Item gets done in the week it lands in.</span></div><div class="vfield"><span class="k">Body 2</span><span class="t">Those counts become the baseline. If they’re low for most users, the first place I’d look is how much effort each Action Item is given, since that decides how many fit into a week.</span></div><p class="why">Failed the reader check re-check: all three readers said it states no design decision (in round 1 it passed 2 of 3), because two counts read as a measure, not a choice with a reason. That is why it is not my pick any more. If you want it, the fix is one line: Body 1 says I chose those two counts because each shows whether a week actually fit; I run it through the check before it goes into final-copy.md. What it is: the version you accepted on 7 Nov, rebuilt: the headline now says what the framework is for, instead of telling the reader it has not launched again (the hero already does), and the second paragraph swaps the line that re-explained Recalibration for what the counts would tell you and where you would look first if they come back low. That turns a missing result into a test with a next step. It closes the whole case study, since finishing weeks is what every block was for. When counts exist, Body 2&#x27;s first sentence becomes x of n and nothing else moves.</p><label class="notelab" for="n-he-end-a">Your note</label><textarea class="notein" id="n-he-end-a" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="he-end-b">
+<div class="fhead"><span class="num">B: the hardest call and the test it still needs</span><span class="tog" role="group" aria-label="Mark version"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="vfield"><span class="k">Eyebrow</span><span class="t">Looking back</span></div><div class="vfield"><span class="k">Headline</span><span class="t">The hardest call was what to do when a user can’t finish a week, because every answer costs them something.</span></div><div class="vfield"><span class="k">Body 1</span><span class="t">I chose to move the work forward and keep the target where it was, and it’s the decision I most want real weeks to test.</span></div><div class="vfield"><span class="k">Body 2</span><span class="t">What I’ll be looking for is whether Rollover helps a user recover or slowly piles up on them: whether a user whose work rolls over finishes the next week, or rolls it over again.</span></div><p class="why">The reflection shape: the hard part, what to validate and how you would know. It reads the most like you talking. The catch: hardest call is your judgment, not something in the record, so it ships only if it is true for you. If another decision was harder, the headline changes and the rest holds.</p><label class="notelab" for="n-he-end-b">Your note</label><textarea class="notein" id="n-he-end-b" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="he-end-c">
+<div class="fhead"><span class="num">C: the least settled number and what would move it<span class="pickTag">My pick</span></span><span class="tog" role="group" aria-label="Mark version"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="vfield"><span class="k">Eyebrow</span><span class="t">What’s still open</span></div><div class="vfield"><span class="k">Headline</span><span class="t">The least settled rule is the one for when Recalibration steps in, because no user had lived a week with the plan yet.</span></div><div class="vfield"><span class="k">Body 1</span><span class="t">Right now it steps in after three weeks in a row where a user finishes less than about half the hours they set. That line is a starting point, and the first users’ weeks will move it.</span></div><div class="vfield"><span class="k">Body 2</span><span class="t">It comes too early if most users who see it skip it and catch up anyway, and too late if users stop coming back before it ever shows.</span></div><p class="why">My pick. The most specific of the three: a real rule from the archive that the page never states (three weeks under about half the hours set, marked directional there), with a test that can go wrong in both directions, each one something you can watch happen. It is the most honest way to close a first build: it names what you don&#x27;t know yet instead of what you hope. It passed the reader check in both rounds, where A did not, and unlike B it claims nothing that is only your judgment. The risk: it closes on one rule rather than the whole case study, so it reads like a last word on Recalibration. What would change it: if you want the ending to speak for the whole page, A with its one line fix.</p><label class="notelab" for="n-he-end-c">Your note</label><textarea class="notein" id="n-he-end-c" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article></div></section>
+
+<footer>Source text: reference/cs2/review-2026-11-07/hero-ending/versions.json. Current copy: reference/cs2/review-2026-11-07/final-copy.md.</footer>
+</div>
+
+<script>
+const IDS = ["he-hero-a", "he-hero-b", "he-hero-c", "he-end-a", "he-end-b", "he-end-c"];
+const state = {};   // id -> {mark, note}
+let db = null;
+const KEY = 'fcs-hero-end-1';
+function load(){ try{ Object.assign(state, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){} }
+function saveLocal(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function get(id){ return state[id] || (state[id] = {mark:'', note:''}); }
+function paint(){
+  const c = {accept:0, change:0, discuss:0, reject:0};
+  document.querySelectorAll('.find').forEach(el=>{
+    const s = get(el.id);
+    el.dataset.state = s.mark;
+    el.querySelectorAll('.tog button').forEach(b=> b.setAttribute('aria-pressed', String(b.dataset.v === s.mark)));
+    const ta = el.querySelector('.notein');
+    if (ta && document.activeElement !== ta && ta.value !== (s.note||'')) ta.value = s.note || '';
+    if (c[s.mark] !== undefined) c[s.mark]++;
+  });
+  document.getElementById('cA').textContent = c.accept;
+  document.getElementById('cC').textContent = c.change;
+  document.getElementById('cD').textContent = c.discuss;
+  document.getElementById('cR').textContent = c.reject;
+  document.getElementById('cO').textContent = document.querySelectorAll('.find .tog').length - c.accept - c.change - c.discuss - c.reject;
+}
+async function push(id, el){
+  const st = el && el.querySelector('.notestate');
+  if (!db){ if (st) st.textContent = 'Saved on this device only'; return; }
+  const s = get(id);
+  try{
+    await db.doc('marks/'+id).set({finding:id, mark:s.mark||'', note:s.note||'', at:Date.now()});
+    if (st) st.textContent = 'Saved for Claude';
+    document.getElementById('saveState').textContent = 'Saved for Claude to read';
+  }catch(e){ if (st) st.textContent = 'Not saved for Claude, kept on this device'; }
+}
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.tog button'); if(!b) return;
+  const el = b.closest('.find'); const s = get(el.id);
+  s.mark = (s.mark === b.dataset.v) ? '' : b.dataset.v;
+  saveLocal(); paint(); push(el.id, el);
+  if (s.mark === 'change' || s.mark === 'discuss'){ const ta = el.querySelector('.notein'); if (ta && !ta.value) ta.focus(); }
+});
+const timers = {};
+document.addEventListener('input', e=>{
+  const ta = e.target.closest('.notein'); if(!ta) return;
+  const el = ta.closest('.find'); get(el.id).note = ta.value; saveLocal();
+  const st = el.querySelector('.notestate'); if (st) st.textContent = 'Typing';
+  clearTimeout(timers[el.id]); timers[el.id] = setTimeout(()=>push(el.id, el), 900);
+});
+document.addEventListener('focusout', e=>{
+  const ta = e.target.closest && e.target.closest('.notein'); if(!ta) return;
+  const el = ta.closest('.find'); clearTimeout(timers[el.id]); push(el.id, el);
+});
+load(); paint();
+(async()=>{
+  const t = setTimeout(()=>{ document.getElementById('saveState').textContent = 'Saved on this device only'; }, 10000);
+  try{
+    db = window.claude ? await window.claude.use('db') : null;
+    if(!db){ clearTimeout(t); document.getElementById('saveState').textContent = 'Saved on this device only'; return; }
+    const snap = await db.collection('marks').get();
+    clearTimeout(t);
+    (snap.docs||[]).forEach(d=>{ const x = d.data(); if (x && x.finding && IDS.includes(x.finding)) state[x.finding] = {mark:x.mark||'', note:x.note||''}; });
+    saveLocal(); paint();
+    document.getElementById('saveState').textContent = 'Choices and notes save for Claude to read';
+  }catch(e){ clearTimeout(t); document.getElementById('saveState').textContent = 'Saved on this device only'; }
+})();
+</script>

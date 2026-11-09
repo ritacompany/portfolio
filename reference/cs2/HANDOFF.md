@@ -14,12 +14,14 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-08 23:54
+Updated: 2026-11-09 01:10
 By: Claude Code
 Section: 3
 Loop step: 3
 
 ## Where it stopped
+
+Hero and ending as blocks, 9 Nov (his ask 8 Nov). Three versions of each on a new review page, https://claude.ai/artifact/X2A6EJTCnu7saeGFMari44 (db collection marks, ids he-hero-a/b/c and he-end-a/b/c, four choices and a note each). Text and notes: reference/cs2/review-2026-11-07/hero-ending/versions.json (copy in versions/hero-and-ending.md with the fact trace); builder build.py; checks run-checks.mjs, measure.mjs, results CHECKS.md. Picks: hero A (Haven's order, his own Background words), ending C (the Recalibration threshold, directional in the archive, and what would move it). All checks run and each proven on a planted mistake: copy checks OK, humanizer as the skill, facts against the Mondai archive (cloned to /home/user/mondai), fit OK at 440, 473 and 708, reader check round 1 all PASS and re-check round (with planted bad versions, caught 3 of 3) all PASS except ending A: Q1 no design decision 3 of 3. Ending A shown unfixed because a third round needs his go; its one line fix is in its note. final-copy.md not changed yet.
 
 Tactics pass, 8 Nov: rounds 2 and 3 applied (his yes to all 16 round 3 items, ArtifactData marks ids tz-*) in reference/cs2/review-2026-11-07/final-copy.md; paste-list.md rebuilt from it. Final reader check on the whole page in order (runs/2026-11-07-tactics/final): 13 of 15 blocks PASS; two flags turned into two cut only proposals on https://claude.ai/artifact/2fRneW8jzBKxKmBhFggBv2 (ids tw-hero, tw-end; source tactics/proposals-r4.json), marked WAITING in the paste list. Not flagged for him: Aisha (his call), the foundation block has no decision (it defines terms), a false flag from my extraction dropping the Capacity label. Cause of every round ending with an unchecked re-check: the cost guard caps a turn at three agents; the guard fix is written in fixes/2026-11-08-reader-check-fixes-left-unchecked.md (not verified: auto mode refused the self edit; he applies it, then run node .claude/hooks/tests/cost-guard-cases.mjs).
 
@@ -71,6 +73,8 @@ Earlier, Part 4 the calendar (29 Oct, not yet reviewed by him): Calendar setup, 
 Still missing from his frame: Get ahead (goes before Opening the week; streak question open in core/get-ahead.md), the Growth Journey page and Action Item page builds behind the placeholders. Scheduled times copy still sits in the Action Hub block in Figma; approved 27 Oct to move under the schedule view as his smaller interaction square. He builds Figma himself.
 
 ## Next action
+
+Next (9 Nov): read his marks (ArtifactData list, collection marks, on https://claude.ai/artifact/X2A6EJTCnu7saeGFMari44). Apply the accepted hero and ending to reference/cs2/review-2026-11-07/final-copy.md (Hero and Ending blocks), plus paste-list.md if it still mirrors final-copy. If he picks ending A, apply its Body 1 fix first and run one reader check round on it. Re-check what changed: run-checks.mjs, measure.mjs, and the reader check on the changed blocks against reader-check/runs/2026-11-09-hero-end/known-end.md. Then commit, push and tell him it is done.
 
 Next (9 Nov, 00:00): hero and ending get worked as blocks (his ask: they were only ever drafted inside the review). Session started: Portfolio: CS2 opening and ending (session_01NtNprsxC2Kzua6FztXjUAR), three versions each, every check and re-check before he sees them, results applied to final-copy.md. Fonts: not changing for now (his call 8 Nov); the font notes in final-copy.md are for later.
 
