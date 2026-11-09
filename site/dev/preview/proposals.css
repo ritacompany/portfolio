@@ -147,3 +147,20 @@ html.small-4 :is(.footer__out, .footer__back):is(:hover, :active) img { filter: 
 .footer__out:is(:hover, :active) { background: var(--neutral-100); box-shadow: 0 0.02em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100); }
 .link-nav:is(:hover, :active) { background: var(--neutral-050); box-shadow: 0 0.02em 0 var(--neutral-050), 0 -0.02em 0 var(--neutral-050); }
 .footer__back:is(:hover, :active) { background: var(--neutral-550); box-shadow: 0 0.02em 0 var(--neutral-550), 0 -0.02em 0 var(--neutral-550); }
+
+/* 15. Small links brighten on hover (his ask, 9 Nov). The nav and LinkedIn rest at Neutral/300 (#d2d2db)
+       and go to Neutral/050 (#f2f1f8) on hover; Back to top stays Neutral/550 at rest and goes to
+       Neutral/050. The arrows follow their text. Two versions to try, on keys 4 and 5:
+       4. Brighter and bolder (the outline from 13; the second W dial sets how much).
+       5. Brighter only.
+       Haven's nav keeps its own dark colour while it sits over the light bridge. */
+.link-nav, .footer__out { color: var(--neutral-300); }
+.footer__out img { filter: brightness(0.87); }
+html:is(.small-4, .small-5) :is(.link-nav, .footer__out, .footer__back):is(:hover, :active) {
+  color: var(--neutral-050); background: none; box-shadow: none;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+html.small-5 :is(.link-nav, .footer__out, .footer__back):is(:hover, :active) { -webkit-text-stroke: 0; }
+html:is(.small-4, .small-5) .footer__out:is(:hover, :active) img { filter: none; }
+html:is(.small-4, .small-5) .footer__back:is(:hover, :active) img { filter: brightness(0) invert(0.95); }
+html:is(.small-4, .small-5) .site-nav.is-on-light .link-nav:is(:hover, :active) { color: var(--neutral-900); -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }

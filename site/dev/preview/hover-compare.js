@@ -1,6 +1,6 @@
 // Preview only. Press O to switch the hover text back to the old drawing and compare.
 // Press W for the dials: the block text weight (proposal 10) and the bold amount for the small links (13).
-// Press 1, 2, 3 or 4 for the small links' hover: block, colour only, line, bolder (the default).
+// Press 4 or 5 for the small links' hover: brighter and bolder (the default) or brighter only. 1 to 3 are older options.
 (() => {
   const root = document.documentElement;
   const get = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
@@ -26,16 +26,16 @@
   dial("hover-weight-v2", "--hover-weight", 0.05, 0.4, "Block text weight");
   dial("hover-bold-v1", "--bold-weight", 0.36, 0.8, "Small links bolder (0.36 Medium, 0.78 Bold)");
 
-  const NAMES = { 1: "1, block", 2: "2, colour only", 3: "3, line", 4: "4, bolder" };
+  const NAMES = { 1: "1, block", 2: "2, colour only", 3: "3, line", 4: "4, brighter and bolder", 5: "5, brighter only" };
   const SMALL = "hover-small-v2";
   let small = get(SMALL) || "4";
-  const apply = () => { root.classList.remove("small-2", "small-3", "small-4"); if (small !== "1") root.classList.add("small-" + small); };
+  const apply = () => { root.classList.remove("small-2", "small-3", "small-4", "small-5"); if (small !== "1") root.classList.add("small-" + small); };
   apply();
 
   const show = () => {
     status.textContent = root.classList.contains("hover-old")
       ? "Hover: old drawing (press O to go back)"
-      : `Small links: option ${NAMES[small]} (press 1 to 4)`;
+      : `Small links: option ${NAMES[small]} (press 4 or 5; 1 to 3 are the older ones)`;
     box.style.display = "block"; if (!box.isConnected) document.body.append(box);
   };
   document.addEventListener("keydown", (e) => {
