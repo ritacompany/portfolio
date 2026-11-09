@@ -81,3 +81,11 @@ membrane (liquid recording, read frames 132 to 246 and 366 to 426 at 60 fps):
 At the portfolio size (H 76): bulge 16 px, reach 46 px, stretch up to 22 px, release at 48 px, press in
 9 px within 40 px, spring speed 0.36 s and bounce 0.6, caps 20 px out and 8 px in. All in GOO at the
 top of the lab module, so sliders can follow if he wants it less liquid.
+
+## Colour behind, 9 Nov (round 5)
+In the liquid reference the cyan is the layer behind the body, showing where the body is pressed in
+while the outline stays. Here: from just outside an edge the body presses in up to 30 px (deep) while the
+outline moves 9 (dent), and the gap takes the hidden colour. Where the gap reaches the letters they take
+the text colour, his idea for the large type. Defaults: Neutral 300 behind, Neutral 900 letters, body in
+the page colour. All four live in GOO (hiddenOn, deep, hiddenColor, bodyColor, textColor); the lab page
+has a tryout panel for them. The depth can go under the letters; 30 reaches the baseline of CONTACT.

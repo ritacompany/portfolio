@@ -18,6 +18,15 @@
        button (contact-goo-next.js) in place of the shipped one, so he hovers the real thing before his yes. */
     html, body { background: var(--neutral-900); }
     .canvas { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; }
+    .tryout { position: fixed; top: 16px; left: 16px; z-index: 20; display: grid; gap: 10px; width: 232px; padding: 14px 16px;
+      background: var(--neutral-800); color: var(--neutral-100); border: 1px solid var(--neutral-700); border-radius: 12px;
+      font: 500 13px/1.4 var(--font); }
+    .tryout label { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .tryout input[type=color] { width: 40px; height: 26px; padding: 0; border: 1px solid var(--neutral-600); border-radius: 6px; background: none; }
+    .tryout input[type=range] { width: 100px; }
+    .tryout output { min-width: 2ch; text-align: right; color: var(--neutral-500); }
+    .tryout button { justify-self: start; padding: 5px 10px; border: 1px solid var(--neutral-600); border-radius: 6px; background: none; color: inherit; font: inherit; cursor: pointer; }
+    .tryout p { margin: 0; color: var(--neutral-550); font-size: 12px; }
   </style>
 </head>
 <body>
@@ -60,6 +69,30 @@
             </div>
           </footer>
   </div>
+  <form class="tryout" id="tryout" aria-label="Colour tryout">
+    <label>Colour behind <input type="color" id="t-hidden" value="#d2d2db"></label>
+    <label>Letters in the gap <input type="color" id="t-text" value="#040405"></label>
+    <label>Depth <input type="range" id="t-deep" min="0" max="44" step="1" value="30"><output id="o-deep">30</output></label>
+    <label><input type="checkbox" id="t-on" checked> Colour on</label>
+    <button type="button" id="t-reset">Reset</button>
+    <p>Move the cursor just under or over the pill's edge from outside to see the colour. Settings stay in this browser.</p>
+  </form>
+<script type="module">
+  // Colour tryout for the lab page only: writes into the module's settings, which it reads every frame.
+  const { GOO } = await import("./contact-goo-next.js");
+  const DEF = { hiddenColor: GOO.hiddenColor, textColor: GOO.textColor, deep: GOO.deep, hiddenOn: GOO.hiddenOn };
+  const KEY = "contact-goo-tryout";
+  try { Object.assign(GOO, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch {}
+  const el = (id) => document.getElementById(id);
+  const show = () => { el("t-hidden").value = GOO.hiddenColor; el("t-text").value = GOO.textColor; el("t-deep").value = GOO.deep; el("o-deep").textContent = GOO.deep; el("t-on").checked = !!GOO.hiddenOn; };
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify({ hiddenColor: GOO.hiddenColor, textColor: GOO.textColor, deep: GOO.deep, hiddenOn: GOO.hiddenOn })); } catch {} };
+  show();
+  el("t-hidden").addEventListener("input", (e) => { GOO.hiddenColor = e.target.value; save(); });
+  el("t-text").addEventListener("input", (e) => { GOO.textColor = e.target.value; save(); });
+  el("t-deep").addEventListener("input", (e) => { GOO.deep = +e.target.value; el("o-deep").textContent = GOO.deep; save(); });
+  el("t-on").addEventListener("change", (e) => { GOO.hiddenOn = e.target.checked ? 1 : 0; save(); });
+  el("t-reset").addEventListener("click", () => { Object.assign(GOO, DEF); show(); save(); });
+</script>
 <script type="module" src="contact-goo-next.js"></script>
 </body>
 </html>

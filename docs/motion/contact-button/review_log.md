@@ -93,3 +93,17 @@ presses in, which is where the cyan showed.
   stretch 10 px after a leaving pointer, settled to 0.02 px within 0.8 s, hover and leave curve as in
   round 3, press, quick in and out, reduced motion. No console errors.
 - Still in the lab, not in the shipped module: the site review gate needs his yes.
+
+## Round 5, the colour behind
+9 Nov 2026. His ask: the colour behind, as in the liquid reference, and where the gap reaches the
+letters the letters take a colour; a place in the preview to play with both colours.
+- Built: with the cursor just outside an edge the body presses in deeper than the outline (deep 30 px
+  against the outline's 9) and the hidden colour fills the gap, drawn in a plain SVG layer under the goo
+  outline so the ring stays whole. The letters are drawn again in the text colour and clipped to the gap
+  with an evenodd clip path, so only the covered parts change colour. Defaults Neutral 300 behind and
+  Neutral 900 letters; hiddenOn 0 turns it all off.
+- Lab page: a tryout panel (colour behind, letters in the gap, depth, on and off, reset), kept in this
+  browser. The panel is lab only; the module carries the chosen values.
+- Fixed on the way: the colour layer first painted over the ring (layer order), and a hairline of the
+  hidden colour along the whole edge at rest (the body now reaches 1.5 px under the ring).
+- Live gate as before plus the membrane: bulge 15 px, stretch 10 px, settle 0.02 px. Site check OK.
