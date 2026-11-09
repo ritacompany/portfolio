@@ -1,7 +1,10 @@
 // His hover rule (9 Nov): a highlight changes the text colour and adds the light block behind it, and
 // nothing moves, ever. This hovers every link, row and button on each page and compares the position of
 // every single letter, and of every link on the page, before and during the hover. Any change over
-// 0.05 px fails. The Contact button is exempt: its liquid motion is a separate, parked piece.
+// 0.05 px fails. It also logs the colours on every animation frame for 400 ms after the pointer arrives:
+// a highlight is an instant swap, so any colour between rest and hover (a fade, which showed as a grey
+// on grey flicker) fails. The Contact button is exempt: its liquid motion is a separate, parked piece.
+// Work cards are exempt from the swap rule only: their hover is a motion piece reviewed on its own.
 // Usage: node scripts/verify-hover-still.mjs <dir to serve, e.g. site or a preview build> [--width 1440]
 // Prints HOVER_STILL_OK <n> hovers only when nothing moved.
 import { createServer } from "node:http";
@@ -57,7 +60,7 @@ const diff = (a, b) => {
 
 try {
   for (const pg of PAGES) {
-    const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: "reduce" });
+    const page = await browser.newPage({ viewport: { width, height: 900 } });
     await page.goto(`${base}/${pg}`, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
     await page.evaluate(install, TARGETS);
@@ -71,7 +74,18 @@ try {
       const before = await page.evaluate(snapshot);
       const bx = await el.boundingBox();
       if (!bx || bx.width < 1 || bx.height < 1) continue;
-      await page.mouse.move(bx.x + bx.width / 2, bx.y + bx.height / 2); await page.waitForTimeout(450);
+      const states = el.evaluate((e) => new Promise((res) => {
+        const seen = new Set(), t0 = performance.now();
+        const f = () => { seen.add([e, ...e.querySelectorAll("*")].map((x) => { const s = getComputedStyle(x); return s.color + s.backgroundColor + s.filter; }).join("|")); if (performance.now() - t0 < 400) requestAnimationFrame(f); else res(seen.size); };
+        requestAnimationFrame(f);
+      }));
+      await page.mouse.move(bx.x + bx.width / 2, bx.y + bx.height / 2);
+      const nStates = await states; await page.waitForTimeout(50);
+      const card = await el.evaluate((e) => !!e.closest(".work-card"));
+      if (nStates > 2 && !card) {
+        const name = await el.evaluate((e) => `<${e.tagName.toLowerCase()}.${(e.className || "").toString().split(" ")[0]}> "${(e.textContent || "").trim().replace(/\s+/g, " ").slice(0, 30)}"`);
+        problems.push(`${pg}: hovering ${name} fades through ${nStates - 2} in-between frames instead of swapping`);
+      }
       const during = await page.evaluate(snapshot);
       hovers++;
       const worst = diff(before, during);

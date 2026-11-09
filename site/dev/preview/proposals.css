@@ -7,11 +7,17 @@
 
 /* 2. Hover rule for every link (his ruling, 9 Nov): a highlight is the text colour and the light block
       behind it, nothing else. No weight, spacing, size or position change on any element, ever.
-      Checked letter by letter by scripts/verify-hover-still.mjs. */
+      Checked letter by letter by scripts/verify-hover-still.mjs.
+      The swap is instant, in and out (his note, 9 Nov: a flicker when moving away). The 200 ms fade
+      showed about ten frames where the text and the block were both mid grey, which read as a flicker. */
+.link-nav, .link-footer, .link-block, .footer__email, .footer__out, .footer__out img, .footer__back, .footer__back img { transition: none; }
+/*    Same for the case study rows and the Small button fill (a fade there shows the same grey on grey
+      frames). The Small button keeps its 98 percent press, which is a press, not a hover. */
+.context, .context__icon, .context__icon::before { transition: none; }
+.button-sm { transition: transform 120ms var(--ease-quart-out); }
 
 /* 3. Footer email gets the same cover effect as the footer links (his comment, 9 Nov): the light block
-      behind it and dark text, same easing. */
-.footer__email { transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out); }
+      behind it and dark text. */
 /* Same weight and underline at rest and on hover (his comment: the underline vanished and the shape
    changed). The block is trimmed to the baseline, so it is extended down past the underline with a
    shadow of the same colour; nothing in the layout moves. */
@@ -25,14 +31,16 @@
 
 /* 5. LinkedIn (and Resume, when it is back) get the same cover effect (his comment, 9 Nov): light block,
       dark text, and the arrow turns dark with the text so it stays visible. */
-.footer__out { justify-self: start; transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out); }
-.footer__out img { transition: filter 200ms var(--ease-quart-out); }
+.footer__out { justify-self: start; }
 .footer__out:hover, .footer__out:active { color: var(--neutral-900); background: var(--neutral-200); }
 .footer__out:hover img, .footer__out:active img { filter: brightness(0); }
 
 /* 6. Back to top gets the same cover effect (his comment, 9 Nov): light block, dark text, the arrow turns
       dark with it. Colour and block only; nothing moves. */
-.footer__back { transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out); }
-.footer__back img { transition: filter 200ms var(--ease-quart-out); }
 .footer__back:hover, .footer__back:active { color: var(--neutral-900); background: var(--neutral-200); }
 .footer__back:hover img, .footer__back:active img { filter: brightness(0); }
+
+/* 7. Haven's nav faded its text colour over 0.3 s so it could ease to dark over the light bridge. That
+      same fade ran on hover and showed the grey flicker, so the nav colour now swaps at once, on hover
+      and when it turns dark over the bridge. */
+.site-nav .link-nav { transition: none; }
