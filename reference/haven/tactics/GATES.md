@@ -38,7 +38,7 @@ Scope: the CS2 tactics pass run on the Haven case study: copy pulled, both banks
   EXPECT: HAVEN_TACTICS_CHECKS_OK
   EVIDENCE: run 9 Nov, exit 0, HAVEN_TACTICS_CHECKS_OK applied (19 accepted applied, h-mvp-body from his note, h-wires two word fix after round 3, h-test-i1 kept on Discuss); PULL_OK; HAVEN_FIT_OK against the pre-apply page (measure-applied.txt); reader check r3 then r4 on the applied page in order: MVP and every block he changed PASS except the flags already stated on the review page (wireframes process story, ending recap, no decision in non decision blocks, his Testing synthesis headline)
 
-- [ ] G9: work committed and pushed to main with HANDOFF.md current
+- [x] G9: work committed and pushed to main with HANDOFF.md current
   CHECK: node reference/haven/tactics/pushed-check.mjs
   EXPECT: PUSHED_OK
-  EVIDENCE: pending
+  EVIDENCE: run 9 Nov after the round 4 commit, exit 0, PUSHED_OK (planted untracked file caught; HEAD equals origin/main)
