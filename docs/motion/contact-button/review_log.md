@@ -56,3 +56,22 @@ His pick: A, the gooey split, default settings (pull 32, tilt 18, blur 9, stiffn
 squeeze 6). Ported to site/js/contact-goo.js; the lab imports it, so lab and site share one code path.
 Checked live on Home, Framework and Haven at 1440: rest neck, split on hover, tilt, press squeeze, flows
 back on leave, no console errors. Lab rendered twice, sha256 matched. Page, sheet and Haven gates pass.
+
+## Round 3, built from the recording
+9 Nov 2026. His words: start the concept from fresh, prioritising the videos; it should work like the
+video. No tuner, no sliders, no rendered clips. The gooey recording was read frame by frame at 60 fps
+(reference/buttons/ on main) and the shipped spring and the PR 15 back ease were both grabbed on the
+real footer at the same frames and set beside it.
+- Shipped (spring, stiff 0.075, damp 0.82): bounces twice and on leave the circle sinks into the pill
+  as one egg shaped blob (1.4 s). Not the recording.
+- PR 15 (back ease 380 ms, bounce 1.7): the timing is right but the neck thins as a grey smear with a
+  cross at the snap (0.4 s), and the rest neck is a thin pinch where the recording has a wide fillet.
+- New (the motion lab file contact-goo-next.js): the circle follows the recording's own per frame curve
+  (CURVE, 24 frames) and a third shape, the neck, follows the recording's neck height for each amount
+  of travel (NECK), so the rest fillet, the thread and the snap at 0.5 of the pull come from the
+  measurement, not from the blur. Blur 8, threshold 48 with cutoff 24, so no grey at the snap.
+- Checked live with a real pointer on the motion lab page contact-button-footer.html: tuck of 2 px, pull
+  to 30 and settle at 28 in 0.4 s, neck gone at 0.19 s; leave mirrored; press squeezes 6 px; a quick
+  in and out returns to 0.00; reduced motion keeps the plain borders. No console errors.
+- Not copied into the shipped module yet: the site review gate (docs/SITE_BUILD_PLAN.md) needs his
+  yes in the session that copies it over. The lab file is the shipping file byte for byte.

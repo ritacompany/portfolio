@@ -46,3 +46,23 @@ Liquid outline (B):
 ## Which one
 Both are built on the real button side by side; he picks by using them. They do not combine: A changes
 the button's construction (two pills becoming one shape), B keeps it and makes the line itself liquid.
+
+## Measured on the recording, 9 Nov (round 3)
+Full resolution, 60 fps, first hover (frames 23 to 46) and first leave (frames 100 to 124). Button
+height H 139, circle 106 wide, full pull 60 px. Travel as a fraction of the pull, one value a frame:
+
+-0.03, -0.07, -0.08, -0.08, -0.10, -0.08, -0.07, -0.02, 0.07, 0.20, 0.38, 0.60, 0.78, 0.90, 0.98,
+1.03, 1.07, 1.08, 1.08, 1.08, 1.07, 1.05, 1.05, 1.00
+
+Leave is the same list mirrored (push out to 1.08 over six frames, home, sink to -0.10, settle), so
+one table drives both directions. Neck height as a fraction of H against travel: 0.61 at -0.10,
+0.57 at rest, 0.53 at 0.07, 0.44 at 0.20, 0.22 at 0.38, gone at 0.60. The neck depends on where the
+circle is, not on time: the same travel gives the same neck on the way in and the way out.
+
+The icon in the recording turns about 90 degrees over the move. The mail icon keeps a 20 degree tip,
+which tracks the travel the same way; a mail icon turned 90 reads as a document.
+
+Where it is built: the motion lab file `contact-goo-next.js` is the shipping module, tried on the
+motion lab page `contact-button-footer.html` (the Home footer as built). On his yes it is copied over
+the shipped `contact-goo.js` in the site's js folder; `components.css` needs no change, the neck is a
+third span under the same `.goo-shapes span` rule.

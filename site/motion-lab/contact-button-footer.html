@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Contact button on the footer</title>
+  <link rel="preload" href="../assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/satoshi-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/grid.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <style>
+    /* Motion lab, not shipped. The Home footer as built (site/index.html), with the next gooey Contact
+       button (contact-goo-next.js) in place of the shipped one, so he hovers the real thing before his yes. */
+    html, body { background: var(--neutral-900); }
+    .canvas { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; }
+  </style>
+</head>
+<body>
+  <div class="canvas home">
+          <footer class="footer" id="contact">
+            <div class="footer__transition footer__transition-baked" aria-hidden="true" data-bleed><img src="../assets/home/footer-band-home@2x.webp" alt="" width="1440" height="217"></div>
+            <div class="footer__main">
+              <div class="footer__top grid">
+                <div class="col-1 span-5">
+                  <a class="footer__back" href="#top"><img src="../assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>
+                  <ul class="footer__nav">
+                <li><a class="link-footer" href="#about">About</a></li>
+                <li><a class="link-footer" href="#work">Selected works</a></li>
+                <li><a class="link-footer" href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="footer__contact col-6 span-3">
+                  <p class="footer__label">Contact</p>
+                  <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+                  <div class="footer__note">
+                    <p>I’m currently living in Chicago, IL</p>
+                    <p>and seeking opportunities in NYC.</p>
+                  </div>
+                  <a class="button" href="mailto:hello@chadwickfenner.com">
+                    <span class="button__icon" aria-hidden="true"><img src="../assets/ui/mail-asterisk.svg" alt=""></span>
+                    <span class="button__label">Contact</span>
+                  </a>
+                </div>
+                <div class="footer__portraits col-10 span-3" aria-hidden="true">
+                  <span class="footer__pill"><span class="footer__frame"><img src="../assets/ui/footer-portrait.webp" alt=""></span></span>
+                  <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="../assets/ui/footer-portrait.webp" alt=""></span></span>
+                </div>
+              </div>
+              <img class="footer__wordmark" data-bleed src="../assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <div class="footer__bottom grid">
+                <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
+                <p class="footer__meta col-4 span-3"><time>10:24pm CST</time></p>
+                <a class="footer__out col-7 span-3" href="https://www.linkedin.com/"><img src="../assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+              </div>
+            </div>
+          </footer>
+  </div>
+<script type="module" src="contact-goo-next.js"></script>
+</body>
+</html>
