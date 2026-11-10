@@ -6,6 +6,46 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### Handoff, 10 Nov (from session "Portfolio: hover highlight"; read this before the 9 Nov one)
+**Where the work is.** Branch `claude/hover-text-smoothing`, draft PR 18 into `claude/relaxed-ride-5mlbdu`.
+Until PR 18 is merged, `claude/relaxed-ride-5mlbdu` does NOT have any of the hover work below, so its
+proposals.css and preview look older than what he has been reviewing. Read the hover branch.
+Preview link https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST, version 17, is built from it.
+
+**Item 1 of the 9 Nov list, the hover highlight: he said "these look good, we're fine on these now"
+(10 Nov).** What he approved, all in `site/dev/preview/proposals.css`:
+- Big footer links (About, Selected works, Contact) and the email: the close light block, dark text.
+  The block is the text's own resting colour, Neutral/100 (block 14), and reaches 0.02em past the
+  capitals and baseline so round letters are not shaved (block 11; Satoshi overshoots 0.013em,
+  measured in the font files). Mac smoothing `auto` on dark on light text (block 9) and a 0.05 px
+  outline in the text colour (block 10) so the dark text reads as heavy as the light text at rest.
+- Small all-caps links (nav, LinkedIn, Back to top): no block. Nav and LinkedIn rest at Neutral/300;
+  all three go to Neutral/050 on hover (block 15). Two versions on the preview: "Bolder" (a 0.36 px
+  outline, Satoshi Medium's extra stem width at 14 px, block 13) and "Brighter only".
+  **Open: which of the two he wants. He did not say. Ask him first.**
+- Blocks 5, 6 and 12 are marked SUPERSEDED in the file; drop them when shipping.
+
+**Why the labels on the preview may look odd.**
+- The white "Hover tester" panel, bottom left, is preview only (`site/dev/preview/hover-compare.js`).
+  It is never shipped. Its "Before" button shows the hover from before this work, not the current site.
+- Proposal numbers in proposals.css (1 to 15) are a running log, not an order to ship in. Higher
+  numbers override lower ones where they touch the same link.
+- Older notes and commit messages mention keys (O, W, 1 to 5). Those keys are gone; the panel
+  replaced them because keys only reach the page after a click inside it.
+- Old comments say "light block" in Neutral/200. It is Neutral/100 now (block 14).
+
+**Evidence behind it.** Measured his own screen recording frame by frame: no letter moves a pixel on
+hover. What he saw was weight: macOS draws dark on light text thinner with `antialiased`, and dark on
+light reads lighter to the eye anyway (irradiation). An earlier 0.15 px outline overshot (31 percent
+more ink in the nav), which read as "lifting"; the default is now 0.05.
+
+**Next.** Ask Bolder or Brighter only. Then item 2 of the 9 Nov list: move the approved blocks into
+site/css (components.css for the link styles), delete them from proposals.css, drop hover-compare.js
+from the preview if nothing else needs it, rerun `node scripts/build-preview.mjs site <dir>`,
+`node scripts/verify-1440.mjs` and `node scripts/verify-responsive.mjs <mode> all`.
+Note for shipping: verify-hover-still.mjs checks letter boxes and colours, not stroke width or
+smoothing, so it will not catch a wrong weight; check those by eye on his Mac.
+
 ### Handoff, 9 Nov evening (from session "Portfolio: site build Phase 3 responsive")
 He asked for a new session to carry the site build on, starting with the hover highlight. In order:
 1. **Hover highlight.** His rule: on hover a link changes only its text colour and gets the light block
