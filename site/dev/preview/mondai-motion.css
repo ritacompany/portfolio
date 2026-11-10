@@ -1,0 +1,33 @@
+/* Mondai motion, preview only. Pairs with mondai-motion.js (docs/motion/mondai-motion/).
+   The hidden states sit here so nothing flashes before the script runs. Reduced motion never hides
+   anything, the script marks html.mm-off when it stands down, and if the script never starts the
+   failsafe shows everything after 3 s. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Text, rules, plates and the small arrow strip: fade */
+  html:not(.mm-off) .framework .fw-sec > :not(.fig):not(.week),
+  html:not(.mm-off) .framework .fw-sec > .fig[data-figma-node="5812:20346"],
+  html:not(.mm-off) .framework .week__slide > .t,
+  html:not(.mm-off) .framework .ending-bar,
+  html:not(.mm-off) .collection .collection__brand,
+  html:not(.mm-off) .collection .collection__intro,
+  html:not(.mm-off) .collection .collection__label,
+  html:not(.mm-off) .collection .collection__rows > li {
+    opacity: 0; visibility: hidden;
+  }
+  /* Product screens: closed at their top edge until they open */
+  html:not(.mm-off) .framework .fw-sec > .fig:not([data-figma-node="5812:20346"]),
+  html:not(.mm-off) .framework .week__slide img {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  html:not(.mm-ready) .framework .fw-sec > *,
+  html:not(.mm-ready) .framework .week__slide > *,
+  html:not(.mm-ready) .framework .ending-bar,
+  html:not(.mm-ready) .collection .collection__brand,
+  html:not(.mm-ready) .collection .collection__intro,
+  html:not(.mm-ready) .collection .collection__label,
+  html:not(.mm-ready) .collection .collection__rows > li {
+    animation: mm-failsafe 0s 3s forwards;
+  }
+}
+@keyframes mm-failsafe { to { opacity: 1; visibility: visible; clip-path: none; } }
