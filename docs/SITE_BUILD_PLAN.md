@@ -12,7 +12,7 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 - He reviews on his phone over home wifi: real site `npm run dev` style server on :4318 (`node scripts/serve.mjs site lan`),
   preview with proposals and tools on :4319 (`node scripts/build-preview.mjs site ../portfolio-site-preview`, then
   serve that folder). Both are entries in `~/Code/portfolio/.claude/launch.json` (site-build, site-preview).
-- Editing by hand: CSS Studio at the desk (`npm run studio`, http://localhost:4320), see `docs/EDITING_WORKFLOW.md`.
+- Editing by hand: Flare at the desk, free (`npm run studio`, http://localhost:4320), see `docs/EDITING_WORKFLOW.md`.
   The homemade Edit tool was removed on 10 Nov. Type review stays on the preview. Changes become proposals,
   then site/css on his yes.
 - Research on designer editing tools: `~/Code/portfolio/reports/designer-editing-systems/REPORT.md` (uncommitted on main).

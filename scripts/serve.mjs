@@ -9,15 +9,17 @@ import { extname, join, normalize, resolve } from "node:path";
 const root = resolve(process.argv[2] || new URL("../site/", import.meta.url).pathname);
 const port = Number(process.env.PORT || 4318);
 // Third argument "lan" opens it to the home network so a phone on the same wifi can load it.
-// Third argument "studio" (npm run studio) stays on this Mac only and adds CSS Studio and the
-// proposal CSS to every page it serves. See docs/EDITING_WORKFLOW.md. The files on disk never change.
+// Third argument "studio" (npm run studio) stays on this Mac only and adds Flare (flare-dev, a free
+// visual CSS editor) and the proposal CSS to every page it serves. See docs/EDITING_WORKFLOW.md.
+// The files on disk never change.
 const studio = process.argv[3] === "studio";
 const host = process.argv[3] === "lan" ? "0.0.0.0" : "127.0.0.1";
-const STUDIO_DIST = resolve(new URL("../node_modules/cssstudio/dist/", import.meta.url).pathname);
+const FLARE = resolve(new URL("../node_modules/flare-dev/dist/flare.js", import.meta.url).pathname);
+// Flare looks for its optional bridge on 127.0.0.1:4318 by default, which is our phone server; point it
+// at 4321 so the two never meet.
 const STUDIO_TAGS = `  <link rel="stylesheet" href="/dev/preview/proposals.css">
-  <link rel="stylesheet" href="/__studio/cssstudio.css">
-  <script src="/__studio/cssstudio.js"></script>
-  <script>addEventListener("DOMContentLoaded", () => CSSStudio.startStudio());</script>
+  <script>window.__FLARE_BRIDGE__ = { url: "http://127.0.0.1:4321" };</script>
+  <script src="/__studio/flare.js"></script>
 </head>`;
 
 const TYPES = {
@@ -52,10 +54,9 @@ createServer((request, response) => {
   try { pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname); }
   catch { response.writeHead(400).end("bad request"); return; }
   if (studio && pathname.startsWith("/__studio/")) {
-    const asset = { "/__studio/cssstudio.js": "cssstudio.js", "/__studio/cssstudio.css": "cssstudio.css" }[pathname];
-    if (!asset) { response.writeHead(404).end("not found"); return; }
-    response.writeHead(200, { "Content-Type": TYPES[extname(asset)], "Cache-Control": "no-store" });
-    createReadStream(join(STUDIO_DIST, asset)).pipe(response);
+    if (pathname !== "/__studio/flare.js") { response.writeHead(404).end("not found"); return; }
+    response.writeHead(200, { "Content-Type": TYPES[".js"], "Cache-Control": "no-store" });
+    createReadStream(FLARE).pipe(response);
     return;
   }
   const file = resolvePath(pathname);

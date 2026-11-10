@@ -1,0 +1,14 @@
+diff --git a/site/dev/preview/proposals.css b/site/dev/preview/proposals.css
+index 57f54ae..bf13c17 100644
+--- a/site/dev/preview/proposals.css
++++ b/site/dev/preview/proposals.css
+@@ -111,3 +111,9 @@
+ }
+ /* Haven's added Learn more sits at the centre of its square image. */
+ .work-card-haven .work-card__media .button-sm { left: 50%; top: 50%; translate: -50% -50%; }
++
++/* Flare test, 10 Nov, phone (390). Hero text 16 to 18; About label 16 px more space above its text. */
++@media (max-width: 767.98px) {
++  .hero__lede { font-size: 18px; }
++  .about__label { margin-bottom: 16px; }
++}
