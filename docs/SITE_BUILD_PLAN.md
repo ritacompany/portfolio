@@ -15,8 +15,8 @@ down calling the Portfolio Design file superseded is wrong. `scripts/figma-pages
 Home against the stale copy and needs re-reading from `4494:5909`.
 Synced from the master on 10 Nov: Selected works title centered, with 165 above it and 125 to the cards;
 About body replaced by his three paragraphs (the superpowers lead and list are gone, and his "I have
-have" fixed to "I have"), 595 wide; About rows 543 and 208. Not built: the Testimonials section
-(Figma copy is placeholder, "Vanessa Bumpkin") and the Testimonials footer link that goes with it.
+have" fixed to "I have"), 595 wide; About rows 543 and 208. On hold at his ask, 10 Nov: the Testimonials section and its footer
+link. He has not finished it in Figma; build it from the VC master once he says it is done.
 
 ### Checkpoint, 9 Nov late (second account, Claude Code on his Mac)
 - His phone review list is `docs/REVIEW_2026-11-09.md` (15 rows); `node .unlazy/review-11-09/check.mjs ledger`
