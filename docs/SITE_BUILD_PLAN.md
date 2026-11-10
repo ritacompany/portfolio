@@ -6,6 +6,17 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### Checkpoint, 9 Nov late (second account, Claude Code on his Mac)
+- His phone review list is `docs/REVIEW_2026-11-09.md` (15 rows); `node .unlazy/review-11-09/check.mjs ledger`
+  fails until each is fixed, answered or his task. Nothing from it is in site/css yet; all of it is on the preview.
+- He reviews on his phone over home wifi: real site `npm run dev` style server on :4318 (`node scripts/serve.mjs site lan`),
+  preview with proposals and tools on :4319 (`node scripts/build-preview.mjs site ../portfolio-site-preview`, then
+  serve that folder). Both are entries in `~/Code/portfolio/.claude/launch.json` (site-build, site-preview).
+- Preview tools: Edit (bottom left, `site/dev/preview/edit.js`: tap any element for text and spacing, or All sections)
+  and Type review. He sends changes with Copy changes; they become proposals, then site/css on his yes.
+- Research on designer editing tools: `~/Code/portfolio/reports/designer-editing-systems/REPORT.md` (uncommitted on main).
+- The old preview artifact link is private to his first account; this account uses the wifi links above.
+
 ### Handoff, 9 Nov evening (from session "Portfolio: site build Phase 3 responsive")
 He asked for a new session to carry the site build on, starting with the hover highlight. In order:
 1. **Hover highlight.** His rule: on hover a link changes only its text colour and gets the light block
