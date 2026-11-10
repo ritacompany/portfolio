@@ -11,7 +11,7 @@ import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { extname, join, normalize, resolve } from "node:path";
 
-const BASE = "5f91a6c"; // last commit before Haven moved
+const BASE = "87d58cd"; // main with the Haven tactics copy (9 Nov), Haven still on its own nav; was 5f91a6c before that copy merged in
 const mode = process.argv[2];
 const repo = resolve(new URL("..", import.meta.url).pathname);
 const fail = (m) => { console.error(m); process.exit(1); };

@@ -52,10 +52,10 @@ PANELS = {  # frames that draw behind HTML text: node: (section, class, x, y, w,
 
 # Final copy (reference/cs2/review-2026-11-07/final-copy.md) runs longer than the Figma copy in three
 # places. These move what sits below the longer text and grow the section, keeping Figma's gaps:
-# hero right column (+87), Capacity body over the Example box (gap 73 kept), Ending body under a three
-# line headline (gap 80 kept).
-DY = {"5812:17126": 286, "5812:17127": 286, "5812:17128": 286, "5812:21566": 188}
-SEC_H = {"5812:16447": 656, "5812:17084": 1133, "5812:21559": 810}
+# hero right column (+87), Capacity body over the Example box (gap 73 kept), Ending body under a four
+# line headline (gap 80 kept; ending C, 9 Nov, runs a line longer than the first final copy).
+DY = {"5812:17126": 286, "5812:17127": 286, "5812:17128": 286, "5812:21566": 283}
+SEC_H = {"5812:16447": 656, "5812:17084": 1133, "5812:21559": 905}
 
 TEMPLATES = [
  ("week-clean-slate", "Template 1 of 5", "Clean slate", "This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead."),
