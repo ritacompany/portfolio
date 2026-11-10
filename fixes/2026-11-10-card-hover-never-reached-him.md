@@ -49,6 +49,13 @@ Check result after: PASS
 Second case: Haven card, same code path; not separately checked.
 Enforcement test: n/a
 
+## Follow up, same day
+He sent his frame: the Mondai card had been built from the stale Transported copy and an old export, and
+this session called the image "near black, re-export it" without opening his master frame. The Figma
+master (IarvWaqjIwrZ2afQmMxKm6, 4494:5909) is named as the source in SITE_BUILD_PLAN.md, but nothing
+compares the built cards to it. Now a check does: .unlazy/home-motion/check.mjs figma renders the card
+section at 1440 and compares it with his frame's render (failed at 4.2 before the fixes, passes at 2.5).
+
 ## Report
 Unverified: whether a fresh session keeps preview work in site/dev/preview. He tries the hover on the
 preview and says whether it is right.

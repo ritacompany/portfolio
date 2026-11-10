@@ -23,7 +23,7 @@
     titleAt: 38,     // vh, where the title holds
     hold: 70,        // vh, scroll the title holds alone before the first card comes in
     lag: 260,        // px, how far behind Mondai the Haven card starts
-    overlay: 0.5,    // black layer on hover (R3 said about 50 percent)
+    overlay: 0.47,   // Neutral/900 layer on hover, 47 percent as his frame (Rectangle 3003)
     near: 150,       // px from the middle of Learn more at which it fills
     roleFrom: 0.7,   // Product Designer starts to leave when the works section top is this far down the screen
     roleTo: 0.35,    // and is gone by here
@@ -82,6 +82,13 @@
     stage.append(titleRow, cardsWrap);
   }
   const cards = [...home.querySelectorAll(".work-card")];
+  // Card art from his master frame (preview copies; they replace site/assets/home on his yes).
+  const img = new URL("img/", document.currentScript ? document.currentScript.src : location.href);
+  const art = { mondai: "mondai-card@2x.webp", haven: "haven-card@2x.webp" };
+  cards.forEach((c) => {
+    const i = c.querySelector(".work-card__desk-art"), k = c.classList.contains("work-card-mondai") ? "mondai" : "haven";
+    if (i) { i.src = new URL(art[k], img).href; i.width = k === "mondai" ? 1758 : 886; i.height = k === "mondai" ? 1159 : 886; }
+  });
   const haven = home.querySelector(".work-card-haven");
 
   // ---- Text blocks (Haven: opacity only, 1.4 s, power1.out, 0.15 s apart, once, 100 px inside the screen).
@@ -203,7 +210,7 @@
     ["titleAt", "Title holds at", 15, 60, 1, "vh"],
     ["hold", "Title holds alone for", 0, 160, 5, "vh of scroll"],
     ["lag", "Haven starts behind Mondai by", 0, 600, 10, "px"],
-    ["overlay", "Black layer on hover", 0, 0.9, 0.05, ""],
+    ["overlay", "Dark layer on hover", 0, 0.9, 0.01, ""],
     ["near", "Learn more fills within", 40, 320, 5, "px"],
     ["roleFrom", "Product Designer starts leaving at", 0.2, 1, 0.05, "of screen"],
     ["roleTo", "and is gone at", 0, 0.9, 0.05, "of screen"],

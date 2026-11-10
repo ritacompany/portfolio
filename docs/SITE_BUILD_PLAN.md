@@ -19,9 +19,13 @@ top while settling from 1.3, 1.2 s). Learn more fades in without moving, because
 holds every letter on hover. A "Home motion" panel (bottom right, 768 and up) tunes the gap, where the
 title holds, how long it holds, Haven's lag, the black layer, the fill radius and when Product Designer
 leaves; Copy values gives him a list to send back. Checks: `.unlazy/home-motion/GATES.md`, 12 of 12
-runnable gates met. Not built: the hero load-in and Testimonials (his call, later). Found: the Mondai
-desktop card export `assets/home/mondai-card@2x.webp` is near black, so the card shows almost nothing at
-rest; re-export it from Figma. Why the hover kept slipping: fixes/2026-11-10-card-hover-never-reached-him.md.
+runnable gates met. Not built: the hero load-in and Testimonials (his call, later). Card art and sizes now
+come from his master frame (Card Section 4923:12087), not the stale Transported copy: Mondai's image is
+gradient, laptop render and glow (the site's old export was a different, near black image); his frame
+draws the hover, a 47 percent Neutral/900 layer and Learn more, so the rest image is his export with that
+layer taken back out (matches his export within 1.3 of 255). Haven is 443 wide, not 435. New exports are
+in `site/dev/preview/img/` and replace `site/assets/home/*-card@2x.webp` on his yes. Gate G14 compares the
+card section at 1440 with Figma's render (mean 2.5 of 255). Why the hover kept slipping: fixes/2026-11-10-card-hover-never-reached-him.md.
 Next: he tries it on :4319, sends the reference for the works motion, then site/css and site/js on his yes.
 
 ### Phone layouts from his Figma, 10 Nov

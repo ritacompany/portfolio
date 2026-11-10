@@ -7,7 +7,7 @@
   --hm-works-gap: 320px;   /* hero to Selected works title (was 165) */
   --hm-title-at: 38vh;     /* where the title holds while the cards rise */
   --hm-hold: 70vh;         /* scroll the title holds alone before the first card arrives */
-  --hm-overlay: var(--rv-card-overlay, 0.5); /* black over a card image on hover (R3) */
+  --hm-overlay: var(--rv-card-overlay, 0.47); /* Neutral/900 over a card image on hover, 47 percent as his frame */
 }
 
 /* 1. Nav. Fixed to the top across the full width, like Haven's. */
@@ -48,10 +48,23 @@ html.hm .home .work-card.hm-hot .work-card__media .button-sm { opacity: 1; trans
 html.hm .home .work-card .work-card__media .button-sm { background: none; color: var(--neutral-100); }
 html.hm .home .work-card.hm-near .work-card__media .button-sm { background: var(--neutral-100); color: var(--neutral-900); }
 
-/* The interface in each card stays centred in its frame at any width. */
-html.hm .home .work-card__desk-art { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: 50% 50%; }
-html.hm .home .work-card-mondai .work-card__desk-art { width: calc(100% * 1758 / 1744); object-position: 0 50%; }
-html.hm .home .work-card-haven .work-card__desk-art { width: 100%; }
+/* 5. Cards as his master frame draws them (Portfolio Design, VC, Master 4494:5909, Card Section 4923:12087).
+      Mondai 879 wide with media 879 by 579.45; Haven 443 wide (the site had 435 from the stale copy), its
+      description at 230.79. The images are new exports of 4923:12090 and 4923:12104 at 2x; Mondai's is
+      the frame without its 47 percent layer and Learn more, which are the hover. Learn more sits at
+      344.7, 251.4 as drawn. The interface stays centred in its frame at any width. */
+@media (min-width: 768px) {
+  html.hm .home .work-card-mondai { width: calc(100% * 879 / 1360); }
+  html.hm .home .work-card-haven { width: calc(100% * 443 / 1360); }
+  html.hm .home .work-card-mondai .work-card__media { aspect-ratio: 879 / 579.45; }
+  html.hm .home .work-card-haven .work-card__desc { --desc-x: calc(100% * 230.79 / 443); }
+  /* Learn more on Figma's centre (435.35, 274.85), at full size as decided 9 Nov. */
+  html.hm .home .work-card-mondai .work-card__media .button-sm { left: calc(100% * 435.35 / 879); top: calc(100% * 274.85 / 579.45); translate: -50% -50%; }
+  /* Mondai's image runs 4.17 past its card in Figma (29.71 + 579.45 against 605), so Haven ends that much higher. */
+  html.hm .home .work-card-haven { margin-bottom: calc(100% * 4.17 / 1360); }
+}
+html.hm .home .work-card__media::after { background: var(--neutral-900); }
+html.hm .home .work-card__desk-art { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 50%; }
 
 @media (prefers-reduced-motion: reduce) {
   html.hm .home .work-card__media::after, html.hm .home .work-card__media .button-sm { transition: none !important; }
