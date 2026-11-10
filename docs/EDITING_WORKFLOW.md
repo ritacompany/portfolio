@@ -20,8 +20,9 @@ this only downloads it.
 ## Every time (under a minute)
 
 1. In Terminal: `cd ~/Code/portfolio-site && npm run studio`. This serves the site at
-   http://localhost:4320 on this Mac only, with Flare and your proposals added to every page. The phone
-   server on 4318 and the files on disk are not touched.
+   http://localhost:4320 on this Mac only, with Flare and every proposal file from the phone preview
+   added to every page, so it looks exactly like :4319. The phone server on 4318 and the files on disk
+   are not touched.
 2. Open http://localhost:4320 in any browser on the Mac, or in the Claude app's browser pane.
 3. To see the phone layout, make the window narrow or pick Mobile in the browser pane's Viewport menu.
 
@@ -29,6 +30,10 @@ this only downloads it.
 
 1. Click the small Flare button at the bottom of the page. The panel opens.
 2. Click **Select Element**, then click the thing you want to change.
+   To get the box around it (a card, a list, a whole section), click its name in the row of parents
+   under Select Element. Example: the space between "Selected works" and the Mondai card is the top
+   margin of `div.works__cards`. Click "Mondai", then `div.works__cards` in that row, then Spacing,
+   Margin, T.
 3. Open **Spacing** (padding and margin on each side), **Typography** (font, weight, size, line height,
    letter spacing, colour), **Layout** or **Appearance**. Type a number. The page changes at once.
 4. Optional: type a note in the box at the top, for example "phone only" or "same on every card".
@@ -49,6 +54,9 @@ DOM: div#top > main > section#about > div.about__row > h2.about__label
 
 ## Limits worth knowing
 
+- Flare's row of parents normally scrolls sideways with no scrollbar, so the boxes above an element are
+  hidden. `npm run studio` adds one style rule that wraps that row so every parent shows. Flare itself
+  is unchanged.
 - The panel covers most of the screen at phone width. Collapse it with the arrows icon to look, open it
   again to edit.
 - Copy Prompt does not say which width you were at. Say it in the note or in your message.
@@ -75,6 +83,7 @@ Screenshots and evidence in `docs/editing-workflow/`:
 - `flare-2-about-margin-390.jpg`: Flare, About label margin bottom 16, "2 updates".
 - `flare-3-paste-to-proposals.diff`: what the pasted prompt became in `proposals.css` (reverted after the test).
 - `cssstudio-1-select-hero.jpg`, `cssstudio-2-hero-16px-pending.jpg`, `cssstudio-3-about-gap-390.jpg`: CSS Studio, same changes.
+- `flare-4-breadcrumb-all-parents.jpg`: the row of parents wrapped, every box above the Mondai name clickable.
 - `tweakpane-1-fonts-broken-390.jpg`: tweakpane-css breaking the fonts on load.
 
 ## Security notes (files read before installing)
