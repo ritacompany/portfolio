@@ -23,6 +23,9 @@
     worksGap: 320,   // px, hero to the Selected works title (was 165)
     titleAt: 38,     // vh, where the title holds
     hold: 70,        // vh, scroll the title holds alone before the first card comes in
+    revealAt: 0.5,   // the dissolve is done when the card's middle reaches this far down the screen (the reference: 0.9)
+    cell: 3,         // px, size of the dissolve squares (the reference: 3)
+    rise: 150,       // px each card rises as it comes in (the reference: 150)
     titleHold: 0,    // 1 holds the title while the cards rise (the first pass); 0 scrolls it, as the reference
     overlay: 0.47,   // Neutral/900 layer on hover, 47 percent as his frame (Rectangle 3003)
     roleFrom: 0.7,   // Product Designer starts to leave when the works section top is this far down the screen
@@ -121,7 +124,7 @@
   //      top to bottom in 3 px squares as the card travels up the screen: done once the card's middle is
   //      within 40 percent of the screen centre, or its bottom is 95 percent up. When the scroll stops part
   //      way the dissolve catches up in about 0.38 s. It never covers again.
-  const RISE = 150, SPRING_K = 500, SPRING_D = 100, CELL = 3, CATCH = 0.38;
+  const SPRING_K = 500, SPRING_D = 100, CATCH = 0.38;
   const PAGE = [4, 4, 5]; // Neutral/900, the page colour
   function spring(t, k, d) {
     if (t <= 0) return 0;
@@ -143,7 +146,7 @@
   });
   const sizeCanvas = (r) => {
     const w = r.media.clientWidth, h = r.media.clientHeight;
-    const cols = Math.max(1, Math.ceil(w / CELL)), rows = Math.max(1, Math.ceil(h / CELL));
+    const cols = Math.max(1, Math.ceil(w / V.cell)), rows = Math.max(1, Math.ceil(h / V.cell));
     if (r.canvas.width === cols && r.canvas.height === rows && r.v) return;
     r.canvas.width = cols; r.canvas.height = rows;
     const next = rand(r.seed);
@@ -170,7 +173,7 @@
     r.done = false; r.p = 0; r.target = 0; r.drawn = -1; r.enteredAt = null; delete r.media.dataset.hmShown;
     const img = r.media.querySelector("img"); (img || r.media.firstChild) ? (img || r.media.firstChild).after(r.canvas) : r.media.append(r.canvas);
     sizeCanvas(r); drawCanvas(r);
-    r.card.style.transform = `translateY(${RISE}px)`;
+    r.card.style.transform = `translateY(${V.rise}px)`;
   };
   addEventListener("resize", () => reveals.forEach((r) => { if (!r.done) { sizeCanvas(r); drawCanvas(r); } }));
   const openMask = (m) => { const r = reveals.find((x) => x.media === m); if (r) finish(r); };
@@ -222,8 +225,8 @@
       // A card comes in when its image does (Haven's sits 132 px lower, so it follows Mondai).
       if (r.enteredAt === null && rect.top < vh) r.enteredAt = now;
       const t = r.enteredAt === null ? 0 : now - r.enteredAt;
-      r.card.style.transform = `translateY(${(RISE * (1 - spring(t, SPRING_K, SPRING_D))).toFixed(2)}px)`;
-      const endTop = Math.max(0.9 * vh - rect.height / 2, 0.95 * vh - rect.height);
+      r.card.style.transform = `translateY(${(V.rise * (1 - spring(t, SPRING_K, SPRING_D))).toFixed(2)}px)`;
+      const endTop = V.revealAt * vh - rect.height / 2;
       r.target = Math.max(r.target, clamp((vh - rect.top) / Math.max(1, vh - endTop)));
       r.p += (r.target - r.p) * (1 - Math.exp(-dt / (CATCH / 3)));
       if (r.target >= 1 && r.p > 0.995) r.p = 1;
@@ -257,6 +260,9 @@
     ["worksGap", "Gap above Selected works", 120, 800, 10, "px"],
     ["titleAt", "Title holds at", 15, 60, 1, "vh"],
     ["hold", "Title holds alone for", 0, 160, 5, "vh of scroll"],
+    ["revealAt", "Reveal done when the card's middle is at", 0.3, 0.95, 0.05, "of screen"],
+    ["cell", "Reveal square size", 2, 16, 1, "px"],
+    ["rise", "Cards rise by", 0, 300, 10, "px"],
     ["titleHold", "Title holds in place (0 off, 1 on)", 0, 1, 1, ""],
     ["overlay", "Dark layer on hover", 0, 0.9, 0.01, ""],
     ["roleFrom", "Product Designer starts leaving at", 0.2, 1, 0.05, "of screen"],
@@ -273,7 +279,10 @@
     panel.querySelector(`[data-k="${k}"]`).value = V[k];
     panel.querySelector(`[data-v="${k}"]`).textContent = ` ${V[k]} ${unit}`;
   });
-  panel.addEventListener("input", (e) => { const k = e.target.dataset.k; if (!k) return; V[k] = parseFloat(e.target.value); applyCss(); save(); show(); });
+  panel.addEventListener("input", (e) => {
+    const k = e.target.dataset.k; if (!k) return; V[k] = parseFloat(e.target.value); applyCss(); save(); show();
+    if (k === "cell") reveals.forEach((r) => { if (!r.done) { r.v = null; sizeCanvas(r); drawCanvas(r); } });
+  });
   panel.querySelector("[data-t]").addEventListener("click", (e) => {
     const closed = panel.toggleAttribute("data-closed"); e.target.textContent = closed ? "Open" : "Close";
   });

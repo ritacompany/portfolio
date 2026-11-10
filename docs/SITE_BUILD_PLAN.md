@@ -13,7 +13,10 @@ comes into view, on a spring with no bounce (stiffness 500, damping 100, mass 1)
 lower, so it arrives after Mondai. A cover in the page colour (Neutral/900) dissolves off each image in
 3 px squares, top to bottom, tied to how far the card has travelled: done once its middle is within 40
 percent of the screen centre or its bottom 95 percent up; when the scroll stops it catches up in about
-0.38 s and never covers again. The reference's title scrolls with the page, so the hold is now a panel
+0.38 s and never covers again. His first try (10 Nov): he could not see it. It finished while the card's middle was still 90
+percent down the screen, about a third of a second of normal scrolling, with a page black cover on a dark
+image. It now finishes when the card's middle reaches the screen centre (about 740 px of scroll at 900
+tall); panel sliders tune that point, the square size and the rise. The reference's title scrolls with the page, so the hold is now a panel
 switch, off by default. scripts/verify-hover-still.mjs now waits for the page to be still before it
 hovers, so scroll entry motion is not read as hover movement. Checks: 16 of 16 runnable gates in
 `.unlazy/home-motion/GATES.md`.
