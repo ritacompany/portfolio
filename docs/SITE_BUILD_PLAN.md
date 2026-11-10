@@ -63,6 +63,11 @@ instant (`transition: none`), and every state applies to `:hover` and `:active`.
   `small-2`, `small-3`, `small-4` or `small-5` rules (`small-4` is the decided look: ship its rules
   without the class), and the `--hover-weight` and `--bold-weight` variables (use the fixed values above).
 
+**Shipped 10 Nov (commit ea083f4), his yes on the preview: "much better".** The final spec is in
+components.css; blocks 2, 3, 5, 6 and 8 to 15 and the Hover tester panel are gone from the preview.
+Still open: Haven's nav fades on the real site (block 7, a separate item), so verify-hover-still.mjs
+on `site` alone flags it; the preview passes. Item 1 is done; the old next step follows for the record.
+
 **Next.** Move the final spec above into site/css (the link styles live in components.css), move block 2
 whole (it also makes the case study rows and the Small button fill swap instantly), delete blocks 2, 3,
 5, 6 and 8 to 15 from proposals.css, leave every other proposal there alone (1, 4, 7 and the phone
