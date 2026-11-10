@@ -91,4 +91,11 @@ The renderer steps frames, so it cannot see live jitter. Measured live instead (
 the phone shook 3 to 4 px through the hold because it was drawn a frame behind the scroll.
 Fixes: the hold is CSS sticky, the phone draws in the same tick as Lenis, layout is read on resize only, nothing
 repaints outside the travel. After: phone shake 0, paragraph shake 0, 0 repaints in the hold, p95 frame 17.7 ms.
-New check SMOOTH_LIVE; fails when the phone is a frame behind. Render review for this round not yet scored.
+New check SMOOTH_LIVE; fails when the phone is a frame behind. All eight checks fail on their planted mistakes.
+Clips chat-r10-1440 and chat-r10-390. Motion 8, composition 8, readability 8, pacing 8, fidelity 8.
+1. Hold: the phone, paragraph and chip are still across every tile at both sizes.
+2. Exit: all three leave as one block with the Security section coming up under them, no gap opening.
+3. Text is soft through the fast tiles at 390. That is the renderer's motion blur at this scrub speed; held
+   tiles are sharp.
+Renders use PLAYWRIGHT_MODULE (npx cache path); without it render.mjs stops with Playwright not found.
+1440 rendered twice: sha256 759dcc3a both times. Entrances are off in these renders; they run on the live page.
