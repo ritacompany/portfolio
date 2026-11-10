@@ -57,6 +57,8 @@
   --rv-card-overlay: 0.5;      /* R3: black over the card image on hover */
   --rv-portrait-scale: 0.7;    /* R2: footer portraits on tablet */
   --rv-about-gap: 40px;        /* R12: About label to its text on phone (was 24) */
+  --rv-card-gap: 16px;         /* R14: card text to Learn more on phone */
+  --rv-learn-scale: 0.6;       /* R14: Learn more size on phone; the Figma Small button is 184 by 58 */
 }
 
 /* R3. Work cards: at rest only the image; on hover a black layer at about 50 percent covers it and
@@ -76,10 +78,8 @@
        pixels so the frame crops the strip off. */
 .work-card-mondai .work-card__media > img { width: calc(100% * 1758 / 1744); max-width: none; }
 
-/* R5. Hero supporting text in Body/16 M, Neutral/050 on tablet and phone. */
-@media (max-width: 1199.98px) {
-  .hero__lede { font: var(--body-16-m); letter-spacing: var(--body-16-m-track); color: var(--neutral-050); }
-}
+/* R5. Hero supporting text in Body/16 M, Neutral/050 at every width (his answer, 9 Nov: desktop too). */
+.hero__lede { font: var(--body-16-m); letter-spacing: var(--body-16-m-track); color: var(--neutral-050); }
 
 /* R2. Tablet: footer portraits smaller, contact block one column to the left. */
 @media (min-width: 768px) and (max-width: 1199.98px) {
@@ -93,3 +93,21 @@
   .about__body > * + * { margin-top: 20px; }
   .about-story, .about-role { row-gap: var(--rv-about-gap); }
 }
+
+/* R14. Phone cards (his answer, 9 Nov): the card's text stacks on the left and Learn more sits at the
+        bottom right beside it (cards-phone.js copies the button into the head). No overlay on a phone. */
+.work-card__learn { display: none; }
+@media (max-width: 767.98px) {
+  .work-card__head { display: grid; grid-template-columns: auto 1fr auto; align-items: end; column-gap: 8px; row-gap: 10px; }
+  .work-card__name { grid-column: 1 / 3; grid-row: 1; }
+  .work-card__slashes { grid-column: 1; grid-row: 2; }
+  .work-card__kind { grid-column: 2; grid-row: 2; }
+  .work-card__desc { grid-column: 1 / 3; margin-left: 0; white-space: normal; }
+  .work-card-mondai .work-card__desc { grid-row: 3; }
+  .work-card-haven .work-card__desc { grid-row: 2; }
+  .work-card__learn { display: inline-flex; grid-column: 3; grid-row: 1 / span 3; align-self: end; margin-left: var(--rv-card-gap, 16px); zoom: var(--rv-learn-scale, 0.6); }
+  .work-card-haven .work-card__learn { grid-row: 1 / span 2; }
+  .work-card__media .button-sm, .work-card__media::after { display: none; }
+}
+/* Haven's added Learn more sits at the centre of its square image. */
+.work-card-haven .work-card__media .button-sm { left: 50%; top: 50%; translate: -50% -50%; }
