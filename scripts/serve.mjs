@@ -8,6 +8,8 @@ import { extname, join, normalize, resolve } from "node:path";
 
 const root = resolve(process.argv[2] || new URL("../site/", import.meta.url).pathname);
 const port = Number(process.env.PORT || 4318);
+// Third argument "lan" opens it to the home network so a phone on the same wifi can load it.
+const host = process.argv[3] === "lan" ? "0.0.0.0" : "127.0.0.1";
 
 const TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -53,4 +55,4 @@ createServer((request, response) => {
     "Cache-Control": "no-store"
   });
   createReadStream(file).pipe(response);
-}).listen(port, "127.0.0.1", () => console.log(`site at http://127.0.0.1:${port}`));
+}).listen(port, host, () => console.log(`site at http://${host}:${port}`));
