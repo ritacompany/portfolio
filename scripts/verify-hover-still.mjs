@@ -71,7 +71,10 @@ try {
       if (skip) continue;
       await el.scrollIntoViewIfNeeded();
       await page.mouse.move(2, 450); await page.waitForTimeout(450);
-      const before = await page.evaluate(snapshot);
+      // Scroll entry motion (Home's cards rise as they come in) must finish first, so this measures the
+      // hover alone: wait until two snapshots 150 ms apart agree, for up to 4 s.
+      let before = await page.evaluate(snapshot);
+      for (let w = 0; w < 26; w++) { await page.waitForTimeout(150); const again = await page.evaluate(snapshot); const still = diff(before, again) <= 0.05; before = again; if (still) break; }
       const bx = await el.boundingBox();
       if (!bx || bx.width < 1 || bx.height < 1) continue;
       const states = el.evaluate((e) => new Promise((res) => {

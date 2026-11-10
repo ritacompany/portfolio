@@ -23,7 +23,7 @@
     worksGap: 320,   // px, hero to the Selected works title (was 165)
     titleAt: 38,     // vh, where the title holds
     hold: 70,        // vh, scroll the title holds alone before the first card comes in
-    lag: 260,        // px, how far behind Mondai the Haven card starts
+    titleHold: 0,    // 1 holds the title while the cards rise (the first pass); 0 scrolls it, as the reference
     overlay: 0.47,   // Neutral/900 layer on hover, 47 percent as his frame (Rectangle 3003)
     roleFrom: 0.7,   // Product Designer starts to leave when the works section top is this far down the screen
     roleTo: 0.35,    // and is gone by here
@@ -37,6 +37,7 @@
     root.style.setProperty("--hm-title-at", V.titleAt + "vh");
     root.style.setProperty("--hm-hold", V.hold + "vh");
     root.style.setProperty("--rv-card-overlay", V.overlay);
+    root.classList.toggle("hm-hold", V.titleHold === 1);
   };
   applyCss();
   root.classList.add("hm");
@@ -93,7 +94,6 @@
     const i = c.querySelector(".work-card__desk-art"), k = c.classList.contains("work-card-mondai") ? "mondai" : "haven";
     if (i) { i.src = new URL(art[k], img).href; i.width = k === "mondai" ? 1758 : 886; i.height = k === "mondai" ? 1159 : 886; }
   });
-  const haven = home.querySelector(".work-card-haven");
 
   // ---- Text blocks (Haven: opacity only, 1.4 s, power1.out, 0.15 s apart, once, 100 px inside the screen).
   const TEXT_DUR = 1400, TEXT_STAGGER = 150, TEXT_EASE = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
@@ -115,20 +115,65 @@
     });
   };
 
-  // ---- Card masks (Haven: open from the top while the image settles from 1.3, 1.2 s, Power3 in out).
-  const MASK_DUR = 1200, MASK_EASE = "cubic-bezier(0.76, 0, 0.24, 1)";
+  // ---- Cards, from Seth Lukin's works (docs/motion/home-load/style_guide.md, "Selected works on the
+  //      reference"). Each card rises 150 px once it comes in, on a spring with no bounce (stiffness 500,
+  //      damping 100, mass 1, about 1.9 s). Its image starts covered in the page colour, which dissolves
+  //      top to bottom in 3 px squares as the card travels up the screen: done once the card's middle is
+  //      within 40 percent of the screen centre, or its bottom is 95 percent up. When the scroll stops part
+  //      way the dissolve catches up in about 0.38 s. It never covers again.
+  const RISE = 150, SPRING_K = 500, SPRING_D = 100, CELL = 3, CATCH = 0.38;
+  const PAGE = [4, 4, 5]; // Neutral/900, the page colour
+  function spring(t, k, d) {
+    if (t <= 0) return 0;
+    const w0 = Math.sqrt(k), z = d / (2 * w0);
+    if (z < 1) { const wd = w0 * Math.sqrt(1 - z * z); return 1 - Math.exp(-z * w0 * t) * (Math.cos(wd * t) + (z * w0 / wd) * Math.sin(wd * t)); }
+    if (Math.abs(z - 1) < 1e-9) return 1 - Math.exp(-w0 * t) * (1 + w0 * t);
+    const r1 = -w0 * (z - Math.sqrt(z * z - 1)), r2 = -w0 * (z + Math.sqrt(z * z - 1));
+    return 1 - (r2 * Math.exp(r1 * t) - r1 * Math.exp(r2 * t)) / (r2 - r1);
+  }
+  // Same squares every load (a fixed seed), so the dissolve reads the same each time.
+  const rand = (seed) => () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
   const medias = cards.map((c) => c.querySelector(".work-card__media")).filter(Boolean);
-  const openMask = (m) => { m.classList.remove("hm-mask"); m.classList.add("hm-open"); m.dataset.hmShown = ""; };
-  const revealMask = (m, instant, delay = 0) => {
-    if (m.dataset.hmShown !== undefined) return;
-    m.dataset.hmShown = "";
-    if (instant || !m.animate) return openMask(m);
-    const art = m.querySelector(".work-card__desk-art");
-    const opts = { duration: MASK_DUR, easing: MASK_EASE, delay, fill: "both" };
-    const a = m.animate([{ clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)" }], opts);
-    if (art) art.animate([{ scale: "1.3" }, { scale: "1" }], opts);
-    a.finished.then(() => { openMask(m); m.getAnimations({ subtree: true }).forEach((x) => x.cancel()); }).catch(() => {});
+  const reveals = cards.map((card, n) => {
+    const media = card.querySelector(".work-card__media");
+    const canvas = document.createElement("canvas");
+    canvas.className = "hm-dissolve"; canvas.setAttribute("aria-hidden", "true");
+    const r = { card, media, canvas, ctx: canvas.getContext("2d"), p: 0, target: 0, drawn: -1, enteredAt: null, done: false, seed: 7 + n * 31 };
+    return r;
+  });
+  const sizeCanvas = (r) => {
+    const w = r.media.clientWidth, h = r.media.clientHeight;
+    const cols = Math.max(1, Math.ceil(w / CELL)), rows = Math.max(1, Math.ceil(h / CELL));
+    if (r.canvas.width === cols && r.canvas.height === rows && r.v) return;
+    r.canvas.width = cols; r.canvas.height = rows;
+    const next = rand(r.seed);
+    r.v = new Float32Array(cols * rows);
+    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) r.v[y * cols + x] = (y / rows) * 0.72 + next() * 0.28;
+    r.img = r.ctx.createImageData(cols, rows);
+    r.drawn = -1;
   };
+  const drawCanvas = (r) => {
+    if (Math.abs(r.p - r.drawn) < 0.002) return;
+    const d = r.img.data, v = r.v;
+    for (let i = 0; i < v.length; i++) {
+      const o = i * 4, on = v[i] >= r.p;
+      d[o] = PAGE[0]; d[o + 1] = PAGE[1]; d[o + 2] = PAGE[2]; d[o + 3] = on ? 255 : 0;
+    }
+    r.ctx.putImageData(r.img, 0, 0);
+    r.drawn = r.p;
+  };
+  const finish = (r) => {
+    r.done = true; r.p = 1; r.canvas.remove(); r.card.style.transform = "";
+    r.media.dataset.hmShown = "";
+  };
+  const resetReveal = (r) => {
+    r.done = false; r.p = 0; r.target = 0; r.drawn = -1; r.enteredAt = null; delete r.media.dataset.hmShown;
+    const img = r.media.querySelector("img"); (img || r.media.firstChild) ? (img || r.media.firstChild).after(r.canvas) : r.media.append(r.canvas);
+    sizeCanvas(r); drawCanvas(r);
+    r.card.style.transform = `translateY(${RISE}px)`;
+  };
+  addEventListener("resize", () => reveals.forEach((r) => { if (!r.done) { sizeCanvas(r); drawCanvas(r); } }));
+  const openMask = (m) => { const r = reveals.find((x) => x.media === m); if (r) finish(r); };
 
   const motionOn = () => !reduced;
   let io = null;
@@ -136,33 +181,27 @@
     if (io) io.disconnect();
     if (!motionOn() || !("IntersectionObserver" in window)) {
       blocks.forEach((b) => showText(b, true));
-      medias.forEach((m) => openMask(m));
+      reveals.forEach(finish);
       return;
     }
-    medias.forEach((m) => { if (m.dataset.hmShown === undefined) m.classList.add("hm-mask"); });
-    const arrived = performance.now() + 150;
+    reveals.forEach((r) => {
+      if (r.done) return;
+      // A card already above the screen at load (a jump link) is shown as it is.
+      if (r.card.getBoundingClientRect().bottom < 0) finish(r); else resetReveal(r);
+    });
     io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        // Cards are watched through their outer link: a fully clipped element never counts as visible.
-        const isMedia = e.target.classList.contains("work-card");
-        const media = isMedia && e.target.querySelector(".work-card__media");
-        if (e.isIntersecting) {
-          const late = performance.now() < arrived ? 350 : 0;
-          if (isMedia) revealMask(media, false, late);
-          else { const b = blocks.find((x) => x.el === e.target); if (b && b.el.dataset.hmShown === undefined) { showText(b, false); } }
-          io.unobserve(e.target);
-        } else if (e.boundingClientRect.bottom < 0) {
-          if (isMedia) revealMask(media, true); else { const b = blocks.find((x) => x.el === e.target); if (b) showText(b, true); }
-          io.unobserve(e.target);
-        }
+        const b = blocks.find((x) => x.el === e.target);
+        if (!b) return;
+        if (e.isIntersecting) { if (b.el.dataset.hmShown === undefined) showText(b, false); io.unobserve(e.target); }
+        else if (e.boundingClientRect.bottom < 0) { showText(b, true); io.unobserve(e.target); }
       });
     }, { rootMargin: "0px 0px -100px 0px" });
     blocks.forEach((b) => b.el.dataset.hmShown === undefined && io.observe(b.el));
-    medias.forEach((m) => m.dataset.hmShown === undefined && io.observe(m.closest(".work-card")));
   };
   watch();
 
-  // ---- Per frame: Product Designer and Haven's lag. Both follow the scroll, so nothing to time.
+  // ---- Per frame: Product Designer's exit, each card's rise and its dissolve.
   const frame = () => {
     const vh = innerHeight;
     if (roleInner) {
@@ -176,10 +215,20 @@
       roleInner.style.opacity = (1 - p).toFixed(4);
       role.style.visibility = p >= 1 ? "hidden" : "";
     }
-    if (haven && cardsWrap) {
-      let y = 0;
-      if (wide.matches && !reduced) y = V.lag * clamp(cardsWrap.getBoundingClientRect().top / vh);
-      haven.style.transform = y ? `translateY(${y.toFixed(2)}px)` : "";
+    const now = performance.now() / 1000, dt = Math.min(0.1, now - (frame.last || now)); frame.last = now;
+    for (const r of reveals) {
+      if (r.done || !r.canvas.isConnected) continue;
+      const rect = r.media.getBoundingClientRect();
+      // A card comes in when its image does (Haven's sits 132 px lower, so it follows Mondai).
+      if (r.enteredAt === null && rect.top < vh) r.enteredAt = now;
+      const t = r.enteredAt === null ? 0 : now - r.enteredAt;
+      r.card.style.transform = `translateY(${(RISE * (1 - spring(t, SPRING_K, SPRING_D))).toFixed(2)}px)`;
+      const endTop = Math.max(0.9 * vh - rect.height / 2, 0.95 * vh - rect.height);
+      r.target = Math.max(r.target, clamp((vh - rect.top) / Math.max(1, vh - endTop)));
+      r.p += (r.target - r.p) * (1 - Math.exp(-dt / (CATCH / 3)));
+      if (r.target >= 1 && r.p > 0.995) r.p = 1;
+      drawCanvas(r);
+      if (r.p >= 1 && t > 2.2) finish(r);
     }
     requestAnimationFrame(frame);
   };
@@ -208,7 +257,7 @@
     ["worksGap", "Gap above Selected works", 120, 800, 10, "px"],
     ["titleAt", "Title holds at", 15, 60, 1, "vh"],
     ["hold", "Title holds alone for", 0, 160, 5, "vh of scroll"],
-    ["lag", "Haven starts behind Mondai by", 0, 600, 10, "px"],
+    ["titleHold", "Title holds in place (0 off, 1 on)", 0, 1, 1, ""],
     ["overlay", "Dark layer on hover", 0, 0.9, 0.01, ""],
     ["roleFrom", "Product Designer starts leaving at", 0.2, 1, 0.05, "of screen"],
     ["roleTo", "and is gone at", 0, 0.9, 0.05, "of screen"],
@@ -230,7 +279,7 @@
   });
   panel.querySelector("[data-replay]").addEventListener("click", () => {
     blocks.forEach((b) => { delete b.el.dataset.hmShown; b.items.forEach((it) => { it.style.transition = "none"; it.classList.remove("hm-in"); }); });
-    medias.forEach((m) => { delete m.dataset.hmShown; m.classList.remove("hm-open"); });
+    reveals.forEach((r) => { r.done = false; });
     lenis ? lenis.scrollTo(0, { immediate: true }) : scrollTo(0, 0);
     requestAnimationFrame(() => requestAnimationFrame(watch));
   });
@@ -244,5 +293,5 @@
   show();
   document.body.append(panel);
 
-  window.__hm = { V, lenis, blocks, medias, DEFAULTS };
+  window.__hm = { V, lenis, blocks, medias, reveals, finish, DEFAULTS };
 })();

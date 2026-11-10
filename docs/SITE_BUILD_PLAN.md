@@ -6,7 +6,19 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
-### His notes on the preview, 10 Nov, 3 pm (latest)
+### Works scroll rebuilt from Seth Lukin's cards, 10 Nov (latest)
+His yes to rebuilding the works scroll from the reference (docs/motion/home-load/style_guide.md, "Selected
+works on the reference"). The Haven lag and the title hold are gone. Each card rises 150 px when its image
+comes into view, on a spring with no bounce (stiffness 500, damping 100, mass 1); Haven's image sits 132 px
+lower, so it arrives after Mondai. A cover in the page colour (Neutral/900) dissolves off each image in
+3 px squares, top to bottom, tied to how far the card has travelled: done once its middle is within 40
+percent of the screen centre or its bottom 95 percent up; when the scroll stops it catches up in about
+0.38 s and never covers again. The reference's title scrolls with the page, so the hold is now a panel
+switch, off by default. scripts/verify-hover-still.mjs now waits for the page to be still before it
+hovers, so scroll entry motion is not read as hover movement. Checks: 16 of 16 runnable gates in
+`.unlazy/home-motion/GATES.md`.
+
+### His notes on the preview, 10 Nov, 3 pm
 - Learn more: hover shows the outline only; pressing the card swaps it to the white button (the fill near
   the middle is gone, his call). Preview.
 - Product Designer rests at Neutral/300, the nav link colour. Preview.

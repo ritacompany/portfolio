@@ -25,14 +25,16 @@ html.hm .home .navbar__role { color: var(--neutral-300); }
 /* 2. Selected works. More room above it; the title holds in place while the cards rise over it. */
 @media (min-width: 768px) {
   html.hm .home .works { padding-top: var(--hm-works-gap); }
-  html.hm .home .hm-stage > .grid { position: sticky; top: var(--hm-title-at); z-index: 0; }
-  html.hm .home .works__cards { position: relative; z-index: 1; margin-top: var(--hm-hold); }
+  html.hm .home .works__cards { position: relative; z-index: 1; }
+  /* The first pass, a panel switch now: the title holds while the cards rise over it. */
+  html.hm.hm-hold .home .hm-stage > .grid { position: sticky; top: var(--hm-title-at); z-index: 0; }
+  html.hm.hm-hold .home .works__cards { margin-top: var(--hm-hold); }
   html.hm .home .work-card { will-change: transform; }
 }
 
-/* 3. Reveal. Cards open from the top (Haven's mask) the first time they come in. */
-html.hm .home .work-card__media.hm-mask { clip-path: inset(0 0 100% 0); }
-html.hm .home .work-card__media.hm-open { clip-path: none; }
+/* 3. Reveal (Seth Lukin's works): a cover in the page colour dissolves off the image in 3 px squares as the
+      card rises (home-motion.js). Drawn one canvas pixel per square, scaled up without smoothing. */
+html.hm .home .hm-dissolve { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; pointer-events: none; }
 html.hm .home .hm-item { opacity: 0; }
 html.hm .home .hm-item.hm-in { opacity: 1; }
 
