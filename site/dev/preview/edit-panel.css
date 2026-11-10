@@ -1,0 +1,198 @@
+/* Edit panel, preview only (edit-panel.js). A dark instrument rack for tuning motion live: compact rows,
+   values in tabular figures he can type into, a tick on each track for the default and one accent colour
+   that only means "changed from default". It sits apart from the site on purpose (system type, its own
+   reset), so nothing on the page styles it and it never reads as part of the design.
+   No open or close animation: it is toggled many times a session, often from the keyboard. */
+
+.ep {
+  --ep-bg: #0e0f11;
+  --ep-raise: #17181b;
+  --ep-line: rgb(255 255 255 / 0.08);
+  --ep-line-2: rgb(255 255 255 / 0.14);
+  --ep-text: #ededef;
+  --ep-muted: #a3a3ab;
+  --ep-faint: #6b6b74;
+  --ep-accent: #c8f169;
+  --ep-focus: #8ab4ff;
+  --ep-row: 40px;
+  --ep-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  position: fixed; bottom: 16px; left: 16px; z-index: 2147483100; /* above the type review pill, which would sit over the open sheet on phones */
+  width: 304px; max-height: calc(100dvh - 104px);
+  display: flex; flex-direction: column;
+  background: var(--ep-bg); color: var(--ep-text);
+  border: 1px solid var(--ep-line-2); border-radius: 12px;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.55), 0 0 0 1px rgb(0 0 0 / 0.4);
+  font: 500 12px/1.3 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; color-scheme: dark;
+  overflow: hidden;
+}
+.ep[data-dock="right"] { left: auto; right: 16px; }
+.ep:not([data-open]) { width: auto; border-radius: 999px; }
+.ep:not([data-open]) .ep__body, .ep:not([data-open]) .ep__tools { display: none; }
+.ep, .ep * { box-sizing: border-box; letter-spacing: 0; text-transform: none; font-style: normal; }
+.ep :where(button, input, select, textarea) { font: inherit; color: inherit; margin: 0; }
+.ep svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ep [hidden] { display: none !important; }
+
+/* Bar: the handle and the two panel wide tools. */
+.ep__bar { display: flex; align-items: center; gap: 6px; padding: 6px; flex: none; }
+.ep[data-open] .ep__bar { border-bottom: 1px solid var(--ep-line); }
+.ep__toggle {
+  display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 10px;
+  border: 0; border-radius: 999px; background: transparent; cursor: pointer; font-weight: 600; font-size: 12.5px;
+}
+.ep__toggle:hover { background: var(--ep-raise); }
+.ep__mark { width: 8px; height: 8px; border-radius: 2px; background: var(--ep-text); transform: rotate(45deg); }
+.ep[data-open] .ep__mark { background: var(--ep-accent); }
+.ep__count {
+  min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; display: inline-grid; place-items: center;
+  background: var(--ep-accent); color: #0e0f11; font: 600 11px/1 var(--ep-mono); font-variant-numeric: tabular-nums;
+}
+.ep__tools { display: flex; gap: 4px; margin-left: auto; }
+.ep__btn {
+  height: 28px; padding: 0 10px; border: 1px solid var(--ep-line-2); border-radius: 7px;
+  background: var(--ep-raise); cursor: pointer; white-space: nowrap;
+  transition: background-color 120ms ease, border-color 120ms ease, transform 120ms ease;
+}
+.ep__btn:hover { background: #202126; border-color: rgb(255 255 255 / 0.22); }
+.ep__btn:active, .ep__toggle:active, .ep-r__reset:active, .ep-r__switch:active { transform: scale(0.97); }
+.ep__btn[data-done] { color: #0e0f11; background: var(--ep-accent); border-color: var(--ep-accent); }
+.ep__btn--icon { width: 28px; padding: 0; display: inline-grid; place-items: center; }
+.ep__btn--quiet { height: 24px; padding: 0 8px; background: transparent; border-color: transparent; color: var(--ep-muted); }
+.ep__btn--quiet:hover { color: var(--ep-text); background: var(--ep-raise); border-color: var(--ep-line-2); }
+.ep__btn:disabled { opacity: 0.35; pointer-events: none; }
+
+.ep__body { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #3a3b40 transparent; }
+
+/* Groups: a header button that folds the group, with the group reset beside it. */
+.ep-g + .ep-g { border-top: 1px solid var(--ep-line); }
+.ep-g__head {
+  position: sticky; top: 0; z-index: 1; display: flex; align-items: center; gap: 6px;
+  padding: 6px 8px 6px 4px; background: var(--ep-bg);
+}
+.ep-g__toggle {
+  flex: 1; display: flex; align-items: center; gap: 6px; min-height: 28px; padding: 0 6px;
+  border: 0; border-radius: 6px; background: transparent; cursor: pointer; text-align: left;
+}
+.ep-g__toggle:hover { background: var(--ep-raise); }
+.ep-g__chev { width: 10px !important; height: 10px !important; color: var(--ep-muted); transition: transform 120ms ease; }
+.ep-g__toggle[aria-expanded="true"] .ep-g__chev { transform: rotate(90deg); }
+.ep-g__title { font-weight: 600; font-size: 12.5px; }
+.ep-g__count { margin-left: auto; color: var(--ep-accent); font: 500 11px/1 var(--ep-mono); }
+.ep-g__body { padding: 0 12px 12px; }
+.ep-g__note { margin: 0 0 8px; color: var(--ep-muted); font-weight: 400; line-height: 1.4; }
+.ep-g__actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+/* Rows: label and value on one line, the track under it. */
+.ep-r { padding: 6px 0; min-height: var(--ep-row); }
+.ep-r[data-off] { opacity: 0.4; }
+.ep-r__head { display: flex; align-items: center; gap: 6px; min-height: 24px; }
+.ep-r__labels { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; }
+.ep-r__label { color: var(--ep-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: default; }
+.ep-r[data-changed] .ep-r__label { color: var(--ep-text); }
+.ep-r__dot { flex: none; width: 5px; height: 5px; border-radius: 50%; background: transparent; }
+.ep-r[data-changed] .ep-r__dot { background: var(--ep-accent); }
+.ep-r__hint { margin: 2px 0 0 11px; color: var(--ep-faint); font-weight: 400; font-size: 11px; line-height: 1.35; }
+.ep-r__value { display: flex; align-items: center; gap: 4px; }
+.ep-r__num, .ep-r__hex {
+  width: 62px; height: 24px; padding: 0 6px; border: 1px solid transparent; border-radius: 5px;
+  background: var(--ep-raise); text-align: right; font: 500 12px/1 var(--ep-mono); font-variant-numeric: tabular-nums;
+}
+.ep-r__hex { width: 76px; text-align: left; }
+.ep-r__num:hover, .ep-r__hex:hover { border-color: var(--ep-line-2); }
+.ep-r__num:focus, .ep-r__hex:focus { border-color: var(--ep-focus); outline: none; background: #1d1f24; }
+.ep-r__hex[aria-invalid="true"] { border-color: #ff6b6b; }
+.ep-r__unit { color: var(--ep-muted); font: 500 11px/1 var(--ep-mono); min-width: 14px; }
+.ep-r__reset {
+  flex: none; width: 24px; height: 24px; display: inline-grid; place-items: center; padding: 0;
+  border: 0; border-radius: 5px; background: transparent; color: var(--ep-muted); cursor: pointer;
+}
+.ep-r__reset:hover { background: var(--ep-raise); color: var(--ep-text); }
+.ep-r__reset:disabled { visibility: hidden; }
+.ep-r__reset svg { width: 13px; height: 13px; }
+
+/* Track: a thin line filled to the value, the default as a tick, a round thumb. */
+.ep-r__track { position: relative; height: 18px; margin-top: 2px; --p: 0%; }
+.ep-r__track::before, .ep-r__track::after {
+  content: ""; position: absolute; left: 0; top: 50%; height: 2px; margin-top: -1px; border-radius: 1px; pointer-events: none;
+}
+.ep-r__track::before { right: 0; background: #2b2c31; }
+.ep-r__track::after { width: var(--p); background: var(--ep-text); }
+.ep-r[data-changed] .ep-r__track::after { background: var(--ep-accent); }
+.ep-r__tick { position: absolute; top: 50%; width: 1px; height: 10px; margin: -5px 0 0 -0.5px; background: var(--ep-muted); pointer-events: none; z-index: 1; }
+.ep-r__range {
+  position: relative; z-index: 2; width: 100%; height: 18px; margin: 0; background: transparent;
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+}
+.ep-r__range::-webkit-slider-runnable-track { height: 18px; background: transparent; }
+.ep-r__range::-moz-range-track { height: 18px; background: transparent; }
+.ep-r__range::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 12px; height: 12px; margin-top: 3px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 0 3px var(--ep-bg); transition: transform 120ms ease;
+}
+.ep-r__range::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px var(--ep-bg); }
+.ep-r__range:active::-webkit-slider-thumb { transform: scale(1.15); }
+.ep-r__range:focus { outline: none; }
+.ep-r__range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--ep-bg), 0 0 0 5px var(--ep-focus); }
+.ep-r__range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 3px var(--ep-bg), 0 0 0 5px var(--ep-focus); }
+
+/* Switch and select sit where a value would. */
+.ep-r__switch {
+  position: relative; flex: none; width: 30px; height: 18px; padding: 0; border: 0; border-radius: 9px;
+  background: #34353b; cursor: pointer; transition: background-color 120ms ease;
+}
+.ep-r__switch[aria-checked="true"] { background: var(--ep-accent); }
+.ep-r__knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1); }
+.ep-r__switch[aria-checked="true"] .ep-r__knob { transform: translateX(12px); background: #0e0f11; }
+.ep-r__select {
+  height: 24px; max-width: 130px; padding: 0 22px 0 8px; border: 1px solid var(--ep-line-2); border-radius: 5px;
+  background: var(--ep-raise) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 4l2.5 2.5L7.5 4' fill='none' stroke='%23a3a3ab' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 6px center / 10px;
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+}
+.ep-r__swatch { width: 24px; height: 24px; padding: 0; border: 1px solid var(--ep-line-2); border-radius: 5px; background: none; cursor: pointer; }
+.ep-r__swatch::-webkit-color-swatch-wrapper { padding: 2px; }
+.ep-r__swatch::-webkit-color-swatch { border: 0; border-radius: 3px; }
+
+.ep :where(button, select):focus-visible, .ep-r__switch:focus-visible { outline: 2px solid var(--ep-focus); outline-offset: 1px; }
+
+.ep__copybuf { position: fixed; left: -9999px; top: 0; opacity: 0; }
+.ep__copyshow {
+  display: block; width: calc(100% - 16px); height: 140px; margin: 8px; padding: 8px; flex: none;
+  border: 1px solid var(--ep-focus); border-radius: 7px; background: var(--ep-raise); font: 11px/1.4 var(--ep-mono); resize: none;
+}
+
+/* Reduced motion preview (Scroll feel): CSS motion becomes instant so he can see the page as a reduced
+   motion visitor would. Scripted motion still runs; the panel says so. */
+html.ep-reduce-preview *, html.ep-reduce-preview *::before, html.ep-reduce-preview *::after {
+  animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important; transition-delay: 0s !important; scroll-behavior: auto !important;
+}
+
+/* Phone: the pill stays bottom left; open, it becomes a sheet across the bottom, and every row is a
+   comfortable thumb target. */
+@media (max-width: 767.98px), (pointer: coarse) {
+  .ep { --ep-row: 48px; font-size: 13px; }
+  .ep-r { display: flex; flex-direction: column; justify-content: center; }
+  .ep-r__head { min-height: 32px; }
+  .ep-r__num, .ep-r__hex, .ep-r__select { height: 32px; font-size: 16px; } /* 16 px stops iOS zooming on focus */
+  .ep-r__num { width: 76px; }
+  .ep-r__hex { width: 96px; }
+  .ep-r__reset, .ep-r__swatch { width: 32px; height: 32px; }
+  .ep-r__switch { width: 44px; height: 26px; border-radius: 13px; }
+  .ep-r__knob { width: 22px; height: 22px; }
+  .ep-r__switch[aria-checked="true"] .ep-r__knob { transform: translateX(18px); }
+  .ep-r__track { height: 28px; }
+  .ep-r__range, .ep-r__range::-webkit-slider-runnable-track, .ep-r__range::-moz-range-track { height: 28px; }
+  .ep-r__range::-webkit-slider-thumb { width: 20px; height: 20px; margin-top: 4px; }
+  .ep-r__range::-moz-range-thumb { width: 20px; height: 20px; }
+  .ep__btn { height: 36px; }
+  .ep__btn--icon { width: 36px; }
+  .ep__toggle { height: 36px; }
+  .ep-g__toggle { min-height: 36px; }
+}
+@media (max-width: 767.98px) {
+  .ep { left: 12px; bottom: max(12px, env(safe-area-inset-bottom)); }
+  .ep[data-dock="right"] { right: 12px; }
+  .ep[data-open], .ep[data-open][data-dock="right"] { left: 8px; right: 8px; bottom: max(8px, env(safe-area-inset-bottom)); width: auto; max-height: 60dvh; }
+  .ep__dock { display: none; }
+}
