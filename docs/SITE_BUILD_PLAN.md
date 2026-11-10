@@ -67,6 +67,10 @@ instant (`transition: none`), and every state applies to `:hover` and `:active`.
 components.css; blocks 2, 3, 5, 6 and 8 to 15 and the Hover tester panel are gone from the preview.
 Still open: Haven's nav fades on the real site (block 7, a separate item), so verify-hover-still.mjs
 on `site` alone flags it; the preview passes. Item 1 is done; the old next step follows for the record.
+The first account's artifact link (version 17) still shows the old proposals and the tester panel, so it
+will not match. To see the shipped hovers on either account: `node scripts/build-preview.mjs site
+../portfolio-site-preview`, then open :4319 (Mac smoothing and the 0.05 and 0.36 px outlines are all in
+components.css; nothing else is needed).
 
 **Next.** Move the final spec above into site/css (the link styles live in components.css), move block 2
 whole (it also makes the case study rows and the Small button fill swap instantly), delete blocks 2, 3,
