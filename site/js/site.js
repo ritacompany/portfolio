@@ -1,5 +1,5 @@
 // Small live pieces shared by the built pages (Phase 2). Haven runs its own copy of the clock in haven.js.
-//   Clock      the footer time reads Chicago time and updates every 30 s.
+//   Clock      the footer time reads Chicago time and changes on the minute.
 //   Start of week dots (Framework)   follow the carousel; a click scrolls to that template.
 
 (function clock() {
@@ -11,7 +11,10 @@
     el.textContent = `${g("hour")}:${g("minute")}${g("dayPeriod").toLowerCase()} ${g("timeZoneName")}`;
     el.dateTime = new Date().toISOString();
   };
-  tick(); setInterval(tick, 30000);
+  // Tick on each minute boundary so the time changes when the minute does, not up to 30 s late.
+  const next = () => { tick(); setTimeout(next, 60000 - (Date.now() % 60000) + 50); };
+  next();
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) tick(); });
 })();
 
 (function weekDots() {

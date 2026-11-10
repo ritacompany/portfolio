@@ -254,7 +254,9 @@
       var g = function (k) { return (t.find(function (x) { return x.type === k; }) || {}).value || ""; };
       el.textContent = g("hour") + ":" + g("minute") + g("dayPeriod").toLowerCase() + " " + g("timeZoneName");
     }
-    tick(); setInterval(tick, 30000);
+    // On each minute boundary, so the time changes when the minute does.
+    (function next() { tick(); setTimeout(next, 60000 - (Date.now() % 60000) + 50); })();
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) tick(); });
   })();
 
   // ---- Nav reads over the light feedback block by switching to dark ----

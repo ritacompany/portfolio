@@ -6,7 +6,8 @@
 //   Text       card labels, About and Current role fade in as Haven's text blocks do (1.4 s, 0.15 s apart,
 //              once the block is 100 px inside the screen).
 //   Cards      at rest the image only; hover brings in the black layer and Learn more as the outline; the
-//              pointer near the middle swaps Learn more to its filled state.
+//              pressing the card swaps Learn more to the white button. Product Designer rests at the nav
+//              link colour. A refresh starts at the top of the page.
 //   Panel      sliders for every value he may tune, saved in this browser only.
 (() => {
   const home = document.querySelector(".home");
@@ -24,7 +25,6 @@
     hold: 70,        // vh, scroll the title holds alone before the first card comes in
     lag: 260,        // px, how far behind Mondai the Haven card starts
     overlay: 0.47,   // Neutral/900 layer on hover, 47 percent as his frame (Rectangle 3003)
-    near: 150,       // px from the middle of Learn more at which it fills
     roleFrom: 0.7,   // Product Designer starts to leave when the works section top is this far down the screen
     roleTo: 0.35,    // and is gone by here
   };
@@ -40,6 +40,10 @@
   };
   applyCss();
   root.classList.add("hm");
+
+  // A refresh starts at the top (his ask, 10 Nov); a link to a section still lands on it.
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!location.hash) scrollTo(0, 0);
 
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 
@@ -187,21 +191,16 @@
     if (!media) return;
     let btn = media.querySelector(".button-sm");
     if (!btn) { const src = home.querySelector(".work-card__media .button-sm"); if (!src) return; btn = src.cloneNode(true); btn.removeAttribute("data-figma-node"); media.append(btn); }
-    // Distance from the pointer to the middle of Learn more. During its 12 px load-in the centre is a few
-    // px low, which is well inside the radius.
-    const near = (e) => {
-      const r = btn.getBoundingClientRect();
-      return Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2)) <= V.near;
-    };
+    // Hover shows Learn more as the outline; pressing the card swaps it to the white button (his call, 10 Nov,
+    // replacing the fill near the middle).
     card.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse" && hoverable.matches) card.classList.add("hm-hot"); });
-    card.addEventListener("pointermove", (e) => {
-      if (e.pointerType !== "mouse" || !hoverable.matches) return;
-      card.classList.add("hm-hot");
-      card.classList.toggle("hm-near", media.contains(e.target) && near(e));
-    });
-    card.addEventListener("pointerleave", () => card.classList.remove("hm-hot", "hm-near"));
-    card.addEventListener("focus", () => { if (card.matches(":focus-visible")) card.classList.add("hm-hot", "hm-near"); });
-    card.addEventListener("blur", () => card.classList.remove("hm-hot", "hm-near"));
+    card.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse" && hoverable.matches) card.classList.add("hm-hot"); });
+    card.addEventListener("pointerdown", (e) => { if (e.button === 0) card.classList.add("hm-press"); });
+    ["pointerup", "pointercancel"].forEach((t) => card.addEventListener(t, () => card.classList.remove("hm-press")));
+    card.addEventListener("pointerleave", () => card.classList.remove("hm-hot", "hm-press"));
+    card.addEventListener("keydown", (e) => { if (e.key === "Enter") card.classList.add("hm-press"); });
+    card.addEventListener("focus", () => { if (card.matches(":focus-visible")) card.classList.add("hm-hot"); });
+    card.addEventListener("blur", () => card.classList.remove("hm-hot", "hm-press"));
   });
 
   // ---- Panel.
@@ -211,7 +210,6 @@
     ["hold", "Title holds alone for", 0, 160, 5, "vh of scroll"],
     ["lag", "Haven starts behind Mondai by", 0, 600, 10, "px"],
     ["overlay", "Dark layer on hover", 0, 0.9, 0.01, ""],
-    ["near", "Learn more fills within", 40, 320, 5, "px"],
     ["roleFrom", "Product Designer starts leaving at", 0.2, 1, 0.05, "of screen"],
     ["roleTo", "and is gone at", 0, 0.9, 0.05, "of screen"],
   ];

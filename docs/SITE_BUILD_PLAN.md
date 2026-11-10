@@ -6,7 +6,21 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
-### Home motion on the preview, 10 Nov (latest)
+### His notes on the preview, 10 Nov, 3 pm (latest)
+- Learn more: hover shows the outline only; pressing the card swaps it to the white button (the fill near
+  the middle is gone, his call). Preview.
+- Product Designer rests at Neutral/300, the nav link colour. Preview.
+- A refresh starts at the top of the page (scroll restoration off; a link with a hash still lands). Preview.
+- Shipped at his word: LinkedIn is https://www.linkedin.com/in/chadwickfenner/ on all three pages (he
+  said "linkedin.com/ChadwickFenner"; the /in/ form is LinkedIn's profile path, confirm it opens his
+  profile). Both clocks (site.js and Haven's haven.js) now change on the minute instead of every 30 s.
+- The works parallax is not what he had in mind; parked until the reference animation is in.
+- Load animation: session "Home load animation from the Seth Lukin portfolio" studies
+  https://www.wallofportfolios.in/portfolios/seth-lukin/ (mimic the load, no outer border) and builds
+  `site/dev/preview/home-load.*` with docs in `docs/motion/home-load/`. His screen recording of it did not
+  survive (temporary file gone).
+
+### Home motion on the preview, 10 Nov
 His ask (10 Nov): nav fixed across the top; Product Designer only over the hero, leaving up and out into
 Selected works; more gap and a hold before the works, with controls; the title holds while the cards
 rise one by one with a reveal first (he is finding a reference for this; what is built is a first pass);

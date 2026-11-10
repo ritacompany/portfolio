@@ -19,6 +19,9 @@
   html.hm .home .navbar__role > span { display: inline-block; will-change: transform, opacity; }
 }
 
+/* Product Designer rests at the nav link colour, Neutral/300, so it no longer stands out (his ask, 10 Nov). */
+html.hm .home .navbar__role { color: var(--neutral-300); }
+
 /* 2. Selected works. More room above it; the title holds in place while the cards rise over it. */
 @media (min-width: 768px) {
   html.hm .home .works { padding-top: var(--hm-works-gap); }
@@ -34,7 +37,7 @@ html.hm .home .hm-item { opacity: 0; }
 html.hm .home .hm-item.hm-in { opacity: 1; }
 
 /* 4. Work card hover. At rest the image only. Hovered: the black layer and Learn more come in, Learn more
-      as the outline. Pointer near the middle: Learn more swaps to its filled state at once (the hover rule:
+      as the outline. Pressing the card swaps Learn more to the white button at once (his call, 10 Nov;
       colour swaps are instant, nothing about the letters moves). Replaces proposal R3. */
 html.hm .home .work-card__media::after { opacity: 0; transition: opacity 420ms var(--ease-expo-out); }
 /* Learn more fades in a beat after the layer and never moves: his hover rule (9 Nov) is that nothing
@@ -46,7 +49,7 @@ html.hm .home .work-card__media .button-sm {
 html.hm .home .work-card.hm-hot .work-card__media::after { opacity: var(--hm-overlay); }
 html.hm .home .work-card.hm-hot .work-card__media .button-sm { opacity: 1; transition: opacity 500ms var(--ease-expo-out) 80ms, background-color 0s, color 0s; }
 html.hm .home .work-card .work-card__media .button-sm { background: none; color: var(--neutral-100); }
-html.hm .home .work-card.hm-near .work-card__media .button-sm { background: var(--neutral-100); color: var(--neutral-900); }
+html.hm .home .work-card.hm-press .work-card__media .button-sm { background: var(--neutral-100); color: var(--neutral-900); }
 
 /* 5. Cards as his master frame draws them (Portfolio Design, VC, Master 4494:5909, Card Section 4923:12087).
       Mondai 879 wide with media 879 by 579.45; Haven 443 wide (the site had 435 from the stale copy), its
