@@ -94,6 +94,31 @@
   -webkit-text-stroke: 0.05px currentColor;
 }
 
+/* Link, Small size, his addition 10 Nov (Portfolio Design, Link set 4657:11003). Label/12 C, one step
+   under the 14 px links, for tight rows such as Learn more on the phone work cards.
+   Nav Small (4928:12157): Neutral/050 at rest, 7 px of padding above and below as the hit area. Hover
+   takes the small link rule above, the outline scaled to 12 px (0.026 of the size, 0.31 px); the text
+   is already Neutral/050, so only the weight changes.
+   Block Small (4928:12087): Label/12 C Bold, dark on a Neutral/050 block; hover and press as Block. */
+.link-nav-sm, .link-block-sm {
+  display: inline-block; text-decoration: none; white-space: nowrap; text-transform: uppercase;
+  font: var(--label-12-c); letter-spacing: var(--label-12-c-track);
+  text-box: trim-both cap alphabetic; transition: none;
+}
+.link-nav-sm { padding-block: 7px; color: var(--neutral-050); }
+.link-nav-sm:is(:hover, :active), .link-nav-sm.is-hover, a:hover > .link-nav-sm {
+  color: var(--neutral-050);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  -webkit-text-stroke: 0.31px currentColor;
+}
+.link-block-sm { padding: 7px 6px; font-weight: 700; color: var(--neutral-900); background: var(--neutral-050); -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
+.link-block-sm:hover, .link-block-sm.is-hover { background: var(--neutral-100); }
+.link-block-sm:active, .link-block-sm.is-pressed { background: var(--neutral-200); }
+
+/* Footer link at Heading/40, the phone menu's links (4928:11986): the footer link's style and hover at
+   the larger size. */
+.link-footer-lg { font: var(--heading-40); letter-spacing: var(--heading-40-track); }
+
 /* Badge, 5812:22599. Type 1 (41 tall), Type 2 (59 tall) in White, Black, Locked. */
 .badge {
   display: inline-flex; align-items: center; justify-content: center;
@@ -179,6 +204,19 @@
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
 }
+
+/* Compact Button, the phone hero's Contact (4928:11952): the same Button at 0.5524 of its size, label
+   in Medium as drawn. No goo: contact-goo.js skips it, so the outlines are these borders. */
+.button-compact .button__icon { width: 43.086px; height: 41.937px; margin-right: -1.657px; border-width: 1.828px; border-radius: 40.21px; }
+.button-compact .button__icon img { width: 24.369px; height: 24.369px; }
+.button-compact .button__label {
+  padding: 11.459px calc(9.943px + 0.04em) 11.459px 9.943px;
+  border-width: 1.657px; border-radius: 35.905px;
+  font: 500 22.095px/1.15 var(--font); letter-spacing: var(--heading-40-track);
+}
+.button-compact:is(:hover, :active) .button__icon, .button-compact:is(:hover, :active) .button__label { background: var(--neutral-100); }
+.button-compact:is(:hover, :active) .button__icon img { filter: invert(1); }
+.button-compact:is(:hover, :active) .button__label { color: var(--neutral-900); }
 
 /* Gooey split (site/js/contact-goo.js, his pick 9 Nov): once the script runs, the pill borders go
    transparent and a filtered shape layer behind the content draws the outline. Without the script, or
@@ -289,6 +327,10 @@
   color: var(--neutral-300); text-decoration: none; white-space: nowrap;
 }
 .footer__out[hidden] { display: none; }
+/* LinkedIn and Resume share one wrapper so the phone footer can list them under "Links"; at tablet and
+   desktop the wrapper steps aside and each link keeps its own grid column. */
+.footer__links { display: contents; }
+.footer__links-label { display: none; }
 .footer__out img { width: 10.833px; height: 10.833px; flex: none; filter: brightness(0.87); }
 /* Small link hover, as the nav (above): Neutral/300 to Neutral/050, the outline, the arrow at full white. */
 .footer__out:is(:hover, :active) {
@@ -358,8 +400,8 @@
   .footer__bottom { order: 1; row-gap: 20px; }
   .footer__bottom > :nth-child(1) { grid-column: 1 / span 3; }
   .footer__bottom > :nth-child(2) { grid-column: 4 / span 2; }
-  .footer__bottom > :nth-child(3) { grid-column: 6 / span 2; }
-  .footer__bottom > :nth-child(4) { grid-column: 8 / span 1; justify-self: end; }
+  .footer__links > a:nth-of-type(1) { grid-column: 6 / span 2; }
+  .footer__links > a:nth-of-type(2) { grid-column: 8 / span 1; justify-self: end; }
   .footer__wordmark { order: 2; position: relative; top: auto; margin-top: -47px; margin-bottom: -10.5%; }
 
   .ending-bar { grid-template-columns: 1fr 1fr; grid-template-areas: "prev next" "all all"; row-gap: 12px; height: auto; padding-block: 12px; }
@@ -381,9 +423,26 @@
   .context__status { grid-row: 3; grid-column: 1 / -1; }
   .context-locked { padding-right: 12px; }
 
-  .footer__top > :first-child, .footer__contact { grid-column: 1 / -1; }
-  .footer__bottom > :nth-child(1) { grid-column: 1 / -1; }
-  .footer__bottom > :nth-child(2) { grid-column: 1 / -1; }
-  .footer__bottom > :nth-child(3) { grid-column: 1 / span 2; }
-  .footer__bottom > :nth-child(4) { grid-column: 3 / span 2; justify-self: start; }
+  /* Footer on a phone, his frame 4929:12309 (10 Nov). One screen tall: contact and links, then the
+     portraits and the stamp at the bottom, the space split evenly above and between them as in the
+     frame (105 each at 402 by 874). The 32 at the top clears the fixed bar. The menu carries the page
+     links and the hero carries the Contact button, so the footer drops its nav list, Back to top, the
+     button, the band and the wordmark. */
+  .footer__transition, .footer__back, .footer__nav, .footer__contact .button, .footer__wordmark { display: none; }
+  .footer__main {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: minmax(48px, 1fr) auto auto minmax(64px, 1fr) auto auto;
+    grid-template-areas: ". ." "contact contact" "links links" ". ." "pics pics" "meta time";
+    min-height: 100svh; gap: 0; padding: 32px var(--grid-margin) 24px;
+  }
+  .footer__top, .footer__bottom, .footer__top > :first-child { display: contents; }
+  .footer__contact { grid-area: contact; }
+  .footer__email { margin-top: 40px; }
+  .footer__links { grid-area: links; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 92px; }
+  .footer__links-label { display: block; margin-bottom: 38px; }
+  .footer__out { color: var(--neutral-100); }
+  .footer__out img { filter: none; }
+  .footer__portraits { grid-area: pics; justify-self: start; justify-content: flex-start; }
+  .footer__bottom > .footer__meta { grid-area: meta; margin-top: 32px; white-space: normal; padding-right: 16px; }
+  .footer__bottom > .footer__meta + .footer__meta { grid-area: time; justify-self: end; padding-right: 0; }
 }

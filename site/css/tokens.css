@@ -44,6 +44,12 @@
   /* Color: Portfolio, aliases */
   --metadata-12: var(--neutral-100); /* Metadata/12 */
 
+  /* Color: the phone work card art, as drawn behind the images (VC, Mobile frames 4928:12058 and
+     4929:12222). */
+  --mondai-card-top: #2a2a2f;
+  --mondai-card-bottom: #09090a;
+  --haven-card-night: #0f0f1b;
+
   /* Color: Mondai. Only for portfolio labels keyed to the green in Mondai screens beside them
      (Framework CS, Falling behind). */
   --mondai-green-400: #39f145;
@@ -90,6 +96,10 @@
   --label-12-track: 0.04em;
   --label-12-c: 400 12px/17px var(--font);
   --label-12-c-track: 0.1em;
+  /* Not a Figma text style: the phone hero's CHDWCK running down the edge (4928:11945), Medium,
+     tracked -9 percent. The hero sets the size (home.css), so 219.84 is only its size at 402 by 874. */
+  --wordmark-vertical: 500 219.84px/1 var(--font);
+  --wordmark-vertical-track: -0.09em;
   /* Not a Figma text style: the // before section labels is drawn at 15.17 px Medium (Collection
      frame, 5812:23010). Kept here so pages never carry raw type values. */
   --mark-15: 500 15.17px/1.16 var(--font);
@@ -109,16 +119,18 @@
   --ease-expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
 }
 
-/* Phase 3 breakpoints. Desktop (1200 and up) is the Figma grid and type above; nothing below changes
-   it. Tablet, 768 to 1199: 8 columns, 32 margin, 24 gutter. Mobile, under 768: 4 columns, 20 margin,
-   16 gutter. Only the large styles step down; Heading/20, Body and Labels keep their size everywhere.
+/* Breakpoints. Desktop (1200 and up) is the Figma grid and type above; nothing below changes it.
+   Grids are his (docs/PROJECT_CONTEXT.md, 10 Nov): tablet, 768 to 1199, 8 columns, 32 margin, 32 gutter;
+   phone, under 768, 4 columns, 24 margin, 24 gutter. Only Display/96, Heading/64 and Display/212 step
+   down. His phone frames (VC, Mobile frames 4929:12379) keep Heading/40 and Heading/24 at full size, so
+   they no longer step down here; the framework page keeps its own step-down in framework.css.
    Display/212 is sized to the content width, so "Framework CS" spans the page as it does at 1440
    (1357 px of text at 212 px: 0.15 of the width per px leaves it at 96 percent of the content width). */
 @media (max-width: 1199.98px) {
   :root {
     --grid-columns: 8;
     --grid-margin: 32px;
-    --grid-gutter: 24px;
+    --grid-gutter: 32px;
     --display-212: 400 calc((100vw - 2 * var(--grid-margin)) * 0.15)/0.83 var(--font);
     --display-96: 500 64px/66px var(--font);
     --heading-64: 500 56px/62px var(--font);
@@ -127,11 +139,9 @@
 @media (max-width: 767.98px) {
   :root {
     --grid-columns: 4;
-    --grid-margin: 20px;
-    --grid-gutter: 16px;
+    --grid-margin: 24px;
+    --grid-gutter: 24px;
     --display-96: 500 40px/44px var(--font);
     --heading-64: 500 40px/44px var(--font);
-    --heading-40: 500 28px/34px var(--font);
-    --heading-24: 500 20px/26px var(--font);
   }
 }

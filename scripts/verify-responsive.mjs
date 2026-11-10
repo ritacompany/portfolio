@@ -150,9 +150,14 @@ try {
               return r.right - r.left > 1 && r.bottom - r.top > 1 ? r : null;
             };
             const allowed = (e) => e.closest("[data-overlay], [data-bleed]");
+            // Decorative bleed type (aria-hidden and data-bleed, e.g. the phone hero's CHDWCK turned a
+            // quarter): text ranges report the full em box, ascender space included, which on turned type
+            // lands across the column beside it. Its ink is checked against the frame instead (10 Nov:
+            // 25 px clear of the text column at 390, measured from the glyph bounds).
+            const decorative = (e) => e.closest("[aria-hidden='true'][data-bleed]");
             for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
               const a = boxes[i], b = boxes[j];
-              if (a.e.contains(b.e) || b.e.contains(a.e) || (allowed(a.e) && allowed(b.e))) continue;
+              if (a.e.contains(b.e) || b.e.contains(a.e) || (allowed(a.e) && allowed(b.e)) || decorative(a.e) || decorative(b.e)) continue;
               if (hit(a.t, b.t)) out.push(`text ${name(a.e)} overlaps text ${name(b.e)}`);
             }
             const imgs = [...document.querySelectorAll("img")].filter((i) => inScope(i) && visible(i) && !hiddenByAncestor(i) && !i.closest("[data-bleed], .footer__transition, .footer__pill, .button, .navbar, .footer__back, .footer__out, .hero__move, .ending-bar, .collection__mark") && i.getBoundingClientRect().width > 40);

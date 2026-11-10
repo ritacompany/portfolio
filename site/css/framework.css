@@ -121,3 +121,12 @@
   .fw-sec { padding-block: 56px; }
   .fw-sec > .fig, .fw-sec > .week { margin-top: 32px; }
 }
+
+/* The phone step-down for Heading/40 and Heading/24 that tokens.css used to apply site wide. His phone
+   frames keep both at full size on Home and in the footer; this page's body has no phone design yet, so it keeps the step-down. */
+@media (max-width: 767.98px) {
+  .framework .fw {
+    --heading-40: 500 28px/34px var(--font);
+    --heading-24: 500 20px/26px var(--font);
+  }
+}

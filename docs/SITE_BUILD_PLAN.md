@@ -6,6 +6,23 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### Phone layouts from his Figma, 10 Nov (latest)
+He drew the phone home in Portfolio Design, page VC, **Mobile frames** `4929:12379` (402 by 874): hero,
+menu, Selected works, About, footer, plus two small Link sizes in the Link set `4657:11003`. Built in
+site/ at his ask ("replace whatever mobile versions we currently have"), under 768 only; tablet and
+desktop unchanged. What changed: grids now his (tablet 8/32/32, phone 4/24/24); Heading/40 and
+Heading/24 no longer step down on phones (his frames keep them; the framework body keeps its step-down
+in framework.css); hero with CHDWCK down the left edge and a compact Contact button (no goo); a fixed
+logo bar once the hero has gone and a full screen menu (`js/home-phone.js`); stacked work cards with
+their own phone crops (`assets/home/*-phone*.webp`) and a Learn more link (`.link-nav-sm`; `.link-block-sm`
+also added); About with the label column and Body/16 M; footer one screen tall with a Links group
+(LinkedIn and Resume now share a `.footer__links` wrapper on all three pages). Checks: verify-responsive
+fit and overlap pass 320 to 1366; the overlap check now skips decorative bleed type (aria-hidden plus
+data-bleed), ink measured by hand. verify-1440 still fails boxes and pixels on home exactly as before
+this work (it measures against the stale Transported copy, see below).
+Open with him: Testimonials sits in the menu hidden until the section exists; the menu closes with the
+same burger glyph he drew (no close icon); his lede reads "change out minds", the site keeps "our".
+
 ### Handoff, 10 Nov, hover highlight (from session "Portfolio: hover highlight"; read with the Figma note below)
 **Where the work is.** Merged into `claude/relaxed-ride-5mlbdu` on 10 Nov at his yes (it came from
 branch `claude/hover-text-smoothing`, PR 18). The first account's preview link,

@@ -72,7 +72,7 @@ export function gooey(btn) {
 export function startContactGoo(root = document, { speed = () => 1, force = false } = {}) {
   if (!force && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const run = () => {
-    const units = [...root.querySelectorAll(".button")].map(gooey);
+    const units = [...root.querySelectorAll(".button:not(.button-compact)")].map(gooey);
     if (!units.length) return;
     units.forEach((u) => u.paint());
     const ptr = new Map();

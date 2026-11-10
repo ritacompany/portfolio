@@ -147,18 +147,125 @@
   .about__row > :first-child { grid-column: 1 / span 3; }
   .about__body { grid-column: 4 / -1; }
 }
+/* Phone parts that exist only under 768: hidden at tablet and desktop. */
+.navbar__menu, .hero__contact, .hero__vertical, .work-card__phone-art, .work-card__more, .menu { display: none; }
+
+/* Phone, under 768: his Mobile frames (Portfolio Design, VC, 4929:12379, 10 Nov), drawn at 402 by 874.
+   They replace the collapsed desktop layout that was here. */
 @media (max-width: 767.98px) {
-  .hero { min-height: 640px; padding-top: 112px; }
-  .hero__lede, .hero__where { grid-column: 1 / -1; }
-  .hero__where { margin-left: 0; }
-  .hero__name { margin-top: 40px; }
+  /* Header. On the hero it is the hero's own top row: Product Designer and the burger, no logo, since
+     the CHDWCK wordmark is right there (4928:11942). It scrolls away with the hero and comes back as a
+     fixed bar with the logo and the burger (frames 4928:12018 on), dropping in once the hero has gone
+     (home-phone.js). The page's links move into the menu. */
+  .home { --navbar-top: 0px; --hero-col: min(156px, 38.8vw); }
+  .navbar { display: flex; align-items: center; padding-top: 24px; }
+  .navbar__links, .home .navbar__logo { display: none; }
+  .home .navbar__role { display: block; margin-left: calc(var(--hero-col) - var(--grid-margin)); color: var(--neutral-050); }
+  .navbar__menu {
+    display: grid; place-items: center; margin: -16px -13px -16px auto; padding: 16px 13px;
+    background: none; border: 0; cursor: pointer;
+  }
+  .navbar__menu img { width: 18px; height: 12px; }
+  .page-header.is-past-hero { position: fixed; top: 0; z-index: 5; background: var(--neutral-900); animation: bar-in 320ms var(--ease-expo-out); }
+  .is-past-hero .navbar { padding-block: 18px; }
+  .is-past-hero .navbar__logo { display: block; }
+  .is-past-hero .navbar__role { display: none; }
+  @keyframes bar-in { from { transform: translateY(-100%); } }
 
-  .works { padding: 64px 0 120px; }
-  .works__title { grid-column: 1 / -1; }
-  .works__cards { flex-direction: column; gap: 48px; margin-top: 32px; }
+  /* Hero, 4928:11925. One screen tall. CHDWCK runs down the left edge, turned a quarter, letters cut by
+     the edge as drawn: 219.84 px at 874 tall, the cap side 128 px in from the left. Its size follows the
+     screen height, capped so its right edge stays 28 px clear of the text column (both meet at 402 by
+     874). The text column starts at 156 and runs to the margin; location at the top, the lede and the
+     Contact button 120 above the bottom. */
+  .hero {
+    --hero-h: max(600px, 100svh);
+    --wm: min(calc((var(--hero-h) + 30px) / 4.112), calc((var(--hero-col) - 28px) / 0.5822));
+    height: var(--hero-h); min-height: 0; padding: 0; display: block; overflow: hidden;
+  }
+  .hero__intro { position: static; display: block; padding: 0; }
+  .hero__where { position: absolute; top: 76px; left: var(--hero-col); right: var(--grid-margin); margin: 0; }
+  .hero__move { height: auto; align-items: flex-start; }
+  .hero__move img { margin-top: -2.5px; }
+  .hero__move span { color: var(--neutral-050); white-space: normal; }
+  .hero__lede {
+    position: absolute; left: var(--hero-col); bottom: 200px; width: min(235px, calc(100% - var(--hero-col) - var(--grid-margin)));
+    font: var(--body-16-m); letter-spacing: var(--body-16-m-track); color: var(--neutral-050);
+  }
+  /* Right edge 28 px in at 402 (x 212 to 374 in the frame), anchored right so narrow phones keep it on screen. */
+  .hero__contact { display: inline-flex; position: absolute; right: calc(var(--grid-margin) + 4.34px); bottom: 120px; }
+  .hero__name { position: static; margin: 0; }
+  .hero__wordmark { display: none; }
+  .hero__vertical {
+    display: block; position: absolute; top: calc(var(--wm) * -0.06823); left: calc(var(--wm) * 0.5822);
+    transform-origin: 0 0; transform: rotate(90deg);
+    font: var(--wordmark-vertical); font-size: var(--wm); letter-spacing: var(--wordmark-vertical-track);
+    color: var(--neutral-100); white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+  /* Figma nudges single letters on top of the word's tracking. */
+  .hero__vertical > span { margin-inline-end: var(--t, 0em); }
+
+  /* Selected works, 4928:12018. Title at Heading/40, centered, 96 from the top of the section; cards
+     stack 40 apart. Each card: name, the kind under it (Mondai), the image at 404 by 266 proportions,
+     then the description and a Learn more link on one row. The phone images are their own crops. */
+  .works { padding: 96px 0 188px; box-shadow: none; }
+  .works__title { font: var(--heading-40); letter-spacing: var(--heading-40-track); color: var(--neutral-050); }
+  .works__cards { flex-direction: column; gap: 40px; margin-top: 62px; }
   .work-card-mondai, .work-card-haven { width: 100%; }
+  .work-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0; }
+  .work-card__head { display: contents; }
+  .work-card__name { order: 1; grid-column: 1 / -1; justify-self: start; }
+  .work-card__slashes { display: none; }
+  .work-card__kind { order: 2; grid-column: 1 / -1; justify-self: start; margin-top: 11.06px; color: var(--neutral-550); }
+  .works .work-card__media { order: 3; grid-column: 1 / -1; margin-top: 20px; aspect-ratio: 404 / 266.324; }
+  .work-card__desc { order: 4; position: static; margin: 20px 0 0; }
+  .work-card__more { order: 5; display: inline-block; margin: 13px 0 -7px; justify-self: end; }
+  .work-card__desk-art, .work-card__media .button-sm { display: none; }
+  .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; }
+  .work-card__phone-art img { position: absolute; max-width: none; transition: transform 900ms var(--ease-expo-out); }
+  /* Mondai, 4928:12058: laptop and glow on a dark gradient, placed as in the frame (354 by 233.36). */
+  .work-card-mondai .work-card__media { background: linear-gradient(180.1deg, var(--mondai-card-top) 0.135%, var(--mondai-card-bottom) 47.465%); }
+  .mondai-art__laptop { left: -43.503%; top: -61.746%; width: 186.14%; height: 353.848%; }
+  .mondai-art__glow { left: 14.839%; top: -7.949%; width: 64.211%; height: 99.967%; }
+  /* Haven, 4929:12222: the phone in a square clip on Haven's night blue. */
+  .work-card-haven .work-card__media { background: var(--haven-card-night); }
+  .haven-art__clip { position: absolute; left: 10.452%; top: -9.625%; width: 78.904%; height: 119.558%; overflow: hidden; }
+  .haven-art__clip img { left: -3.612%; top: -0.115%; width: 112.034%; height: 98.924%; }
+  .work-card:active .work-card__phone-art img { transform: scale(1.01); transition-duration: 150ms; }
 
-  .about-story, .about-role { padding-bottom: 48px; row-gap: 24px; }
-  .about__row > :first-child, .about__body { grid-column: 1 / -1; }
-  .about-story .about__body { margin-left: 0; }
+  /* About, 4929:12243. Each row: a line, the label at the left, the body indented by the About label's
+     width (53) and starting 90 below the label. Body/16 M, a blank line between paragraphs. */
+  .about__row { display: grid; grid-template-columns: 53px minmax(0, 1fr); column-gap: 0; padding-top: 32px; box-shadow: inset 0 1px 0 var(--neutral-700); }
+  .about-story { padding-bottom: 64px; }
+  .about-role { padding-bottom: 89px; }
+  .about__row > :first-child { grid-column: 1; grid-row: 1; }
+  .about__body, .about-story .about__body {
+    grid-column: 2; grid-row: 1; width: auto; margin: 90px 0 0;
+    font: var(--body-16-m); letter-spacing: var(--body-16-m-track); color: var(--neutral-300);
+  }
+  .about__body > * + * { margin-top: 21px; }
+  .about__when { color: var(--neutral-550); }
+  /* A jump to About lands with the line 112 down, as in the frame, clear of the fixed bar. */
+  .about { scroll-margin-top: 112px; }
+
+  /* Menu, 4928:11959. Full screen: logo and burger on top, the page links at Heading/40 in the footer
+     link style, Contact and the email at the bottom. */
+  .menu {
+    position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column;
+    padding: 24px var(--grid-margin) 40px; background: var(--neutral-900);
+    opacity: 0; transition: opacity 200ms var(--ease-quart-out);
+  }
+  .menu[hidden] { display: none; }
+  .menu[data-open] { opacity: 1; }
+  .menu__bar { display: flex; align-items: center; }
+  .menu__bar .navbar__logo { display: block; }
+  .menu__body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 64px; margin-top: 218px; }
+  .menu__links { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; list-style: none; padding: 0; }
+  .menu__links li { display: flex; }
+  .menu__links li[hidden] { display: none; }
+  .menu__contact { display: flex; flex-direction: column; align-items: flex-start; }
+  .menu__contact .footer__email { margin-top: 26px; }
+}
+@media (max-width: 767.98px) and (prefers-reduced-motion: reduce) {
+  .page-header.is-past-hero { animation: none; }
 }

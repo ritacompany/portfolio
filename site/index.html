@@ -27,6 +27,7 @@
           <li><a class="link-nav" href="#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
           <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
         </ul>
+        <button class="navbar__menu" type="button" aria-label="Menu" aria-controls="site-menu" aria-expanded="false" data-dialog-open="site-menu" data-figma-node="4928:11948"><img src="/assets/ui/menu.svg" alt="" width="18" height="12"></button>
       </nav>
     </header>
 
@@ -39,7 +40,15 @@
             <p class="hero__move"><img src="/assets/ui/dolly.svg" alt="" data-figma-node="5812:22882"><span data-figma-node="5812:22884">Looking to relocate to NYC</span></p>
           </div>
         </div>
-        <h1 class="hero__name" data-figma-node="5812:22885"><img src="/assets/home/chdwck-hero.svg" alt="Chadwick Fenner" width="1440" height="290"></h1>
+        <a class="button button-compact hero__contact" href="mailto:hello@chadwickfenner.com" data-figma-node="4928:11952">
+          <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+          <span class="button__label">Contact</span>
+        </a>
+        <h1 class="hero__name" data-figma-node="5812:22885">
+          <span class="visually-hidden">Chadwick Fenner</span>
+          <img class="hero__wordmark" src="/assets/home/chdwck-hero.svg" alt="" width="1440" height="290">
+          <span class="hero__vertical" aria-hidden="true" data-bleed data-figma-node="4928:11945"><span style="--t:-0.005095em">C</span><span style="--t:-0.008734em">H</span><span style="--t:-0.005822em">D</span><span style="--t:-0.005822em">W</span><span style="--t:-0.005095em">C</span><span>K</span></span>
+        </h1>
       </section>
 
       <section class="works" id="work" aria-labelledby="works-title" data-figma-node="5812:22886">
@@ -53,9 +62,14 @@
               <span class="work-card__desc" data-figma-node="5812:22898">Tech career navigator</span>
             </span>
             <span class="work-card__media" data-figma-node="5812:22899">
-              <img src="/assets/home/mondai-card@2x.webp" alt="" width="879" height="576">
+              <img class="work-card__desk-art" src="/assets/home/mondai-card@2x.webp" alt="" width="879" height="576">
+              <span class="work-card__phone-art" data-bleed data-figma-node="4928:12059">
+                <img class="mondai-art__laptop" src="/assets/home/mondai-card-phone-laptop.webp" alt="" width="817" height="1024" loading="lazy">
+                <img class="mondai-art__glow" src="/assets/home/mondai-card-phone-glow.webp" alt="" width="455" height="467" loading="lazy">
+              </span>
               <span class="button-sm" data-figma-node="5812:22904" data-overlay>Learn more</span>
             </span>
+            <span class="work-card__more link-nav-sm" data-figma-node="4929:12215">Learn more</span>
           </a>
           <a class="work-card work-card-haven" href="/haven/" data-figma-node="5812:22905">
             <span class="work-card__head">
@@ -63,8 +77,12 @@
               <span class="work-card__desc" data-figma-node="5812:22908">LGBTQIA + youth app</span>
             </span>
             <span class="work-card__media" data-figma-node="5812:22909">
-              <img src="/assets/home/haven-card@2x.webp" alt="The Haven app on a phone, wrapped in a glowing purple cable" width="435" height="435">
+              <img class="work-card__desk-art" src="/assets/home/haven-card@2x.webp" alt="The Haven app on a phone, wrapped in a glowing purple cable" width="435" height="435">
+              <span class="work-card__phone-art" data-bleed data-figma-node="4929:12238">
+                <span class="haven-art__clip"><img src="/assets/home/haven-card-phone.webp" alt="The Haven app on a phone, wrapped in a glowing purple cable" width="939" height="828" loading="lazy"></span>
+              </span>
             </span>
+            <span class="work-card__more link-nav-sm" data-figma-node="4929:12230">Learn more</span>
           </a>
         </div>
       </section>
@@ -121,13 +139,34 @@
               <div class="footer__bottom grid">
                 <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
                 <p class="footer__meta col-4 span-3"><time>10:24pm CST</time></p>
-                <a class="footer__out col-7 span-3" href="https://www.linkedin.com/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
-                <a class="footer__out col-10 span-3" href="#resume" hidden data-hidden-until="his resume file"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+                <div class="footer__links">
+                  <p class="footer__label footer__links-label">Links</p>
+                  <a class="footer__out col-7 span-3" href="https://www.linkedin.com/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+                  <a class="footer__out col-10 span-3" href="#resume" hidden data-hidden-until="his resume file"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+                </div>
               </div>
             </div>
           </footer>
   </div>
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden data-figma-node="4928:11959">
+    <div class="menu__bar">
+      <a class="navbar__logo" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+      <button class="navbar__menu" type="button" aria-label="Close menu" data-dialog-close><img src="/assets/ui/menu.svg" alt="" width="18" height="12"></button>
+    </div>
+    <nav class="menu__body" aria-label="Main">
+      <ul class="menu__links">
+        <li><a class="link-footer link-footer-lg" href="#about">About</a></li>
+        <li><a class="link-footer link-footer-lg" href="#work">Selected works</a></li>
+        <li hidden data-hidden-until="the Testimonials section"><a class="link-footer link-footer-lg" href="#testimonials">Testimonials</a></li>
+      </ul>
+      <div class="menu__contact">
+        <p class="footer__label">Contact</p>
+        <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+      </div>
+    </nav>
+  </div>
 <script type="module" src="/js/contact-goo.js"></script>
+<script type="module" src="/js/home-phone.js"></script>
 <script src="/js/site.js" defer></script>
 </body>
 </html>
