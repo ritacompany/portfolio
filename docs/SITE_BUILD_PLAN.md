@@ -6,7 +6,19 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
-### Evening batch, 10 Nov (latest)
+### Where it stopped, 10 Nov late (usage limit; latest)
+Pushed: edit panel c1a2604, Mondai motion 6341aa0, Figma sync a420fb5, works reveal 93a5419. Rechecked by
+the main session: preview build HOVER_STILL_OK (53 hovers); Home motion hover, reveal and repeat pass.
+Open, in order:
+1. `.unlazy/home-motion/check.mjs figma` now fails ("card section does not match his frame") after the
+   Figma sync. Either the saved Figma render (`.unlazy/home-motion/figma-card-section.png`) is older than
+   his updated frame, or the sync moved the cards. Re-export Card Section 4923:12087 and compare first.
+2. The Figma sync session reports two suite failures it traces to 588bdac (framework footer box, Haven
+   clock), likely the removed footer band and the seconds in the clock. Check and update those checks.
+3. Move Home motion's sliders off its own white box onto `window.EditPanel.register` (c1a2604 has the API).
+4. His look at everything on :4319; nothing from the preview layers is in site/css or site/js yet.
+
+### Evening batch, 10 Nov
 His list and owners: `.unlazy/nov10-batch/PLAN.md` (local). Done here: halftone band above the footer
 removed on Home, Haven and Framework; clocks show seconds and tick every second; the CHD then WCK load
 animation (he had not asked for it) moved out of the preview to `site/motion-lab/home-load/`. Works reveal
