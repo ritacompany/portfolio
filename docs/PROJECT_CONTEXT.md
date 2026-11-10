@@ -16,7 +16,10 @@ The immediate design task is to inspect the Haven, Mondai and reference frames, 
 
 ## Important guardrails
 
-- Keep the existing Figma typography, colors and 12-column desktop grid unless the owner explicitly changes them.
+- Keep the existing Figma typography, colors and layout grids unless the owner explicitly changes them. All grids are stretch columns (no fixed column width), and margin always equals gutter:
+  - Desktop (1200 and up): 12 columns, 40px margins, 40px gutters.
+  - Tablet (768 to 1199): 8 columns, 32px margins, 32px gutters.
+  - Mobile (under 768): 4 columns, 24px margins, 24px gutters.
 - Use actual project material. Never fabricate claims, research results, participant counts or outcome metrics.
 - Do not use generic dashboards, bento grids or repetitive text-and-image templates.
 - Mobile should be deliberately re-composed, not simply collapsed from desktop.
