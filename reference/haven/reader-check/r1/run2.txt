@@ -1,0 +1,297 @@
+V1 Q1 no | none
+V1.S1 Q2 no | none
+V1.S1 Q3 no
+V1.S1 Q4 no | none
+V1.S1 Q5 no | follows as the opening line
+V1.S2 Q2 no | none
+V1.S2 Q3 no
+V1.S2 Q4 no | none
+V1.S2 Q5 no | follows from S1
+V1.S3 Q2 no | none
+V1.S3 Q3 no
+V1.S3 Q4 no | none
+V1.S3 Q5 no | follows from S2
+V1.S4 Q2 no | none
+V1.S4 Q3 no
+V1.S4 Q4 no | none
+V1.S4 Q5 no | sets project context
+V1.S5 Q2 no | Confidante is defined in the same sentence
+V1.S5 Q3 no
+V1.S5 Q4 no | none
+V1.S5 Q5 no | follows from S4
+V1.S6 Q2 no | none
+V1.S6 Q3 no
+V1.S6 Q4 no | none
+V1.S6 Q5 no | follows from the brief and user group
+
+V2 Q1 no | none
+V2.S1 Q2 no | none
+V2.S1 Q3 no
+V2.S1 Q4 no | none
+V2.S1 Q5 no | follows from the label and K1 risk
+V2.S2 Q2 no | none
+V2.S2 Q3 no
+V2.S2 Q4 no | none
+V2.S2 Q5 no | caption for the 35% figure
+V2.S3 Q2 no | none
+V2.S3 Q3 no
+V2.S3 Q4 no | none
+V2.S3 Q5 no | spells out the group the figure covers
+V2.S4 Q2 no | none
+V2.S4 Q3 no
+V2.S4 Q4 no | none
+V2.S4 Q5 no | caption for the 40% figure
+V2.S5 Q2 no | none
+V2.S5 Q3 no
+V2.S5 Q4 no | none
+V2.S5 Q5 no | spells out the group the figure covers
+
+V3 Q1 yes | V3.S1, V3.S2
+V3.S1 Q2 no | none
+V3.S1 Q3 no
+V3.S1 Q4 no | none
+V3.S1 Q5 no | opens the reason
+V3.S2 Q2 no | none
+V3.S2 Q3 no
+V3.S2 Q4 no | none
+V3.S2 Q5 no | follows from S1
+V3.S3 Q2 no | none
+V3.S3 Q3 no
+V3.S3 Q4 no | none
+V3.S3 Q5 no | follows from the insight label
+V3.S4 Q2 no | none
+V3.S4 Q3 no
+V3.S4 Q4 no | none
+V3.S4 Q5 no | follows from S3
+V3.S5 Q2 no | none
+V3.S5 Q3 no
+V3.S5 Q4 no | none
+V3.S5 Q5 no | follows from the insight label
+V3.S6 Q2 no | none
+V3.S6 Q3 no
+V3.S6 Q4 no | none
+V3.S6 Q5 no | follows from the insight label
+V3.S7 Q2 no | none
+V3.S7 Q3 no
+V3.S7 Q4 no | none
+V3.S7 Q5 no | follows from the insight label
+V3.S8 Q2 no | none
+V3.S8 Q3 no
+V3.S8 Q4 yes | K1
+V3.S8 Q5 no | follows from the insight label
+
+V4 Q1 yes | V4.S1, V4.S2, V4.S3
+V4.S1 Q2 no | none
+V4.S1 Q3 no
+V4.S1 Q4 no | none
+V4.S1 Q5 no | follows from the label
+V4.S2 Q2 no | none
+V4.S2 Q3 no
+V4.S2 Q4 no | none
+V4.S2 Q5 no | gives the reason for the order
+V4.S3 Q2 no | none
+V4.S3 Q3 no
+V4.S3 Q4 no | none
+V4.S3 Q5 no | follows from S1 and S2
+
+V5 Q1 no | none
+V5.S1 Q2 no | none
+V5.S1 Q3 yes
+V5.S1 Q4 no | none
+V5.S1 Q5 no | follows from the label
+V5.S2 Q2 no | none
+V5.S2 Q3 yes
+V5.S2 Q4 no | none
+V5.S2 Q5 no | follows from S1
+
+V6 Q1 no | none
+V6.S1 Q2 no | none
+V6.S1 Q3 no
+V6.S1 Q4 no | none
+V6.S1 Q5 no | follows from the label
+V6.S2 Q2 no | none
+V6.S2 Q3 no
+V6.S2 Q4 no | none
+V6.S2 Q5 no | follows from the insight label
+V6.S3 Q2 no | none
+V6.S3 Q3 no
+V6.S3 Q4 no | none
+V6.S3 Q5 no | follows from the insight label
+V6.S4 Q2 no | none
+V6.S4 Q3 no
+V6.S4 Q4 no | none
+V6.S4 Q5 no | follows from the insight label
+V6.S5 Q2 no | none
+V6.S5 Q3 no
+V6.S5 Q4 no | none
+V6.S5 Q5 no | follows from the insight label
+V6.S6 Q2 no | none
+V6.S6 Q3 no
+V6.S6 Q4 no | none
+V6.S6 Q5 no | signposts the blocks that follow
+
+V7 Q1 no | none
+V7.S1 Q2 no | none
+V7.S1 Q3 no
+V7.S1 Q4 no | none
+V7.S1 Q5 no | follows from the label
+V7.S2 Q2 no | none
+V7.S2 Q3 no
+V7.S2 Q4 no | none
+V7.S2 Q5 no | follows from S1
+
+V8 Q1 yes | V8.S1
+V8.S1 Q2 no | none
+V8.S1 Q3 no
+V8.S1 Q4 no | none
+V8.S1 Q5 no | follows from the label
+V8.S2 Q2 no | none
+V8.S2 Q3 no
+V8.S2 Q4 no | none
+V8.S2 Q5 no | follows from S1
+V8.S3 Q2 no | none
+V8.S3 Q3 no
+V8.S3 Q4 no | none
+V8.S3 Q5 no | follows from S2
+
+V9 Q1 yes | V9.S2, V9.S3, V9.S4
+V9.S1 Q2 no | none
+V9.S1 Q3 yes
+V9.S1 Q4 no | none
+V9.S1 Q5 no | sets up the problem
+V9.S2 Q2 no | none
+V9.S2 Q3 no
+V9.S2 Q4 no | none
+V9.S2 Q5 no | follows from S1
+V9.S3 Q2 no | none
+V9.S3 Q3 no
+V9.S3 Q4 no | none
+V9.S3 Q5 no | follows from S2
+V9.S4 Q2 no | none
+V9.S4 Q3 no
+V9.S4 Q4 no | none
+V9.S4 Q5 no | follows from S3
+V9.S5 Q2 no | none
+V9.S5 Q3 no
+V9.S5 Q4 no | none
+V9.S5 Q5 no | follows from S4
+
+V10 Q1 yes | V10.S4, V10.S5
+V10.S1 Q2 no | none
+V10.S1 Q3 no
+V10.S1 Q4 no | none
+V10.S1 Q5 no | follows from the label
+V10.S2 Q2 no | none
+V10.S2 Q3 no
+V10.S2 Q4 no | none
+V10.S2 Q5 no | follows from S1
+V10.S3 Q2 no | none
+V10.S3 Q3 no
+V10.S3 Q4 no | none
+V10.S3 Q5 no | follows from S2
+V10.S4 Q2 no | none
+V10.S4 Q3 no
+V10.S4 Q4 no | none
+V10.S4 Q5 no | follows from S3
+V10.S5 Q2 no | none
+V10.S5 Q3 no
+V10.S5 Q4 no | none
+V10.S5 Q5 no | follows from S4
+
+V11 Q1 yes | V11.S2, V11.S3
+V11.S1 Q2 no | none
+V11.S1 Q3 no
+V11.S1 Q4 no | none
+V11.S1 Q5 no | follows from the label
+V11.S2 Q2 no | none
+V11.S2 Q3 no
+V11.S2 Q4 yes | K6
+V11.S2 Q5 no | gives the reason
+V11.S3 Q2 no | none
+V11.S3 Q3 no
+V11.S3 Q4 no | none
+V11.S3 Q5 no | follows from S2
+V11.S4 Q2 yes | Your events
+V11.S4 Q3 no
+V11.S4 Q4 no | none
+V11.S4 Q5 yes | introduces a separate screen the version has not set up and the point about expectations at booking does not need it
+
+V12 Q1 yes | V12.S2, V12.S3
+V12.S1 Q2 no | none
+V12.S1 Q3 no
+V12.S1 Q4 no | none
+V12.S1 Q5 no | follows from the label
+V12.S2 Q2 no | none
+V12.S2 Q3 no
+V12.S2 Q4 no | none
+V12.S2 Q5 no | follows from S1
+V12.S3 Q2 no | none
+V12.S3 Q3 no
+V12.S3 Q4 no | none
+V12.S3 Q5 no | follows from S2
+
+V13 Q1 no | none
+V13.S1 Q2 no | none
+V13.S1 Q3 no
+V13.S1 Q4 no | none
+V13.S1 Q5 no | follows from the label
+V13.S2 Q2 no | none
+V13.S2 Q3 no
+V13.S2 Q4 no | none
+V13.S2 Q5 no | follows from S1
+
+V14 Q1 yes | V14.S5, V14.S6
+V14.S1 Q2 no | none
+V14.S1 Q3 no
+V14.S1 Q4 no | none
+V14.S1 Q5 no | follows from the label
+V14.S2 Q2 no | none
+V14.S2 Q3 no
+V14.S2 Q4 no | none
+V14.S2 Q5 no | completes S1
+V14.S3 Q2 no | none
+V14.S3 Q3 no
+V14.S3 Q4 yes | K8
+V14.S3 Q5 no | follows from S2
+V14.S4 Q2 no | none
+V14.S4 Q3 no
+V14.S4 Q4 yes | K10
+V14.S4 Q5 no | follows from S3
+V14.S5 Q2 no | none
+V14.S5 Q3 no
+V14.S5 Q4 yes | K11
+V14.S5 Q5 no | follows from S4
+V14.S6 Q2 no | none
+V14.S6 Q3 no
+V14.S6 Q4 yes | K9
+V14.S6 Q5 no | follows from S5
+V14.S7 Q2 no | none
+V14.S7 Q3 no
+V14.S7 Q4 yes | K13
+V14.S7 Q5 no | follows from the safe need in S2
+V14.S8 Q2 no | none
+V14.S8 Q3 no
+V14.S8 Q4 yes | K4
+V14.S8 Q5 no | follows from the MVP phase in S1
+V14.S9 Q2 no | none
+V14.S9 Q3 no
+V14.S9 Q4 yes | K4
+V14.S9 Q5 no | follows from S8
+
+V15 Q1 yes | V15.S2, V15.S3
+V15.S1 Q2 no | none
+V15.S1 Q3 yes
+V15.S1 Q4 no | none
+V15.S1 Q5 yes | the calendar change is never explained and nothing after it follows from it
+V15.S2 Q2 no | none
+V15.S2 Q3 no
+V15.S2 Q4 yes | K9
+V15.S2 Q5 yes | jumps from the calendar to choosing a Confidante
+V15.S3 Q2 yes | Haven Shield toggle, Pulse score
+V15.S3 Q3 no
+V15.S3 Q4 no | none
+V15.S3 Q5 yes | a toggle and score do not follow from hesitation over choosing a Confidante
+V15.S4 Q2 yes | weekly digest
+V15.S4 Q3 yes
+V15.S4 Q4 no | none
+V15.S4 Q5 yes | a dropped idea unrelated to the point

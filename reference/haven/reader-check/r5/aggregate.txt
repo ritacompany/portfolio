@@ -1,0 +1,25 @@
+V1 PASS
+V10 PASS
+V11 PASS
+V12 PASS
+V13 FAIL | Q1 no decision
+V14 FAIL
+  V14.S3 Q4 (3/3) K8
+  V14.S4 Q4 (3/3) K10
+  V14.S5 Q4 (3/3) K11; K11, K12
+  V14.S6 Q4 (3/3) K9
+  V14.S7 Q4 (3/3) K13
+  V14.S8 Q4 (3/3) K4
+  V14.S9 Q4 (3/3) K4
+V2 FAIL | Q1 no decision
+V3 PASS
+V4 PASS
+V5 FAIL | Q1 no decision
+  V5.S1 Q3 (3/3) 
+  V5.S2 Q3 (3/3) 
+V6 FAIL | Q1 no decision
+V7 FAIL | Q1 no decision
+V8 PASS
+V9 FAIL
+  V9.S1 Q2 (2/3) introductory chat
+  V9.S1 Q3 (3/3) 
