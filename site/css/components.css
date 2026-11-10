@@ -1,4 +1,5 @@
-/* Shared components, built from the component sets on page CS of Figma file 5RO0m4bYYrTvbiaOgaU3tI.
+/* Shared components, built from the component sets on page CS of Figma file 5RO0m4bYYrTvbiaOgaU3tI and
+   synced on 10 Nov to their instances in his VC master (IarvWaqjIwrZ2afQmMxKm6, docs/FIGMA_SYNC_2026-11-10.md).
    Every value comes from tokens.css or from the component in Figma (node ids beside each block).
    Figma trims text boxes to cap height and baseline; text-box does the same here, so boxes measure
    what Figma measures. Browsers without text-box (Firefox today) get slightly taller text boxes.
@@ -19,7 +20,7 @@
 .navbar__logo img { width: 100%; height: 100%; }
 .navbar__role {
   font: var(--body-16); letter-spacing: var(--body-16-track);
-  color: var(--neutral-050); white-space: nowrap; padding-inline-end: 0.01em;
+  color: var(--neutral-550); white-space: nowrap; padding-inline-end: 0.01em;
   text-box: trim-both cap alphabetic;
 }
 .navbar__links {
@@ -55,10 +56,11 @@
 
 .link-nav {
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
-  color: var(--neutral-300);
+  color: var(--neutral-050);
 }
 /* Small all-caps link hover (nav here, LinkedIn and Back to top in the footer; his approval, 10 Nov).
-   No block: the word brightens from Neutral/300 to Neutral/050 and gets one weight heavier. Satoshi's
+   No block: the word goes to Neutral/050 (the nav already rests there in the master, 10 Nov) and gets
+   one weight heavier. Satoshi's
    real Medium and Bold are wider than Regular and made the word change shape, so the extra weight is an
    outline in the text's own colour: the strokes thicken, every letter keeps its exact width and place.
    Measured in the font files, Medium's stems are 0.026 of the type size wider than Regular's, 0.36 px at
@@ -240,8 +242,9 @@
 .button-sm:hover, .button-sm.is-hover { background: var(--neutral-100); color: var(--neutral-900); }
 .button-sm:active, .button-sm.is-pressed { background: var(--neutral-300); border-color: var(--neutral-300); color: var(--neutral-900); transform: scale(0.98); }
 
-/* Footer, 5812:22749. Variants: Default and Other pages (adds Home to the list). */
-.footer { background: var(--neutral-900); color: var(--neutral-100); overflow: hidden; }
+/* Footer, 5812:22749. Variants: Default and Other pages (adds Home to the list). The master's instance
+   (4889:12775) draws a Neutral/700 line along its top. */
+.footer { background: var(--neutral-900); color: var(--neutral-100); overflow: hidden; box-shadow: inset 0 1px 0 var(--neutral-700); }
 .footer__transition { position: relative; height: 217px; overflow: hidden; }
 .footer__transition img {
   position: absolute; left: 0; top: -133.34px;
@@ -250,7 +253,7 @@
 .footer__transition-baked img { top: 0; width: 100%; height: 100%; }
 .footer__main {
   position: relative; height: 776px; overflow: hidden;
-  display: flex; flex-direction: column; gap: 176px;
+  display: flex; flex-direction: column; gap: 183px;
   padding-top: 48px;
 }
 .footer__top, .footer__bottom { align-items: start; }
@@ -324,15 +327,17 @@
 .footer__out {
   display: inline-flex; align-items: center; gap: 10px;
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
-  color: var(--neutral-300); text-decoration: none; white-space: nowrap;
+  color: var(--neutral-100); text-decoration: none; white-space: nowrap;
 }
 .footer__out[hidden] { display: none; }
 /* LinkedIn and Resume share one wrapper so the phone footer can list them under "Links"; at tablet and
    desktop the wrapper steps aside and each link keeps its own grid column. */
 .footer__links { display: contents; }
 .footer__links-label { display: none; }
-.footer__out img { width: 10.833px; height: 10.833px; flex: none; filter: brightness(0.87); }
-/* Small link hover, as the nav (above): Neutral/300 to Neutral/050, the outline, the arrow at full white. */
+/* The master's bottom row is an auto layout: LinkedIn lands at 742, 2 past column 7. */
+@media (min-width: 1200px) { .footer__links > .footer__out:first-of-type { margin-left: 2px; } }
+.footer__out img { width: 10.833px; height: 10.833px; flex: none; }
+/* Small link hover, as the nav (above): Neutral/100 to Neutral/050 and the outline; the arrow is Neutral/050 already. */
 .footer__out:is(:hover, :active) {
   color: var(--neutral-050); background: none; box-shadow: none;
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;

@@ -1,7 +1,8 @@
-/* Design tokens. Values read live on 8 Nov 2026 from Figma file 5RO0m4bYYrTvbiaOgaU3tI (Desktop 1
-   MVP), local collections Portfolio and Haven and the twelve local text styles. Figma wins: when a
-   value changes there, change it here, never in a component. Names follow the Figma names:
-   Portfolio Neutral/550 is --neutral-550, Haven Violet/200 is --haven-violet-200. */
+/* Design tokens. Values read live on 10 Nov 2026 from his Portfolio Design file IarvWaqjIwrZ2afQmMxKm6,
+   local collections 01 Portfolio, 02 Haven and 03 Mondai and the thirteen local text styles
+   (docs/FIGMA_SYNC_2026-11-10.md). Figma wins: when a value changes there, change it here, never in a
+   component. Names follow the Figma names: Portfolio Neutral/550 is --neutral-550, Haven Violet/200 is
+   --haven-violet-200, Mondai Green/400 is --mondai-green-400. */
 
 :root {
   /* Color: Portfolio, neutrals */
@@ -50,17 +51,49 @@
   --mondai-card-bottom: #09090a;
   --haven-card-night: #0f0f1b;
 
-  /* Color: Mondai. Only for portfolio labels keyed to the green in Mondai screens beside them
+  /* Color: 03 Mondai. Green/400 keys portfolio labels to the green in Mondai screens beside them
      (Framework CS, Falling behind). */
   --mondai-green-400: #39f145;
+  --mondai-green-500: #07ee17;
+  --mondai-magenta-500: #cc14f9;
+  --mondai-turquoise-500: #00ffe7;
+  --mondai-blue-500: #0039f5;
+  --mondai-orange-400: #ec6d3d;
+  --mondai-orange-500: #e7480d;
+  --mondai-neutral-100: #eefae8;
 
-  /* Color: Haven. Haven keeps its own CSS until Phase 1; these are here so it can move over. */
+  /* Color: 02 Haven. Haven keeps its own CSS; these are here so it can move over. */
+  --haven-nimbus-100: #b4aaf4;
+  --haven-nimbus-200: #8877fd;
+  --haven-nimbus-300: #6854ec;
+  --haven-nimbus-500: #482cff;
+  --haven-violet-100: #edc9ff;
   --haven-violet-200: #db98ff;
   --haven-violet-300: #d080fc;
-  --haven-mantis-bright: #71f949;
-  --haven-mantis-500: #78b765;
-  --haven-nimbus-300: #6854ec;
+  --haven-violet-500: #b755ec;
   --haven-goldfish-500: #d2401f;
+  --haven-mantis-500: #78b765;
+  --haven-mantis-bright: #71f949;
+  --haven-red-700: #722a2a;
+  --haven-neutral-100: #eefae8;
+  --haven-neutral-150: #d9dfd1;
+  --haven-neutral-200: #c9cfc6;
+  --haven-neutral-250: #b5bdb1;
+  --haven-neutral-300: #a4aea3;
+  --haven-neutral-350: #90968e;
+  --haven-neutral-400: #767c74;
+  --haven-neutral-450: #5c675d;
+  --haven-neutral-500: #434942;
+  --haven-neutral-550: #333633;
+  --haven-neutral-600: #292d28;
+  --haven-neutral-650: #222321;
+  --haven-neutral-700: #181a18;
+  --haven-neutral-750: #131513;
+  --haven-neutral-800: #101110;
+  --haven-neutral-850: #0e0f0e;
+  --haven-neutral-900: #0b0c0a;
+  --haven-neutral-950: #0a0b0a;
+  --haven-neutral-1000: #080908;
 
   /* Type: Satoshi, three weights shipped (400, 500, 700) */
   --font: "Satoshi", system-ui, sans-serif;
@@ -84,10 +117,13 @@
      with rounded values. */
   --heading-20: 500 20px/26px var(--font);
   --heading-20-track: -0.02em;
+  --body-20: 400 20px/26px var(--font);       /* Body/20, added in Figma by 10 Nov */
+  --body-20-track: -0.02em;
   --body-16: 400 16px/22px var(--font);
   --body-16-track: -0.01em;
   --body-16-m: 500 16px/21px var(--font);
   --body-16-m-track: -0.01em;
+  /* Figma groups the label styles as Body/Label/14 and so on; the names here stay short. */
   --label-14: 400 14px/20px var(--font);
   --label-14-track: 0.02em;
   --label-14-c: 400 14px/14px var(--font);   /* the C styles are set in capitals */
@@ -100,6 +136,9 @@
      tracked -9 percent. The hero sets the size (home.css), so 219.84 is only its size at 402 by 874. */
   --wordmark-vertical: 500 219.84px/1 var(--font);
   --wordmark-vertical-track: -0.09em;
+  /* Not a Figma text style: the work card descriptions are drawn at 13.75 px with no style in the
+     master (Mondai, 4923:12102) and on every phone card (4929:12207). */
+  --card-desc-size: 13.75px;
   /* Not a Figma text style: the // before section labels is drawn at 15.17 px Medium (Collection
      frame, 5812:23010). Kept here so pages never carry raw type values. */
   --mark-15: 500 15.17px/1.16 var(--font);

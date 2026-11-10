@@ -166,11 +166,11 @@
    ]
   },
   "home": {
-   "frame": "5812:22862",
+   "frame": "4494:5909",
    "url": "/",
    "image": "dev/pages/figma/home.png",
    "w": 1440,
-   "h": 3724,
+   "h": 3638,
    "css": "css/home.css",
    "boxes": [
     {
@@ -179,48 +179,53 @@
      "x": 0,
      "y": 15,
      "w": 1440,
-     "h": 14.04
+     "h": 14.04,
+     "tol": 1.5,
+     "why": "the master's navbar is 24 tall because each nav link carries 7 px of hit padding; the site's row is the logo height and the links sit on the same centre line (19.98 to 34.02)"
     },
     {
      "name": "lede",
      "sel": "[data-figma-node='5812:22877']",
      "x": 40,
-     "y": 423,
-     "w": 385,
+     "y": 468,
+     "w": 457,
      "h": 66
     },
     {
      "name": "Chicago",
      "sel": "[data-figma-node='5812:22880']",
-     "x": 509,
-     "y": 456,
+     "x": 623,
+     "y": 498,
      "w": 90,
-     "h": 10
+     "h": 10,
+     "tol": 1
     },
     {
      "name": "dolly",
      "sel": "[data-figma-node='5812:22882']",
-     "x": 509,
-     "y": 475.5,
+     "x": 623,
+     "y": 519,
      "w": 16,
-     "h": 16
+     "h": 16,
+     "tol": 1
     },
     {
      "name": "relocate",
      "sel": "[data-figma-node='5812:22884']",
-     "x": 531,
-     "y": 478,
+     "x": 645,
+     "y": 521.5,
      "w": 185,
-     "h": 11
+     "h": 11,
+     "tol": 1
     },
     {
      "name": "CHDWCK glyphs",
      "sel": "[data-figma-node='5812:22885'] img",
      "x": 0,
-     "y": 535,
+     "y": 580.51,
      "w": 1440,
-     "h": 290,
-     "why": "the outlined export, clipped to the frame like Figma; glyph top measured at 535 in the Figma render"
+     "h": 293,
+     "why": "his live text outlined and clipped to the frame; glyph tops at 580.51 (render bounds)"
     },
     {
      "name": "works section",
@@ -228,13 +233,13 @@
      "x": 0,
      "y": 899.5,
      "w": 1440,
-     "h": 1069.99
+     "h": 1210.99
     },
     {
      "name": "Selected works",
      "sel": "[data-figma-node='5812:22888']",
-     "x": 40,
-     "y": 1012.5,
+     "x": 518.5,
+     "y": 1064.5,
      "w": 403,
      "h": 46
     },
@@ -242,75 +247,74 @@
      "name": "Mondai card",
      "sel": "[data-figma-node='5812:22891']",
      "x": 40,
-     "y": 1094.5,
+     "y": 1235.5,
      "w": 879,
      "h": 604.99,
-     "tol": 1.5,
-     "why": "the media shows its visible 575.28 of 579.45"
+     "tol": 1.5
     },
     {
      "name": "Mondai name",
      "sel": "[data-figma-node='5812:22894']",
      "x": 40,
-     "y": 1094.5,
-     "w": 65,
+     "y": 1235.5,
+     "w": 66,
      "h": 14,
      "tol": 2,
-     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+     "why": "sizes snapped to text styles, as the plan sets out"
     },
     {
      "name": "Mondai slashes",
      "sel": "[data-figma-node='5812:22895']",
-     "x": 116.05,
-     "y": 1096,
+     "x": 117.06,
+     "y": 1237,
      "w": 11,
      "h": 11,
      "tol": 2,
-     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+     "why": "sizes snapped to text styles, as the plan sets out"
     },
     {
      "name": "Mondai kind",
      "sel": "[data-figma-node='5812:22896']",
-     "x": 138.11,
-     "y": 1097,
-     "w": 174,
+     "x": 139.11,
+     "y": 1238,
+     "w": 170,
      "h": 9,
-     "tol": 4.5,
-     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+     "tol": 2.5,
+     "why": "sizes snapped to text styles, as the plan sets out"
     },
     {
      "name": "Mondai desc",
      "sel": "[data-figma-node='5812:22898']",
-     "x": 612.64,
-     "y": 1096.5,
+     "x": 609.64,
+     "y": 1237.5,
      "w": 136,
      "h": 10,
-     "tol": 3,
-     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+     "tol": 2
     },
     {
      "name": "Mondai media",
      "sel": "[data-figma-node='5812:22899']",
      "x": 40,
-     "y": 1124.21,
+     "y": 1265.21,
      "w": 879,
-     "h": 575.28
+     "h": 579.45,
+     "why": "the master shows all of the media, 4.17 past the card box"
     },
     {
      "name": "Learn more",
      "sel": "[data-figma-node='5812:22904']",
      "x": 383.39,
-     "y": 1374.81,
+     "y": 1516.08,
      "w": 184,
      "h": 48,
-     "why": "component at full size, centered where Figma draws it at 98.5 percent (384.73, 1375.64, 181.32 by 46.46)"
+     "why": "component at full size, centered where the master draws it at 98.2 percent (384.73, 1516.64, 181.32 by 46.89)"
     },
     {
      "name": "Haven card",
      "sel": "[data-figma-node='5812:22905']",
      "x": 957,
-     "y": 1094.5,
-     "w": 435,
+     "y": 1235.5,
+     "w": 443,
      "h": 604.88,
      "tol": 1.5,
      "why": "the link hugs its content in code"
@@ -319,43 +323,43 @@
      "name": "Haven name",
      "sel": "[data-figma-node='5812:22907']",
      "x": 957,
-     "y": 1234.66,
-     "w": 55,
+     "y": 1367.67,
+     "w": 56,
      "h": 14,
      "tol": 2,
-     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+     "why": "sizes snapped to text styles, as the plan sets out"
     },
     {
      "name": "Haven desc",
      "sel": "[data-figma-node='5812:22908']",
-     "x": 1186.79,
-     "y": 1236.66,
-     "w": 138,
+     "x": 1187.79,
+     "y": 1369.67,
+     "w": 140,
      "h": 10,
-     "tol": 3,
-     "why": "sizes snapped to text styles, as the plan sets out (19.64 to Heading/20 and so on)"
+     "tol": 2,
+     "why": "sizes snapped to text styles, as the plan sets out"
     },
     {
      "name": "Haven media",
      "sel": "[data-figma-node='5812:22909']",
      "x": 957,
-     "y": 1264.38,
-     "w": 435,
-     "h": 435
+     "y": 1397.38,
+     "w": 443,
+     "h": 443
     },
     {
      "name": "about story row",
      "sel": "[data-figma-node='5812:22915']",
      "x": 0,
-     "y": 1968.99,
+     "y": 2109.99,
      "w": 1440,
-     "h": 568.11
+     "h": 543
     },
     {
      "name": "About label",
      "sel": "[data-figma-node='5812:22919']",
      "x": 40,
-     "y": 2001.99,
+     "y": 2142.99,
      "w": 53,
      "h": 14
     },
@@ -363,23 +367,23 @@
      "name": "About body",
      "sel": "[data-figma-node='5812:22920']",
      "x": 741,
-     "y": 2001.99,
-     "w": 649,
+     "y": 2142.99,
+     "w": 595,
      "h": 430
     },
     {
      "name": "role row",
      "sel": "[data-figma-node='5812:22921']",
      "x": 0,
-     "y": 2537.1,
+     "y": 2652.99,
      "w": 1440,
-     "h": 194.11
+     "h": 208
     },
     {
      "name": "Current role",
      "sel": "[data-figma-node='5812:22925']",
      "x": 40,
-     "y": 2573.1,
+     "y": 2688.99,
      "w": 105,
      "h": 14
     },
@@ -387,7 +391,7 @@
      "name": "2024 - current",
      "sel": "[data-figma-node='5812:22926']",
      "x": 40,
-     "y": 2598.1,
+     "y": 2713.99,
      "w": 95,
      "h": 10
     },
@@ -395,7 +399,7 @@
      "name": "role body",
      "sel": "[data-figma-node='5812:22927']",
      "x": 740,
-     "y": 2573.1,
+     "y": 2688.99,
      "w": 650,
      "h": 92
     },
@@ -403,11 +407,13 @@
      "name": "footer",
      "sel": "[data-figma-node='5812:22998']",
      "x": 0,
-     "y": 2730.71,
+     "y": 2860.49,
      "w": 1440,
-     "h": 993
+     "h": 777,
+     "tol": 1.5
     }
-   ]
+   ],
+   "source": "Portfolio Design IarvWaqjIwrZ2afQmMxKm6, VC master 4494:5909, read 10 Nov 2026 (docs/FIGMA_SYNC_2026-11-10.md). The Testimonials section (2860.49 to 3853.99) is on hold at his ask and is cut from the render and the boxes; the footer is moved up by its 993.5."
   },
   "framework": {
    "frame": "5812:16446",
