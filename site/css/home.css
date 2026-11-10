@@ -32,16 +32,16 @@
 
 /* Selected works, 5812:22886 */
 .works {
-  margin-top: -0.5px; padding: 112px 0 270px;
+  margin-top: -0.5px; padding: 165px 0 270px;
   box-shadow: inset 0 1px 0 var(--neutral-800);
 }
 .works__title {
-  justify-self: start;
+  grid-column: 1 / -1; justify-self: center;
   font: var(--heading-64); letter-spacing: var(--heading-64-track); color: var(--neutral-100);
   padding-inline-end: 0.04em;
   text-box: trim-both cap alphabetic;
 }
-.works__cards { display: flex; align-items: stretch; gap: 38px; margin-top: 36px; padding-inline: var(--grid-margin); }
+.works__cards { display: flex; align-items: stretch; gap: 38px; margin-top: 125px; padding-inline: var(--grid-margin); }
 
 .work-card { display: flex; flex-direction: column; gap: 15.71px; color: inherit; text-decoration: none; }
 /* Card widths, the description offset and Learn more are shares of the Figma sizes (879 and 435 of the
@@ -103,8 +103,8 @@
 /* About, 5812:22913 */
 .about { margin-top: -0.5px; }
 .about__row { align-items: start; box-shadow: inset 0 1px 0 var(--neutral-800); }
-.about-story { min-height: 568.11px; padding-top: 33px; }
-.about-role { min-height: 194.11px; padding-top: 36px; }
+.about-story { min-height: 543px; padding-top: 33px; }
+.about-role { min-height: 208px; padding-top: 36px; }
 .about__label {
   font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-300);
   white-space: nowrap; padding-inline-end: 0.02em;
@@ -122,7 +122,7 @@
   font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-300);
   text-box: trim-both cap alphabetic;
 }
-.about-story .about__body { width: min(649px, 100%); margin-left: 1px; }
+.about-story .about__body { width: min(595px, 100%); margin-left: 1px; }
 .about__body > * + * { margin-top: 26px; }
 .about__body ul { padding-left: 30px; }
 

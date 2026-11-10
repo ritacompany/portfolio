@@ -6,6 +6,18 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### Figma source corrected, 10 Nov (read this first)
+The source of truth for the site is his Portfolio Design file (`IarvWaqjIwrZ2afQmMxKm6`), page VC,
+frame **Master (cleanup copy)** `4494:5909` (section Main). The "Transported" frames in the Mondai file
+(`5RO0m4bYYrTvbiaOgaU3tI`, page CS) were copies made while his other account could only reach the
+Mondai file. They have gone stale, so check every page against VC, not against them. The note further
+down calling the Portfolio Design file superseded is wrong. `scripts/figma-pages.json` still measures
+Home against the stale copy and needs re-reading from `4494:5909`.
+Synced from the master on 10 Nov: Selected works title centered, with 165 above it and 125 to the cards;
+About body replaced by his three paragraphs (the superpowers lead and list are gone, and his "I have
+have" fixed to "I have"), 595 wide; About rows 543 and 208. Not built: the Testimonials section
+(Figma copy is placeholder, "Vanessa Bumpkin") and the Testimonials footer link that goes with it.
+
 ### Checkpoint, 9 Nov late (second account, Claude Code on his Mac)
 - His phone review list is `docs/REVIEW_2026-11-09.md` (15 rows); `node .unlazy/review-11-09/check.mjs ledger`
   fails until each is fixed, answered or his task. Nothing from it is in site/css yet; all of it is on the preview.
