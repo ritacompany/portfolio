@@ -6,7 +6,19 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
-### Works scroll rebuilt from Seth Lukin's cards, 10 Nov (latest)
+### Evening batch, 10 Nov (latest)
+His list and owners: `.unlazy/nov10-batch/PLAN.md` (local). Done here: halftone band above the footer
+removed on Home, Haven and Framework; clocks show seconds and tick every second; the CHD then WCK load
+animation (he had not asked for it) moved out of the preview to `site/motion-lab/home-load/`. Works reveal
+re-read on sethlukin.com: it clears from the top with a soft band of page colour squares in an ordered
+checker, dense at the bottom; ours was random static with a narrow edge. Rebuilt with a 4 by 4 Bayer
+checker, a band 0.7 of the image tall, starting when the image top is 0.85 down the screen and done when
+the card's middle is 0.45 down; it follows the scroll both ways and resets below the screen, so it plays
+again. Sessions: "Dark edit panel for every preview slider" (edit-panel.*, scroll-feel.js), "Carry his
+Figma updates into the site" (site/css, fonts) and "Haven style motion on the Mondai case study"
+(mondai-motion.*). Home motion moves its sliders into the edit panel once that API lands.
+
+### Works scroll rebuilt from Seth Lukin's cards, 10 Nov
 His yes to rebuilding the works scroll from the reference (docs/motion/home-load/style_guide.md, "Selected
 works on the reference"). The Haven lag and the title hold are gone. Each card rises 150 px when its image
 comes into view, on a spring with no bounce (stiffness 500, damping 100, mass 1); Haven's image sits 132 px

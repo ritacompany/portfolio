@@ -23,7 +23,9 @@
     worksGap: 320,   // px, hero to the Selected works title (was 165)
     titleAt: 38,     // vh, where the title holds
     hold: 70,        // vh, scroll the title holds alone before the first card comes in
-    revealAt: 0.5,   // the dissolve is done when the card's middle reaches this far down the screen (the reference: 0.9)
+    revealFrom: 0.85, // the reveal starts when the image's top is this far down the screen (1 is the bottom edge)
+    revealAt: 0.45,  // and is done when the card's middle reaches this far down
+    band: 0.7,       // width of the soft checker edge, as a share of the image height
     cell: 3,         // px, size of the dissolve squares (the reference: 3)
     rise: 150,       // px each card rises as it comes in (the reference: 150)
     titleHold: 0,    // 1 holds the title while the cards rise (the first pass); 0 scrolls it, as the reference
@@ -120,10 +122,12 @@
 
   // ---- Cards, from Seth Lukin's works (docs/motion/home-load/style_guide.md, "Selected works on the
   //      reference"). Each card rises 150 px once it comes in, on a spring with no bounce (stiffness 500,
-  //      damping 100, mass 1, about 1.9 s). Its image starts covered in the page colour, which dissolves
-  //      top to bottom in 3 px squares as the card travels up the screen: done once the card's middle is
-  //      within 40 percent of the screen centre, or its bottom is 95 percent up. When the scroll stops part
-  //      way the dissolve catches up in about 0.38 s. It never covers again.
+  //      damping 100, mass 1, about 1.9 s). Its image starts covered in the page colour, which clears from
+  //      the top down as the card travels up the screen, as on sethlukin.com (re-read live, 10 Nov): the
+  //      edge is a soft band of page colour squares in an ordered checker pattern (4 by 4 Bayer), dense at
+  //      the bottom, thinning toward the clear top. It follows the scroll both ways and resets once the
+  //      card has gone back below the screen, so it plays again each time (his ask). When the scroll stops
+  //      part way it catches up in about 0.38 s.
   const SPRING_K = 500, SPRING_D = 100, CATCH = 0.38;
   const PAGE = [4, 4, 5]; // Neutral/900, the page colour
   function spring(t, k, d) {
@@ -134,8 +138,8 @@
     const r1 = -w0 * (z - Math.sqrt(z * z - 1)), r2 = -w0 * (z + Math.sqrt(z * z - 1));
     return 1 - (r2 * Math.exp(r1 * t) - r1 * Math.exp(r2 * t)) / (r2 - r1);
   }
-  // Same squares every load (a fixed seed), so the dissolve reads the same each time.
-  const rand = (seed) => () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
+  // Ordered dither thresholds, so the squares form the reference's regular checker, not random static.
+  const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + 0.5) / 16);
   const medias = cards.map((c) => c.querySelector(".work-card__media")).filter(Boolean);
   const reveals = cards.map((card, n) => {
     const media = card.querySelector(".work-card__media");
@@ -149,17 +153,18 @@
     const cols = Math.max(1, Math.ceil(w / V.cell)), rows = Math.max(1, Math.ceil(h / V.cell));
     if (r.canvas.width === cols && r.canvas.height === rows && r.v) return;
     r.canvas.width = cols; r.canvas.height = rows;
-    const next = rand(r.seed);
-    r.v = new Float32Array(cols * rows);
-    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) r.v[y * cols + x] = (y / rows) * 0.72 + next() * 0.28;
+    r.v = new Float32Array(cols * rows); r.y = new Float32Array(cols * rows);
+    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) { r.v[y * cols + x] = BAYER[(x % 4) + (y % 4) * 4]; r.y[y * cols + x] = (y + 0.5) / rows; }
     r.img = r.ctx.createImageData(cols, rows);
     r.drawn = -1;
   };
   const drawCanvas = (r) => {
     if (Math.abs(r.p - r.drawn) < 0.002) return;
-    const d = r.img.data, v = r.v;
+    // Cover at each row: 0 above the moving edge, 1 below its soft band (width V.band of the image).
+    const d = r.img.data, v = r.v, yy = r.y, B = Math.max(0.01, V.band), front = r.p * (1 + B) - B;
     for (let i = 0; i < v.length; i++) {
-      const o = i * 4, on = v[i] >= r.p;
+      const c = Math.min(1, Math.max(0, (yy[i] - front) / B));
+      const o = i * 4, on = v[i] < c;
       d[o] = PAGE[0]; d[o + 1] = PAGE[1]; d[o + 2] = PAGE[2]; d[o + 3] = on ? 255 : 0;
     }
     r.ctx.putImageData(r.img, 0, 0);
@@ -222,16 +227,18 @@
     for (const r of reveals) {
       if (r.done || !r.canvas.isConnected) continue;
       const rect = r.media.getBoundingClientRect();
+      // Back below the screen: reset, so the rise and the reveal play again next time (his ask).
+      if (r.enteredAt !== null && rect.top - (r.lift || 0) > vh + 4) { r.enteredAt = null; }
       // A card comes in when its image does (Haven's sits 132 px lower, so it follows Mondai).
       if (r.enteredAt === null && rect.top < vh) r.enteredAt = now;
       const t = r.enteredAt === null ? 0 : now - r.enteredAt;
-      r.card.style.transform = `translateY(${(V.rise * (1 - spring(t, SPRING_K, SPRING_D))).toFixed(2)}px)`;
-      const endTop = V.revealAt * vh - rect.height / 2;
-      r.target = Math.max(r.target, clamp((vh - rect.top) / Math.max(1, vh - endTop)));
+      r.lift = V.rise * (1 - spring(t, SPRING_K, SPRING_D));
+      r.card.style.transform = `translateY(${r.lift.toFixed(2)}px)`;
+      const startTop = V.revealFrom * vh, endTop = V.revealAt * vh - rect.height / 2;
+      r.target = clamp((startTop - rect.top) / Math.max(1, startTop - endTop));
       r.p += (r.target - r.p) * (1 - Math.exp(-dt / (CATCH / 3)));
-      if (r.target >= 1 && r.p > 0.995) r.p = 1;
+      if (Math.abs(r.target - r.p) < 0.004) r.p = r.target;
       drawCanvas(r);
-      if (r.p >= 1 && t > 2.2) finish(r);
     }
     requestAnimationFrame(frame);
   };
@@ -260,7 +267,9 @@
     ["worksGap", "Gap above Selected works", 120, 800, 10, "px"],
     ["titleAt", "Title holds at", 15, 60, 1, "vh"],
     ["hold", "Title holds alone for", 0, 160, 5, "vh of scroll"],
-    ["revealAt", "Reveal done when the card's middle is at", 0.3, 0.95, 0.05, "of screen"],
+    ["revealFrom", "Reveal starts when the image top is at", 0.4, 1, 0.05, "of screen"],
+    ["revealAt", "Reveal done when the card's middle is at", 0.1, 0.9, 0.05, "of screen"],
+    ["band", "Width of the checker edge", 0.1, 1.5, 0.05, "of image"],
     ["cell", "Reveal square size", 2, 16, 1, "px"],
     ["rise", "Cards rise by", 0, 300, 10, "px"],
     ["titleHold", "Title holds in place (0 off, 1 on)", 0, 1, 1, ""],
@@ -281,7 +290,7 @@
   });
   panel.addEventListener("input", (e) => {
     const k = e.target.dataset.k; if (!k) return; V[k] = parseFloat(e.target.value); applyCss(); save(); show();
-    if (k === "cell") reveals.forEach((r) => { if (!r.done) { r.v = null; sizeCanvas(r); drawCanvas(r); } });
+    if (k === "cell" || k === "band") reveals.forEach((r) => { if (!r.done) { r.v = null; sizeCanvas(r); drawCanvas(r); } });
   });
   panel.querySelector("[data-t]").addEventListener("click", (e) => {
     const closed = panel.toggleAttribute("data-closed"); e.target.textContent = closed ? "Open" : "Close";
