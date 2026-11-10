@@ -17,7 +17,7 @@ animations, which is right after the page is ready.
 - 1.2 s: SETH rises 150 px into place while it fades in from 0. 0.4 s, ease (0.5, 0, 0.88, 0.77), an ease
   in: it is still moving fast when it lands.
 - 1.6 s: LUKIN does the same, 0.4 s, ease (0, 0.72, 0.56, 1), an ease out: it lands softly.
-- Then: a pixel character drops in between the two words with a "Hi there!" bubble (Lottie), and a
+- Then: a pixel character drops in between the two words with a "Hi there!" bubble (Lottie). A
   WebGL marble texture (Unicorn Studio) sits behind everything at 64 percent.
 - On scroll: the hero is fixed. A light sheet with rounded top corners slides up over it while the hero
   fades to 0 and shrinks to 0.8. That rounded sheet, framed by the dark hero around and above it, is
@@ -50,7 +50,7 @@ own beat 0.4 s apart, so the name assembles left then right.
   the screen.
 
 ## What not to take
-- The rounded light sheet sliding over a fixed hero, and the frame it leaves around the page (his ask).
+- The rounded light sheet sliding over a fixed hero and the frame it leaves around the page (his ask).
 - The fixed hero that fades and shrinks on scroll. His Home scrolls the hero away normally.
 - The pixel character, the speech bubble and the WebGL marble. They are Seth's identity, not a motion.
 - Nothing about the nav animates; it is the frame the hero lands in.
@@ -67,7 +67,7 @@ starts as soon as they are ready, never earlier than the times below.
 ## How it sits with Home motion
 `home-motion.js` owns scroll, the nav's Product Designer exit, the works hold, the card masks and the
 text fades below the hero. This layer touches only the hero's lede, location, Contact and wordmark,
-none of which Home motion animates, and plays once at load, so the two never act on the same element.
+none of which Home motion animates. It plays once at load, so the two never act on the same element.
 The wordmark is drawn as two halves only while it moves; when the load ends the original image is
 back, exactly as the site has it.
 
