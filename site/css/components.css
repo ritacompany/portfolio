@@ -37,12 +37,13 @@
   display: inline-block; text-decoration: none; white-space: nowrap;
   text-box: trim-both cap alphabetic;
 }
-/* State easing (Phase 2): links and context rows ease between their Figma states over 200 ms, the same
-   curve and length as the Small button, so hover reads as one system. Press snaps faster. */
-.link-block, .link-nav, .link-footer, .context, .context__icon, .context__icon::before {
-  transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out);
-}
-.link-block:active, .link-nav:active, .link-footer:active, .context:active { transition-duration: 80ms; }
+/* Hover rule for every link (his ruling, 9 Nov): a highlight changes the text colour and, on the big
+   links, the light block behind it; no letter moves or changes width, ever. Checked letter by letter by
+   scripts/verify-hover-still.mjs. The swap is instant, in and out: a 200 ms fade showed about ten frames
+   where the text and the block were both mid grey, which read as a flicker. Same for the case study
+   rows and the Small button fill; the Small button keeps its press, which is a press, not a hover. */
+.link-block, .link-nav, .link-footer, .footer__email, .footer__out, .footer__out img, .footer__back, .footer__back img,
+.context, .context__icon, .context__icon::before, .ending-bar a { transition: none; }
 
 .link-block {
   padding: 7px 6px;
@@ -54,21 +55,44 @@
 
 .link-nav {
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
-  color: var(--neutral-050);
+  color: var(--neutral-300);
 }
-/* Hover and pressed keep the default weight (his note, 9 Nov): the Figma variant switches to Bold, which
-   widens the word and shifts its neighbours, so it reads as the word changing shape rather than a
-   highlight. Only the block behind the word and the text colour change. */
+/* Small all-caps link hover (nav here, LinkedIn and Back to top in the footer; his approval, 10 Nov).
+   No block: the word brightens from Neutral/300 to Neutral/050 and gets one weight heavier. Satoshi's
+   real Medium and Bold are wider than Regular and made the word change shape, so the extra weight is an
+   outline in the text's own colour: the strokes thicken, every letter keeps its exact width and place.
+   Measured in the font files, Medium's stems are 0.026 of the type size wider than Regular's, 0.36 px at
+   14 px. Checked letter by letter by scripts/verify-hover-still.mjs, which cannot see stroke weight. */
 .link-nav:hover, .link-nav.is-hover,
-.link-nav:active, .link-nav.is-pressed { color: var(--neutral-900); background: var(--neutral-200); }
+.link-nav:active, .link-nav.is-pressed {
+  color: var(--neutral-050); background: none; box-shadow: none;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  -webkit-text-stroke: 0.36px currentColor;
+}
+/* Haven's nav turns dark over its light bridge (haven.css): dark on light text takes the Mac's normal
+   smoothing, as on the big links below. */
+.site-nav.is-on-light .link-nav:is(:hover, :active) { -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
 .link-nav .gap { margin-left: 4px; }
 
 .link-footer {
   font: var(--heading-24); letter-spacing: var(--heading-24-track);
   color: var(--neutral-100); padding-inline-end: 0.04em;
 }
+/* Big link hover (footer links and the email below; his approval, 10 Nov). Dark text on a close light
+   block in the text's own resting colour, Neutral/100. The block is trimmed to the capitals and the
+   baseline and reaches 0.02em further each way, since Satoshi's round letters overshoot by 0.013em;
+   a shadow in the block colour, so the layout does not move.
+   Weight: base.css draws the page with the Mac's thin smoothing, right for light on dark. On dark text
+   over the block it thins the strokes, and dark on light already reads lighter, so the word looked
+   lighter and wider spaced. The Mac's normal smoothing plus a 0.05 px outline in the text colour make
+   it read as heavy as at rest. Only the drawing of the strokes changes; no letter moves. Mac only. */
 .link-footer:hover, .link-footer.is-hover,
-.link-footer:active, .link-footer.is-pressed { color: var(--neutral-900); background: var(--neutral-200); }
+.link-footer:active, .link-footer.is-pressed {
+  color: var(--neutral-900); background: var(--neutral-100);
+  box-shadow: 0 0.02em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100);
+  -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto;
+  -webkit-text-stroke: 0.05px currentColor;
+}
 
 /* Badge, 5812:22599. Type 1 (41 tall), Type 2 (59 tall) in White, Black, Locked. */
 .badge {
@@ -171,7 +195,7 @@
   font: 700 24px/1.16 var(--font); letter-spacing: var(--heading-24-track); text-transform: uppercase;
   color: var(--neutral-100); background: none; white-space: nowrap; text-decoration: none; cursor: pointer;
   text-box: trim-both cap alphabetic;
-  transition: background-color 200ms var(--ease-quart-out), color 200ms var(--ease-quart-out), border-color 200ms var(--ease-quart-out), transform 120ms var(--ease-quart-out);
+  transition: transform 120ms var(--ease-quart-out);
 }
 /* States, his pick 9 Nov (option A on site/dev/buttons/): the outline fills and the text turns dark;
    pressed sinks to Neutral/300 and scales to 98 percent. */
@@ -201,6 +225,13 @@
   color: var(--neutral-550); text-decoration: none; white-space: nowrap;
 }
 .footer__back img { width: 12.381px; height: 13px; flex: none; }
+/* Small link hover, as the nav (above): Neutral/550 to Neutral/050, the outline, the arrow turns light. */
+.footer__back:is(:hover, :active) {
+  color: var(--neutral-050); background: none; box-shadow: none;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  -webkit-text-stroke: 0.36px currentColor;
+}
+.footer__back:is(:hover, :active) img { filter: brightness(0) invert(0.95); }
 .footer__back span { text-box: trim-both cap alphabetic; }
 .footer__nav { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin-top: 64px; list-style: none; padding: 0; }
 
@@ -215,6 +246,14 @@
   text-decoration: underline; text-underline-position: from-font; text-decoration-thickness: from-font;
   padding-inline-end: 0.04em;
   text-box: trim-both cap alphabetic;
+}
+/* Big link hover, as the footer links (above). Same weight and underline at rest and on hover; the
+   block is also extended down past the underline. */
+.footer__email:is(:hover, :active) {
+  color: var(--neutral-900); background: var(--neutral-100);
+  box-shadow: 0 0.4em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100);
+  -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto;
+  -webkit-text-stroke: 0.05px currentColor;
 }
 .footer__note { display: flex; flex-direction: column; gap: 10px; margin-top: 25px; width: 316.782px; }
 .footer__note p {
@@ -247,10 +286,17 @@
 .footer__out {
   display: inline-flex; align-items: center; gap: 10px;
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
-  color: var(--neutral-100); text-decoration: none; white-space: nowrap;
+  color: var(--neutral-300); text-decoration: none; white-space: nowrap;
 }
 .footer__out[hidden] { display: none; }
-.footer__out img { width: 10.833px; height: 10.833px; flex: none; }
+.footer__out img { width: 10.833px; height: 10.833px; flex: none; filter: brightness(0.87); }
+/* Small link hover, as the nav (above): Neutral/300 to Neutral/050, the outline, the arrow at full white. */
+.footer__out:is(:hover, :active) {
+  color: var(--neutral-050); background: none; box-shadow: none;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  -webkit-text-stroke: 0.36px currentColor;
+}
+.footer__out:is(:hover, :active) img { filter: none; }
 .footer__out span { text-box: trim-both cap alphabetic; }
 
 /* Ending base, 5733:14576: the bar between a case study and the footer. Three columns of 414 at
@@ -259,8 +305,16 @@
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 59px; align-items: center;
   height: 44px; padding: 10px var(--grid-margin); background: var(--neutral-050); color: var(--neutral-1000);
 }
-.ending-bar a { color: inherit; text-decoration: none; }
+/* Dark text on the light bar takes the Mac's normal smoothing, as the big link hovers do (above). */
+.ending-bar a { color: inherit; text-decoration: none; -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
+/* End bar hover (his yes, 9 Nov): the bar is light, so the highlight is inverted, a dark block and light
+   text, which takes the thin smoothing. The arrows keep their white squares. */
+.ending-bar a:is(:hover, :active) {
+  color: var(--neutral-050); background: var(--neutral-900);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
 .ending-bar__prev, .ending-bar__next { display: flex; align-items: center; gap: 4px; }
+.ending-bar__prev { justify-self: start; }
 .ending-bar__next { justify-self: end; }
 .ending-bar__prev img, .ending-bar__next img { width: 24px; height: 24px; background: var(--neutral-000); }
 .ending-bar__next img { transform: scaleX(-1); }

@@ -5,166 +5,16 @@
       Today it is Label/12 C in Bold at Neutral/200. */
 .work-card__kind { font-weight: 400; color: var(--neutral-300); }
 
-/* 2. Hover rule for every link (his ruling, 9 Nov): a highlight is the text colour and the light block
-      behind it, nothing else. No weight, spacing, size or position change on any element, ever.
-      Checked letter by letter by scripts/verify-hover-still.mjs.
-      The swap is instant, in and out (his note, 9 Nov: a flicker when moving away). The 200 ms fade
-      showed about ten frames where the text and the block were both mid grey, which read as a flicker. */
-.link-nav, .link-footer, .link-block, .footer__email, .footer__out, .footer__out img, .footer__back, .footer__back img { transition: none; }
-/*    Same for the case study rows and the Small button fill (a fade there shows the same grey on grey
-      frames). The Small button keeps its 98 percent press, which is a press, not a hover. */
-.context, .context__icon, .context__icon::before { transition: none; }
-.button-sm { transition: transform 120ms var(--ease-quart-out); }
-
-/* 3. Footer email gets the same cover effect as the footer links (his comment, 9 Nov): the light block
-      behind it and dark text. */
-/* Same weight and underline at rest and on hover (his comment: the underline vanished and the shape
-   changed). The block is trimmed to the baseline, so it is extended down past the underline with a
-   shadow of the same colour; nothing in the layout moves. */
-.footer__email:hover, .footer__email:active { color: var(--neutral-900); background: var(--neutral-200); box-shadow: 0 0.4em 0 var(--neutral-200); }
-
 /* 4. Footer portraits: no light edge around the pills (his comment, 9 Nov: "neither should have a
       stroke"). The pill background was clipped separately from the photo, so its light grey leaked
       into the curved edge as a thin rim, most visible against the black suit. Clipping the pill and
       its photo as one shape removes the rim. */
 .footer__pill { border-radius: 0; overflow: visible; clip-path: inset(0 round 66.349px); }
 
-/* SUPERSEDED by 15 for the hover (no block on the small links). 5. LinkedIn (and Resume, when it is back) get the same cover effect (his comment, 9 Nov): light block,
-      dark text, and the arrow turns dark with the text so it stays visible. */
-.footer__out { justify-self: start; }
-.footer__out:hover, .footer__out:active { color: var(--neutral-900); background: var(--neutral-200); }
-.footer__out:hover img, .footer__out:active img { filter: brightness(0); }
-
-/* SUPERSEDED by 15 for the hover (no block on the small links). 6. Back to top gets the same cover effect (his comment, 9 Nov): light block, dark text, the arrow turns
-      dark with it. Colour and block only; nothing moves. */
-.footer__back:hover, .footer__back:active { color: var(--neutral-900); background: var(--neutral-200); }
-.footer__back:hover img, .footer__back:active img { filter: brightness(0); }
-
 /* 7. Haven's nav faded its text colour over 0.3 s so it could ease to dark over the light bridge. That
       same fade ran on hover and showed the grey flicker, so the nav colour now swaps at once, on hover
       and when it turns dark over the bridge. */
 .site-nav .link-nav { transition: none; }
-
-/* 8. Case study end bar links get the cover highlight too (his yes, 9 Nov). The bar is light, so the
-      highlight is inverted: dark block, light text. The arrows keep their white squares. Instant swap. */
-.ending-bar a { transition: none; }
-.ending-bar__prev { justify-self: start; }
-.ending-bar a:hover, .ending-bar a:active { color: var(--neutral-050); background: var(--neutral-900); }
-
-/* 9. Hover text weight (his note, 9 Nov: "contact when I hover, I can tell there's a bigger gap between
-      the letters"). Nothing moves; the letters draw thinner. base.css turns off the Mac's normal text
-      smoothing for the whole page (-webkit-font-smoothing: antialiased). That setting suits light text on
-      a dark page, which a Mac otherwise draws a little heavy. On dark text over a light block it makes the
-      strokes noticeably thinner, and our eyes already see dark on light as thinner than light on dark, so
-      the same word looks lighter and more spaced out. Fix: the Mac's normal smoothing wherever text is dark
-      on light, the thin setting only where it is light on dark. Only the way the strokes are drawn
-      changes; every letter keeps its exact width and place. Mac only (Windows and Linux ignore both
-      properties). The end bar is the other way round: dark text at rest, light text on hover. */
-.link-nav:hover, .link-nav:active,
-.link-footer:hover, .link-footer:active,
-.footer__email:hover, .footer__email:active,
-.footer__out:hover, .footer__out:active,
-.footer__back:hover, .footer__back:active,
-.ending-bar a { -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
-.ending-bar a:hover, .ending-bar a:active { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-/*    Before and after: the Before button in the Hover tester panel (bottom left) switches back to the old drawing. */
-html.hover-old .link-nav, html.hover-old .link-footer, html.hover-old .footer__email,
-html.hover-old .footer__out, html.hover-old .footer__back, html.hover-old .ending-bar a { -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale !important; }
-
-/* 10. A touch more weight on the highlighted text (his note, 9 Nov: closer, but the highlighted text still
-       reads a little lighter). A hairline outline in the text's own colour thickens every stroke without
-       touching any letter's width or place, which is what a heavier grade of the font would do; Satoshi
-       has no grades. The amount is the "Text on the light block" slider in the Hover tester panel.
-       Dark text on the light block only; the end bar is left as it is. */
-.link-nav:hover, .link-nav:active,
-.link-footer:hover, .link-footer:active,
-.footer__email:hover, .footer__email:active,
-.footer__out:hover, .footer__out:active,
-.footer__back:hover, .footer__back:active { -webkit-text-stroke: var(--hover-weight, 0.05px) currentColor; }
-html.hover-old .link-nav, html.hover-old .link-footer, html.hover-old .footer__email,
-html.hover-old .footer__out, html.hover-old .footer__back { -webkit-text-stroke: 0 !important; }
-
-/* 11. The block hugs the letters again (his note, 9 Nov: "the style that I had before with it like really
-       close is actually part of the point"). It is trimmed from the top of the capitals to the baseline,
-       as before, and now reaches 0.02 of the type size further each way. Measured in the Satoshi files:
-       the curves of O, C and S and the tall strokes of l, d and k reach 0.013 above the capitals and
-       0.012 below the baseline; those slivers were drawn dark on the black page. The extra 0.02 covers
-       them and nothing more, so the close look stays. A shadow in the block colour; the layout does
-       not move. (Version 12 had a roomier block; this replaces it.) */
-.link-nav:is(:hover, :active), .link-footer:is(:hover, :active),
-.footer__out:is(:hover, :active), .footer__back:is(:hover, :active) {
-  box-shadow: 0 0.02em 0 var(--neutral-200), 0 -0.02em 0 var(--neutral-200);
-}
-.footer__email:is(:hover, :active) {
-  box-shadow: 0 0.4em 0 var(--neutral-200), 0 -0.02em 0 var(--neutral-200);
-}
-
-/* 12. SUPERSEDED by 15, not reachable on the preview any more; delete when shipping. Was: three ways to
-       highlight the small links (nav, Back to top, LinkedIn), his ask, 9 Nov. Switch with
-       1, 2 and 3 on the preview. The big footer links and email keep the block either way.
-       1. Block: the close light block (11 above). The default.
-       2. Colour only: no block. Back to top goes from grey to white; the nav and LinkedIn, already
-          white, go to mid grey. His suggestion for Back to top.
-       3. Line: no block. A 1 px line appears under the word, in the text colour. */
-html.small-2 :is(.link-nav, .footer__out, .footer__back):is(:hover, :active),
-html.small-3 :is(.link-nav, .footer__out, .footer__back):is(:hover, :active) {
-  background: none; box-shadow: none; -webkit-text-stroke: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-}
-html.small-2 .footer__back:is(:hover, :active) { color: var(--neutral-050); }
-html.small-2 .footer__back:is(:hover, :active) img { filter: brightness(0) invert(0.95); }
-html.small-2 :is(.link-nav, .footer__out):is(:hover, :active) { color: var(--neutral-500); }
-html.small-2 .footer__out:is(:hover, :active) img { filter: brightness(0.6); }
-html.small-3 .link-nav:is(:hover, :active) { color: var(--neutral-050); }
-html.small-3 .footer__out:is(:hover, :active) { color: var(--neutral-100); }
-html.small-3 .footer__back:is(:hover, :active) { color: var(--neutral-550); }
-html.small-3 :is(.footer__out, .footer__back):is(:hover, :active) img { filter: none; }
-html.small-3 :is(.link-nav, .footer__out span, .footer__back span) { text-decoration: underline 1px transparent; text-underline-offset: 4px; }
-html.small-3 :is(.link-nav, .footer__out, .footer__back):is(:hover, :active),
-html.small-3 :is(.footer__out, .footer__back):is(:hover, :active) span { text-decoration-color: currentColor; }
-
-/* 13. The small all-caps links get bolder on hover instead of the block (his ask, 9 Nov): the nav, LinkedIn
-       and Back to top. Option 4, now the default; 1, 2 and 3 are still there to compare. Satoshi's real
-       Medium and Bold are wider than Regular, which made the word change shape, so the extra weight is
-       drawn as an outline in the text's own colour: the strokes thicken, the letters keep their exact
-       widths and places. Measured in the font files: Regular's stems are 0.072 of the type size, Medium's
-       0.098, Bold's 0.128. At 14 px that is 0.36 px more for Medium and 0.78 px more for Bold. The
-       default is Medium's 0.36; the "How bold" slider in the Hover tester panel sets it. Superseded by 15. */
-html.small-4 :is(.link-nav, .footer__out, .footer__back):is(:hover, :active) {
-  background: none; box-shadow: none;
-  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  -webkit-text-stroke: var(--bold-weight, 0.36px) currentColor;
-}
-html.small-4 .link-nav:is(:hover, :active) { color: var(--neutral-050); }
-html.small-4 .site-nav.is-on-light .link-nav:is(:hover, :active) { color: var(--neutral-900); -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
-html.small-4 .footer__out:is(:hover, :active) { color: var(--neutral-100); }
-html.small-4 .footer__back:is(:hover, :active) { color: var(--neutral-550); }
-html.small-4 :is(.footer__out, .footer__back):is(:hover, :active) img { filter: none; }
-
-/* 14. The block is the text's own resting colour (his ask, 9 Nov). It was Neutral/200 (#dedee5) for every
-       link. Now: footer links, the email and LinkedIn rest at Neutral/100 (#e8e7ee), so their block is
-       Neutral/100; the nav rests at Neutral/050, Back to top at Neutral/550, and options 1 uses those. */
-.link-footer:is(:hover, :active) { background: var(--neutral-100); box-shadow: 0 0.02em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100); }
-.footer__email:is(:hover, :active) { background: var(--neutral-100); box-shadow: 0 0.4em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100); }
-.footer__out:is(:hover, :active) { background: var(--neutral-100); box-shadow: 0 0.02em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100); }
-.link-nav:is(:hover, :active) { background: var(--neutral-050); box-shadow: 0 0.02em 0 var(--neutral-050), 0 -0.02em 0 var(--neutral-050); }
-.footer__back:is(:hover, :active) { background: var(--neutral-550); box-shadow: 0 0.02em 0 var(--neutral-550), 0 -0.02em 0 var(--neutral-550); }
-
-/* 15. Small links brighten on hover (his ask, 9 Nov). The nav and LinkedIn rest at Neutral/300 (#d2d2db)
-       and go to Neutral/050 (#f2f1f8) on hover; Back to top stays Neutral/550 at rest and goes to
-       Neutral/050. The arrows follow their text. Two versions, on the Hover tester panel buttons:
-       4. "Bolder": brighter and bolder (the outline from 13; the "How bold" slider sets how much).
-       5. "Brighter only".
-       Haven's nav keeps its own dark colour while it sits over the light bridge. */
-.link-nav, .footer__out { color: var(--neutral-300); }
-.footer__out img { filter: brightness(0.87); }
-html:is(.small-4, .small-5) :is(.link-nav, .footer__out, .footer__back):is(:hover, :active) {
-  color: var(--neutral-050); background: none; box-shadow: none;
-  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-}
-html.small-5 :is(.link-nav, .footer__out, .footer__back):is(:hover, :active) { -webkit-text-stroke: 0; }
-html:is(.small-4, .small-5) .footer__out:is(:hover, :active) img { filter: none; }
-html:is(.small-4, .small-5) .footer__back:is(:hover, :active) img { filter: brightness(0) invert(0.95); }
-html:is(.small-4, .small-5) .site-nav.is-on-light .link-nav:is(:hover, :active) { color: var(--neutral-900); -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
 
 /* ---- His phone and tablet review, 9 Nov (docs/REVIEW_2026-11-09.md). Values he may tune sit in the
         variables on :root so a control panel can move them. ---- */
