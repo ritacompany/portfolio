@@ -20,8 +20,8 @@ also added); About with the label column and Body/16 M; footer one screen tall w
 fit and overlap pass 320 to 1366; the overlap check now skips decorative bleed type (aria-hidden plus
 data-bleed), ink measured by hand. verify-1440 still fails boxes and pixels on home exactly as before
 this work (it measures against the stale Transported copy, see below).
-Open with him: Testimonials sits in the menu hidden until the section exists; the menu closes with the
-same burger glyph he drew (no close icon); his lede reads "change out minds", the site keeps "our".
+Open with him: Testimonials sits in the menu hidden until the section exists. The menu now closes with
+his X (`assets/ui/close.svg`, 4929:12498, added by him 10 Nov). His lede reads "change out minds", the site keeps "our".
 
 ### Handoff, 10 Nov, hover highlight (from session "Portfolio: hover highlight"; read with the Figma note below)
 **Where the work is.** Merged into `claude/relaxed-ride-5mlbdu` on 10 Nov at his yes (it came from

@@ -259,6 +259,9 @@
   .menu[data-open] { opacity: 1; }
   .menu__bar { display: flex; align-items: center; }
   .menu__bar .navbar__logo { display: block; }
+  /* His close X, 14 by 14 (4929:12498), in the burger's place; the hit area stays 44 wide. */
+  .menu__close { padding: 15px; margin: -15px -15px -15px auto; }
+  .menu__close img { width: 14px; height: 14px; }
   .menu__body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 64px; margin-top: 218px; }
   .menu__links { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; list-style: none; padding: 0; }
   .menu__links li { display: flex; }
