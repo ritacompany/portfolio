@@ -17,8 +17,8 @@ Check: none ran on the tool from his seat. My browser check exercised the panel 
 ## Causes
 - Cause 1: the request was narrowed to "the values in play" in my Q3 wording, and his answer was taken as approving that scope. | For: Q3 text; his reply was about where (here, not Figma), not what. | Against: the Q3 text did say "type sizes" and "spacing", which he could have read as broad.
 - Cause 2: each control was wired to a condition (hover, tablet width, phone width) that hides its effect on the device he used, and no test checked controls at his width. | For: "Card hover overlay" needs a mouse; "Footer portraits, tablet" applies only at 768 to 1199; he tested on a phone. | Against: two phone controls did work, so this explains "only one worked" but not the scope miss.
-History: fixes/2026-11-09-phase-3-built-without-his-checkpoint.md, same day: built without showing him the shape first. Same family: the shape of what gets built was decided without him seeing it.
-Chosen cause: both. Cause 1 produced the wrong scope; cause 2 made the wrong scope look broken.
+History: third failure in this area, same evening. After this record: (2) a tap to edit card, (3) a phone editing strip built from a mobile UX report. All three were hand-built. The first research report (~/Code/portfolio/reports/designer-editing-systems/REPORT.md, 19 tools) recommended adopting existing tools (tweakpane-css, CSS Studio with Claude Code through MCP) and was never acted on; I answered his "use what others use" request by building my own each time. His verdict: "you just gave me some mobile bullshit thing". Earlier, fixes/2026-11-09-phase-3-built-without-his-checkpoint.md, same day: built without showing him the shape first. Same family: the shape of what gets built was decided without him seeing it.
+Chosen cause: both, plus a third shown by the repeats: each round I patched my own tool instead of adopting what the research found. Per the skill (fixed twice already), patching stops: a fresh session compares two or three existing setups on a real change and keeps the winner.
 
 ## Layer
 Layer: 2
