@@ -22,7 +22,8 @@ the preview from this branch as the checkpoint below says.
 - Small all-caps links (nav, LinkedIn, Back to top): no block. Nav and LinkedIn rest at Neutral/300;
   all three go to Neutral/050 on hover (block 15). Two versions on the preview: "Bolder" (a 0.36 px
   outline, Satoshi Medium's extra stem width at 14 px, block 13) and "Brighter only".
-  **Open: which of the two he wants. He did not say. Ask him first.**
+  **Decided 10 Nov: Bolder.** He approved the latest preview as he saw it, and Bolder was its default.
+  Do not ask him again.
 - Blocks 5, 6 and 12 are marked SUPERSEDED in the file; drop them when shipping.
 
 **Why the labels on the preview may look odd.**
@@ -39,12 +40,36 @@ hover. What he saw was weight: macOS draws dark on light text thinner with `anti
 light reads lighter to the eye anyway (irradiation). An earlier 0.15 px outline overshot (31 percent
 more ink in the nav), which read as "lifting"; the default is now 0.05.
 
-**Next.** Ask Bolder or Brighter only. Then item 2 of the 9 Nov list: move the approved blocks into
-site/css (components.css for the link styles), delete them from proposals.css, drop hover-compare.js
-from the preview if nothing else needs it, rerun `node scripts/build-preview.mjs site <dir>`,
-`node scripts/verify-1440.mjs` and `node scripts/verify-responsive.mjs <mode> all`.
-Note for shipping: verify-hover-still.mjs checks letter boxes and colours, not stroke width or
-smoothing, so it will not catch a wrong weight; check those by eye on his Mac.
+**Final spec, per link. Build from this list, not by replaying the proposal blocks.** All swaps are
+instant (`transition: none`), and every state applies to `:hover` and `:active`.
+- **Footer links** (`.link-footer`: About, Selected works, Contact) **and the email** (`.footer__email`):
+  rest as now, Neutral/100. Hover: text Neutral/900; block background Neutral/100; the block reaches
+  past the letters with `box-shadow: 0 0.02em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100)`
+  (the email: `0 0.4em 0 var(--neutral-100), 0 -0.02em 0 var(--neutral-100)`, so the block also covers
+  its underline, which stays); `-webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto;`
+  `-webkit-text-stroke: 0.05px currentColor`.
+- **Nav** (`.link-nav`) **and LinkedIn** (`.footer__out`, and Resume when it returns): rest Neutral/300;
+  the LinkedIn arrow at rest `filter: brightness(0.87)` to match. Hover: text Neutral/050, no
+  background, no shadow, `-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;`
+  `-webkit-text-stroke: 0.36px currentColor` (Satoshi Medium's extra stem width at 14 px); arrow
+  `filter: none`.
+- **Back to top** (`.footer__back`): rest Neutral/550 as now. Hover: as the nav (Neutral/050, no block,
+  0.36 px stroke, antialiased); arrow `filter: brightness(0) invert(0.95)`.
+- **Haven's nav over the light bridge** (`.site-nav.is-on-light .link-nav`): hover keeps Neutral/900 with
+  `-webkit-font-smoothing: auto`; no block.
+- **Case study end bar** (`.ending-bar a`): as block 8 (dark block Neutral/900, light text Neutral/050
+  on hover), with smoothing `auto` at rest and `antialiased` on hover (block 9).
+- **Do not ship:** the Hover tester panel (`site/dev/preview/hover-compare.js`), any `html.hover-old`,
+  `small-2`, `small-3`, `small-4` or `small-5` rules (`small-4` is the decided look: ship its rules
+  without the class), and the `--hover-weight` and `--bold-weight` variables (use the fixed values above).
+
+**Next.** Move the final spec above into site/css (the link styles live in components.css), move block 2
+whole (it also makes the case study rows and the Small button fill swap instantly), delete blocks 2, 3,
+5, 6 and 8 to 15 from proposals.css, leave every other proposal there alone (1, 4, 7 and the phone
+review R blocks are separate items), rerun
+`node scripts/build-preview.mjs site <dir>`, `node scripts/verify-1440.mjs` and
+`node scripts/verify-responsive.mjs <mode> all`. verify-hover-still.mjs checks letter boxes and
+colours, not stroke width or smoothing, so he checks those by eye on his Mac.
 
 ### Figma source corrected, 10 Nov (read this first)
 The source of truth for the site is his Portfolio Design file (`IarvWaqjIwrZ2afQmMxKm6`), page VC,
