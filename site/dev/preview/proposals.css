@@ -50,3 +50,46 @@
 .ending-bar a { transition: none; }
 .ending-bar__prev { justify-self: start; }
 .ending-bar a:hover, .ending-bar a:active { color: var(--neutral-050); background: var(--neutral-900); }
+
+/* ---- His phone and tablet review, 9 Nov (docs/REVIEW_2026-11-09.md). Values he may tune sit in the
+        variables on :root so a control panel can move them. ---- */
+:root {
+  --rv-card-overlay: 0.5;      /* R3: black over the card image on hover */
+  --rv-portrait-scale: 0.7;    /* R2: footer portraits on tablet */
+  --rv-about-gap: 40px;        /* R12: About label to its text on phone (was 24) */
+}
+
+/* R3. Work cards: at rest only the image; on hover a black layer at about 50 percent covers it and
+       Learn more appears on top. Instant swap, like every other hover. */
+.work-card__media::after {
+  content: ""; position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none;
+}
+.work-card__media .button-sm { opacity: 0; z-index: 1; }
+@media (hover: hover) {
+  .work-card:hover .work-card__media::after { opacity: var(--rv-card-overlay); }
+  .work-card:hover .work-card__media .button-sm { opacity: 1; }
+}
+.work-card:focus-visible .work-card__media::after { opacity: var(--rv-card-overlay); }
+.work-card:focus-visible .work-card__media .button-sm { opacity: 1; }
+
+/* R4. The Mondai card export carries a lighter 7 px strip down its right edge. Widen the image by those
+       pixels so the frame crops the strip off. */
+.work-card-mondai .work-card__media > img { width: calc(100% * 1758 / 1744); max-width: none; }
+
+/* R5. Hero supporting text in Body/16 M, Neutral/050 on tablet and phone. */
+@media (max-width: 1199.98px) {
+  .hero__lede { font: var(--body-16-m); letter-spacing: var(--body-16-m-track); color: var(--neutral-050); }
+}
+
+/* R2. Tablet: footer portraits smaller, contact block one column to the left. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .footer__portraits { zoom: var(--rv-portrait-scale); }
+  .footer__contact { grid-column: 4 / span 5; }
+}
+
+/* R11 and R12. Phone: body text at 16 px (Body/16) and more room under the About labels. */
+@media (max-width: 767.98px) {
+  .about__body, .collection__intro { font: var(--body-16); letter-spacing: var(--body-16-track); }
+  .about__body > * + * { margin-top: 20px; }
+  .about-story, .about-role { row-gap: var(--rv-about-gap); }
+}
