@@ -1452,13 +1452,13 @@
      "name": "The framework is meant to gi",
      "sel": "[data-figma-node='5812:21566']",
      "x": 272,
-     "y": 17738.56,
+     "y": 17833.56,
      "rel": {
       "sel": "[data-figma-node='5812:21559']",
       "y": 17267.56
      },
      "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
-     "decided": "moved down 188 under the longer final copy, keeping the Figma gap",
+     "decided": "moved down 283 under the four line ending C headline (9 Nov), keeping the Figma gap of 80",
      "w": 760
     },
     {

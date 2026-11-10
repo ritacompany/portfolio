@@ -1,0 +1,321 @@
+<title>Haven tactics pass</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a working review sheet. Each section is a split row, the frame text as it stands on the left and numbered findings on the right, like a copy editor's margin. */
+:root{
+  --bg:#f3f4f1; --surface:#ffffff; --fg:#141513; --muted:#5d6259; --line:#d9dcd4;
+  --accent:#0e7d14; --accent-soft:#e2f2e1; --mag:#b0139f; --mag-soft:#f8e4f5;
+  --warn:#9a5b00; --warn-soft:#fbefd9; --bad:#a3271d; --bad-soft:#f8e2df;
+  --ins:#0e7d14; --del:#a3271d;
+  --display:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1240px;margin:0 auto}
+header.top{padding-block:40px 24px;border-bottom:1px solid var(--line);display:grid;gap:12px}
+.kicker{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(28px,4vw,44px)/1.08 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font:700 24px/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 13px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin:0;color:var(--muted)}
+p{margin:0}
+.lede{max-width:70ch;color:var(--muted)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;padding-block:10px;font:500 13px/1.3 var(--mono)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar .count b{font-variant-numeric:tabular-nums}
+.bar .status{color:var(--muted)}
+.bar nav{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;min-width:0;flex:1 1 100%;padding-bottom:2px}
+.bar nav a{white-space:nowrap}
+.bar nav a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px}
+.bar nav a:hover,.bar nav a:focus-visible{color:var(--fg);border-color:var(--fg)}
+section.block{padding-block:40px;border-bottom:1px solid var(--line);display:grid;gap:20px;scroll-margin-top:56px}
+.prose{display:grid;gap:12px;max-width:72ch}
+.prose ul,.prose ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.order{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.order ol{margin:0;padding-left:22px;display:grid;gap:4px;font-size:15px}
+.order li.moved{color:var(--accent);font-weight:600}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:10px;min-width:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.opt{position:relative}
+.opt.pick{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.pickTag{font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.mock{display:grid;gap:8px;padding:12px;border-radius:6px;background:#0b0b0b;color:#f2f2f2}
+.mock .l{font:500 18px/1.2 var(--display)}
+.mock .r{font:400 14px/1.45 var(--body);color:#cfcfcf}
+.mock .eb{font:500 13px/1 var(--body);color:#9a9a9a}
+.mock .big{font:500 30px/1.02 var(--display);letter-spacing:-.02em}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.cur{display:grid;gap:10px;position:sticky;top:64px}
+@media (max-width:860px){.cur{position:static}}
+.cur figure{margin:0}
+.cur img{display:block;width:100%;border-radius:6px;border:1px solid var(--line);background:#000}
+.cur figcaption{font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:4px}
+.field{display:grid;gap:2px}
+.field .lab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field .txt{white-space:pre-wrap;font-size:15px}
+.field.hl .txt{font:500 19px/1.25 var(--display)}
+.finds{display:grid;gap:12px;counter-reset:f}
+.find{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.find[data-state="accept"]{border-color:var(--accent)}
+.find[data-state="reject"]{opacity:.62}
+.fhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.num{font:600 13px/1 var(--mono);font-variant-numeric:tabular-nums}
+.chip{font:600 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:4px 7px;border-radius:4px}
+.k-order{background:var(--accent-soft);color:var(--accent)}
+.k-clarity{background:var(--warn-soft);color:var(--warn)}
+.k-ai{background:var(--mag-soft);color:var(--mag)}
+.k-fact{background:var(--bad-soft);color:var(--bad)}
+.k-typo{background:var(--line);color:var(--fg)}
+.tog{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tog button{font:600 12px/1 var(--mono);padding:7px 10px;background:transparent;color:var(--muted);border:0;cursor:pointer}
+.tog button+button{border-left:1px solid var(--line)}
+.tog button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
+.tog button[aria-pressed="true"].a{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"].r{background:var(--bad);color:var(--bg)}
+.pair{display:grid;gap:6px}
+.pair .was,.pair .now{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;font-size:15px}
+.pair .tag{font:600 11px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pair .was .t{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--del);text-decoration-thickness:1px}
+.pair .was.nostrike .t{text-decoration:none}
+.pair .now .t{color:var(--fg)}
+.why{font-size:14px;color:var(--muted)}
+.why b{color:var(--fg);font-weight:600}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted)}
+.note{font-size:14px;border-left:3px solid var(--warn);padding-left:10px;color:var(--fg)}
+footer{padding-block:32px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.tog{flex-wrap:wrap}
+.tog button[aria-pressed="true"][data-v="accept"]{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="change"]{background:var(--warn);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="discuss"]{background:var(--mag);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="reject"]{background:var(--bad);color:var(--bg)}
+.find[data-state="change"]{border-color:var(--warn)}
+.find[data-state="discuss"]{border-color:var(--mag)}
+.notelab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.notein{width:100%;font:15px/1.45 var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;resize:vertical;min-height:44px}
+.notein:focus-visible{outline:2px solid var(--fg);outline-offset:1px}
+.notestate{font:400 12px/1.3 var(--mono);color:var(--muted);min-height:1em}
+.opt .find{margin-top:4px}
+.ans{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px}
+.okbox{border:1px dashed var(--line);border-radius:8px;padding:10px 14px}
+.okbox summary{cursor:pointer;font:600 13px/1.3 var(--mono);color:var(--muted)}
+.okbox[open]{display:grid;gap:10px}
+.okrow{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+.oklab{font-size:15px}
+.tog{max-width:100%}
+.prose,.why,.src,.field .txt,.pair .t,.mock p{overflow-wrap:anywhere}
+section.block,.wrap{min-width:0}
+section.block>*{min-width:0}
+@media (max-width:640px){.tog{margin-left:0;width:100%}.tog button{flex:1 1 40%;min-height:40px}.tog button+button{border-left:1px solid var(--line)}}
+
+.pickchip{font:600 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:4px 7px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.pickchip.discuss{background:var(--mag-soft);color:var(--mag)}
+.tog button.mine{box-shadow:inset 0 -3px 0 var(--accent)}
+.tog button.mine[data-v="discuss"]{box-shadow:inset 0 -3px 0 var(--mag)}
+.also{font:400 12px/1.45 var(--mono);color:var(--muted)}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="kicker">Haven case study · tactics pass · nothing changed in Figma or on the page yet</div>
+  <h1>Haven tactics pass</h1>
+  <p class="lede">Each proposal shows the text as it stands on the coded Haven page, the new text and the tactic behind it, with why and my pick. Pick Accept, Accept with changes, Discuss or Reject. Add a note whenever you want. Choices and notes save to this page and I read them back.</p>
+</header>
+
+<div class="bar" id="bar">
+  <span class="count">Accepted <b id="cA">0</b> · With changes <b id="cC">0</b> · Discuss <b id="cD">0</b> · Rejected <b id="cR">0</b> · Open <b id="cO">0</b></span>
+  <span class="status" id="saveState">Marks save on this device</span>
+  <nav id="toc"><a href="#intro">What this pass found</a><a href="#checks">What ran</a><a href="#props">Proposals</a></nav>
+</div>
+
+<section class="block" id="intro"><h2>What this pass found</h2><div class="prose"><p><b>The CS2 tactics pass, run on Haven, 9 Nov.</b> I pulled every eyebrow, headline, body, caption, card and label from the coded Haven page into one copy source (reference/haven/final-copy.md). Then I read both banks entry by entry: the case study tactics bank (49 entries) and the reader effect bank (44). Haven copy went through earlier AI passes, so I assumed no line was yours and no block used a tactic. For each block I asked one thing: would an entry make it do its job better for a hiring manager reading cold?</p>
+<p><b>21 proposals below, in page order.</b> Each names the entry it comes from, or the copy rule of yours it applies (typos, a fragment, people where you write users). The ones that matter most: the hero gets a decision and says what a Confidante is (2), the 35% caption stops reading as fewer attempts when the study measured odds (3), the wireframes headline names the three ideas testing later changed (9) and the quiz headline says which option lost (15). One proposal needs your yes on a fact: why identity comes before community (8). The page never says, so the reason given is my reading of it. My pick there is Discuss.</p>
+<p><b>Two things I did not propose, because they are yours to call.</b> First, the Security features body is in the HTML but current.css hides it at every width, so that block is its headline and two screens. Did you mean to drop it? Second, the ending never says what testing could not show, such as how the setup holds up at home. Who the six testers were is not in the repo, so I left it alone rather than guess.</p>
+<p>Dependencies: 8 only makes sense with 7, and 16 only with 15. If you accept 7 and reject 8, the old body repeats the new headline, so its first sentence goes.</p>
+</div></section>
+
+<section class="block" id="checks">
+  <h2>What ran and what did not</h2>
+  <div class="prose"><ul>
+<li><b>Pull:</b> every visible text node, alt text and aria label of site/haven/index.html (212) is in the copy source. The check catches a planted missing line (pull-check.mjs).</li>
+<li><b>Banks:</b> all 93 entries have one verdict each (USED, NO GAP, NO or RULE, with the reason), and every USED names a real proposal. The check catches a dropped entry, a bad verdict and an unknown proposal (walk-check.mjs, bank-walk.md).</li>
+<li><b>Dashes, Oxford commas, quotes and AI vocabulary:</b> check-copy.mjs, the copy-check.sh dash hook and a second Oxford comma rule run on every new line. Each was first shown to catch a planted em dash, en dash, double hyphen, Oxford comma, quote and AI word, and to pass a clean line. The same script checks your wording (the user, never people or someone), Confidante casing and sentence case, each proven on a planted mistake (run-checks.mjs).</li>
+<li><b>Humanizer:</b> loaded as the skill and run draft, audit, final on every proposed line. The final must equal the proposed text, and the script checks that (humanizer.md).</li>
+<li><b>Facts:</b> every claim traced to the page or the repo, marked CONFIRMED, PARAPHRASE or ASSUMED (facts.md). One claim is ASSUMED, in proposal 8. The Haven evidence files an older research note cites are not in the repo, so nothing rests on them.</li>
+<li><b>Fit:</b> measured in Satoshi in the real page at 1440 and 390, with the widths haven.css and current.css give each element, then again standalone with the fonts in site/assets/fonts. Cards and captions gain no line. Headlines and bodies gain at most one line at 1440. The hero column stays within 10 lines, the rule set on this template in the CS2 hero round. A planted long caption and a planted long hero are both caught. Result: everything fits; the hero column is exactly 10 lines at 1440, so it has no room left (measure.mjs, measure-out.txt). Two lines were cut to fit: severe mental health consequences in the hero (no data on the page covers it) and a filler phrase in proposal 8.</li>
+<li><b>Forward references and repeats:</b> a written pass over the whole page in order, with the proposals applied (page-pass.md).</li>
+<li><b>Reader check, three Sonnet runs per round:</b> Round 1 ran the whole page with the proposals applied, plus a planted bad block. The planted block failed on every planted fault, 3 of 3: unexplained terms, process story and restating. Two of my lines were fixed after it. The hero had no decision and made Insight 5 a repeat (now it states the decision and leaves who to Insight 5). The scheduling body opened on a restatement and kept the unexplained Your events line (both fixed). Round 2 was the final check on the whole page in order with the fixed proposals. Hero, Demographic access, MVP, quiz, profile, scheduling and chat all PASS.</li>
+<li><b>Still flagged in round 2, not fixed:</b> the Wireframes headline (proposal 9) reads as process story, 3 of 3, because any line about first wireframes says what was tried first. I kept it and my pick is still Accept: the current headline is process story too, and it names nothing a reader can check. Your Testing synthesis headline reads as process story too (3 of 3); it is the page's wrong turn, which is the point, so it stays. The ending's captions only restate earlier blocks (3 of 3). That is your recap form and I left it. Four blocks state no design decision (3 of 3) because they are not decision blocks: the data, usability testing, the Confidante program and Security features, whose decision text is the hidden body.</li>
+<li><b>Nothing changed yet</b> on the page, in Figma or in the copy source. After your marks I apply them to final-copy.md and site/haven/index.html and re-check what changed.</li>
+</ul>
+</div>
+</section>
+
+<section class="block" id="props"><h2>Proposals, in page order</h2><div class="finds"><article class="find" id="hv-hero-r1">
+<div class="fhead"><span class="num">1. Hero</span><span class="src">Right 1</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience. The lack of access to affirming environments in their homes and local communities often leads to severe mental health consequences including an increase risk of suicide.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience. The lack of affirming environments at home and in their communities is linked to a higher risk of suicide.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t03 Qualify the scope, keep the commitment</p><p class="why">The Trevor Project figures in the next block are odds: affirming spaces go with lower risk. Often leads to claims a cause the data does not show, and a hiring manager who reads the cards next will notice the gap. Linked to says exactly what the data says. Also fixes the typo an increase risk, and drops severe mental health consequences, which no data on the page covers (the cards are about suicide attempts only); that also makes room for the new hero line.</p><p class="src">Source: Data cards: 35% lower odds, 40% less likely (The Trevor Project). CONFIRMED on the page.</p><label class="notelab" for="n-hv-hero-r1">Your note</label><textarea class="notein" id="n-hv-hero-r1" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-hero-r2">
+<div class="fhead"><span class="num">2. Hero</span><span class="src">Right 2</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante. Just having Haven on their phone could put a user at risk, so I designed it to stay hidden and to keep every chat by text.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t06 Answer first, with cs-t17 the nut graf and cs-t38 the curse of knowledge</p><p class="why">The first screen says what Haven is for but no decision and nothing that made it hard. One sentence gives the constraint and the decision it forced (Haven stays hidden, chats are by text), and the blocks below pay it off. It leaves who the risk comes from to Insight 5, which is the evidence; the first draft named guardians and peers here and the reader check then found Insight 5 only repeated it. It also says once what a Confidante is: the word is used in Usability testing before the page explains it.</p><p class="src">Source: Insight 5 (guardians or peers may find out), Demographic access headline (would out the teens). Stays hidden: the disguise icon and app switcher screens; by text: Scheduling and Chat. Confidante as the expert: the brief line plus The Confidante program. CONFIRMED on the page.</p><label class="notelab" for="n-hv-hero-r2">Your note</label><textarea class="notein" id="n-hv-hero-r2" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-data-cap1">
+<div class="fhead"><span class="num">3. The data</span><span class="src">Card 1 caption</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">less suicide attempts.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">lower odds of a suicide attempt.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t44 Metric theatre (a real number dressed as a different measure)</p><p class="why">The big 35% reads as 35 percent fewer suicide attempts, but the study measured odds of reporting an attempt, as the card body says. The caption should say what the number is. Also fixes less to the grammatical form.</p><p class="src">Source: Card 1 body: 35% lower odds of reporting a suicide attempt. CONFIRMED on the page.</p><label class="notelab" for="n-hv-data-cap1">Your note</label><textarea class="notein" id="n-hv-data-cap1" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-links">
+<div class="fhead"><span class="num">4. The data</span><span class="src">Links intro (also in Where things stand)</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Learn more about what you can do to support LGBTQIA + youth at the links below:</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Learn more about what you can do to support LGBTQIA+ youth at the links below:</span></div></div>
+<p class="why"><b>Tactic:</b> Your copy rules (typo)</p><p class="why">LGBTQIA + has a stray space; everywhere else the page writes LGBTQIA+. The line appears twice, so the fix goes in both places.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-hv-links">Your note</label><textarea class="notein" id="n-hv-links" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-access-i1">
+<div class="fhead"><span class="num">5. Demographic access</span><span class="src">Insight 1 body</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">When choosing between experts they value elements that humanize them. Users want to know that experts will understand them.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">When choosing between experts, users look for what makes each one feel human. They want to know the expert will understand them.</span></div></div>
+<p class="why"><b>Tactic:</b> Plain spoken rule (cs-t45 Erudite vernacular)</p><p class="why">They comes before the reader knows who they is, and elements that humanize them is stiff. Users becomes the subject from the first word. This card is tagged on three solution blocks, so it is read more than once.</p><p class="src">Source: Paraphrase of the card itself. No new claim.</p><label class="notelab" for="n-hv-access-i1">Your note</label><textarea class="notein" id="n-hv-access-i1" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-access-i4">
+<div class="fhead"><span class="num">6. Demographic access</span><span class="src">Insight 4 body</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Users need to choose a time when they could be alone. A time that they will feel safe to engage with an expert.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Users need to pick a time when they can be alone and feel safe talking to an expert.</span></div></div>
+<p class="why"><b>Tactic:</b> Plain spoken rule</p><p class="why">The second sentence is a fragment and the tenses shift (need, could, will). One sentence says the same thing.</p><p class="src">Source: Paraphrase of the card itself. No new claim.</p><label class="notelab" for="n-hv-access-i4">Your note</label><textarea class="notein" id="n-hv-access-i4" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-mvp-head">
+<div class="fhead"><span class="num">7. Designing an MVP</span><span class="src">Headline</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Because of the complicated and sensitive nature of the subject matter, I broke this down as if I were designing it as an MVP.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Because the subject is complicated and sensitive, I planned Haven as an MVP in two phases: identity first, then community.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t06 Answer first, with cs-t45 Erudite vernacular</p><p class="why">The headline hedges (as if I were designing it as an MVP) and leaves the decision, two phases, to the body, which then says broke twice. The new headline states the plan and its order in one line; the chart below it shows the same order.</p><p class="src">Source: MVP chart: Phase 1 Identity, Phase 2 Community. CONFIRMED on the page.</p><label class="notelab" for="n-hv-mvp-head">Your note</label><textarea class="notein" id="n-hv-mvp-head" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-mvp-body">
+<div class="fhead"><span class="num">8. Designing an MVP</span><span class="src">Body</span><span class="pickchip discuss">My pick: Discuss</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false" class="mine" title="My pick">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">I broke the design into two phases. This let me decide which features mattered most now and which could wait until after the MVP.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Identity comes first because Haven matches each user with a Confidante through who they are. The two phases let me decide which features mattered most now and which could wait until after the MVP.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t02 State the warrant</p><p class="why">A reviewer will ask why identity comes before community; the research note on Haven calls it the part reviewers probe, and the page never says. The page does show that matching runs on identity (the quiz, ending card 1) and that community suggestions come from the quiz summary. The first sentence states that as the reason. Needs your yes: the reason is my reading of the page, not something you wrote down. If you reject it but accept the headline, the old first sentence repeats the headline and should go.</p><p class="src">Source: ASSUMED: the reason. Matching on identity CONFIRMED (Primary identity quiz body, Where things stand card 1). research_notes/What gets designers interviewed/haven_through_reviewer_eyes.md, MVP row.</p><label class="notelab" for="n-hv-mvp-body">Your note</label><textarea class="notein" id="n-hv-mvp-body" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-wires">
+<div class="fhead"><span class="num">9. Wireframes</span><span class="src">Headline</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">With that all settled, it was time to start building the product. I started designing wireframes to test some of the concepts I had designed based on previous insights.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">My first wireframes gave users a chat length to pick, a passcode as their only security and top matches to swipe through. Testing changed all three.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t18 Chekhov’s rifle, with cs-t14 clues before the reveal</p><p class="why">The current headline is process narration (time to start building) and says nothing a reader can check. The wireframes hold three ideas that testing later changed: the chat length picker, the passcode only security and swiping through matches. Naming them here plants all three, so Scheduling, Confidante profile and Security features each pay one off.</p><p class="src">Source: Wireframe alts (15 to 60 minute duration, passcode only, top three matches swiped up and down). Changes: Scheduling body (30 minutes), Confidante profile body (replaced vertical swiping), Security screens (PIN with Face ID, the disguise setup). CONFIRMED on the page.</p><label class="notelab" for="n-hv-wires">Your note</label><textarea class="notein" id="n-hv-wires" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-test-head">
+<div class="fhead"><span class="num">10. Usability testing</span><span class="src">Headline</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Six participants tested the key flows</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Six participants tested three key flows.</span></div></div>
+<p class="why"><b>Tactic:</b> re-t38 The oddly precise number (a count that matches the list)</p><p class="why">Three tasks are listed right under it, so the headline can say three. It is also the only headline without a full stop.</p><p class="src">Source: Tasks 01 to 03. CONFIRMED on the page.</p><label class="notelab" for="n-hv-test-head">Your note</label><textarea class="notein" id="n-hv-test-head" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-test-i1">
+<div class="fhead"><span class="num">11. Usability testing</span><span class="src">Insight 1</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Users were unsure of what mode of communication they would be chatting with the expert through.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Users weren’t sure how they would be talking to the expert.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t45 Erudite vernacular</p><p class="why">Mode of communication is the stiff version of how they would talk. The insight is tagged on Scheduling a chat, so it is read again there.</p><p class="src">Source: Paraphrase of the card itself. No new claim.</p><label class="notelab" for="n-hv-test-i1">Your note</label><textarea class="notein" id="n-hv-test-i1" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-test-i4">
+<div class="fhead"><span class="num">12. Usability testing</span><span class="src">Insight 4</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Users wanted to know more about the Confidante in order to determine the right choice.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Users wanted to know more about each Confidante before choosing one.</span></div></div>
+<p class="why"><b>Tactic:</b> Plain spoken rule (filler)</p><p class="why">In order to determine the right choice is filler for before choosing one.</p><p class="src">Source: Paraphrase of the card itself. No new claim.</p><label class="notelab" for="n-hv-test-i4">Your note</label><textarea class="notein" id="n-hv-test-i4" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-bridge">
+<div class="fhead"><span class="num">13. Usability testing</span><span class="src">Bridge statement</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Based on that feedback and information I had already gathered from initial interviews, I built the following solutions.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Each solution below is tagged with the interview and testing insights that shaped it.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t08 Cite the record, with cs-t38 the curse of knowledge</p><p class="why">The bridge is the biggest type on the page and says only that solutions follow, a table of contents (cs-t17’s failure). What a cold reader does need is how to read the tags on every solution block (Interview insight 1, Testing insight 4): they are the page’s evidence trail and nothing explains them. One line does.</p><p class="src">Source: The tags on every solution block. CONFIRMED on the page.</p><label class="notelab" for="n-hv-bridge">Your note</label><textarea class="notein" id="n-hv-bridge" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-program-head">
+<div class="fhead"><span class="num">14. The Confidante program</span><span class="src">Headline</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">An expert program designed for flexibility, adapting to each user’s unique needs and comfort.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">The Confidante program is built to adapt to each user’s needs and comfort.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t45 Erudite vernacular</p><p class="why">A fragment with an -ing tail; it reads generated. A plain sentence with a subject says the same thing. The hero now says what a Confidante is, so this block can stay on how the program adapts.</p><p class="src">Source: Paraphrase of the headline. No new claim.</p><label class="notelab" for="n-hv-program-head">Your note</label><textarea class="notein" id="n-hv-program-head" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-quiz-head">
+<div class="fhead"><span class="num">15. Primary identity quiz</span><span class="src">Headline</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Identity shapes what safe, relevant support looks like. The quiz makes room for the experiences behind each match.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">One identity model for every user would flatten the differences that shape their experience, so the quiz matches users on the experiences they pick.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t24 Refute the rejected option</p><p class="why">The headline makes a claim without the choice behind it. Insight 3, tagged on this block, names the option that lost: one identity model for everyone. Saying why it lost makes the quiz a decision instead of a feature.</p><p class="src">Source: Interview insight 3 (one size fits all identity model could flatten differences). Quiz body (users pick experiences; matches built on shared experiences). CONFIRMED on the page.</p><label class="notelab" for="n-hv-quiz-head">Your note</label><textarea class="notein" id="n-hv-quiz-head" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-quiz-body">
+<div class="fhead"><span class="num">16. Primary identity quiz</span><span class="src">Body</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Users pick the experiences that matter to them. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule</p><p class="why">With the new headline, Users pick the experiences that matter to them says it a second time. Only if you accept the headline.</p><p class="src">Source: A cut. No new claim.</p><label class="notelab" for="n-hv-quiz-body">Your note</label><textarea class="notein" id="n-hv-quiz-body" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-journey">
+<div class="fhead"><span class="num">17. Testing synthesis</span><span class="src">Headline and body sentence 4</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Haven’s early flow asked people to choose a Confidante before they could have an introductory chat.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Haven’s early flow asked users to choose a Confidante before they could have an introductory chat.</span></div></div><p class="also">Applied with it: In the revised flow, people can chat with more than one Confidante before choosing one. becomes In the revised flow, users can chat with more than one Confidante before choosing one.</p>
+<p class="why"><b>Tactic:</b> Your wording rule (the user)</p><p class="why">People in place of users, twice in the block that matters most. Word swaps only.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-hv-journey">Your note</label><textarea class="notein" id="n-hv-journey" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-sched-head">
+<div class="fhead"><span class="num">18. Scheduling a chat</span><span class="src">Headline</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">People needed to know what to expect before booking an introductory chat.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Users needed to know what to expect before booking an introductory chat.</span></div></div>
+<p class="why"><b>Tactic:</b> Your wording rule (the user)</p><p class="why">People in place of users. One word.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-hv-sched-head">Your note</label><textarea class="notein" id="n-hv-sched-head" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-sched-body">
+<div class="fhead"><span class="num">19. Scheduling a chat</span><span class="src">Body</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Testing showed confusion about how chats would work. The scheduling screen explains that they happen by text, last 30 minutes and can end early, so people can choose a private time. With selection moved after the chats, users can book introductions with different Confidantes. Your events lists each upcoming chat with the Confidante’s name and time.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Testers were confused about how chats would work and how long they would last, so the scheduling screen now says they happen by text, last a set 30 minutes and can end early. That lets users pick a time when they can be alone.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t48 The rationale recital (a repeat cut), with cs-t18 Chekhov’s rifle paid off</p><p class="why">With selection moved after the chats repeats the Testing synthesis block one screen up. Cut it. Testing insight 2 (the duration section confused users) is tagged here but the body never answers it; a set 30 minutes does, and it pays off the wireframe’s chat length picker. People becomes users, and a private time becomes Insight 4’s own words (a time when they can be alone). The Your events sentence also goes: the reader check found it an unexplained name that does not follow from the point (3 of 3), and the screen beside the text already shows it.</p><p class="src">Source: Testing insight 2, Interview insight 4 (tags on this block). Wireframe 1 alt (15 to 60 minute options). Last 30 minutes: this body. CONFIRMED on the page; set is my word for a single length.</p><label class="notelab" for="n-hv-sched-body">Your note</label><textarea class="notein" id="n-hv-sched-body" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-chat-body">
+<div class="fhead"><span class="num">20. Chat-based interactions</span><span class="src">Body</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">The final concept uses text-based sessions, not voice or video, so users can engage without speaking sensitive information aloud. A bounded chat format gives users more control over when and how much they share, responding directly to concerns about being overheard.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Chats happen by text, not voice or video, so users don’t have to say anything sensitive out loud. Each chat has a set length and can end early, which leaves users in control of when and how much they share.</span></div></div>
+<p class="why"><b>Tactic:</b> cs-t48 The rationale recital, with cs-t45 Erudite vernacular</p><p class="why">The second sentence ends on an -ing tail that repeats the first sentence’s reason (not being overheard). Bounded chat format is jargon for what the reader already met in Scheduling: a set length that can end early. The new body gives one reason per sentence and ends on control, the new point.</p><p class="src">Source: Scheduling body (by text, 30 minutes, can end early). Interview insight 2. CONFIRMED on the page.</p><label class="notelab" for="n-hv-chat-body">Your note</label><textarea class="notein" id="n-hv-chat-body" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="hv-end-cap3">
+<div class="fhead"><span class="num">21. Where things stand</span><span class="src">Card 3 caption</span><span class="pickchip">My pick: Accept</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false" class="mine" title="My pick">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Intro chats are text based only. Built for a time the user can be alone.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Intro chats happen by text, at a time the user can be alone.</span></div></div>
+<p class="why"><b>Tactic:</b> Plain spoken rule</p><p class="why">The second half is a fragment. One sentence carries both facts.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-hv-end-cap3">Your note</label><textarea class="notein" id="n-hv-end-cap3" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article></div></section>
+
+<footer>Source text: reference/haven/final-copy.md, pulled 9 Nov from site/haven/index.html. Working files: reference/haven/tactics/ and reference/haven/reader-check/.</footer>
+</div>
+
+<script>
+const IDS = ["hv-hero-r1", "hv-hero-r2", "hv-data-cap1", "hv-links", "hv-access-i1", "hv-access-i4", "hv-mvp-head", "hv-mvp-body", "hv-wires", "hv-test-head", "hv-test-i1", "hv-test-i4", "hv-bridge", "hv-program-head", "hv-quiz-head", "hv-quiz-body", "hv-journey", "hv-sched-head", "hv-sched-body", "hv-chat-body", "hv-end-cap3"];
+const state = {};   // id -> {mark, note}
+let db = null;
+const KEY = 'haven-tactics-1';
+function load(){ try{ Object.assign(state, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){} }
+function saveLocal(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function get(id){ return state[id] || (state[id] = {mark:'', note:''}); }
+function paint(){
+  const c = {accept:0, change:0, discuss:0, reject:0};
+  document.querySelectorAll('.find').forEach(el=>{
+    const s = get(el.id);
+    el.dataset.state = s.mark;
+    el.querySelectorAll('.tog button').forEach(b=> b.setAttribute('aria-pressed', String(b.dataset.v === s.mark)));
+    const ta = el.querySelector('.notein');
+    if (ta && document.activeElement !== ta && ta.value !== (s.note||'')) ta.value = s.note || '';
+    if (c[s.mark] !== undefined) c[s.mark]++;
+  });
+  document.getElementById('cA').textContent = c.accept;
+  document.getElementById('cC').textContent = c.change;
+  document.getElementById('cD').textContent = c.discuss;
+  document.getElementById('cR').textContent = c.reject;
+  document.getElementById('cO').textContent = document.querySelectorAll('.find .tog').length - c.accept - c.change - c.discuss - c.reject;
+}
+async function push(id, el){
+  const st = el && el.querySelector('.notestate');
+  if (!db){ if (st) st.textContent = 'Saved on this device only'; return; }
+  const s = get(id);
+  try{
+    await db.doc('marks/'+id).set({finding:id, mark:s.mark||'', note:s.note||'', at:Date.now()});
+    if (st) st.textContent = 'Saved for Claude';
+    document.getElementById('saveState').textContent = 'Saved for Claude to read';
+  }catch(e){ if (st) st.textContent = 'Not saved for Claude, kept on this device'; }
+}
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.tog button'); if(!b) return;
+  const el = b.closest('.find'); const s = get(el.id);
+  s.mark = (s.mark === b.dataset.v) ? '' : b.dataset.v;
+  saveLocal(); paint(); push(el.id, el);
+  if (s.mark === 'change' || s.mark === 'discuss'){ const ta = el.querySelector('.notein'); if (ta && !ta.value) ta.focus(); }
+});
+const timers = {};
+document.addEventListener('input', e=>{
+  const ta = e.target.closest('.notein'); if(!ta) return;
+  const el = ta.closest('.find'); get(el.id).note = ta.value; saveLocal();
+  const st = el.querySelector('.notestate'); if (st) st.textContent = 'Typing';
+  clearTimeout(timers[el.id]); timers[el.id] = setTimeout(()=>push(el.id, el), 900);
+});
+document.addEventListener('focusout', e=>{
+  const ta = e.target.closest && e.target.closest('.notein'); if(!ta) return;
+  const el = ta.closest('.find'); clearTimeout(timers[el.id]); push(el.id, el);
+});
+load(); paint();
+(async()=>{
+  const t = setTimeout(()=>{ document.getElementById('saveState').textContent = 'Saved on this device only'; }, 10000);
+  try{
+    db = window.claude ? await window.claude.use('db') : null;
+    if(!db){ clearTimeout(t); document.getElementById('saveState').textContent = 'Saved on this device only'; return; }
+    const snap = await db.collection('marks').get();
+    clearTimeout(t);
+    (snap.docs||[]).forEach(d=>{ const x = d.data(); if (x && x.finding && IDS.includes(x.finding)) state[x.finding] = {mark:x.mark||'', note:x.note||''}; });
+    saveLocal(); paint();
+    document.getElementById('saveState').textContent = 'Choices and notes save for Claude to read';
+  }catch(e){ clearTimeout(t); document.getElementById('saveState').textContent = 'Saved on this device only'; }
+})();
+</script>

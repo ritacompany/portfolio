@@ -6,11 +6,11 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
-### Handoff, 10 Nov (from session "Portfolio: hover highlight"; read this before the 9 Nov one)
-**Where the work is.** Branch `claude/hover-text-smoothing`, draft PR 18 into `claude/relaxed-ride-5mlbdu`.
-Until PR 18 is merged, `claude/relaxed-ride-5mlbdu` does NOT have any of the hover work below, so its
-proposals.css and preview look older than what he has been reviewing. Read the hover branch.
-Preview link https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST, version 17, is built from it.
+### Handoff, 10 Nov, hover highlight (from session "Portfolio: hover highlight"; read with the Figma note below)
+**Where the work is.** Merged into `claude/relaxed-ride-5mlbdu` on 10 Nov at his yes (it came from
+branch `claude/hover-text-smoothing`, PR 18). The first account's preview link,
+https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST (version 17), shows it; on the second account, build
+the preview from this branch as the checkpoint below says.
 
 **Item 1 of the 9 Nov list, the hover highlight: he said "these look good, we're fine on these now"
 (10 Nov).** What he approved, all in `site/dev/preview/proposals.css`:
@@ -45,6 +45,30 @@ from the preview if nothing else needs it, rerun `node scripts/build-preview.mjs
 `node scripts/verify-1440.mjs` and `node scripts/verify-responsive.mjs <mode> all`.
 Note for shipping: verify-hover-still.mjs checks letter boxes and colours, not stroke width or
 smoothing, so it will not catch a wrong weight; check those by eye on his Mac.
+
+### Figma source corrected, 10 Nov (read this first)
+The source of truth for the site is his Portfolio Design file (`IarvWaqjIwrZ2afQmMxKm6`), page VC,
+frame **Master (cleanup copy)** `4494:5909` (section Main). The "Transported" frames in the Mondai file
+(`5RO0m4bYYrTvbiaOgaU3tI`, page CS) were copies made while his other account could only reach the
+Mondai file. They have gone stale, so check every page against VC, not against them. The note further
+down calling the Portfolio Design file superseded is wrong. `scripts/figma-pages.json` still measures
+Home against the stale copy and needs re-reading from `4494:5909`.
+Synced from the master on 10 Nov: Selected works title centered, with 165 above it and 125 to the cards;
+About body replaced by his three paragraphs (the superpowers lead and list are gone, and his "I have
+have" fixed to "I have"), 595 wide; About rows 543 and 208. On hold at his ask, 10 Nov: the Testimonials section and its footer
+link. He has not finished it in Figma; build it from the VC master once he says it is done.
+
+### Checkpoint, 9 Nov late (second account, Claude Code on his Mac)
+- His phone review list is `docs/REVIEW_2026-11-09.md` (15 rows); `node .unlazy/review-11-09/check.mjs ledger`
+  fails until each is fixed, answered or his task. Nothing from it is in site/css yet; all of it is on the preview.
+- He reviews on his phone over home wifi: real site `npm run dev` style server on :4318 (`node scripts/serve.mjs site lan`),
+  preview with proposals and tools on :4319 (`node scripts/build-preview.mjs site ../portfolio-site-preview`, then
+  serve that folder). Both are entries in `~/Code/portfolio/.claude/launch.json` (site-build, site-preview).
+- Editing by hand: Flare at the desk, free (`npm run studio`, http://localhost:4320), see `docs/EDITING_WORKFLOW.md`.
+  The homemade Edit tool was removed on 10 Nov. Type review stays on the preview. Changes become proposals,
+  then site/css on his yes.
+- Research on designer editing tools: `~/Code/portfolio/reports/designer-editing-systems/REPORT.md` (uncommitted on main).
+- The old preview artifact link is private to his first account; this account uses the wifi links above.
 
 ### Handoff, 9 Nov evening (from session "Portfolio: site build Phase 3 responsive")
 He asked for a new session to carry the site build on, starting with the hover highlight. In order:
