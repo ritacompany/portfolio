@@ -1,0 +1,39 @@
+/* Home load, preview only (his ask, 10 Nov; reference sethlukin.com). Moves into site/css on his yes.
+   Spec: docs/motion/home-load/style_guide.md. Pairs with home-load.js, which plays the sequence.
+   Until the script takes over, the hero's lede, location, Contact and wordmark are hidden so they do not
+   flash in before the load plays. With reduced motion nothing is hidden. If the script never runs, the
+   safety animation shows them after 3 s. */
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.hl-done) .home .hero__lede,
+  html:not(.hl-done) .home .hero__where,
+  html:not(.hl-done) .home .hero__contact,
+  html:not(.hl-done) .home .hero__wordmark,
+  html:not(.hl-done) .home .hero__vertical { opacity: 0; animation: hl-safety 0s linear 3s forwards; }
+  /* The script is in charge: it holds them at 0 and animates them in. */
+  html.hl-run:not(.hl-done) .home :is(.hero__lede, .hero__where, .hero__contact, .hero__wordmark, .hero__vertical) { animation: none; }
+  /* While it plays, the vertical name (phones) shows; its two halves carry the opacity. */
+  html.hl-run:not(.hl-done) .home .hero__vertical { opacity: 1; }
+  html.hl-run:not(.hl-done) .home .hero__vertical > span { display: inline-block; opacity: 0; }
+}
+@keyframes hl-safety { to { opacity: 1; } }
+
+/* The wordmark in two halves, CHD and WCK, drawn over the hidden image while it plays. */
+.hl-mark { position: absolute; overflow: visible; pointer-events: none; }
+.hl-mark g { opacity: 0; }
+
+/* Panel. Preview only, never shipped. Sits bottom centre, clear of Scroll feel (left) and Home motion (right). */
+.hl-panel {
+  position: fixed; left: 50%; bottom: 16px; translate: -50% 0; z-index: 100; width: 260px; max-height: 70vh; overflow: auto;
+  padding: 10px 12px; border-radius: 10px; background: #fff; color: #111; box-shadow: 0 6px 24px rgb(0 0 0 / 0.35);
+  font: 12px/1.35 system-ui, sans-serif;
+}
+.hl-panel[data-closed] > :not(.hl-panel__top) { display: none; }
+.hl-panel__top { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-weight: 600; }
+.hl-panel__top span { margin-right: auto; }
+.hl-panel button { font: inherit; padding: 3px 8px; border: 1px solid #bbb; border-radius: 6px; background: #f4f4f4; cursor: pointer; }
+.hl-panel label { display: block; margin-top: 10px; }
+.hl-panel label span { display: flex; justify-content: space-between; }
+.hl-panel input[type="range"] { width: 100%; }
+.hl-panel__row { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+@media (max-width: 767.98px) { .hl-panel { display: none; } }
