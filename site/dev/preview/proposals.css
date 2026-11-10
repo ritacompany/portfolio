@@ -26,18 +26,11 @@
   --rv-learn-scale: 0.6;       /* R14: Learn more size on phone; the Figma Small button is 184 by 58 */
 }
 
-/* R3. Work cards: at rest only the image; on hover a black layer at about 50 percent covers it and
-       Learn more appears on top. Instant swap, like every other hover. */
+/* R3. Work cards: the black layer over the image. Its hover, the Learn more motion and the swap to the
+       filled state near the middle now live in home-motion.css and home-motion.js. */
 .work-card__media::after {
   content: ""; position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none;
 }
-.work-card__media .button-sm { opacity: 0; z-index: 1; }
-@media (hover: hover) {
-  .work-card:hover .work-card__media::after { opacity: var(--rv-card-overlay); }
-  .work-card:hover .work-card__media .button-sm { opacity: 1; }
-}
-.work-card:focus-visible .work-card__media::after { opacity: var(--rv-card-overlay); }
-.work-card:focus-visible .work-card__media .button-sm { opacity: 1; }
 
 /* R4. The Mondai card export carries a lighter 7 px strip down its right edge. Widen the image by those
        pixels so the frame crops the strip off. */

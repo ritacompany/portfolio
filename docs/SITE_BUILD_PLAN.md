@@ -6,7 +6,25 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
-### Phone layouts from his Figma, 10 Nov (latest)
+### Home motion on the preview, 10 Nov (latest)
+His ask (10 Nov): nav fixed across the top; Product Designer only over the hero, leaving up and out into
+Selected works; more gap and a hold before the works, with controls; the title holds while the cards
+rise one by one with a reveal first (he is finding a reference for this; what is built is a first pass);
+the card hover he has given five or six times (rest: image only; hover: black layer and outline Learn
+more; pointer near the middle: Learn more fills); card images centred at any width; About and Current
+role text appear as Haven's text does. Built as a preview layer only: `site/dev/preview/home-motion.js`
+and `.css` (build-preview adds them to every page; they act on Home only). Proposal R3's hover is folded
+into it. Motion values are Haven's (Lenis lerp 0.1; text 1.4 s fades 0.15 s apart; images open from the
+top while settling from 1.3, 1.2 s). Learn more fades in without moving, because the hover-still check
+holds every letter on hover. A "Home motion" panel (bottom right, 768 and up) tunes the gap, where the
+title holds, how long it holds, Haven's lag, the black layer, the fill radius and when Product Designer
+leaves; Copy values gives him a list to send back. Checks: `.unlazy/home-motion/GATES.md`, 12 of 12
+runnable gates met. Not built: the hero load-in and Testimonials (his call, later). Found: the Mondai
+desktop card export `assets/home/mondai-card@2x.webp` is near black, so the card shows almost nothing at
+rest; re-export it from Figma. Why the hover kept slipping: fixes/2026-11-10-card-hover-never-reached-him.md.
+Next: he tries it on :4319, sends the reference for the works motion, then site/css and site/js on his yes.
+
+### Phone layouts from his Figma, 10 Nov
 He drew the phone home in Portfolio Design, page VC, **Mobile frames** `4929:12379` (402 by 874): hero,
 menu, Selected works, About, footer, plus two small Link sizes in the Link set `4657:11003`. Built in
 site/ at his ask ("replace whatever mobile versions we currently have"), under 768 only; tablet and

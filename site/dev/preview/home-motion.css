@@ -1,0 +1,73 @@
+/* Home motion, preview only (his ask, 10 Nov). Moves into site/css on his yes. Every value he may tune is a
+   variable here and a slider in the Home motion panel (home-motion.js). Only active on Home, from 768 up,
+   once the script has added html.hm. Motion grammar is Haven's: text fades 1.4 s, 0.15 s apart; images
+   open from the top while they settle from 1.3. */
+
+:root {
+  --hm-works-gap: 320px;   /* hero to Selected works title (was 165) */
+  --hm-title-at: 38vh;     /* where the title holds while the cards rise */
+  --hm-hold: 70vh;         /* scroll the title holds alone before the first card arrives */
+  --hm-overlay: var(--rv-card-overlay, 0.5); /* black over a card image on hover (R3) */
+}
+
+/* 1. Nav. Fixed to the top across the full width, like Haven's. */
+@media (min-width: 768px) {
+  html.hm .home .page-header { position: fixed; top: var(--navbar-top, 15px); z-index: 30; pointer-events: none; }
+  html.hm .home .page-header a, html.hm .home .page-header button { pointer-events: auto; }
+  /* Product Designer rides up and out of its own line as the page moves into Selected works. */
+  html.hm .home .navbar__role { clip-path: inset(-0.45em -12px -0.45em -12px); }
+  html.hm .home .navbar__role > span { display: inline-block; will-change: transform, opacity; }
+}
+
+/* 2. Selected works. More room above it; the title holds in place while the cards rise over it. */
+@media (min-width: 768px) {
+  html.hm .home .works { padding-top: var(--hm-works-gap); }
+  html.hm .home .hm-stage > .grid { position: sticky; top: var(--hm-title-at); z-index: 0; }
+  html.hm .home .works__cards { position: relative; z-index: 1; margin-top: var(--hm-hold); }
+  html.hm .home .work-card { will-change: transform; }
+}
+
+/* 3. Reveal. Cards open from the top (Haven's mask) the first time they come in. */
+html.hm .home .work-card__media.hm-mask { clip-path: inset(0 0 100% 0); }
+html.hm .home .work-card__media.hm-open { clip-path: none; }
+html.hm .home .hm-item { opacity: 0; }
+html.hm .home .hm-item.hm-in { opacity: 1; }
+
+/* 4. Work card hover. At rest the image only. Hovered: the black layer and Learn more come in, Learn more
+      as the outline. Pointer near the middle: Learn more swaps to its filled state at once (the hover rule:
+      colour swaps are instant, nothing about the letters moves). Replaces proposal R3. */
+html.hm .home .work-card__media::after { opacity: 0; transition: opacity 420ms var(--ease-expo-out); }
+/* Learn more fades in a beat after the layer and never moves: his hover rule (9 Nov) is that nothing
+   moves on hover, and scripts/verify-hover-still.mjs holds every letter to 0.05 px. */
+html.hm .home .work-card__media .button-sm {
+  opacity: 0; z-index: 1; pointer-events: none;
+  transition: opacity 220ms var(--ease-quart-out), background-color 0s, color 0s;
+}
+html.hm .home .work-card.hm-hot .work-card__media::after { opacity: var(--hm-overlay); }
+html.hm .home .work-card.hm-hot .work-card__media .button-sm { opacity: 1; transition: opacity 500ms var(--ease-expo-out) 80ms, background-color 0s, color 0s; }
+html.hm .home .work-card .work-card__media .button-sm { background: none; color: var(--neutral-100); }
+html.hm .home .work-card.hm-near .work-card__media .button-sm { background: var(--neutral-100); color: var(--neutral-900); }
+
+/* The interface in each card stays centred in its frame at any width. */
+html.hm .home .work-card__desk-art { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: 50% 50%; }
+html.hm .home .work-card-mondai .work-card__desk-art { width: calc(100% * 1758 / 1744); object-position: 0 50%; }
+html.hm .home .work-card-haven .work-card__desk-art { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.hm .home .work-card__media::after, html.hm .home .work-card__media .button-sm { transition: none !important; }
+}
+
+/* Tuning panel. Preview only, never shipped. */
+.hm-panel {
+  position: fixed; right: 16px; bottom: 16px; z-index: 100; width: 280px; max-height: 80vh; overflow: auto;
+  padding: 12px 14px; border-radius: 10px; background: #fff; color: #111; box-shadow: 0 6px 24px rgb(0 0 0 / 0.35);
+  font: 12px/1.35 system-ui, sans-serif;
+}
+.hm-panel[data-closed] > :not(.hm-panel__top) { display: none; }
+.hm-panel__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; }
+.hm-panel button { font: inherit; padding: 3px 8px; border: 1px solid #bbb; border-radius: 6px; background: #f4f4f4; cursor: pointer; }
+.hm-panel label { display: block; margin-top: 10px; }
+.hm-panel label span { display: flex; justify-content: space-between; }
+.hm-panel input[type="range"] { width: 100%; }
+.hm-panel__row { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+@media (max-width: 767.98px) { .hm-panel { display: none; } }
