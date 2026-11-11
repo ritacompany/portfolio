@@ -18,9 +18,7 @@ if (mode === "copy") {
   if (d) fail("site/mondai changed since 6341aa0: " + d);
   console.log("COPY_UNCHANGED_OK");
 } else if (mode === "dashes") {
-  const files = ["framework-page.md", "framework-page-GATES.md", "framework-page-check.js", "framework-page-gates.mjs", "framework-carry-gates.mjs",
-    "cs2-falling-behind-final/style_guide.md", "cs2-falling-behind-final/state_list.md", "cs2-falling-behind-final/review_log.md",
-    "../../site/dev/preview/fb-carry.js", "../../site/dev/preview/fb-carry.css"];
+  const files = ["framework-page.md", "framework-page-GATES.md", "framework-page-check.js", "framework-page-gates.mjs"];
   const bad = files.filter((f) => /[\u2013\u2014]| -{2} /.test(readFileSync(path.join(root, "docs/motion", f), "utf8")));
   if (bad.length) fail("dash in " + bad.join(", "));
   console.log("NO_DASHES_OK " + files.length);

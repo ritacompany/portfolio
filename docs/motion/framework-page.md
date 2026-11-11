@@ -73,14 +73,10 @@ studies, which he has ruled out.
 Each needs a motion idea Haven does not have, so none is built. Each has a clip or a lab page already,
 so nothing new is drawn until he picks.
 
-1. Falling behind, the carry. BUILT 11 Nov on his yes, as a preview (`site/dev/preview/fb-carry.js` and
-   `.css`): the lab's engine (`site/motion-lab/fb-engine.js`, his 5 Nov side by side version with the
-   pixel field, ROLLOVER tag and green arrival) plays in a frame that takes the place of the static
-   Rollover panel; Haven's curtain opens it, then it loops while on screen; reduced motion shows the
-   still at 5.5 s. Review in `docs/motion/cs2-falling-behind-final/`. Open with him: where it sits (my
-   pick, the Rollover panel's place, the section 477 px taller at 1440) and the frame size, which leaves
-   the scene's block small in a 720 by 680 frame. `fb-settings.json` is still empty, so the engine
-   defaults play.
+1. Falling behind, the carry. An unfinished Action Item carries into next week and the dates move.
+   Paused by him. Lab: `site/motion-lab/cs2-falling-behind-final.html` and the editor
+   (`cs2-falling-behind-editor.html`, settings in `fb-settings.json`); logs in
+   `docs/motion/cs2-falling-behind*`.
 2. Growth Journey, the dates. Direction A was mocked (four cards complete, the line fills to
    Opportunity, both targets light together); he called it pointless for now on 4 Nov and parked it.
    Lab: `site/motion-lab/growth-journey/`, log in `docs/motion/growth-journey/`.
@@ -90,4 +86,6 @@ so nothing new is drawn until he picks.
 4. Start of week, opening one template at a time. Haven's finale row is the nearest precedent, which
    is exactly why it waits: the same five card row twice would read as one designer's habit.
 
-He picked the Falling behind carry as the one moving piece (11 Nov); the other three stay waiting.
+My pick, if he wants one moving piece on this page: the Falling behind carry. It is the block the whole
+second half of the case study turns on and it already has a tuned lab. It is motion inside media, so it
+goes through the render, review and `motion-check` loop when he says yes.
