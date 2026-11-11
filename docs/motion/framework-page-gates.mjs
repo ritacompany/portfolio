@@ -19,7 +19,7 @@ if (mode === "copy") {
   console.log("COPY_UNCHANGED_OK");
 } else if (mode === "dashes") {
   const files = ["framework-page.md", "framework-page-GATES.md", "framework-page-check.js", "framework-page-gates.mjs"];
-  const bad = files.filter((f) => /[–—]| -- /.test(readFileSync(path.join(root, "docs/motion", f), "utf8")));
+  const bad = files.filter((f) => /[\u2013\u2014]| -{2} /.test(readFileSync(path.join(root, "docs/motion", f), "utf8")));
   if (bad.length) fail("dash in " + bad.join(", "));
   console.log("NO_DASHES_OK " + files.length);
 } else if (mode === "browser") {
