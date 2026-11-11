@@ -8,6 +8,7 @@ Rebuild Metalab case-study layouts as own HTML, driven by the Satoshi type syste
 All 10 case studies built and verified in build/: midjourney, robinhood, uber, suno, atoms, the-atlantic, calvin-klein, headspace, ro, windsurf. That's the original 7 (plus midjourney, robinhood) plus the 2 extra pages Chadwick approved (ro, windsurf) once the live site turned out to list 9 case studies, not 7. Every file verified at 1440/1200/967/768/390 with zero horizontal overflow (windsurf/ro/headspace/calvin-klein/atoms/the-atlantic/suno/uber checked at 1440+390; midjourney+robinhood checked at the full 5-breakpoint set). Next: none queued — see Open for a scope question that came up mid-build and hasn't been acted on.
 
 ## State
+- 11 Nov, site/ (branch claude/relaxed-ride-5mlbdu): Home and Haven re-synced to his Figma file. 3 Home and 25 Haven changes applied, every one traced to a node; 8 items wait for his call. Record and gates: reports/figma-sync-2026-11/DIFF.md and GATES.md. Tokens unchanged since the 10 Nov sync.
 - Fonts received: Satoshi 10 faces (.otf), Geist Mono 6 faces (.ttf) ✓
 - Converted all 16 to WOFF2 (embedded as base64 in each build/*.html) ✓
 - Subset Satoshi Regular/Medium/Bold to Latin, ~13.7KB each, ~55KB base64 total ✓
@@ -67,6 +68,7 @@ All 10 case studies built and verified in build/: midjourney, robinhood, uber, s
 - Don't assume a "swiper-slide" query returns only real slides — Swiper sometimes duplicates slides for loop mode (saw this on Midjourney's carousel extraction attempt); cross-check with `.swiper-slide-duplicate` or a plain element count if a slide count looks suspiciously doubled.
 
 ## Open
+- Figma sync 11 Nov, his call: Q1 to Q8 in reports/figma-sync-2026-11/DIFF.md (lavender hero, out minds, Insight 1 style, one label's tracking, Case study end point label, pill tooltip, chat section's two compositions, two section heights).
 - The 4 stray "next case study" targets (Genies, Pitch, The Athletic, Upwork) — confirm with Chadwick whether these are in scope, or archived/delisted pages not worth chasing. Leaning toward the latter since Windsurf's own "next" link closes the loop back into the known 10 rather than pointing further outward.
 - Unused-CSS cleanup pass across build/*.html (see State) — cosmetic, not blocking.
 - Real image sourcing/replacement of the scaffold body copy was always going to be a separate pass per the original Decided note ("NOT shippable, replace before publishing") — still true, still not started, now applies to all 10 files instead of 1.
