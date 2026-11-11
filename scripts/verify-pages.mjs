@@ -48,7 +48,9 @@ const base = `http://127.0.0.1:${server.address().port}`;
 
 const { chromium } = createRequire(import.meta.url)("playwright");
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: spec.w, height: Math.min(spec.h, 900) }, deviceScaleFactor: 1 });
+// Reduced motion: the Figma frames are the pages at rest, and page entrances (text fades, media curtains)
+// would otherwise leave everything below the first screen hidden in a full page shot
+const page = await browser.newPage({ viewport: { width: spec.w, height: Math.min(spec.h, 900) }, deviceScaleFactor: 1, reducedMotion: "reduce" });
 const consoleErrors = [], failed = [];
 page.on("console", (m) => { if (m.type() === "error") consoleErrors.push(m.text()); });
 page.on("pageerror", (e) => consoleErrors.push(String(e)));

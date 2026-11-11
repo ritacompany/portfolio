@@ -5,8 +5,8 @@ study (`site/mondai/framework/index.html`, Figma 5812:16446). Page entrances on 
 they are reviewed in the browser, not rendered (motion rules, Scope). His ask, 10 Nov: give the Mondai
 pages "the same type of animations that we have on the Haven case study".
 
-Preview only: `site/dev/preview/mondai-motion.js` and `.css`. Nothing in `site/mondai`, `site/css` or
-`site/js` changes until he says yes.
+Live since 11 Nov: `site/js/mondai-motion.js` and `site/css/mondai-motion.css`, linked from both pages,
+with Lenis at Haven's fixed 0.1. It started as a studio preview layer (`site/dev/preview/`), now removed.
 
 ## Reference
 Haven as built and approved: `site/haven/haven.js` and `haven.css`. What each piece does and why:
@@ -27,8 +27,7 @@ Haven as built and approved: `site/haven/haven.js` and `haven.css`. What each pi
 - Nav on light. The nav turns dark while it sits over Haven's one light block.
 
 ## What to take
-- Lenis exactly as Haven (lerp 0.1, wheel 1). In this preview it follows the Scroll feel panel when that
-  panel is on the page, so Mondai, Home and Haven scroll alike while he tunes it.
+- Lenis exactly as Haven (lerp 0.1, wheel 1), fixed.
 - Text fade exactly as Haven: 1.4 s, 0.15 s steps, 100 px trigger, once.
 - Mask reveal exactly as Haven: curtain from the top, picture from 1.3, 1.2 s, Power3 in out, any pixel.
 - Arrival delay 0.35 s and the skipped past rule.
@@ -83,7 +82,7 @@ strip is over before it reads, and the 1.3 settle on it reads as a jump.
 The Start of week templates open together the moment the carousel shows, so the ones off to the side
 are already open when he scrolls to them.
 
-## Timing (Haven's values, his to tune in the edit panel when it lands)
+## Timing (Haven's values, fixed)
 - Text: 1.4 s, 0.15 s between steps (five steps at most per section), trigger 100 px inside the screen.
 - Media: 1.2 s, Power3 in out, from scale 1.3.
 - Arrival: 0.35 s.
@@ -92,7 +91,7 @@ are already open when he scrolls to them.
 ## Reduced motion
 Everything shows at once in its final place. No Lenis, no fades, no curtains.
 
-## How it is built (preview)
+## How it is built
 - The page markup has no Haven style wrappers, so the layer finds its items itself and never changes
   the layout: the framework's absolute positions at 1440, and its stacked order under 1200, stay as
   they are.

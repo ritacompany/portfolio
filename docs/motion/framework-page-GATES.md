@@ -1,59 +1,48 @@
-# Gates: framework page motion
+# Gates: framework page motion, live on the site
 
-OWNS: docs/motion/framework-page*, site/dev/preview/mondai-motion.js
+OWNS: docs/motion/framework-page*, site/js/mondai-motion.js, site/css/mondai-motion.css, site/mondai/index.html, site/mondai/framework/index.html, site/dev/preview/mondai-motion.js, site/dev/preview/mondai-motion.css, scripts/verify-pages.mjs
 
-Scope: the framework case study (`site/mondai/framework/`, Figma 5812:16446) has Haven's motion as built, at L1, through the preview layer `site/dev/preview/mondai-motion.js` and `.css` (6341aa0), with a plan for every block and the new ideas held for his yes. Checks run from the repository root; `framework-page-gates.mjs browser` starts its own studio server and drives headless Chromium.
+Scope: Haven's page motion (text fades, media curtains, arrival wait, Lenis at 0.1) runs on the real Mondai pages, `/mondai/framework/` and `/mondai/`, from `site/js/mondai-motion.js` and `site/css/mondai-motion.css`, served normally and from the built output, with no section specific animation and every static image left as it is. Checks run from the repository root.
 
-- [x] G1: the page loads with no page error and no failed site request at 1440, 768 and 390, with motion and with reduced motion (studio tooling requests excluded)
-  CHECK: node docs/motion/framework-page-gates.mjs browser
-  EXPECT: BROWSER_GATES_OK 5 runs
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=5fa38a6a331e920671f9eaedf2c3e3d4cc09dffc492b8f3fba1874981b1df9b0; output-bytes=375
-
-- [x] G2: every Haven precedent block animates and Lenis runs: with motion on, every item below the fold starts hidden and every item is final after a scroll through, and the timings equal Haven's (text 1.4 s, 0.15 s step, 100 px trigger, media 1.2 s from 1.3, arrival 0.35 s); reduced motion shows every final state at load with no Lenis. Asserted by the same browser run as G1
-  CHECK: node docs/motion/framework-page-gates.mjs browser
-  EXPECT: BROWSER_GATES_OK 5 runs
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=5fa38a6a331e920671f9eaedf2c3e3d4cc09dffc492b8f3fba1874981b1df9b0; output-bytes=375
-
-- [x] G3: no approved copy changed: `site/mondai` is identical to 6341aa0
-  CHECK: node docs/motion/framework-page-gates.mjs copy
-  EXPECT: COPY_UNCHANGED_OK
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=224ec90ec0bcb9347af16fa3e1c4934a439c43104d972c448662f7be04d881f6; output-bytes=18
-
-- [x] G4: no em or en dash in this round's docs and scripts
-  CHECK: node docs/motion/framework-page-gates.mjs dashes
-  EXPECT: NO_DASHES_OK 4
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=82533ff0d968f4a9c2c1f7e3a13c93d48538ebfaffdf47001c761608d28a79b8; output-bytes=15
-
-- [x] G5: the motion plan gives every block of the page its Haven pattern and the reason, then lists every block needing a motion idea Haven does not have as waiting on his yes; no Oxford commas in it (read against the 14 sections and the ending bar in the page markup)
-  EVIDENCE: manual, 11 Nov: the block table has 15 rows matching the 14 section aria labels plus the ending bar in site/mondai/framework/index.html; four waiting blocks listed with their lab paths; Oxford comma scan (", and" and ", or") found three list commas, all rewritten
-
-- [ ] G6: `scripts/motion-check.mjs` passes for the motion built this round
+- [ ] G1: the framework page served normally (`scripts/serve.mjs site`, not studio) runs the motion at 1440, 768 and 390 with no page error and no failed request: every item below the fold starts hidden and ends final after a scroll through, Lenis lerp is 0.1, timings equal Haven's; with reduced motion nothing is hidden and Lenis is off; the collection page arrives on load the same way
+  CHECK: node docs/motion/framework-page-gates.mjs browser site
+  EXPECT: BROWSER_GATES_OK site 5 runs
   EVIDENCE: pending
 
-- [x] G7: the work is committed and pushed to `claude/relaxed-ride-5mlbdu`
-  CHECK: git status --porcelain=v1 --branch docs/motion site/dev/preview/mondai-motion.js
-  EXPECT: /^## claude\/relaxed-ride-5mlbdu\.\.\.origin\/claude\/relaxed-ride-5mlbdu\s*$/
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site/docs/motion; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=8af7348b64cd41c0dbbf431d69185a61a03bef1f8970e64a63a8b60f68622e0c; output-bytes=66
+- [ ] G2: the same holds on the built output (`node scripts/build.mjs site`, then dist/ served), so the motion ships and does not depend on site/dev
+  CHECK: node docs/motion/framework-page-gates.mjs browser dist
+  EXPECT: BROWSER_GATES_OK dist 5 runs
+  EVIDENCE: pending
 
-ABANDON: G6 not applicable, not failed: the motion rules (Scope) review page entrances on the browser clock in the browser and never render them, and no motion inside media was built this round. It becomes a real gate for whichever waiting block he says yes to.
+- [ ] G3: no approved copy and no image changed: the only lines changed in `site/mondai` since 6341aa0 are the added motion stylesheet and the two scripts
+  CHECK: node docs/motion/framework-page-gates.mjs copy
+  EXPECT: COPY_UNCHANGED_OK
+  EVIDENCE: pending
 
-## Results, 11 Nov
+- [ ] G4: no em or en dash in this round's docs, scripts and the two motion files
+  CHECK: node docs/motion/framework-page-gates.mjs dashes
+  EXPECT: NO_DASHES_OK 6
+  EVIDENCE: pending
 
-Run in headless Chromium (Playwright) against `npm run studio`, because the built-in browser pane was
-hidden and a hidden pane never fires the observers. Script: the check above, at each width and mode.
+- [ ] G5: the site's suites hold: verify-1440 adds no failure to the three already on fa3779d (home lede box, framework footer box, Haven body, all from the Figma sync), and verify-responsive passes health, fit, overlap and size on every page
+  CHECK: node docs/motion/framework-page-gates.mjs suites
+  EXPECT: /SUITES_OK verify-1440 \d+ known failures, 0 new; verify-responsive 4 modes/
+  EVIDENCE: pending
 
-| Run | Lenis | Items | Hidden below the fold at load | Not final after scroll through | Timing diffs | Page errors | Site 404s |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1440 | on | 126 | 114 of 114 | 0 | none | 0 | 0 |
-| 768 | on | 121 | 107 of 107 | 0 | none | 0 | 0 |
-| 390 | on | 121 | 111 of 111 | 0 | none | 0 | 0 |
-| 1440 reduced | off | 126 | 0 | 0 | not run (layer stands down) | 0 | 0 |
-| 390 reduced | off | 121 | 0 | 0 | not run (layer stands down) | 0 | 0 |
+- [ ] G6: the preview copies are gone, so studio never runs the motion twice
+  CHECK: node -e "const f=require('fs');const g=['site/dev/preview/mondai-motion.js','site/dev/preview/mondai-motion.css'].filter(p=>f.existsSync(p));console.log(g.length?'STILL '+g:'PREVIEW_COPIES_GONE');process.exit(g.length?1:0)"
+  EXPECT: PREVIEW_COPIES_GONE
+  EVIDENCE: pending
 
-- Gate ids above were renumbered when the ledger moved to the unlazy format; the checker output is the record.
-- Negative control: with the old Lenis path restored for one run, the browser gate failed on the 404 and on Lenis not running at all three widths.
-- Fixed this round: Lenis never loaded in the preview. The layer looked for it at `/dev/vendor/`, a 404,
-  so the page scrolled natively. It now resolves `/vendor/` from both the studio and the phone build.
-- Lenis runs at the Scroll feel panel's lerp (0.075 today), not Haven's 0.1, by design of the preview:
-  every page follows his panel while he tunes it. The two errors per run are studio tooling (Flare's
-  Geist CSS and the 4321 health ping), not the page.
+- [x] G7: checked in the built-in browser on the normal server at 1440, 768 and 390
+  EVIDENCE: manual, 11 Nov: page loads only site scripts (fit-desktop, contact-goo, site, /vendor/lenis-1.1.20.min.js, /js/mondai-motion.js), no failed request on the page, Lenis lerp 0.1 and Haven's timings at all three widths, items below the fold hidden at load (83 of 96 at 1440, 77 of 90 at 768, 79 of 92 at 390; the rest are rules and plates outside the hidden set). The pane was hidden, so it ran no animation frames, and it cannot emulate reduced motion: playback and reduced motion are proven by G1 and G2 in headless Chromium.
+
+- [ ] G8: `scripts/motion-check.mjs` passes for motion built inside media
+  EVIDENCE: pending
+
+ABANDON: G8 not applicable, not failed: the Falling behind carry was reverted at his word (he wanted page wide motion only), so no motion inside media is built; page entrances on the browser clock are reviewed in the browser, never rendered (motion rules, Scope).
+
+## Notes, 11 Nov
+
+- `scripts/verify-pages.mjs` now opens its page with reduced motion. Its full page shot is compared with the Figma frames, which are the pages at rest; with motion on, everything below the first screen was still hidden and the framework pixel check failed (5812:17129 2.86%, 5812:17143 4.53%, 5812:20248 4.56%). That failure is the negative control for G5: the suites gate caught it as new.
+- Negative control for G1 and G2 (10 and 11 Nov): with the old Lenis path the browser gate failed on the 404 and on Lenis not running at all three widths.

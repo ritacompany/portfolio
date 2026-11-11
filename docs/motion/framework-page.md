@@ -1,10 +1,10 @@
 # Framework page motion plan
 
-Level L1: the framework case study (`site/mondai/framework/`, Figma 5812:16446) gets Haven's motion as
-built. Gates in `framework-page-GATES.md`. The build is the preview layer from 10 Nov
-(`site/dev/preview/mondai-motion.js` and `.css`, style guide and state list in
-`docs/motion/mondai-motion/`); it moves into `site/js` on his yes. This file adds what that guide does
-not: Haven's whole motion vocabulary, a pattern for every block and the blocks that wait on him.
+Level L1: the framework case study (`site/mondai/framework/`, Figma 5812:16446) and the Mondai collection
+(`/mondai/`) run Haven's page motion as built, from `site/js/mondai-motion.js` and
+`site/css/mondai-motion.css`, linked from both pages (live 11 Nov; it began as a studio preview layer on
+10 Nov). Gates in `framework-page-GATES.md`; style guide and state list in `docs/motion/mondai-motion/`.
+Page wide motion only, at his word (11 Nov): no section specific animation and every static image stays.
 
 ## Haven's motion vocabulary (`site/haven/`)
 
