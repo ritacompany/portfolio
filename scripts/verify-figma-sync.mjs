@@ -4,6 +4,7 @@
 // from the CSS. Positions at 1440 are page coordinates of the master; footer positions are measured from
 // the footer's top, because the site leaves out the Testimonials section he has on hold.
 // Prints FIGMA_SYNC_OK and exits 0 only when every check passes.
+// 11 Nov: lede and Selected works title re-read from the master (Neutral/200); see reports/figma-sync-2026-11/DIFF.md.
 // Usage: node scripts/verify-figma-sync.mjs [--dump]
 
 import { createServer } from "node:http";
@@ -31,14 +32,15 @@ const dump = process.argv.includes("--dump");
 const desktop = [
   [".navbar__role", { c: "#7b7b86", x: 389.36 }],
   [".navbar__links .link-nav", { c: "#f2f1f8" }],
-  [".hero__lede", { c: "#e8e7ee", fw: 500, fs: 20, ls: -0.02, x: 40, y: 468, w: 457, h: 66,
+  [".hero__lede", { c: "#dedee5", fw: 500, fs: 20, ls: -0.02, x: 40, y: 468, w: 457, h: 66 }],
+  [".hero__lede-wide", {
     text: "I’m a system-minded, nuance led designer, designing for what we know now, while leaving space for what may change our minds." }],
   [".hero__city", { c: "#7b7b86", x: 623, y: 498, tol: 1 }],
   [".hero__move img", { x: 623, y: 519, w: 16, tol: 1 }],
   [".hero__move span", { c: "#dedee5", fw: 400, fs: 16, x: 645, y: 521.5, tol: 1 }],
   [".hero__wordmark", { y: 580.51, h: 293, w: 1440, tol: 1 }],
   [".works", { line: "none" }],
-  [".works__title", { c: "#d2d2db", fs: 64, x: 518.5, y: 1064.5, w: 403 }],
+  [".works__title", { c: "#dedee5", fs: 64, x: 518.5, y: 1064.5, w: 403 }],
   [".work-card-mondai", { x: 40, y: 1235.5, w: 879 }],
   [".work-card-mondai .work-card__name", { c: "#f2f1f8", x: 40, y: 1235.5 }],
   [".work-card__slashes", { c: "#dedee5", x: 117.06, y: 1237, tol: 2 }],

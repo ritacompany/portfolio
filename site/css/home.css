@@ -12,9 +12,11 @@
 .hero__city, .about__label, .about__when { justify-self: start; width: fit-content; }
 .hero__lede {
   width: min(457px, 100%);
-  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-100);
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-200); /* 4929:12396, Neutral/200 since 11 Nov */
   text-box: trim-both cap alphabetic;
 }
+/* The phone frame 4928:11928 carries its own, shorter line (11 Nov). */
+.hero__lede-phone { display: none; }
 /* Under 1200 the block starts 2.33 past column 5, where the old frame had it. */
 .hero__where { display: flex; flex-direction: column; gap: 12px; margin-left: 2.33px; }
 /* The master widens the lede to 457 and puts the location 126 after it, at x 623: column 6. */
@@ -43,7 +45,7 @@
 .works { margin-top: -0.5px; padding: 165px 0 270px; }
 .works__title {
   grid-column: 1 / -1; justify-self: center;
-  font: var(--heading-64); letter-spacing: var(--heading-64-track); color: var(--neutral-300);
+  font: var(--heading-64); letter-spacing: var(--heading-64-track); color: var(--neutral-200); /* 4923:12112, 11 Nov */
   padding-inline-end: 0.04em;
   text-box: trim-both cap alphabetic;
 }
@@ -216,6 +218,8 @@
     position: absolute; left: var(--hero-col); bottom: 200px; width: min(235px, calc(100% - var(--hero-col) - var(--grid-margin)));
     font: var(--body-16-m); letter-spacing: var(--body-16-m-track); color: var(--neutral-050);
   }
+  .hero__lede-wide { display: none; }
+  .hero__lede-phone { display: inline; }
   /* Right edge 28 px in at 402 (x 212 to 374 in the frame), anchored right so narrow phones keep it on screen. */
   .hero__contact { display: inline-flex; position: absolute; right: calc(var(--grid-margin) + 4.34px); bottom: 120px; }
   .hero__name { position: static; margin: 0; }
