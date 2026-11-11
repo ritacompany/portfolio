@@ -6,8 +6,10 @@
 //   Register a group of controls. Works before or after this file loads, in any script order:
 //
 //     const def = {
-//       id: "scroll",                    // unique; registering the same id again replaces the group in place
+//       id: "scroll",                    // unique; registering the same id again replaces the group
 //       title: "Scroll feel",
+//       tab: "Scroll",                   // optional; "Scroll", "Motion" or "Type", a new name adds a tab.
+//                                        // Left out: "scroll" goes to Scroll, everything else to Motion.
 //       note: "Optional line under the title",
 //       persist: true,                   // default true: the panel saves values in this browser and replays
 //                                        // them through onInput on the next load. Pass false if the layer
@@ -32,7 +34,8 @@
 //   onInput runs on every change (slider drag, typed value, reset, preset, replay of a saved value).
 //
 // USING IT
-//   E opens and closes the panel (not while typing). Escape closes it from inside. Click a value to type
+//   The rail on the right edge opens a tab; E opens and closes (not while typing); Escape closes from
+//   inside; left and right arrows move between tabs. Click a value to type
 //   one: Enter applies, Escape cancels, arrows step, Shift steps ten. Shift plus arrows on a slider also
 //   steps ten. The tick on each track is the default; a changed row shows a dot and its reset arrow.
 //   Copy values puts every group on the clipboard as plain text to send back.
@@ -79,39 +82,88 @@
   const same = (a, b) => (typeof a === "number" && typeof b === "number" ? Math.abs(a - b) < 1e-9 : a === b);
 
   // Panel shell, built once the first group arrives (a page with nothing to tune shows nothing).
+  // Closed: a slim rail on the right edge, one button per tab with its changed count, so he lands on a
+  // tab in one click and sees what he changed without opening anything. Open: a full height panel
+  // docked right with the tabs on top, the groups of that tab, and Copy values and Reset tab pinned at
+  // the bottom. It floats over the page rather than squeezing it, so the widths he tunes stay true.
+  const TABS = ["Scroll", "Motion", "Type"]; // fixed, so the panel reads the same on every page
+  const tabs = new Map();
+  const EMPTY = { Type: "The type review tool moves in here next. Use its own button for now." };
+  const tabOf = (def) => def.tab || (def.id === "scroll" ? "Scroll" : "Motion");
+  let railEl = null, tablistEl = null, resetTabBtn = null;
   function shell() {
     if (root) return;
-    root = el("aside", "ep", { "aria-label": "Edit panel", "data-lenis-prevent": true, "data-dock": saved.ui.dock || "left" });
-    if (saved.ui.open) root.setAttribute("data-open", "");
-    const bar = el("div", "ep__bar");
-    toggleBtn = el("button", "ep__toggle", { type: "button", "aria-expanded": String(!!saved.ui.open), "aria-keyshortcuts": "E", title: "Open or close (E)" });
-    toggleBtn.innerHTML = `<span class="ep__mark" aria-hidden="true"></span><span class="ep__name">Edit</span>`;
+    root = el("aside", "ep", { "aria-label": "Edit panel", "data-lenis-prevent": true });
+    railEl = el("nav", "ep__rail", { "aria-label": "Edit panel tabs" });
+    const panel = el("div", "ep__panel");
+    const head = el("div", "ep__head");
+    const name = el("span", "ep__name", { text: "Edit" });
     countEl = el("span", "ep__count", { "aria-label": "changed values" });
-    toggleBtn.append(countEl);
-    const tools = el("div", "ep__tools");
-    copyBtn = el("button", "ep__btn", { type: "button", text: "Copy values" });
-    const dockBtn = el("button", "ep__btn ep__btn--icon ep__dock", { type: "button", "aria-label": "Move panel to the other side", title: "Move to the other side" });
-    dockBtn.innerHTML = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h10m0 0L9 2m3 3L9 8M14 11H4m0 0 3-3m-3 3 3 3"/></svg>`;
-    tools.append(copyBtn, dockBtn);
-    bar.append(toggleBtn, tools);
-    body = el("div", "ep__body", { id: uid("body") });
-    toggleBtn.setAttribute("aria-controls", body.id);
-    root.append(bar, body);
-    toggleBtn.addEventListener("click", () => setOpen(!root.hasAttribute("data-open")));
+    toggleBtn = el("button", "ep__btn ep__btn--icon ep__toggle", { type: "button", "aria-label": "Close edit panel", "aria-keyshortcuts": "E", title: "Close (E)" });
+    toggleBtn.innerHTML = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>`;
+    const top = el("div", "ep__top"); top.append(name, countEl, toggleBtn);
+    tablistEl = el("div", "ep__tabs", { role: "tablist", "aria-label": "Sections" });
+    head.append(top, tablistEl);
+    body = el("div", "ep__body");
+    const foot = el("div", "ep__foot");
+    copyBtn = el("button", "ep__btn ep__btn--primary", { type: "button", text: "Copy values" });
+    resetTabBtn = el("button", "ep__btn", { type: "button", text: "Reset tab" });
+    foot.append(copyBtn, resetTabBtn);
+    panel.append(head, body, foot);
+    root.append(railEl, panel);
+    for (const t of TABS) addTab(t);
+    toggleBtn.addEventListener("click", () => { setOpen(false); focusRail(); });
     copyBtn.addEventListener("click", () => copy());
-    dockBtn.addEventListener("click", () => {
-      saved.ui.dock = root.dataset.dock === "left" ? "right" : "left";
-      root.dataset.dock = saved.ui.dock; save();
+    resetTabBtn.addEventListener("click", () => { for (const g of groups.values()) if (g.tab === activeTab()) g.api.reset(); });
+    tablistEl.addEventListener("keydown", (e) => {
+      const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (!d) return;
+      e.preventDefault();
+      const names = [...tabs.keys()];
+      const next = names[(names.indexOf(activeTab()) + d + names.length) % names.length];
+      select(next); tabs.get(next).btn.focus();
     });
     root.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !e.target.matches(".ep-r__num, .ep-r__hex")) { setOpen(false); toggleBtn.focus(); }
+      if (e.key === "Escape" && !e.target.matches(".ep-r__num, .ep-r__hex")) { setOpen(false); focusRail(); }
     });
     (document.body || document.documentElement).append(root);
+    setOpen(!!saved.ui.open);
+    select(saved.ui.tab && tabs.has(saved.ui.tab) ? saved.ui.tab : "Scroll");
   }
+  function addTab(t) {
+    if (tabs.has(t)) return tabs.get(t);
+    const id = uid("tab");
+    const btn = el("button", "ep__tab", { type: "button", role: "tab", id, "aria-selected": "false", tabindex: "-1" });
+    btn.append(el("span", null, { text: t }));
+    const badge = el("span", "ep__badge", { hidden: true }); btn.append(badge);
+    const rail = el("button", "ep__railbtn", { type: "button", "aria-label": `Open ${t}`, title: `${t} (E)` });
+    rail.append(el("span", "ep__railname", { text: t }));
+    const rbadge = el("span", "ep__badge", { hidden: true }); rail.append(rbadge);
+    const pane = el("div", "ep__pane", { role: "tabpanel", "aria-labelledby": id, hidden: true });
+    pane.append(el("p", "ep__empty", { text: EMPTY[t] || "Nothing to tune on this page." }));
+    btn.addEventListener("click", () => select(t));
+    rail.addEventListener("click", () => { select(t); setOpen(true); btn.focus(); });
+    tablistEl.append(btn); railEl.append(rail); body.append(pane);
+    const tab = { btn, rail, pane, badges: [badge, rbadge] };
+    tabs.set(t, tab);
+    return tab;
+  }
+  const activeTab = () => saved.ui.tab && tabs.has(saved.ui.tab) ? saved.ui.tab : "Scroll";
+  function select(t) {
+    saved.ui.tab = t; save();
+    for (const [name, x] of tabs) {
+      const on = name === t;
+      x.btn.setAttribute("aria-selected", String(on)); x.btn.tabIndex = on ? 0 : -1;
+      x.rail.toggleAttribute("data-active", on);
+      x.pane.hidden = !on;
+    }
+    updateCount();
+  }
+  const focusRail = () => { const x = tabs.get(activeTab()); if (x) x.rail.focus(); };
   function setOpen(open) {
     if (!root) return;
     root.toggleAttribute("data-open", open);
-    toggleBtn.setAttribute("aria-expanded", String(open));
+    for (const x of tabs.values()) x.rail.setAttribute("aria-expanded", String(open));
     saved.ui.open = open; save();
   }
   addEventListener("keydown", (e) => {
@@ -126,9 +178,15 @@
   function updateCount() {
     if (!countEl) return;
     let n = 0;
-    for (const g of groups.values()) n += g.changed();
-    countEl.textContent = n ? String(n) : "";
+    const per = {};
+    for (const g of groups.values()) { const c = g.changed(); n += c; per[g.tab] = (per[g.tab] || 0) + c; }
+    countEl.textContent = n ? `${n} changed` : "";
     countEl.hidden = !n;
+    for (const [name, x] of tabs) {
+      x.badges.forEach((b) => { b.textContent = per[name] ? String(per[name]) : ""; b.hidden = !per[name]; });
+      x.pane.querySelector(".ep__empty").hidden = [...groups.values()].some((g) => g.tab === name);
+    }
+    if (resetTabBtn) resetTabBtn.disabled = !per[activeTab()];
   }
 
   // Groups
@@ -137,7 +195,10 @@
     shell();
     const old = groups.get(def.id);
     const g = buildGroup(def);
-    if (old) old.node.replaceWith(g.node); else body.append(g.node);
+    g.tab = tabOf(def);
+    const tab = addTab(g.tab);
+    if (old) old.node.remove();
+    tab.pane.append(g.node);
     groups.set(def.id, g);
     g.replay();
     updateCount();
@@ -361,7 +422,7 @@
     if (!ok) {
       const ta = el("textarea", "ep__copybuf", { readonly: true });
       ta.value = text;
-      root.append(ta); ta.select();
+      root.querySelector(".ep__panel").append(ta); ta.select();
       try { ok = document.execCommand("copy"); } catch {}
       if (ok) ta.remove();
       else {
