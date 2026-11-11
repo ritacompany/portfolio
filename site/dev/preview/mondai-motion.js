@@ -22,7 +22,10 @@
     root.classList.add("mm-off");
     return;
   }
-  const vendor = new URL("../vendor/", document.currentScript ? document.currentScript.src : location.href);
+  // Studio serves this layer from /dev/preview/, the phone preview build from /preview/; vendor sits
+  // beside dev/ in the first and beside preview/ in the second
+  const here = document.currentScript ? document.currentScript.src : location.href;
+  const vendor = new URL(/\/dev\/preview\//.test(here) ? "../../vendor/" : "../vendor/", here);
 
   // Haven's values (site/haven/haven.js)
   const T = { textDur: 1.4, stagger: 0.15, trigger: 100, maskDur: 1.2, from: 1.3, arrival: 0.35 };
