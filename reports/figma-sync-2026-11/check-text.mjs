@@ -34,7 +34,7 @@ const SKIP = {
 // Rows drawn by the site under a different text key (copy set as one element).
 const ALIAS = {
   "I4889:12775;4889:13132": "@2026, chadwick fenner", "4929:12356": "@2026, chadwick fenner",
-  "4659:13187": "identity was the first phase. community is the next."
+  "4659:13187": "community", "4659:13187#2": "identity was the first phase.community is the next."
 };
 // Properties deliberately left as they are, with the reason (each is a row in DIFF.md).
 const KEPT = {

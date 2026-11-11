@@ -24,12 +24,12 @@
 .resources a:hover { background:var(--n400); }
 .data__cards { display:flex; gap:calc(29 * var(--g)); }
 .data-card { width:calc(309 * var(--g)); border:1px solid var(--n500); border-radius:16px; padding:24px; min-height:382px; display:flex; flex-direction:column; justify-content:space-between; }
-.data-card h3 { font-size:14px; line-height:1.4; letter-spacing:.02em; font-weight:400; text-transform:uppercase; }
-.data-card__number { margin-top:64px; font-size:96px; line-height:1; letter-spacing:-.04em; color:#71f949; font-weight:700; text-box:trim-both cap alphabetic; }
+.data-card h3 { font-size:14px; line-height:1; letter-spacing:.06em; font-weight:400; text-transform:uppercase; color:var(--n100); } /* Body/Label/14 C, 4683:20289 */
+.data-card__number { margin-top:64px; font-size:96px; line-height:1; letter-spacing:0; color:var(--haven-mantis-bright); font-weight:700; text-box:trim-both cap alphabetic; }
 .data-card__number span { font-size:40px; margin-left:8px; }
-.data-card__caption { margin-top:20px; font-size:16px; line-height:1.4; font-weight:400; }
+.data-card__caption { margin-top:20px; font-size:16px; line-height:1.4; letter-spacing:-.01em; font-weight:400; color:var(--n100); } /* 4683:20297 */
 .data-card__body { margin-top:32px; font-size:14px; line-height:1.4; font-weight:400; letter-spacing:.02em; }
-.data-card__source { margin-top:40px; font-size:12px; text-transform:uppercase; letter-spacing:.1em; font-weight:400; color:var(--n550); }
+.data-card__source { margin-top:40px; font-size:12px; text-transform:uppercase; line-height:1.4; letter-spacing:.1em; font-weight:400; color:var(--n550); }
 .data__collage { aspect-ratio:1440/440; }
 .access { padding:64px 0 164px; }
 .access__text { gap:40px; }
@@ -74,7 +74,7 @@
 .cr-phone canvas { display:block; }
 .ending { --bg:var(--n900); --s:1; --t:600ms; --ease:cubic-bezier(.22,.8,.25,1); --edge:40px; min-height:0; padding:64px 0 164px; overflow:clip; }
 .ending__head { padding-left:calc(149 * var(--g)); }
-.ending__head .eyebrow { padding-left:7px; }
+.ending__head .eyebrow { padding-left:7px; color:var(--n500); } /* Neutral/500, 4659:13181 */
 .ending__title { margin-top:56px; max-width:calc(1291 * var(--g)); font-size:96px; line-height:.98; letter-spacing:-.04em; }
 .ending__needs { margin:80px 0 0 calc(123 * var(--g)); }
 .ending .stage-wrap { margin-top:calc(120px - 134px * var(--s)); height:calc(604px * var(--s)); }
@@ -83,6 +83,9 @@
 .ending__bottom { margin-top:calc(120px - 134px * var(--s)); display:flex; align-items:flex-start; gap:calc(133 * var(--g)); padding-left:calc(270 * var(--g)); }
 .ending__close { margin:0; flex:none; font-size:40px; line-height:1.15; }
 .ending__close .tb-item>span { color:var(--n550); }
+/* 4659:13187: "Community" Neutral/100, the rest of the line Neutral/050 (11 Nov) */
+.ending__close .tb-item { color:var(--n050); }
+.ending__close .tb-item>span.ending__word { color:var(--n100); }
 .ending__bottom .resources { max-width:550px; }
 .ending__bottom .resources ul { max-width:none; gap:8px; }
 @media (min-width:1160px) {
@@ -192,3 +195,5 @@
  .display { font-size:clamp(72px,14.7222vw,212px); }
  .ending__title { font-size:clamp(52px,6.6667vw,96px); }
 }
+/* Second hero paragraph is Neutral/525 in Figma (4683:20274), 11 Nov */
+.hero__background p + p { color:var(--n525); }

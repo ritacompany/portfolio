@@ -80,7 +80,7 @@ try {
     await p.goto(`http://127.0.0.1:${now.address().port}/haven/`, { waitUntil: "networkidle" });
     await p.waitForTimeout(800);
     const clock = await p.$eval("#chicago-time", (e) => e.textContent);
-    if (clock === "10:24pm CST" || !/^\d{1,2}:\d{2}(am|pm) C[DS]T$/.test(clock)) problems.push(`clock reads ${clock}`);
+    if (clock === "10:24pm CST" || !/^\d{1,2}:\d{2}(:\d{2})?(am|pm) C[DS]T$/.test(clock)) problems.push(`clock reads ${clock}`);
     const bridgeY = await p.$eval("#bridge", (e) => e.getBoundingClientRect().top + scrollY);
     let light = false;
     for (let y = bridgeY - 900; y < bridgeY + 3000 && !light; y += 100) { await p.evaluate((y) => scrollTo(0, y), y); await p.waitForTimeout(60); light = await p.$eval(".site-nav", (e) => e.classList.contains("is-on-light")); }
