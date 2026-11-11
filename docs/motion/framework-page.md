@@ -4,7 +4,7 @@ Level L1: the framework case study (`site/mondai/framework/`, Figma 5812:16446) 
 built. Gates in `framework-page-GATES.md`. The build is the preview layer from 10 Nov
 (`site/dev/preview/mondai-motion.js` and `.css`, style guide and state list in
 `docs/motion/mondai-motion/`); it moves into `site/js` on his yes. This file adds what that guide does
-not: Haven's whole motion vocabulary, a pattern for every block, and the blocks that wait on him.
+not: Haven's whole motion vocabulary, a pattern for every block and the blocks that wait on him.
 
 ## Haven's motion vocabulary (`site/haven/`)
 
@@ -87,5 +87,5 @@ so nothing new is drawn until he picks.
    is exactly why it waits: the same five card row twice would read as one designer's habit.
 
 My pick, if he wants one moving piece on this page: the Falling behind carry. It is the block the whole
-second half of the case study turns on, it already has a tuned lab, and it is motion inside media, so it
+second half of the case study turns on and it already has a tuned lab. It is motion inside media, so it
 goes through the render, review and `motion-check` loop when he says yes.
