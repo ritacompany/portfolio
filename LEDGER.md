@@ -68,7 +68,7 @@ All 10 case studies built and verified in build/: midjourney, robinhood, uber, s
 - Don't assume a "swiper-slide" query returns only real slides — Swiper sometimes duplicates slides for loop mode (saw this on Midjourney's carousel extraction attempt); cross-check with `.swiper-slide-duplicate` or a plain element count if a slide count looks suspiciously doubled.
 
 ## Open
-- Figma sync 11 Nov, his call: Q1 to Q8 in reports/figma-sync-2026-11/DIFF.md (lavender hero, out minds, Insight 1 style, one label's tracking, Case study end point label, pill tooltip, chat section's two compositions, two section heights).
+- Figma sync 11 Nov: Q1, Q3, Q4, Q7 and Q8 settled with him (DIFF.md, After his answers); Q6 pill tooltips with the haven-tooltips session; Q2 out minds and Q5 Case study end point label still as picked. Chat motion: newer version on haven/case-study not yet on the site.
 - The 4 stray "next case study" targets (Genies, Pitch, The Athletic, Upwork) — confirm with Chadwick whether these are in scope, or archived/delisted pages not worth chasing. Leaning toward the latter since Windsurf's own "next" link closes the loop back into the known 10 rather than pointing further outward.
 - Unused-CSS cleanup pass across build/*.html (see State) — cosmetic, not blocking.
 - Real image sourcing/replacement of the scaffold body copy was always going to be a separate pass per the original Decided note ("NOT shippable, replace before publishing") — still true, still not started, now applies to all 10 files instead of 1.

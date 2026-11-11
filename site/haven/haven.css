@@ -142,7 +142,7 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 .card { width: calc((100% - 64 * var(--g)) / 3); min-height: 279px; padding: 32px; border: 1px solid var(--n500); border-radius: 16px; background: var(--n900); display: flex; flex-direction: column; justify-content: flex-end; }
 .card__label { font-size: 12px; line-height: 1.4; letter-spacing: 0.04em; font-weight: 400; color: var(--n525); }
 .card__title { margin-top: 16px; font-size: 20px; line-height: 1.32; letter-spacing: -0.02em; font-weight: 500; color: var(--n100); } /* Heading/20, 4683:20370 */
-.card__body { margin-top: 24px; max-width: 330px; font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; color: var(--n300); }
+.card__body { margin-top: 24px; max-width: 330px; font-size: 14px; line-height: 1.4; letter-spacing: 0.02em; font-weight: 400; color: var(--n300); }
 
 /* ---------- Designing an MVP, 3300:12718 ---------- */
 .mvp { padding: 147px 0; }
@@ -199,8 +199,8 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 .ticker__set i:first-child { margin-left: 10px; }
 .cards-testing { display: flex; gap: calc(28 * var(--g)); padding: 48px var(--m) 50px; }
 .tcard { flex: 1; display: flex; flex-direction: column; gap: 20px; }
-.tcard__label { font-size: 14px; line-height: 1.4; letter-spacing: 0.01em; font-weight: 400; color: var(--n200); }
-.tcard__body { min-height: 124px; padding: 34px 24px 32px 25px; border: 1px solid var(--n500); border-radius: 10px; font-size: 16px; line-height: 1.4; color: var(--n300); } /* Neutral/300, 3558:22574 */
+.tcard__label { font-size: 14px; line-height: 1.4; letter-spacing: 0.02em; font-weight: 400; color: var(--n200); }
+.tcard__body { min-height: 124px; padding: 34px 24px 32px 25px; border: 1px solid var(--n500); border-radius: 10px; font-size: 16px; line-height: 1.4; letter-spacing: -0.01em; font-weight: 400; color: var(--n300); } /* Body/16 Neutral/300, 3558:22574 (style reattached 11 Nov) */
 .bridge-stack { position: relative; }
 .bridge { position: sticky; top: 0; z-index: 0; height: 100vh; height: 100svh; min-height: 640px; background: var(--bridge); padding: 72px calc(155 * var(--g)) 72px var(--m); display: flex; align-items: stretch; gap: 36px; overflow: hidden; }
 .bridge__line { width: 4px; flex: none; background: var(--n900); transform-origin: 50% 0; }

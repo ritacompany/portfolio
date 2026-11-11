@@ -46,10 +46,6 @@ const KEPT = {
   "4928:12055": [["fs", "ls"], "phone card drawn at 98.2 percent in the frame; site keeps Label/12 C"],
   "4929:12207": [["lh"], "13.75 description keeps the Label/14 line, 10 Nov D20"],
   "4929:12228": [["lh"], "13.75 description keeps the Label/14 line, 10 Nov D20"],
-  "3558:22566": [["ls"], "Insight 1 label tracks 2 percent, its three siblings 1 percent: his call (DIFF Q3)"],
-  "3558:22569": [["fw", "ls"], "Insight 1 body is Regular, its three siblings Medium: his call (DIFF Q3)"],
-  "4683:20371": [["ls"], "Insight 1 card body tracks 2 percent, its four siblings 1 percent: his call (DIFF Q3)"],
-  "3530:4896": [["ls"], "Scheduling a chat eyebrow tracks +0.2 percent, every other eyebrow -2 percent: his call (DIFF Q4)"]
 };
 const WEIGHT = { "Regular": 400, "Medium": 500, "SemiBold": 600, "Semi Bold": 600, "Bold": 700, "Bold Italic": 700, "ExtraBold": 800 };
 const norm = (s) => s.toLowerCase().replace(/[’‘]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();

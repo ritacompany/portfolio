@@ -94,3 +94,16 @@ Kept with a reason: 7 Home rows (D5 to D11) and 1 Haven row (V26). For his call:
 - `check-static.mjs ascii`: ASCII_ABSENT. `check-static.mjs hex`: HEX_OK.
 - `scripts/verify-haven.mjs motion`: HAVEN_MOTION_OK (its clock check now accepts seconds, which the clock shows since `588bdac`).
 - Screenshots in `shots/`: Home and Haven at 1440, 768 and 390, the Figma frames, and side by side comparisons at 1440.
+
+## After his answers, 11 Nov
+
+| Id | Outcome |
+|---|---|
+| Q1 | Dropped: the lavender hero is him playing around |
+| Q3 | Applied. Both Insight 1s were on the real text styles and their siblings were detached with hand set values. In Figma the siblings are back on their styles: `4683:20375`, `20381`, `20388`, `20394` Body/Label/12; `4683:20377`, `20383`, `20390`, `20396`, `3558:22572`, `22583`, `22578` Body/Label/14 (tracking 1 to 2 percent); `3558:22574`, `22585`, `22580` Body/16 (Medium to Regular, tracking 0 to -1 percent). Site: `.card__body` and `.tcard__label` tracking 0.02em, `.tcard__body` Regular, -0.01em |
+| Q4 | Applied. `3530:4896` Scheduling a chat is back on Heading/20 in Figma; the site already drew it that way |
+| Q6 | Handed to the session haven-tooltips: interaction options first, then the build he picks |
+| Q7 | The two phones in `4262:4967` are the start and end of the chat scroll motion (`site/haven/chat-rotate.js`, on the site since 28 Oct). A newer version from 10 review rounds sits in `site/motion-lab/chat-rotate.*` on branch `haven/case-study`, not yet on the site |
+| Q8 | Figma edited to match the build: headline `3515:11611` 669 to 646 wide (now 3 lines), program `3515:11603` gap 204 to 281, quiz `3300:13351` bottom padding 566 to 520. Program is now 1152 in Figma (site 1152.4), quiz 1885 (site 1885) |
+
+Gates rerun after these changes: TEXT_SYNC_OK 190 rows, FIGMA_SYNC_OK 171, TOKENS_OK 86, ASCII_ABSENT, HEX_OK, HAVEN_MOTION_OK.
