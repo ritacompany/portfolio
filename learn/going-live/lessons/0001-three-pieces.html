@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Three pieces of a website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<main>
+  <nav class="crumb"><a href="../index.html">Going live</a><span>Lesson 1 of 3</span><span>5 minutes</span></nav>
+
+  <h1>Three pieces of a website, and where yours are</h1>
+
+  <p class="win"><b>Your win</b>You can name the three things a site needs and say where each of yours lives today. Everything else in this course hangs off these three words.</p>
+
+  <h2>The three pieces</h2>
+  <div class="pieces">
+    <div class="piece">
+      <span class="k">Domain</span>
+      <h3>The address</h3>
+      <p>The name people type. You rent it a year at a time from a company called a registrar.</p>
+      <span class="yours">Yours: chadwickfenner.com, rented from Wix</span>
+    </div>
+    <div class="piece">
+      <span class="k">Hosting</span>
+      <h3>The building</h3>
+      <p>A computer that is always on and hands your files to anyone who visits the address.</p>
+      <span class="yours">Yours: not set up yet. Plan is Vercel, free</span>
+    </div>
+    <div class="piece">
+      <span class="k">Code</span>
+      <h3>What is inside</h3>
+      <p>The files that make the pages: HTML for structure, CSS for looks, JavaScript for motion.</p>
+      <span class="yours">Yours: done and growing, in GitHub</span>
+    </div>
+  </div>
+
+  <div class="deadline">
+    <span class="when">You did not lose the domain</span>
+    <p>I checked the public registry record on 6 Nov 2026. chadwickfenner.com is still registered to you at Wix, first registered Nov 2022, and paid through <strong>26 Nov 2026</strong>. <span class="label confirmed">Confirmed</span> You do not need to buy it again. You need to keep it, and that has a 20 day clock. Lesson 2 covers it.</p>
+  </div>
+
+  <h2>How they connect</h2>
+  <p>A fourth thing, DNS, ties the address to the building. It is a short list of settings attached to your domain that says "when someone asks for chadwickfenner.com, send them to Vercel." Setting it up is two lines of text, typed once.</p>
+
+  <figure>
+    <div class="wide">
+      <svg viewBox="0 0 680 150" width="680" height="150" role="img" aria-label="A visitor types the address, DNS points it to Vercel, Vercel serves the files it pulled from GitHub.">
+        <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="d-head"/></marker></defs>
+        <rect class="d-box" x="4" y="40" width="130" height="62" rx="6"/>
+        <text class="d-t" x="69" y="66" text-anchor="middle">Visitor</text>
+        <text class="d-s" x="69" y="85" text-anchor="middle">types the address</text>
+        <rect class="d-box" x="186" y="40" width="140" height="62" rx="6"/>
+        <text class="d-t" x="256" y="66" text-anchor="middle">DNS</text>
+        <text class="d-s" x="256" y="85" text-anchor="middle">"go to Vercel"</text>
+        <rect class="d-box hot" x="378" y="40" width="130" height="62" rx="6"/>
+        <text class="d-t" x="443" y="66" text-anchor="middle">Vercel</text>
+        <text class="d-s" x="443" y="85" text-anchor="middle">hands over files</text>
+        <rect class="d-box" x="560" y="40" width="116" height="62" rx="6"/>
+        <text class="d-t" x="618" y="66" text-anchor="middle">GitHub</text>
+        <text class="d-s" x="618" y="85" text-anchor="middle">your code</text>
+        <path class="d-line" d="M134,71 L184,71" marker-end="url(#a)"/>
+        <path class="d-line" d="M326,71 L376,71" marker-end="url(#a)"/>
+        <path class="d-line" d="M560,71 L510,71" marker-end="url(#a)"/>
+        <text class="d-s" x="535" y="130" text-anchor="middle">copied on every save</text>
+        <path class="d-line" d="M535,118 L535,104" />
+        <text class="d-s" x="160" y="24" text-anchor="middle">1</text>
+        <text class="d-s" x="352" y="24" text-anchor="middle">2</text>
+        <text class="d-s" x="535" y="24" text-anchor="middle">3</text>
+      </svg>
+    </div>
+    <figcaption>Every visit takes the same route. Each time a change is saved to GitHub, Vercel copies the new files over by itself, so nobody uploads anything by hand.</figcaption>
+  </figure>
+
+  <h2>Why this is the easy kind of site</h2>
+  <p>Your site is plain HTML, CSS and JavaScript sitting in the <code>site/</code> folder. No database, no login, no server code. A site like that is a stack of files, and handing out files is the simplest job a host does. It is why hosting can be free and why there is little that can break after launch.</p>
+  <p>Framer feels simpler because it bundles all three pieces into one monthly subscription. You would pay for that bundle every month, and you would rebuild the site you already have inside Framer to get it.</p>
+
+  <section class="quiz" aria-label="Check yourself">
+    <h2>Check yourself</h2>
+    <p class="note">Answer from memory first. Scrolling back up is allowed, but recall is what makes it stick.</p>
+
+    <div class="q" data-right="The domain is rented a year at a time. Your code stays in GitHub and the free hosting has no bill, whatever happens to the domain." data-wrong="The domain is the only piece that lapses when payment stops. The code sits in GitHub either way, and the free hosting has no bill.">
+      <p class="ask">1. You stop paying the registrar. What happens?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false">Your site files are deleted from your GitHub repo</button>
+        <button type="button" aria-pressed="false" data-right="1">The address lapses and someone else can buy it</button>
+        <button type="button" aria-pressed="false">Vercel shuts the hosting off until you start paying</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+
+    <div class="q" data-right="The site is already written, in plain HTML in the site folder. Hosting and DNS are the two pieces still to set up." data-wrong="Only the code exists today. Nothing is paid for on Framer, and DNS cannot point at Vercel until there is a Vercel project to point at.">
+      <p class="ask">2. Which piece of your site already exists today?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false">The DNS records, already pointing at Vercel</button>
+        <button type="button" aria-pressed="false">The hosting, on Framer's servers, already paid</button>
+        <button type="button" aria-pressed="false" data-right="1">The code, in your GitHub portfolio repo</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+
+    <div class="q" data-right="DNS is only the lookup. It says which computer answers for chadwickfenner.com. The files live in GitHub and on Vercel." data-wrong="DNS holds no files and sends no bills. It is the lookup that tells a browser which computer answers for your address.">
+      <p class="ask">3. What does DNS do in this setup?</p>
+      <div class="opts">
+        <button type="button" aria-pressed="false" data-right="1">Tells browsers which computer serves your address</button>
+        <button type="button" aria-pressed="false">Stores the files that make your site</button>
+        <button type="button" aria-pressed="false">Charges your card yearly for the address</button>
+      </div>
+      <p class="why" hidden></p>
+    </div>
+  </section>
+
+  <div class="source">
+    <span class="k">Read next, 8 minutes</span>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name">What is a domain name?</a> on MDN, the reference web developers trust most. Skim past the <code>whois</code> output; the first half is the part that matters here.</p>
+  </div>
+
+  <p class="ask-me">Anything unclear, ask me in the chat. "What's a registrar again?" is a fine question. Terms are also in the <a href="../reference/glossary.html">glossary</a>.</p>
+
+  <nav class="next"><a href="../index.html">Course home</a><a href="0002-cost-and-deadline.html">Lesson 2: cost and the deadline</a></nav>
+</main>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
