@@ -10,6 +10,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 const problems = [], ok = (c, m) => { if (!c) problems.push(m); };
 const html = readFileSync(path.join(root, "site/mondai/framework/index.html"), "utf8");
 ok(!/Sources:/.test(html), "a sources line is still on the page");
+ok(/<span class="ending-bar__all">Explore more case studies<\/span>/.test(html), "Explore more case studies is not plain text");
+ok(/<h1[^>]*fw-title[^>]*>Framework CS<img class="fw-mark" src="\/assets\/ui\/mondai-mark\.svg"/.test(html), "the Mondai mark is not in the title row");
 ok(/data-figma-node="5812:20346"[^>]*>\s*<img src="\/assets\/framework\/rollover-icon@2x\.png"[^>]*>The Rollover effect</.test(html), "the Rollover effect is not live text with its icon");
 
 const port = 4480 + Math.floor((Date.now() / 1000) % 15);
@@ -48,6 +50,34 @@ try {
     ok(m.padL === m.padR, `${w}: ending bar link padding ${m.padL} and ${m.padR}`);
     ok(/rgba\(0, 0, 0, 0\)|transparent/.test(m.chevronBg) && /rgba\(0, 0, 0, 0\)|transparent/.test(m.nextBg), `${w}: chevron still has a background`);
     console.log(`${w}: schedule ${m.lines} line(s), icon ${m.iconW}x${m.iconH} off ${m.iconOff}, line past text ${m.ruleBelow}, bar padding ${m.padL}/${m.padR}`);
+    await page.close();
+  }
+
+  // The Mondai mark: on the title row, inside the page at every width, right on the 40 px margin at 1440
+  for (const w of [1440, 768, 390]) {
+    const page = await browser.newPage({ viewport: { width: w, height: 900 }, reducedMotion: "reduce" });
+    await page.goto(url, { waitUntil: "networkidle" });
+    const m = await page.evaluate(() => { const i = document.querySelector(".fw-mark").getBoundingClientRect(), h = document.querySelector(".fw-title").getBoundingClientRect(); return { r: Math.round(i.right), l: Math.round(i.left), w: Math.round(i.width), inRow: i.top >= h.top - 1 && i.bottom <= h.bottom + 1, vw: innerWidth }; });
+    ok(m.inRow && m.l >= 0 && m.r <= m.vw, `${w}: mark outside the title row or the screen (${JSON.stringify(m)})`);
+    if (w === 1440) ok(Math.abs(m.r - 1400) <= 2, `1440: mark right edge ${m.r}, not on the 40 px margin`);
+    console.log(`${w}: mark ${m.w} wide, right edge ${m.r} of ${m.vw}`);
+    await page.close();
+  }
+
+  // Foundation diagram: wipes open from the left, no settle, then opens fully
+  {
+    const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    await page.goto(url, { waitUntil: "networkidle" });
+    await page.evaluate(() => { const e = document.querySelector('[data-figma-node="5812:16512"]'); __mm.lenis.scrollTo(e.getBoundingClientRect().top + scrollY - 300, { immediate: true }); });
+    await page.waitForTimeout(450);
+    const mid = await page.evaluate(() => { const c = getComputedStyle(document.querySelector('[data-figma-node="5812:16512"]')); return { clip: c.clipPath, tf: c.transform }; });
+    await page.waitForTimeout(1500);
+    const end = await page.evaluate(() => getComputedStyle(document.querySelector('[data-figma-node="5812:16512"]')).clipPath);
+    const r = /inset\(0px ([\d.]+)% 0px 0px\)/.exec(mid.clip);
+    ok(r && +r[1] > 5 && +r[1] < 95, `Foundation mid wipe ${mid.clip}`);
+    ok(mid.tf === "none", `Foundation scales while it opens (${mid.tf})`);
+    ok(end === "none", `Foundation not open at the end (${end})`);
+    console.log(`Foundation: mid ${mid.clip}, end ${end}`);
     await page.close();
   }
 

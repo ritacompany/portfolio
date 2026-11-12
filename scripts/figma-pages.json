@@ -430,11 +430,12 @@
      "x": 22,
      "y": 136,
      "h": 152,
-     "w": 1357,
+     "w": 1378,
      "rel": {
       "sel": "[data-figma-node='5812:16447']",
       "y": 136
-     }
+     },
+     "decided": "title row runs to the 40 px margin to hold the Mondai mark at its end, his ask 11 Nov"
     },
     {
      "name": "Role",

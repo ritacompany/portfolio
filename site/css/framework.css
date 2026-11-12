@@ -135,3 +135,11 @@
    25 percent smaller than the flattened export it replaces (19.5 by 21.5 there). */
 .fb-effect { display: flex; align-items: center; gap: 10px; }
 .fb-effect img { width: 14.6px; height: 16.1px; flex: none; }
+
+/* The Mondai mark on the hero (his ask, 11 Nov): at the end of the title row, right on the 40 px margin,
+   centred on the capitals; Figma names this row Logo and arrows container. */
+.fw-title .fw-mark { position: absolute; right: 0; top: 50%; width: 118px; height: auto; transform: translateY(-50%); }
+@media (max-width: 1199.98px) {
+  .fw-title { display: flex; align-items: center; justify-content: space-between; }
+  .fw-title .fw-mark { position: static; transform: none; flex: none; width: clamp(40px, 9vw, 96px); }
+}

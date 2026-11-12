@@ -45,16 +45,22 @@ Scope: Haven's page motion (text fades, media curtains, arrival wait, Lenis at 0
   EXPECT: AUDIT_FIXES_OK
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=d344eb439f3a3d5ac735a8286df236952f40a9274cf7f71a2881b5a27bb93cc4; output-bytes=423
 
-- [ ] G10: the Foundation diagram's entrance is his pick, built
+- [ ] G10: the Foundation diagram wipes open from 01 across to 05 with no settle, his pick on 11 Nov (part way at 0.45 s, fully open after, no transform)
+  CHECK: node docs/motion/framework-audit-gates.mjs
+  EXPECT: AUDIT_FIXES_OK
   EVIDENCE: pending
 
-- [ ] G11: the Mondai logo is on the framework page where he picks
+- [ ] G11: the Mondai mark sits at the end of the title row, inside the screen at 1440, 768 and 390 and on the 40 px margin at 1440 (he left the spot to me on 11 Nov)
+  CHECK: node docs/motion/framework-audit-gates.mjs
+  EXPECT: AUDIT_FIXES_OK
   EVIDENCE: pending
 
-- [ ] G12: "Explore more case studies" is a button in the style he picks
+- [ ] G12: "Explore more case studies" is plain text, not a link (his answer, 11 Nov)
+  CHECK: node docs/motion/framework-audit-gates.mjs
+  EXPECT: AUDIT_FIXES_OK
   EVIDENCE: pending
 
-- [ ] G13: the footer portraits show no outline, once he confirms which outline he means
+- [ ] G13: the footer portraits show no outline, once he confirms which outline he means (the only candidate found: the pill's light grey fill showing as a rim above the photo)
   EVIDENCE: pending
 
 ABANDON: G8 not applicable, not failed: the Falling behind carry was reverted at his word (he wanted page wide motion only), so no motion inside media is built; page entrances on the browser clock are reviewed in the browser, never rendered (motion rules, Scope).

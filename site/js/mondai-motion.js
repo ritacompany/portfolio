@@ -119,6 +119,12 @@
     }
     return f;
   }
+  const WIPE = ["5812:16512"];
+  function wipeFrames() {
+    const N = 48, f = [];
+    for (let i = 0; i <= N; i++) { const t = i / N; f.push({ offset: t, clipPath: `inset(0 ${(100 * (1 - power3InOut(t))).toFixed(3)}% 0 0)`, transform: "none" }); }
+    return f;
+  }
   const opened = (img) => { img.style.clipPath = "none"; img.style.transform = ""; img.style.willChange = ""; img.dataset.mmDone = "1"; };
   function openMask(imgs, delay) {
     imgs.forEach((i) => { i.loading = "eager"; i.dataset.mmDone = "0"; });
@@ -126,7 +132,9 @@
       const frames = maskFrames();
       imgs.forEach((img) => {
         img.style.willChange = "clip-path, transform";
-        const a = img.animate(frames, { duration: T.maskDur * 1000, delay, easing: "linear", fill: "both" });
+        // The Foundation diagram is not a screen: it wipes open from 01 across to 05, no settle (his pick, 11 Nov)
+        const f = WIPE.includes(img.dataset.figmaNode) ? wipeFrames() : frames;
+        const a = img.animate(f, { duration: T.maskDur * 1000, delay, easing: "linear", fill: "both" });
         a.finished.then(() => { opened(img); a.cancel(); }, () => {});
       });
     });
