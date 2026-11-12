@@ -50,8 +50,28 @@
 //   one: Enter applies, Escape cancels, arrows step, Shift steps ten. Shift plus arrows on a slider also
 //   steps ten. The tick on each track is the default; a changed row shows a dot and its reset arrow.
 //   Copy values puts every group on the clipboard as plain text to send back.
+//   It opens on the tab he last picked if this page has controls there, otherwise on the first tab that has.
+//
+// STANDALONE PAGES (a tuner, an options page, anything in site/dev or site/motion-lab), one line in <head>:
+//     <script src="/dev/preview/edit-panel.js" data-fluid defer></script>
+//   The script loads edit-panel.css itself. data-fluid says the page's layout reads its own width
+//   (container queries on body, or script measuring its own box), so the panel can dock beside it down
+//   to a 480 px page: in the ~800 px desktop browser pane it sits beside the page instead of over it.
+//   Leave data-fluid off any page whose breakpoints read the window (every site page): those dock only
+//   while the page keeps 1024 px and are a bottom sheet below that. Tabs with no controls are hidden.
 (() => {
   if (window.EditPanel) return;
+  const me = document.currentScript;
+  const FLUID = !!(me && me.hasAttribute("data-fluid")) || document.documentElement.hasAttribute("data-ep-fluid");
+  // Load the stylesheet unless the page (or the preview build) already links it; hold the panel hidden
+  // until it lands so it never flashes unstyled.
+  let cssReady = Promise.resolve();
+  if (me && me.src && !document.querySelector('link[rel="stylesheet"][href*="edit-panel.css"]')) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet"; link.href = new URL("edit-panel.css", me.src).href;
+    cssReady = new Promise((r) => { link.onload = link.onerror = r; });
+    document.head.append(link);
+  }
   const STORE = "edit-panel:v1";
   const load = () => { try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch { return {}; } };
   const saved = Object.assign({ values: {}, ui: {} }, load());
@@ -138,18 +158,22 @@
       const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
       if (!d) return;
       e.preventDefault();
-      const names = [...tabs.keys()];
+      const names = [...tabs.keys()].filter((n) => !tabs.get(n).btn.hidden);
       const next = names[(names.indexOf(activeTab()) + d + names.length) % names.length];
-      select(next); tabs.get(next).btn.focus();
+      select(next, true); tabs.get(next).btn.focus();
     });
     root.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !e.target.matches(".ep-r__num, .ep-r__hex, .ep-r__text")) { setOpen(false); focusRail(); }
     });
+    root.toggleAttribute("data-fluid", FLUID);
+    root.style.visibility = "hidden";
+    // Once the stylesheet lands the docked page narrows for real, so tell the page's scripts to measure again.
+    cssReady.then(() => { root.style.visibility = ""; layout(); if (dock) dispatchEvent(new Event("resize")); });
     (document.body || document.documentElement).append(root);
     grip();
     showSaved();
     setOpen(!!saved.ui.open);
-    select(saved.ui.tab && tabs.has(saved.ui.tab) ? saved.ui.tab : "Scroll");
+    select(pickTab());
   }
   function addTab(t) {
     if (tabs.has(t)) return tabs.get(t);
@@ -162,16 +186,26 @@
     const rbadge = el("span", "ep__badge", { hidden: true }); rail.append(rbadge);
     const pane = el("div", "ep__pane", { role: "tabpanel", "aria-labelledby": id, hidden: true });
     pane.append(el("p", "ep__empty", { text: EMPTY[t] || "Nothing to tune on this page." }));
-    btn.addEventListener("click", () => select(t));
-    rail.addEventListener("click", () => { select(t); setOpen(true); btn.focus(); });
+    btn.addEventListener("click", () => select(t, true));
+    rail.addEventListener("click", () => { select(t, true); setOpen(true); btn.focus(); });
     tablistEl.append(btn); railEl.append(rail); body.append(pane);
     const tab = { btn, rail, pane, badges: [badge, rbadge] };
     tabs.set(t, tab);
     return tab;
   }
-  const activeTab = () => saved.ui.tab && tabs.has(saved.ui.tab) ? saved.ui.tab : "Scroll";
-  function select(t) {
-    saved.ui.tab = t; save();
+  // The tab shown is the one he last picked when this page has controls on it, otherwise the first tab
+  // that has any. Only his own picks are remembered, so a page that lands elsewhere never moves his choice.
+  let shown = null, pickedHere = false;
+  const hasGroups = (t) => [...groups.values()].some((g) => g.tab === t);
+  function pickTab() {
+    const pref = saved.ui.tab;
+    if (pref && tabs.has(pref) && hasGroups(pref)) return pref;
+    return [...tabs.keys()].find(hasGroups) || (pref && tabs.has(pref) ? pref : "Scroll");
+  }
+  const activeTab = () => (shown && tabs.has(shown) ? shown : "Scroll");
+  function select(t, byHim = false) {
+    shown = t;
+    if (byHim) { pickedHere = true; saved.ui.tab = t; save(); }
     for (const [name, x] of tabs) {
       const on = name === t;
       x.btn.setAttribute("aria-selected", String(on)); x.btn.tabIndex = on ? 0 : -1;
@@ -196,7 +230,8 @@
   // The site's breakpoints read the window, not the page, so the panel only docks while the page keeps
   // PAGE_MIN px, the narrowest the desktop layout holds at. On anything narrower (phones, tablets either
   // way up, small laptops) it is a sheet along the bottom and the page keeps the window's width.
-  const PAGE_MIN = 1024, WMIN = 280;
+  // A standalone page marked data-fluid lays itself out from its own width, so it may dock down to 480.
+  const PAGE_MIN = FLUID ? 480 : 1024, WMIN = 280;
   const sheetMode = () => innerWidth - PAGE_MIN < WMIN;
   const W0 = 360, clampW = (w) => Math.round(clamp(w, WMIN, Math.max(WMIN, Math.min(760, innerWidth * 0.6, innerWidth - PAGE_MIN))));
   const clampH = (h) => Math.round(clamp(h, 180, innerHeight * 0.85));
@@ -302,7 +337,14 @@
     countEl.hidden = !n;
     for (const [name, x] of tabs) {
       x.badges.forEach((b) => { b.textContent = per[name] ? String(per[name]) : ""; b.hidden = !per[name]; });
-      x.pane.querySelector(".ep__empty").hidden = [...groups.values()].some((g) => g.tab === name);
+      const has = hasGroups(name);
+      x.pane.querySelector(".ep__empty").hidden = has;
+      // A standalone page shows only the tabs it uses; the site preview keeps all three so it reads the same.
+      if (FLUID) { x.btn.hidden = !has; x.rail.hidden = !has; }
+    }
+    if (FLUID && tablistEl) {
+      tablistEl.hidden = [...tabs.keys()].filter(hasGroups).length < 2;
+      if (resetTabBtn) resetTabBtn.textContent = tablistEl.hidden ? "Reset all" : "Reset tab";
     }
     if (resetTabBtn) resetTabBtn.disabled = !per[activeTab()];
   }
@@ -318,6 +360,7 @@
     if (old) old.node.remove();
     tab.pane.append(g.node);
     groups.set(def.id, g);
+    if (!pickedHere) select(pickTab());
     g.replay();
     applyRemote(g, def.id);
     updateCount();
