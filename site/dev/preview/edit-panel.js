@@ -43,7 +43,7 @@
 //
 // USING IT
 //   Open, the panel docks beside the page on a wide screen: the page narrows to make room (fixed bars
-//   too) and the panel's left edge drags to resize it, remembered. On a phone it is a sheet across the
+//   too) and the panel's left edge drags to resize it, remembered. On a phone, tablet or small laptop it is a sheet across the
 //   bottom whose top handle drags its height, and the page gains that much room under its content.
 //   The rail on the right edge opens a tab; E opens and closes (not while typing); Escape closes from
 //   inside; left and right arrows move between tabs. Click a value to type
@@ -193,8 +193,12 @@
   // fixed element that reaches the right edge is moved in by the same amount, since a margin cannot
   // narrow what is fixed to the window. Phones: the sheet covers the bottom, so the page gains that much
   // room under its content and can scroll everything above it. Widths and heights are remembered.
-  const phone = matchMedia("(max-width: 767.98px)");
-  const W0 = 360, clampW = (w) => Math.round(clamp(w, 280, Math.max(280, Math.min(760, innerWidth * 0.6))));
+  // The site's breakpoints read the window, not the page, so the panel only docks while the page keeps
+  // PAGE_MIN px, the narrowest the desktop layout holds at. On anything narrower (phones, tablets either
+  // way up, small laptops) it is a sheet along the bottom and the page keeps the window's width.
+  const PAGE_MIN = 1024, WMIN = 280;
+  const sheetMode = () => innerWidth - PAGE_MIN < WMIN;
+  const W0 = 360, clampW = (w) => Math.round(clamp(w, WMIN, Math.max(WMIN, Math.min(760, innerWidth * 0.6, innerWidth - PAGE_MIN))));
   const clampH = (h) => Math.round(clamp(h, 180, innerHeight * 0.85));
   const sheetH = () => clampH(saved.ui.sheet || innerHeight * 0.55);
   const html = document.documentElement;
@@ -206,14 +210,15 @@
     const w = clampW(saved.ui.width || W0), h = sheetH();
     root.style.setProperty("--ep-w", w + "px");
     root.style.setProperty("--ep-sheet", h + "px");
-    const docked = open && !phone.matches, sheet = open && phone.matches;
+    const sm = sheetMode(), docked = open && !sm, sheet = open && sm;
+    root.toggleAttribute("data-sheet", sm);
     const before = dock + (html.classList.contains("ep-sheet") ? 1 : 0);
     dock = docked ? w : 0;
     html.classList.toggle("ep-docked", docked);
     html.classList.toggle("ep-sheet", sheet);
     html.style.setProperty("--ep-dock", dock + "px");
     html.style.setProperty("--ep-sheet-h", (sheet ? h : 0) + "px");
-    if (gripEl) { gripEl.setAttribute("aria-orientation", phone.matches ? "horizontal" : "vertical"); gripEl.setAttribute("aria-valuenow", String(phone.matches ? h : w)); }
+    if (gripEl) { gripEl.setAttribute("aria-orientation", sheetMode() ? "horizontal" : "vertical"); gripEl.setAttribute("aria-valuenow", String(sheetMode() ? h : w)); }
     scanFixed();
     if (docked && !mo) {
       mo = new MutationObserver(() => { if (!scanQueued) { scanQueued = true; requestAnimationFrame(() => { scanQueued = false; scanFixed(); }); } });
@@ -248,16 +253,15 @@
     if (mo) mo.takeRecords();
   }
   addEventListener("resize", () => { if (!laying) layout(); });
-  phone.addEventListener("change", () => layout());
 
   function grip() {
     let start = null;
     const setSize = (px, commit) => {
-      if (phone.matches) saved.ui.sheet = clampH(px); else saved.ui.width = clampW(px);
+      if (sheetMode()) saved.ui.sheet = clampH(px); else saved.ui.width = clampW(px);
       layout();
       if (commit) save();
     };
-    const size = () => (phone.matches ? sheetH() : clampW(saved.ui.width || W0));
+    const size = () => (sheetMode() ? sheetH() : clampW(saved.ui.width || W0));
     gripEl.addEventListener("pointerdown", (e) => {
       if (e.button !== 0) return;
       e.preventDefault();
@@ -267,12 +271,12 @@
     });
     gripEl.addEventListener("pointermove", (e) => {
       if (!start) return;
-      setSize(start.s + (phone.matches ? start.y - e.clientY : start.x - e.clientX), false);
+      setSize(start.s + (sheetMode() ? start.y - e.clientY : start.x - e.clientX), false);
     });
     const end = () => { if (!start) return; start = null; root.removeAttribute("data-resizing"); save(); };
     gripEl.addEventListener("pointerup", end);
     gripEl.addEventListener("pointercancel", end);
-    gripEl.addEventListener("dblclick", () => { if (phone.matches) delete saved.ui.sheet; else delete saved.ui.width; layout(); save(); });
+    gripEl.addEventListener("dblclick", () => { if (sheetMode()) delete saved.ui.sheet; else delete saved.ui.width; layout(); save(); });
     gripEl.addEventListener("keydown", (e) => {
       const d = { ArrowLeft: 1, ArrowUp: 1, ArrowRight: -1, ArrowDown: -1 }[e.key];
       if (!d) return;

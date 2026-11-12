@@ -241,33 +241,32 @@ html.ep-reduce-preview *, html.ep-reduce-preview *::before, html.ep-reduce-previ
   .ep__toggle { height: 36px; }
   .ep-g__toggle { min-height: 36px; }
 }
+/* Sheet (set by edit-panel.js whenever docking would leave the page under 1024 px: phones, tablets either
+   way up, small laptops): the rail stays on the right edge; open, the panel is a sheet across the bottom
+   and the page keeps the window's width, so its own layout for that width is what he sees. */
+.ep[data-sheet] { top: auto; left: 0; bottom: 0; height: 100dvh; align-items: center; justify-content: flex-end; }
+.ep[data-sheet][data-open] { align-items: flex-end; }
+.ep[data-sheet] .ep__panel { width: 100% !important; height: var(--ep-sheet, 55dvh); align-self: flex-end; border-left: 0; border-top: 1px solid var(--ep-line-2); border-radius: 14px 14px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+/* The sheet's top edge is its handle (bottom sheet pattern): drag up or down to set its height. */
+.ep[data-sheet] .ep__grip { left: 0; right: 0; top: 0; bottom: auto; width: auto; height: 22px; cursor: row-resize; }
+.ep[data-sheet] .ep__grip::before { display: none; }
+.ep[data-sheet] .ep__griphandle { display: block; width: 36px; height: 4px; margin-top: -4px; border-radius: 2px; background: #4a4b52; }
+.ep[data-sheet][data-resizing] .ep__griphandle, .ep[data-sheet] .ep__grip:focus-visible .ep__griphandle { background: var(--ep-focus); }
+.ep[data-sheet] .ep__head { border-radius: 14px 14px 0 0; padding-top: 10px; }
+.ep[data-sheet][data-resizing] { cursor: row-resize; }
 @media (max-width: 767.98px) {
-  /* Phone: the rail stays on the right edge; open, the panel is a sheet across the bottom 60 percent,
-     so the page stays visible above it while he scrolls. */
-  .ep { top: auto; left: 0; bottom: 0; height: 100dvh; align-items: center; justify-content: flex-end; }
-  .ep[data-open] { align-items: flex-end; }
-  .ep__panel { width: 100% !important; height: var(--ep-sheet, 55dvh); align-self: flex-end; border-left: 0; border-top: 1px solid var(--ep-line-2); border-radius: 14px 14px 0 0; padding-bottom: env(safe-area-inset-bottom); }
-  /* The sheet's top edge is its handle (bottom sheet pattern): drag up or down to set its height. */
-  .ep__grip { left: 0; right: 0; top: 0; bottom: auto; width: auto; height: 22px; cursor: row-resize; }
-  .ep__grip::before { display: none; }
-  .ep__griphandle { display: block; width: 36px; height: 4px; margin-top: -4px; border-radius: 2px; background: #4a4b52; }
-  .ep[data-resizing] .ep__griphandle, .ep__grip:focus-visible .ep__griphandle { background: var(--ep-focus); }
-  .ep__head { border-radius: 14px 14px 0 0; padding-top: 10px; }
   .ep__tabs { padding: 0 6px; }
   .ep__tab { flex: 1; justify-content: center; height: 44px; }
   .ep__railbtn { width: 36px; padding: 12px 0; }
 }
 
-/* Docked: the page narrows by the panel's width. Fixed bars are moved in by edit-panel.js. Sizes the
-   site sets from the window width (vw) are recomputed against the narrower page. */
+/* Docked: the page narrows by the panel's width, never under 1024 px. Fixed bars are moved in by
+   edit-panel.js. The one size the site sets from the window width (vw) is recomputed for the page. */
 /* position: relative makes the narrowed html the box absolute elements measure from; without it they
    measure from the window and run under the panel (the framework page's nav did). */
 html.ep-docked { margin-right: var(--ep-dock, 0px) !important; position: relative; }
 @media (min-width: 1200px) {
   html.ep-docked { --display-212: 400 min(212px, calc((100vw - var(--ep-dock, 0px) - 2 * var(--grid-margin)) * 0.15))/0.83 var(--font); }
-}
-@media (max-width: 1199.98px) and (min-width: 768px) {
-  html.ep-docked { --display-212: 400 calc((100vw - var(--ep-dock, 0px) - 2 * var(--grid-margin)) * 0.15)/0.83 var(--font); }
 }
 /* Phone sheet: room under the page's content equal to the sheet, so the end of the page scrolls clear. */
 html.ep-sheet { padding-bottom: var(--ep-sheet-h, 0px) !important; }
