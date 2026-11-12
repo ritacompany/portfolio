@@ -202,3 +202,5 @@
 }
 /* Second hero paragraph is Neutral/525 in Figma (4683:20274), 11 Nov */
 .hero__background p + p { color:var(--n525); }
+/* HAVEN wordmark above the tagline, moved off the title row in his file (12 Nov, 4961:11998): 80 by 17.27, tagline 32 below */
+.hero__mark { display:block; width:80px; height:17.27px; margin-bottom:32px; }

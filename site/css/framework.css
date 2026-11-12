@@ -136,10 +136,13 @@
 .fb-effect { display: flex; align-items: center; gap: 10px; }
 .fb-effect img { width: 14.6px; height: 16.1px; flex: none; }
 
-/* The Mondai mark on the hero (his ask, 11 Nov): at the end of the title row, right on the 40 px margin,
-   centred on the capitals; Figma names this row Logo and arrows container. */
-.fw-title .fw-mark { position: absolute; right: 0; top: 50%; width: 118px; height: auto; transform: translateY(-50%); }
+/* The Mondai mark on the hero: his file moved it off the title row (12 Nov) to sit above the tagline,
+   40 by 40.57 at the 40 px margin, the tagline 32 below it (WIP Mondai framework case study 4269:9433,
+   Mondai Logo 4961:12105). */
+.fw-logo { width: 40px; height: 40.57px; }
+/* Hero paragraphs sit 40 apart in the same frame (4961:11994 and 4961:11995), not the usual 16. */
+[data-figma-node="5812:16468"] .para + .para { margin-top: 40px; }
 @media (max-width: 1199.98px) {
-  .fw-title { display: flex; align-items: center; justify-content: space-between; }
-  .fw-title .fw-mark { position: static; transform: none; flex: none; width: clamp(40px, 9vw, 96px); }
+  .fw-sec > .fw-logo { width: 40px !important; height: 40.57px !important; }
+  .fw-sec > .fw-logo + * { margin-top: 32px; }
 }
