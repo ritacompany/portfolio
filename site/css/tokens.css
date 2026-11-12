@@ -156,6 +156,23 @@
   --ease-quart-out: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-expo-in: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+
+  /* Tooltip: the insight tooltip on the Haven pills (Figma 4264:7197, Neutral/800 box, Body/Label/12 in
+     Neutral/200). Hover and focus only, per the WAI-ARIA tooltip pattern. The delays are read by
+     haven/pill-tips.js, so they stay in ms. */
+  --tooltip-bg: var(--neutral-800);
+  --tooltip-ink: var(--neutral-200);
+  --tooltip-radius: 6px;
+  --tooltip-width: 306px;
+  --tooltip-pad: 20px;
+  --tooltip-gap: 8px;
+  --tooltip-arrow: 12px;
+  --tooltip-edge: 16px;
+  --tooltip-drift: 4px;
+  --tooltip-in: 160ms;
+  --tooltip-out: 120ms;
+  --tooltip-open-delay: 300ms;
+  --tooltip-close-delay: 100ms;
 }
 
 /* Breakpoints. Desktop (1200 and up) is the Figma grid and type above; nothing below changes it.

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pill tooltips</title>
+<link rel="stylesheet" href="/css/tokens.css">
+<style>
+@font-face { font-family: "Satoshi"; src: url("/assets/satoshi-regular.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Satoshi"; src: url("/assets/satoshi-medium.woff2") format("woff2"); font-weight: 500; }
+:root {
+  --bg: var(--neutral-950, #000);
+  --ink: var(--neutral-050);
+  --ink-2: var(--neutral-300);
+  --ink-3: var(--neutral-525);
+  --rule: var(--neutral-675);
+  --chip-line: var(--neutral-550);
+  --chip-ink: var(--neutral-100);
+  /* Tooltip tokens, from Figma 4264:7197 */
+  --tip-bg: var(--neutral-800);
+  --tip-ink: var(--neutral-200);
+  --tip-radius: 6px;
+  --tip-w: 306px;
+  --tip-pad: 20px;
+  --tip-pad-far: 28px;
+  --tip-tuck: 13px;
+  --tip-gap: 8px;
+  --gutter: 16px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); }
+body { padding: 0 16px 160px; }
+.wrap { max-width: 1120px; margin: 0 auto; }
+header.top { padding: 56px 0 40px; border-bottom: 1px solid var(--rule); }
+h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 500; margin: 0 0 16px; }
+.lede { color: var(--ink-2); font-size: 16px; line-height: 1.45; max-width: 680px; margin: 0 0 12px; }
+.lede b { color: var(--ink); font-weight: 500; }
+section.opt { padding: 64px 0 48px; border-bottom: 1px solid var(--rule); }
+.opt__tag { font-size: 14px; color: var(--ink-3); margin: 0 0 8px; }
+.opt h2 { font-size: 28px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 8px; }
+.opt__pattern { color: var(--ink-2); font-size: 15px; margin: 0 0 32px; max-width: 720px; line-height: 1.45; }
+.stage { display: grid; gap: 64px; padding: 64px 0 48px; }
+.stage__row { display: flex; flex-direction: column; gap: 14px; }
+.stage__row-right { align-items: flex-end; }
+.stage__cap { font-size: 12px; letter-spacing: 0.04em; color: var(--ink-3); }
+.filler { color: var(--ink-2); font-size: 16px; line-height: 1.4; max-width: 520px; margin: 0; }
+dl.spec { display: grid; grid-template-columns: 160px 1fr; gap: 10px 24px; font-size: 14px; line-height: 1.45; margin: 0; max-width: 880px; }
+dl.spec dt { color: var(--ink-3); }
+dl.spec dd { margin: 0; color: var(--ink-2); }
+@media (max-width: 640px) { dl.spec { grid-template-columns: 1fr; gap: 2px; } dl.spec dd { margin-bottom: 10px; } h1 { font-size: 30px; } }
+
+/* Chip look, as .pill in haven.css. A tag, not a button: no click behaviour. */
+.pills { display: flex; flex-wrap: wrap; gap: 14px; list-style: none; margin: 0; padding: 0; }
+.pills li { position: relative; display: flex; }
+.pill { position: relative; z-index: 2; height: 40px; padding: 0 20px; border: 1px solid var(--chip-line); border-radius: 48px; display: inline-flex; align-items: center; font: 400 12px/1.4 var(--font); letter-spacing: 0.08em; text-transform: uppercase; color: var(--chip-ink); white-space: nowrap; cursor: default; transition: border-color 160ms linear; }
+.pill:hover, .pill[data-tip-open] { border-color: var(--chip-ink); }
+.pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+@media (max-width: 767px) { .pills { gap: 8px; } .pill { padding: 0 14px; letter-spacing: 0.06em; } }
+
+.tip { position: absolute; z-index: 1; left: 0; width: min(var(--tip-w), calc(100vw - 2 * var(--gutter)));
+  background: var(--tip-bg); color: var(--tip-ink); border-radius: var(--tip-radius);
+  font: var(--label-12); letter-spacing: var(--label-12-track); text-box: trim-both cap alphabetic;
+  opacity: 0; visibility: hidden; pointer-events: none; }
+.tip[data-open] { opacity: 1; visibility: visible; pointer-events: auto; }
+
+/* Option 1: tucked behind the chip, as drawn in Figma */
+#opt-1 .tip { bottom: calc(100% - var(--tip-tuck)); padding: var(--tip-pad) var(--tip-pad) var(--tip-pad-far); transform: translateY(10px);
+  transition: opacity 120ms linear, transform 120ms var(--ease-expo-in), visibility 0s linear 120ms; }
+#opt-1 .tip[data-side="bottom"] { bottom: auto; top: calc(100% - var(--tip-tuck)); padding: var(--tip-pad-far) var(--tip-pad) var(--tip-pad); transform: translateY(-10px); }
+#opt-1 .tip[data-open] { transform: none; transition: opacity 200ms var(--ease-expo-out), transform 240ms var(--ease-expo-out), visibility 0s; }
+
+/* Option 2: detached, 8px off the chip, arrow on the chip's centre */
+#opt-2 .tip { bottom: calc(100% + var(--tip-gap) + 6px); padding: var(--tip-pad); transform: translateY(4px);
+  transition: opacity 120ms linear, transform 120ms linear, visibility 0s linear 120ms; }
+#opt-2 .tip::after { content: ""; position: absolute; left: var(--ax, 24px); bottom: -5px; width: 12px; height: 12px; background: var(--tip-bg); border-radius: 2px; transform: translateX(-50%) rotate(45deg); }
+#opt-2 .tip::before { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: calc(var(--tip-gap) + 6px); } /* hover bridge to the chip */
+#opt-2 .tip[data-side="bottom"] { bottom: auto; top: calc(100% + var(--tip-gap) + 6px); transform: translateY(-4px); }
+#opt-2 .tip[data-side="bottom"]::after { bottom: auto; top: -5px; }
+#opt-2 .tip[data-side="bottom"]::before { top: auto; bottom: 100%; }
+#opt-2 .tip[data-open] { transform: none; transition: opacity 160ms var(--ease-quart-out), transform 160ms var(--ease-quart-out), visibility 0s; }
+
+@media (prefers-reduced-motion: reduce) { .tip, .tip[data-open], .tip[data-side] { transform: none !important; } }
+/* Touch screens have no hover: the chips stay plain tags there. */
+@media (hover: none) { .tip { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Haven pill tooltips</h1>
+    <p class="lede">Two tooltips for the insight pills. Both behave as a tooltip should: they open on hover after a short delay and on keyboard focus, never on click, close on Escape or when the pointer leaves, and you can move the pointer onto them to keep reading. The only difference is how the box sits against the chip. Every pill is a real one from the page with its real text.</p>
+    <p class="lede"><b>My pick is 1</b>, because it is the Figma spec and its tuck already does the arrow's job: the box visibly comes out of one chip, so it cannot be read as belonging to its neighbour.</p>
+  </header>
+
+  <section class="opt" id="opt-1">
+    <p class="opt__tag">Option 1</p>
+    <h2>Tucked behind the chip</h2>
+    <p class="opt__pattern">The Figma box (4264:7197): left edges aligned, the box tucked 13px behind the chip so the chip's border sits on it, 28px of padding on the side away from the chip.</p>
+    <div class="stage">
+      <div class="stage__row"><span class="stage__cap">Confidante profile</span>
+        <ul class="pills"><li><span class="pill" data-k="ii1">Interview insight 1</span></li><li><span class="pill" data-k="ii3">Interview insight 3</span></li><li><span class="pill" data-k="ti4">Testing insight 4</span></li></ul></div>
+      <p class="filler">Body copy sits here on the page. The tooltip covers it while open and leaves it untouched when closed.</p>
+      <div class="stage__row stage__row-right"><span class="stage__cap">Right edge: the box shifts left to stay 16px inside the window</span>
+        <ul class="pills"><li><span class="pill" data-k="ii5">Interview insight 5</span></li><li><span class="pill" data-k="ti3">Testing insight 3</span></li></ul></div>
+    </div>
+    <dl class="spec">
+      <dt>Opens on</dt><dd>Hover, after 300ms. Keyboard focus, at once. Once one is open, moving to the next chip opens it at once (no second wait).</dd>
+      <dt>Position</dt><dd>Above, left aligned, 13px under the chip. Flips below when there is no room above, with the deep padding moving to the bottom. Shifts left to stay 16px inside the right edge.</dd>
+      <dt>Arrow</dt><dd>None. The tuck connects box and chip.</dd>
+      <dt>Motion</dt><dd>Rises 10px out from behind the chip with a fade, 240ms expo out. Leaves in 120ms. Reduced motion keeps the fade only.</dd>
+      <dt>Closes on</dt><dd>Pointer leaving both chip and box, after 100ms. Blur. Escape.</dd>
+    </dl>
+  </section>
+
+  <section class="opt" id="opt-2">
+    <p class="opt__tag">Option 2</p>
+    <h2>Detached with an arrow</h2>
+    <p class="opt__pattern">The same box held 8px off the chip, with an arrow on the chip's centre. NN/g recommends the arrow when elements sit close together, and the chips here are 14px apart.</p>
+    <div class="stage">
+      <div class="stage__row"><span class="stage__cap">Primary identity quiz</span>
+        <ul class="pills"><li><span class="pill" data-k="ii1">Interview insight 1</span></li><li><span class="pill" data-k="ii3">Interview insight 3</span></li><li><span class="pill" data-k="cr1">Confidante role 1</span></li></ul></div>
+      <p class="filler">Body copy sits here on the page. The tooltip covers it while open and leaves it untouched when closed.</p>
+      <div class="stage__row stage__row-right"><span class="stage__cap">Right edge: the box shifts, the arrow stays on the chip</span>
+        <ul class="pills"><li><span class="pill" data-k="ii4">Interview insight 4</span></li><li><span class="pill" data-k="ti2">Testing insight 2</span></li></ul></div>
+    </div>
+    <dl class="spec">
+      <dt>Opens on</dt><dd>Same as option 1.</dd>
+      <dt>Position</dt><dd>Above, left aligned, 8px clear of the chip plus the arrow. Flips below with the arrow. Shifts left to stay 16px inside the right edge, and the arrow follows the chip.</dd>
+      <dt>Arrow</dt><dd>12px, centred on the chip.</dd>
+      <dt>Motion</dt><dd>4px drift toward the chip with a fade, 160ms quart out. Leaves in 120ms.</dd>
+      <dt>Closes on</dt><dd>Same as option 1. An invisible bridge covers the gap so the pointer can cross onto the box.</dd>
+    </dl>
+  </section>
+
+  <section class="opt">
+    <p class="opt__tag">Both options</p>
+    <h2>Keyboard, screen readers and phones</h2>
+    <dl class="spec">
+      <dt>Keyboard</dt><dd>Each chip takes focus (tabindex 0) so the tooltip opens on focus. Escape closes it and focus stays on the chip.</dd>
+      <dt>Screen reader</dt><dd>The box has role tooltip and the chip points at it with aria-describedby, so the insight is read after the chip's label.</dd>
+      <dt>Phones</dt><dd>No tooltip. Touch screens have no hover, so the chips stay plain tags, as they are today. Every insight is already on the page in Key insights and the testing cards.</dd>
+    </dl>
+  </section>
+</div>
+
+<script>
+/* Every pill's text, taken from the page's own Key insights, testing cards and Confidante roles. */
+const INSIGHTS = {
+  ii1: "When choosing between experts, users look for what makes each one feel human. They want to know the expert will understand them.",
+  ii2: "Users were uncomfortable discussing sensitive identity topics aloud, especially when someone nearby could overhear.",
+  ii3: "A one size fits all identity model could flatten the demographic differences that shape each user’s unique experience.",
+  ii4: "Users need to pick a time when they can be alone and feel safe talking to an expert.",
+  ii5: "Users are concerned with using an LGBTQIA+ product in case disapproving guardians or peers may find out.",
+  ti1: "Users weren’t sure whether they’d talk to the expert by text, voice or video.",
+  ti2: "Users had trouble understanding the duration section of the scheduling page.",
+  ti3: "Users were concerned that the design lacked enough security features.",
+  ti4: "Users wanted to know more about each Confidante before choosing one.",
+  cr1: "A community liaison that connects the user to different people and communities."
+};
+</script>
+
+<script>
+/* Option 1: tucked */
+(() => {
+  const OPEN_DELAY = 300, CLOSE_DELAY = 100, GUTTER = 16;
+  let open = null, tOpen = 0, tClose = 0, n = 0;
+  const close = () => { if (!open) return; delete open.tip.dataset.open; delete open.pill.dataset.tipOpen; open = null; };
+  document.querySelectorAll('#opt-1 .pills li').forEach(li => {
+    const pill = li.querySelector('.pill');
+    const tip = document.createElement('span');
+    tip.className = 'tip'; tip.id = 'tip1-' + n++; tip.setAttribute('role', 'tooltip'); tip.textContent = INSIGHTS[pill.dataset.k];
+    li.append(tip);
+    pill.tabIndex = 0; pill.setAttribute('aria-describedby', tip.id);
+    const show = () => {
+      clearTimeout(tClose);
+      if (open && open.tip === tip) return;
+      close();
+      tip.dataset.side = 'top'; tip.style.left = '0px';
+      const r = pill.getBoundingClientRect();
+      const tuck = parseFloat(getComputedStyle(tip).getPropertyValue('--tip-tuck'));
+      if (r.top - (tip.offsetHeight - tuck) < GUTTER) tip.dataset.side = 'bottom';
+      const over = r.left + tip.offsetWidth - (document.documentElement.clientWidth - GUTTER);
+      if (over > 0) tip.style.left = -Math.min(over, r.left - GUTTER) + 'px';
+      tip.dataset.open = ''; pill.dataset.tipOpen = '';
+      open = { pill, tip };
+    };
+    li.addEventListener('mouseenter', () => { clearTimeout(tClose); clearTimeout(tOpen); tOpen = setTimeout(show, open ? 0 : OPEN_DELAY); });
+    li.addEventListener('mouseleave', () => { clearTimeout(tOpen); clearTimeout(tClose); tClose = setTimeout(() => { if (open && open.tip === tip && document.activeElement !== pill) close(); }, CLOSE_DELAY); });
+    pill.addEventListener('focus', show);
+    pill.addEventListener('blur', () => { if (!li.matches(':hover')) close(); });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
+</script>
+
+<script>
+/* Option 2: detached with an arrow */
+(() => {
+  const OPEN_DELAY = 300, CLOSE_DELAY = 100, GUTTER = 16;
+  let current = null, timer = 0, leaveTimer = 0, k = 0;
+  const hide = () => { if (!current) return; delete current.t.dataset.open; delete current.p.dataset.tipOpen; current = null; };
+  for (const li of document.querySelectorAll('#opt-2 .pills li')) {
+    const p = li.querySelector('.pill');
+    const t = document.createElement('span');
+    t.className = 'tip'; t.id = 'tip2-' + k++; t.setAttribute('role', 'tooltip'); t.textContent = INSIGHTS[p.dataset.k];
+    li.append(t);
+    p.tabIndex = 0; p.setAttribute('aria-describedby', t.id);
+    const reveal = () => {
+      clearTimeout(leaveTimer);
+      if (current && current.t === t) return;
+      hide();
+      t.style.left = '0px'; t.dataset.side = 'top';
+      const r = p.getBoundingClientRect();
+      if (r.top - t.offsetHeight - 14 < GUTTER) t.dataset.side = 'bottom';
+      let shift = 0;
+      const over = r.left + t.offsetWidth - (document.documentElement.clientWidth - GUTTER);
+      if (over > 0) shift = Math.min(over, r.left - GUTTER);
+      t.style.left = -shift + 'px';
+      t.style.setProperty('--ax', Math.min(r.width / 2 + shift, t.offsetWidth - 14) + 'px');
+      t.dataset.open = ''; p.dataset.tipOpen = '';
+      current = { p, t };
+    };
+    li.addEventListener('mouseenter', () => { clearTimeout(leaveTimer); clearTimeout(timer); timer = setTimeout(reveal, current ? 0 : OPEN_DELAY); });
+    li.addEventListener('mouseleave', () => { clearTimeout(timer); leaveTimer = setTimeout(() => { if (current && current.t === t && document.activeElement !== p) hide(); }, CLOSE_DELAY); });
+    p.addEventListener('focus', reveal);
+    p.addEventListener('blur', () => { if (!li.matches(':hover')) hide(); });
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+})();
+</script>
+</body>
+</html>

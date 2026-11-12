@@ -1,0 +1,35 @@
+/* Insight tooltips on the pills. Hover after a short delay or keyboard focus opens one; never click.
+   Each tip lives in one layer on body, so no section's clipping or transforms can cut it off.
+   Values are tokens from /css/tokens.css (Tooltip). */
+.pill[aria-describedby] { cursor: default; transition: border-color var(--tooltip-in) linear; }
+.pill[aria-describedby]:hover, .pill[data-tip-open] { border-color: var(--n100); }
+.pill[aria-describedby]:focus { outline: none; }
+.pill[aria-describedby]:focus-visible { outline: 1px solid var(--n100); outline-offset: 3px; }
+
+.pill-tip {
+  position: fixed; z-index: 90; left: 0; top: 0;
+  width: min(var(--tooltip-width), calc(100vw - 2 * var(--tooltip-edge)));
+  padding: var(--tooltip-pad);
+  background: var(--tooltip-bg); color: var(--tooltip-ink); border-radius: var(--tooltip-radius);
+  font: var(--label-12); letter-spacing: var(--label-12-track); text-box: trim-both cap alphabetic;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateY(calc(-1 * var(--tooltip-drift)));
+  transition: opacity var(--tooltip-out) linear, transform var(--tooltip-out) linear, visibility 0s linear var(--tooltip-out);
+}
+.pill-tip[data-side="top"] { transform: translateY(var(--tooltip-drift)); }
+.pill-tip[data-open] {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+  transition: opacity var(--tooltip-in) var(--ease-quart-out), transform var(--tooltip-in) var(--ease-quart-out), visibility 0s;
+}
+/* The arrow, centred on the chip even when the box shifts to stay inside the window */
+.pill-tip::after {
+  content: ""; position: absolute; left: var(--ax, 24px); bottom: calc(var(--tooltip-arrow) / -2 + 1px);
+  width: var(--tooltip-arrow); height: var(--tooltip-arrow); background: var(--tooltip-bg); border-radius: 2px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.pill-tip[data-side="bottom"]::after { bottom: auto; top: calc(var(--tooltip-arrow) / -2 + 1px); }
+/* A bridge over the gap, so the pointer can cross from the chip onto the box without it closing */
+.pill-tip::before { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: calc(var(--tooltip-gap) + var(--tooltip-arrow) / 2); }
+.pill-tip[data-side="bottom"]::before { top: auto; bottom: 100%; }
+
+@media (prefers-reduced-motion: reduce) { .pill-tip, .pill-tip[data-side="top"] { transform: none; } }
