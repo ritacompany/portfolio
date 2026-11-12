@@ -1,0 +1,18 @@
+=== A1: the chain
+[eyebrow or sub-heading] Where it ended up
+[headline] By the end, six parts of the plan were set from one number the user gives.
+[sub-heading] Capacity, then Target, Pace, how much fits in a week, Rollover, Recalibration and Reset.
+I kept it to one number so that whenever the plan changes, the user can trace it back to something they told Mondai and can change.
+If I had another few weeks, I’d test that number before anything else. No user had tried a week with the plan before the rules were locked, and if the hours users type don’t match the hours they give, all six parts are off together.
+=== A2: two columns
+[eyebrow or sub-heading] Looking back
+[headline] The framework runs on one number the user gives, and that number is the one thing no user has tried yet.
+[sub-heading] What it became
+Six parts of the plan are set from capacity: the target, the pace, how much fits in a week, Rollover, Recalibration and Reset. I kept it to one number so that whenever the plan changes, the user can trace it back to something they told Mondai.
+[sub-heading] What I’d test first
+Whether users type the hours they really have. I made the screen ask for an exact number so users count instead of picking a generous range, but no user had tried a week with the plan yet. Putting a handful of users through two real weeks would show it.
+=== A3: one user's number
+[eyebrow or sub-heading] One number
+[headline] Aisha’s 6 hours set her target date, her pace, how many Action Items fit each week and when the plan steps in to change any of it.
+That’s true for every user. I kept it to one number so that whenever the plan changes, the user can trace it back to something they told Mondai and can change.
+If her real week is closer to 4 hours, her weeks hold more than she can finish, work keeps rolling over and her target stays ahead of where she’ll really land until Recalibration suggests a smaller number. No user had tried a week with the plan yet, so that gap is the first thing I’d test.
