@@ -23,7 +23,7 @@ Card 02 (his, user pass applied): Motion uses AI to find free time in a user’s
 Card 03: Linear opens straight onto the work in front of you, and so does Mondai: its home screen shows only this week’s work.
 Card 04: Every learning app I reviewed, even the most structured, let learners fit lessons around their day. So the plan sets the goal, and each user decides where in their day the work goes.
   Why card 04 lost target and pace: his overkill point. Card 01 already carries target and pace as the borrowed idea, the Growth Journey block names the journey's pair and the rail block defines them; card 04 was the one repeating it.
-Sources: Harkin et al. 2016; Baker, Evans and Dee 2016
+Sources: CUT 11 Nov, his call on the built page (was: Harkin et al. 2016; Baker, Evans and Dee 2016). The studies stay as the evidence behind cards 01 and 02.
   Citation check 7 Nov (all seven confirmed by Crossref, findings from abstracts): Kizilcec 2017 is the right year and paper (goal setting and planning in six MOOCs, card 04); the 2020 in the portfolio record is a different paper. Villar 2013 (progress bars in web surveys) and Lally 2010 (habit formation) support no card and are cut. Harkin is card 01, Baker card 02. After the tactics pass (8 Nov) cards 03 and 04 cite no study, so Bandura and Schunk, Patall and Kizilcec are off the sources line. Harkin is mostly health goals, so card 01 says studies, not learners.
 
 ## The foundation we built on (CHANGED)
@@ -88,7 +88,7 @@ Headline (Satoshi Medium 40): When an Action Item is still open on Saturday nigh
 Rollover label (his): An Action Item carried over from last week.
 Subhead (his): The Rollover effect
 Body: A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.
-Sources line to add under the block: Soman and Cheema 2004.
+Sources line: CUT 11 Nov, his call on the built page (was: Soman and Cheema 2004).
 
 ## Buffer flow (CHANGED)
 Headline (his): Finish the week’s work early and the days that are left become room to catch up or to get further ahead.
