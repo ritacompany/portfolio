@@ -1,6 +1,7 @@
 // Selected works in the edit panel, preview only. Home motion (home-motion.js, owned by another session)
 // still draws its own white box; this file puts every one of its controls into the edit panel instead and
-// hides the box (edit-panel.css). Each change is sent through the box's own sliders, so home-motion.js
+// hides the box (edit-panel.css). The ASCII styles in Reveal style (ascii-reveal.js) draw over the
+// same reveal; its timing still comes from the sliders here. Each change is sent through the box's own sliders, so home-motion.js
 // applies and saves it exactly as before. Goes once home-motion.js registers with the panel itself.
 (() => {
   if (!document.querySelector(".home")) return;
@@ -40,6 +41,7 @@
       if (k === "titleHold") return { key: k, label: "Title holds in place", type: "toggle", value: V[k] === 1, default: DEFAULTS[k] === 1, onInput: (v) => send(k, v ? 1 : 0) };
       const [label, unit] = LABELS[k] || [k, ""];
       return { key: k, label, unit, min: +i.min, max: +i.max, step: +i.step, value: V[k], default: DEFAULTS[k] ?? V[k], onInput: (v) => send(k, v),
+        hint: k === "band" || k === "cell" ? "Checker squares style only (Reveal style)" : undefined,
         enabledWhen: k === "titleAt" || k === "hold" ? (vals) => !!vals.titleHold : undefined };
     };
     const click = (sel) => () => { const b = box.querySelector(sel); if (b) b.click(); };

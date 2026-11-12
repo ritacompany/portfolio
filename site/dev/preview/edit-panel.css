@@ -44,11 +44,27 @@
 .ep__railbtn[data-active] { color: var(--ep-text); background: var(--ep-raise-2); }
 .ep__railname { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 600; font-size: 11.5px; }
 
-/* Panel: open state, full height on the right. */
+/* Panel: open state, a full height inspector docked beside the page. The page gives up the same width
+   (html.ep-docked below), so the panel never sits over what he is tuning. */
 .ep__panel {
-  pointer-events: auto; display: none; flex-direction: column; align-self: stretch;
+  position: relative; pointer-events: auto; display: none; flex-direction: column; align-self: stretch;
   width: var(--ep-w); background: var(--ep-bg); border-left: 1px solid var(--ep-line-2);
 }
+
+/* Splitter on the left edge: a wide invisible grab area, a line that lights up on hover and while
+   dragging. Arrows step it (Shift steps more), a double click restores the width. */
+.ep__grip {
+  position: absolute; z-index: 3; top: 0; bottom: 0; left: -5px; width: 10px; cursor: col-resize; touch-action: none;
+  display: grid; place-items: center;
+}
+.ep__grip::before { content: ""; position: absolute; top: 0; bottom: 0; left: 4px; width: 2px; background: transparent; transition: background-color 120ms ease; }
+.ep__grip:hover::before, .ep[data-resizing] .ep__grip::before { background: var(--ep-focus); }
+.ep__grip:focus-visible { outline: none; }
+.ep__grip:focus-visible::before { background: var(--ep-focus); }
+.ep__griphandle { display: none; }
+.ep[data-resizing] { cursor: col-resize; }
+html:has(.ep[data-resizing]) { user-select: none; -webkit-user-select: none; }
+html:has(.ep[data-resizing]) iframe { pointer-events: none; }
 .ep[data-open] .ep__panel { display: flex; }
 .ep__head { flex: none; background: var(--ep-raise); border-bottom: 1px solid var(--ep-line); }
 .ep__top { display: flex; align-items: center; gap: 8px; padding: 10px 10px 4px 16px; }
@@ -70,8 +86,13 @@
 }
 .ep__body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #3a3b40 transparent; }
 .ep__empty { margin: 0; padding: 24px 16px; color: var(--ep-muted); font-weight: 400; line-height: 1.45; }
-.ep__foot { flex: none; display: flex; gap: 6px; padding: 10px; background: var(--ep-raise); border-top: 1px solid var(--ep-line); }
+.ep__foot { flex: none; padding: 10px 10px 8px; background: var(--ep-raise); border-top: 1px solid var(--ep-line); }
+.ep__footbtns { display: flex; gap: 6px; }
 .ep__foot .ep__btn { flex: 1; height: 32px; }
+/* Where values save, so he knows Claude can read them without Copy values. */
+.ep__saved { margin: 8px 2px 0; color: var(--ep-faint); font-weight: 400; font-size: 11px; line-height: 1.3; display: flex; align-items: center; gap: 6px; }
+.ep__saved::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--ep-faint); }
+.ep__saved[data-db]::before { background: var(--ep-accent); }
 
 .ep__btn {
   height: 28px; padding: 0 10px; border: 1px solid var(--ep-line-2); border-radius: 7px;
@@ -126,6 +147,12 @@
 .ep-r__num:hover, .ep-r__hex:hover { border-color: var(--ep-line-2); }
 .ep-r__num:focus, .ep-r__hex:focus { border-color: var(--ep-focus); outline: none; background: #1d1f24; }
 .ep-r__hex[aria-invalid="true"] { border-color: #ff6b6b; }
+/* Free text (a character set): a full width field under the label, monospaced so spaces show. */
+.ep-r__text {
+  display: block; width: 100%; height: 28px; margin-top: 4px; padding: 0 8px; border: 1px solid var(--ep-line-2); border-radius: 5px;
+  background: var(--ep-raise); font: 500 13px/1 var(--ep-mono); white-space: pre;
+}
+.ep-r__text:focus { border-color: var(--ep-focus); outline: none; background: #1d1f24; }
 .ep-r__unit { color: var(--ep-muted); font: 500 11px/1 var(--ep-mono); min-width: 14px; }
 .ep-r__reset {
   flex: none; width: 24px; height: 24px; display: inline-grid; place-items: center; padding: 0;
@@ -198,7 +225,7 @@ html.ep-reduce-preview *, html.ep-reduce-preview *::before, html.ep-reduce-previ
   .ep { --ep-row: 48px; font-size: 13px; }
   .ep-r { display: flex; flex-direction: column; justify-content: center; }
   .ep-r__head { min-height: 32px; }
-  .ep-r__num, .ep-r__hex, .ep-r__select { height: 32px; font-size: 16px; } /* 16 px stops iOS zooming on focus */
+  .ep-r__num, .ep-r__hex, .ep-r__select, .ep-r__text { height: 32px; font-size: 16px; } /* 16 px stops iOS zooming on focus */
   .ep-r__num { width: 76px; }
   .ep-r__hex { width: 96px; }
   .ep-r__reset, .ep-r__swatch { width: 32px; height: 32px; }
@@ -219,11 +246,31 @@ html.ep-reduce-preview *, html.ep-reduce-preview *::before, html.ep-reduce-previ
      so the page stays visible above it while he scrolls. */
   .ep { top: auto; left: 0; bottom: 0; height: 100dvh; align-items: center; justify-content: flex-end; }
   .ep[data-open] { align-items: flex-end; }
-  .ep__panel { width: 100%; height: 60dvh; align-self: flex-end; border-left: 0; border-top: 1px solid var(--ep-line-2); border-radius: 14px 14px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+  .ep__panel { width: 100% !important; height: var(--ep-sheet, 55dvh); align-self: flex-end; border-left: 0; border-top: 1px solid var(--ep-line-2); border-radius: 14px 14px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+  /* The sheet's top edge is its handle (bottom sheet pattern): drag up or down to set its height. */
+  .ep__grip { left: 0; right: 0; top: 0; bottom: auto; width: auto; height: 22px; cursor: row-resize; }
+  .ep__grip::before { display: none; }
+  .ep__griphandle { display: block; width: 36px; height: 4px; margin-top: -4px; border-radius: 2px; background: #4a4b52; }
+  .ep[data-resizing] .ep__griphandle, .ep__grip:focus-visible .ep__griphandle { background: var(--ep-focus); }
+  .ep__head { border-radius: 14px 14px 0 0; padding-top: 10px; }
   .ep__tabs { padding: 0 6px; }
   .ep__tab { flex: 1; justify-content: center; height: 44px; }
   .ep__railbtn { width: 36px; padding: 12px 0; }
 }
+
+/* Docked: the page narrows by the panel's width. Fixed bars are moved in by edit-panel.js. Sizes the
+   site sets from the window width (vw) are recomputed against the narrower page. */
+/* position: relative makes the narrowed html the box absolute elements measure from; without it they
+   measure from the window and run under the panel (the framework page's nav did). */
+html.ep-docked { margin-right: var(--ep-dock, 0px) !important; position: relative; }
+@media (min-width: 1200px) {
+  html.ep-docked { --display-212: 400 min(212px, calc((100vw - var(--ep-dock, 0px) - 2 * var(--grid-margin)) * 0.15))/0.83 var(--font); }
+}
+@media (max-width: 1199.98px) and (min-width: 768px) {
+  html.ep-docked { --display-212: 400 calc((100vw - var(--ep-dock, 0px) - 2 * var(--grid-margin)) * 0.15)/0.83 var(--font); }
+}
+/* Phone sheet: room under the page's content equal to the sheet, so the end of the page scrolls clear. */
+html.ep-sheet { padding-bottom: var(--ep-sheet-h, 0px) !important; }
 
 /* Home motion's own box is replaced by its groups in this panel (works-bridge.js). */
 html.ep-has-home .hm-panel { display: none !important; }

@@ -23,6 +23,7 @@
 //         { key: "on", label: "A switch", type: "toggle", value: false, onInput },
 //         { key: "mode", label: "Mode", type: "select", options: [["lerp", "Lerp"], ["dur", "Duration"]], value: "lerp", onInput },
 //         { key: "tint", label: "Tint", type: "color", value: "#1a1a1a", onInput }, // hex in, hex out
+//         { key: "ramp", label: "Characters", type: "text", value: " .:-=+*#%@", onInput }, // Enter applies
 //       ],
 //       actions: [{ label: "Preset", onClick: (group) => group.set({ lerp: 0.075 }) }],
 //     };
@@ -33,7 +34,17 @@
 //   Also on window.EditPanel: group(id), unregister(id), open(), close(), toggle(), copy().
 //   onInput runs on every change (slider drag, typed value, reset, preset, replay of a saved value).
 //
+// WHERE VALUES GO
+//   Every change is saved in this browser (localStorage) and, when the page runs as the published
+//   artifact, to its db as one document per page, tuning/<page>, holding each group's values, what
+//   changed from default and the Copy values text. Claude reads that document with ArtifactData. A load
+//   inside the artifact applies the stored document over this browser's values, so the Mac and the phone
+//   share one set. The foot of the panel says which of the two is saving.
+//
 // USING IT
+//   Open, the panel docks beside the page on a wide screen: the page narrows to make room (fixed bars
+//   too) and the panel's left edge drags to resize it, remembered. On a phone it is a sheet across the
+//   bottom whose top handle drags its height, and the page gains that much room under its content.
 //   The rail on the right edge opens a tab; E opens and closes (not while typing); Escape closes from
 //   inside; left and right arrows move between tabs. Click a value to type
 //   one: Enter applies, Escape cancels, arrows step, Shift steps ten. Shift plus arrows on a slider also
@@ -46,6 +57,7 @@
   const saved = Object.assign({ values: {}, ui: {} }, load());
   saved.values ||= {}; saved.ui ||= {};
   const save = () => { try { localStorage.setItem(STORE, JSON.stringify(saved)); } catch {} };
+  const local = (() => { try { const k = "__ep"; localStorage.setItem(k, "1"); localStorage.removeItem(k); return true; } catch { return false; } })();
 
   const groups = new Map();
   let root = null, body = null, countEl = null, copyBtn = null, toggleBtn = null;
@@ -71,6 +83,7 @@
     if (c.type === "toggle") return v ? "on" : "off";
     if (c.type === "select") { const o = (c.options || []).find((o) => o[0] === v); return o ? o[1] : String(v); }
     if (c.type === "color") return String(v).toUpperCase();
+    if (c.type === "text") return JSON.stringify(String(v));
     return Number(v).toFixed(decimals(c.step));
   };
   const parseHex = (s) => {
@@ -82,20 +95,24 @@
   const same = (a, b) => (typeof a === "number" && typeof b === "number" ? Math.abs(a - b) < 1e-9 : a === b);
 
   // Panel shell, built once the first group arrives (a page with nothing to tune shows nothing).
-  // Closed: a slim rail on the right edge, one button per tab with its changed count, so he lands on a
-  // tab in one click and sees what he changed without opening anything. Open: a full height panel
-  // docked right with the tabs on top, the groups of that tab, and Copy values and Reset tab pinned at
-  // the bottom. It floats over the page rather than squeezing it, so the widths he tunes stay true.
+  // Closed: a slim rail on the right edge (navigation rail), one button per tab with its changed count,
+  // so he lands on a tab in one click and sees what he changed without opening anything. Open: a full
+  // height inspector docked beside the page (as Figma's properties panel or browser devtools docked
+  // right): the page narrows to make room, so nothing he is tuning sits under it. Tabs on top, the groups
+  // of that tab, Copy values and Reset tab pinned at the bottom with a line saying where values save.
+  // The left edge is a splitter: drag to resize, arrows step it, a double click restores the width.
   const TABS = ["Scroll", "Motion", "Type"]; // fixed, so the panel reads the same on every page
   const tabs = new Map();
   const EMPTY = { Type: "The type review tool moves in here next. Use its own button for now." };
   const tabOf = (def) => def.tab || (def.id === "scroll" ? "Scroll" : "Motion");
-  let railEl = null, tablistEl = null, resetTabBtn = null;
+  let railEl = null, tablistEl = null, resetTabBtn = null, gripEl = null, savedEl = null;
   function shell() {
     if (root) return;
     root = el("aside", "ep", { "aria-label": "Edit panel", "data-lenis-prevent": true });
     railEl = el("nav", "ep__rail", { "aria-label": "Edit panel tabs" });
     const panel = el("div", "ep__panel");
+    gripEl = el("div", "ep__grip", { role: "separator", tabindex: "0", "aria-label": "Resize edit panel", title: "Drag to resize, double click to reset" });
+    gripEl.append(el("span", "ep__griphandle", { "aria-hidden": "true" }));
     const head = el("div", "ep__head");
     const name = el("span", "ep__name", { text: "Edit" });
     countEl = el("span", "ep__count", { "aria-label": "changed values" });
@@ -108,8 +125,10 @@
     const foot = el("div", "ep__foot");
     copyBtn = el("button", "ep__btn ep__btn--primary", { type: "button", text: "Copy values" });
     resetTabBtn = el("button", "ep__btn", { type: "button", text: "Reset tab" });
-    foot.append(copyBtn, resetTabBtn);
-    panel.append(head, body, foot);
+    savedEl = el("p", "ep__saved", { role: "status" });
+    const btns = el("div", "ep__footbtns"); btns.append(copyBtn, resetTabBtn);
+    foot.append(btns, savedEl);
+    panel.append(gripEl, head, body, foot);
     root.append(railEl, panel);
     for (const t of TABS) addTab(t);
     toggleBtn.addEventListener("click", () => { setOpen(false); focusRail(); });
@@ -124,9 +143,11 @@
       select(next); tabs.get(next).btn.focus();
     });
     root.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !e.target.matches(".ep-r__num, .ep-r__hex")) { setOpen(false); focusRail(); }
+      if (e.key === "Escape" && !e.target.matches(".ep-r__num, .ep-r__hex, .ep-r__text")) { setOpen(false); focusRail(); }
     });
     (document.body || document.documentElement).append(root);
+    grip();
+    showSaved();
     setOpen(!!saved.ui.open);
     select(saved.ui.tab && tabs.has(saved.ui.tab) ? saved.ui.tab : "Scroll");
   }
@@ -165,6 +186,99 @@
     root.toggleAttribute("data-open", open);
     for (const x of tabs.values()) x.rail.setAttribute("aria-expanded", String(open));
     saved.ui.open = open; save();
+    layout();
+  }
+
+  // Docking. Wide screens: the page gives up the panel's width on the right (html margin), and any
+  // fixed element that reaches the right edge is moved in by the same amount, since a margin cannot
+  // narrow what is fixed to the window. Phones: the sheet covers the bottom, so the page gains that much
+  // room under its content and can scroll everything above it. Widths and heights are remembered.
+  const phone = matchMedia("(max-width: 767.98px)");
+  const W0 = 360, clampW = (w) => Math.round(clamp(w, 280, Math.max(280, Math.min(760, innerWidth * 0.6))));
+  const clampH = (h) => Math.round(clamp(h, 180, innerHeight * 0.85));
+  const sheetH = () => clampH(saved.ui.sheet || innerHeight * 0.55);
+  const html = document.documentElement;
+  let dock = 0, fixedMoved = new Map(), mo = null, scanQueued = false, laying = false;
+  function layout() {
+    if (!root || laying) return;
+    laying = true;
+    const open = root.hasAttribute("data-open");
+    const w = clampW(saved.ui.width || W0), h = sheetH();
+    root.style.setProperty("--ep-w", w + "px");
+    root.style.setProperty("--ep-sheet", h + "px");
+    const docked = open && !phone.matches, sheet = open && phone.matches;
+    const before = dock + (html.classList.contains("ep-sheet") ? 1 : 0);
+    dock = docked ? w : 0;
+    html.classList.toggle("ep-docked", docked);
+    html.classList.toggle("ep-sheet", sheet);
+    html.style.setProperty("--ep-dock", dock + "px");
+    html.style.setProperty("--ep-sheet-h", (sheet ? h : 0) + "px");
+    if (gripEl) { gripEl.setAttribute("aria-orientation", phone.matches ? "horizontal" : "vertical"); gripEl.setAttribute("aria-valuenow", String(phone.matches ? h : w)); }
+    scanFixed();
+    if (docked && !mo) {
+      mo = new MutationObserver(() => { if (!scanQueued) { scanQueued = true; requestAnimationFrame(() => { scanQueued = false; scanFixed(); }); } });
+      mo.observe(document.body, { attributes: true, attributeFilter: ["class"], subtree: true });
+    } else if (!docked && mo) { mo.disconnect(); mo = null; }
+    // The page's own scripts size canvases and scroll from window size; tell them the room changed.
+    if (before !== dock + (sheet ? 1 : 0)) dispatchEvent(new Event("resize"));
+    laying = false;
+  }
+  function scanFixed() {
+    if (mo) mo.takeRecords();
+    for (const [n, o] of fixedMoved) { n.style.setProperty("right", o.v, o.p); if (o.l !== null) { n.style.setProperty("left", o.l, o.lp); n.style.setProperty("width", o.w, o.wp); } }
+    fixedMoved.clear();
+    if (!dock || !document.body) { if (mo) mo.takeRecords(); return; }
+    const vw = html.clientWidth; // the root's clientWidth is the window's width without its scrollbar, margin or not
+    const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
+      acceptNode: (n) => (n === root ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    });
+    const found = [];
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+      if (getComputedStyle(n).position !== "fixed") continue;
+      const r = n.getBoundingClientRect();
+      if (r.width && r.right > vw - dock + 0.5) found.push([n, r]);
+    }
+    for (const [n, r] of found) {
+      const o = { v: n.style.getPropertyValue("right"), p: n.style.getPropertyPriority("right"), l: null, lp: "" };
+      const fromRight = vw - r.right;
+      if (r.left <= 1 && fromRight <= 1) { o.l = n.style.getPropertyValue("left"); o.lp = n.style.getPropertyPriority("left"); o.w = n.style.getPropertyValue("width"); o.wp = n.style.getPropertyPriority("width"); n.style.setProperty("left", r.left + "px", "important"); n.style.setProperty("width", "auto", "important"); }
+      n.style.setProperty("right", Math.max(0, fromRight) + dock + "px", "important");
+      fixedMoved.set(n, o);
+    }
+    if (mo) mo.takeRecords();
+  }
+  addEventListener("resize", () => { if (!laying) layout(); });
+  phone.addEventListener("change", () => layout());
+
+  function grip() {
+    let start = null;
+    const setSize = (px, commit) => {
+      if (phone.matches) saved.ui.sheet = clampH(px); else saved.ui.width = clampW(px);
+      layout();
+      if (commit) save();
+    };
+    const size = () => (phone.matches ? sheetH() : clampW(saved.ui.width || W0));
+    gripEl.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      gripEl.setPointerCapture(e.pointerId);
+      start = { x: e.clientX, y: e.clientY, s: size() };
+      root.setAttribute("data-resizing", "");
+    });
+    gripEl.addEventListener("pointermove", (e) => {
+      if (!start) return;
+      setSize(start.s + (phone.matches ? start.y - e.clientY : start.x - e.clientX), false);
+    });
+    const end = () => { if (!start) return; start = null; root.removeAttribute("data-resizing"); save(); };
+    gripEl.addEventListener("pointerup", end);
+    gripEl.addEventListener("pointercancel", end);
+    gripEl.addEventListener("dblclick", () => { if (phone.matches) delete saved.ui.sheet; else delete saved.ui.width; layout(); save(); });
+    gripEl.addEventListener("keydown", (e) => {
+      const d = { ArrowLeft: 1, ArrowUp: 1, ArrowRight: -1, ArrowDown: -1 }[e.key];
+      if (!d) return;
+      e.preventDefault();
+      setSize(size() + d * (e.shiftKey ? 64 : 16), true);
+    });
   }
   addEventListener("keydown", (e) => {
     if (!root || e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
@@ -201,7 +315,9 @@
     tab.pane.append(g.node);
     groups.set(def.id, g);
     g.replay();
+    applyRemote(g, def.id);
     updateCount();
+    pushSoon();
     return g.api;
   }
 
@@ -259,11 +375,13 @@
       if (c.type === "toggle") v = !!raw;
       if (c.type === "color") { v = parseHex(raw); if (!v) return false; }
       if (c.type === "select" && !(c.options || []).some((o) => o[0] === v)) return false;
+      if (c.type === "text") { v = String(raw ?? ""); if (c.maxLength) v = v.slice(0, c.maxLength); }
       V[c.key] = v;
       if (persist) { if (same(v, D[c.key])) delete store[c.key]; else store[c.key] = v; save(); }
       rows[c.key].show(from);
       refreshMeta();
       if (!silent) fire(c);
+      if (!applyingRemote) pushSoon();
       return true;
     };
 
@@ -294,6 +412,11 @@
     refreshMeta();
     return {
       node, api, changed: changedCount, title: def.title || def.id, controls,
+      snapshot: () => {
+        const changed = {};
+        for (const c of controls) if (!same(V[c.key], D[c.key])) changed[c.key] = D[c.key];
+        return { title: def.title || def.id, tab: tabOf(def), values: { ...V }, defaultsOfChanged: changed };
+      },
       // Replay saved values through onInput, so a layer that trusts the panel starts where he left it.
       replay: () => {
         if (!persist) return;
@@ -379,6 +502,19 @@
       head.append(sel, reset);
       sel.addEventListener("change", () => set(sel.value));
       show = () => { sel.value = get(); };
+    } else if (c.type === "text") {
+      row.setAttribute("data-wide", "");
+      head.append(reset);
+      const box = el("input", "ep-r__text", { type: "text", id, autocomplete: "off", spellcheck: "false", maxlength: c.maxLength || 64 });
+      row.append(box);
+      const commit = () => set(box.value);
+      box.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") { e.preventDefault(); commit(); }
+        else if (e.key === "Escape") { e.preventDefault(); box.value = get(); box.blur(); }
+      });
+      box.addEventListener("input", () => { if (c.live !== false) commit(); });
+      box.addEventListener("blur", commit);
+      show = () => { if (document.activeElement !== box) box.value = get(); };
     } else if (c.type === "color") {
       const sw = el("input", "ep-r__swatch", { type: "color", "aria-label": `${c.label} picker` });
       const hex = el("input", "ep-r__hex", { type: "text", id, autocomplete: "off", spellcheck: "false", maxlength: 7, "aria-label": `${c.label} hex` });
@@ -440,6 +576,57 @@
     return text;
   }
 
+  // The published artifact's db. One document per page; values written a moment after the last change.
+  // A layer registering later picks its group up from the stored document as it arrives.
+  const pageKey = (() => {
+    const p = location.pathname.replace(/index\.html?$/, "").replace(/^\/+|\/+$/g, "");
+    const parts = p.split("/").filter((x) => x && !/^[0-9a-f-]{20,}$/i.test(x) && x !== "preview");
+    return (parts.join("-").replace(/[^a-z0-9-]+/gi, "-").toLowerCase()) || "home";
+  })();
+  let db = null, remote = null, applyingRemote = false, pushT = 0, lastPush = "", dbState = "none";
+  function showSaved(extra) {
+    if (!savedEl) return;
+    const where = dbState === "db" ? "Saving to the published preview" : dbState === "error" ? "Preview save failed, saving in this browser" : local ? "Saving in this browser" : "Not saving: storage is blocked";
+    savedEl.textContent = extra ? `${where}. ${extra}` : where;
+    savedEl.toggleAttribute("data-db", dbState === "db");
+  }
+  function payload() {
+    const groupsOut = {};
+    for (const [id, g] of groups) groupsOut[id] = g.snapshot();
+    return { page: pageKey, path: location.pathname, title: document.title, updatedAt: new Date().toISOString(), groups: groupsOut, text: copyText() };
+  }
+  function pushSoon() {
+    if (!db) return;
+    clearTimeout(pushT);
+    pushT = setTimeout(pushNow, 500);
+  }
+  async function pushNow() {
+    if (!db) return;
+    const data = payload();
+    const sig = JSON.stringify(data.groups);
+    if (sig === lastPush) return;
+    try { await db.doc("tuning/" + pageKey).set(data); lastPush = sig; dbState = "db"; showSaved("Saved " + new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" })); }
+    catch (err) { dbState = "error"; showSaved(); console.warn("edit panel: db write failed", err); }
+  }
+  function applyRemote(g, id) {
+    const r = remote && remote.groups && remote.groups[id];
+    if (!r || !r.values) return;
+    applyingRemote = true;
+    try { g.api.set(r.values); } finally { applyingRemote = false; }
+  }
+  async function connect() {
+    if (!window.claude || typeof window.claude.use !== "function") return;
+    let ns = null;
+    try { ns = await window.claude.use("db"); } catch {}
+    if (!ns) return;
+    db = ns; dbState = "db"; showSaved();
+    try {
+      const snap = await db.doc("tuning/" + pageKey).get();
+      if (snap.exists) { remote = snap.data(); for (const [id, g] of groups) applyRemote(g, id); lastPush = JSON.stringify(payload().groups); }
+      else pushSoon();
+    } catch (err) { dbState = "error"; showSaved(); console.warn("edit panel: db read failed", err); }
+  }
+
   const queue = window.EditPanelQueue || [];
   window.EditPanel = {
     register,
@@ -450,9 +637,12 @@
     toggle: () => root && setOpen(!root.hasAttribute("data-open")),
     copy,
     copyText,
+    store: () => ({ page: pageKey, state: dbState, doc: "tuning/" + pageKey }),
+    flush: () => pushNow(),
   };
   // Calls queued before this file loaded, and any pushed later by a layer that still uses the queue.
   const drain = () => { while (queue.length) { try { register(queue.shift()); } catch (err) { console.error(err); } } };
   window.EditPanelQueue = { push: (...defs) => { defs.forEach((d) => register(d)); return 0; }, get length() { return 0; } };
   if (document.body) drain(); else addEventListener("DOMContentLoaded", drain, { once: true });
+  connect();
 })();
