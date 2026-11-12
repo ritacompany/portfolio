@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS2 ending, filled in</title>
+<style>
+@font-face { font-family: "Satoshi"; src: url("../../../../portfolio-site/site/assets/fonts/satoshi-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Satoshi"; src: url("../../../../portfolio-site/site/assets/fonts/satoshi-500.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Satoshi"; src: url("../../../../portfolio-site/site/assets/fonts/satoshi-700.woff2") format("woff2"); font-weight: 700; }
+:root {
+  --n000:#ffffff; --n050:#f2f1f8; --n100:#e8e7ee; --n300:#d2d2db; --n500:#aeaeb4; --n525:#90909d;
+  --n575:#65656e; --n600:#38383d; --n700:#1d1d21; --n900:#040405; --magenta:#cc14f9;
+  --font:"Satoshi", system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--n900); color: var(--n000); font-family: var(--font); overflow-x: hidden; }
+
+.bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 16px; align-items: center; justify-content: space-between;
+  padding: 12px 40px; background: var(--n700); border-bottom: 1px solid var(--n600); font: 500 14px/20px var(--font); color: var(--n300); }
+.bar strong { color: var(--n050); font-weight: 500; }
+.seg { display: inline-flex; border: 1px solid var(--n600); border-radius: 999px; padding: 3px; }
+.seg button { font: 500 13px/18px var(--font); color: var(--n500); background: none; border: 0; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--n050); color: var(--n900); }
+
+.stage { width: 100%; overflow: hidden; }
+.board { width: 1440px; position: relative; transform-origin: 0 0; padding: 64px 0 120px; }
+
+.eyebrow { margin-left: 156px; font: 500 20px/26px var(--font); letter-spacing: -0.02em; color: var(--n500); }
+.headline { margin: 44px 0 0 149px; width: 1180px; font: 500 96px/94px var(--font); letter-spacing: -0.04em; color: var(--n050); }
+
+.chart { margin: 96px 0 0 156px; width: 1128px; }
+.chart .cap { font: 500 12px/16px var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--n525); display: flex; gap: 28px; align-items: center; }
+.key { display: inline-flex; align-items: center; gap: 8px; }
+.ring, .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+.ring { border: 2px solid var(--n500); }
+.dot { background: var(--n050); }
+.rows { position: relative; margin-top: 28px; }
+.row { position: relative; height: 56px; border-top: 1px solid var(--n700); }
+.row:last-child { border-bottom: 1px solid var(--n700); }
+.row .who { position: absolute; left: 0; top: 18px; font: 400 16px/20px var(--font); color: var(--n525); }
+.row .val { position: absolute; right: 0; top: 18px; font: 500 16px/20px var(--font); color: var(--n300); text-align: right; }
+.row .gap { position: absolute; top: 27px; height: 2px; background: var(--n575); }
+.row .r, .row .d { position: absolute; top: 20px; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; }
+.row .r { border: 2px solid var(--n500); }
+.row .d { background: var(--n050); }
+.row.miss .d { background: var(--magenta); }
+.row.miss .gap { background: var(--magenta); opacity: 0.55; }
+.row.miss .val { color: var(--magenta); }
+.axis { position: relative; height: 32px; }
+.axis span { position: absolute; top: 10px; transform: translateX(-50%); font: 400 13px/16px var(--font); color: var(--n575); }
+
+.body { margin: 96px 0 0 272px; width: 760px; font: 500 24px/28px var(--font); letter-spacing: -0.04em; color: var(--n100); }
+.body p + p { margin-top: 16px; }
+.sources { margin: 40px 0 0 272px; width: 760px; font: 500 12px/16px var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--n525); }
+
+.fill { transition: background 0.2s; border-radius: 4px; }
+body.show-fills .fill { background: rgba(242, 241, 248, 0.10); box-shadow: 0 0 0 3px rgba(242, 241, 248, 0.10); }
+
+body.template .row .r, body.template .row .d, body.template .row .gap { display: none; }
+body.template .row::after { content: ""; position: absolute; left: 204px; right: 120px; top: 27px; border-top: 2px dashed var(--n600); }
+body.template .row .val { color: var(--n575); }
+</style>
+</head>
+<body class="show-fills">
+<div class="bar">
+  <span><strong>Example results, not real.</strong> Every highlighted value is invented to show the shape. Switch to template to see what gets filled in.</span>
+  <span class="seg" id="mode" role="group" aria-label="View">
+    <button type="button" data-mode="example" aria-pressed="true">Example</button>
+    <button type="button" data-mode="template" aria-pressed="false">Template</button>
+  </span>
+</div>
+
+<div class="stage" id="stage">
+<section class="board" id="board" aria-label="In reflection">
+  <p class="eyebrow">What <span class="fill" data-t="[n]">eight</span> people showed</p>
+
+  <p class="headline"><span class="fill" data-t="[n]">Eight</span> people typed the hours they could give each week, then logged what they really gave for two weeks. <span class="fill" data-t="[x of n]">Six of the eight</span> stayed within a fifth of their number.</p>
+
+  <div class="chart" aria-label="Hours a week, typed and given, one row per person">
+    <p class="cap"><span>Hours a week, typed and given. One row per person.</span>
+      <span class="key"><span class="ring"></span>Typed</span>
+      <span class="key"><span class="dot"></span>Gave, two week average</span></p>
+    <div class="rows" id="rows"></div>
+    <div class="axis" id="axis"></div>
+  </div>
+
+  <div class="body">
+    <p>Before the first session I wrote down what would count as a fail: four or more of the <span class="fill" data-t="[n]">eight</span> giving under 70 percent of their number in both weeks. <span class="fill" data-t="[y did]">Two did.</span> The other two tests held as well. Shown the two dates with no explanation, <span class="fill" data-t="[x of n]">seven of eight</span> predicted that an unfinished week moves the pace and leaves the target where it is. <span class="fill" data-t="[x of n]">Six of eight</span> read the Rollover screen as the plan making room for them; <span class="fill" data-t="[the rest]">the other two</span> read it as a mark against them.</p>
+    <p><span class="fill" data-t="[who missed, and what they had in common]">The two who missed were the two who typed the most hours</span>, and <span class="fill" data-t="[what their weeks did]">both gave under half of them by week two</span>. Recalibration waits for three short weeks, so their plan would have stayed <span class="fill" data-t="[how much too full]">about twice as full as their real week</span> for one more Sunday. <span class="fill" data-t="[what you changed]">I changed it to step in after two.</span></p>
+  </div>
+
+  <p class="sources">Two week diary and moderated prototype sessions, <span class="fill" data-t="[n]">eight</span> people recruited for the study, <span class="fill" data-t="[month year]">December 2026</span>. Fail criteria written before the first session.</p>
+</section>
+</div>
+
+<script>
+// Example data only. Hours a week: typed, then the two week average given. Sorted by typed.
+var people = [
+  { typed: 5,  gave: 4.5 }, { typed: 6,  gave: 5.5 }, { typed: 8,  gave: 8.5 }, { typed: 9,  gave: 8 },
+  { typed: 10, gave: 9 },   { typed: 12, gave: 10.5 }, { typed: 14, gave: 6.5 }, { typed: 20, gave: 9 }
+];
+var X0 = 204, X1 = 1008, MAX = 20; // plot area inside the 1128 chart, leaving room for labels
+function x(h) { return X0 + (X1 - X0) * h / MAX; }
+var rows = document.getElementById('rows');
+people.forEach(function (p, i) {
+  var miss = p.gave / p.typed < 0.8;
+  var r = document.createElement('div');
+  r.className = 'row' + (miss ? ' miss' : '');
+  var lo = Math.min(p.typed, p.gave), hi = Math.max(p.typed, p.gave);
+  r.innerHTML = '<span class="who">Person ' + (i + 1) + '</span>' +
+    '<span class="gap" style="left:' + x(lo) + 'px;width:' + (x(hi) - x(lo)) + 'px"></span>' +
+    '<span class="r" style="left:' + x(p.typed) + 'px"></span>' +
+    '<span class="d" style="left:' + x(p.gave) + 'px"></span>' +
+    '<span class="val" data-example="' + p.gave + ' of ' + p.typed + ' h">' + p.gave + ' of ' + p.typed + ' h</span>';
+  rows.appendChild(r);
+});
+var axis = document.getElementById('axis');
+[0, 5, 10, 15, 20].forEach(function (h) {
+  var s = document.createElement('span'); s.style.left = x(h) + 'px'; s.textContent = h + ' h'; axis.appendChild(s);
+});
+
+var fills = document.querySelectorAll('.fill');
+fills.forEach(function (f) { f.dataset.e = f.textContent; });
+function setMode(m) {
+  document.body.classList.toggle('template', m === 'template');
+  fills.forEach(function (f) { f.textContent = m === 'template' ? f.dataset.t : f.dataset.e; });
+  document.querySelectorAll('.row .val').forEach(function (v) { v.textContent = m === 'template' ? '[gave] of [typed] h' : v.dataset.example; });
+  document.querySelectorAll('#mode button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.mode === m)); });
+  fit();
+}
+document.querySelectorAll('#mode button').forEach(function (b) { b.addEventListener('click', function () { setMode(b.dataset.mode); }); });
+
+function fit() {
+  var s = Math.min(1, window.innerWidth / 1440), board = document.getElementById('board');
+  board.style.transform = 'scale(' + s + ')';
+  document.getElementById('stage').style.height = (board.offsetHeight * s) + 'px';
+}
+window.addEventListener('resize', fit); fit();
+</script>
+</body>
+</html>
