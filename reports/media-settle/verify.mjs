@@ -17,7 +17,10 @@ if (mode === "research") {
   if (ahead !== "0") fail("research not pushed");
   console.log("RESEARCH_OK");
 } else if (mode === "page-untouched") {
-  const diff = execSync("git diff HEAD --stat -- site/js/mondai-motion.js site/css/mondai-motion.css").toString().trim();
-  if (diff) fail("motion files changed before his pick: " + diff);
+  // The two commits made before his pick touch only the report folder
+  const files = execSync("git show --name-only --format= 52cc8f9 a16c231").toString().trim().split("\n").filter(Boolean);
+  if (!files.length) fail("no files read from the research commits");
+  const outside = files.filter((f) => !f.startsWith("reports/media-settle/"));
+  if (outside.length) fail("research commits touched " + outside.join(", "));
   console.log("PAGE_UNTOUCHED_OK");
 } else fail("unknown mode");

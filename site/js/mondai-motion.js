@@ -5,8 +5,10 @@
 //   Text     each item fades in over 1.4 s, power1 out, once it is 100 px inside the screen, once. Items in
 //            one section that arrive together step 0.15 s apart in reading order, at most five steps;
 //            items on one line share a step.
-//   Media    each product screen opens from its top while the picture settles from 1.3, 1.2 s Power3 in
-//            out, once any pixel shows. Images decode first so nothing pops in mid reveal.
+//   Media    each product screen opens from its top while the picture settles, 1.2 s Power3 in out, once
+//            any pixel shows. The two laptop photos settle from Haven's 1.3; flat browser screens settle
+//            from 1.08, so their glitch frame shows from the start instead of flooding in last (his pick,
+//            12 Nov; reports/media-settle). Images decode first so nothing pops in mid reveal.
 //   Arrival  anything on screen at load waits 0.35 s. Anything already scrolled past shows at once.
 //   Reduced  no Lenis, nothing hidden, nothing moves.
 // The page markup is left alone: the framework places every item at its Figma position, so there are
@@ -24,7 +26,8 @@
   }
 
   // Haven's values (site/haven/haven.js)
-  const T = { textDur: 1.4, stagger: 0.15, trigger: 100, maskDur: 1.2, from: 1.3, arrival: 0.35 };
+  const T = { textDur: 1.4, stagger: 0.15, trigger: 100, maskDur: 1.2, from: 1.3, fromFlat: 1.08, arrival: 0.35 };
+  const PHOTO = ["5812:16775", "5812:17138"]; // Pathway and Calendar setup: laptops photographed on black
   const LINE = 12;          // px: items whose tops sit this close share a step (one line)
   const MAX_STEP = 4;       // Haven's longest block steps five items
   const SMALL = []; // media too small for a curtain fade like text instead (none since the Rollover effect became text, 11 Nov)
@@ -111,10 +114,10 @@
     const bottom = 100 - (50 + (100 * p - 50) / s);
     return `inset(${side.toFixed(3)}% ${side.toFixed(3)}% ${Math.max(0, bottom).toFixed(3)}% ${side.toFixed(3)}%)`;
   }
-  function maskFrames() {
+  function maskFrames(from) {
     const N = 48, f = [];
     for (let i = 0; i <= N; i++) {
-      const t = i / N, e = power3InOut(t), s = T.from + (1 - T.from) * e;
+      const t = i / N, e = power3InOut(t), s = from + (1 - from) * e;
       f.push({ offset: t, clipPath: clipFor(s, e), transform: `scale(${s.toFixed(4)})` });
     }
     return f;
@@ -129,11 +132,12 @@
   function openMask(imgs, delay) {
     imgs.forEach((i) => { i.loading = "eager"; i.dataset.mmDone = "0"; });
     Promise.all(imgs.map((i) => (i.decode ? i.decode().catch(() => {}) : null))).then(() => {
-      const frames = maskFrames();
+      const photo = maskFrames(T.from), flat = maskFrames(T.fromFlat);
       imgs.forEach((img) => {
         img.style.willChange = "clip-path, transform";
         // The Foundation diagram is not a screen: it wipes open from 01 across to 05, no settle (his pick, 11 Nov)
-        const f = WIPE.includes(img.dataset.figmaNode) ? wipeFrames() : frames;
+        const id = img.dataset.figmaNode;
+        const f = WIPE.includes(id) ? wipeFrames() : PHOTO.includes(id) ? photo : flat;
         const a = img.animate(f, { duration: T.maskDur * 1000, delay, easing: "linear", fill: "both" });
         a.finished.then(() => { opened(img); a.cancel(); }, () => {});
       });

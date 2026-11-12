@@ -51,3 +51,9 @@ B) and `compare-390.mp4` (now, A, B left to right).
 
 Recommendation: A. It fixes the late glitch flood, keeps the push that made the photos feel good as a
 quieter echo on the flat screens, and needs one list of two photo screens in `mondai-motion.js`.
+
+## Built
+
+He picked A on 12 Nov. In `site/js/mondai-motion.js` the two laptop photos (Pathway and Calendar setup)
+keep the 1.3 settle and every other screen, the start of week slides included, settles from 1.08. The
+Foundation wipe and the scroll linked laptop and Rollover panel are unchanged. Checks are in GATES.md G3.
