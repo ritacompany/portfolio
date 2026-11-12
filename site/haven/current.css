@@ -68,6 +68,11 @@
 .cr-still { width:100%; }
 .cr-para { position:absolute; left:calc(274 * var(--g)); top:840px; width:360px; }
 .has-chat .cr-block { min-height:0; }
+/* Round 10: the stage holds the pair with CSS sticky (top and height set by chat-rotate.js), so the hold
+   cannot shake. Without the 3D phone it steps out of the layout and the still composition stands as before. */
+.cr-stage { display:contents; }
+.has-chat .cr-stage { display:block; position:sticky; }
+.has-chat .cr-pill { z-index:1; will-change:transform; }
 .has-chat .cr-phone { top:0; left:0; width:auto; will-change:transform; pointer-events:none; }
 .has-chat .cr-para { left:0; top:0; will-change:transform; }
 .has-chat .cr-still { display:none; }
