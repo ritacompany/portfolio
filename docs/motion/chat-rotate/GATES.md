@@ -34,10 +34,10 @@ Scope: port round 10 (haven/case-study 32c4e47) into site/haven so the live page
   EXPECT: CHIP_RIDES
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site/docs/motion/chat-rotate; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=93113744b51b1b7fceea5814df0b5ca43c1a63b84b6db0de031d30b96065dac8; output-bytes=161
 
-- [ ] G7: CSS sticky hold on the GPU with Lenis and wheel input: never a frame behind, 0 px shake, 0 repaints in the hold, p95 frame under 20 ms
+- [x] G7: CSS sticky hold on the GPU with Lenis and wheel input: never a frame behind, 0 px shake, 0 repaints in the hold, p95 frame under 20 ms
   CHECK: node ../../../scripts/check-chat-rotate.mjs smooth
   EXPECT: SMOOTH_LIVE
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site/docs/motion/chat-rotate; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=180de97ee1f81ea709026b14675c3a5ddfea06b13c95bc410202c8e98893deaf; output-bytes=128
 
 - [x] G8: reduced motion: no WebGL mount, frame 2 still in place, no movement inside the block, no hold reserved
   CHECK: node ../../../scripts/check-chat-rotate.mjs reduced
