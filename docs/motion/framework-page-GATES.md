@@ -14,15 +14,15 @@ Scope: Haven's page motion (text fades, media curtains, arrival wait, Lenis at 0
   EXPECT: BROWSER_GATES_OK dist 5 runs
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=c7065cf93fc28a5329223164bee83f4376b8a66366e98573b6e05a8b08a1e0df; output-bytes=576
 
-- [x] G3: no approved copy and no image changed: the only lines changed in `site/mondai` since 6341aa0 are the added motion stylesheet and the two scripts
+- [x] G3: no approved copy changed: the words on both Mondai pages match 9fd175b except his two cut sources lines and the approved subhead "The Rollover effect", now live text
   CHECK: node docs/motion/framework-page-gates.mjs copy
-  EXPECT: COPY_UNCHANGED_OK
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=ba29331c84b4dd9002744fd668807e946dd9b44c5343882c547b2787f1615066; output-bytes=39
+  EXPECT: COPY_UNCHANGED_OK beyond the two cut sources lines and the subhead made live
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=704cbfa125dd08c53434776c1028260b3546a85a06311decbc014f8c62d17b97; output-bytes=77
 
 - [x] G4: no em or en dash in this round's docs, scripts and the two motion files
   CHECK: node docs/motion/framework-page-gates.mjs dashes
-  EXPECT: NO_DASHES_OK 6
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=74f7ae92273a86c6fc8e08d398ebd4048ad0eeb9fe83b0e2c172a89561b781d7; output-bytes=15
+  EXPECT: NO_DASHES_OK 7
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=3b25a2b28a4813bcc94bc780a15887a8a2e811c291431d314bf88b8590e42332; output-bytes=15
 
 - [x] G5: the site's suites hold: verify-1440 adds no failure to the three already on fa3779d (home lede box, framework footer box, Haven body, all from the Figma sync), and verify-responsive passes health, fit, overlap and size on every page
   CHECK: node docs/motion/framework-page-gates.mjs suites
@@ -38,6 +38,23 @@ Scope: Haven's page motion (text fades, media curtains, arrival wait, Lenis at 0
   EVIDENCE: manual, 11 Nov: page loads only site scripts (fit-desktop, contact-goo, site, /vendor/lenis-1.1.20.min.js, /js/mondai-motion.js), no failed request on the page, Lenis lerp 0.1 and Haven's timings at all three widths, items below the fold hidden at load (83 of 96 at 1440, 77 of 90 at 768, 79 of 92 at 390; the rest are rules and plates outside the hidden set). The pane was hidden, so it ran no animation frames, and it cannot emulate reduced motion: playback and reduced motion are proven by G1 and G2 in headless Chromium.
 
 - [ ] G8: `scripts/motion-check.mjs` passes for motion built inside media
+  EVIDENCE: pending
+
+- [x] G9: his audit fixes of 11 Nov hold at 1440, 768 and 390: no sources line; the schedule line on one line at 1440 and wrapping at 390; the Rollover effect live text with its icon 14.6 by 16.1 and centred on the text within 1 px; the vertical line 8 to 24 px past the body text; ending bar links padded the same both sides with no white square behind the chevron, which turns light on hover; the laptop rises into place, sits still mid read and outruns the page past its screen; the Rollover panel slides in from the left and settles; nothing moves with reduced motion
+  CHECK: node docs/motion/framework-audit-gates.mjs
+  EXPECT: AUDIT_FIXES_OK
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=d344eb439f3a3d5ac735a8286df236952f40a9274cf7f71a2881b5a27bb93cc4; output-bytes=423
+
+- [ ] G10: the Foundation diagram's entrance is his pick, built
+  EVIDENCE: pending
+
+- [ ] G11: the Mondai logo is on the framework page where he picks
+  EVIDENCE: pending
+
+- [ ] G12: "Explore more case studies" is a button in the style he picks
+  EVIDENCE: pending
+
+- [ ] G13: the footer portraits show no outline, once he confirms which outline he means
   EVIDENCE: pending
 
 ABANDON: G8 not applicable, not failed: the Falling behind carry was reverted at his word (he wanted page wide motion only), so no motion inside media is built; page entrances on the browser clock are reviewed in the browser, never rendered (motion rules, Scope).

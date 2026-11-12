@@ -44,7 +44,7 @@
         <p class="t s-heading-24 c-neutral-050" data-figma-node="5812:16466" style="left:40px;top:358px;width:439.87px">Designed as an AI guide for newcomers from underrepresented backgrounds finding their way into tech.</p>
         <p class="t s-body-16 c-neutral-050 paras" data-figma-node="5812:16468" style="left:624.87px;top:358px;width:473px"><span class="para">There’s no set path into tech, so Mondai’s AI writes each user a curriculum for the career they choose, and it can take months. Most users don’t have the same hours free every week, so a plan that expects a steady pace would leave them behind from week one.</span><span class="para">When I started on the MVP, the curriculum was a list in a fixed order, with calendar integration planned and nothing connecting them. I designed the weekly framework that turns it into weeks each user can finish. Mondai hasn’t launched, so this case study shows the reasoning rather than results.</span></p>
       </section>
-      <section class="fw-sec" data-figma-node="5812:16470" aria-label="Competitive analysis" style="height:1022px">
+      <section class="fw-sec" data-figma-node="5812:16470" aria-label="Competitive analysis" style="height:871px">
         <h2 class="t s-heading-20 c-neutral-500" data-figma-node="5812:16473" style="left:273px;top:72px;width:660px">Competitive analysis</h2>
         <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:16474" style="left:273px;top:125px;width:791px">Mondai had no direct model, but learning apps and task trackers each solve part of the problem.</p>
         <p class="t s-label-14-c c-neutral-525 nowrap" data-figma-node="5812:16480" style="left:273px;top:368px">01. Progress</p>
@@ -59,7 +59,6 @@
         <p class="t s-label-14-c c-neutral-525 nowrap" data-figma-node="5812:16496" style="left:739px;top:587px">04. Timing</p>
         <p class="t s-heading-20 c-neutral-050 nowrap" data-figma-node="5812:16497" style="left:739px;top:613px">Learning apps</p>
         <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16498" style="left:739px;top:651px;width:424px">Every learning app I reviewed, even the most structured, let learners fit lessons around their day. So the plan sets the goal, and each user decides where in their day the work goes.</p>
-        <p class="t s-label-12-c c-neutral-550" data-figma-node="5812:16500" style="left:273px;top:971px;width:901px">Sources: Harkin et al. 2016; Baker, Evans and Dee 2016</p>
       </section>
       <section class="fw-sec" data-figma-node="5812:16501" aria-label="The foundation we built on" style="height:1027.13px">
         <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:16504" style="left:159px;top:64px;width:660px">The foundation we built on</h2>
@@ -117,7 +116,7 @@
       <section class="fw-sec" data-figma-node="5812:17143" aria-label="Schedule view" style="height:2101px">
         <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:17146" style="left:154px;top:64px;width:660px">Schedule view</h2>
         <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:17147" style="left:154px;top:118px;width:906px">With a calendar synced, the Action Hub can show the same week as a schedule, with Mondai finding times for Action Items around the user’s day.</p>
-        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:17150" style="left:154px;top:419px;width:700px">The list stays the default view, and the user can switch between the list and the schedule whenever they like.</p>
+        <p class="t s-body-16 c-neutral-300 nowrap" data-figma-node="5812:17150" style="left:154px;top:419px">The list stays the default view, and the user can switch between the list and the schedule whenever they like.</p>
         <img class="fig" data-figma-node="5812:17152" src="/assets/framework/schedule-view@2x.webp" alt="The Action Hub as a schedule, with Action Items placed between the person&#x27;s own events." width="1440" height="686" loading="lazy" decoding="async" style="left:0px;top:476.44px;width:1440px;height:686px">
         <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20111" style="left:159px;top:1218px;width:501px">Mondai looks for gaps between the user’s own events, inside the hours they chose in setup. The calendar starts at the first of those hours, 8am for instance, so the day opens on the time Mondai can plan in. Each block is as long as its Action Item takes.</p>
         <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20112" style="left:740px;top:1218px;width:426px">Mondai only reads the calendar. It never writes Action Items into it, because that calendar holds commitments Mondai doesn’t own. Action Items and the user’s own events each get their own color.</p>
@@ -125,10 +124,10 @@
         <p class="t s-body-16 c-neutral-300 paras" data-figma-node="5812:20247" style="left:817px;top:1534px;width:448px"><span class="para">Users can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing overlaps their personal schedule. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.</span><span class="para">An Action Item’s time is only a suggestion. It’s due by the end of its week, Saturday night, so one without a time is fine, and finishing it still counts. When a week has no room left, the item stays in the list without a time.</span></p>
         <img class="fig" data-figma-node="5812:20114" src="/assets/framework/schedule-gaps@2x.webp" alt="Rescheduling an Action Item into open time in the week." width="547" height="509" loading="lazy" decoding="async" style="left:154px;top:1428.44px;width:547px;height:509px">
       </section>
-      <section class="fw-sec" data-figma-node="5812:20248" aria-label="Falling behind" style="height:1971px">
+      <section class="fw-sec" data-figma-node="5812:20248" aria-label="Falling behind" style="height:1987px">
         <span class="panel-card" data-figma-node="5812:20259" aria-hidden="true" style="left:391px;top:376px;width:1009px;height:430px"></span>
         <span class="panel-card" data-figma-node="5812:20311" aria-hidden="true" style="left:40px;top:1333px;width:1100px;height:203px"></span>
-        <span class="vrule" data-figma-node="5812:20343" aria-hidden="true" style="left:349.97px;top:1576px;width:1px;height:230px"></span>
+        <span class="vrule" data-figma-node="5812:20343" aria-hidden="true" style="left:349.97px;top:1576px;width:1px;height:246px"></span>
         <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:20254" style="left:273px;top:64px;width:660px">Falling behind</h2>
         <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:20255" style="left:272px;top:118px;width:928px">The Action Hub keeps two dates for the Pathway the user is on: where they’re aiming and where they’re headed.</p>
         <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20258" style="left:40px;top:450px;width:259px">Both sit in a rail down the right side of the Action Hub. If the target moved every time a week went badly, the user would never see that they’d slipped, and seeing their pace fall behind it is what’s meant to get them back on track.</p>
@@ -146,8 +145,7 @@
         <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20315" style="left:67px;top:1421px;width:239px">An Action Item carried over from last week.</p>
         <img class="fig" data-figma-node="5812:20316" src="/assets/framework/rollover@2x.webp" alt="A week ending with an unfinished Action Item that rolls into the next week." width="789" height="201" loading="lazy" decoding="async" style="left:350px;top:1334.44px;width:789px;height:201px">
         <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20350" style="left:389.97px;top:1662.68px;width:659px">A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.</p>
-        <img class="fig" data-figma-node="5812:20346" src="/assets/framework/rollover-effect@2x.webp" alt="" width="195" height="31" loading="lazy" decoding="async" style="left:390px;top:1608.44px;width:195px;height:31px">
-        <p class="t s-label-12-c c-neutral-550" data-figma-node="new:fb-sources" style="left:389.97px;top:1820.44px;width:659px">Sources: Soman and Cheema 2004</p>
+        <p class="t s-heading-20 c-neutral-050 nowrap fb-effect" data-figma-node="5812:20346" style="left:390px;top:1608.44px"><img src="/assets/framework/rollover-icon@2x.png" alt="" width="15" height="16">The Rollover effect</p>
       </section>
       <section class="fw-sec" data-figma-node="5812:20351" aria-label="Buffer flow" style="height:1152px">
         <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:20353" style="left:275px;top:64px;width:660px">Buffer flow</h2>

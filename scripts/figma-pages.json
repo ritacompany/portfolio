@@ -687,18 +687,6 @@
      "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
     },
     {
-     "name": "Sources: Harkin et al. 2016;",
-     "sel": "[data-figma-node='5812:16500']",
-     "x": 273,
-     "y": 1676,
-     "w": 901,
-     "rel": {
-      "sel": "[data-figma-node='5812:16470']",
-      "y": 705
-     },
-     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
-    },
-    {
      "name": "The foundation we built on",
      "sel": "[data-figma-node='5812:16504']",
      "x": 159,
@@ -1100,12 +1088,12 @@
      "sel": "[data-figma-node='5812:17150']",
      "x": 154,
      "y": 11157.56,
-     "w": 700,
      "rel": {
       "sel": "[data-figma-node='5812:17143']",
       "y": 10738.56
      },
-     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy"
+     "why": "final copy from final-copy.md replaces the Figma text, so its height follows the new copy",
+     "decided": "one line at desktop, his audit 11 Nov; it wraps only under 1200"
     },
     {
      "name": "Mondai looks for gaps betwee",
@@ -1600,16 +1588,17 @@
      }
     },
     {
-     "name": "figure 5812:20346",
+     "name": "The Rollover effect subhead",
      "sel": "[data-figma-node='5812:20346']",
      "x": 390,
      "y": 14448,
-     "w": 195,
-     "h": 31,
+     "w": 185.27,
+     "h": 26,
      "rel": {
       "sel": "[data-figma-node='5812:20248']",
       "y": 12839.56
-     }
+     },
+     "decided": "live text with its icon centred and 25 percent smaller, his audit 11 Nov; the flattened 195 by 31 export is gone"
     },
     {
      "name": "figure 5812:20358",

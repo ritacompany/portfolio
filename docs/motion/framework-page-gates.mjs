@@ -14,15 +14,22 @@ const mode = process.argv[2], argv1 = process.argv[3];
 const fail = (m) => { console.error("FAIL " + m); process.exit(1); };
 
 if (mode === "copy") {
-  // The only change to the pages since 6341aa0 may be the added motion stylesheet and scripts
-  const d = execFileSync("git", ["diff", "-U0", "6341aa0", "--", "site/mondai"], { cwd: root, encoding: "utf8" });
-  const lines = d.split("\n").filter((l) => /^[+-][^+-]/.test(l) || /^[+-]$/.test(l));
-  const allowed = /^\+\s*(<link rel="stylesheet" href="\/css\/mondai-motion\.css">|<script src="\/vendor\/lenis-1\.1\.20\.min\.js" defer><\/script>|<script src="\/js\/mondai-motion\.js" defer><\/script>)\s*$/;
-  const bad = lines.filter((l) => !allowed.test(l));
-  if (bad.length) fail("site/mondai changed beyond the motion links: " + bad.slice(0, 3).join(" / "));
-  console.log("COPY_UNCHANGED_OK " + lines.length + " motion lines added");
+  // The words on both Mondai pages are the approved copy. Against 9fd175b (the motion going live), the
+  // only change allowed is his audit cut of 11 Nov: the two sources lines on the framework page.
+  const words = (h) => h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, " ").replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").split(/\s+/).filter(Boolean).join(" ");
+  const CUT = ["Sources: Harkin et al. 2016; Baker, Evans and Dee 2016", "Sources: Soman and Cheema 2004"];
+  for (const f of ["site/mondai/framework/index.html", "site/mondai/index.html"]) {
+    let before = words(execFileSync("git", ["show", "9fd175b:" + f], { cwd: root, encoding: "utf8" }));
+    let now = words(readFileSync(path.join(root, f), "utf8"));
+    // Added: the approved subhead "The Rollover effect" (final-copy.md, Rollover block), live text now
+    // where it was a flattened image
+    if (f.includes("framework")) { if (!now.includes("The Rollover effect")) fail("the Rollover effect subhead is missing"); now = now.replace("The Rollover effect", " ").split(/\s+/).filter(Boolean).join(" "); }
+    if (f.includes("framework")) for (const c of CUT) { if (!before.includes(c)) fail("baseline lacks " + c); before = before.replace(c, " ").split(/\s+/).filter(Boolean).join(" "); }
+    if (before !== now) { let i = 0; while (before[i] === now[i]) i++; fail(`${f} words differ at: ${now.slice(Math.max(0, i - 40), i + 60)}`); }
+  }
+  console.log("COPY_UNCHANGED_OK beyond the two cut sources lines and the subhead made live");
 } else if (mode === "dashes") {
-  const files = ["framework-page.md", "framework-page-GATES.md", "framework-page-check.js", "framework-page-gates.mjs", "../../site/js/mondai-motion.js", "../../site/css/mondai-motion.css"];
+  const files = ["framework-page.md", "framework-page-GATES.md", "framework-page-check.js", "framework-page-gates.mjs", "framework-audit-gates.mjs", "../../site/js/mondai-motion.js", "../../site/css/mondai-motion.css"];
   const bad = files.filter((f) => /[\u2013\u2014]| -{2} /.test(readFileSync(path.join(root, "docs/motion", f), "utf8")));
   if (bad.length) fail("dash in " + bad.join(", "));
   console.log("NO_DASHES_OK " + files.length);

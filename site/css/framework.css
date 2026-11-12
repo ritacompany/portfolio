@@ -105,7 +105,7 @@
   .fig { width: auto !important; height: auto !important; }
   .rule { align-self: stretch; margin: 48px calc(-1 * var(--grid-margin)) !important; max-width: none; height: 1px !important; }
   .fw-sec > .rule + * { margin-top: 0; }
-  .panel-card, .vrule, .panel-example, [data-figma-node="5812:20346"] { display: none; }
+  .panel-card, .vrule, .panel-example { display: none; }
   /* The Example box: the panel behind it is hidden, so its label and text draw the box themselves. */
   [data-figma-node="5812:17127"] { margin-top: 40px !important; padding: 20px 20px 0; background: var(--neutral-850); border-radius: 12px 12px 0 0; }
   [data-figma-node="5812:17128"] { margin-top: 0 !important; padding: 10px 20px 20px; background: var(--neutral-850); border-radius: 0 0 12px 12px; }
@@ -130,3 +130,8 @@
     --heading-24: 500 20px/26px var(--font);
   }
 }
+
+/* The Rollover effect subhead (his ask, 11 Nov): live text with its icon centred on the line, the icon
+   25 percent smaller than the flattened export it replaces (19.5 by 21.5 there). */
+.fb-effect { display: flex; align-items: center; gap: 10px; }
+.fb-effect img { width: 14.6px; height: 16.1px; flex: none; }

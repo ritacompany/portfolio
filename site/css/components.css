@@ -44,7 +44,7 @@
    where the text and the block were both mid grey, which read as a flicker. Same for the case study
    rows and the Small button fill; the Small button keeps its press, which is a press, not a hover. */
 .link-block, .link-nav, .link-footer, .footer__email, .footer__out, .footer__out img, .footer__back, .footer__back img,
-.context, .context__icon, .context__icon::before, .ending-bar a { transition: none; }
+.context, .context__icon, .context__icon::before, .ending-bar a, .ending-bar a img { transition: none; }
 
 .link-block {
   padding: 7px 6px;
@@ -355,16 +355,21 @@
 /* Dark text on the light bar takes the Mac's normal smoothing, as the big link hovers do (above). */
 .ending-bar a { color: inherit; text-decoration: none; -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
 /* End bar hover (his yes, 9 Nov): the bar is light, so the highlight is inverted, a dark block and light
-   text, which takes the thin smoothing. The arrows keep their white squares. */
+   text, which takes the thin smoothing. The chevrons turn light with the text (11 Nov). */
 .ending-bar a:is(:hover, :active) {
   color: var(--neutral-050); background: var(--neutral-900);
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
 }
-.ending-bar__prev, .ending-bar__next { display: flex; align-items: center; gap: 4px; }
+/* His audit, 11 Nov: the chevron is part of the link, inside its highlight, with no white square, and the
+   highlight leaves the same space on both sides. The chevron's 24 px box has 8.69 px of blank before its
+   stroke, so the outer margin takes that back and the stroke sits 6 px from the edge, as the text does. */
+.ending-bar__prev, .ending-bar__next { display: flex; align-items: center; gap: 0; min-height: 24px; padding: 0 6px; }
 .ending-bar__prev { justify-self: start; }
 .ending-bar__next { justify-self: end; }
-.ending-bar__prev img, .ending-bar__next img { width: 24px; height: 24px; background: var(--neutral-000); }
-.ending-bar__next img { transform: scaleX(-1); }
+.ending-bar__prev img, .ending-bar__next img { width: 24px; height: 24px; flex: none; }
+.ending-bar__prev img { margin-left: -8.69px; }
+.ending-bar__next img { margin-right: -8.69px; transform: scaleX(-1); }
+.ending-bar a:is(:hover, :active) img { filter: invert(1); }
 .ending-bar__prev span, .ending-bar__next span {
   font: var(--label-14-c); font-weight: 700; letter-spacing: var(--label-14-c-track); text-transform: uppercase;
   white-space: nowrap; text-box: trim-both cap alphabetic;

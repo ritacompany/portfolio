@@ -7,7 +7,9 @@
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const items = () => [...document.querySelectorAll(".framework .fw-sec > *, .framework .week__slide > .t, .framework .week__slide img, .ending-bar")]
     .filter((e) => !e.classList.contains("week") && !e.classList.contains("week-nav"))
-    .filter((e) => e.getClientRects().length > 0); // items not laid out at this width never show
+    .filter((e) => e.getClientRects().length > 0) // items not laid out at this width never show
+    // The laptop and the Rollover panel move with the scroll instead of an entrance (his audit, 11 Nov)
+    .filter((e) => !["5812:16973", "5812:20311", "5812:20314", "5812:20315", "5812:20316"].includes(e.dataset.figmaNode));
   const isHidden = (e) => { const s = getComputedStyle(e); return s.visibility === "hidden" || +s.opacity < 0.99 || (s.clipPath && s.clipPath !== "none"); };
   const below = items().filter((e) => e.getBoundingClientRect().top > innerHeight + 50);
   const startHidden = below.filter(isHidden).length;
