@@ -1,5 +1,9 @@
 # Portfolio decisions
 
+## 2026-11-12: No stroke on the footer portraits, on any page
+
+Chadwick has asked in several chats for no stroke on the footer portraits (9 Nov: "neither should have a stroke"; again 12 Nov). The rim was the pill's light background being antialiased separately from the photo, so a thin grey line showed around the black suit. The fix had only ever been made in the preview layer (`site/dev/preview/proposals.css`), which the real pages never load, so it kept coming back. It now lives in `site/css/components.css` (`.footer__pill`: one `clip-path` for the background and the photo, no `border-radius` plus `overflow`), which every page's footer uses. Keep it there: do not reintroduce `border-radius` or `overflow: hidden` on `.footer__pill`, and fix footer issues in `site/css`, never only in a preview file.
+
 ## 2026-10-28: Haven uses Chadwick's corrected spacing
 
 Chadwick said he fixed the extra frames and the upper and lower margins himself. The current Haven master is the source for implementation. Do not apply the earlier spacing review's proposals over those corrections. The local page update preserves the existing quiz and profile motion and integrates the previously built chat turn and five-card ending. These integrations remain candidates for his review.

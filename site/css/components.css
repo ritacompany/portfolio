@@ -306,8 +306,13 @@
 
 .footer__portraits { display: flex; justify-content: flex-end; gap: 19.448px; justify-self: end; }
 .footer__pill {
-  position: relative; width: 85.946px; height: 253.448px; overflow: hidden;
-  border-radius: 66.349px; background: var(--neutral-200);
+  position: relative; width: 85.946px; height: 253.448px;
+  background: var(--neutral-200);
+  /* One clip for the background and the photo together. With border-radius plus overflow, the light
+     background was antialiased separately and showed as a grey rim around the dark jacket: he does not
+     want a stroke on these pictures (9 and 12 Nov, docs/DECISIONS.md). Never put border-radius or
+     overflow: hidden back on this element. */
+  clip-path: inset(0 round 66.349px);
   transform: scaleX(-1);
 }
 .footer__frame { position: absolute; left: -73.39px; top: 33.79px; width: 232px; height: 306px; overflow: hidden; }
