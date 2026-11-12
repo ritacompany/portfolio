@@ -101,6 +101,11 @@ in A.
 Risk: the 9 Nov version of this failed the reader check for showing no decision; each count must name the
 decision it puts on trial. Target numbers would need his input or stay out.
 
+## His pick, 12 Nov
+
+A (question card). Next: three versions of A that differ in structure, drafted and checked per
+WORKING_LOOP, before any build.
+
 ## Recommendation
 
 A. It is the shape the research says senior reviewers expect (return, then reflection), it gives him the
