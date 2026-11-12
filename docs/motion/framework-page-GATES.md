@@ -7,12 +7,12 @@ Scope: Haven's page motion (text fades, media curtains, arrival wait, Lenis at 0
 - [x] G1: the framework page served normally (`scripts/serve.mjs site`, not studio) runs the motion at 1440, 768 and 390 with no page error and no failed request: every item below the fold starts hidden and ends final after a scroll through, Lenis lerp is 0.1, timings equal Haven's; with reduced motion nothing is hidden and Lenis is off; the collection page arrives on load the same way
   CHECK: node docs/motion/framework-page-gates.mjs browser site
   EXPECT: BROWSER_GATES_OK site 5 runs
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=d330c18961709c39d2dcbda0864aa5b6e78d0d3a7943db3f334d436133e5545d; output-bytes=576
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=3363c9407d020fb889610c9e24acb58e108a57ffb386f761350ed969e92f4861; output-bytes=576
 
 - [x] G2: the same holds on the built output (`node scripts/build.mjs site`, then dist/ served), so the motion ships and does not depend on site/dev
   CHECK: node docs/motion/framework-page-gates.mjs browser dist
   EXPECT: BROWSER_GATES_OK dist 5 runs
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=c7065cf93fc28a5329223164bee83f4376b8a66366e98573b6e05a8b08a1e0df; output-bytes=576
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=b220f95bdff50a49c207cc29a49135af8dd93e292c8998f6dde97783051ca03c; output-bytes=576
 
 - [x] G3: no approved copy changed: the words on both Mondai pages match 9fd175b except his two cut sources lines and the approved subhead "The Rollover effect", now live text
   CHECK: node docs/motion/framework-page-gates.mjs copy
@@ -43,22 +43,22 @@ Scope: Haven's page motion (text fades, media curtains, arrival wait, Lenis at 0
 - [x] G9: his audit fixes of 11 Nov hold at 1440, 768 and 390: no sources line; the schedule line on one line at 1440 and wrapping at 390; the Rollover effect live text with its icon 14.6 by 16.1 and centred on the text within 1 px; the vertical line 8 to 24 px past the body text; ending bar links padded the same both sides with no white square behind the chevron, which turns light on hover; the laptop rises into place, sits still mid read and outruns the page past its screen; the Rollover panel slides in from the left and settles; nothing moves with reduced motion
   CHECK: node docs/motion/framework-audit-gates.mjs
   EXPECT: AUDIT_FIXES_OK
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=d344eb439f3a3d5ac735a8286df236952f40a9274cf7f71a2881b5a27bb93cc4; output-bytes=423
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=6980c9182fe648b4dc978fae59e6ea426953bae5e21a728d4185f2c04c753467; output-bytes=604
 
-- [ ] G10: the Foundation diagram wipes open from 01 across to 05 with no settle, his pick on 11 Nov (part way at 0.45 s, fully open after, no transform)
+- [x] G10: the Foundation diagram wipes open from 01 across to 05 with no settle, his pick on 11 Nov (part way at 0.45 s, fully open after, no transform)
   CHECK: node docs/motion/framework-audit-gates.mjs
   EXPECT: AUDIT_FIXES_OK
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=76d9a387669c00f8c6f01f51d60ad29c0838ed52249effb5099c5e3c587c308e; output-bytes=604
 
-- [ ] G11: the Mondai mark sits at the end of the title row, inside the screen at 1440, 768 and 390 and on the 40 px margin at 1440 (he left the spot to me on 11 Nov)
+- [x] G11: the Mondai mark sits at the end of the title row, inside the screen at 1440, 768 and 390 and on the 40 px margin at 1440 (he left the spot to me on 11 Nov)
   CHECK: node docs/motion/framework-audit-gates.mjs
   EXPECT: AUDIT_FIXES_OK
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=b9578a5fbfbb628d5d0f5ea36182ae0ca689da0365ec2e7df574362cb17d6e5d; output-bytes=604
 
-- [ ] G12: "Explore more case studies" is plain text, not a link (his answer, 11 Nov)
+- [x] G12: "Explore more case studies" is plain text, not a link (his answer, 11 Nov)
   CHECK: node docs/motion/framework-audit-gates.mjs
   EXPECT: AUDIT_FIXES_OK
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=76827a885a48759c4821f2dcd5dafcc94f33eb7f8ac696b6956733ff85daf84f; output-bytes=604
 
 - [ ] G13: the footer portraits show no outline, once he confirms which outline he means (the only candidate found: the pill's light grey fill showing as a rim above the photo)
   EVIDENCE: pending
