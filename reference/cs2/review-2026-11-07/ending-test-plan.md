@@ -146,8 +146,10 @@ math on screen, because asking a user who is already behind reads as a gate, not
 archive line 112). The killed version was a modal with "4 carried + 3 new = 7 items".
 
 **Why a senior reviewer cares.** It is the decision with the clearest stated intent (guide, not penalty),
-so it can be checked against that intent directly. It is also the call he made against a stakeholder's
-earlier design, which a director will want evidence for.
+so it can be checked against that intent directly. It also replaced an earlier decision modal with the math
+on screen, so a director will want evidence that removing the choice did not remove the user's sense of
+control. (Corrected 12 Nov: the record has the push for automation coming from leadership, not a call made
+against it; reasoning/carry-over.md line 250.)
 
 **Method.** Same kickoff session, after number 2. Show the Rollover Start of week screen. Ask an open
 question first, then a short word choice: 12 words, half guide and half penalty, in random order, pick
