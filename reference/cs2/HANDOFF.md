@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-12 02:10
+Updated: 2026-11-12 20:45
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -25,11 +25,11 @@ CS2 copy is settled in reference/cs2/review-2026-11-07/final-copy.md (hero A and
 
 His audit of the built page, 11 Nov, done and pushed (540cf43, ba266fc): both sources lines cut (recorded in final-copy.md, 0253bd6); schedule view line on one line at desktop; The Rollover effect rebuilt as live text with its icon centred and 25 percent smaller, the line beside it past the text; ending bar chevrons inside the highlight, equal padding, Explore more case studies plain text; Action Item laptop rises in and outruns the page past its screen; Rollover panel slides in from the left; Foundation diagram wipes open 01 to 05 (his pick); Mondai mark at the end of the title row. Gates in docs/motion/framework-page-GATES.md on that branch: 11 met, G13 (footer outline) waits on him, motion-check not applicable. The Falling behind carry animation was built then reverted at his word: page wide motion only.
 
-Three sessions started 11 Nov, each in ~/Code/portfolio-site with him: Start of week carousel rework (research first, center mode carousel, fixed captions); the ending rework (he called it awful; its drafts are in reference/cs2/versions/ending.md and reader-check/runs/2026-11-12-end-a, uncommitted, that session's to save); Capacity copy cut then a cursor clicking the stepper. A fourth, why the curtain feels off on big desktop screens like Growth Journey, is proposed as a card, not started.
+Since 11 Nov, sessions in ~/Code/portfolio-site with him: the curtain research is done and his pick A is live (9084a83: flat browser screens settle from 1.08, laptop photos keep 1.3), and its 12 Nov tracker gives each of his notes an owner (reports/nov12-audit/GATES.md on that branch). The ending: the research (review-2026-11-07/ending-research.md), his pick of concept A, three versions of A with reader checks (versions/ending.md) and a test plan for the numbers that would close it (review-2026-11-07/ending-test-plan.md); the page still carries version C. A child session is drafting a filled example (ending-filled-example.md and ending-filled-preview.html, uncommitted, that session's to save). Capacity: a 64 word cut waits on his yes; nothing changed. Start of week carousel: options in the shared edit panel, waiting on his review.
 
 ## Next action
 
-The three sessions report back with him. Then: his answer on the footer outline, and the Haven page's ending bar still has Explore more case studies as a link (site/haven/index.html belongs to the Haven sessions), to match the framework page once he confirms.
+His answers in three sessions: the Capacity cut, the Start of week carousel options, and the Foundation question the curtain session asked (his 11 Nov pick, the left to right wipe, is already live in ba266fc, so the answer is probably that it stands). Then the ending version he picks gets built, and the footer outline question gets his answer.
 
 ## Decided in chat, not yet in files
 
