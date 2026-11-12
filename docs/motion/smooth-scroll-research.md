@@ -158,3 +158,26 @@ time every frame, plus layout shifts and long frames. A second steps down each p
 reports ranges where most of the screen does not move. A third sends sideways trackpad swipes over every
 horizontal scroller with and without Lenis. The settle times in 2b are computed from the Lenis 1.1.20 source
 formula.
+
+## Built on the preview, 11 Nov
+
+His yes covered fixes 1 and 2. Both live in `site/dev/preview/scroll-fixes.js` and `.css`, a preview
+layer that leaves `scroll-feel.js` and the page scripts alone.
+
+- **Carousel.** A wheel or trackpad gesture that is more sideways than vertical, over anything that scrolls
+  sideways, goes to the browser. Vertical scroll over the carousel and sideways gestures anywhere else stay
+  smooth. Headless Chromium cannot scroll sideways with a wheel, so the check proves Lenis no longer blocks
+  the swipe (0 of 20 events taken, page target unmoved); the swipe itself needs his trackpad.
+- **Landing.** The nav's bottom edge is measured from layout and written to `--scroll-land`, used both for
+  native jumps (`scroll-margin-top`) and for the glide. A section's own `scroll-margin-top` wins (Home's
+  About on phones keeps its 112 px). On Home's phone layout the bar only appears past the hero, so a link
+  to a section further down is measured with the bar in place; Work, which starts where the hero ends,
+  lands at its own top with its title 46 px clear of the bar. Menu links glide once the menu has closed.
+  Lenis's own anchor handler on Home is taken off, so every link makes one glide. The Scroll feel tab's
+  Anchor offset still adds on top.
+- **Base setting.** Not changed: the Scroll feel defaults belong to the edit panel. The "Lenis default
+  (0.1, 1)" button in the Scroll tab sets the recommended values.
+
+Checked on the rebuilt preview: three carousel checks, seven landings at 1440 and 390 wide, the phone menu,
+the panel offset and a page opened with `#about` all pass; the steady scroll probe still shows no stalls,
+dropped frames or layout shifts on any page. Fix 3 (Haven's feedback block hold) waits on his call.
