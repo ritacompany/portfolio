@@ -204,3 +204,19 @@
 .hero__background p + p { color:var(--n525); }
 /* HAVEN wordmark above the tagline, moved off the title row in his file (12 Nov, 4961:11998): 80 by 17.27, tagline 32 below */
 .hero__mark { display:block; width:80px; height:17.27px; margin-bottom:32px; }
+/* Tablet, 768 to 1199 (reports/haven-tablet/ISSUES.md). Nothing here reaches 390 or 1200 and up.
+   H1: the stats row needs 738 px and the margins leave 704 at 768, so the left label ran into the edge.
+       Below 834 its gaps drop to the 24 px tablet gutter (row 690 px).
+   H2: from 1160 the sections keep their 1440 pixel heights while the content scales down, so up to
+       135 px of extra black sat under MVP, Wireframes, the program, Scheduling and Security. Their
+       164 px bottom padding sets the end instead, as it does at 1440. The quiz keeps its motion space. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  @media (max-width: 833.98px) {
+    .stats__row { column-gap: 24px; }
+    .stats__row .stat { gap: 24px; }
+  }
+  @media (min-width: 1160px) {
+    .mvp, .program, .schedule, .security { min-height: 0; }
+    .wires { height: auto; min-height: 0; }
+  }
+}
