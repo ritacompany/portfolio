@@ -170,6 +170,11 @@
   .about__row > :first-child { grid-column: 1 / span 3; }
   .about__body { grid-column: 4 / -1; }
 }
+/* Tablet only, 768 to 1199 (reports/home-tablet/ISSUES.md H1). The hero fills the first screen, as it
+   does at 1440 and on the phone, and never drops under its 760 floor on a short landscape screen. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .hero { min-height: max(760px, 100svh); }
+}
 /* Phone parts that exist only under 768: hidden at tablet and desktop. */
 .navbar__menu, .hero__contact, .hero__vertical, .work-card__phone-art, .work-card__more, .menu { display: none; }
 
