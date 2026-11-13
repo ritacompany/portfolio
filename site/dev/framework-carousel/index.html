@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Preview: Framework case study, Chadwick Fenner</title>
+  <meta name="description" content="How I designed the Growth Journey, weekly scheduling and the AI plan at Mondai.">
+  <link rel="preload" href="/assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/satoshi-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/ui/logo.svg">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/grid.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/framework.css">
+  <link rel="stylesheet" href="/dev/framework-carousel/sow.css">
+  <link rel="stylesheet" href="/css/mondai-motion.css">
+  <script src="/js/fit-desktop.js"></script>
+</head>
+<body>
+  <div class="canvas framework" id="top" data-figma-node="5812:16446">
+    <header class="page-header">
+      <nav class="navbar grid" data-figma-node="5812:16781" aria-label="Main">
+        <a class="navbar__logo col-1" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+        <ul class="navbar__links col-8 span-5">
+          <li><a class="link-nav" href="/#about" aria-label="About"><span aria-hidden="true">Abou<span class="mirror">7</span></span></a></li>
+          <li><a class="link-nav" href="/#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
+          <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="fw">
+      <section class="fw-sec" data-figma-node="5812:16447" aria-label="Introduction" style="height:647px">
+        <h1 class="t s-display-212 c-neutral-100 fw-title" data-figma-node="5812:16453" style="left:22px;top:0px;width:1378px">Framework CS</h1>
+        <p class="t s-label-12 c-neutral-525 nowrap" data-figma-node="5812:16456" style="left:40px;top:233px">Role</p>
+        <p class="t s-body-16 c-neutral-050 nowrap" data-figma-node="5812:16457" style="left:40px;top:258px">Founding designer</p>
+        <p class="t s-label-12 c-neutral-525 nowrap" data-figma-node="5812:16459" style="left:312px;top:233px">Affiliate</p>
+        <p class="t s-body-16 c-neutral-050 nowrap" data-figma-node="5812:16460" style="left:312px;top:258px">Mondai</p>
+        <p class="t s-label-12 c-neutral-525 nowrap" data-figma-node="5812:16462" style="left:507px;top:233px">Focus</p>
+        <p class="t s-body-16 c-neutral-050 nowrap" data-figma-node="5812:16463" style="left:507px;top:258px">Design, research and strategy.</p>
+        <span class="rule" aria-hidden="true" style="top:293px"></span>
+        <img class="fw-logo" src="/assets/ui/mondai-mark.svg" alt="" width="40" height="41" data-figma-node="4961:12105" style="left:40px;top:358px">
+        <p class="t s-heading-24 c-neutral-050" data-figma-node="5812:16466" style="left:40px;top:430.57px;width:439.87px">Designed as an AI guide for newcomers from underrepresented backgrounds finding their way into tech.</p>
+        <p class="t s-body-16 c-neutral-050 paras" data-figma-node="5812:16468" style="left:624.87px;top:358px;width:473px"><span class="para">There’s no set path into tech, so Mondai’s AI writes each user a curriculum for the career they choose, and it can take months. Most users don’t have the same hours free every week, so a plan that expects a steady pace would leave them behind from week one.</span><span class="para">When I started on the MVP, the curriculum was a list in a fixed order, with calendar integration planned and nothing connecting them. I designed the weekly framework that turns it into weeks each user can finish. Mondai hasn’t launched, so this case study shows the reasoning rather than results.</span></p>
+      </section>
+      <section class="fw-sec" data-figma-node="5812:16470" aria-label="Competitive analysis" style="height:905px">
+        <h2 class="t s-heading-20 c-neutral-500" data-figma-node="5812:16473" style="left:273px;top:64px;width:660px">Competitive analysis</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:16474" style="left:273px;top:117px;width:791px">Mondai had no direct model, but learning apps and task trackers each solve part of the problem.</p>
+        <p class="t s-label-14-c c-neutral-525 nowrap" data-figma-node="5812:16480" style="left:273px;top:360px">01. Progress</p>
+        <p class="t s-heading-20 c-neutral-050 nowrap" data-figma-node="5812:16481" style="left:273px;top:386px">CareerFoundry</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16482" style="left:273px;top:424px;width:420px">Studies find that tracking real progress against a goal makes reaching it more likely. So, like CareerFoundry, Mondai shows two dates side by side: the target date the plan sets and the pace date the user’s progress points to.</p>
+        <p class="t s-label-14-c c-neutral-525 nowrap" data-figma-node="5812:16485" style="left:739px;top:360px">02. Calendar integration</p>
+        <p class="t s-heading-20 c-neutral-050 nowrap" data-figma-node="5812:16486" style="left:739px;top:386px">Motion</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16487" style="left:739px;top:424px;width:420px">Motion uses AI to find free time in a user’s calendar. But research shows that pushing students to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.</p>
+        <p class="t s-label-14-c c-neutral-525 nowrap" data-figma-node="5812:16491" style="left:273px;top:557px">03. Home screen</p>
+        <p class="t s-heading-20 c-neutral-050 nowrap" data-figma-node="5812:16492" style="left:273px;top:583px">Linear</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16493" style="left:273px;top:621px;width:420px">Linear opens straight onto the work in front of you, and so does Mondai: its home screen shows only this week’s work.</p>
+        <p class="t s-label-14-c c-neutral-525 nowrap" data-figma-node="5812:16496" style="left:739px;top:557px">04. Timing</p>
+        <p class="t s-heading-20 c-neutral-050 nowrap" data-figma-node="5812:16497" style="left:739px;top:583px">Learning apps</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16498" style="left:739px;top:621px;width:424px">Every learning app I reviewed, even the most structured, let learners fit lessons around their day. So the plan sets the goal, and each user decides where in their day the work goes.</p>
+      </section>
+      <section class="fw-sec" data-figma-node="5812:16501" aria-label="The foundation we built on" style="height:1027.13px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:16504" style="left:159px;top:64px;width:660px">The foundation we built on</h2>
+        <p class="t s-heading-40 c-neutral-100" data-figma-node="5812:16505" style="left:159px;top:118px;width:760px">Mondai calls the whole route to a user’s new career, and the curriculum that gets them there, their Growth Journey.</p>
+        <p class="t s-heading-20 c-neutral-100" data-figma-node="5812:16510" style="left:160px;top:363px;width:314px">Pathways</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16511" style="left:160px;top:397px;width:435px">The Growth Journey is made up of five Pathways, taken one at a time and in order, each covering a different part of getting into tech.</p>
+        <p class="t s-heading-20 c-neutral-100" data-figma-node="5812:16588" style="left:1095.31px;top:686px;width:282px">Hierarchy</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16589" style="left:1095.31px;top:720px;width:211px">Each Pathway holds Action Items, the individual pieces of work the user does, grouped into Focus Areas by theme.</p>
+        <img class="fig" data-figma-node="5812:16512" src="/assets/framework/foundation@2x.webp" alt="The five Pathways, Discovery, Cognition, Networking, Branding and Opportunity, each with Focus Areas and Action Items below it." width="896" height="377" loading="lazy" decoding="async" style="left:160px;top:486px;width:895.5px;height:377px">
+      </section>
+      <section class="fw-sec" data-figma-node="5812:16590" aria-label="Growth Journey" style="height:1243px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:16593" style="left:41px;top:64px;width:660px">Growth Journey</h2>
+        <p class="t s-heading-40 c-neutral-100" data-figma-node="5812:16594" style="left:41px;top:118px;width:802px">The whole route has a page of its own, one users open now and then to see how far they’ve come and what’s left.</p>
+        <p class="t s-body-16 c-neutral-300 paras" data-figma-node="5812:16597" style="left:40px;top:431px;width:270px"><span class="para">Users need to see how the Pathway they’re on fits into the whole journey, so this page zooms out to show all of it.</span><span class="para">Long term metrics like their journey target, pace and progress sit here out of the user’s immediate view.</span><span class="para">I kept the journey’s dates here because two sets of dates on the weekly screen would compete.</span></p>
+        <img class="fig" data-figma-node="5812:16598" src="/assets/framework/growth-journey@2x.webp" alt="The Growth Journey page in Mondai, showing the whole route with its target, pace and progress." width="1090" height="695" loading="lazy" decoding="async" style="left:350px;top:382.87px;width:1090px;height:695px">
+      </section>
+      <section class="fw-sec" data-figma-node="5812:16769" aria-label="Pathway" style="height:1239.56px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:16772" style="left:390px;top:64px;width:660px">Pathway</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:16773" style="left:390px;top:118px;width:842px">Each Pathway has its own page, with all of its Action Items in the order the user works through them, including the ones still locked.</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16777" style="left:1207px;top:443px;width:193px">This page shows the Pathway the user is on up close: its target and pace, what’s coming up next and the Focus Areas it covers. They won’t need it every week, but it’s there whenever they want to look ahead.</p>
+        <p class="t s-heading-20 c-neutral-050" data-figma-node="5812:16779" style="left:1207px;top:726px;width:193px">Focus Areas</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:16780" style="left:1207px;top:760px;width:193px">Focus Areas, like user testing or wireframes, group the Pathway’s Action Items by theme and show the user what the Pathway will cover.</p>
+        <img class="fig" data-figma-node="5812:16775" src="/assets/framework/pathway@2x.webp" alt="A Pathway page in Mondai, with its Focus Areas and Action Items in order." width="1167" height="692" loading="lazy" decoding="async" style="left:0px;top:382.87px;width:1167px;height:692px">
+      </section>
+      <section class="fw-sec" data-figma-node="5812:16782" aria-label="Action hub" style="height:1410px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:16785" style="left:40px;top:74px;width:660px">Action Hub</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:16786" style="left:40px;top:128px;width:727.25px">Most of a user’s week happens on one screen: the list of Action Items they come back to nearly every day.</p>
+        <p class="t s-body-16 c-neutral-300 paras" data-figma-node="5812:16965" style="left:1207px;top:475px;width:193px"><span class="para">I designed the Action Hub around one question for the user: what do I need to do this week?</span><span class="para">Each week opens with a short headline and a paragraph the AI writes about that week’s work. It should read like a friend telling the user what the week is about before they look at their list, so it talks about the work itself and not about how much they’ve finished.</span><span class="para">Each Action Item builds on the one before, so they’re finished in order and only the one at the top, marked Active, can be checked off.</span></p>
+        <img class="fig" data-figma-node="5812:16790" src="/assets/framework/action-hub@2x.webp" alt="The Action Hub in Mondai: the week&#x27;s headline, its Action Items and the right rail." width="1166" height="734" loading="lazy" decoding="async" style="left:0px;top:413.32px;width:1166px;height:734px">
+      </section>
+      <section class="fw-sec" data-figma-node="5812:16966" aria-label="Action item" style="height:1741.88px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:16970" style="left:502px;top:64px;width:660px">Action Item</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:16971" style="left:502px;top:118px;width:719px">Every Action Item is a piece of work the AI writes for one user, and when I designed its page the AI was still being built.</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:17083" style="left:973px;top:481px;width:427px">I couldn’t know yet how the AI would behave or what it would do well. The MVP scope was small too: the AI writes each Action Item as text, with no images or video, and nobody types anything into the page. So the page is built from ten kinds of plain text containers, like a short intro, a set of steps or a list of links, that the AI fills however the content needs, and I kept the structure loose in case it couldn’t use all of it at first. That keeps the page simple for the MVP and leaves me room to grow it into something richer once the AI is ready.</p>
+        <img class="fig" data-figma-node="5812:16973" src="/assets/framework/action-item@2x.webp" alt="An Action Item page in Mondai, a set of plain containers the AI fills." width="892" height="1194" loading="lazy" decoding="async" style="left:40px;top:383.32px;width:892px;height:1194px">
+      </section>
+      <section class="fw-sec" data-figma-node="5812:17084" aria-label="Personalized timeline" style="height:1133px">
+        <span class="panel-example" data-figma-node="5812:17126" aria-hidden="true" style="left:505px;top:877px;width:563px;height:115px"></span>
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:17086" style="left:159px;top:101px;width:660px">Personalized timeline</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:17087" style="left:159px;top:155px;width:660px">How many Action Items a user gets in a week depends on two things, and the user sets one of them.</p>
+        <p class="t s-heading-20 c-neutral-050 w-bold" data-figma-node="5812:17121" style="left:505px;top:428px;width:255px">Capacity</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:17122" style="left:505px;top:463px;width:255px">Each user types the hours they can give each week, the first time they open the Action Hub. Mondai plans everything from that number. Learning it from how they work would leave the first two or three weeks without a real plan. An exact number makes them count, where a range lets them promise more than they have. The plan can lower it later.</p>
+        <p class="t s-heading-20 c-neutral-050 w-bold" data-figma-node="5812:17124" style="left:787px;top:428px;width:255px">Effort</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:17125" style="left:787px;top:463px;width:228px">How much work each Action Item takes, which Mondai sizes item by item.</p>
+        <img class="fig" data-figma-node="5812:17089" src="/assets/framework/timeline@2x.webp" alt="Weekly capacity and Action Items in Mondai." width="308" height="298" loading="lazy" decoding="async" style="left:158px;top:408.44px;width:308px;height:298px">
+        <p class="t s-label-12-c c-neutral-525 nowrap" data-figma-node="5812:17127" style="left:525px;top:897px">Example:</p>
+        <p class="t s-label-14 c-neutral-300" data-figma-node="5812:17128" style="left:525px;top:922px;width:449px">Aisha’s capacity is 6 hours a week. Last week that fit 4 Action Items. This week it fits 3, because this week’s take more effort.</p>
+      </section>
+      <section class="fw-sec" data-figma-node="5812:17129" aria-label="Calendar setup" style="height:1503px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:17133" style="left:274px;top:64px;width:660px">Calendar setup</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:17134" style="left:274px;top:118px;width:887.49px">Calendar sync is optional. Users who turn it on answer two quick questions about their day, and Mondai plans around the answers.</p>
+        <p class="t s-body-16 c-neutral-300 paras" data-figma-node="5812:17137" style="left:40px;top:627px;width:256px"><span class="para">The first question sets a time range, and Mondai only places Action Items inside it.</span><span class="para">The range has to leave room, because Mondai can only use the time not already taken by the user’s own events. A short range on a busy day leaves none.</span><span class="para">The second asks for their sharpest hours, when they focus best. Mondai fills those first when they’re free, but nothing is locked to them.</span></p>
+        <img class="fig" data-figma-node="5812:17138" src="/assets/framework/calendar-setup@2x.webp" alt="Calendar setup in Mondai: preferred hours and sharpest hours." width="1089" height="955" loading="lazy" decoding="async" style="left:351px;top:383.44px;width:1089px;height:955px">
+      </section>
+      <section class="fw-sec" data-figma-node="5812:17143" aria-label="Schedule view" style="height:2079px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:17146" style="left:154px;top:64px;width:660px">Schedule view</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:17147" style="left:154px;top:118px;width:906px">With a calendar synced, the Action Hub can show the same week as a schedule, with Mondai finding times for Action Items around the user’s day.</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:17150" style="left:154px;top:419px;width:700px">The list stays the default view, and the user can switch between the list and the schedule whenever they like.</p>
+        <img class="fig" data-figma-node="5812:17152" src="/assets/framework/schedule-view@2x.webp" alt="The Action Hub as a schedule, with Action Items placed between the person&#x27;s own events." width="1440" height="686" loading="lazy" decoding="async" style="left:0px;top:476.44px;width:1440px;height:686px">
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20111" style="left:159px;top:1218px;width:501px">Mondai looks for gaps between the user’s own events, inside the hours they chose in setup. The calendar starts at the first of those hours, 8am for instance, so the day opens on the time Mondai can plan in. Each block is as long as its Action Item takes.</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20112" style="left:740px;top:1218px;width:426px">Mondai only reads the calendar. It never writes Action Items into it, because that calendar holds commitments Mondai doesn’t own. Action Items and the user’s own events each get their own color.</p>
+        <p class="t s-heading-20 c-neutral-050 nowrap" data-figma-node="5812:20246" style="left:817px;top:1466px">Rescheduling an Action Item</p>
+        <p class="t s-body-16 c-neutral-300 paras" data-figma-node="5812:20247" style="left:817px;top:1512px;width:448px"><span class="para">Users can move their Action Items from the list or the schedule, and Mondai offers only open time in that week, so nothing overlaps their personal schedule. Mondai never moves a time on its own. Automatic moving was easy to build, and I left it out because a plan that rearranges itself gets confusing.</span><span class="para">An Action Item’s time is only a suggestion. It’s due by the end of its week, Saturday night, so one without a time is fine, and finishing it still counts. When a week has no room left, the item stays in the list without a time.</span></p>
+        <img class="fig" data-figma-node="5812:20114" src="/assets/framework/schedule-gaps@2x.webp" alt="Rescheduling an Action Item into open time in the week." width="547" height="509" loading="lazy" decoding="async" style="left:154px;top:1406px;width:547px;height:509px">
+      </section>
+      <section class="fw-sec" data-figma-node="5812:20351" aria-label="Buffer flow" style="height:1152px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:20353" style="left:275px;top:64px;width:660px">Buffer flow</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:20354" style="left:275px;top:118px;width:721px">Finish the week’s work early and the days that are left become room to catch up or to get further ahead.</p>
+        <p class="t s-body-16 c-neutral-300 paras" data-figma-node="5812:20357" style="left:40px;top:427px;width:292px"><span class="para">The moment the last Action Item of the week is done, this screen celebrates it and offers next week’s Action Items to pull forward.</span><span class="para">A week only holds as much as the user’s capacity, so finishing early leaves nothing left to do. Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.</span><span class="para">What the screen says depends on the gap. A user who is ahead is told they can widen their lead. A user who is behind still gets the finish celebrated, then hears that pulling work forward is how they close the gap.</span><span class="para">That’s why the screen doesn’t wait for the start of next week: how much a user can pull forward depends on the days left.</span></p>
+        <img class="fig" data-figma-node="5812:20358" src="/assets/framework/buffer@2x.webp" alt="Mondai celebrating a finished week and offering next week&#x27;s Action Items to pull forward." width="1050" height="616" loading="lazy" decoding="async" style="left:390px;top:371.44px;width:1050px;height:616px">
+      </section>
+      <section class="fw-sec" data-figma-node="5812:20248" aria-label="Falling behind" style="height:2025px">
+        <span class="panel-card" data-figma-node="5812:20259" aria-hidden="true" style="left:391px;top:377px;width:1009px;height:430px"></span>
+        <span class="panel-card" data-figma-node="5812:20311" aria-hidden="true" style="left:40px;top:1335px;width:1100px;height:203px"></span>
+        <span class="vrule" data-figma-node="5812:20343" aria-hidden="true" style="left:349px;top:1578px;width:1px;height:282px"></span>
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:20254" style="left:273px;top:64px;width:660px">Falling behind</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:20255" style="left:272px;top:118px;width:928px">The Action Hub keeps two dates for the Pathway the user is on: where they’re aiming and where they’re headed.</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20258" style="left:40px;top:451px;width:259px">Both sit in a rail down the right side of the Action Hub. If the target moved every time a week went badly, the user would never see that they’d slipped, and seeing their pace fall behind it is what’s meant to get them back on track.</p>
+        <p class="t s-label-14-c c-green" data-figma-node="5812:20296" style="left:902px;top:450px;width:389.33px">Pathway target</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20297" style="left:902px;top:480px;width:437px">Set from the user’s capacity, it holds steady through an ordinary week and moves when their capacity changes.</p>
+        <p class="t s-label-14-c c-green nowrap" data-figma-node="5812:20299" style="left:902px;top:566.39px">Pathway pace</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20300" style="left:902px;top:596.39px;width:437px">It updates once a week, so nobody watches it tick with every finished item. In week one it matches the target.</p>
+        <p class="t s-label-14-c c-green" data-figma-node="5812:20302" style="left:902px;top:661.39px;width:389.33px">Ahead of target</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20303" style="left:902px;top:691.39px;width:437px">The gap between the two dates, in days. It is the only ahead or behind signal on the rail.</p>
+        <img class="fig" data-figma-node="5812:20260" src="/assets/framework/right-rail-v4@2x.webp" alt="The Action Hub&#x27;s right rail for the Cognition Pathway: Pathway target Aug 30, Pathway pace Aug 28, two days ahead of target." width="466" height="428" loading="lazy" decoding="async" style="left:392px;top:378px;width:466px;height:428px">
+        <span class="rule" data-figma-node="5812:20250" aria-hidden="true" style="left:0px;top:971px;width:1440px;height:1px"></span>
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:20308" style="left:41px;top:1036px;width:660px">Falling behind</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:20309" style="left:40px;top:1090px;width:708px">When an Action Item is still open on a Saturday night, everything after it moves forward chronologically.</p>
+        <p class="t s-label-14-c c-green" data-figma-node="5812:20314" style="left:900px;top:1389px;width:239px">Rollover</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20315" style="left:900px;top:1423px;width:174px">An Action Item carried over from last week.</p>
+        <img class="fig" data-figma-node="5812:20316" src="/assets/framework/rollover-v4@2x.webp" alt="An unfinished Action Item tagged Rollover, carried into the new week." width="815" height="201" loading="lazy" decoding="async" style="left:41px;top:1336px;width:815px;height:201px">
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20350" style="left:391px;top:1659.66px;width:543px">A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.</p>
+        <p class="t s-heading-20 c-neutral-050 nowrap fb-effect" data-figma-node="5812:20346" style="left:391px;top:1615.83px"><img src="/assets/framework/rollover-icon-v4.svg" alt="" width="19" height="26">The Rollover effect</p>
+      </section>
+      <section class="fw-sec" data-figma-node="5812:20498" aria-label="Start of week" style="height:1305px">
+        <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:20500" style="left:158px;top:64px;width:660px">Start of week</h2>
+        <p class="t s-heading-40 c-neutral-050" data-figma-node="5812:20501" style="left:158px;top:118px;width:766px">Whether a user finished last week early or fell short, the next week starts with a recap and a plan for the week.</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20715" style="left:1098px;top:490px;width:309px">This is the first screen a user sees each Sunday, before the Action Hub. It picks one of five versions depending on how last week went. If they’re on track, it says less. If they’re behind their target, it offers ways to catch up.</p>
+        <div class="sow" data-figma-node="5812:20504" style="left:33px;top:371px"><div class="sow__stage" role="region" aria-roledescription="carousel" aria-label="Start of week templates. Use the arrow keys or the dots to see all five." tabindex="0"><div class="sow__card" role="img" aria-roledescription="slide" aria-label="Template 1 of 5, Clean slate: the clean slate start of week screen in Mondai." data-title="Clean slate" data-desc="This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead." style="background-image:url(/assets/framework/week-clean-slate@2x.webp)"></div><div class="sow__card" role="img" aria-roledescription="slide" aria-label="Template 2 of 5, Catching up: the catching up start of week screen in Mondai." data-title="Catching up" data-desc="Finishing every Action Item doesn’t close the gap for a user who is behind, so this screen shows how many days they made up last week and points them to finishing early until they’re back on target." style="background-image:url(/assets/framework/week-catching-up@2x.webp)"></div><div class="sow__card" role="img" aria-roledescription="slide" aria-label="Template 3 of 5, Rollover: the rollover start of week screen in Mondai." data-title="Rollover" data-desc="When a week ends unfinished, the Rollover Action Items wait in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes unseen." style="background-image:url(/assets/framework/week-rollover@2x.webp)"></div><div class="sow__card" role="img" aria-roledescription="slide" aria-label="Template 4 of 5, Recalibration: the recalibration start of week screen in Mondai." data-title="Recalibration" data-desc="Rollover handles one unfinished week. When it keeps happening, the screen suggests a capacity that fits the hours the user has been giving. They can take it, set their own or skip it with a warning." style="background-image:url(/assets/framework/week-recalibration@2x.webp)"></div><div class="sow__card" role="img" aria-roledescription="slide" aria-label="Template 5 of 5, Reset: the reset start of week screen in Mondai." data-title="Reset" data-desc="After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with their progress kept. It has one button, because most users would pick keep my plan just because it’s the default." style="background-image:url(/assets/framework/week-reset@2x.webp)"></div></div><div class="sow__dots"><button type="button" class="sow__dot" aria-label="Show template 1 of 5" aria-current="true"></button><button type="button" class="sow__dot" aria-label="Show template 2 of 5"></button><button type="button" class="sow__dot" aria-label="Show template 3 of 5"></button><button type="button" class="sow__dot" aria-label="Show template 4 of 5"></button><button type="button" class="sow__dot" aria-label="Show template 5 of 5"></button></div><div class="sow__cap" aria-live="polite"><p class="t s-label-12-c c-neutral-525 sow__label" data-figma-node="5812:20702">Template <span class="sow__num"><span>1</span></span> of 5</p><p class="t s-heading-20 w-bold c-neutral-100 sow__title sow__fade" data-figma-node="5812:20703">Clean slate</p><p class="t s-body-16 c-neutral-300 sow__desc sow__fade" data-figma-node="5812:20704">This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead.</p></div></div>
+      </section>
+      <section class="fw-sec" data-figma-node="5812:21559" aria-label="What’s still open" style="height:831px">
+        <p class="t s-heading-20 c-neutral-500 nowrap" data-figma-node="5812:21563" style="left:156px;top:64px">What’s still open</p>
+        <p class="t s-display-96 c-neutral-050" data-figma-node="5812:21564" style="left:149px;top:134px;width:1291px">The least settled rule is the one for when Recalibration steps in, because no user had lived a week with the plan yet.</p>
+        <p class="t s-heading-24 c-neutral-100 paras paras-tight" data-figma-node="5812:21566" style="left:272px;top:565px;width:900px"><span class="para">Right now it steps in after three weeks in a row where a user finishes less than about half the hours they set. That line is a starting point, and the first users’ weeks will move it.</span><span class="para">It comes too early if most users who see it skip it and catch up anyway, and too late if users stop coming back before it ever shows.</span></p>
+      </section>
+    </main>
+
+    <nav class="ending-bar" data-figma-node="5812:21567" aria-label="More case studies">
+      <a class="ending-bar__prev" href="/mondai/"><img src="/assets/ui/chevron-left.svg" alt=""><span>Mondai: design system case study</span></a>
+      <span class="ending-bar__all">Explore more case studies</span>
+      <a class="ending-bar__next" href="/haven/"><span>Haven: LGBTQIA + youth app</span><img src="/assets/ui/chevron-left.svg" alt=""></a>
+    </nav>
+
+          <footer class="footer" data-figma-node="5812:21568" id="contact">
+            <div class="footer__main">
+              <div class="footer__top grid">
+                <div class="col-1 span-5">
+                  <a class="footer__back" href="#top"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>
+                  <ul class="footer__nav">
+                <li><a class="link-footer" href="/">Home</a></li>
+                <li><a class="link-footer" href="/#about">About</a></li>
+                <li><a class="link-footer" href="/#work">Selected works</a></li>
+                <li><a class="link-footer" href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="footer__contact col-6 span-3">
+                  <p class="footer__label">Contact</p>
+                  <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+                  <div class="footer__note">
+                    <p>I’m currently living in Chicago, IL</p>
+                    <p>and seeking opportunities in NYC.</p>
+                  </div>
+                  <a class="button" href="mailto:hello@chadwickfenner.com">
+                    <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+                    <span class="button__label">Contact</span>
+                  </a>
+                </div>
+                <div class="footer__portraits col-10 span-3" aria-hidden="true">
+                  <span class="footer__pill"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                  <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                </div>
+              </div>
+              <img class="footer__wordmark" data-bleed src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <div class="footer__bottom grid">
+                <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
+                <p class="footer__meta col-4 span-3"><time>10:24:00pm CST</time></p>
+                <div class="footer__links">
+                  <p class="footer__label footer__links-label">Links</p>
+                  <a class="footer__out col-7 span-3" href="https://www.linkedin.com/in/chadwickfenner/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+                  <a class="footer__out col-10 span-3" href="#resume" hidden data-hidden-until="his resume file"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+  </div>
+<script type="module" src="/js/contact-goo.js"></script>
+<script src="/js/site.js" defer></script>
+<script src="/dev/framework-carousel/sow.js" defer></script>
+<script src="/vendor/lenis-1.1.20.min.js" defer></script>
+<script src="/js/mondai-motion.js" defer></script>
+</body>
+</html>

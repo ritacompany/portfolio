@@ -1,0 +1,47 @@
+/* Start of week carousel (framework page, 5812:20498), center mode. Preview build of his 12 Nov picks:
+   side cards at 0.65 and 0.40 brightness, one template per gesture at 900 ms, dots under the card,
+   the template line stays and its number swaps with the dot, title and text crossfade in place.
+   Geometry and motion are in sow.js; this file holds layout and the text fades. */
+
+.sow { width: 1017px; }
+.sow__stage { position: relative; height: 550px; overflow: hidden; touch-action: pan-y; outline: none; }
+.sow__stage:focus-visible { box-shadow: inset 0 0 0 2px var(--neutral-525); border-radius: 12px; }
+
+/* Each card is the template's center frame (543 x 538 in Figma). The preview crops it out of the
+   current exports, which have the side peeks baked in; the live build uses clean exports. */
+.sow__card {
+  position: absolute; left: 0; top: 0; width: 543px; height: 538px; margin: 0; transform-origin: 0 0;
+  border-radius: 22px; background-size: 1017px 550px; background-position: -237px -6px;
+  will-change: transform, filter; cursor: pointer;
+}
+.sow__card.is-center { cursor: default; }
+
+.sow__dots { display: flex; justify-content: center; gap: 8px; height: 7px; margin-top: 40px; }
+.sow__dot { position: relative; width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: var(--neutral-600); cursor: pointer; transition: background-color 200ms var(--ease-quart-out); }
+.sow__dot::after { content: ""; position: absolute; inset: -8.5px -4px; }
+.sow__dot[aria-current="true"] { background: var(--neutral-200); }
+.sow__dot:hover { background: var(--neutral-525); }
+.sow__dot[aria-current="true"]:hover { background: var(--neutral-200); }
+.sow__dot:focus-visible { outline: 2px solid var(--neutral-100); outline-offset: 3px; }
+
+.sow__cap { display: flex; flex-direction: column; align-items: center; margin-top: 28px; text-align: center; }
+.sow__cap > * { margin: 0; }
+.sow__title { margin-top: 13px; }
+.sow__desc { margin-top: 18px; max-width: 529px; }
+
+/* The template line never fades: only its number changes, on the frame the dot changes. */
+.sow__num { display: inline-grid; overflow: hidden; vertical-align: top; }
+.sow__num > span { grid-area: 1 / 1; }
+
+/* Title and text: out as the card starts to move, in as it lands. */
+.sow__cap .sow__fade { transition: opacity 160ms ease-out; }
+.sow__cap.is-out .sow__fade { opacity: 0; }
+.sow__cap.is-pre .sow__fade { opacity: 0; transition: none; }
+.sow__cap.is-in .sow__fade { transition: opacity 280ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sow__cap .sow__fade, .sow__dot { transition: none; }
+}
+@media (max-width: 1199.98px) {
+  .fw-sec > .sow { width: 100% !important; }
+}

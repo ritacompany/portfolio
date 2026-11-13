@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start of week carousel, options</title>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/framework.css">
+<script src="/dev/preview/edit-panel.js" data-fluid defer></script>
+<style>
+  /* Dev prototype for the Start of week carousel (framework page, 5812:20498). Not shipped.
+     Cards are cropped out of the current exports, which have the side peeks baked in; the build
+     would use clean 2x exports of each template's center frame (543 x 538). */
+  :root { color-scheme: dark; }
+  /* Breakpoints read the page's own width (container queries on body), so the edit panel can dock
+     beside it at any width and the layout still matches the room it has. */
+  body { background: var(--neutral-900); color: var(--neutral-100); margin: 0; }
+  body { container-type: inline-size; }
+  /* Desktop keeps the Figma proportions (stage 1017, card 543, side text column 309); narrower
+     widths stack and the card grows to 80% of the stage so the side cards peek at the edges. */
+  .sec { max-width: 1440px; margin: 0 auto; padding-block: 40px 120px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid; grid-template-columns: minmax(0, 1017px) 309px; column-gap: 48px; align-items: start; }
+  @container (min-width: 1100px) { .sec { padding-left: 33px; } }
+  @container (max-width: 1099.98px) { .sec { grid-template-columns: minmax(0, 1fr); } .side { margin-top: 48px; max-width: 640px; } }
+  .stage { position: relative; height: 550px; overflow: hidden; touch-action: pan-y; outline: none; }
+  .stage:focus-visible { box-shadow: inset 0 0 0 2px var(--neutral-525); border-radius: 12px; }
+  .card { position: absolute; left: 0; top: 0; width: 543px; height: 538px; transform-origin: 0 0;
+    background-size: 1017px 550px; background-position: -237px -6px; border-radius: 22px; will-change: transform, filter; cursor: pointer; }
+  .card.is-center { cursor: default; }
+  .below { margin-top: 40px; text-align: center; }
+  .main { min-width: 0; }
+  .dots { display: flex; gap: 8px; justify-content: center; height: 7px; }
+  .dots button { position: relative; width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: var(--neutral-600); cursor: pointer; transition: background-color 200ms; }
+  .dots button::after { content: ""; position: absolute; inset: -8.5px -4px; }
+  .dots button[aria-current="true"] { background: var(--neutral-200); }
+  .hint { font: var(--label-12); letter-spacing: var(--label-12-track); color: var(--neutral-525); margin-top: 11px; }
+  .cap { position: relative; display: flex; flex-direction: column; align-items: center; }
+  .cap > * { margin: 0; }
+  .cap .week__title { margin-top: 13px; }
+  .cap .week__desc { margin-top: 18px; max-width: 529px; }
+  .cap .week__label, .cap .week__title, .cap .week__desc { position: static; transform: none; }
+  .order-dots-first .dots { margin-bottom: 28px; }
+  .order-text-first .dots { margin-top: 40px; }
+  .side { margin: 120px 0 0; }
+
+  /* A: crossfade in place. B: rise. Both timed against the card's move. */
+  .cap .fade { transition: opacity var(--out, 160ms) ease-out, transform var(--out, 160ms) ease-out; }
+  .cap.out .fade { opacity: 0; }
+  .mode-b .cap.out .fade { transform: translateY(6px); }
+  .mode-b .cap.pre .fade { transform: translateY(10px); opacity: 0; transition: none; }
+  .cap.in .fade { transition: opacity var(--in, 280ms) ease-out, transform var(--in, 280ms) cubic-bezier(.22,1,.36,1); }
+  .mode-b .cap.in .week__desc { transition-delay: 40ms; }
+  .mode-c .cap .fade { transition: none; }
+  /* The template line never leaves: only its number changes, on the frame the dot changes. */
+  .num { display: inline-grid; overflow: hidden; vertical-align: top; }
+  .num > span { grid-area: 1 / 1; }
+
+</style>
+</head>
+<body>
+<section class="sec">
+  <div class="main">
+  <div class="stage" id="stage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Start of week templates"></div>
+  <div class="below order-dots-first mode-a" id="below">
+    <div class="dots" id="dots"></div>
+    <p class="hint" id="hintline" hidden>Scroll to view more templates</p>
+    <div class="cap" id="cap" aria-live="polite">
+      <p class="t s-label-12-c c-neutral-525 week__label">Template <span class="num" id="num"><span>1</span></span> of 5</p>
+      <p class="t s-heading-20 w-bold c-neutral-100 week__title fade"></p>
+      <p class="t s-body-16 c-neutral-300 week__desc fade"></p>
+    </div>
+  </div>
+  </div>
+  <p class="t s-body-16 c-neutral-300 side">This is the first screen a user sees each Sunday, before the Action Hub. It picks one of five versions depending on how last week went. If they’re on track, it says less. If they’re behind their target, it offers ways to catch up.</p>
+</section>
+
+<script>
+const T = [
+  ["week-clean-slate", "Clean slate", "This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead."],
+  ["week-catching-up", "Catching up", "Finishing every Action Item doesn’t close the gap for a user who is behind, so this screen shows how many days they made up last week and points them to finishing early until they’re back on target."],
+  ["week-rollover", "Rollover", "When a week ends unfinished, the Rollover Action Items wait in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes unseen."],
+  ["week-recalibration", "Recalibration", "Rollover handles one unfinished week. When it keeps happening, the screen suggests a capacity that fits the hours the user has been giving. They can take it, set their own or skip it with a warning."],
+  ["week-reset", "Reset", "After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with their progress kept. It has one button, because most users would pick keep my plan just because it’s the default."],
+];
+const N = T.length, CARD_W = 543, CARD_H = 538;
+// Geometry, set by fit(). Desktop: Figma's 1017 stage, 543 card, side centers 481 px out (0.886 of a card).
+let W = 1017, H = 550, K = 1, SPACING = 481;
+const $ = (s) => document.querySelector(s);
+const stage = $("#stage"), below = $("#below"), cap = $("#cap"), dotsEl = $("#dots");
+const S = { mode: "a", dur: 600, sc: 0.61, dim: 0.40, rm: false };
+
+const cards = T.map(([f, title], i) => {
+  const d = document.createElement("div");
+  d.className = "card"; d.style.backgroundImage = `url(/assets/framework/${f}@2x.webp)`;
+  d.setAttribute("role", "group"); d.setAttribute("aria-label", `Template ${i + 1} of 5, ${title}`);
+  d.addEventListener("click", () => { if (!dragged) go(i); });
+  stage.appendChild(d); return d;
+});
+const dots = T.map((_, i) => {
+  const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", `Show template ${i + 1} of 5`);
+  b.addEventListener("click", () => go(i)); dotsEl.appendChild(b); return b;
+});
+
+let pos = 0, index = 0, shown = -1;
+const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const lerp = (a, b, t) => a + (b - a) * t;
+
+function paint() {
+  cards.forEach((c, i) => {
+    const d = i - pos, ad = Math.min(Math.abs(d), 1.6);
+    const k = Math.min(ad, 1);
+    const s = lerp(1, S.sc, k), b = lerp(1, S.dim, k);
+    const sk = s * K, x = W / 2 + d * SPACING - (CARD_W * sk) / 2, y = H / 2 - (CARD_H * sk) / 2;
+    c.style.transform = `translate(${x}px, ${y}px) scale(${sk})`;
+    c.style.filter = `brightness(${b})`;
+    c.style.zIndex = String(10 - Math.round(ad * 4));
+    c.classList.toggle("is-center", Math.abs(d) < 0.5);
+  });
+  const near = Math.round(pos);
+  dots.forEach((b, i) => (i === near ? b.setAttribute("aria-current", "true") : b.removeAttribute("aria-current")));
+  if (near !== numShown) setNum(near);
+  if (S.mode === "c") {
+    const f = Math.abs(pos - near);
+    if (near !== shown) setText(near);
+    const o = String(Math.max(0, 1 - f / 0.5) ** 1.5);
+    cap.querySelectorAll(".fade").forEach((el) => (el.style.opacity = o));
+  }
+}
+// The template number. Swap: a 200 ms crossfade, the same as the dot's own colour change. Roll: the
+// old digit slides out and the new one in, in the direction of travel. Reduced motion: it just changes.
+let numShown = 0;
+function setNum(i, instant) {
+  const box = $("#num"), dir = Math.sign(i - numShown) || 1; numShown = i;
+  // Only the digit on its way out is kept; anything older is dropped, so fast moves never stack digits.
+  [...box.children].slice(0, -1).forEach((o) => o.remove());
+  const old = [...box.children], el = document.createElement("span"); el.textContent = i + 1; box.append(el);
+  if (instant || S.rm) { old.forEach((o) => o.remove()); return; }
+  const roll = S.label === "roll", ms = roll ? 260 : 200, ease = "cubic-bezier(0.22, 1, 0.36, 1)";
+  el.animate(roll ? [{ transform: `translateY(${dir * 100}%)` }, { transform: "none" }] : [{ opacity: 0 }, { opacity: 1 }], { duration: ms, easing: roll ? ease : "ease-out" });
+  old.forEach((o) => o.animate(roll ? [{ transform: "none" }, { transform: `translateY(${-dir * 100}%)` }] : [{ opacity: 1 }, { opacity: 0 }], { duration: ms, easing: roll ? ease : "ease-out", fill: "forwards" }).onfinish = () => o.remove());
+}
+function setText(i) {
+  shown = i;
+  cap.querySelector(".week__title").textContent = T[i][1];
+  cap.querySelector(".week__desc").textContent = T[i][2];
+}
+
+let raf = 0, swapTimer = 0;
+function go(i) {
+  i = Math.max(0, Math.min(N - 1, i));
+  const from = pos, to = i, changed = i !== index; index = i;
+  cancelAnimationFrame(raf);
+  if (changed && S.mode !== "c") textOut(i);
+  const dur = S.rm ? 0 : S.dur * Math.min(1.6, Math.max(0.6, Math.abs(to - from)) ** 0.5);
+  if (!dur) { pos = to; paint(); return; }
+  const t0 = performance.now();
+  const step = (now) => {
+    const t = Math.min(1, (now - t0) / dur);
+    pos = lerp(from, to, ease(t)); paint();
+    if (t < 1) raf = requestAnimationFrame(step); else busy = false;
+  };
+  busy = true; raf = requestAnimationFrame(step);
+}
+// A and B: old text leaves as the card starts to move; new text lands as the card settles.
+function textOut(i) {
+  clearTimeout(swapTimer);
+  if (S.rm) { cap.className = "cap"; setText(i); return; }
+  const outMs = 160, inAt = Math.max(outMs, S.dur * 0.55);
+  cap.style.setProperty("--out", outMs + "ms");
+  cap.className = "cap out";
+  swapTimer = setTimeout(() => {
+    setText(i);
+    cap.className = "cap pre"; void cap.offsetWidth;
+    cap.className = "cap in";
+  }, inAt);
+}
+
+// Input. Sideways wheel or trackpad: one template per gesture, the rest of the gesture is eaten.
+// Vertical wheel is left alone so the page keeps scrolling.
+let acc = 0, lastWheel = 0, busy = false, locked = false;
+stage.addEventListener("wheel", (e) => {
+  if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+  e.preventDefault();
+  const now = performance.now();
+  if (now - lastWheel > 220) { locked = false; acc = 0; }
+  lastWheel = now;
+  if (locked) return;
+  acc += e.deltaX;
+  if (Math.abs(acc) > 24) { const dir = Math.sign(acc); acc = 0; locked = true; go(index + dir); }
+}, { passive: false });
+
+// Drag (mouse or touch): the track follows the pointer, then settles on the nearest template.
+let down = null, dragged = false;
+stage.addEventListener("pointerdown", (e) => { down = { x: e.clientX, p: pos, t: performance.now() }; dragged = false; cancelAnimationFrame(raf); });
+addEventListener("pointermove", (e) => {
+  if (!down) return;
+  const dx = e.clientX - down.x;
+  if (Math.abs(dx) > 5) { dragged = true; stage.setPointerCapture?.(e.pointerId); }
+  if (!dragged) return;
+  let p = down.p - dx / SPACING;
+  if (p < 0) p = p / 3; if (p > N - 1) p = N - 1 + (p - (N - 1)) / 3;
+  pos = p; paint();
+});
+addEventListener("pointerup", (e) => {
+  if (!down) return;
+  const dx = e.clientX - down.x, v = dx / Math.max(1, performance.now() - down.t);
+  const start = Math.round(down.p); down = null;
+  if (!dragged) return;
+  let target = Math.round(pos);
+  if (target === start && (Math.abs(dx) > 60 || Math.abs(v) > 0.4)) target = start - Math.sign(dx);
+  go(target);
+  setTimeout(() => (dragged = false), 0);
+});
+stage.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") { e.preventDefault(); go(index + 1); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); go(index - 1); }
+});
+
+// Options live in the shared preview edit panel (site/dev/preview/edit-panel.js): it docks beside the
+// page on a wide screen, is a bottom sheet on a phone, and E opens and closes it.
+S.order = "dots-first"; S.hint = false; S.label = "swap"; S.dur = 900; S.sc = 0.65;
+const sync = () => {
+  below.className = `below order-${S.order} mode-${S.mode}`;
+  const hint = $("#hintline");
+  if (S.order === "dots-first") below.prepend(dotsEl); else below.append(dotsEl);
+  dotsEl.after(hint);
+  hint.hidden = !S.hint;
+  cap.className = "cap"; cap.querySelectorAll(".fade").forEach((el) => (el.style.opacity = "")); setText(index); setNum(index, true); paint();
+};
+const set = (k, after) => (v) => { S[k] = v; after && after(); };
+const def = {
+  id: "week-carousel", title: "Start of week carousel", tab: "Motion",
+  note: "Keys 1, 2, 3 switch the text option. Swipe sideways, use the arrow keys, drag or click a side card to move.",
+  controls: [
+    { key: "mode", label: "Text under the card", type: "select", value: "a", default: "a",
+      options: [["a", "A Crossfade in place"], ["b", "B Rise into place"], ["c", "C Tied to the scroll"]], onInput: set("mode", sync) },
+    { key: "order", label: "Order under the card", type: "select", value: "dots-first", default: "dots-first",
+      options: [["dots-first", "Dots, then label, title, text"], ["text-first", "Label, title, text, then dots"]], onInput: set("order", sync) },
+    { key: "label", label: "Template number", hint: "The line stays; its number changes with the dot", type: "select", value: "swap", default: "swap",
+      options: [["swap", "Swap with the dot"], ["roll", "Roll with the dot"]], onInput: set("label") },
+    { key: "hint", label: "Hint line", hint: "Scroll to view more templates", type: "toggle", value: false, default: false, onInput: set("hint", sync) },
+    { key: "dur", label: "Move duration", min: 250, max: 1000, step: 25, unit: "ms", value: 900, default: 900, onInput: set("dur") },
+    { key: "sc", label: "Side card size", min: 0.5, max: 0.8, step: 0.01, value: 0.65, default: 0.65, hint: "Figma: 0.61", onInput: set("sc", paint) },
+    { key: "dim", label: "Side card brightness", min: 0.15, max: 0.8, step: 0.01, value: 0.4, default: 0.4, onInput: set("dim", paint) },
+    { key: "rm", label: "Simulate reduced motion", type: "toggle", value: false, default: false, onInput: set("rm") },
+  ],
+};
+window.EditPanel ? window.EditPanel.register(def) : (window.EditPanelQueue ||= []).push(def);
+addEventListener("keydown", (e) => {
+  const m = { 1: "a", 2: "b", 3: "c" }[e.key];
+  if (!m || e.target.closest?.("input, textarea, select, [contenteditable]")) return;
+  const g = window.EditPanel && window.EditPanel.group("week-carousel");
+  g ? g.set({ mode: m }) : (S.mode = m, sync());
+});
+const fit = () => {
+  W = stage.clientWidth;
+  const wide = W >= 700, cw = wide ? W * (543 / 1017) : W * 0.8;
+  K = cw / CARD_W; SPACING = cw * (wide ? 481 / 543 : 0.845);
+  H = wide ? W * (550 / 1017) : CARD_H * K + 12;
+  stage.style.height = H + "px"; paint();
+};
+addEventListener("resize", fit); fit();
+window.carousel = { go, set: (p) => { pos = p; paint(); }, S };
+sync();
+</script>
+</body>
+</html>
