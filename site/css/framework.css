@@ -15,6 +15,7 @@
 .nowrap { white-space: nowrap; }
 .paras .para { display: block; }
 .paras .para + .para { margin-top: 16px; } /* Body/16 paragraph spacing */
+.paras-tight .para + .para { margin-top: 0; } /* the ending body runs as one block in his frame (4854:19161, no paragraph spacing) */
 .w-bold { font-weight: 700; }
 .a-center { text-align: center; }
 
@@ -145,4 +146,26 @@
 @media (max-width: 1199.98px) {
   .fw-sec > .fw-logo { width: 40px !important; height: 40.57px !important; }
   .fw-sec > .fw-logo + * { margin-top: 32px; }
+}
+
+/* Tablet fixes (N8, 12 Nov, reports/tablet-breakpoint/ISSUES.md), 768 to 1199 only so 390 is untouched.
+   T5: body lines held to about 70 characters (528 px, six of the eight tablet columns at 768).
+   T4: the Example label and text stretch to one width, so the box they draw has no notch.
+   T6 and T7: no figure grows past its Figma width (the img width attribute), so small cards keep their
+   type in scale and the Action Item laptop stops at its Figma 892 by 1194. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .fw-sec > .s-body-16 { max-width: 528px; }
+  .fw-sec > [data-figma-node="5812:17127"], .fw-sec > [data-figma-node="5812:17128"] { align-self: stretch; max-width: 528px; }
+  .fw-sec > .fig { max-width: min(100%, var(--fig-w, 100%)); }
+  [data-figma-node="5812:16512"] { --fig-w: 896px; }
+  [data-figma-node="5812:16598"] { --fig-w: 1090px; }
+  [data-figma-node="5812:16775"] { --fig-w: 1167px; }
+  [data-figma-node="5812:16790"] { --fig-w: 1166px; }
+  [data-figma-node="5812:16973"] { --fig-w: 892px; }
+  [data-figma-node="5812:17089"] { --fig-w: 308px; }
+  [data-figma-node="5812:17138"] { --fig-w: 1089px; }
+  [data-figma-node="5812:20114"] { --fig-w: 547px; }
+  [data-figma-node="5812:20358"] { --fig-w: 1050px; }
+  [data-figma-node="5812:20260"] { --fig-w: 466px; }
+  [data-figma-node="5812:20316"] { --fig-w: 815px; }
 }
