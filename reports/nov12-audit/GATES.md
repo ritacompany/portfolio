@@ -18,8 +18,8 @@ Owners: [figma-sync] local_e0b4a7dd, [capacity] local_9721b7a7, [tablet] new ses
 - [x] N4: footer portraits on the far right show no stroke or light rim on either photo, on every page, and the fix is written into docs/DECISIONS.md so it stops getting lost [figma-sync]
   EVIDENCE: 7bf19d5 (figma-sync). Cause: the pill's light background antialiased apart from the photo; the fix had only ever lived in site/dev/preview/proposals.css. Now one clip-path in components.css, light edge pixels 1229 to 73, recorded in docs/DECISIONS.md. cs2-motion zoomed both portraits at 390 on Haven: no rim.
 
-- [ ] N5: Capacity section is shorter; its text column ends a little above the bottom of the image beside it at 1440 [capacity]
-  EVIDENCE: pending
+- [x] N5: Capacity section is shorter; its text column ends a little above the bottom of the image beside it at 1440 [capacity]
+  EVIDENCE: 00273ab (cs2-capacity), a 64 word copy cut he approved, one line in index.html, no CSS. cs2-motion measured at 1440 in the built-in browser: the Capacity body ends 34 px above the bottom of the timeline image (was 98 px below). cs2-capacity checked 768 and 390: stacks cleanly, no sideways scroll.
 
 - [ ] N6: Foundation entrance no longer moves the diagram as one block; he has seen options (including no entrance on the diagram) and picked one, built and checked at 1440, 768 and 390 with reduced motion on and off [motion]
   EVIDENCE: pending
