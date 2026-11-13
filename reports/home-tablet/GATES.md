@@ -23,7 +23,7 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180, no change at 3
   EVIDENCE: 13 Nov run: exit 0, ROUTE_SWAP_OK 3 widths 450 boxes (footer clock frozen; unfrozen, only the clock text width differed)
 
 - [ ] G5: the boxes home failure in verify-1440 has a named cause, fixed if it sits in home's own files, otherwise written in ISSUES.md and reported
-  EVIDENCE: cause named: 299b09b renamed the hero line's id to 4929:12396; scripts/figma-pages.json still asks for 5812:22877. Not home's own file, so not fixed; written as H2 and reported. The line's 1440 box matches the expected one exactly
+  EVIDENCE: cause named: 299b09b renamed the hero line's id to 4929:12396; scripts/figma-pages.json still asks for 5812:22877. Not home's own file, so written as H2 and reported; on his yes the selector was swapped and boxes home prints BOXES_OK 27/27
 
 - [ ] G6: no file outside OWNS changed by this work, committed by path, branch pushed, never main
   EVIDENCE: committed by path: home.css tablet hunk and reports/home-tablet only
