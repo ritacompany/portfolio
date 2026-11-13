@@ -149,13 +149,13 @@
 }
 
 /* Tablet fixes (N8, 12 Nov, reports/tablet-breakpoint/ISSUES.md), 768 to 1199 only so 390 is untouched.
-   T5: body lines held to about 70 characters (528 px, six of the eight tablet columns at 768).
+   T5: body lines held under 75 characters (480 px; Satoshi at 16 px runs about 6.5 px a character).
    T4: the Example label and text stretch to one width, so the box they draw has no notch.
    T6 and T7: no figure grows past its Figma width (the img width attribute), so small cards keep their
    type in scale and the Action Item laptop stops at its Figma 892 by 1194. */
 @media (min-width: 768px) and (max-width: 1199.98px) {
-  .fw-sec > .s-body-16 { max-width: 528px; }
-  .fw-sec > [data-figma-node="5812:17127"], .fw-sec > [data-figma-node="5812:17128"] { align-self: stretch; max-width: 528px; }
+  .fw-sec > .s-body-16 { max-width: 480px; }
+  .fw-sec > [data-figma-node="5812:17127"], .fw-sec > [data-figma-node="5812:17128"] { align-self: stretch; max-width: 480px; }
   .fw-sec > .fig { max-width: min(100%, var(--fig-w, 100%)); }
   [data-figma-node="5812:16512"] { --fig-w: 896px; }
   [data-figma-node="5812:16598"] { --fig-w: 1090px; }
@@ -168,4 +168,31 @@
   [data-figma-node="5812:20358"] { --fig-w: 1050px; }
   [data-figma-node="5812:20260"] { --fig-w: 466px; }
   [data-figma-node="5812:20316"] { --fig-w: 815px; }
+}
+/* T2: Role, Affiliate and Focus as one row, as in his frame (4664:16790); T3: the four references as his
+   two by two grid (4508:10098). Grids replace the stacked column for these two sections only; margins from
+   the stacked rules above still space the rows, so each column keeps the same rhythm. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .fw-sec[data-figma-node="5812:16447"], .fw-sec[data-figma-node="5812:16470"] { display: grid; justify-items: start; align-items: start; }
+  .fw-sec[data-figma-node="5812:16447"] > *, .fw-sec[data-figma-node="5812:16470"] > * { grid-column: 1 / -1; }
+  .fw-sec[data-figma-node="5812:16447"] { grid-template-columns: max-content max-content minmax(0, 1fr); column-gap: 64px; }
+  .fw-sec[data-figma-node="5812:16447"] > .rule { justify-self: stretch; }
+  [data-figma-node="5812:16456"], [data-figma-node="5812:16457"] { grid-column: 1 !important; }
+  [data-figma-node="5812:16459"], [data-figma-node="5812:16460"] { grid-column: 2 !important; }
+  [data-figma-node="5812:16462"], [data-figma-node="5812:16463"] { grid-column: 3 !important; }
+  [data-figma-node="5812:16456"], [data-figma-node="5812:16459"], [data-figma-node="5812:16462"] { grid-row: 2; }
+  [data-figma-node="5812:16457"], [data-figma-node="5812:16460"], [data-figma-node="5812:16463"] { grid-row: 3; }
+  .fw-sec[data-figma-node="5812:16470"] { grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  [data-figma-node="5812:16480"], [data-figma-node="5812:16481"], [data-figma-node="5812:16482"],
+  [data-figma-node="5812:16491"], [data-figma-node="5812:16492"], [data-figma-node="5812:16493"] { grid-column: 1 !important; }
+  [data-figma-node="5812:16485"], [data-figma-node="5812:16486"], [data-figma-node="5812:16487"],
+  [data-figma-node="5812:16496"], [data-figma-node="5812:16497"], [data-figma-node="5812:16498"] { grid-column: 2 !important; }
+  [data-figma-node="5812:16480"], [data-figma-node="5812:16485"] { grid-row: 3; }
+  [data-figma-node="5812:16481"], [data-figma-node="5812:16486"] { grid-row: 4; }
+  [data-figma-node="5812:16482"], [data-figma-node="5812:16487"] { grid-row: 5; }
+  [data-figma-node="5812:16491"], [data-figma-node="5812:16496"] { grid-row: 6; }
+  [data-figma-node="5812:16492"], [data-figma-node="5812:16497"] { grid-row: 7; }
+  [data-figma-node="5812:16493"], [data-figma-node="5812:16498"] { grid-row: 8; }
+  /* Name 26 px below its label's cap top, as in the frame (labels at 360, names at 386). */
+  .fw-sec[data-figma-node="5812:16470"] > .s-heading-20:not(h2) { margin-top: 16px; }
 }
