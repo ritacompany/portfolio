@@ -158,6 +158,9 @@ try {
             for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
               const a = boxes[i], b = boxes[j];
               if (a.e.contains(b.e) || b.e.contains(a.e) || (allowed(a.e) && allowed(b.e)) || decorative(a.e) || decorative(b.e)) continue;
+              // Paragraph spans of one text block (.paras > .para) flow one under the next; with no gap between
+              // them (.paras-tight, his ending block) their em boxes touch by a hair, which is not an overlap.
+              if (a.e.parentElement === b.e.parentElement && a.e.parentElement.classList.contains("paras") && a.e.classList.contains("para") && b.e.classList.contains("para")) continue;
               if (hit(a.t, b.t)) out.push(`text ${name(a.e)} overlaps text ${name(b.e)}`);
             }
             const imgs = [...document.querySelectorAll("img")].filter((i) => inScope(i) && visible(i) && !hiddenByAncestor(i) && !i.closest("[data-bleed], .footer__transition, .footer__pill, .button, .navbar, .footer__back, .footer__out, .hero__move, .ending-bar, .collection__mark") && i.getBoundingClientRect().width > 40);

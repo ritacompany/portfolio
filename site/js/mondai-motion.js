@@ -123,11 +123,29 @@
     }
     return f;
   }
-  const WIPE = ["5812:16512"];
-  function wipeFrames() {
-    const N = 48, f = [];
-    for (let i = 0; i <= N; i++) { const t = i / N; f.push({ offset: t, clipPath: `inset(0 ${(100 * (1 - power3InOut(t))).toFixed(3)}% 0 0)`, transform: "none" }); }
-    return f;
+  // The Foundation diagram is type, frames and arrows, not a screen, so it never moves as one block. Its
+  // three rows (Pathways, Focus areas, Action items) fade in from the top, 0.16 s apart, opacity only, the
+  // order the Hierarchy line beside it reads (his pick, 13 Nov; reports/nov12-audit/foundation). One image,
+  // so each row is a band of an alpha mask driven by its own registered custom property.
+  const ROWS = { "5812:16512": [0.41, 0.71] };
+  const ROW = { dur: 1000, step: 160, lead: 450, ease: "cubic-bezier(0.22, 1, 0.36, 1)" }; // lead: the words around it start first, as in the clip he picked
+  let rowProps = false;
+  try { ["--mm-r0", "--mm-r1", "--mm-r2"].forEach((name) => CSS.registerProperty({ name, syntax: "<number>", inherits: false, initialValue: "1" })); rowProps = true; }
+  catch (e) { rowProps = e && e.name === "InvalidModificationError"; } // already registered still works
+  const ROW_MASK = (cut) => `linear-gradient(to bottom, rgba(0,0,0,var(--mm-r0)) 0 ${cut[0] * 100}%, rgba(0,0,0,var(--mm-r1)) ${cut[0] * 100}% ${cut[1] * 100}%, rgba(0,0,0,var(--mm-r2)) ${cut[1] * 100}%)`;
+  const clearRows = (img) => { ["maskImage", "webkitMaskImage"].forEach((k) => { img.style[k] = ""; }); ["--mm-r0", "--mm-r1", "--mm-r2"].forEach((k) => img.style.removeProperty(k)); };
+  function openRows(img, delay) {
+    if (!rowProps) { // no registered properties: the diagram fades like text
+      img.style.clipPath = "none";
+      const a = img.animate([{ opacity: 0 }, { opacity: 1 }], { duration: T.textDur * 1000, delay, easing: TEXT_EASE, fill: "both" });
+      a.finished.then(() => { opened(img); a.cancel(); }, () => {});
+      return;
+    }
+    ["--mm-r0", "--mm-r1", "--mm-r2"].forEach((k) => img.style.setProperty(k, "0"));
+    img.style.maskImage = img.style.webkitMaskImage = ROW_MASK(ROWS[img.dataset.figmaNode]);
+    img.style.clipPath = "none";
+    const anims = [0, 1, 2].map((i) => img.animate([{ [`--mm-r${i}`]: 0 }, { [`--mm-r${i}`]: 1 }], { duration: ROW.dur, delay: delay + ROW.lead + i * ROW.step, easing: ROW.ease, fill: "both" }));
+    Promise.all(anims.map((a) => a.finished)).then(() => { clearRows(img); opened(img); anims.forEach((a) => a.cancel()); }, () => {});
   }
   const opened = (img) => { img.style.clipPath = "none"; img.style.transform = ""; img.style.willChange = ""; img.dataset.mmDone = "1"; };
   function openMask(imgs, delay) {
@@ -135,10 +153,10 @@
     Promise.all(imgs.map((i) => (i.decode ? i.decode().catch(() => {}) : null))).then(() => {
       const photo = maskFrames(T.from), flat = maskFrames(T.fromFlat);
       imgs.forEach((img) => {
-        img.style.willChange = "clip-path, transform";
-        // The Foundation diagram is not a screen: it wipes open from 01 across to 05, no settle (his pick, 11 Nov)
         const id = img.dataset.figmaNode;
-        const f = WIPE.includes(id) ? wipeFrames() : PHOTO.includes(id) ? photo : flat;
+        if (ROWS[id]) { openRows(img, delay); return; }
+        img.style.willChange = "clip-path, transform";
+        const f = PHOTO.includes(id) ? photo : flat;
         const a = img.animate(f, { duration: T.maskDur * 1000, delay, easing: "linear", fill: "both" });
         a.finished.then(() => { opened(img); a.cancel(); }, () => {});
       });
@@ -190,6 +208,7 @@
     allTexts().concat(allImgs()).forEach((el) => {
       el.getAnimations().forEach((a) => a.cancel());
       el.style.visibility = el.style.opacity = el.style.clipPath = el.style.transform = el.style.willChange = "";
+      clearRows(el);
       delete el.dataset.mmDone;
     });
     textDone.clear(); maskDone.clear();
