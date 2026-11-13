@@ -30,8 +30,8 @@ Owners: [figma-sync] local_e0b4a7dd, [capacity] local_9721b7a7, [tablet] new ses
 - [ ] N8: a tablet breakpoint session is open, has listed every issue at 768 to 1199 and fixed them after N1 to N5 land [tablet]
   EVIDENCE: pending
 
-- [ ] N10: the rest of the framework page re-checked against his current frame (WIP Mondai framework case study 4269:9433, file IarvWaqjIwrZ2afQmMxKm6); figma-sync found the page was built from an older copy (5RO0m4bY) and only the hero has been compared (site 656 px tall, Figma 647) [figma-sync, after N3]
-  EVIDENCE: pending
+- [x] N10: the rest of the framework page re-checked against his current frame (WIP Mondai framework case study 4269:9433, file IarvWaqjIwrZ2afQmMxKm6); figma-sync found the page was built from an older copy (5RO0m4bY) and only the hero has been compared (site 656 px tall, Figma 647) [figma-sync, after N3]
+  EVIDENCE: e811763 (figma-sync), record reports/framework-sync-n10/DIFF.md: hero 647, Competitive analysis 905, Schedule view 2079, Buffer flow moved before Falling behind, What's still open 831 with its label as in his frame; six sections already matched; Start of week skipped (carousel session). cs2-motion measured all 14 section heights at 1440 against the commit and checked 768 and 390: no sideways scroll. Left for him: his frame still shows the longer Capacity copy; the page keeps the cut he approved (00273ab).
 
 - [ ] N9: his verdict "the carousel is just bad" has reached the carousel session; he said he will pick that thread up himself, so it is recorded here and not worked from this list [carousel]
   EVIDENCE: pending
