@@ -57,7 +57,7 @@ Body: I couldn’t know yet how the AI would behave or what it would do well. Th
 
 ## Personalized timeline (CHANGED)
 Headline: How many Action Items a user gets in a week depends on two things, and the user sets one of them.
-Capacity: Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub. Everything else is planned from that number. Mondai asks instead of learning the number from how the user works, because learning it would leave the first two or three weeks without a real plan. The risk is that users promise more time than they have, so the screen has them type an exact number of hours, which makes them count, instead of picking a generous range. If their weeks keep falling short, the plan can lower it later.
+Capacity (cut 12 Nov, his yes, so the text ends above the image): Each user types the hours they can give each week, the first time they open the Action Hub. Mondai plans everything from that number. Learning it from how they work would leave the first two or three weeks without a real plan. An exact number makes them count, where a range lets them promise more than they have. The plan can lower it later.
 Effort (label was Cognitive load): How much work each Action Item takes, which Mondai sizes item by item.
 Example: Aisha’s capacity is 6 hours a week. Last week that fit 4 Action Items. This week it fits 3, because this week’s take more effort.
 
