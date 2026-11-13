@@ -26,4 +26,4 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180, no regressions
   EVIDENCE: unmet, not from this work. 3 of 23 fail (boxes home, boxes framework against the older Figma copy, Haven body). The tablet block leaves all 172 framework boxes identical at 390, 1200 and 1440 (route swap test). Handed to the conductor
 
 - [ ] G6: committed with only my hunks (no git commit -a), branch pushed, never main
-  EVIDENCE: pending
+  EVIDENCE: d785d28 pushed to origin/claude/relaxed-ride-5mlbdu, staged by path (framework.css diff was all this session's; .claude/launch.json and others' files left out)
