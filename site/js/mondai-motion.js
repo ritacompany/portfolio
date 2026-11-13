@@ -37,7 +37,9 @@
   // No entrance at all (his note, 12 Nov: the slide in from the left felt wrong): the Rollover panel and
   // its row image are simply there; its label and text fade like every other text item.
   const LAPTOP = "5812:16973";
-  const STILL = ["5812:20311", "5812:20316"];
+  // The Capacity card (5812:17089) stays still too: a cursor demo plays on top of it (his 11 Nov ask,
+  // site/js/capacity-demo.js, owned by the capacity session).
+  const STILL = ["5812:20311", "5812:20316", "5812:17089"];
   const scrolled = new Set([LAPTOP, ...STILL]);
   const TEXT_EASE = "cubic-bezier(0.5, 1, 0.89, 1)"; // power1 out, as Haven's GSAP fade
 
