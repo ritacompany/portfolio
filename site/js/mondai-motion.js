@@ -33,11 +33,12 @@
   const SMALL = []; // media too small for a curtain fade like text instead (none since the Rollover effect became text, 11 Nov)
   // Scroll linked instead of the entrance (his audit, 11 Nov). The laptop: a curtain and settle inside a
   // laptop frame read wrong, so the whole laptop slides up as it arrives, then moves up faster than the
-  // page once the reader is halfway down its screen, so nobody stares at the keyboard. The Rollover panel
-  // and everything in it slide in from the left as the reader scrolls down to it.
+  // page once the reader is halfway down its screen, so nobody stares at the keyboard.
+  // No entrance at all (his note, 12 Nov: the slide in from the left felt wrong): the Rollover panel and
+  // its row image are simply there; its label and text fade like every other text item.
   const LAPTOP = "5812:16973";
-  const ROLLOVER = ["5812:20311", "5812:20314", "5812:20315", "5812:20316"];
-  const scrolled = new Set([LAPTOP, ...ROLLOVER]);
+  const STILL = ["5812:20311", "5812:20316"];
+  const scrolled = new Set([LAPTOP, ...STILL]);
   const TEXT_EASE = "cubic-bezier(0.5, 1, 0.89, 1)"; // power1 out, as Haven's GSAP fade
 
   // ---- Items
@@ -204,7 +205,7 @@
   const clamp01 = (x) => Math.min(1, Math.max(0, x));
   const node = (id) => framework && framework.querySelector(`[data-figma-node="${id}"]`);
   const laptop = node(LAPTOP);
-  const panel = ROLLOVER.map(node).filter(Boolean);
+  const still = STILL.map(node).filter(Boolean);
   const RISE = 140;       // px the laptop starts below its place
   const SPEED = 0.85;     // extra upward speed past the screen's middle, as a share of the scroll
   function scrub() {
@@ -219,28 +220,11 @@
       const y = RISE * (1 - enter) - Math.min(past * SPEED, r.height * 0.6);
       laptop.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
     }
-    if (panel.length && panel[0].offsetParent !== null) {
-      panel.forEach((e) => { e.style.transform = "none"; });
-      const r = panel[0].getBoundingClientRect();
-      // From the panel's top at the bottom of the screen to its top 60 percent up the screen
-      const p = gentle(clamp01((vh - r.top) / (vh * 0.6)));
-      const x = -(r.right) * (1 - p);
-      panel.forEach((e) => { e.style.transform = p < 1 ? `translate3d(${x.toFixed(1)}px, 0, 0)` : "none"; });
-    } else if (panel.length) {
-      // Stacked layout under 1200: the panel itself is hidden, so its label, caption and card slide in
-      const vis = panel.filter((e) => e.offsetParent !== null);
-      vis.forEach((e) => { e.style.transform = "none"; });
-      vis.forEach((e) => {
-        const r = e.getBoundingClientRect();
-        const p = gentle(clamp01((vh - r.top) / (vh * 0.6)));
-        e.style.transform = p < 1 ? `translate3d(${(-(r.right) * (1 - p)).toFixed(1)}px, 0, 0)` : "none";
-      });
-    }
     requestAnimationFrame(scrub);
   }
-  // The page CSS hides every item until its entrance; these move instead, so they show from the start
-  [laptop, ...panel].filter(Boolean).forEach((e) => { e.style.visibility = "visible"; e.style.opacity = "1"; e.style.clipPath = "none"; e.dataset.mmDone = "1"; });
-  if (laptop || panel.length) requestAnimationFrame(scrub);
+  // The page CSS hides every item until its entrance; these move or stay still instead, so they show from the start
+  [laptop, ...still].filter(Boolean).forEach((e) => { e.style.visibility = "visible"; e.style.opacity = "1"; e.style.clipPath = "none"; e.dataset.mmDone = "1"; });
+  if (laptop) requestAnimationFrame(scrub);
 
   // ---- Smooth scroll: Haven's Lenis, fixed values
   let lenis = null;

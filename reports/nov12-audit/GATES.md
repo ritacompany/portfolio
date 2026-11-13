@@ -12,8 +12,8 @@ Owners: [figma-sync] local_e0b4a7dd, [capacity] local_9721b7a7, [tablet] new ses
 - [x] N2: Haven page title row matches its updated Figma frame [figma-sync]
   EVIDENCE: 47149a4 (figma-sync). Same change on Haven: HAVEN wordmark (4961:11998) above the tagline. Checked at 1440 by figma-sync and at 390 by cs2-motion.
 
-- [ ] N3: Falling behind section matches the updated Figma frame: spacing, image positions, the Cognition pathway imagery [figma-sync]
-  EVIDENCE: pending
+- [x] N3: Falling behind section matches the updated Figma frame: spacing, image positions, the Cognition pathway imagery [figma-sync]
+  EVIDENCE: 8bacdaa (figma-sync), from his current frame Falling behind v4 (4875:16329): new Cognition Pathway rail and Rollover row images, label and text moved to the right column, section 2025 tall; within 0.5 px of Figma at 1440 per figma-sync. cs2-motion checked 1440, 768 and 390: no sideways scroll, both images load. Note for him: the effect icon is 19.24 by 25.66 as in Figma, larger than the 25 percent smaller size he asked for on 11 Nov.
 
 - [x] N4: footer portraits on the far right show no stroke or light rim on either photo, on every page, and the fix is written into docs/DECISIONS.md so it stops getting lost [figma-sync]
   EVIDENCE: 7bf19d5 (figma-sync). Cause: the pill's light background antialiased apart from the photo; the fix had only ever lived in site/dev/preview/proposals.css. Now one clip-path in components.css, light edge pixels 1229 to 73, recorded in docs/DECISIONS.md. cs2-motion zoomed both portraits at 390 on Haven: no rim.
@@ -24,8 +24,8 @@ Owners: [figma-sync] local_e0b4a7dd, [capacity] local_9721b7a7, [tablet] new ses
 - [ ] N6: Foundation entrance no longer moves the diagram as one block; he has seen options (including no entrance on the diagram) and picked one, built and checked at 1440, 768 and 390 with reduced motion on and off [motion]
   EVIDENCE: pending
 
-- [ ] N7: Falling behind slide in from the left is replaced; he has seen options (including no entrance) and picked one, built after N3 lands [motion]
-  EVIDENCE: pending
+- [x] N7: Falling behind slide in from the left is replaced with his own suggestion, no entrance on the panel and row image; built after N3 lands [motion]
+  EVIDENCE: built his suggestion directly (no option round: it was his idea and it also fixes the label being cut off at 390). In mondai-motion.js the Rollover panel card (5812:20311) and row image (5812:20316) are simply there; label and text fade like all text. Checked in the built-in browser in a same origin frame at 1440, 768 and 390: image transform none, opacity 1, clip none at every sample from the first; label fading in place (left 900, 32, 24), no sideways scroll, no script errors; reduced motion at 390 shows everything at once.
 
 - [ ] N8: a tablet breakpoint session is open, has listed every issue at 768 to 1199 and fixed them after N1 to N5 land [tablet]
   EVIDENCE: pending
