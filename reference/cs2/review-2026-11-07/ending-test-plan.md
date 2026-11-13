@@ -15,14 +15,15 @@ had lived a week with the plan before the rules were locked (THROUGHLINES s9). N
 same kickoff session at no extra cost and give the reflection something concrete. Number 4 is optional and
 the weakest, because it is a stated choice.
 
-On the page, use one number as the result and at most one more in the reflection. Haven owns the stat
-block, so numbers sit in a sentence, never a stat row.
+On the page, the numbers are the ending: three large numbers with short labels, the shape every Metalab
+rebuild in build/ ends on, then a two line reflection. Haven's numbers are a centred equation mid page, a
+different form. See ending-filled-preview.html.
 
 ## How a small n reads to a senior reviewer
 
 What is credible at 5 to 10 people:
 
-- **Counts with the denominator, in words.** Write "6 of 8", never "75%". At five users the only possible
+- **Counts with the denominator.** Write "6 of 8", never "75%". At five users the only possible
   rates are 0, 20, 40, 60, 80 and 100 percent, and a 100 percent result at that size can look too good to be
   true (MeasuringU, small n). NN/g treats small qualitative studies as insight, not statistics, with no formal
   assurance they represent the population (NN/g, quant vs qual).

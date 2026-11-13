@@ -60,9 +60,11 @@ All from reference/cs2/reasoning/THROUGHLINES.md (T) and the Mondai archive (A, 
 Watch out: T section 1 says three weeks before launch, his 7 Nov note says Mondai has not launched. Do not
 use the word launch for the May dates.
 
-Form check: Haven already uses a large stat block (3 plus 3 equals 6 interviews) and the two needs plus five
-cards ending. Neither form can repeat here, so any numbers in CS2 sit in a sentence or a chain, never a
-stat row.
+Form check: Haven's numbers are a centred equation mid page (3 plus 3 equals 6 interviews) and its ending
+is the two needs plus five cards. CS2 repeats neither. Numbers on the ending are shown as numbers, large,
+the way every Metalab rebuild in build/ ends (a Results line, then three numbers with short labels); his
+call 12 Nov. (Corrected 12 Nov: this line used to say numbers must sit in a sentence, which pushed a draft
+into paragraphs. fixes/2026-11-12-ending-wall-of-text.md.)
 
 ## The options
 
