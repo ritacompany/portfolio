@@ -133,8 +133,8 @@
 
 /* The Rollover effect subhead (his ask, 11 Nov): live text with its icon centred on the line, the icon
    25 percent smaller than the flattened export it replaces (19.5 by 21.5 there). */
-.fb-effect { display: flex; align-items: center; gap: 10px; }
-.fb-effect img { width: 14.6px; height: 16.1px; flex: none; }
+.fb-effect { display: flex; align-items: flex-start; gap: 12px; }
+.fb-effect img { width: 19.24px; height: 25.66px; flex: none; margin-top: -5.83px; } /* 4966:14310, title cap top 5.83 below the icon frame (12 Nov) */
 
 /* The Mondai mark on the hero: his file moved it off the title row (12 Nov) to sit above the tagline,
    40 by 40.57 at the 40 px margin, the tagline 32 below it (WIP Mondai framework case study 4269:9433,
