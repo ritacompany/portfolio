@@ -14,7 +14,7 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-12 22:40
+Updated: 2026-11-13 00:30
 By: Claude Code
 Section: 3
 Loop step: 3
@@ -25,11 +25,11 @@ CS2 copy is settled in reference/cs2/review-2026-11-07/final-copy.md (hero A and
 
 His audit of the built page, 11 Nov, done and pushed (540cf43, ba266fc): both sources lines cut (recorded in final-copy.md, 0253bd6); schedule view line on one line at desktop; The Rollover effect rebuilt as live text with its icon centred and 25 percent smaller, the line beside it past the text; ending bar chevrons inside the highlight, equal padding, Explore more case studies plain text; Action Item laptop rises in and outruns the page past its screen; Rollover panel slides in from the left; Foundation diagram wipes open 01 to 05 (his pick); Mondai mark at the end of the title row. Gates in docs/motion/framework-page-GATES.md on that branch: 11 met, G13 (footer outline) waits on him, motion-check not applicable. The Falling behind carry animation was built then reverted at his word: page wide motion only.
 
-Since 11 Nov, in ~/Code/portfolio-site with him: curtain pick A is live (9084a83: flat browser screens settle from 1.08, laptop photos keep 1.3). His 12 Nov notes are tracked one owner per item in reports/nov12-audit/GATES.md on that branch; done and checked: project logos above the tagline on the framework and Haven pages (47149a4), footer portraits with no rim on any page (7bf19d5, in docs/DECISIONS.md), Capacity cut to his yes so its text ends above the image (00273ab, final-copy.md c69ecb6), Falling behind synced to his current frame Falling behind v4 (8bacdaa), and the Rollover slide in removed so the panel and row image have no entrance (59b0f4d). Open there: Foundation entrance (options rendered: still, rows, columns; his pick pending, recommendation rows), a tablet breakpoint session auditing 768 to 1199 (cs2-tablet), and figma-sync comparing the rest of the page against his current frame 4269:9433 (the page was first built from the older 5RO0m4bY copy). The ending: research, his pick of concept A, three versions of A with reader checks (versions/ending.md) and a test plan (review-2026-11-07/ending-test-plan.md); the page still carries version C; the ending session's uncommitted example files are that session's to save. Start of week carousel: he says it is still bad; start-of-week owns it.
+Since 11 Nov, in ~/Code/portfolio-site with him: his 12 Nov notes are tracked one owner per item in reports/nov12-audit/GATES.md on that branch, nine of eleven closed and checked: curtain pick A (9084a83), project logos above the tagline on the framework and Haven pages (47149a4), footer portraits with no rim (7bf19d5, in docs/DECISIONS.md), Capacity cut to his yes (00273ab, final-copy.md c69ecb6), Falling behind synced to his v4 frame (8bacdaa), the Rollover slide in removed (59b0f4d), every section synced to his current frame 4269:9433 (e811763; the page was first built from the older 5RO0m4bY copy), tablet layout fixed at 768 to 1180 (d785d28), and the Foundation diagram's rows fading in from the top, his pick (857261a). Open there: N11, the 1440 check's Figma reference data predates those syncs and needs refreshing once the Figma seat's rate limit lifts; N9, the Start of week carousel, which he says is still bad and start-of-week owns. The ending: research, his pick of concept A, three versions of A with reader checks (versions/ending.md) and a test plan (review-2026-11-07/ending-test-plan.md, 16c584f); the page still carries version C. His frame still shows the longer Capacity copy; the page keeps his approved cut.
 
 ## Next action
 
-His Foundation pick (rows or still), then build it in mondai-motion.js and check at 1440, 768 and 390 with reduced motion on and off. Then close the tablet and full page Figma items in reports/nov12-audit/GATES.md, and his pick among the ending versions.
+His pick among the ending versions, then build it. When Figma access returns, refresh the 1440 reference data (N11) and update the Capacity text in his frame to the approved cut.
 
 ## Decided in chat, not yet in files
 
