@@ -33,6 +33,9 @@ body { background: var(--n900); color: #fff; font-family: var(--font); overflow-
 .ctx__key, .stat__tag { font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #90909d; }
 .ctx dd { margin: 12px 0 0; width: 470px; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.02em; color: #d2d2db; }
 .stat__tag { margin-bottom: 24px; }
+.bar-line { margin: 32px 0 0 156px; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.02em; color: #e8e7ee; }
+.close__key { margin: 80px 0 0 272px; font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #90909d; }
+.board .close { margin-top: 16px; width: 900px; font-size: 32px; line-height: 38px; }
 .stats { margin: 72px 0 0 156px; width: 1128px; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 24px; list-style: none; padding: 0; }
 .stat { border-top: 1px solid var(--n600); padding-top: 40px; }
 .stat__num { font: 500 136px/0.85 var(--font); letter-spacing: -0.05em; color: var(--n050); white-space: nowrap; }
@@ -62,14 +65,14 @@ body.template .dots i.on { background: none; border-color: var(--n575); }
 
 <div class="stage" id="stage">
 <section class="board" id="board" aria-label="In reflection">
-  <p class="eyebrow">What testing showed</p>
-  <p class="title">No one had lived a week with the plan. <span class="fill" data-t="[n]">Eight</span> people lived two.</p>
+  <p class="eyebrow">The test</p>
+  <p class="title">No one had lived a week with the plan. <span class="fill" data-t="[n]">Eight</span> people lived two weeks of it.</p>
 
   <dl class="ctx">
     <div><dt class="ctx__key">What I tested</dt>
-      <dd>Whether people give the hours they say they can, the number every rule runs on, and whether the two dates and Rollover make sense unexplained.</dd></div>
+      <dd>Whether people give the hours they say they can, and whether the target and pace dates and Rollover make sense unexplained.</dd></div>
     <div><dt class="ctx__key">How</dt>
-      <dd>Each person typed their hours, worked a plan sized to them for two real weeks and logged every session. A click-through only shows what people say.</dd></div>
+      <dd>Each person typed their hours, worked a plan sized to them for two real weeks and logged every session. A prototype click-through would only show what people say they'd do.</dd></div>
   </dl>
 
   <ul class="stats">
@@ -77,7 +80,7 @@ body.template .dots i.on { background: none; border-color: var(--n575); }
       <p class="stat__tag">Capacity</p>
       <div class="stat__num"><span class="fill" data-t="[x]">6</span><span class="den">of <span class="fill" data-t="[n]">8</span></span></div>
       <span class="dots"></span>
-      <p class="stat__label">gave within a fifth of the hours they typed</p>
+      <p class="stat__label">spent at least four fifths of the hours they typed</p>
     </li>
     <li class="stat" data-x="7">
       <p class="stat__tag">Target and pace</p>
@@ -92,10 +95,11 @@ body.template .dots i.on { background: none; border-color: var(--n575); }
       <p class="stat__label">read carried over work as the plan helping them</p>
     </li>
   </ul>
+  <p class="bar-line">Each test failed at 4 of 8 or fewer. <span class="fill" data-t="[which passed]">All three passed.</span></p>
 
-  <p class="close">The <b><span class="fill" data-t="[y]">two</span></b> who fell short <span class="fill" data-t="[what they had in common]">typed the most hours</span>.<br><b>Recalibration</b> <span class="fill" data-t="[what you changed]">now steps in a week sooner</span>.</p>
+  <p class="close__key">What I changed</p>
+  <p class="close">The <b><span class="fill" data-t="[y]">two</span></b> who gave too few hours <span class="fill" data-t="[what they had in common]">had typed the most, so their plan overfilled from week one</span>. <span class="fill" data-t="[what you changed]">Recalibration, which offers a lower number, now steps in after two short weeks instead of three</span>.</p>
 
-  <p class="method">I wrote the fail lines down first.</p>
 </section>
 </div>
 

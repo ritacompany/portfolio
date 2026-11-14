@@ -23,27 +23,30 @@ ending, and no study of how real case studies show results. Fix record: `fixes/2
 
 ## The version
 
-Eyebrow: What testing showed
+Eyebrow: The test
 
-Title: No one had lived a week with the plan. Eight people lived two.
+Title: No one had lived a week with the plan. Eight people lived two weeks of it.
 
 Context row (added 13 Nov, his note that v2 gave no context):
-- What I tested: Whether people give the hours they say they can, the number every rule runs on, and
-  whether the two dates and Rollover make sense unexplained.
+- What I tested: Whether people give the hours they say they can, and whether the target and pace dates
+  and Rollover make sense unexplained.
 - How: Each person typed their hours, worked a plan sized to them for two real weeks and logged every
-  session. A click-through only shows what people say.
+  session. A prototype click-through would only show what people say they'd do.
 
 Numbers, each tagged with the decision it tests:
-- Capacity, 6 of 8: gave within a fifth of the hours they typed
+- Capacity, 6 of 8: spent at least four fifths of the hours they typed
 - Target and pace, 7 of 8: predicted what a short week does to their dates
 - Rollover, 6 of 8: read carried over work as the plan helping them
 
-Close: The two who fell short typed the most hours. Recalibration now steps in a week sooner.
+Bar line: Each test failed at 4 of 8 or fewer. All three passed.
 
-Method line: I wrote the fail lines down first.
+Close, labelled What I changed: The two who gave too few hours had typed the most, so their plan overfilled
+from week one. Recalibration, which offers a lower number, now steps in after two short weeks instead of three.
 
-99 words outside the numbers; 1325 px tall at 1440 (Haven's ending is 1236). Humanizer and no-ai-slop run as
-skills on this text. Reader check not run.
+127 words outside the numbers. Humanizer and no-ai-slop run on v3. Reader check (reader-check/runs/
+2026-11-13-end-filled): round 1 FAIL, the last three lines (who fell short, sooner than what, fail lines)
+3 of 3; round 2 FAIL only on the fail line's place, 3 of 3; round 3 on this version not run, the cost guard
+holds a third round for his ask.
 
 ## Template view
 
