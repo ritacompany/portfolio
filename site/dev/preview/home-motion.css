@@ -61,12 +61,12 @@ html.hm .home .work-card.hm-press .work-card__media .button-sm { background: var
 @media (min-width: 768px) {
   html.hm .home .work-card-mondai { width: calc(100% * 879 / 1360); }
   html.hm .home .work-card-haven { width: calc(100% * 443 / 1360); }
-  html.hm .home .work-card-mondai .work-card__media { aspect-ratio: 879 / 579.45; }
+  html.hm .home .work-card-mondai .work-card__media { aspect-ratio: 879 / 575.28; }
   html.hm .home .work-card-haven .work-card__desc { --desc-x: calc(100% * 230.79 / 443); }
   /* Learn more on Figma's centre (435.35, 274.85), at full size as decided 9 Nov. */
-  html.hm .home .work-card-mondai .work-card__media .button-sm { left: calc(100% * 435.35 / 879); top: calc(100% * 274.85 / 579.45); translate: -50% -50%; }
-  /* Mondai's image runs 4.17 past its card in Figma (29.71 + 579.45 against 605), so Haven ends that much higher. */
-  html.hm .home .work-card-haven { margin-bottom: calc(100% * 4.17 / 1360); }
+  html.hm .home .work-card-mondai .work-card__media .button-sm { left: calc(100% * 435.35 / 879); top: calc(100% * 274.85 / 575.28); translate: -50% -50%; }
+  /* Figma runs Mondai's image 4.17 past its card. His call, 13 Nov: both cards always end on one line, so
+     the image is clipped to the card (575.28 tall) and Haven no longer sits higher. */
 }
 html.hm .home .work-card__media::after { background: var(--neutral-900); }
 html.hm .home .work-card__desk-art { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 50%; }

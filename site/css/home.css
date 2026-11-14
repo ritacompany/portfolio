@@ -81,10 +81,11 @@
 .work-card-mondai .work-card__desc { --desc-x: calc(100% * 569.64 / 879); font-size: var(--card-desc-size); }
 .work-card-haven .work-card__desc { --desc-x: calc(100% * 230.79 / 443); }
 .work-card__media { position: relative; overflow: hidden; }
-/* The master no longer clips the Mondai media to the card: all 579.45 of it shows, running 4.17 past
-   the card box without moving what follows. The art is baked at 2x from his layers in 4923:12090
-   (gradient, laptop, glow, the 47 percent Neutral/900 veil); his noise effect is not baked. */
-.work-card-mondai .work-card__media { aspect-ratio: 879 / 579.45; margin-bottom: -4.17px; }
+/* The master lets the Mondai media run 4.17 past the card (579.45 tall). His call, 13 Nov: the two cards
+   always end on one line, so the media is clipped to the card, 575.28 tall, losing 4.17 of the image's
+   bottom; nothing else moves. The art is baked at 2x from his layers in 4923:12090 (gradient, laptop,
+   glow, the 47 percent Neutral/900 veil); his noise effect is not baked. */
+.work-card-mondai .work-card__media { aspect-ratio: 879 / 575.28; }
 /* Haven, 4923:12104: the phone image on Haven's night blue, 443 square, drawn from the same image as
    the phone card (no baked export), placed as in the master: 487.35 by 429.82 at -15.71, -0.5, in a
    443 by 442.5 clip. The master adds a noise effect to the blue that is not drawn here. */
@@ -98,7 +99,7 @@
 }
 .work-card__media > img { width: 100%; height: auto; }
 /* Learn more keeps its Figma center (the frame draws the button at 98.5 percent scale). */
-.work-card__media .button-sm { position: absolute; left: calc(100% * 343.39 / 879); top: calc(100% * 250.87 / 579.45); }
+.work-card__media .button-sm { position: absolute; left: calc(100% * 343.39 / 879); top: calc(100% * 250.87 / 575.28); }
 
 /* Work card states, tracker H11 (prototypes/homepage-foundations/work-card-states.html): the whole card
    is the link; hover eases the image in 3.5 percent, the label and description go white and Learn more
