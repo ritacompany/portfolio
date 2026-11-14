@@ -221,6 +221,11 @@
   }
   /* His review, 13 Nov (reports/haven-tablet/FEEDBACK-13NOV.md). */
   @media (max-width: 1159.98px) {
+    /* F1: the MVP chart stays his desktop chart, held at 1160 px and scrolling sideways like the
+       wireframes row; the stacked phase lists step out (his yes, 14 Nov, timeline-research.md). */
+    .mvp__chart { display: block; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--n600) transparent; }
+    .mvp__timeline .mvp__chart img { width: 1160px; max-width: none; }
+    .phases { display: none; }
     /* F2, F3: the testing text stays on the left of the three flows, as on desktop; the flows narrow. */
     .testing__row { flex-direction: row; gap: 24px; }
     .testing__text { width: min(283px, 30%); flex: none; }

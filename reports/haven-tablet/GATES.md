@@ -53,8 +53,8 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
   EXPECT: ^HAVEN_SWAP_OK 3 widths$
   EVIDENCE: 13 Nov run: exit 0, 474 boxes identical at 390, 1200 and 1440; control differs at 768 (295) and 1180 (304)
 
-- [ ] R5: F1 has researched examples and one recommended pattern, and he has picked before anything is rebuilt
-  EVIDENCE: unmet: timeline-research.md done (nine examples; pick: the desktop chart held at 1160 px, scrolling sideways). Waiting on his yes before building
+- [x] R5: F1 has researched examples and one recommended pattern, and he has picked before anything is rebuilt
+  EVIDENCE: timeline-research.md (nine examples), his yes 14 Nov; built in current.css below 1160. verify.mjs F1 passes 8 of 8 runs (end marker in the first view at 768); with the block stripped F1 fails
 
 - [x] R6: F13 is answered with what exists and a proposal for what does not
   EVIDENCE: answered in this session's reply; a session for live comments proposed as its own task

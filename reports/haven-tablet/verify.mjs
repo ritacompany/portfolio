@@ -31,6 +31,12 @@ for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 102
       const tail = S.bottom - last; if (tail > 170) out.push(`H2 ${n} ${Math.round(tail)} px empty under its content`);
     }
     const narrow = vw < 1160;
+    // F1 below 1160 the MVP chart is his desktop chart at 1160 px, scrolling sideways, with the case study
+    // end marker (580 px into the 1160 px image) in the first view; the stacked phase lists are gone
+    if (narrow) { const c = document.querySelector(".mvp__chart"), i = c.querySelector("img").getBoundingClientRect();
+      if (getComputedStyle(c).display === "none" || getComputedStyle(document.querySelector(".phases")).display !== "none") out.push("F1 chart hidden or phase lists showing");
+      else { if (Math.abs(i.width - 1160) > 1) out.push(`F1 chart ${Math.round(i.width)} wide`);
+        if (c.scrollLeft !== 0 || i.left + 580 > vw - 1) out.push(`F1 end marker at ${Math.round(i.left + 580)}, off screen at ${vw}`); } }
     // F2 F3 usability testing keeps its text on the left of the three flow cards, as on desktop
     { const a = R(".testing__text"), b = R(".tasks");
       if (a.right > b.left + 0.5 || Math.abs(a.top - b.top) > 2) out.push(`F2 testing text ${Math.round(a.left)}..${Math.round(a.right)} top ${Math.round(a.top)}, flows start ${Math.round(b.left)} top ${Math.round(b.top)}`);
