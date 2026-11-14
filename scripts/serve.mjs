@@ -3,6 +3,7 @@
 // Adapted from scripts/lib/serve.mjs on the September homepage branch. No dependencies.
 
 import { createServer } from "node:http";
+import { spawn } from "node:child_process";
 import { createReadStream, readdirSync, readFileSync, statSync } from "node:fs";
 import { extname, join, normalize, resolve } from "node:path";
 
@@ -15,6 +16,9 @@ const port = Number(process.env.PORT || 4318);
 const studio = process.argv[3] === "studio";
 const host = process.argv[3] === "lan" ? "0.0.0.0" : "127.0.0.1";
 const FLARE = resolve(new URL("../node_modules/flare-dev/dist/flare.js", import.meta.url).pathname);
+const FLARE_CLI = resolve(new URL("../node_modules/flare-dev/dist/cli.js", import.meta.url).pathname);
+const DOCK = resolve(new URL("./studio/flare-dock.js", import.meta.url).pathname);
+const BRIDGE_PORT = Number(process.env.FLARE_BRIDGE_PORT || 4321);
 // Studio pages get what the phone preview gets (scripts/build-preview.mjs): every CSS file in
 // site/dev/preview in the head and every JS file there at the end of the body, so the page matches
 // :4319. Flare looks for its optional bridge on 127.0.0.1:4318 by default, our phone server, so it is
@@ -29,7 +33,8 @@ function studioPage(html) {
   const css = extras.filter((f) => f.endsWith(".css")).map((f) => `  <link rel="stylesheet" href="/dev/preview/${f}">\n`).join("");
   const js = extras.filter((f) => f.endsWith(".js")).map((f) => `<script src="/dev/preview/${f}" defer></script>\n`).join("");
   return html
-    .replace("</head>", css + `  <script>window.__FLARE_BRIDGE__ = { url: "http://127.0.0.1:4321" };</script>
+    .replace("</head>", css + `  <script>window.__FLARE_BRIDGE__ = { url: "http://127.0.0.1:${BRIDGE_PORT}" };</script>
+  <script src="/__studio/flare-dock.js"></script>
   <script src="/__studio/flare.js"></script>
   <script>${FLARE_CRUMBS}</script>
 </head>`)
@@ -68,9 +73,10 @@ createServer((request, response) => {
   try { pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname); }
   catch { response.writeHead(400).end("bad request"); return; }
   if (studio && pathname.startsWith("/__studio/")) {
-    if (pathname !== "/__studio/flare.js") { response.writeHead(404).end("not found"); return; }
+    const studioFile = { "/__studio/flare.js": FLARE, "/__studio/flare-dock.js": DOCK }[pathname];
+    if (!studioFile) { response.writeHead(404).end("not found"); return; }
     response.writeHead(200, { "Content-Type": TYPES[".js"], "Cache-Control": "no-store" });
-    createReadStream(FLARE).pipe(response);
+    createReadStream(studioFile).pipe(response);
     return;
   }
   const file = resolvePath(pathname);
@@ -89,3 +95,14 @@ createServer((request, response) => {
   }
   createReadStream(file).pipe(response);
 }).listen(port, host, () => console.log(`site at http://${host}:${port}`));
+
+// Studio also starts Flare's bridge, so comments and Push to Agent reach Claude with no copy and paste
+// (review mode in docs/EDITING_WORKFLOW.md). It listens on 127.0.0.1 only and writes pushes to a temp
+// folder; starting it empties that folder. If the port is taken a bridge is already running, so that one
+// is used. It stops with the studio.
+if (studio) {
+  const bridge = spawn(process.execPath, [FLARE_CLI, "bridge", "--host", "127.0.0.1", "--port", String(BRIDGE_PORT)], { stdio: ["ignore", "inherit", "inherit"] });
+  bridge.on("exit", (code) => { if (code) console.log(`flare bridge exited (${code}); if one is already on ${BRIDGE_PORT}, that one is used`); });
+  for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => { bridge.kill(); process.exit(0); });
+  process.on("exit", () => bridge.kill());
+}
