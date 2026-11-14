@@ -32,3 +32,34 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
 
 - [x] G7: committed with only my files and hunks (no git commit -a), branch pushed, never main
   EVIDENCE: 41b148b pushed to origin/claude/relaxed-ride-5mlbdu, staged by path: site/haven/current.css (16 added lines, all this session's) and reports/haven-tablet/; others' files left out
+
+## Round 2: his review, 13 Nov (FEEDBACK-13NOV.md, F0 to F14)
+
+- [x] R1: every point of his review is in FEEDBACK-13NOV.md with a status, none dropped
+  EVIDENCE: FEEDBACK-13NOV.md has F0 to F14, one row each with a status, read against his voice note line by line
+
+- [ ] R2: F2 to F6, F8, F10 and F11 measure fixed at 768, 834, 1024 and 1180, motion on and off; F12 the bar stays 44 px
+  CHECK: node reports/haven-tablet/verify.mjs
+  EXPECT: ^HAVEN_TABLET_OK 8 of 8$
+  EVIDENCE: unmet: 13 Nov run exits 1 with 8 problems, all F12 (ending bar 72 px at every tablet width; shared stylesheet, waiting on his call). F2 to F11 pass. Before the fixes: 55 problems
+
+- [ ] R3: F7 to F10 no picture is shown larger than its own pixels on a 2x screen, at 768, 1024, 1180 and 1440
+  CHECK: node reports/haven-tablet/media.mjs 768,1024,1180,1440
+  EXPECT: ^MEDIA_SHARP_OK$
+  EVIDENCE: unmet: 32 soft images; every Haven picture is a 1x export. Needs his 2x exports (Figma connector is on a view seat at its limit)
+
+- [x] R4: the tablet rules still move nothing at 390, 1200 and 1440
+  CHECK: node reports/haven-tablet/swap.mjs
+  EXPECT: ^HAVEN_SWAP_OK 3 widths$
+  EVIDENCE: 13 Nov run: exit 0, 474 boxes identical at 390, 1200 and 1440; control differs at 768 (295) and 1180 (304)
+
+- [ ] R5: F1 has researched examples and one recommended pattern, and he has picked before anything is rebuilt
+  EVIDENCE: unmet: research running in session haven-timeline-research; his pick needed after
+
+- [x] R6: F13 is answered with what exists and a proposal for what does not
+  EVIDENCE: answered in this session's reply; a session for live comments proposed as its own task
+
+- [x] R7: F14 has a fix record with its cause, the checks that now catch these, and an honest status
+  CHECK: node /Users/chadwickfenner/.claude/skills/fix-the-process/scripts/check-fix-record.mjs fixes/2026-11-13-haven-tablet-review-misses.md
+  EXPECT: fix record complete
+  EVIDENCE: check-fix-record: fix record complete (status: not verified, layer 2)

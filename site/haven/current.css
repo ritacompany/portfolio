@@ -219,4 +219,39 @@
     .mvp, .program, .schedule, .security { min-height: 0; }
     .wires { height: auto; min-height: 0; }
   }
+  /* His review, 13 Nov (reports/haven-tablet/FEEDBACK-13NOV.md). */
+  @media (max-width: 1159.98px) {
+    /* F2, F3: the testing text stays on the left of the three flows, as on desktop; the flows narrow. */
+    .testing__row { flex-direction: row; gap: 24px; }
+    .testing__text { width: min(283px, 30%); flex: none; }
+    .tasks { flex: 1; min-width: 0; }
+    .task { flex: 1 1 0; min-width: 0; }
+    /* F4: the four insights stay one row, margin to margin. */
+    .cards-testing { flex-wrap: nowrap; gap: 16px; }
+    .tcard { flex: 1 1 0; min-width: 0; }
+    /* F5: the quiz keeps the room its phone needs to hold and travel, as at 1440 (434 under the stage). */
+    .quiz { padding-bottom: 434px; }
+    /* F8: the Religious parents card no wider than in his file. */
+    .profile__who { width: 100%; max-width: 680px; }
+    /* F10: the two security screens split the row by their widths, so they share one height. */
+    .security__a { flex: 501 1 0; }
+    .security__b { flex: 464 1 0; }
+  }
+  /* F4: inside each insight card the text sits the same distance from the top and the bottom. */
+  .tcard__body { flex: 1; min-height: 0; padding: 24px; display: flex; align-items: center; }
+  /* F11: a tablet has no hover, so every ending card is shown open, caption visible, in a row that
+     swipes sideways. Cards are 410 px apart at full size so the open panels do not overlap. */
+  .ending .stage-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; margin-top: 56px; }
+  .ending .stage-wrap::-webkit-scrollbar { display: none; }
+  .ending .stage, .ending .stage:has(.has-active) { left: var(--edge); width: 2026px; transform: scale(var(--s)); transform-origin: top left; clip-path: none; }
+  .ending .stage-size { width: calc(2026px * var(--s) + var(--edge) * 2); height: 1px; }
+  .ending .track { transform: none; transition: none; }
+  .ending .end-card:nth-child(1) { left: 0; } .ending .end-card:nth-child(2) { left: 410px; } .ending .end-card:nth-child(3) { left: 820px; }
+  .ending .end-card:nth-child(4) { left: 1230px; } .ending .end-card:nth-child(5) { left: 1640px; }
+  .ending .end-card, .ending .end-card.is-left, .ending .end-card.is-right { transform: none; transition: none; }
+  .ending .end-bg, .ending .end-dim { transform: scale(1.43494, 1.79762); transition: none; }
+  .ending .end-dim, .ending .track.has-active .end-card:not(.is-active) .end-dim { opacity: 0; }
+  .ending .end-phone { transform: translateY(-129px) scale(1.18229); transition: none; }
+  .ending .end-cover { transform: translateY(134px); transition: none; }
+  .ending .ending__bottom, .ending:has(.has-active) .ending__bottom { margin-top: 32px; }
 }
