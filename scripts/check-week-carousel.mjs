@@ -29,7 +29,7 @@ for (const width of [1440, 768, 390]) {
         cards: cards.length,
         overflow: document.documentElement.scrollWidth - innerWidth,
         firstCentered: Math.abs(box(cards[0]).left + box(cards[0]).width / 2 - (sr.left + sr.width / 2)) < 2,
-        nothingLeft: cards.slice(1).every((c) => box(c).left > box(cards[0]).right - 1),
+        nothingLeft: cards.slice(1).every((c) => box(c).left + box(c).width / 2 > box(cards[0]).left + box(cards[0]).width / 2),
         sideRatio: box(cards[1]).width / box(cards[0]).width,
         start: [num(), cur(), q(".sow__title").textContent],
       };
@@ -48,6 +48,16 @@ for (const width of [1440, 768, 390]) {
       stage.focus(); stage.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }));
       await new Promise((r) => setTimeout(r, motion === "reduce" ? 50 : 1400));
       out.keyStep = [num(), q(".sow__title").textContent];
+      // Wheel: a vertical scroll that drifts sideways never moves the cards or gets blocked; a long
+      // sideways flick moves exactly one template.
+      // "Reached the page" means the event got to window, where the page's own scroll listens.
+      let reached = 0; const count = () => reached++; addEventListener("wheel", count);
+      const wheel = async (list) => { reached = 0; for (const [dx, dy] of list) { stage.dispatchEvent(new WheelEvent("wheel", { deltaX: dx, deltaY: dy, bubbles: true, cancelable: true })); await new Promise((r) => setTimeout(r, 16)); } await new Promise((r) => setTimeout(r, motion === "reduce" ? 250 : 1300)); return reached; };
+      const vert = await wheel([[1, 8], [2, 10], [9, 10], [12, 6], [14, 4], [3, 12]]);
+      out.verticalLeftAlone = vert === 6 && num() === "3";
+      const flick = await wheel(Array.from({ length: 30 }, () => [30, 2]));
+      out.flickOneStep = [num(), q(".sow__title").textContent, flick];
+      removeEventListener("wheel", count);
       return out;
     }, motion);
     const want = (ok, msg) => { if (!ok) fails.push(`${tag}: ${msg}`); };
@@ -62,6 +72,8 @@ for (const width of [1440, 768, 390]) {
     want(r.after.join() === "2,1,Catching up", `after dot click ${r.after}`);
     want(r.secondCentered, "Catching up not centered after the move");
     want(r.keyStep.join() === "3,Rollover", `arrow key step ${r.keyStep}`);
+    want(r.verticalLeftAlone, "a vertical scroll moved the cards or was blocked");
+    want(r.flickOneStep.join() === "4,Recalibration,0", `a long sideways flick: ${r.flickOneStep} (template, title, events that reached the page)`);
     await page.evaluate(() => document.querySelector(".sow").scrollIntoView({ block: "center" }));
     await page.locator(".sow").screenshot({ path: `${outDir}/${tag}.png` });
     console.log(tag, JSON.stringify(r));

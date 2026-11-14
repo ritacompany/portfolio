@@ -7,7 +7,9 @@
 (function startOfWeek() {
   const root = document.querySelector(".sow");
   if (!root) return;
-  const DUR = 900, SIDE_SCALE = 0.65, SIDE_BRIGHT = 0.4, CARD_W = 543, CARD_H = 538;
+  // Card sizes come from each image's width and height (1x, glow included). FRAME_W is the widest
+  // template frame, which sets the scale; STAGE_H is the tallest card with its glow.
+  const DUR = 900, SIDE_SCALE = 0.65, SIDE_BRIGHT = 0.4, FRAME_W = 543, STAGE_H = 550;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   const stage = root.querySelector(".sow__stage"), cards = [...root.querySelectorAll(".sow__card")];
   const dots = [...root.querySelectorAll(".sow__dot")], cap = root.querySelector(".sow__cap");
@@ -16,13 +18,15 @@
   let W = 1017, H = 550, K = 1, SPACING = 481, pos = 0, index = 0, numShown = 0;
 
   const lerp = (a, b, t) => a + (b - a) * t;
-  const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  // Ease out: the card leaves at once and settles slowly. An ease in out start read as a delay.
+  const ease = (t) => 1 - Math.pow(1 - t, 4);
 
   function paint() {
     cards.forEach((c, i) => {
       const d = i - pos, ad = Math.min(Math.abs(d), 1.6), k = Math.min(ad, 1);
-      const sk = lerp(1, SIDE_SCALE, k) * K;
-      c.style.transform = `translate(${W / 2 + d * SPACING - (CARD_W * sk) / 2}px, ${H / 2 - (CARD_H * sk) / 2}px) scale(${sk})`;
+      const sk = lerp(1, SIDE_SCALE, k) * K, cw = +c.getAttribute("width"), ch = +c.getAttribute("height");
+      c.style.width = cw + "px"; c.style.height = ch + "px";
+      c.style.transform = `translate(${W / 2 + d * SPACING - (cw * sk) / 2}px, ${H / 2 - (ch * sk) / 2}px) scale(${sk})`;
       c.style.filter = `brightness(${lerp(1, SIDE_BRIGHT, k)})`;
       c.style.zIndex = String(10 - Math.round(ad * 4));
       c.classList.toggle("is-center", Math.abs(d) < 0.5);
@@ -55,7 +59,7 @@
       setText(i);
       cap.className = "sow__cap is-pre"; void cap.offsetWidth;
       cap.className = "sow__cap is-in";
-    }, DUR * 0.55);
+    }, DUR * 0.35);
   }
 
   let raf = 0;
@@ -75,18 +79,34 @@
     raf = requestAnimationFrame(step);
   }
 
-  // Sideways wheel or trackpad: one template per gesture, the rest of the flick is eaten. Vertical
-  // wheel is left alone so the page keeps scrolling.
-  let acc = 0, lastWheel = 0, locked = false;
+  // Trackpad and wheel. Each gesture picks one axis from its first few events and keeps it until the
+  // gesture ends (no event for 140 ms): a vertical gesture is never touched, so the page scrolls even
+  // when the fingers drift sideways. A sideways gesture moves the cards with the fingers at once; past
+  // 12% of a slot it commits to the next template and eases there, and the rest of that flick is
+  // ignored. A short nudge springs back.
+  let g = null, wheelEnd = 0;
+  const endGesture = () => {
+    if (g && g.axis === "x" && !g.done) go(Math.abs(pos - g.from) > 0.12 ? g.from + Math.sign(pos - g.from) : g.from);
+    g = null;
+  };
   stage.addEventListener("wheel", (e) => {
-    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-    e.preventDefault();
-    const now = performance.now();
-    if (now - lastWheel > 220) { locked = false; acc = 0; }
-    lastWheel = now;
-    if (locked) return;
-    acc += e.deltaX;
-    if (Math.abs(acc) > 24) { const dir = Math.sign(acc); acc = 0; locked = true; go(index + dir); }
+    clearTimeout(wheelEnd); wheelEnd = setTimeout(endGesture, 140);
+    if (!g) g = { axis: null, sx: 0, sy: 0, from: index, done: false };
+    if (!g.axis) {
+      g.sx += Math.abs(e.deltaX); g.sy += Math.abs(e.deltaY);
+      if (g.sx + g.sy < 6) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); e.stopPropagation(); } return; }
+      g.axis = g.sx > g.sy * 1.2 ? "x" : "y";
+    }
+    if (g.axis === "y") return;
+    // Sideways: keep the event from the page's smooth scroll (Lenis listens on window), so the page
+    // does not drift up or down while the cards move.
+    e.preventDefault(); e.stopPropagation();
+    if (g.done) return;
+    cancelAnimationFrame(raf);
+    let p = pos + e.deltaX / SPACING;
+    if (p < 0) p = Math.max(p, -0.15); if (p > N - 1) p = Math.min(p, N - 1 + 0.15);
+    pos = p; paint();
+    if (Math.abs(pos - g.from) > 0.12) { g.done = true; go(g.from + Math.sign(pos - g.from)); }
   }, { passive: false });
 
   // Drag (mouse or touch): the cards follow the pointer, then settle one template over.
@@ -112,6 +132,8 @@
     go(target);
     setTimeout(() => (dragged = false), 0);
   });
+  // The browser takes over a touch that turns into a vertical scroll: settle back where we were.
+  addEventListener("pointercancel", () => { if (down) { down = null; dragged = false; go(index); } });
   cards.forEach((c, i) => c.addEventListener("click", () => { if (!dragged) go(i); }));
   dots.forEach((b, i) => b.addEventListener("click", () => go(i)));
   stage.addEventListener("keydown", (e) => {
@@ -123,9 +145,10 @@
   // card is 80% of the stage and the side cards peek in at the edges.
   function fit() {
     W = stage.clientWidth;
-    const wide = W >= 700, cw = wide ? W * (543 / 1017) : W * 0.8;
-    K = cw / CARD_W; SPACING = cw * (wide ? 481 / 543 : 0.845);
-    H = wide ? W * (550 / 1017) : CARD_H * K + 12;
+    // cw is the width of the frame itself; the kept glow scales with it.
+    const wide = W >= 700, cw = wide ? W * (FRAME_W / 1017) : W * 0.8;
+    K = cw / FRAME_W; SPACING = cw * (wide ? 481 / 543 : 0.845);
+    H = wide ? W * (STAGE_H / 1017) : STAGE_H * K;
     stage.style.height = H + "px";
     paint();
   }
