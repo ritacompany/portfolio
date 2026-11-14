@@ -422,6 +422,9 @@ Preview link: https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST (private to him)
 `node scripts/build-preview.mjs site <dir>`, then publish to that same url.
 
 Loop log:
+- 14 Nov, Start of week carousel on the framework page (done on his yes: "this works for the time being,
+  it can always be improved later"). Center mode, his picks of 12 Nov, built 13 Nov (e65521e). Research,
+  options and gates in docs/motion/week-carousel/.
 - 9 Nov, nav hover (first piece through the loop). His note on the preview: the hover changes the word's
   shape, the letters widen and space differently. Cause: the Figma Nav hover variant is Bold. His yes
   (card): keep the weight, only the block and text colour change. Built in components.css; measured: no
