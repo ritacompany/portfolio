@@ -1,0 +1,20 @@
+VERSION V1: Ending with example results (v6)
+  (label) The test
+V1.S1 No one had lived a week with the plan.
+V1.S2 Eight people lived two weeks of it.
+  (label) What I tested
+V1.S3 Whether people give the hours they say they can, and whether the target and pace dates and Rollover make sense unexplained.
+  (label) How
+V1.S4 Each person typed their hours, worked a plan sized to them for two real weeks and logged every session.
+V1.S5 A prototype click-through only shows what people say they'd do.
+V1.S6 Each test needed at least 5 of 8 to pass.
+  (label) Capacity
+V1.S7 6 of 8 spent at least four fifths of the hours they typed.
+  (label) Target and pace
+V1.S8 7 of 8 predicted what a short week does to their dates.
+  (label) Rollover
+V1.S9 6 of 8 read carried over work as the plan helping them.
+V1.S10 All three passed.
+  (label) What I changed
+V1.S11 The two who spent less than four fifths had typed the most hours, so their plans overfilled.
+V1.S12 Recalibration, which offers a lower number, now steps in after two short weeks instead of three.
