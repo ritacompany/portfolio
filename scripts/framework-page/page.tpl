@@ -83,5 +83,6 @@
   </div>
 <script type="module" src="/js/contact-goo.js"></script>
 <script src="/js/site.js" defer></script>
+<script src="/js/start-of-week.js" defer></script>
 </body>
 </html>

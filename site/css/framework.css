@@ -38,37 +38,58 @@
 .c-neutral-550 { color: var(--neutral-550); }
 .c-green { color: var(--mondai-green-400); }
 
-/* Start of week: Figma stacks the five templates as five frames; here they are one sideways
-   scrolling track, template 1 in view at load. Dots and arrows that follow the scroll come in Phase 2. */
-.week {
-  display: flex; width: 1017px; margin: 0; padding: 0; list-style: none;
-  overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
-  scrollbar-width: none;
+/* Start of week carousel (framework page, 5812:20498), center mode. His picks of 12 Nov, built 13 Nov:
+   side cards at 0.65 and 0.40 brightness, one template per gesture at 900 ms, dots under the card,
+   the template line stays and its number swaps with the dot, title and text crossfade in place.
+   Geometry and motion are in site/js/start-of-week.js; this file holds layout and the text fades. */
+
+.sow { width: 1017px; }
+.sow__stage { position: relative; height: 550px; overflow: hidden; touch-action: pan-y; outline: none; }
+.sow__stage:focus-visible { box-shadow: inset 0 0 0 2px var(--neutral-525); border-radius: 12px; }
+
+.sow__card {
+  /* Each card is its own Figma export: the template's center frame with its glow on a transparent
+     ground, at its own size (the five templates differ). sow.js sizes and places it. */
+  position: absolute; left: 0; top: 0; max-width: none; margin: 0; transform-origin: 0 0;
+  will-change: transform, filter; cursor: pointer; user-select: none; -webkit-user-drag: none;
 }
-.week::-webkit-scrollbar { display: none; }
-.week__slide { position: relative; flex: none; width: 1017px; height: 705px; scroll-snap-align: start; }
-.week__slide img { width: 1017px; height: 550px; max-width: none; }
-.week__label, .week__title, .week__desc { position: absolute; left: 50%; transform: translateX(-50%); text-align: center; }
-.week__label { top: 590px; white-space: nowrap; }
-.week__title { top: 611px; white-space: nowrap; }
-.week__desc { top: 650px; }
+.sow__card.is-center { cursor: default; }
+
+.sow__dots { display: flex; justify-content: center; gap: 8px; height: 7px; margin-top: 40px; }
+.sow__dot { position: relative; width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: var(--neutral-600); cursor: pointer; transition: background-color 200ms var(--ease-quart-out); }
+.sow__dot::after { content: ""; position: absolute; inset: -8.5px -4px; }
+.sow__dot[aria-current="true"] { background: var(--neutral-200); }
+.sow__dot:hover { background: var(--neutral-525); }
+.sow__dot[aria-current="true"]:hover { background: var(--neutral-200); }
+.sow__dot:focus-visible { outline: 2px solid var(--neutral-100); outline-offset: 3px; }
+
+.sow__cap { display: flex; flex-direction: column; align-items: center; margin-top: 28px; text-align: center; }
+.sow__cap > * { margin: 0; }
+.sow__title { margin-top: 13px; }
+.sow__desc { margin-top: 18px; max-width: 529px; }
+
+/* The template line never fades: only its number changes, on the frame the dot changes. */
+.sow__num { display: inline-grid; overflow: hidden; vertical-align: top; }
+.sow__num > span { grid-area: 1 / 1; }
+
+/* Title and text: out as the card starts to move, in as it lands. */
+.sow__cap .sow__fade { transition: opacity 160ms ease-out; }
+.sow__cap.is-out .sow__fade { opacity: 0; }
+.sow__cap.is-pre .sow__fade { opacity: 0; transition: none; }
+.sow__cap.is-in .sow__fade { transition: opacity 280ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sow__cap .sow__fade, .sow__dot { transition: none; }
+}
+@media (max-width: 1199.98px) {
+  .fw-sec > .sow { width: 100% !important; }
+}
 
 /* Panels drawn behind text, as Figma frames with fills (Personalized timeline example, Falling behind cards). */
 .panel-example { border-radius: 12px; background: var(--neutral-850); }
 .panel-card { border-radius: 16px; background: var(--neutral-900); box-shadow: inset 0 0 0 1px var(--neutral-600); }
 .vrule { background: var(--neutral-700); }
 
-/* Start of week dots and hint, 5812:20705 (was a baked image until Phase 2). The dots follow the
-   carousel and jump to a template; each dot is 7 px drawn with a 24 px target. site/js/site.js. */
-.week-nav { position: absolute; width: 369px; height: 35px; }
-.week-dots { position: absolute; left: 50%; top: 0; transform: translateX(-50%); display: flex; gap: 8px; }
-.week-dot { position: relative; width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: var(--neutral-600); cursor: pointer; transition: background-color 200ms var(--ease-quart-out); }
-.week-dot::after { content: ""; position: absolute; inset: -8.5px -4px; }
-.week-dot[aria-current="true"] { background: var(--neutral-200); }
-.week-dot:hover { background: var(--neutral-525); }
-.week-dot[aria-current="true"]:hover { background: var(--neutral-200); }
-.week-dot:focus-visible { outline: 2px solid var(--neutral-100); outline-offset: 3px; }
-.week-hint { position: absolute; left: 0; right: 0; top: 18px; text-align: center; font: var(--label-12); letter-spacing: var(--label-12-track); color: var(--neutral-525); white-space: nowrap; }
 
 /* Phase 3.
    1200 to 1439: the 1440 composition is kept and scaled to the window (site/js/fit-desktop.js sets
@@ -99,7 +120,7 @@
   .fw-sec > .s-label-12 + .s-body-16, .fw-sec > .s-label-14-c + *, .fw-sec > .s-heading-20:not(h2) + .s-body-16 { margin-top: 10px; }
   .fw-sec > .s-label-12 { margin-top: 24px; }
   .fw-sec > .s-label-14-c, .fw-sec > .s-heading-20:not(h2) { margin-top: 36px; }
-  .fw-sec > .fig, .fw-sec > .week { margin-top: 40px; }
+  .fw-sec > .fig, .fw-sec > .sow { margin-top: 40px; }
   .fw-sec > .fig + .s-body-16, .fw-sec > .fig + .s-label-12-c { margin-top: 32px; }
   .fw-sec > .s-label-12-c:last-child { margin-top: 40px; }
   .fw-sec > h1 { margin-bottom: 16px; }
@@ -110,17 +131,11 @@
   /* The Example box: the panel behind it is hidden, so its label and text draw the box themselves. */
   [data-figma-node="5812:17127"] { margin-top: 40px !important; padding: 20px 20px 0; background: var(--neutral-850); border-radius: 12px 12px 0 0; }
   [data-figma-node="5812:17128"] { margin-top: 0 !important; padding: 10px 20px 20px; background: var(--neutral-850); border-radius: 0 0 12px 12px; }
-  .week { width: 100% !important; }
-  .week__slide { width: 100%; height: auto; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-  .week__slide img { width: 100%; height: auto; margin-bottom: 30px; }
-  .week__label, .week__title, .week__desc { position: static; transform: none; }
-  .week__desc { width: auto !important; max-width: 529px; }
-  .fw-sec > .week-nav { position: relative !important; left: auto !important; top: auto !important; width: 369px !important; height: 35px !important; align-self: center; margin-top: 32px; }
 }
 @media (max-width: 767.98px) {
   .fw { padding-top: 96px; }
   .fw-sec { padding-block: 56px; }
-  .fw-sec > .fig, .fw-sec > .week { margin-top: 32px; }
+  .fw-sec > .fig, .fw-sec > .sow { margin-top: 32px; }
 }
 
 /* The phone step-down for Heading/40 and Heading/24 that tokens.css used to apply site wide. His phone

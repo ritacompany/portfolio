@@ -2,7 +2,7 @@
 """Usage: python3 scripts/framework-page/build.py site/mondai/framework/index.html scripts/framework-page/spec.json scripts/framework-page/page.tpl
 Generates site/mondai/framework/index.html from the Figma read of Transported Framework CS
 (5812:16446), 9 Nov. Text is HTML at Figma positions; product screens and diagrams are 2x exports.
-The four extra Start of week frames (templates 2 to 5) become slides in one carousel."""
+The five Start of week templates become one center mode carousel (site/js/start-of-week.js)."""
 import json, html, sys
 
 OUT = sys.argv[1]
@@ -151,18 +151,23 @@ for sid, sy, sh, label in SECS:
     if sid == "5812:16447":
         items.append(("rule", 0, 293, 1440, 1, '<span class="rule" aria-hidden="true" style="top:293px"></span>'))
     if sid == "5812:20498":
-        slides = []
-        for i, (f, lab, title, desc) in enumerate(TEMPLATES):
-            slides.append(
-                f'<li class="week__slide" aria-label="{html.escape(lab)}">'
-                f'<img src="/assets/framework/{f}@2x.webp" alt="The {html.escape(title.lower())} start of week screen in Mondai." width="1017" height="550"{" loading=\"lazy\"" if i else ""}>'
-                f'<p class="t s-label-12-c c-neutral-525 week__label"{" data-figma-node=\"5812:20702\"" if i == 0 else ""}>{html.escape(lab)}</p>'
-                f'<p class="t s-heading-20 w-bold c-neutral-100 week__title"{" data-figma-node=\"5812:20703\"" if i == 0 else ""}>{html.escape(title)}</p>'
-                f'<p class="t s-body-16 c-neutral-300 week__desc" style="width:{[259,461,529,487,529][i]}px"{" data-figma-node=\"5812:20704\"" if i == 0 else ""}>{html.escape(desc)}</p>'
-                f'</li>')
-        items.append(("fig", 33, 371, 1017, 705, '<ul class="week" data-figma-node="5812:20504" aria-label="Start of week templates, scroll sideways for more" tabindex="0" style="left:33px;top:371px">' + "".join(slides) + '</ul>'))
-        dots = "".join(f'<button type="button" class="week-dot" aria-label="Show template {i + 1} of 5"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(5))
-        items.append(("fig", 357, 17071 - sy, 369, 35, f'<div class="week-nav" data-figma-node="5812:20705" style="left:357px;top:{fmt(17071 - sy)}px"><div class="week-dots">{dots}</div><p class="week-hint">Scroll to view more templates</p></div>'))
+        # Center mode carousel (his picks, 12 Nov): one clean Figma export per template card, dots under
+        # the card, then the template line and the title and text. Behaviour: site/js/start-of-week.js.
+        CARD = {"week-clean-slate": (580, 550), "week-catching-up": (578.5, 550), "week-rollover": (558.5, 550),
+                "week-recalibration": (559.5, 504), "week-reset": (559.5, 475.5)}
+        cards = "".join(
+            f'<img class="sow__card" src="/assets/framework/{f.replace('week-', 'week-card-')}@2x.webp" width="{CARD[f][0]}" height="{CARD[f][1]}" '
+            f'alt="{html.escape(lab)}, {html.escape(title)}: the {html.escape(title.lower())} start of week screen in Mondai." aria-roledescription="slide" '
+            f'data-title="{html.escape(title)}" data-desc="{html.escape(desc)}" decoding="async">'
+            for f, lab, title, desc in TEMPLATES)
+        dots = "".join(f'<button type="button" class="sow__dot" aria-label="Show template {i + 1} of 5"' + (' aria-current="true"' if i == 0 else '') + '></button>' for i in range(5))
+        f0, l0, t0, d0 = TEMPLATES[0]
+        items.append(("fig", 33, 371, 1017, 705, '<div class="sow" data-figma-node="5812:20504" style="left:33px;top:371px">'
+            '<div class="sow__stage" role="region" aria-roledescription="carousel" aria-label="Start of week templates. Use the arrow keys or the dots to see all five." tabindex="0">' + cards + '</div>'
+            f'<div class="sow__dots">{dots}</div>'
+            '<div class="sow__cap" aria-live="polite"><p class="t s-label-12-c c-neutral-525 sow__label" data-figma-node="5812:20702">Template <span class="sow__num"><span>1</span></span> of 5</p>'
+            f'<p class="t s-heading-20 w-bold c-neutral-100 sow__title sow__fade" data-figma-node="5812:20703">{html.escape(t0)}</p>'
+            f'<p class="t s-body-16 c-neutral-300 sow__desc sow__fade" data-figma-node="5812:20704">{html.escape(d0)}</p></div></div>'))
     parts += [i[5] for i in flow_order(items)]
     sh = SEC_H.get(sid, sh)
     out.append(f'      <section class="fw-sec" data-figma-node="{sid}" aria-label="{html.escape(label)}" style="height:{fmt(sh)}px">\n        ' + "\n        ".join(parts) + "\n      </section>")
