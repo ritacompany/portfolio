@@ -25,18 +25,25 @@ ending, and no study of how real case studies show results. Fix record: `fixes/2
 
 Eyebrow: What testing showed
 
-Title: Eight people lived two weeks of the plan.
+Title: No one had lived a week with the plan. Eight people lived two.
 
-Numbers:
-- 6 of 8: gave within a fifth of the hours they typed
-- 7 of 8: predicted what a short week does to their dates
-- 6 of 8: read Rollover as the plan making room for them
+Context row (added 13 Nov, his note that v2 gave no context):
+- What I tested: Whether people give the hours they say they can, the number every rule runs on, and
+  whether the two dates and Rollover make sense unexplained.
+- How: Each person typed their hours, worked a plan sized to them for two real weeks and logged every
+  session. A click-through only shows what people say.
 
-Close: The two who fell short had typed the most hours. Recalibration now steps in a week sooner.
+Numbers, each tagged with the decision it tests:
+- Capacity, 6 of 8: gave within a fifth of the hours they typed
+- Target and pace, 7 of 8: predicted what a short week does to their dates
+- Rollover, 6 of 8: read carried over work as the plan helping them
 
-Method line: Two week diary and prototype sessions, December 2026. Fail lines set before the first session.
+Close: The two who fell short typed the most hours. Recalibration now steps in a week sooner.
 
-43 words in all outside the numbers. Humanizer and no-ai-slop run as skills on this text. Reader check not run.
+Method line: I wrote the fail lines down first.
+
+99 words outside the numbers; 1325 px tall at 1440 (Haven's ending is 1236). Humanizer and no-ai-slop run as
+skills on this text. Reader check not run.
 
 ## Template view
 
@@ -44,7 +51,6 @@ Method line: Two week diary and prototype sessions, December 2026. Fail lines se
 - [x] for each of the three numbers, from tests 1, 2 and 3 in the plan
 - [y] who fell short and [what they had in common], from the diary and closing calls
 - [what you changed], only if something changed; otherwise the close says what he would change
-- [month year] in the method line
 - The dots fill to match each [x]
 
 ## If the real results are not this good

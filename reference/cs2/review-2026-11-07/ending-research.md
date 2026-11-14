@@ -64,7 +64,9 @@ Form check: Haven's numbers are a centred equation mid page (3 plus 3 equals 6 i
 is the two needs plus five cards. CS2 repeats neither. Numbers on the ending are shown as numbers, large,
 the way every Metalab rebuild in build/ ends (a Results line, then three numbers with short labels); his
 call 12 Nov. Length is Haven's ending, his call 12 Nov: a one or two line title, labels of a few words, a
-two line close and nothing else, about 45 words in all outside the numbers. No paragraphs. (Corrected 12 Nov: this line used to say numbers must sit in a sentence, which pushed a draft
+two line close, about 45 words outside the numbers. No paragraphs. His call 13 Nov adds context: one
+labelled row saying what was tested and how (Metalab's Results row) and a tag on each number naming the
+decision it tests, up to about 100 words in all. (Corrected 12 Nov: this line used to say numbers must sit in a sentence, which pushed a draft
 into paragraphs. fixes/2026-11-12-ending-wall-of-text.md.)
 
 ## The options

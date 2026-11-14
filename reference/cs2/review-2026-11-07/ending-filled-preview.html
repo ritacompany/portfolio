@@ -27,9 +27,13 @@ body { background: var(--n900); color: #fff; font-family: var(--font); overflow-
 .board { width: 1440px; transform-origin: 0 0; padding: 148px 0 137px; } /* Haven's ending padding */
 
 .eyebrow { margin-left: 156px; font: 500 20px/26px var(--font); letter-spacing: -0.02em; color: var(--n500); }
-.title { margin: 53px 0 0 149px; width: 1180px; font: 500 96px/94px var(--font); letter-spacing: -0.04em; color: var(--n050); }
+.title { margin: 53px 0 0 149px; width: 1291px; font: 500 96px/94px var(--font); letter-spacing: -0.04em; color: var(--n050); }
 
-.stats { margin: 112px 0 0 156px; width: 1128px; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 24px; list-style: none; padding: 0; }
+.ctx { margin: 64px 0 0 156px; width: 1128px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
+.ctx__key, .stat__tag { font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #90909d; }
+.ctx dd { margin: 12px 0 0; width: 470px; font-size: 20px; line-height: 26px; font-weight: 500; letter-spacing: -0.02em; color: #d2d2db; }
+.stat__tag { margin-bottom: 24px; }
+.stats { margin: 72px 0 0 156px; width: 1128px; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 24px; list-style: none; padding: 0; }
 .stat { border-top: 1px solid var(--n600); padding-top: 40px; }
 .stat__num { font: 500 136px/0.85 var(--font); letter-spacing: -0.05em; color: var(--n050); white-space: nowrap; }
 .stat__num .den { font-size: 0.32em; letter-spacing: -0.02em; color: var(--n525); margin-left: 6px; }
@@ -38,7 +42,7 @@ body { background: var(--n900); color: #fff; font-family: var(--font); overflow-
 .dots i.on { background: var(--n050); border-color: var(--n050); }
 .stat__label { margin-top: 20px; width: 300px; font: 500 20px/26px var(--font); letter-spacing: -0.02em; color: var(--n300); }
 
-.close { margin: 104px 0 0 272px; font: 500 40px/44px var(--font); letter-spacing: -0.04em; color: var(--n400); }
+.close { margin: 80px 0 0 272px; font: 500 40px/44px var(--font); letter-spacing: -0.04em; color: var(--n400); }
 .close b { font-weight: 700; color: var(--n100); }
 .method { margin: 40px 0 0 272px; font: 500 12px/16px var(--font); letter-spacing: 0.06em; text-transform: uppercase; color: var(--n525); }
 
@@ -59,29 +63,39 @@ body.template .dots i.on { background: none; border-color: var(--n575); }
 <div class="stage" id="stage">
 <section class="board" id="board" aria-label="In reflection">
   <p class="eyebrow">What testing showed</p>
-  <p class="title"><span class="fill" data-t="[n]">Eight</span> people lived two weeks of the plan.</p>
+  <p class="title">No one had lived a week with the plan. <span class="fill" data-t="[n]">Eight</span> people lived two.</p>
+
+  <dl class="ctx">
+    <div><dt class="ctx__key">What I tested</dt>
+      <dd>Whether people give the hours they say they can, the number every rule runs on, and whether the two dates and Rollover make sense unexplained.</dd></div>
+    <div><dt class="ctx__key">How</dt>
+      <dd>Each person typed their hours, worked a plan sized to them for two real weeks and logged every session. A click-through only shows what people say.</dd></div>
+  </dl>
 
   <ul class="stats">
     <li class="stat" data-x="6">
+      <p class="stat__tag">Capacity</p>
       <div class="stat__num"><span class="fill" data-t="[x]">6</span><span class="den">of <span class="fill" data-t="[n]">8</span></span></div>
       <span class="dots"></span>
       <p class="stat__label">gave within a fifth of the hours they typed</p>
     </li>
     <li class="stat" data-x="7">
+      <p class="stat__tag">Target and pace</p>
       <div class="stat__num"><span class="fill" data-t="[x]">7</span><span class="den">of <span class="fill" data-t="[n]">8</span></span></div>
       <span class="dots"></span>
       <p class="stat__label">predicted what a short week does to their dates</p>
     </li>
     <li class="stat" data-x="6">
+      <p class="stat__tag">Rollover</p>
       <div class="stat__num"><span class="fill" data-t="[x]">6</span><span class="den">of <span class="fill" data-t="[n]">8</span></span></div>
       <span class="dots"></span>
-      <p class="stat__label">read Rollover as the plan making room for them</p>
+      <p class="stat__label">read carried over work as the plan helping them</p>
     </li>
   </ul>
 
-  <p class="close">The <b><span class="fill" data-t="[y]">two</span></b> who fell short <span class="fill" data-t="[what they had in common]">had typed the most hours</span>.<br><b>Recalibration</b> <span class="fill" data-t="[what you changed]">now steps in a week sooner</span>.</p>
+  <p class="close">The <b><span class="fill" data-t="[y]">two</span></b> who fell short <span class="fill" data-t="[what they had in common]">typed the most hours</span>.<br><b>Recalibration</b> <span class="fill" data-t="[what you changed]">now steps in a week sooner</span>.</p>
 
-  <p class="method">Two week diary and prototype sessions, <span class="fill" data-t="[month year]">December 2026</span>. Fail lines set before the first session.</p>
+  <p class="method">I wrote the fail lines down first.</p>
 </section>
 </div>
 
