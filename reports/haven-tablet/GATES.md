@@ -38,10 +38,10 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
 - [x] R1: every point of his review is in FEEDBACK-13NOV.md with a status, none dropped
   EVIDENCE: FEEDBACK-13NOV.md has F0 to F14, one row each with a status, read against his voice note line by line
 
-- [ ] R2: F2 to F6, F8, F10 and F11 measure fixed at 768, 834, 1024 and 1180, motion on and off; F12 the bar stays 44 px
+- [x] R2: F2 to F6, F8, F10 and F11 measure fixed at 768, 834, 1024 and 1180, motion on and off; F12 the bar stays 44 px
   CHECK: node reports/haven-tablet/verify.mjs
   EXPECT: ^HAVEN_TABLET_OK 8 of 8$
-  EVIDENCE: unmet: 13 Nov run exits 1 with 8 problems, all F12 (ending bar 72 px at every tablet width; shared stylesheet, waiting on his call). F2 to F11 pass. Before the fixes: 55 problems
+  EVIDENCE: 14 Nov run: exit 0, HAVEN_TABLET_OK 8 of 8. F12 fixed in site/css/components.css on his word (13 Nov: the labels fit, the layout was wrong): measured labels 319, 190 and 297 px; the bar is 44 px at 768, 834, 1024, 1180 and 1440 on Haven and framework. Before the fixes: 55 problems
 
 - [ ] R3: F7 to F10 no picture is shown larger than its own pixels on a 2x screen, at 768, 1024, 1180 and 1440
   CHECK: node reports/haven-tablet/media.mjs 768,1024,1180,1440
@@ -54,7 +54,7 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
   EVIDENCE: 13 Nov run: exit 0, 474 boxes identical at 390, 1200 and 1440; control differs at 768 (295) and 1180 (304)
 
 - [ ] R5: F1 has researched examples and one recommended pattern, and he has picked before anything is rebuilt
-  EVIDENCE: unmet: research running in session haven-timeline-research; his pick needed after
+  EVIDENCE: unmet: timeline-research.md done (nine examples; pick: the desktop chart held at 1160 px, scrolling sideways). Waiting on his yes before building
 
 - [x] R6: F13 is answered with what exists and a proposal for what does not
   EVIDENCE: answered in this session's reply; a session for live comments proposed as its own task

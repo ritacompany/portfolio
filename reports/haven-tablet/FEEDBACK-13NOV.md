@@ -6,7 +6,7 @@ Every point from his voice note, one row each, in his order. A row is closed onl
 | # | Section | What he said | What he wants | Status |
 |---|---|---|---|---|
 | F0 | The browser pane | It kept auto adjusting while he reviewed | The pane stops changing size under him | Cause: this session set tablet sizes on the pane's tab. From now on width checks run headless or in a separate tab, never his |
-| F1 | Designing an MVP | The tablet version (bars above the stage pills) does not communicate what the timeline does | Research how others show a timeline like this at narrow widths, then a version that reads as the timeline | Research running in session haven-timeline-research, writing timeline-research.md. Rebuild waits for his pick |
+| F1 | Designing an MVP | The tablet version (bars above the stage pills) does not communicate what the timeline does | Research how others show a timeline like this at narrow widths, then a version that reads as the timeline | Research done: timeline-research.md, nine examples. Pick: his desktop chart unchanged, held at 1160 px and scrolling sideways (the wireframes row's pattern). Waiting on his yes |
 | F2 | Usability testing | "Six participants tested three key flows" moved above the cards | Keep it on the left as on desktop | Fixed, checked at 768, 834, 1024, 1180 |
 | F3 | Usability testing | The three flow cards | They can shrink sideways to make room | Fixed: they narrow beside the text |
 | F4 | Usability testing | The four insight cards look big, top and bottom padding unequal | One horizontal row filling the width | Fixed: one row margin to margin, text centred with 24 px all round, checked within 3 px |
@@ -17,7 +17,7 @@ Every point from his voice note, one row each, in his order. A row is closed onl
 | F9 | Scheduling and chat | Both mockups look blurry | Sharp | Blocked: 1x exports (1047 and 314 px wide). Need 2x exports |
 | F10 | Security features | Right screen blurry and taller than the left | Sharp, same height | Height fixed (510 and 550 became one height). Sharpness needs 2x exports |
 | F11 | Where things stand | Hover does not exist on a tablet | Cards open from the start, text visible, swipe stays | Fixed from 768 to 1199: all five open, captions visible, row swipes |
-| F12 | Bar with the other case studies | It grows taller at tablet | Same height as desktop | Waiting on his call: the rule is in the shared stylesheet (all pages), and at 768 the three links do not fit one 44 px row |
+| F12 | Bar with the other case studies | It grows taller at tablet | Same height as desktop | Fixed 14 Nov in the shared stylesheet, on his word: the three columns split the width in thirds and wrapped a 319 px label. Now sized to their labels: 44 px at every tablet width on Haven and framework. Below 920 the three labels (806 px) cannot share a row, so Explore more case studies (same as the nav's Work link) steps out |
 | F13 | Tooling | He should be able to adjust and comment as we go | Live edits and comments | Answered: the shared edit panel tunes values on dev pages; nothing yet lets him comment on a live page. Proposed as its own session |
 | F14 | Process | The audit passed a page with all of the above | Real checks so these do not come back | Fix record fixes/2026-11-13-haven-tablet-review-misses.md (not verified). New checks fail on the old page (55 problems, 32 soft images) |
 

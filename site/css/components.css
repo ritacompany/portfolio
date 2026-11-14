@@ -426,6 +426,19 @@
   .ending-bar__prev span, .ending-bar__next span { white-space: normal; }
 }
 
+/* Ending bar on tablets (his review, 13 Nov): it keeps the desktop's one 44 px row. The three columns
+   size to their labels instead of splitting the width in thirds, which wrapped the 319 px label. Below
+   920 the three labels (806 px) do not fit, so Explore more case studies, which repeats the nav's Work
+   link, steps out and previous and next keep the row. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .ending-bar { grid-template-columns: max-content 1fr max-content; grid-template-areas: "prev all next"; column-gap: 24px; row-gap: 0; height: 44px; padding-block: 10px; }
+  .ending-bar__prev span, .ending-bar__next span { white-space: nowrap; }
+  .ending-bar__next { text-align: left; }
+}
+@media (min-width: 768px) and (max-width: 919.98px) {
+  .ending-bar__all { display: none; }
+}
+
 @media (max-width: 767.98px) {
   .navbar__logo { grid-column: 1; }
   .navbar__role { display: none; }
