@@ -1,6 +1,6 @@
 # Fix: the motion process only knows rendered video, so live page animation has no rules or patterns
 
-Status: not verified
+Status: verified
 
 ## Evidence
 Bad output: `.claude/motion-rules.md` Scope: "These rules cover motion inside media: loops, a rotating phone, scroll driven mockups and any clip rendered to video." and "Page entrances that already run on the browser clock (text fades, image reveals, smooth scroll) stay as built ... reviewed in the browser, not rewritten to fit this contract." The code-motion skill description ends "or a clip rendered to MP4". In this session I told Chadwick "Our clips are rendered video with nobody tapping", which he flagged as wrong.
@@ -35,12 +35,12 @@ Instruction lines: +103 / -80 (rules 75 and skill 28 replace rules 59 and skill 
 Net growth reason: live motion had no rules at all; the growth is the live section and the live review capture. The pattern file is reference read on demand, not standing instruction.
 
 ## Verification
-Fresh run: not run. The Agent hook blocked the before and after planners this turn after counting three blocked launches as a round.
-Before: not captured.
-After: proposal check prints KB_PASS (`node reports/motion-knowledge/check-kb.mjs reports/motion-knowledge/motion-rules.md reports/motion-knowledge/code-motion-SKILL.md reports/motion-knowledge/motion-patterns.md`).
-Check result after: KB_PASS on the knowledge; the plan level check is not run.
-Second case: planned as the homepage work cards entrance and hover, not run.
+Fresh run: three fresh Sonnet sessions on 14 Nov, each with only the repo files. Before: old rules from git (f9fae97~1) on CS2 section 1 block 1. After: installed rules on the same block. Second case: installed rules on the homepage work cards. Graded on the four questions in Check.
+Before: "Rendered video clip, not live in the page ... a window.seek(t) page rendered to MP4". Pieces rise 6 percent on entry. Review is render, contact sheet, strips and sha256 only. Fails all four questions.
+After: "Live, in the page ... the rules default to live." Shared curtain, then the four pieces stagger in 0.18 s apart on the TYPE spring, fade and scale in place with no rise. Review in the built in browser at 1440 and 390 plus reduced motion. Passes all four.
+Check result after: PASS on all four questions; `check-kb.mjs` prints KB_PASS on the installed files.
+Second case: homepage cards plan is live, uses the shared curtain and text fade with timings, excludes masked rise, tilt, blur and parallax, keeps hover inside 0.4 s and reviews live at 1440 and 390 with reduced motion. PASS on all four.
 Enforcement test: n/a
 
 ## Report
-Unverified: the fresh run. Next turn: three Sonnet planners (current rules on the CS2 section 1 curriculum block; proposal on the same block; proposal on the homepage work cards), then a blind grader on the four yes/no questions. Also unverified: whether a session planning a scroll section now loads the code-motion skill from its new trigger. Chadwick decides whether the proposal replaces the current rules.
+Unverified: none for the planning step. A built piece has not yet gone through the new live review loop.
