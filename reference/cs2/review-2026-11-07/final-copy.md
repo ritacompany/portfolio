@@ -114,5 +114,17 @@ Headline: The least settled rule is the one for when Recalibration steps in, bec
 Body 1: Right now it steps in after three weeks in a row where a user finishes less than about half the hours they set. That line is a starting point, and the first users’ weeks will move it.
 Body 2: It comes too early if most users who see it skip it and catch up anyway, and too late if users stop coming back before it ever shows.
 
+## Ending, example results (his ask 14 Nov: build it in Figma in place of version C)
+Every number is an example until the tests in ending-test-plan.md run. Reader check PASS, round 4 (reader-check/runs/2026-11-13-end-filled/r4). Version C above stays here for the record; in Figma it is hidden, not deleted.
+Eyebrow: The test
+Headline: No one had lived a week with the plan. Eight people lived two weeks of it.
+What I tested: Whether people give the hours they say they can, and whether the target and pace dates and Rollover make sense unexplained.
+How: Each person typed their hours, worked a plan sized to them for two real weeks and logged every session. A prototype click-through only shows what people say they'd do. Each test needed at least 5 of 8 to pass.
+Capacity: 6 of 8 spent at least four fifths of the hours they typed
+Target and pace: 7 of 8 predicted what a short week does to their dates
+Rollover: 6 of 8 read carried over work as the plan helping them
+Under the numbers: All three passed.
+What I changed: The two who spent less than four fifths had typed the most hours, so their plans overfilled. Recalibration, which offers a lower number, now steps in after two short weeks instead of three.
+
 ## Not changed by him and left as is
 Footer links, the Haven hero (not this case study's work, his note).
