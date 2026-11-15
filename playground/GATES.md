@@ -2,19 +2,19 @@
 
 OWNS: playground/**
 
-Scope: the hero and Selected works from the coded homepage, rebuilt as React components in a Vite, Tailwind v4 and shadcn setup that takes 21st.dev components, fully responsive and identical to the plain HTML site.
+Scope: the hero and Selected works from his Hero master frame (Desktop 1 MVP, page CS, 6109:21820), rebuilt as React components on the 14 Nov coded homepage, in a Vite, Tailwind v4 and shadcn setup that takes 21st.dev components, fully responsive.
 
 - [x] G1: the playground builds with type checking
   CHECK: npm run build
   EXPECT: /built in \d+/
   CWD: .
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio/playground; path=7f4fb4b02918/15 entries; EXPECT=matched; output-sha256=4d6b67ef6f5d7ff906577aa4bd837abf47a68f6ca2fa14f02de53508f63db392; output-bytes=387
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio/playground; path=7f4fb4b02918/15 entries; EXPECT=matched; output-sha256=bb72c8574b7fa6f63db35cce4acf2f06fd747debfe7ada9e9f1427f2c379e554; output-bytes=387
 
-- [x] G2: hero and Selected works are pixel identical to site/ at commit cbb837f (14 Nov) at 12 widths from 320 to 1920; the check fails on a 2 px shift of the hero lede (control run 15 Nov)
-  CHECK: node scripts/check.mjs parity
-  EXPECT: PARITY_OK
+- [x] G2: at 1440 the hero and works match Figma's own renders of Hero image (6109:21821) and Works section (6109:21845) within the set limits; the 14 Nov layout fails the same check (control run 15 Nov: hero mean diff 27.4, works a different height)
+  CHECK: node scripts/check.mjs figma
+  EXPECT: FIGMA_OK
   CWD: .
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio/playground; path=7f4fb4b02918/15 entries; EXPECT=matched; output-sha256=ca9bc8a3abc22dce293e2c898436580dcb0582f72e88a8a821ed46d12d8002fd; output-bytes=865
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio/playground; path=7f4fb4b02918/15 entries; EXPECT=matched; output-sha256=10ba5a2ab595634f83e86ec545b00a3dcbc1d5b8a0b5abffef43f6dbc830103d; output-bytes=208
 
 - [x] G3: no sideways scroll at 18 widths from 320 to 2560; the check caught the grid class collision at 430, 600 and 767 before the fix
   CHECK: node scripts/check.mjs overflow
@@ -37,7 +37,5 @@ Scope: the hero and Selected works from the coded homepage, rebuilt as React com
 - [x] G6: npm run ui:add pulls a shadcn registry component that imports @/lib/utils and leaves no stray cn package (needs the network, so manual)
   EVIDENCE: 15 Nov, `npm run ui:add -- button` printed "ui:add done, 1 file(s) pointed at @/lib/utils"; src/components/ui/button.tsx line 3 imports from "@/lib/utils"; package.json has no "cn" entry and node_modules/cn is absent.
 
-- [ ] G7: the hero matches the newer Hero section he made in Figma
-  EVIDENCE: pending
-
-ABANDON: G7 the Figma connector on this account is out of calls (View seat on the Professional plan that owns the portfolio file), so the new Hero section could not be read. Handoff: a link to the section in a file this account can read with its Full seat, or a screenshot, then update Hero.tsx and the legacy CSS against it.
+- [x] G7: widths without a Figma frame read as intended: 1920, 1200, 1024 and 768 carry the new hero and title; 390 keeps his Mobile frames with the new lede, no desktop wordmark and "Selected works" spaced
+  EVIDENCE: 15 Nov, screenshots at 1920, 1200, 1024, 768 and 390 looked at after the last change. The first 390 pass showed the desktop wordmark over the phone hero and "Selectedworks"; both fixed and rechecked.

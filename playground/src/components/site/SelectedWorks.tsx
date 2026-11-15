@@ -1,12 +1,33 @@
+import { Fragment, type CSSProperties } from "react";
 import { WorkCard } from "./WorkCard";
 
-// Selected works, Figma 4923:12086. Two cards side by side from 768, stacked under it.
+// The title as Figma tracks it (6109:21871, 6109:21872): -0.04em on the word, with its own value on
+// some letters, with "works" fitted to Figma's render (Chrome drops kerning between letters tracked
+// differently). Each word's last letter gets 0 so the 13 px gap between the words is exact.
+const TITLE: Array<Array<[string, string | undefined]>> = [
+  [["S", "-0.02em"], ["el", undefined], ["ecte", "-0.01em"], ["d", "0em"]],
+  [["w", undefined], ["o", "-0.0202em"], ["r", "-0.0849em"], ["k", "-0.0279em"], ["s", "0em"]],
+];
+
+// Selected works, Hero master 6109:21845. Two cards side by side from 768, stacked under it.
 export function SelectedWorks() {
   return (
     <section className="works" id="work" aria-labelledby="works-title">
       <div className="layout-grid">
-        <h2 className="works__title" id="works-title">
-          Selected works
+        <h2 className="works__title" id="works-title" aria-label="Selected works">
+          {TITLE.map((word, w) => (
+            // The space between the words: flex drops it from 768 up, where the 13 px gap takes over.
+            <Fragment key={w}>
+              {w > 0 && " "}
+            <span aria-hidden="true">
+              {word.map(([letters, track], i) => (
+                <span key={i} style={track ? ({ "--t": track } as CSSProperties) : undefined}>
+                  {letters}
+                </span>
+              ))}
+            </span>
+            </Fragment>
+          ))}
         </h2>
       </div>
       <div className="works__cards">

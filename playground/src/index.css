@@ -19,6 +19,7 @@
 @import "./styles/legacy/grid.css" layer(legacy);
 @import "./styles/legacy/components.css" layer(legacy);
 @import "./styles/legacy/home.css" layer(legacy);
+@import "./styles/hero-master.css" layer(legacy);
 
 /* shadcn and 21st.dev components read these. The site is dark only, so :root and .dark hold the same
    values, mapped onto his Figma neutrals. */
