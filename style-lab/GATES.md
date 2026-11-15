@@ -55,5 +55,5 @@ Scope: the full homepage (hero, Selected works, About, footer) from his Hero mas
 - [x] G9: screenshots at 1440, 1024, 768 and 390 of the full page, with no style and with each style, looked at after the last change and read as intended
   EVIDENCE: 15 Nov, full page shots of the base at 1440, 1024, 768 and 390 and of soft-landing at 1440 (switcher open) looked at after the last CSS change. All four sections present at each width; phone keeps his Mobile frames (vertical CHDWCK, stacked cards, About indented body, phone footer with Links); soft-landing settles to the base layout with the longer gap after the cards. The first footer pass at 1440 showed the old CHDWCK band and a Bold Contact label against Figma; both fixed and rechecked.
 
-- [ ] G10: dev server running with its port reported; branch claude/site-style-lab pushed; draft PR open
-  EVIDENCE: pending
+- [x] G10: dev server running with its port reported; branch claude/site-style-lab pushed; draft PR open
+  EVIDENCE: 15 Nov, npm run dev answered 200 on 127.0.0.1:5190 and report_preview_port returned port 5190; git push created origin/claude/site-style-lab at ca1f51c; draft PR https://github.com/ritacompany/portfolio/pull/22 against claude/serene-ride-q0ajq7.
