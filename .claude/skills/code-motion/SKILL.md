@@ -1,6 +1,6 @@
 ---
 name: code-motion
-description: Plan, build and review any portfolio animation, live in the browser or rendered to video. Use for scroll entrances, stagger, sticky or pinned sections, parallax, scroll scrubs, hover motion, a scripted mockup on the page, a looping mockup, a rotating phone or a clip rendered to MP4.
+description: Plan, build and review any portfolio animation, live in the browser or rendered to video. Use for scroll entrances, stagger, sticky or pinned sections, parallax, scroll scrubs, hover motion, a scripted mockup on the page, a looping mockup, a rotating phone, a clip rendered to MP4, or an interactive hover or press effect on a site component.
 ---
 
 # Code motion

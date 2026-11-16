@@ -7,8 +7,12 @@
 <meta name="description" content="Haven, a UX bootcamp case study: an MVP that helps LGBTQIA+ youth reach affirming environments through a Confidante program.">
 <link rel="preload" href="../assets/satoshi-medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/nav-logo.svg">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/grid.css">
+<link rel="stylesheet" href="/css/components.css">
 <link rel="stylesheet" href="haven.css">
 <link rel="stylesheet" href="current.css">
+<link rel="stylesheet" href="pill-tips.css">
 <script>
   // Hidden reveal states apply only when motion will run. Without JS, or with reduced motion, the page is fully visible.
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js-motion");
@@ -17,13 +21,15 @@
 <body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-nav">
-  <a class="site-nav__logo" href="../" aria-label="Chadwick Fenner, home"><img src="assets/nav-logo.svg" width="47.358" height="14.037" alt=""></a>
-  <nav aria-label="Primary"><ul class="site-nav__links">
-    <li><a href="../#about" aria-label="About">ABOU<span class="flipped">7</span></a></li>
-    <li><a href="../#work" aria-label="Work">WORK<span class="flipped">5</span></a></li>
-    <li><a href="mailto:hello@chadwickfenner.com" aria-label="Contact me">CONTACT M<span class="flipped">3</span></a></li>
-  </ul></nav>
+<header class="page-header site-nav">
+  <nav class="navbar grid" aria-label="Main">
+    <a class="navbar__logo col-1" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+    <ul class="navbar__links col-8 span-5">
+      <li><a class="link-nav" href="/#about" aria-label="About"><span aria-hidden="true">Abou<span class="mirror">7</span></span></a></li>
+      <li><a class="link-nav" href="/#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
+      <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
+    </ul>
+  </nav>
 </header>
 
 <main id="main">
@@ -33,7 +39,7 @@
       <dl class="meta tb-item"><div><dt>Scope</dt><dd>Solo project</dd></div><div><dt>Affiliate</dt><dd>CareerFoundry</dd></div><div><dt>Focus</dt><dd>Research, strategy and design.</dd></div></dl>
     </div>
     <div class="hero__lead">
-      <p class="h24 hero__tagline" data-tb><span class="tb-item">Designed as a way for LGBTQIA+ youth to gain access to affirming environments.</span></p>
+      <p class="h24 hero__tagline" data-tb><img class="hero__mark tb-item" src="assets/haven-wordmark.svg" alt="" width="80" height="18" data-node="4961:11998"><span class="tb-item">Designed as a way for LGBTQIA+ youth to gain access to affirming environments.</span></p>
       <div class="hero__background body" data-tb><p class="tb-item">For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience. The lack of affirming environments at home and in their communities is linked to a higher risk of suicide.</p><p class="tb-item">This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante. Just having Haven on their phone could put a user at risk, so I designed it to stay hidden and to keep every chat by text.</p></div>
     </div>
   </section>
@@ -181,7 +187,7 @@
     <div class="quiz__text" data-tb>
       <h2 class="eyebrow tb-item" id="quiz-title">Primary identity quiz</h2>
       <p class="h40 quiz__lead tb-item">One identity model for every user would flatten the differences that shape their experience, so the quiz matches users on the experiences they pick.</p>
-      <ul class="pills tb-item">
+      <ul class="pills">
         <li><span class="pill">Interview insight 1</span></li>
         <li><span class="pill">Interview insight 3</span></li>
         <li><span class="pill">Confidante role 1</span></li>
@@ -193,27 +199,27 @@
         <div class="qcol">
           <svg class="qcol__pillar" style="left:0.000%;top:37.822%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
           <img class="qcol__icon" style="left:3.632%;top:33.686%;width:8.286%" src="assets/icon-magnet.webp" alt="A red magnet" loading="lazy">
-          <span class="qcol__label" style="left:7.781%;top:28.307%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="ATTRACTION">ATTRACTION</span></span>
+          <span class="qcol__label" style="left:7.781%;top:28.307%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Attraction">Attraction</span></span>
         </div>
         <div class="qcol">
           <svg class="qcol__pillar" style="left:21.090%;top:25.132%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
           <img class="qcol__icon" style="left:25.494%;top:18.871%;width:6.856%" src="assets/icon-mirror.webp" alt="A hand mirror" loading="lazy">
-          <span class="qcol__label" style="left:28.871%;top:13.492%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="GENDER IDENTITY">GENDER IDENTITY</span></span>
+          <span class="qcol__label" style="left:28.871%;top:13.492%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Gender identity">Gender identity</span></span>
         </div>
         <div class="qcol">
           <svg class="qcol__pillar" style="left:42.202%;top:12.081%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
           <img class="qcol__icon" style="left:45.721%;top:5.644%;width:8.627%" src="assets/icon-lock.webp" alt="A padlock" loading="lazy">
-          <span class="qcol__label" style="left:49.983%;top:0.265%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="BELONGING">BELONGING</span></span>
+          <span class="qcol__label" style="left:49.983%;top:0.265%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Belonging">Belonging</span></span>
         </div>
         <div class="qcol">
           <svg class="qcol__pillar" style="left:63.326%;top:25.132%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
           <img class="qcol__icon" style="left:66.572%;top:21.869%;width:9.194%" src="assets/icon-yarn.webp" alt="A ball of yarn" loading="lazy">
-          <span class="qcol__label" style="left:71.107%;top:16.490%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="RACE & ETHNICITY">RACE &amp; ETHNICITY</span></span>
+          <span class="qcol__label" style="left:71.107%;top:16.490%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Race & ethnicity">Race &amp; ethnicity</span></span>
         </div>
         <div class="qcol">
           <svg class="qcol__pillar" style="left:84.449%;top:38.183%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
           <img class="qcol__icon" style="left:88.059%;top:30.864%;width:8.854%" src="assets/icon-flower.webp" alt="A flower growing from a die" loading="lazy">
-          <span class="qcol__label" style="left:92.230%;top:25.485%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="UPBRINGING">UPBRINGING</span></span>
+          <span class="qcol__label" style="left:92.230%;top:25.485%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Upbringing">Upbringing</span></span>
         </div>
         <img class="quiz__phone" style="left:30.704%;top:38.289%;width:38.649%" src="assets/quiz-phone.webp" width="341" height="700" loading="lazy" alt="A phone showing quiz question 16 of 30, with an answer selected.">
       </div>
@@ -223,7 +229,7 @@
     <div class="journey__head" data-tb>
       <h2 class="eyebrow tb-item" id="journey-title">Testing synthesis</h2>
       <p class="h40 journey__lead tb-item">Haven’s early flow asked users to choose a Confidante before they could have an introductory chat.</p>
-      <ul class="pills tb-item">
+      <ul class="pills">
         <li><span class="pill">Interview insight 1</span></li>
         <li><span class="pill">Testing insight 4</span></li>
       </ul>
@@ -257,10 +263,10 @@ a chat</span></li>
       <p class="h40 tb-item">Users need to understand who the Confidante is before making a decision. They need to feel understood, represented and safe.</p>
     </div>
     <div class="profile__block">
-      <ul class="pills" data-tb>
-        <li class="tb-item"><span class="pill">Interview insight 1</span></li>
-        <li class="tb-item"><span class="pill">Interview insight 3</span></li>
-        <li class="tb-item"><span class="pill">Testing insight 4</span></li>
+      <ul class="pills">
+        <li><span class="pill">Interview insight 1</span></li>
+        <li><span class="pill">Interview insight 3</span></li>
+        <li><span class="pill">Testing insight 4</span></li>
       </ul>
       <div class="profile__row">
         <figure class="mask profile__phone" data-mask>
@@ -296,10 +302,10 @@ a chat</span></li>
     <div class="schedule__row">
       <p class="body body-400 schedule__body" data-tb><span class="tb-item">Testers were confused about how chats would work and how long they would last, so the scheduling screen now says they happen by text, last a set 30 minutes and can end early. That lets users pick a time when they can be alone.</span></p>
       <div class="schedule__media-col">
-        <ul class="pills" data-tb>
-          <li class="tb-item"><span class="pill">Interview insight 4</span></li>
-          <li class="tb-item"><span class="pill">Testing insight 1</span></li>
-          <li class="tb-item"><span class="pill">Testing insight 2</span></li>
+        <ul class="pills">
+          <li><span class="pill">Interview insight 4</span></li>
+          <li><span class="pill">Testing insight 1</span></li>
+          <li><span class="pill">Testing insight 2</span></li>
         </ul>
         <figure class="mask schedule__media" data-mask>
           <div class="mask__scale"><img src="assets/schedule-current.png" width="1047" height="457" loading="lazy" alt="Two phones on a violet fingerprint texture: Your events listing two introduction chats, and Schedule a chat with a date picker and time slots."></div>
@@ -309,10 +315,10 @@ a chat</span></li>
   </section>
   <section data-node="4262:4967" class="chat cr rule-b" id="chat-rotate" aria-labelledby="chat-title">
     <div class="chat__text" data-tb><h2 class="eyebrow tb-item" id="chat-title">Chat-based interactions</h2><p class="h40 tb-item">When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.</p></div>
-    <div class="cr-block"><span class="pill cr-pill">Interview insight 2</span>
+    <div class="cr-block"><div class="cr-stage"><span class="pill cr-pill">Interview insight 2</span>
       <div class="cr-phone" data-screen="assets/chat-screen.webp" role="img" aria-label="An introduction chat by text with a Confidante"><img class="cr-still" src="assets/chat-still.png" width="314" height="648" alt=""></div>
       <p class="body body-400 cr-para">Chats happen by text, not voice or video, so users don’t have to say anything sensitive out loud. Each chat has a set length and can end early, which leaves users in control of when and how much they share.</p>
-    </div>
+    </div></div>
   </section>
   <section data-node="3300:13477" class="security rule-b" aria-labelledby="security-title">
     <div class="security__text" data-tb>
@@ -320,9 +326,9 @@ a chat</span></li>
       <p class="h40 tb-item">Privacy is a condition for access. Users need safeguards that protect the app before, during and after a conversation.</p>
     </div>
     <div class="security__block">
-      <ul class="pills security__pills" data-tb>
-        <li class="tb-item"><span class="pill">Interview insight 5</span></li>
-        <li class="tb-item"><span class="pill">Testing insight 3</span></li>
+      <ul class="pills security__pills">
+        <li><span class="pill">Interview insight 5</span></li>
+        <li><span class="pill">Testing insight 3</span></li>
       </ul>
       <div class="security__row">
         <div class="security__media">
@@ -377,27 +383,68 @@ a chat</span></li>
     </div>
   </div>
 
-    <div class="ending__bottom"><p class="h40 ending__close" data-tb><span class="tb-item"><span>Identity was the first phase.</span><br>Community is the next.</span></p><div class="resources"><p>Learn more about what you can do to support LGBTQIA+ youth at the links below:</p><ul><li><a href="https://www.thetrevorproject.org/">The Trevor Project</a></li><li><a href="https://pflag.org/">PFLAG</a></li><li><a href="https://familyproject.sfsu.edu/">Family Acceptance Project</a></li></ul></div></div>
+    <div class="ending__bottom"><p class="h40 ending__close" data-tb><span class="tb-item"><span>Identity was the first phase.</span><br><span class="ending__word">Community</span> is the next.</span></p><div class="resources"><p>Learn more about what you can do to support LGBTQIA+ youth at the links below:</p><ul><li><a href="https://www.thetrevorproject.org/">The Trevor Project</a></li><li><a href="https://pflag.org/">PFLAG</a></li><li><a href="https://familyproject.sfsu.edu/">Family Acceptance Project</a></li></ul></div></div>
   </section>
 
     </div>
   </div>
-  <footer class="case-footer" id="contact" data-node="4659:13190">
-    <img class="footer-transition" src="assets/footer-transition.png" width="1440" height="217" alt="">
-    <div class="footer-content">
-      <div class="footer-top"><div class="footer-left"><a class="back-top" href="#top">↑ Back to top</a><nav aria-label="Footer"><a href="../#about">About</a><a href="../#work">Selected works</a><a href="mailto:hello@chadwickfenner.com">Contact</a></nav></div>
-      <div class="footer-contact"><p class="footer-label">Contact</p><div><a class="footer-email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a><p class="footer-location"><span>I’m currently living in Chicago, IL</span><br>and seeking opportunities in NYC.</p></div><a class="contact-button" href="mailto:hello@chadwickfenner.com"><span><img src="assets/contact-icon.svg" width="40" height="40" alt=""></span><span>Contact</span></a></div>
-      <div class="footer-social"><p class="footer-label">Social</p><ul><li><span>↗ Linkedin</span></li><li><span>↗ Resume</span></li></ul></div></div>
-      <div class="footer-meta"><span>©2026, Chadwick Fenner</span><time id="chicago-time">10:24pm CST</time></div>
-      <img class="footer-wordmark" src="assets/footer-wordmark.svg" alt="CHDWCK" width="1548" height="378">
-    </div>
-  </footer>
 </main>
+
+<nav class="ending-bar" data-figma-node="5812:22557" aria-label="More case studies">
+  <a class="ending-bar__prev" href="/mondai/"><img src="/assets/ui/chevron-left.svg" alt=""><span>Mondai: design system case study</span></a>
+  <a class="ending-bar__all" href="/#work">Explore more case studies</a>
+  <a class="ending-bar__next" href="/mondai/framework/"><span>Mondai: framework case study</span><img src="/assets/ui/chevron-left.svg" alt=""></a>
+</nav>
+
+          <footer class="footer" data-figma-node="5812:22558" id="contact">
+            <div class="footer__main">
+              <div class="footer__top grid">
+                <div class="col-1 span-5">
+                  <a class="footer__back" href="#top"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>
+                  <ul class="footer__nav">
+                <li><a class="link-footer" href="/">Home</a></li>
+                <li><a class="link-footer" href="/#about">About</a></li>
+                <li><a class="link-footer" href="/#work">Selected works</a></li>
+                <li><a class="link-footer" href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="footer__contact col-6 span-3">
+                  <p class="footer__label">Contact</p>
+                  <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+                  <div class="footer__note">
+                    <p>I’m currently living in Chicago, IL</p>
+                    <p>and seeking opportunities in NYC.</p>
+                  </div>
+                  <a class="button" href="mailto:hello@chadwickfenner.com">
+                    <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+                    <span class="button__label">Contact</span>
+                  </a>
+                </div>
+                <div class="footer__portraits col-10 span-3" aria-hidden="true">
+                  <span class="footer__pill"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                  <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                </div>
+              </div>
+              <img class="footer__wordmark" data-bleed src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <div class="footer__bottom grid">
+                <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
+                <p class="footer__meta col-4 span-3"><time id="chicago-time">10:24:00pm CST</time></p>
+                <div class="footer__links">
+                  <p class="footer__label footer__links-label">Links</p>
+                  <a class="footer__out col-7 span-3" href="https://www.linkedin.com/in/chadwickfenner/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+                  <a class="footer__out col-10 span-3" href="#resume" hidden data-hidden-until="his resume file"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+                </div>
+              </div>
+            </div>
+          </footer>
+
 
 
 <script src="vendor/lenis.min.js"></script>
 <script src="vendor/gsap.min.js"></script>
 <script src="haven.js"></script>
+<script src="pill-tips.js"></script>
 <script type="module" src="current.js"></script>
+<script type="module" src="/js/contact-goo.js"></script>
 </body>
 </html>

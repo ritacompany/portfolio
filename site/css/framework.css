@@ -1,0 +1,213 @@
+/* Framework case study, Figma 5812:16446 (Transported Framework CS) at 1440. Layout only: color
+   and type come from tokens.css. Each section keeps its Figma height and places its text and
+   figures at their Figma positions; the 390, 768 and 1200 compositions come in Phase 3. Product
+   screens and diagrams are 2x exports from the frame (site/assets/framework/). */
+
+.framework { --navbar-top: 24px; }
+.fw { padding-top: 136px; }
+.fw-sec { position: relative; box-shadow: inset 0 -1px 0 var(--neutral-800); }
+.fw-sec > * { position: absolute; }
+.fig { display: block; max-width: none; }
+.rule { left: 0; right: 0; height: 1px; background: var(--neutral-800); }
+
+/* Text: trimmed to cap height and baseline like Figma, so top is the cap top. */
+.t { text-box: trim-both cap alphabetic; }
+.nowrap { white-space: nowrap; }
+.paras .para { display: block; }
+.paras .para + .para { margin-top: 16px; } /* Body/16 paragraph spacing */
+.paras-tight .para + .para { margin-top: 0; } /* the ending body runs as one block in his frame (4854:19161, no paragraph spacing) */
+.w-bold { font-weight: 700; }
+.a-center { text-align: center; }
+
+.s-display-212 { font: var(--display-212); letter-spacing: var(--display-212-track); }
+.s-display-96 { font: var(--display-96); letter-spacing: var(--display-96-track); }
+.s-heading-40 { font: var(--heading-40); letter-spacing: var(--heading-40-track); }
+.s-heading-24 { font: var(--heading-24); letter-spacing: var(--heading-24-track); }
+.s-heading-20 { font: var(--heading-20); letter-spacing: var(--heading-20-track); }
+.s-body-16 { font: var(--body-16); letter-spacing: var(--body-16-track); }
+.s-label-14 { font: var(--label-14); letter-spacing: var(--label-14-track); }
+.s-label-14-c { font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase; }
+.s-label-12 { font: var(--label-12); letter-spacing: var(--label-12-track); }
+.s-label-12-c { font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; }
+
+.c-neutral-050 { color: var(--neutral-050); }
+.c-neutral-100 { color: var(--neutral-100); }
+.c-neutral-300 { color: var(--neutral-300); }
+.c-neutral-500 { color: var(--neutral-500); }
+.c-neutral-525 { color: var(--neutral-525); }
+.c-neutral-550 { color: var(--neutral-550); }
+.c-green { color: var(--mondai-green-400); }
+
+/* Start of week carousel (framework page, 5812:20498), center mode. His picks of 12 Nov, built 13 Nov:
+   side cards at 0.65 and 0.40 brightness, one template per gesture at 900 ms, dots under the card,
+   the template line stays and its number swaps with the dot, title and text crossfade in place.
+   Geometry and motion are in site/js/start-of-week.js; this file holds layout and the text fades. */
+
+.sow { width: 1017px; }
+.sow__stage { position: relative; height: 550px; overflow: hidden; touch-action: pan-y; outline: none; }
+.sow__stage:focus-visible { box-shadow: inset 0 0 0 2px var(--neutral-525); border-radius: 12px; }
+
+.sow__card {
+  /* Each card is its own Figma export: the template's center frame with its glow on a transparent
+     ground, at its own size (the five templates differ). sow.js sizes and places it. */
+  position: absolute; left: 0; top: 0; max-width: none; margin: 0; transform-origin: 0 0;
+  will-change: transform, filter; cursor: pointer; user-select: none; -webkit-user-drag: none;
+}
+.sow__card.is-center { cursor: default; }
+
+.sow__dots { display: flex; justify-content: center; gap: 8px; height: 7px; margin-top: 40px; }
+.sow__dot { position: relative; width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: var(--neutral-600); cursor: pointer; transition: background-color 200ms var(--ease-quart-out); }
+.sow__dot::after { content: ""; position: absolute; inset: -8.5px -4px; }
+.sow__dot[aria-current="true"] { background: var(--neutral-200); }
+.sow__dot:hover { background: var(--neutral-525); }
+.sow__dot[aria-current="true"]:hover { background: var(--neutral-200); }
+.sow__dot:focus-visible { outline: 2px solid var(--neutral-100); outline-offset: 3px; }
+
+.sow__cap { display: flex; flex-direction: column; align-items: center; margin-top: 28px; text-align: center; }
+.sow__cap > * { margin: 0; }
+.sow__title { margin-top: 13px; }
+.sow__desc { margin-top: 18px; max-width: 529px; }
+
+/* The template line never fades: only its number changes, on the frame the dot changes. */
+.sow__num { display: inline-grid; overflow: hidden; vertical-align: top; }
+.sow__num > span { grid-area: 1 / 1; }
+
+/* Title and text: out as the card starts to move, in as it lands. */
+.sow__cap .sow__fade { transition: opacity 160ms ease-out; }
+.sow__cap.is-out .sow__fade { opacity: 0; }
+.sow__cap.is-pre .sow__fade { opacity: 0; transition: none; }
+.sow__cap.is-in .sow__fade { transition: opacity 280ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sow__cap .sow__fade, .sow__dot { transition: none; }
+}
+@media (max-width: 1199.98px) {
+  .fw-sec > .sow { width: 100% !important; }
+}
+
+/* Panels drawn behind text, as Figma frames with fills (Personalized timeline example, Falling behind cards). */
+.panel-example { border-radius: 12px; background: var(--neutral-850); }
+.panel-card { border-radius: 16px; background: var(--neutral-900); box-shadow: inset 0 0 0 1px var(--neutral-600); }
+.vrule { background: var(--neutral-700); }
+
+
+/* Phase 3.
+   1200 to 1439: the 1440 composition is kept and scaled to the window (site/js/fit-desktop.js sets
+   --fw-scale to the window width over 1440; without the script it falls back to the 1200 scale).
+   Body text lands at 13.3 to 15.2 px and labels at 10 to 11.4 px across that range.
+   Under 1200: the absolute positions fall away and each section stacks in reading order, which the
+   generator writes as the DOM order (scripts/framework-page/build.py, flow_order). Figures keep their
+   own width up to the content width; frames drawn only to sit behind desktop text are hidden, the
+   Example box becomes a box around its own text. Inline styles carry the desktop positions, hence
+   the !important on the overrides. */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+  .fw { zoom: var(--fw-scale, 0.8333); }
+}
+@media (max-width: 1199.98px) {
+  .fw { padding-top: 112px; }
+  .fw-sec {
+    height: auto !important; display: flex; flex-direction: column; align-items: flex-start;
+    padding: 72px var(--grid-margin);
+  }
+  .fw-sec:first-child { padding-top: 0; }
+  .fw-sec > * { position: static !important; width: auto !important; height: auto !important; max-width: 100%; }
+  .fw-sec > .nowrap { white-space: normal; }
+  .fw-sec > * + * { margin-top: 24px; }
+  .fw-sec > .s-heading-40, .fw-sec > .s-display-96 { max-width: 760px; }
+  .fw-sec > .s-body-16, .fw-sec > .s-heading-24, .fw-sec > .s-label-14, .fw-sec > .s-label-12-c { max-width: 640px; }
+  .fw-sec > h2 + * { margin-top: 20px; }
+  .fw-sec > .s-heading-40 + *, .fw-sec > .s-display-96 + * { margin-top: 40px; }
+  .fw-sec > .s-label-12 + .s-body-16, .fw-sec > .s-label-14-c + *, .fw-sec > .s-heading-20:not(h2) + .s-body-16 { margin-top: 10px; }
+  .fw-sec > .s-label-12 { margin-top: 24px; }
+  .fw-sec > .s-label-14-c, .fw-sec > .s-heading-20:not(h2) { margin-top: 36px; }
+  .fw-sec > .fig, .fw-sec > .sow { margin-top: 40px; }
+  .fw-sec > .fig + .s-body-16, .fw-sec > .fig + .s-label-12-c { margin-top: 32px; }
+  .fw-sec > .s-label-12-c:last-child { margin-top: 40px; }
+  .fw-sec > h1 { margin-bottom: 16px; }
+  .fig { width: auto !important; height: auto !important; }
+  .rule { align-self: stretch; margin: 48px calc(-1 * var(--grid-margin)) !important; max-width: none; height: 1px !important; }
+  .fw-sec > .rule + * { margin-top: 0; }
+  .panel-card, .vrule, .panel-example { display: none; }
+  /* The Example box: the panel behind it is hidden, so its label and text draw the box themselves. */
+  [data-figma-node="5812:17127"] { margin-top: 40px !important; padding: 20px 20px 0; background: var(--neutral-850); border-radius: 12px 12px 0 0; }
+  [data-figma-node="5812:17128"] { margin-top: 0 !important; padding: 10px 20px 20px; background: var(--neutral-850); border-radius: 0 0 12px 12px; }
+}
+@media (max-width: 767.98px) {
+  .fw { padding-top: 96px; }
+  .fw-sec { padding-block: 56px; }
+  .fw-sec > .fig, .fw-sec > .sow { margin-top: 32px; }
+}
+
+/* The phone step-down for Heading/40 and Heading/24 that tokens.css used to apply site wide. His phone
+   frames keep both at full size on Home and in the footer; this page's body has no phone design yet, so it keeps the step-down. */
+@media (max-width: 767.98px) {
+  .framework .fw {
+    --heading-40: 500 28px/34px var(--font);
+    --heading-24: 500 20px/26px var(--font);
+  }
+}
+
+/* The Rollover effect subhead (his ask, 11 Nov): live text with its icon centred on the line, the icon
+   25 percent smaller than the flattened export it replaces (19.5 by 21.5 there). */
+.fb-effect { display: flex; align-items: flex-start; gap: 12px; }
+.fb-effect img { width: 19.24px; height: 25.66px; flex: none; margin-top: -5.83px; } /* 4966:14310, title cap top 5.83 below the icon frame (12 Nov) */
+
+/* The Mondai mark on the hero: his file moved it off the title row (12 Nov) to sit above the tagline,
+   40 by 40.57 at the 40 px margin, the tagline 32 below it (WIP Mondai framework case study 4269:9433,
+   Mondai Logo 4961:12105). */
+.fw-logo { width: 40px; height: 40.57px; }
+/* Hero paragraphs sit 40 apart in the same frame (4961:11994 and 4961:11995), not the usual 16. */
+[data-figma-node="5812:16468"] .para + .para { margin-top: 40px; }
+@media (max-width: 1199.98px) {
+  .fw-sec > .fw-logo { width: 40px !important; height: 40.57px !important; }
+  .fw-sec > .fw-logo + * { margin-top: 32px; }
+}
+
+/* Tablet fixes (N8, 12 Nov, reports/tablet-breakpoint/ISSUES.md), 768 to 1199 only so 390 is untouched.
+   T5: body lines held under 75 characters (480 px; Satoshi at 16 px runs about 6.5 px a character).
+   T4: the Example label and text stretch to one width, so the box they draw has no notch.
+   T6 and T7: no figure grows past its Figma width (the img width attribute), so small cards keep their
+   type in scale and the Action Item laptop stops at its Figma 892 by 1194. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .fw-sec > .s-body-16 { max-width: 480px; }
+  .fw-sec > [data-figma-node="5812:17127"], .fw-sec > [data-figma-node="5812:17128"] { align-self: stretch; max-width: 480px; }
+  .fw-sec > .fig { max-width: min(100%, var(--fig-w, 100%)); }
+  [data-figma-node="5812:16512"] { --fig-w: 896px; }
+  [data-figma-node="5812:16598"] { --fig-w: 1090px; }
+  [data-figma-node="5812:16775"] { --fig-w: 1167px; }
+  [data-figma-node="5812:16790"] { --fig-w: 1166px; }
+  [data-figma-node="5812:16973"] { --fig-w: 892px; }
+  [data-figma-node="5812:17089"] { --fig-w: 308px; }
+  [data-figma-node="5812:17138"] { --fig-w: 1089px; }
+  [data-figma-node="5812:20114"] { --fig-w: 547px; }
+  [data-figma-node="5812:20358"] { --fig-w: 1050px; }
+  [data-figma-node="5812:20260"] { --fig-w: 466px; }
+  [data-figma-node="5812:20316"] { --fig-w: 815px; }
+}
+/* T2: Role, Affiliate and Focus as one row, as in his frame (4664:16790); T3: the four references as his
+   two by two grid (4508:10098). Grids replace the stacked column for these two sections only; margins from
+   the stacked rules above still space the rows, so each column keeps the same rhythm. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .fw-sec[data-figma-node="5812:16447"], .fw-sec[data-figma-node="5812:16470"] { display: grid; justify-items: start; align-items: start; }
+  .fw-sec[data-figma-node="5812:16447"] > *, .fw-sec[data-figma-node="5812:16470"] > * { grid-column: 1 / -1; }
+  .fw-sec[data-figma-node="5812:16447"] { grid-template-columns: max-content max-content minmax(0, 1fr); column-gap: 64px; }
+  .fw-sec[data-figma-node="5812:16447"] > .rule { justify-self: stretch; }
+  [data-figma-node="5812:16456"], [data-figma-node="5812:16457"] { grid-column: 1 !important; }
+  [data-figma-node="5812:16459"], [data-figma-node="5812:16460"] { grid-column: 2 !important; }
+  [data-figma-node="5812:16462"], [data-figma-node="5812:16463"] { grid-column: 3 !important; }
+  [data-figma-node="5812:16456"], [data-figma-node="5812:16459"], [data-figma-node="5812:16462"] { grid-row: 2; }
+  [data-figma-node="5812:16457"], [data-figma-node="5812:16460"], [data-figma-node="5812:16463"] { grid-row: 3; }
+  .fw-sec[data-figma-node="5812:16470"] { grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  [data-figma-node="5812:16480"], [data-figma-node="5812:16481"], [data-figma-node="5812:16482"],
+  [data-figma-node="5812:16491"], [data-figma-node="5812:16492"], [data-figma-node="5812:16493"] { grid-column: 1 !important; }
+  [data-figma-node="5812:16485"], [data-figma-node="5812:16486"], [data-figma-node="5812:16487"],
+  [data-figma-node="5812:16496"], [data-figma-node="5812:16497"], [data-figma-node="5812:16498"] { grid-column: 2 !important; }
+  [data-figma-node="5812:16480"], [data-figma-node="5812:16485"] { grid-row: 3; }
+  [data-figma-node="5812:16481"], [data-figma-node="5812:16486"] { grid-row: 4; }
+  [data-figma-node="5812:16482"], [data-figma-node="5812:16487"] { grid-row: 5; }
+  [data-figma-node="5812:16491"], [data-figma-node="5812:16496"] { grid-row: 6; }
+  [data-figma-node="5812:16492"], [data-figma-node="5812:16497"] { grid-row: 7; }
+  [data-figma-node="5812:16493"], [data-figma-node="5812:16498"] { grid-row: 8; }
+  /* Name 26 px below its label's cap top, as in the frame (labels at 360, names at 386). */
+  .fw-sec[data-figma-node="5812:16470"] > .s-heading-20:not(h2) { margin-top: 16px; }
+}

@@ -1,4 +1,4 @@
-/* Fonts, reset and site wide behavior. Components get their own files when the build starts (S1). */
+/* Fonts, reset and site wide behavior. Shared components live in components.css, the grid in grid.css. */
 
 @font-face { font-family: "Satoshi"; src: url("../assets/fonts/satoshi-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Satoshi"; src: url("../assets/fonts/satoshi-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
@@ -9,7 +9,7 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   min-height: 100vh;
-  background: var(--neutral-1000);
+  background: var(--neutral-900); /* the fill of every page frame in Figma */
   color: var(--neutral-000);
   font: var(--body-16);
   -webkit-font-smoothing: antialiased;
@@ -26,7 +26,7 @@ a { color: inherit; }
 /* One visible focus treatment everywhere: 2px white ring. */
 :focus-visible { outline: 2px solid var(--neutral-000); outline-offset: 4px; }
 
-::selection { background: var(--neutral-000); color: var(--portfolio-neutral-900); }
+::selection { background: var(--neutral-000); color: var(--neutral-900); }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;

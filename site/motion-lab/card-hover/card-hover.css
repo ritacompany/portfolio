@@ -1,0 +1,14 @@
+/* 6. Work card hover (his spec, 9 Nov; motion in card-hover.js, docs/motion/card-hover/): at rest the
+      image only; on hover a black overlay to 75 percent and Learn more loads in over it. Without the
+      script the same states switch on hover with no motion. */
+.work-card__shade { position: absolute; inset: 0; background: var(--neutral-1000); opacity: 0; pointer-events: none; }
+.work-card .button-sm { opacity: 0; }
+.work-card__media .work-card__cta-center { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+@media (hover: hover) {
+  html:not(.has-card-hover) .work-card:hover .work-card__shade { opacity: 0.75; }
+  html:not(.has-card-hover) .work-card:hover .button-sm { opacity: 1; }
+}
+/* Learn more appears as the outline button; it takes its picked fill only when the pointer is on it. */
+.work-card:hover .button-sm, .work-card:focus-visible .button-sm { background: none; color: var(--neutral-100); }
+.work-card .button-sm:hover { background: var(--neutral-100); color: var(--neutral-900); }
+.has-card-hover .work-card__media > img { transition: none; }

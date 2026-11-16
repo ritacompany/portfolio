@@ -1,0 +1,309 @@
+/* Home, his VC master (Portfolio Design IarvWaqjIwrZ2afQmMxKm6, 4494:5909) at 1440, synced 10 Nov
+   (docs/FIGMA_SYNC_2026-11-10.md). The data-figma-node ids in the page are the old transported copy's.
+   Layout only: color and type come from tokens.css, the parts from components.css. Sections overlap by
+   half a pixel, as in Figma. */
+
+.home { --navbar-top: 15px; }
+
+/* Hero, 5812:22863 */
+.hero { position: relative; height: 900px; }
+.hero__intro { position: absolute; top: 468px; left: 0; right: 0; align-items: end; }
+/* Labels hug their text like Figma's auto width layers. */
+.hero__city, .about__label, .about__when { justify-self: start; width: fit-content; }
+.hero__lede {
+  width: min(457px, 100%);
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-200); /* 4929:12396, Neutral/200 since 11 Nov */
+  text-box: trim-both cap alphabetic;
+}
+/* The phone frame 4928:11928 carries its own, shorter line (11 Nov). */
+.hero__lede-phone { display: none; }
+/* Under 1200 the block starts 2.33 past column 5, where the old frame had it. */
+.hero__where { display: flex; flex-direction: column; gap: 12px; margin-left: 2.33px; }
+/* The master widens the lede to 457 and puts the location 126 after it, at x 623: column 6. */
+@media (min-width: 1200px) {
+  .hero__lede { grid-column: 1 / span 5; }
+  .hero__where { grid-column: 6 / span 4; margin-left: 0; }
+}
+.hero__city {
+  font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
+  color: var(--neutral-550); white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+.hero__move { display: flex; align-items: center; gap: 6px; height: 14px; }
+.hero__move img { flex: none; width: 16px; height: 16px; }
+.hero__move span {
+  font: var(--body-16); letter-spacing: var(--body-16-track); color: var(--neutral-200);
+  white-space: nowrap; padding-inline-end: 0.01em;
+  text-box: trim-both cap alphabetic;
+}
+/* CHDWCK is live text in the master (Satoshi Medium 392.5, Neutral/200), running off both edges; the
+   SVG is his text outlined and clipped to the frame, glyph tops at 580.51. */
+.hero__name { position: absolute; top: 580.51px; left: 0; width: 100%; }
+.hero__name img { width: 100%; height: auto; overflow: visible; }
+
+/* Selected works, 4923:12086. No line above it in the master. */
+.works { margin-top: -0.5px; padding: 165px 0 270px; }
+.works__title {
+  grid-column: 1 / -1; justify-self: center;
+  font: var(--heading-64); letter-spacing: var(--heading-64-track); color: var(--neutral-200); /* 4923:12112, 11 Nov */
+  padding-inline-end: 0.04em;
+  text-box: trim-both cap alphabetic;
+}
+.works__cards { display: flex; align-items: stretch; gap: 38px; margin-top: 125px; padding-inline: var(--grid-margin); }
+
+.work-card { display: flex; flex-direction: column; gap: 15.71px; color: inherit; text-decoration: none; }
+/* Card widths, the description offset and Learn more are shares of the Figma sizes (879 and 435 of the
+   1360 content width), so 1440 lands on Figma's pixels and narrower desktops scale with it. */
+.work-card-mondai { width: calc(100% * 879 / 1360); }
+.work-card-haven { width: calc(100% * 443 / 1360); justify-content: flex-end; }
+.work-card__head { position: relative; display: flex; align-items: center; gap: 11.06px; height: 14px; }
+.work-card__name {
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-050);
+  white-space: nowrap; padding-inline-end: 0.02em;
+  text-box: trim-both cap alphabetic;
+}
+.work-card__slashes {
+  font: var(--mark-15); letter-spacing: var(--mark-15-track); color: var(--neutral-200);
+  text-box: trim-both cap alphabetic;
+}
+.work-card__kind {
+  font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase;
+  color: var(--neutral-200); white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+.work-card__desc {
+  position: absolute; top: 2px; left: var(--desc-x);
+  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-200);
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+/* Mondai's description is drawn at 13.75 in the master (no text style); Haven's is Label/14. */
+.work-card-mondai .work-card__desc { --desc-x: calc(100% * 569.64 / 879); font-size: var(--card-desc-size); }
+.work-card-haven .work-card__desc { --desc-x: calc(100% * 230.79 / 443); }
+.work-card__media { position: relative; overflow: hidden; }
+/* The master lets the Mondai media run 4.17 past the card (579.45 tall). His call, 13 Nov: the two cards
+   always end on one line, so the media is clipped to the card, 575.28 tall, losing 4.17 of the image's
+   bottom; nothing else moves. The art is baked at 2x from his layers in 4923:12090 (gradient, laptop,
+   glow, the 47 percent Neutral/900 veil); his noise effect is not baked. */
+.work-card-mondai .work-card__media { aspect-ratio: 879 / 575.28; }
+/* Haven, 4923:12104: the phone image on Haven's night blue, 443 square, drawn from the same image as
+   the phone card (no baked export), placed as in the master: 487.35 by 429.82 at -15.71, -0.5, in a
+   443 by 442.5 clip. The master adds a noise effect to the blue that is not drawn here. */
+.work-card-haven .work-card__media { aspect-ratio: 1; }
+@media (min-width: 768px) {
+  .work-card-haven .work-card__media { background: var(--haven-card-night); }
+  .work-card-haven .work-card__desk-art { display: none; }
+  .work-card-haven .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; transition: transform 900ms var(--ease-expo-out); }
+  .work-card-haven .haven-art__clip { position: absolute; left: 0; top: 0; width: 100%; height: 99.887%; overflow: hidden; }
+  .work-card-haven .haven-art__clip img { position: absolute; max-width: none; left: -3.546%; top: -0.113%; width: 110.01%; height: 97.134%; }
+}
+.work-card__media > img { width: 100%; height: auto; }
+/* Learn more keeps its Figma center (the frame draws the button at 98.5 percent scale). */
+.work-card__media .button-sm { position: absolute; left: calc(100% * 343.39 / 879); top: calc(100% * 250.87 / 575.28); }
+
+/* Work card states, tracker H11 (prototypes/homepage-foundations/work-card-states.html): the whole card
+   is the link; hover eases the image in 3.5 percent, the label and description go white and Learn more
+   takes its hover fill; focus shows the same plus a ring; press settles the image to 1 percent. Hover
+   only on devices that hover, so one tap opens a card. Reduced motion keeps the colour change. */
+.work-card__media > img { transform: scale(1); transition: transform 900ms var(--ease-expo-out); }
+.work-card__name, .work-card__slashes, .work-card__kind, .work-card__desc { transition: color 400ms var(--ease-quart-out); }
+.work-card:focus-visible { outline: 2px solid var(--neutral-000); outline-offset: 8px; }
+@media (hover: hover) {
+  .work-card:hover .work-card__media > img { transform: scale(1.035); }
+  .work-card-haven:hover .work-card__phone-art { transform: scale(1.035); }
+  .work-card:hover .work-card__name, .work-card:hover .work-card__slashes,
+  .work-card:hover .work-card__kind, .work-card:hover .work-card__desc { color: var(--neutral-000); }
+  .work-card:hover .button-sm { background: var(--neutral-100); color: var(--neutral-900); }
+}
+.work-card:focus-visible .work-card__media > img, .work-card-haven:focus-visible .work-card__phone-art { transform: scale(1.035); }
+.work-card:focus-visible .work-card__name, .work-card:focus-visible .work-card__slashes,
+.work-card:focus-visible .work-card__kind, .work-card:focus-visible .work-card__desc { color: var(--neutral-000); }
+.work-card:focus-visible .button-sm { background: var(--neutral-100); color: var(--neutral-900); }
+.work-card:active .work-card__media > img { transform: scale(1.01); transition-duration: 150ms; }
+@media (min-width: 768px) { .work-card-haven:active .work-card__phone-art { transform: scale(1.01); transition-duration: 150ms; } }
+@media (prefers-reduced-motion: reduce) {
+  .work-card__media > img, .work-card-haven .work-card__phone-art { transition: none; transform: none !important; }
+}
+
+/* About, 4494:5932. Row lines Neutral/700. */
+.about { margin-top: -0.5px; }
+.about__row { align-items: start; box-shadow: inset 0 1px 0 var(--neutral-700); }
+.about-story { min-height: 543px; padding-top: 33px; }
+.about-role { min-height: 208px; padding-top: 36px; }
+.about__label {
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-300);
+  white-space: nowrap; padding-inline-end: 0.02em;
+  text-box: trim-both cap alphabetic;
+}
+.about__when {
+  margin-top: 11px;
+  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-550);
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+.about__body {
+  width: min(650px, 100%);
+  font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-300);
+  text-box: trim-both cap alphabetic;
+}
+.about-story .about__body { width: min(595px, 100%); margin-left: 1px; }
+.about__body > * + * { margin-top: 26px; }
+.about__body ul { padding-left: 30px; }
+
+.home .footer { margin-top: -0.5px; }
+/* The home footer instance overrides the band's image filters in Figma (temperature 0, shadows -84
+   against the component's temperature -19), so Home uses the band rendered from that instance. */
+
+/* Phase 3, under 1200. The hero leaves its absolute 1440 placement and stacks from the bottom: lede and
+   location over the CHDWCK wordmark, which still spans the full width. Cards keep their side by side
+   proportions on tablet and stack on mobile; card heads wrap instead of placing the description at a
+   fixed offset. About keeps label and body as two columns on tablet and stacks them on mobile. */
+@media (max-width: 1199.98px) {
+  .hero { height: auto; min-height: 760px; display: flex; flex-direction: column; justify-content: flex-end; padding-top: 120px; }
+  .hero__intro { position: static; row-gap: 24px; }
+  .hero__name { position: static; margin-top: 56px; }
+
+  .works { padding: 88px 0 160px; }
+  .work-card__head { height: auto; flex-wrap: wrap; row-gap: 10px; }
+  .work-card__desc { position: static; margin-left: auto; }
+
+  .about-story, .about-role { min-height: 0; padding-bottom: 64px; }
+  .about__row > :first-child { grid-column: 1 / span 3; }
+  .about__body { grid-column: 4 / -1; }
+}
+/* Tablet only, 768 to 1199 (reports/home-tablet/ISSUES.md H1). The hero fills the first screen, as it
+   does at 1440 and on the phone, and never drops under its 760 floor on a short landscape screen. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .hero { min-height: max(760px, 100svh); }
+}
+/* Phone parts that exist only under 768: hidden at tablet and desktop. */
+.navbar__menu, .hero__contact, .hero__vertical, .work-card__phone-art, .work-card__more, .menu { display: none; }
+
+/* Phone, under 768: his Mobile frames (Portfolio Design, VC, 4929:12379, 10 Nov), drawn at 402 by 874.
+   They replace the collapsed desktop layout that was here. */
+@media (max-width: 767.98px) {
+  /* Header. On the hero it is the hero's own top row: Product Designer and the burger, no logo, since
+     the CHDWCK wordmark is right there (4928:11942). It scrolls away with the hero and comes back as a
+     fixed bar with the logo and the burger (frames 4928:12018 on), dropping in once the hero has gone
+     (home-phone.js). The page's links move into the menu. */
+  .home { --navbar-top: 0px; --hero-col: min(156px, 38.8vw); }
+  .navbar { display: flex; align-items: center; padding-top: 24px; }
+  .navbar__links, .home .navbar__logo { display: none; }
+  .home .navbar__role { display: block; margin-left: calc(var(--hero-col) - var(--grid-margin)); color: var(--neutral-300); }
+  .navbar__menu {
+    display: grid; place-items: center; margin: -16px -13px -16px auto; padding: 16px 13px;
+    background: none; border: 0; cursor: pointer;
+  }
+  .navbar__menu img { width: 18px; height: 12px; }
+  .page-header.is-past-hero { position: fixed; top: 0; z-index: 5; background: var(--neutral-1000); animation: bar-in 320ms var(--ease-expo-out); }
+  /* His phone frames are drawn on Neutral/1000, the desktop master on Neutral/900. */
+  body:has(> .canvas.home), .home .footer { background: var(--neutral-1000); }
+  /* The bar and menu logo are Neutral/300 on the phone (Neutral/050 on desktop). */
+  .is-past-hero .navbar__logo img, .menu .navbar__logo img { content: url("../assets/ui/logo-300.svg"); }
+  .is-past-hero .navbar { padding-block: 18px; }
+  .is-past-hero .navbar__logo { display: block; }
+  .is-past-hero .navbar__role { display: none; }
+  @keyframes bar-in { from { transform: translateY(-100%); } }
+
+  /* Hero, 4928:11925. One screen tall. CHDWCK runs down the left edge, turned a quarter, letters cut by
+     the edge as drawn: 219.84 px at 874 tall, the cap side 128 px in from the left. Its size follows the
+     screen height, capped so its right edge stays 28 px clear of the text column (both meet at 402 by
+     874). The text column starts at 156 and runs to the margin; location at the top, the lede and the
+     Contact button 120 above the bottom. */
+  .hero {
+    --hero-h: max(600px, 100svh);
+    --wm: min(calc((var(--hero-h) + 30px) / 4.112), calc((var(--hero-col) - 28px) / 0.5822));
+    height: var(--hero-h); min-height: 0; padding: 0; display: block; overflow: hidden;
+  }
+  .hero__intro { position: static; display: block; padding: 0; }
+  .hero__where { position: absolute; top: 76px; left: var(--hero-col); right: var(--grid-margin); margin: 0; }
+  .hero__move { height: auto; align-items: flex-start; }
+  .hero__move img { margin-top: -2.5px; content: url("../assets/ui/dolly-200.svg"); }
+  .hero__move span { white-space: normal; }
+  .hero__lede {
+    position: absolute; left: var(--hero-col); bottom: 200px; width: min(235px, calc(100% - var(--hero-col) - var(--grid-margin)));
+    font: var(--body-16-m); letter-spacing: var(--body-16-m-track); color: var(--neutral-050);
+  }
+  .hero__lede-wide { display: none; }
+  .hero__lede-phone { display: inline; }
+  /* Right edge 28 px in at 402 (x 212 to 374 in the frame), anchored right so narrow phones keep it on screen. */
+  .hero__contact { display: inline-flex; position: absolute; right: calc(var(--grid-margin) + 4.34px); bottom: 120px; }
+  .hero__name { position: static; margin: 0; }
+  .hero__wordmark { display: none; }
+  .hero__vertical {
+    display: block; position: absolute; top: calc(var(--wm) * -0.06823); left: calc(var(--wm) * 0.5822);
+    transform-origin: 0 0; transform: rotate(90deg);
+    font: var(--wordmark-vertical); font-size: var(--wm); letter-spacing: var(--wordmark-vertical-track);
+    color: var(--neutral-200); white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+  /* Figma nudges single letters on top of the word's tracking. */
+  .hero__vertical > span { margin-inline-end: var(--t, 0em); }
+
+  /* Selected works, 4928:12018. Title at Heading/40, centered, 96 from the top of the section; cards
+     stack 40 apart. Each card: name, the kind under it (Mondai), the image at 404 by 266 proportions,
+     then the description and a Learn more link on one row. The phone images are their own crops. */
+  .works { padding: 96px 0 188px; box-shadow: none; }
+  .works__title { font: var(--heading-40); letter-spacing: var(--heading-40-track); color: var(--neutral-050); }
+  .works__cards { flex-direction: column; gap: 40px; margin-top: 62px; }
+  .work-card-mondai, .work-card-haven { width: 100%; }
+  .work-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0; }
+  .work-card__head { display: contents; }
+  .work-card__name { order: 1; grid-column: 1 / -1; justify-self: start; color: var(--neutral-200); }
+  .work-card__slashes { display: none; }
+  .work-card__kind { order: 2; grid-column: 1 / -1; justify-self: start; margin-top: 11.06px; color: var(--neutral-550); font-weight: 700; }
+  .works .work-card__media { order: 3; grid-column: 1 / -1; margin-top: 20px; margin-bottom: 0; aspect-ratio: 404 / 266.324; }
+  .work-card__desc { order: 4; position: static; margin: 20px 0 0; font-size: var(--card-desc-size); }
+  .work-card__more { order: 5; display: inline-block; margin: 13px 0 -7px; justify-self: end; }
+  .work-card__desk-art, .work-card__media .button-sm { display: none; }
+  .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; }
+  .work-card__phone-art img { position: absolute; max-width: none; transition: transform 900ms var(--ease-expo-out); }
+  /* Mondai, 4928:12058: laptop and glow on a dark gradient, placed as in the frame (354 by 233.36). */
+  .work-card-mondai .work-card__media { background: linear-gradient(180.1deg, var(--mondai-card-top) 0.135%, var(--mondai-card-bottom) 47.465%); }
+  .mondai-art__laptop { left: -43.503%; top: -61.746%; width: 186.14%; height: 353.848%; }
+  .mondai-art__glow { left: 14.839%; top: -7.949%; width: 64.211%; height: 99.967%; }
+  /* Haven, 4929:12222: the phone in a square clip on Haven's night blue. */
+  .work-card-haven .work-card__media { background: var(--haven-card-night); }
+  .haven-art__clip { position: absolute; left: 10.452%; top: -9.625%; width: 78.904%; height: 119.558%; overflow: hidden; }
+  .haven-art__clip img { left: -3.612%; top: -0.115%; width: 112.034%; height: 98.924%; }
+  .work-card:active .work-card__phone-art img { transform: scale(1.01); transition-duration: 150ms; }
+
+  /* About, 4929:12243. Each row: a line, the label at the left, the body indented by the About label's
+     width (53) and starting 90 below the label. Body/16 M, a blank line between paragraphs. */
+  .about__row { display: grid; grid-template-columns: 53px minmax(0, 1fr); column-gap: 0; padding-top: 32px; box-shadow: inset 0 1px 0 var(--neutral-700); }
+  .about-story { padding-bottom: 64px; }
+  .about-role { padding-bottom: 89px; }
+  .about__row > :first-child { grid-column: 1; grid-row: 1; }
+  .about__body, .about-story .about__body {
+    grid-column: 2; grid-row: 1; width: auto; margin: 90px 0 0;
+    font: var(--body-16-m); letter-spacing: var(--body-16-m-track); color: var(--neutral-300);
+  }
+  .about__body > * + * { margin-top: 21px; }
+  .about-role .about__label { color: var(--neutral-200); }
+  /* A jump to About lands with the line 112 down, as in the frame, clear of the fixed bar. */
+  .about { scroll-margin-top: 112px; }
+
+  /* Menu, 4928:11959. Full screen: logo and burger on top, the page links at Heading/40 in the footer
+     link style, Contact and the email at the bottom. */
+  .menu {
+    position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column;
+    padding: 24px var(--grid-margin) 40px; background: var(--neutral-1000);
+    opacity: 0; transition: opacity 200ms var(--ease-quart-out);
+  }
+  .menu[hidden] { display: none; }
+  .menu[data-open] { opacity: 1; }
+  .menu__bar { display: flex; align-items: center; }
+  .menu__bar .navbar__logo { display: block; }
+  /* His close X, 14 by 14 (4929:12498), in the burger's place; the hit area stays 44 wide. */
+  .menu__close { padding: 15px; margin: -15px -15px -15px auto; }
+  .menu__close img { width: 14px; height: 14px; }
+  .menu__body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 64px; margin-top: 218px; }
+  .menu__links { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; list-style: none; padding: 0; }
+  .menu__links li { display: flex; }
+  .menu__links li[hidden] { display: none; }
+  .menu__contact { display: flex; flex-direction: column; align-items: flex-start; }
+  .menu__contact .footer__email { margin-top: 26px; }
+}
+@media (max-width: 767.98px) and (prefers-reduced-motion: reduce) {
+  .page-header.is-past-hero { animation: none; }
+}
