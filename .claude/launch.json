@@ -1,0 +1,33 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cs2-canvas",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4180",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/Users/chadwickfenner/Code/portfolio/.cs2-canvas"
+      ],
+      "port": 4180
+    },
+    {
+      "name": "cs2-canvas-worktree",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4181",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/Users/chadwickfenner/Code/portfolio/.claude/worktrees/inspiring-turing-872a6e/.cs2-canvas"
+      ],
+      "port": 4181
+    }
+  ]
+}
