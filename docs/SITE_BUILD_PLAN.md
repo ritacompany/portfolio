@@ -6,17 +6,27 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
-### Where it stopped, 10 Nov late (usage limit; latest)
-Pushed: edit panel c1a2604, Mondai motion 6341aa0, Figma sync a420fb5, works reveal 93a5419. Rechecked by
-the main session: preview build HOVER_STILL_OK (53 hovers); Home motion hover, reveal and repeat pass.
-Open, in order:
-1. `.unlazy/home-motion/check.mjs figma` now fails ("card section does not match his frame") after the
-   Figma sync. Either the saved Figma render (`.unlazy/home-motion/figma-card-section.png`) is older than
-   his updated frame, or the sync moved the cards. Re-export Card Section 4923:12087 and compare first.
-2. The Figma sync session reports two suite failures it traces to 588bdac (framework footer box, Haven
-   clock), likely the removed footer band and the seconds in the clock. Check and update those checks.
-3. Move Home motion's sliders off its own white box onto `window.EditPanel.register` (c1a2604 has the API).
-4. His look at everything on :4319; nothing from the preview layers is in site/css or site/js yet.
+### Home motion checks rebased, 16 Nov (latest)
+After the usage stop, the open items from 10 Nov, settled:
+1. Card versus Figma check: his master changed again. Card Section 4923:12087, re-exported 16 Nov, now
+   puts Haven's title and description under its image, places the phone differently and draws Learn
+   more smaller (about 130 wide). The check now compares region by region, allowing 6 px for his 13 Nov
+   clip; Mondai matches, Haven does not until the site is synced. Proposed as its own session, "Sync his
+   latest Home card changes from Figma" (the 10 Nov sync session is archived).
+2. Product Designer: his master sets it to Neutral/550 (docs/FIGMA_SYNC_2026-11-10.md D14), newer than
+   his 10 Nov "same as the links" ask, so the preview override is gone and the check follows his file.
+3. Centring check: Haven's card now draws the phone image from layers (the sync), so the check measures
+   whichever image the card shows and asks that it hold the same place in its frame from 800 to 1920.
+4. The two suite failures the sync flagged are not from 588bdac: `verify-pages boxes framework` measures
+   against the frame from before the 12 Nov framework syncs, and `verify-haven body` against the 9 Nov
+   render (reports/haven-tablet/ISSUES.md). Both need their references re-taken by their owners.
+5. Home motion's sliders are in the dark panel through works-bridge.js (panel v2, 11 Nov).
+6. A check file edit of mine dropped three gates and the script let unknown gate names pass; it now
+   rejects them. Ledger, fresh run: 16 of 18 met; open are the Figma match (waiting on the sync) and his
+   own try of the preview.
+Before shipping: `site/assets/home/mondai-card@2x.webp` has his 47 percent hover layer baked in (mean
+brightness 13.2 against 19.3 for the rest image in site/dev/preview/img), so the real site would show the
+hover darkening at rest. Ship the preview's rest image with the hover.
 
 ### Evening batch, 10 Nov
 His list and owners: `.unlazy/nov10-batch/PLAN.md` (local). Done here: halftone band above the footer
