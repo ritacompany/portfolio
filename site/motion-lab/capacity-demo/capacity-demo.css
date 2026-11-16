@@ -20,3 +20,8 @@
 .capdemo__chev { background-repeat: no-repeat; }
 .capdemo__dim { background: var(--capdemo-panel, #080808); opacity: 0; border-radius: 50%; }
 .capdemo__cursor { left: 0; top: 0; width: 5.2cqw; height: auto; transform-origin: 0 0; will-change: transform; }
+
+/* Options round (16 Nov) */
+.capdemo__group > *, .capdemo__btnwrap > * { position: absolute; }
+.capdemo__crop, .capdemo__chev { background-repeat: no-repeat; }
+.capdemo__caret { opacity: 0; }
