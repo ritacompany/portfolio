@@ -37,6 +37,12 @@ may not: copy, font, size, weight, tracking, line height, case, colour of any te
 `scripts/lint-styles.mjs` rejects colour literals and type declarations in style files, and
 `check.mjs typelock` compares every character's computed type and colour against the base page.
 
+`stuck-invert` and `stuck-behind` come from the Elvina Prasad style on Refero
+(`5df2af07-6ce2-4805-bf45-6ee595e623e0`): the hero's CHDWCK holds still on screen through the bottom of
+Selected works while the work scrolls past. `stuck-invert` floats it above with a difference blend, so the
+title and card art flip colour inside its letters; `stuck-behind` leaves it under the work with no blend.
+Desktop and tablet only; the phone's vertical CHDWCK is left alone.
+
 `soft-landing` is a proof style that exercises every knob so the checks have something real to hold. It
 is not from a reference.
 

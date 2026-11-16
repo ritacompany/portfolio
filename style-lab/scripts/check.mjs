@@ -5,6 +5,7 @@
 //   node scripts/check.mjs switch    the ?lab switcher lists every style and loads the one picked
 //   node scripts/check.mjs behavior  phone menu, phone bar, card hover, footer clock, gooey Contact
 //   node scripts/check.mjs reduced   reduced motion: every style shows everything on load
+//   node scripts/check.mjs stick     the stuck CHDWCK styles hold the word still through the works
 //   node scripts/check.mjs layers    a Tailwind utility beats the site CSS; the shadcn button renders
 // Each prints one OK token on success and exits 1 otherwise.
 
@@ -377,6 +378,58 @@ async function reduced(browser, pg) {
   if (!process.exitCode) console.log(`REDUCED_OK ${ids.length} styles at 1440 and 390, control caught`);
 }
 
+// Stuck CHDWCK styles: from the hold's start to its end the word's top stays put on screen (within
+// 1 px), after the end it leaves with the works, and a click on a card under it still reaches the card.
+// Control: the base page, where the word scrolls away, must fail the same hold test.
+async function stick(browser, pg) {
+  const ids = (await styleIds(browser, pg)).filter((id) => id.startsWith("stuck-"));
+  if (!ids.length) fail("no stuck styles registered");
+  const probe = async (id, width) => {
+    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    await page.goto(withStyle(pg, id), { waitUntil: "networkidle" });
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(400);
+    const [s0, s1] = id
+      ? (await page.evaluate(() => document.querySelector(".hero__name").dataset.stick)).split(" ").map(Number)
+      : [16, 1300];
+    const tops = [];
+    for (const y of [s0 + 1, (s0 + s1) / 2, s1 - 1, s1 + 300]) {
+      await page.evaluate((y) => scrollTo(0, y), y);
+      await page.waitForTimeout(250);
+      tops.push(await page.evaluate(() => document.querySelector(".hero__name").getBoundingClientRect().top));
+    }
+    // A point inside the word that also lies on a card, mid hold.
+    await page.evaluate((y) => scrollTo(0, y), (s0 + s1) / 2);
+    await page.waitForTimeout(250);
+    const hit = await page.evaluate(() => {
+      const n = document.querySelector(".hero__name").getBoundingClientRect();
+      for (const c of document.querySelectorAll(".work-card__media")) {
+        const r = c.getBoundingClientRect();
+        const x = Math.max(r.left, n.left) + 20, y = (Math.max(r.top, n.top) + Math.min(r.bottom, n.bottom)) / 2;
+        if (x < Math.min(r.right, n.right) && y > Math.max(r.top, n.top) && y < Math.min(r.bottom, n.bottom)) {
+          return { found: true, card: !!document.elementFromPoint(x, y)?.closest(".work-card") };
+        }
+      }
+      return { found: false };
+    });
+    await page.close();
+    return { tops, s0, s1, hit };
+  };
+  const held = (t) => Math.abs(t[0] - t[1]) <= 1 && Math.abs(t[1] - t[2]) <= 1;
+  const control = await probe(null, 1440);
+  if (held(control.tops)) fail(`control: the base page also reads as held ${control.tops}`);
+  else console.log(`ok control: base page word moves (${control.tops.map((t) => t.toFixed(0)).join(", ")})`);
+  for (const id of ids) {
+    for (const width of [1440, 1024]) {
+      const r = await probe(id, width);
+      const left = r.tops[3] < r.tops[2] - 250;
+      const line = `${width} ${id}: held ${r.s0.toFixed(0)} to ${r.s1.toFixed(0)}, tops ${r.tops.map((t) => t.toFixed(1)).join(", ")}, card click ${JSON.stringify(r.hit)}`;
+      if (!held(r.tops) || !left || !r.hit.found || !r.hit.card) fail(line); else console.log(`ok ${line}`);
+    }
+  }
+  if (!process.exitCode) console.log(`STICK_OK ${ids.length} styles at 1440 and 1024, control moves`);
+}
+
 async function layers(browser, pg) {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await page.goto(`${pg}?lab`, { waitUntil: "networkidle" });
@@ -397,7 +450,7 @@ async function layers(browser, pg) {
   if (!process.exitCode) console.log(`LAYERS_OK utility over site CSS, shadcn button radius ${r.radius}`);
 }
 
-const modes = { figma, overflow, typelock, switch: switcher, behavior, reduced, layers };
+const modes = { figma, overflow, typelock, switch: switcher, behavior, reduced, stick, layers };
 if (!modes[mode]) { console.error(`usage: node scripts/check.mjs ${Object.keys(modes).join("|")}`); process.exit(2); }
 if (!existsSync(join(HERE, "dist/index.html"))) { console.error("run npm run build first"); process.exit(2); }
 const pgSrv = await serve(join(HERE, "dist"));
