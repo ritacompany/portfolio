@@ -54,9 +54,11 @@ Problems are ranked, never scored: a score out of 10 finds nothing to fix (Hyper
 
 Each round:
 1. Capture.
-   Live: open the page in the built in browser at 1440 and 390 wide. Screenshot every state in the state list
-   by scrolling to it, plus the page with reduced motion on. A scroll scrub can also be rendered in scroll
-   mode for a contact sheet: `node scripts/render.mjs --mode scroll`.
+   Live: `node scripts/live-capture.mjs --page <page> --target "<section>" --items "<moving elements>"`, plus
+   `--hover "<element>"` when anything responds to hover. It steps the page clock frame by frame at 1440 and
+   390 wide, with motion on and with reduced motion on, and writes contact sheets, hover sheets and a report
+   to output/motion/live/<page>/. Every P0 in its report is a P0 here. Look at every sheet for what numbers
+   cannot judge. The built in browser is for a last look only: it freezes animation while its pane is hidden.
    Clip: render with `node scripts/render.mjs`, then again at `--width 390`. Then make the sheets with
    `node scripts/motion-review.mjs <clip> --state docs/motion/<piece>/state_list.md --loop`
    (drop `--loop` for a scrub): the contact sheet, the strips around every cut and seam and the 360 wide phone sheet.
@@ -70,6 +72,7 @@ Each round:
    - P1: ...
    (or "No problems found" when both lists are empty)
 5. Fix every P0. Run another round only while a P0 is open. P1 and P2 do not need another round.
-6. Done when `node scripts/motion-check.mjs log docs/motion/<piece>/review_log.md` passes. Clips also need
+6. Done when `node scripts/motion-check.mjs log docs/motion/<piece>/review_log.md` passes. Live pieces also
+   need live-capture to print LIVE_CAPTURE_CLEAN. Clips also need
    `node scripts/motion-check.mjs strips output/motion/<clip>-review --state docs/motion/<piece>/state_list.md --loop`
    and, before shipping, two renders whose sha256 lines match.

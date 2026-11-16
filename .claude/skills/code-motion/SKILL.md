@@ -19,10 +19,11 @@ wins over both.
    Scroll scrub: add `--mode scroll --scroll "#scene" --start "top top" --end "bottom bottom"`.
    One still: `--still 1.5`. Element only: `--clip "#c"`. Retina: `--dpr 2`.
    Both: a reduced motion version, at rest.
-4. Review as motion-rules.md sets out: live in the built in browser at 1440 and 390 plus reduced motion;
+4. Review as motion-rules.md sets out: live through scripts/live-capture.mjs (both widths, reduced motion, hover);
    clips through motion-review.mjs at both widths. Rounds at 30 fps for speed; the final at 60.
 5. Rank problems P0, P1, P2 (no scores). Spawn a fresh eyes subagent on Sonnet with only the style guide,
    state list and review images; log both lists as a round in review_log.md. Fix every P0; another round
-   only while a P0 is open. Done when motion-check log passes, and for clips the strips check too.
+   only while a P0 is open. Done when motion-check log passes, live-capture prints LIVE_CAPTURE_CLEAN for live pieces and the strips
+   check passes for clips.
 6. Clips only: render twice before shipping, the sha256 lines must match. Run at most two renders at once;
    three in parallel crashed one Chrome.
