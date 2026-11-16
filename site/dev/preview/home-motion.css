@@ -19,8 +19,8 @@
   html.hm .home .navbar__role > span { display: inline-block; will-change: transform, opacity; }
 }
 
-/* Product Designer rests at the nav link colour, Neutral/300, so it no longer stands out (his ask, 10 Nov). */
-html.hm .home .navbar__role { color: var(--neutral-300); }
+/* Product Designer rests at the nav link colour (his ask, 10 Nov). The links rest at Neutral/050 in his
+   master since the Figma sync, which components.css already gives the role, so no override here. */
 
 /* 2. Selected works. More room above it; the title holds in place while the cards rise over it. */
 @media (min-width: 768px) {
