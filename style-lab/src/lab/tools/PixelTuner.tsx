@@ -13,34 +13,42 @@ const GROUPS: Array<{ title: string; sliders: Slider[] }> = [
   {
     title: "Timing",
     sliders: [
-      { key: "drift", label: "Drift before the break", min: 0, max: 1, step: 0.01, pct: true, hint: "How fast CHDWCK moves while the works slide over it. 0 holds it still." },
-      { key: "breakAfter", label: "Break starts", min: -300, max: 900, step: 10, unit: "px", hint: "Scroll after the works title meets the top of the word." },
+      { key: "drift", label: "Drift before the break", min: 0, max: 1, step: 0.01, pct: true, hint: "How fast CHDWCK moves while the works scroll into it. 0 holds it still." },
+      { key: "breakAfter", label: "Break starts", min: -300, max: 900, step: 10, unit: "px", hint: "Scroll after the works title first touches the bottom of the word. 0 breaks the moment it starts to go in." },
+      { key: "hold", label: "Float with the page", min: 0, max: 1, step: 0.01, pct: true, hint: "After the break: 0 hangs the pieces in the air, 100% scrolls them away with the page." },
       { key: "extraSpace", label: "Extra space under works", min: 0, max: 1200, step: 10, unit: "px", hint: "Room for the breakup to finish before About." },
     ],
   },
   {
-    title: "Blocks",
+    title: "Pieces",
     sliders: [
       { key: "block", label: "Block size", min: 2, max: 16, step: 1, unit: "px", hint: "The grid the word is cut into." },
-      { key: "variation", label: "Size variation", min: 0, max: 1, step: 0.01, pct: true, hint: "How much blocks grow or shrink as they fly." },
-      { key: "gap", label: "Gap between blocks", min: 0, max: 6, step: 0.5, unit: "px", hint: "Space that opens between blocks as they separate." },
-      { key: "density", label: "Amount", min: 0.05, max: 1, step: 0.01, pct: true, hint: "Share of blocks that travel; the rest thin out early." },
+      { key: "half", label: "Half size pieces", min: 0, max: 1, step: 0.01, pct: true, hint: "Share of blocks that split in four (2 px from 4)." },
+      { key: "quarter", label: "Quarter size pieces", min: 0, max: 0.6, step: 0.01, pct: true, hint: "Share of blocks that split in sixteen (1 px from 4)." },
+      { key: "variation", label: "Size wobble", min: 0, max: 1, step: 0.01, pct: true, hint: "How much each piece grows or shrinks once it lifts off." },
+      { key: "gap", label: "Gap between pieces", min: 0, max: 3, step: 0.25, unit: "px", hint: "Space that opens between pieces as they lift off." },
+      { key: "density", label: "Amount", min: 0.05, max: 1, step: 0.01, pct: true, hint: "Share of pieces that float; the rest thin out early." },
     ],
   },
   {
-    title: "Motion",
+    title: "Float",
     sliders: [
-      { key: "spread", label: "Spread", min: 0, max: 1600, step: 10, unit: "px", hint: "How far blocks travel." },
-      { key: "scatter", label: "Scatter", min: 0, max: 1, step: 0.01, pct: true, hint: "Randomness in direction and wobble." },
-      { key: "stagger", label: "Ripple", min: 0, max: 1, step: 0.01, pct: true, hint: "0 breaks everywhere at once; high values break outward from the circle." },
-      { key: "fadeFrom", label: "Fade starts", min: 0, max: 0.95, step: 0.01, pct: true, hint: "Where in its flight a block starts to fade." },
+      { key: "spread", label: "Drift out", min: 0, max: 600, step: 5, unit: "px", hint: "How far pieces drift from where they were." },
+      { key: "rise", label: "Rise", min: -300, max: 400, step: 5, unit: "px", hint: "How far they rise as they float. Below 0 they sink." },
+      { key: "float", label: "Bob", min: 0, max: 40, step: 1, unit: "px", hint: "How far each piece wanders in the air, even when you stop scrolling." },
+      { key: "floatSpeed", label: "Bob speed", min: 0, max: 2, step: 0.05, unit: "×", hint: "How quickly they wander." },
+      { key: "speedRange", label: "Speed differences", min: 0, max: 1, step: 0.01, pct: true, hint: "0 moves every piece alike; higher lets some move much faster than others." },
+      { key: "scatter", label: "Scatter", min: 0, max: 1, step: 0.01, pct: true, hint: "0 drifts straight out from the circle; 100% any direction." },
+      { key: "fadeFrom", label: "Fade starts", min: 0, max: 0.95, step: 0.01, pct: true, hint: "Earliest a piece starts to fade; each picks its own moment after that." },
       { key: "wind", label: "Wind", min: 0, max: 1, step: 0.01, pct: true, hint: "Pull toward the small handle. Drag it to aim." },
       { key: "windAngle", label: "Wind direction", min: -180, max: 180, step: 1, unit: "°", hint: "0 is right, -90 is up." },
+      { key: "stagger", label: "Break from the circle", min: 0, max: 1, step: 0.01, pct: true, hint: "0 breaks everywhere at once; higher ripples out from the large circle." },
     ],
   },
 ];
 
-const STORE = "lab.pixel-break.v1";
+// v2: the float model (16 Nov). Old v1 settings would carry the ripple defaults, so they are not read.
+const STORE = "lab.pixel-break.v2";
 const UI_STORE = "lab.pixel-break.ui.v1";
 export function loadSettings(): PixelSettings {
   try {
@@ -180,6 +188,24 @@ export function PixelTuner({ engine }: { engine: PixelBreak }) {
 
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pb-3">
           <Status frame={frame} wide={wide} onJump={jump} />
+          <section className="mt-3 rounded-lg bg-neutral-800 px-3 py-2.5">
+            <h3 className="mb-2 text-[11px] font-medium uppercase tracking-[0.08em] text-neutral-550">Layer</h3>
+            <div role="radiogroup" aria-label="Layer" className="grid grid-cols-2 gap-1 rounded-md bg-neutral-900 p-1">
+              {[["Over the work, inverting", 1], ["Under the work", 0]].map(([label, v]) => (
+                <button
+                  key={label as string}
+                  type="button"
+                  role="radio"
+                  aria-checked={settings.over === v}
+                  data-layer={v}
+                  onClick={() => update({ over: v as number })}
+                  className={`rounded px-2 py-1.5 text-[12px] leading-tight ${settings.over === v ? "bg-neutral-700 text-neutral-100" : "text-neutral-550 hover:text-neutral-100"}`}
+                >
+                  {label as string}
+                </button>
+              ))}
+            </div>
+          </section>
           {GROUPS.map((g) => (
             <section key={g.title} className="mt-3 rounded-lg bg-neutral-800 px-3 pb-1 pt-2.5">
               <h3 className="mb-1 text-[11px] font-medium uppercase tracking-[0.08em] text-neutral-550">{g.title}</h3>
@@ -206,10 +232,10 @@ export function PixelTuner({ engine }: { engine: PixelBreak }) {
             </section>
           ))}
           <section className="mt-3 rounded-lg bg-neutral-800 px-3 py-2.5 text-[12.5px]">
-            <h3 className="mb-1 text-[11px] font-medium uppercase tracking-[0.08em] text-neutral-550">Break point</h3>
+            <h3 className="mb-1 text-[11px] font-medium uppercase tracking-[0.08em] text-neutral-550">Circles</h3>
             <p className="leading-snug text-neutral-300">
               {wide
-                ? "Drag the large circle on CHDWCK to set where it breaks first. The small one aims the wind."
+                ? "The large circle is the centre pieces drift away from (and the ripple start, if you raise Break from the circle). The small one aims the wind."
                 : "The breakup runs from 768 px wide up; widen the window to see it."}
             </p>
             <p className="mt-1.5 tabular-nums text-neutral-550">
@@ -246,15 +272,15 @@ export function PixelTuner({ engine }: { engine: PixelBreak }) {
 function Status({ frame, wide, onJump }: { frame: Frame; wide: boolean; onJump: (y: number) => void }) {
   const label = !wide || frame.phase === "off"
     ? "Off under 768 px"
-    : frame.phase === "drift" ? "Drifting under the works"
-    : frame.phase === "break" ? `Breaking, ${Math.round(frame.progress * 100)}%`
+    : frame.phase === "drift" ? "Whole, drifting"
+    : frame.phase === "break" ? `Floating, ${Math.round(frame.progress * 100)}%`
     : "Gone";
   const pct = frame.phase === "gone" ? 100 : frame.phase === "break" ? frame.progress * 100 : 0;
   return (
     <div className="mt-3 rounded-lg bg-neutral-800 px-3 py-2.5">
       <div className="flex items-center justify-between gap-2 text-[12.5px]">
         <span data-tuner-phase={frame.phase} className="min-w-0 truncate">{label}</span>
-        {wide && frame.phase !== "off" && <span className="tabular-nums text-neutral-550">{frame.drawn.toLocaleString()} blocks</span>}
+        {wide && frame.phase !== "off" && <span className="tabular-nums text-neutral-550">{(frame.phase === "break" ? frame.drawn : frame.total).toLocaleString()} pieces</span>}
       </div>
       <div className="mt-2 h-1 overflow-hidden rounded-full bg-neutral-700">
         <div className="h-full rounded-full bg-neutral-200 transition-[width] duration-150" style={{ width: `${pct}%` }} />

@@ -480,10 +480,16 @@ async function pixels(browser, pg) {
     else console.log(`ok ${width} control: base page has no breakup`);
 
     const page = await open("pixel-break", width);
+    await page.evaluate(() => window.__pixelBreak.freeze(3));
     const f0 = await page.evaluate(() => window.__pixelBreak.frame());
     const set = await page.evaluate(() => window.__pixelBreak.settings);
     const lines = [];
     let bad = false;
+    // It breaks the moment the works title first touches the word's bottom (breakAfter 0 by default).
+    await at(page, f0.sBreak - 1);
+    const meetGap = await page.evaluate(() => document.querySelector(".works__title").getBoundingClientRect().top - document.querySelector(".hero__name").getBoundingClientRect().bottom);
+    if (set.breakAfter !== 0 || Math.abs(meetGap) > 2) { bad = true; lines.push(`break is ${meetGap.toFixed(1)} px from the title touching the word's bottom (breakAfter ${set.breakAfter})`); }
+    await at(page, 0);
     // Extra space under the works.
     const worksH = await page.evaluate(() => document.querySelector(".works").offsetHeight);
     if (Math.abs(worksH - baseWorksH - set.extraSpace) > 1) { bad = true; lines.push(`works ${worksH} vs base ${baseWorksH}, extra ${set.extraSpace}`); }
@@ -499,8 +505,8 @@ async function pixels(browser, pg) {
     await at(page, f0.sBreak - 2);
     const fb = await page.evaluate(() => window.__pixelBreak.frame());
     const vis = await page.evaluate(() => getComputedStyle(document.querySelector(".hero__name")).visibility);
-    const under = await page.evaluate(() => [getComputedStyle(document.querySelector(".hero__name")).zIndex, getComputedStyle(document.querySelector(".lab-px-layer")).zIndex]);
-    if (under.join() !== "-1,-1") { bad = true; lines.push(`word and canvas not under the works: z ${under}`); }
+    const layerCss = await page.evaluate(() => { const a = getComputedStyle(document.querySelector(".hero__name")), b = getComputedStyle(document.querySelector(".lab-px-layer")); return [a.zIndex, a.mixBlendMode, b.zIndex, b.mixBlendMode].join(); });
+    if (layerCss !== "3,difference,3,difference") { bad = true; lines.push(`word and pieces not over the works inverting: ${layerCss}`); }
     const box = { x: Math.max(0, fb.word.x), y: Math.max(0, fb.word.y), width: Math.min(width - Math.max(0, fb.word.x), fb.word.w), height: Math.min(900 - Math.max(0, fb.word.y), fb.word.h) };
     if (box.height < 40) { bad = true; lines.push(`word not on screen at the break (${JSON.stringify(box)})`); }
     const before = await inkMask(page, box);
@@ -513,10 +519,15 @@ async function pixels(browser, pg) {
     for (let k = 0; k < before.length; k++) { if (before[k]) { inkB++; if (after[k]) both++; } }
     const cover = inkB ? both / inkB : 0;
     if (vis !== "visible" || visAfter !== "hidden" || fa.phase !== "break" || cover < 0.9) { bad = true; lines.push(`swap: DOM ${vis} then ${visAfter}, phase ${fa.phase}, canvas covers ${(cover * 100).toFixed(1)}% of the word's ink`); }
-    // Halfway: blocks outside the word's box.
+    // Halfway: pieces have lifted off and moved away from where they rested.
     await at(page, (f0.sBreak + f0.sEnd) / 2);
     const fm = await page.evaluate(() => window.__pixelBreak.frame());
-    if (!(fm.phase === "break" && fm.outside > fm.drawn * 0.2)) { bad = true; lines.push(`halfway: ${fm.drawn} drawn, ${fm.outside} outside`); }
+    if (!(fm.phase === "break" && fm.meanMove > 20 && fm.drawn > 0)) { bad = true; lines.push(`halfway: ${fm.drawn} drawn, mean move ${fm.meanMove.toFixed(1)} px`); }
+    // Mixed sizes: whole, half and quarter pieces all exist.
+    if (!(f0.sizes[0] > 0 && f0.sizes[1] > 0 && f0.sizes[2] > 0)) { bad = true; lines.push(`sizes ${f0.sizes}`); }
+    // All at once: with the ripple at 0, the earliest and latest pieces lift off together, so just
+    // after the break every drawn piece has started moving the same amount of its flight.
+    if (set.stagger !== 0) { bad = true; lines.push(`default ripple is ${set.stagger}, not all at once`); }
     // The end: works bottom at the window bottom, nothing drawn and the canvas empty.
     await at(page, f0.sEnd + 2);
     const fe = await page.evaluate(() => window.__pixelBreak.frame());
@@ -524,7 +535,7 @@ async function pixels(browser, pg) {
     const worksBottom = await page.evaluate(() => document.querySelector(".works").getBoundingClientRect().bottom);
     if (fe.phase !== "gone" || fe.drawn !== 0 || empty !== 0 || Math.abs(worksBottom - 900) > 4) { bad = true; lines.push(`end: phase ${fe.phase}, ${fe.drawn} drawn, canvas alpha ${empty}, works bottom ${worksBottom.toFixed(1)}`); }
     await page.close();
-    const summary = `${width}: ${f0.total} blocks, break at ${f0.sBreak.toFixed(0)}, gone at ${f0.sEnd.toFixed(0)}, drift ${(t2 - t1).toFixed(1)} of ${want.toFixed(1)}, swap covers ${(cover * 100).toFixed(1)}%, halfway ${fm.outside} of ${fm.drawn} outside, works +${worksH - baseWorksH}`;
+    const summary = `${width}: ${f0.total} pieces (${f0.sizes[0]} whole, ${f0.sizes[1]} half, ${f0.sizes[2]} quarter), break at ${f0.sBreak.toFixed(0)}, gone at ${f0.sEnd.toFixed(0)}, drift ${(t2 - t1).toFixed(1)} of ${want.toFixed(1)}, swap covers ${(cover * 100).toFixed(1)}%, halfway mean move ${fm.meanMove.toFixed(0)} px, works +${worksH - baseWorksH}`;
     if (bad) fail(`${summary}; ${lines.join("; ")}`); else console.log(`ok ${summary}`);
   }
   if (!process.exitCode) console.log("PIXELS_OK 1440 and 1024, control has none");
@@ -538,6 +549,7 @@ async function tuner(browser, pg) {
   await page.reload({ waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(500);
+  await page.evaluate(() => window.__pixelBreak.freeze(3));
   const f0 = await page.evaluate(() => window.__pixelBreak.frame());
   const sig = async () => { await page.waitForTimeout(250); return page.evaluate(() => { const f = window.__pixelBreak.frame(); return `${f.drawn}|${f.sum.toFixed(2)}|${f.sBreak.toFixed(1)}|${f.sEnd.toFixed(1)}`; }); };
   const sliders = await page.$$eval("[data-tuner] input[type=range][data-setting]", (els) => els.map((e) => ({ key: e.dataset.setting, min: +e.min, max: +e.max, value: +e.value })));
@@ -559,6 +571,21 @@ async function tuner(browser, pg) {
     await page.waitForTimeout(150);
   }
   if (dead.length) fail(`sliders with no effect: ${dead.join(", ")}`); else console.log(`ok ${sliders.length} sliders each change the result`);
+  // Layer: under, then over again.
+  await page.click('[data-tuner] [data-layer="0"]'); await page.waitForTimeout(250);
+  const under = await page.evaluate(() => [getComputedStyle(document.querySelector(".hero__name")).zIndex, getComputedStyle(document.querySelector(".lab-px-layer")).mixBlendMode].join());
+  await page.click('[data-tuner] [data-layer="1"]'); await page.waitForTimeout(250);
+  const over = await page.evaluate(() => [getComputedStyle(document.querySelector(".hero__name")).zIndex, getComputedStyle(document.querySelector(".lab-px-layer")).mixBlendMode].join());
+  if (under !== "-1,normal" || over !== "3,difference") fail(`layer toggle: under ${under}, over ${over}`); else console.log("ok layer toggles between under the work and over it inverting");
+  // The bob runs on its own: with the clock running, two frames a moment apart differ without scrolling.
+  await page.evaluate((y) => scrollTo(0, y), (f0.sBreak + f0.sEnd) * 0.5);
+  await page.evaluate(() => window.__pixelBreak.freeze(null));
+  await page.waitForTimeout(300);
+  const a1 = await page.evaluate(() => window.__pixelBreak.frame().sum);
+  await page.waitForTimeout(400);
+  const a2 = await page.evaluate(() => window.__pixelBreak.frame().sum);
+  await page.evaluate(() => window.__pixelBreak.freeze(3));
+  if (a1 === a2) fail("pieces do not float when the page is still"); else console.log("ok pieces keep floating with the page still");
   // Drag the break point handle 120 px right.
   await page.evaluate((y) => scrollTo(0, y), Math.max(0, f0.sBreak - 300));
   await page.waitForTimeout(300);

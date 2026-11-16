@@ -1,6 +1,8 @@
-/* CHDWCK sits under everything in main, so Selected works slides over it. */
+/* Under the work by default; with lab-px-over (the tuner's "over" layer, on by default) the word and
+   the pieces float above the work and blend by difference, as in the stuck, inverting style. */
 @media (min-width: 768px) {
   .hero__name { z-index: -1; pointer-events: none; }
+  .lab-px-over .hero__name { z-index: 3; mix-blend-mode: difference; }
 }
 @media (min-width: 768px) and (max-width: 1199.98px) {
   .hero__name { position: relative; top: 0; }
@@ -17,8 +19,9 @@
 /* Once it breaks, the canvas carries it. */
 .lab-px-broken .hero__name { visibility: hidden; }
 
-/* The canvas layer: zero net height at the top of main, sticky, under the sections. */
+/* The canvas layer: zero net height at the top of main, sticky. */
 .lab-px-layer { position: sticky; top: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.lab-px-over .lab-px-layer { z-index: 3; mix-blend-mode: difference; }
 .lab-px-layer canvas { display: block; }
 
 /* Room under the works for the breakup to finish before About. */
