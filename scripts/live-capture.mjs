@@ -60,14 +60,17 @@ const report = { page: PAGE, target: TARGET, runs: [], hover: [], p0: [] };
 function probe([target, items]) {
   const t = document.querySelector(target);
   const els = items ? [...document.querySelectorAll(items)] : [];
-  const st = els.map((e) => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e); return { top: r.top + scrollY, h: r.height, w: r.width, op: +cs.opacity, tf: cs.transform }; });
+  const st = els.map((e) => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e); return { top: r.top + scrollY, vtop: r.top, inView: r.bottom > 0 && r.top < innerHeight - 100 && r.width > 0, h: r.height, w: r.width, op: +cs.opacity, tf: cs.transform }; });
   const clipped = [];
   if (t) for (const e of t.querySelectorAll("*")) {
     if (!e.childNodes.length || ![...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
+    // Not a visible defect: screen reader only text and decorative tickers marked aria-hidden.
+    if (e.closest('[aria-hidden="true"]') || e.getBoundingClientRect().width <= 1 || e.getBoundingClientRect().height <= 1) continue;
     let a = e; while (a && a !== t.parentElement) { const cs = getComputedStyle(a); if ((cs.overflow !== "visible" || cs.overflowX !== "visible") && (e.scrollWidth > a.clientWidth + 1 || e.scrollWidth > e.clientWidth + 1)) { clipped.push(e.textContent.trim().slice(0, 40)); break; } a = a.parentElement; }
   }
-  const after = t ? t.getBoundingClientRect().bottom + scrollY : 0;
-  return { st, clipped, cls: window.__cls || 0, shifts: window.__shifts || [], after };
+  const tr = t ? t.getBoundingClientRect() : null;
+  const after = tr ? tr.bottom + scrollY : 0;
+  return { st, clipped, cls: window.__cls || 0, shifts: window.__shifts || [], after, sy: scrollY, tTop: tr ? tr.top : 0, tIn: !!tr && tr.bottom > 0 && tr.top < innerHeight };
 }
 
 async function sheet(files, out, cols) {
@@ -99,7 +102,8 @@ for (const W of WIDTHS) {
     const samples = [];
     for (let i = 0; i < frames; i++) {
       const t = i / FPS;
-      if (t <= SCROLL) { const k = t / SCROLL, e = k * k * (3 - 2 * k); await scrollTo(Math.max(0, y0 + (y1 - y0) * e)); }
+      // Aim at where the target is now: pins, spacers and late layout move it after load.
+      if (t <= SCROLL) { const k = t / SCROLL, e = k * k * (3 - 2 * k), now = await topAt(); await scrollTo(Math.max(0, now - H * (1.05 - 0.9 * e))); }
       await page.clock.runFor(step);
       const f = path.join(dir, `f${String(i).padStart(3, "0")}.png`);
       await page.screenshot({ path: f });
@@ -108,13 +112,19 @@ for (const W of WIDTHS) {
     const last = samples.at(-1);
     const push = Math.round(Math.max(...samples.map((s) => Math.abs(s.after - last.after))));
     const run = { width: W, reduced, cls: +last.cls.toFixed(4), shiftsMs: last.shifts, pushPx: push, clipped: [...new Set(last.clipped)], items: [] };
+    run.reachedTarget = last.tIn;
+    if (!last.tIn) report.toolErrors = [...(report.toolErrors || []), `${tag}: the capture never brought the target into view (it ended ${Math.round(last.tTop)} px from the top). Nothing about this run is a finding.`];
     if (ITEMS) last.st.forEach((fin, j) => {
-      const seq = samples.map((s) => ({ t: s.t, ...s.st[j] }));
+      const seq = samples.map((s) => ({ t: s.t, sy: s.sy, ...s.st[j] }));
+      // Pinned or sticky: holds its place on screen while the page scrolls. Its page position is not motion.
+      const moving = seq.filter((s, k) => k && Math.abs(s.sy - seq[k - 1].sy) > 2);
+      const pinned = moving.length > 2 && moving.every((s, k) => k === 0 || Math.abs(s.vtop - moving[k - 1].vtop) < 1);
+      if (pinned) seq.forEach((s) => { s.top = fin.top; });
       const s0 = seq[0], start = seq.find((s) => s.op > 0.01 && Math.abs(s.op - s0.op) > 0.01) || seq.find((s) => Math.abs(s.top - s0.top) > 0.5);
       const settle = [...seq].reverse().find((s) => Math.abs(s.top - fin.top) > 0.5 || Math.abs(s.op - fin.op) > 0.01 || Math.abs(s.h - fin.h) > 0.5);
       const travel = Math.max(...seq.filter((s) => s.op > 0.01).map((s) => Math.abs(s.top - fin.top)), 0);
       const grew = Math.max(...seq.filter((s) => s.op > 0.01).map((s) => Math.abs(s.h - fin.h)), 0);
-      run.items.push({ i: j + 1, start: start ? +start.t.toFixed(2) : null, settled: settle ? +(settle.t + 1 / FPS).toFixed(2) : 0, travelPx: Math.round(travel), heightChangePx: Math.round(grew), endOpacity: +fin.op.toFixed(2) });
+      run.items.push({ i: j + 1, pinned, inView: fin.inView, start: start ? +start.t.toFixed(2) : null, settled: settle ? +(settle.t + 1 / FPS).toFixed(2) : 0, travelPx: Math.round(travel), heightChangePx: Math.round(grew), endOpacity: +fin.op.toFixed(2) });
     });
     const starts = run.items.map((x) => x.start).filter((x) => x !== null);
     run.staggerGaps = starts.slice(1).map((s, k) => +(s - starts[k]).toFixed(2));
@@ -123,8 +133,10 @@ for (const W of WIDTHS) {
     if (run.clipped.length) report.p0.push(`${tag}: text cut off: ${run.clipped.join(" | ")}`);
     const risers = run.items.filter((x) => x.travelPx > 2);
     if (!reduced && risers.length) report.p0.push(`${tag}: items ${risers.map((x) => x.i).join(", ")} travel ${risers.map((x) => x.travelPx).join(", ")} px while visible: a rise on entry is rejected (motion-patterns.md, fade up); fine only if the style guide says this piece travels`);
-    if (run.items.some((x) => x.endOpacity < 0.99)) report.p0.push(`${tag}: items not fully visible at the end`);
+    const hidden = run.items.filter((x) => x.inView && x.endOpacity < 0.99);
+    if (last.tIn && hidden.length) report.p0.push(`${tag}: items ${hidden.map((x) => x.i).join(", ")} are on screen but not fully visible at the end (opacity ${hidden.map((x) => x.endOpacity).join(", ")})`);
     if (reduced) { const moved = run.items.filter((x) => x.start !== null && (x.travelPx > 0 || x.settled > 0.05)); run.movedUnderReduced = moved.map((x) => x.i); if (moved.length) report.p0.push(`${tag}: items ${moved.map((x) => x.i).join(", ")} still animate with reduced motion on`); }
+    if (!last.tIn) report.p0 = report.p0.filter((p) => !p.startsWith(tag + ":"));
     report.runs.push(run);
     const pick = samples.filter((_, i) => i % Math.max(1, Math.round(EVERY * FPS)) === 0).map((s) => [s.f, `${s.t.toFixed(2)} s`]);
     await sheet(pick, path.join(OUT, `${tag}-contact.png`), W < 700 ? 8 : 5);
@@ -150,6 +162,7 @@ await browser.close(); server.close();
 
 const md = [`# Live capture: ${PAGE}`, "", `Target ${TARGET}${ITEMS ? `, items ${ITEMS}` : ""}. ${FPS} fps, ${DUR} s, page clock stepped frame by frame.`, "",
   "## P0 from measurement", ...(report.p0.length ? report.p0.map((p) => `- ${p}`) : ["- none"]), "",
+  ...(report.toolErrors ? ["## Capture problems (fix the capture, not the page)", ...report.toolErrors.map((p) => `- ${p}`), ""] : []),
   "## Runs", ...report.runs.flatMap((r) => [`### ${r.width} wide, ${r.reduced ? "reduced motion" : "motion on"}`,
     `- Content below pushed ${r.pushPx} px; browser layout shift score ${r.cls}${r.shiftsMs.length ? ` at ${r.shiftsMs.join(", ")} ms` : ""}`, `- Text cut off: ${r.clipped.length ? r.clipped.join(" | ") : "none"}`,
     ...(r.items.length ? [`- Starts ${r.items.map((x) => x.start ?? "none").join(", ")} s; gaps ${r.staggerGaps.join(", ") || "n/a"} s; durations ${r.durations.map((d) => d ?? "none").join(", ")} s`,
@@ -158,4 +171,4 @@ const md = [`# Live capture: ${PAGE}`, "", `Target ${TARGET}${ITEMS ? `, items $
   "Look at every contact sheet and hover sheet too: pops, pacing and composition are for the eye."].join("\n");
 writeFileSync(path.join(OUT, "report.md"), md + "\n"); writeFileSync(path.join(OUT, "report.json"), JSON.stringify(report, null, 2));
 console.log(md); console.log(`\nWrote ${path.relative(root, OUT)}`);
-console.log(report.p0.length ? `LIVE_CAPTURE_P0 ${report.p0.length}` : "LIVE_CAPTURE_CLEAN");
+console.log(report.toolErrors ? `LIVE_CAPTURE_INCOMPLETE ${report.toolErrors.length}` : report.p0.length ? `LIVE_CAPTURE_P0 ${report.p0.length}` : "LIVE_CAPTURE_CLEAN");
