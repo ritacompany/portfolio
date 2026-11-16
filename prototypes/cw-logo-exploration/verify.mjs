@@ -5,7 +5,8 @@ import { execFileSync } from 'node:child_process';
 const root = new URL('.', import.meta.url);
 const file = name => new URL(name, root);
 const read = name => readFileSync(file(name), 'utf8');
-const variants = ['01-taut.svg', '02-soft-square.svg', '03-balanced.svg'];
+const variants = ['01-taut.svg', '02-soft-square.svg', '03-balanced.svg', '04-structure.svg', '05-pressure.svg', '06-compact.svg'];
+const shown = ['original.svg', '02-soft-square.svg', '04-structure.svg', '05-pressure.svg', '06-compact.svg'];
 const originalHash = '431e21b1dc8d91fde93651d1d4a5d5bce2dac8063476291f57880d854aa6386c';
 
 function assert(condition, message) {
@@ -32,11 +33,11 @@ for (const name of variants) {
 }
 
 const comparison = read('comparison.html');
-for (const name of ['original.svg', ...variants]) {
+for (const name of shown) {
   const matches = comparison.match(new RegExp(`src="${name.replace('.', '\\.')}"`, 'g')) ?? [];
   assert(matches.length === 3, `${name} does not appear at all three scales`);
 }
-for (const oldName of ['01-tightened.svg', '02-open-join.svg', '03-chiseled.svg']) {
+for (const oldName of ['01-tightened.svg', '02-open-join.svg', '03-chiseled.svg', '01-taut.svg', '03-balanced.svg']) {
   assert(!comparison.includes(oldName), `Old proposal ${oldName} is still shown`);
 }
 for (const size of ['48 px', '160 px', '490 px']) {

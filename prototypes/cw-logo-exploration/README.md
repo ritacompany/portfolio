@@ -1,13 +1,15 @@
 # CW mark exploration
 
-These are unapproved proposals based on Chadwick's supplied `Vector.svg`. The old cut-based studies were rejected and replaced. Git history preserves them if needed.
+These are unapproved proposals based on Chadwick's supplied `Vector.svg`. `original.svg` is a byte-for-byte copy. The original fits inside its 912 by 271 viewBox and is not clipped.
 
-Open `comparison.html` to compare the source and three new alternatives at 48, 160 and 490 pixels wide. `preview.png` is the quick visual overview. `original.svg` is a byte-for-byte copy of the supplied file. The original path fits inside its 912 by 271 viewBox, though the right and bottom margins are each under one SVG unit. The shape is not clipped.
+Open `comparison.html` to see the source, the previous Soft square pick and three new alternatives at 48, 160 and 490 pixels. `preview.png` is a quick overview.
 
-## Directions
+## Current recommendation
 
-1. **Taut ribbon:** reshapes the C rise, W valleys, high points and exit as one pressure system. Its tapered peaks add energy at large scale, though they become delicate in the header.
-2. **Soft square:** flattens the C base, straightens the connecting runs and uses bevels across the full mark. This is the recommended direction because its large silhouette has a clearer rule while the header still reads like the source.
-3. **Balanced W:** deepens the first W valley to bring it closer to the second. It improves the literal CW reading, but loses some of the source's unusual rhythm.
+**04 Structured curve** is the strongest close refinement. The C bowl has a flatter base, its climb becomes a clear diagonal spine and both W valleys repeat a flatter floor. The outer crests share a small radius, so the large silhouette has one consistent shape rule. Its 48 pixel header mark retains the original gesture and weight.
 
-`DESIGN.md` records the criteria, failed sketches and visual review. `draw-variants.mjs` generates all three SVG files. None uses masks or post-drawing corner cuts. A selected direction still needs Chadwick's approval and an optical pass in the actual header before replacing the current mark.
+**05 Controlled pressure** tests a different job: more movement when enlarged through a repeated light crest and heavy valley rhythm. **06 Compact gesture** tests proportion: less C reach, a shorter exit and more space for the W. The first loses some strength in the header; the second stays too close to the original's softness to be the main recommendation.
+
+`02-soft-square.svg` remains for direct comparison with the earlier recommendation. `01-taut.svg` and `03-balanced.svg` remain as prior studies, but are not shown on the current board. The rejected cut studies remain in Git history.
+
+`DESIGN.md` records the visual review and rejected sketches. `draw-next.mjs` generates the three new SVGs. `render-preview.py` generates the overview with Pillow and the macOS `sips` command. Run `node verify.mjs` to check the source, SVG files and comparison references.

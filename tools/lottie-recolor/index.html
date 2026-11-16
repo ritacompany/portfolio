@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lottie recolor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,400,0..1,0&display=block" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script src="lotties.js"></script>
+<style>
+  :root {
+    --bg: #f4f4f2; --panel: #ffffff; --ink: #1b1b1f; --muted: #6b6b73; --line: #e3e3e0; --line-strong: #c9c9c5;
+    --hover: #0000000a; --active: #0000000f; --field: #ffffff; --on-accent: #ffffff;
+    --accent: #1b1b1f; --changed: #2f6fed; --radius: 10px; color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #111113; --panel: #19191c; --ink: #ededf0; --muted: #9a9aa3; --line: #2c2c31; --line-strong: #44444b;
+    --hover: #ffffff0d; --active: #ffffff17; --field: #222226; --on-accent: #111113;
+    --accent: #ededf0; --changed: #6f9bff; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.4 "Inter", system-ui, sans-serif; font-feature-settings: "cv11", "ss01"; color: var(--ink); background: var(--bg); }
+  button, input, select { font: inherit; color: inherit; }
+  button { cursor: pointer; border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 6px 12px; }
+  button:hover { border-color: var(--line-strong); }
+  button.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  button.ghost { border-color: transparent; background: transparent; padding: 4px 8px; color: var(--muted); }
+  button.ghost:hover { color: var(--ink); background: var(--hover); }
+
+  .app { display: grid; grid-template-columns: 240px 1fr 380px; height: 100vh; overflow: hidden; }
+  .ms { font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal; font-size: 20px; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; direction: ltr; -webkit-font-smoothing: antialiased; font-variation-settings: "opsz" 20; vertical-align: middle; }
+  button.ghost .ms { font-size: 18px; }
+  button.icon { width: 30px; height: 30px; padding: 0; display: inline-grid; place-items: center; }
+  .resizer { position: absolute; top: 0; bottom: 0; width: 10px; z-index: 10; cursor: col-resize; touch-action: none; }
+  .resizer.left { left: -5px; } .resizer.right { right: -5px; }
+  .resizer::after { content: ""; position: absolute; top: 0; bottom: 0; left: 4px; width: 2px; background: transparent; transition: background .15s; }
+  .resizer:hover::after, .resizer.active::after { background: var(--changed); }
+  .left-closed .resizer.left, .right-closed .resizer.right { display: none; }
+  body.resizing { cursor: col-resize; user-select: none; }
+  aside, .colors { background: var(--panel); border-right: 1px solid var(--line); overflow: auto; position: relative; }
+  .collapse { width: 30px; height: 30px; padding: 0; display: inline-grid; place-items: center; }
+  .rail { display: none; padding: 9px 7px; }
+  .left-closed aside > :not(.rail), .right-closed .colors > :not(.rail) { display: none; }
+  .left-closed aside > .rail, .right-closed .colors > .rail { display: block; }
+  .colors { border-right: 0; border-left: 1px solid var(--line); display: flex; flex-direction: column; }
+  h2 { font-size: 12px; font-weight: 600; color: var(--muted); margin: 0; padding: 16px 16px 8px; }
+
+  .files { list-style: none; margin: 0; padding: 0 8px; }
+  .files li { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+  .files li:hover { background: var(--hover); }
+  .files li.active { background: var(--active); font-weight: 600; }
+  .files .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--changed); visibility: hidden; margin-left: auto; }
+  .files li.edited .dot { visibility: visible; }
+  .aside-head { display: flex; align-items: center; justify-content: space-between; padding-right: 8px; }
+  .drop { display: block; cursor: pointer; margin: 12px 16px; padding: 14px; border: 1.5px dashed var(--line); border-radius: var(--radius); color: var(--muted); text-align: center; font-size: 13px; }
+  .drop.over { border-color: var(--changed); color: var(--changed); }
+
+  main { display: flex; flex-direction: column; min-width: 0; position: relative; }
+  .stage { flex: 1; position: relative; overflow: hidden; min-height: 0; cursor: grab; touch-action: none;
+    background-image: radial-gradient(var(--line-strong) 1px, transparent 1px); background-size: 20px 20px; }
+  .stage.dragging { cursor: grabbing; }
+  .canvas { position: absolute; left: 0; top: 0; transform-origin: 0 0; border-radius: 14px; box-shadow: 0 0 0 1px var(--line), 0 8px 30px #0000001a; overflow: hidden; display: grid; place-items: center; background: var(--panel); }
+  .zoom { position: absolute; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 2px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 3px; cursor: default; }
+  .zoom button { border: 0; padding: 4px 9px; }
+  .zoom .pct { min-width: 52px; text-align: center; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 12px; }
+  .canvas.checker { background: repeating-conic-gradient(#e6e6e6 0 25%, #fff 0 50%) 0 0 / 20px 20px; }
+  #player { width: 100%; height: 100%; }
+  .empty { color: var(--muted); }
+  .transport { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 24px 20px; }
+  .transport input[type=range] { flex: 1 1 160px; accent-color: var(--ink); }
+  .frame { font-variant-numeric: tabular-nums; color: var(--muted); min-width: 84px; text-align: right; }
+  .bgs { display: flex; gap: 6px; align-items: center; }
+  .bgs button { width: 22px; height: 22px; padding: 0; border-radius: 50%; }
+  .bgs button { border-color: var(--line-strong); }
+  .bgs button.on { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .bgs input[type=color] { width: 22px; height: 22px; padding: 0; border: 1px solid var(--line); border-radius: 50%; overflow: hidden; cursor: pointer; }
+
+  .colors-head { display: flex; align-items: center; justify-content: space-between; padding-right: 12px; }
+  .list { flex: 1; overflow: auto; padding: 0 8px 8px; }
+  .row { border-radius: 8px; }
+  .row:hover { background: var(--hover); }
+  .line { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 10px; padding: 8px; }
+  .swatch { position: relative; width: 34px; height: 34px; border-radius: 8px; box-shadow: inset 0 0 0 1px var(--line-strong); overflow: hidden; }
+  .swatch input { position: absolute; inset: -8px; width: 50px; height: 50px; opacity: 0; cursor: pointer; }
+  .swatch .from { position: absolute; left: 0; bottom: 0; width: 12px; height: 12px; border-top-right-radius: 6px; box-shadow: 0 0 0 1px #ffffffaa; display: none; }
+  .row.changed .swatch .from { display: block; }
+  .meta { min-width: 0; }
+  .hex { width: 92px; border: 1px solid transparent; border-radius: 6px; padding: 2px 6px; margin-left: -6px; font-variant-numeric: tabular-nums; letter-spacing: .02em; text-transform: uppercase; background: transparent; }
+  .hex:hover, .hex:focus { border-color: var(--line); background: var(--field); outline: none; }
+  .row.changed .hex { color: var(--changed); }
+  .sub { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .actions { display: flex; gap: 2px; }
+  .layers { padding: 0 8px 8px 52px; display: none; }
+  .row.open .layers { display: block; }
+  .layers .line { grid-template-columns: 24px 1fr auto; padding: 4px 0; }
+  .layers .swatch { width: 24px; height: 24px; border-radius: 6px; }
+  .section-label { font-size: 12px; font-weight: 600; color: var(--muted); padding: 12px 8px 4px; }
+  .grad .bar { height: 34px; border-radius: 8px; box-shadow: inset 0 0 0 1px var(--line-strong); }
+  .grad .head { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 8px; }
+  .grad .stops { display: flex; gap: 12px; flex-wrap: wrap; padding: 0 8px 10px; }
+  .grad .stop { display: flex; align-items: center; gap: 6px; }
+  .grad .stop .swatch { width: 26px; height: 26px; border-radius: 6px; }
+  .grad .stop .hex { width: 80px; font-size: 12px; }
+  .grad.changed .stop.changed .hex { color: var(--changed); }
+  .row.selected { background: var(--active); margin: 4px 0 8px; }
+  .row.selected .name { color: var(--ink); white-space: normal; }
+  .seeicon { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; box-shadow: inset 0 0 0 1.5px currentColor; background: repeating-conic-gradient(currentColor 0 25%, transparent 0 50%) 0 0 / 6px 6px; opacity: .85; }
+  .aside-head span { display: flex; flex-shrink: 0; }
+  button.ghost.on { color: var(--changed); background: var(--hover); }
+  .note { font-size: 12px; color: var(--muted); padding: 4px 16px 12px; }
+  .foot { border-top: 1px solid var(--line); padding: 12px 16px; display: flex; gap: 8px; align-items: center; }
+  .foot .spacer { flex: 1; }
+  .foot button { white-space: nowrap; }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 8px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <aside>
+    <div class="rail"><button class="ghost collapse" data-panel="left" title="Show animations ([)"><span class="ms">left_panel_open</span></button></div>
+    <div class="aside-head"><h2>Animations</h2><span><button class="ghost icon" id="theme" title="Switch light or dark"><span class="ms">dark_mode</span></button><button class="ghost collapse" data-panel="left" title="Hide panel ([)"><span class="ms">left_panel_close</span></button></span></div>
+    <ul class="files" id="files"></ul>
+    <label class="drop" id="drop">Drop Lottie JSON here<br>or click to open
+      <input type="file" id="open" accept=".json,application/json" multiple hidden>
+    </label>
+  </aside>
+
+  <main>
+    <div class="resizer left" data-side="left" title="Drag to resize, double click to reset"></div>
+    <div class="resizer right" data-side="right" title="Drag to resize, double click to reset"></div>
+    <div class="stage" id="stage">
+      <div class="canvas checker" id="canvas"><div id="player"><p class="empty">Open a Lottie to start</p></div></div>
+      <div class="zoom" id="zoomBar">
+        <button id="zoomOut" class="icon" title="Zoom out (−)"><span class="ms">remove</span></button>
+        <span class="pct" id="zoomPct">100%</span>
+        <button id="zoomIn" class="icon" title="Zoom in (+)"><span class="ms">add</span></button>
+        <button id="zoomFit" class="icon" title="Fit (0 or double click)"><span class="ms">fit_screen</span></button>
+      </div>
+    </div>
+    <div class="transport">
+      <button id="play" class="icon" title="Play or pause (space)"><span class="ms">pause</span></button>
+      <input type="range" id="scrub" min="0" max="0" value="0" step="1">
+      <span class="frame" id="frame">0 / 0</span>
+      <div class="bgs" id="bgs" title="Preview background">
+        <button data-bg="#ffffff" style="background:#fff"></button>
+        <button data-bg="#f5f4f9" style="background:#f5f4f9"></button>
+        <button data-bg="#08080a" style="background:#08080a"></button>
+        <button data-bg="checker" class="on" style="background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/8px 8px"></button>
+        <input type="color" id="bgCustom" value="#e9e4da" title="Custom background">
+      </div>
+    </div>
+  </main>
+
+  <section class="colors">
+    <div class="rail"><button class="ghost collapse" data-panel="right" title="Show colors (])"><span class="ms">right_panel_open</span></button></div>
+    <div class="colors-head"><span style="display:flex;align-items:center"><button class="ghost collapse" data-panel="right" title="Hide panel (])" style="margin-left:8px"><span class="ms">right_panel_close</span></button><h2 id="colorsTitle" style="padding-left:4px">Colors</h2></span><button class="ghost" id="resetAll">Reset all</button></div>
+    <p class="note">Click a shape in the preview to change just that shape or make it see through. Colors below change everywhere they appear; open a row for one layer. Hold the eye to find anything. Drag to move, pinch or ⌘ scroll to zoom.</p>
+    <div class="list" id="list"></div>
+    <div class="foot">
+      <button id="copyMap" title="Copy the old to new color list">Copy color list</button>
+      <span class="spacer"></span>
+      <button class="primary" id="download">Download JSON</button>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ---------- color helpers ----------
+const clamp = (n) => Math.max(0, Math.min(1, n));
+const toHex = (rgb) => "#" + rgb.slice(0, 3).map((v) => Math.round(clamp(v) * 255).toString(16).padStart(2, "0")).join("");
+const fromHex = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+const normHex = (s) => {
+  s = s.trim().replace(/^#/, "");
+  if (/^[0-9a-f]{3}$/i.test(s)) s = s.split("").map((c) => c + c).join("");
+  return /^[0-9a-f]{6}$/i.test(s) ? "#" + s.toLowerCase() : null;
+};
+const FLASH = "#ff00aa";
+
+// ---------- cutting a hole ----------
+// Turns a fill's outline into a subtract mask on its layer, so everything on that layer inside
+// the outline disappears and whatever sits behind the layer shows through. Layer masks live in
+// layer space, so the outline is moved out through each enclosing group's transform first.
+const staticVal = (prop, d) => (!prop ? d : prop.a === 1 ? prop.k[0].s : prop.k);
+function groupMatrix(g) {
+  const tr = (g.it || []).find((x) => x.ty === "tr") || {};
+  const [px, py] = staticVal(tr.p, [0, 0]), [ax, ay] = staticVal(tr.a, [0, 0]);
+  const [sx, sy] = staticVal(tr.s, [100, 100]).map((v) => v / 100);
+  const r = ((+staticVal(tr.r, 0)) * Math.PI) / 180, c = Math.cos(r), n = Math.sin(r);
+  // point -> translate(-a) -> scale -> rotate -> translate(p)
+  return { a: c * sx, b: n * sx, c: -n * sy, d: c * sy, e: px - (c * sx * ax - n * sy * ay), f: py - (n * sx * ax + c * sy * ay) };
+}
+const mul = (m, k) => ({ a: m.a * k.a + m.c * k.b, b: m.b * k.a + m.d * k.b, c: m.a * k.c + m.c * k.d, d: m.b * k.c + m.d * k.d, e: m.a * k.e + m.c * k.f + m.e, f: m.b * k.e + m.d * k.f + m.f });
+const movePath = (pth, m) => ({
+  c: pth.c,
+  v: pth.v.map(([x, y]) => [m.a * x + m.c * y + m.e, m.b * x + m.d * y + m.f]),
+  i: pth.i.map(([x, y]) => [m.a * x + m.c * y, m.b * x + m.d * y]),
+  o: pth.o.map(([x, y]) => [m.a * x + m.c * y, m.b * x + m.d * y]),
+});
+function shapeToPath(it) {
+  if (it.ty === "el") {
+    const [cx, cy] = staticVal(it.p, [0, 0]), [w, h] = staticVal(it.s, [0, 0]), K = 0.5523, rx = w / 2, ry = h / 2;
+    return { c: true, v: [[cx, cy - ry], [cx + rx, cy], [cx, cy + ry], [cx - rx, cy]],
+      i: [[-rx * K, 0], [0, -ry * K], [rx * K, 0], [0, ry * K]], o: [[rx * K, 0], [0, ry * K], [-rx * K, 0], [0, -ry * K]] };
+  }
+  if (it.ty === "rc") {
+    const [cx, cy] = staticVal(it.p, [0, 0]), [w, h] = staticVal(it.s, [0, 0]), z = [[0, 0], [0, 0], [0, 0], [0, 0]];
+    return { c: true, v: [[cx + w / 2, cy - h / 2], [cx + w / 2, cy + h / 2], [cx - w / 2, cy + h / 2], [cx - w / 2, cy - h / 2]], i: z, o: z };
+  }
+  return null;
+}
+function cutHole(layer, siblings, groups) {
+  const m = groups.map(groupMatrix).reduce(mul, { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 });
+  const masks = [];
+  const collect = (items, mat) => items.forEach((it) => {
+    if (it.ty === "gr") return collect((it.it || []).filter((x) => x.ty !== "tr"), mul(mat, groupMatrix(it)));
+    let pt = null;
+    if (it.ty === "sh" && it.ks) pt = it.ks.a === 1
+      ? { a: 1, k: it.ks.k.map((kf) => ({ ...kf, s: kf.s && kf.s.map((p) => movePath(p, mat)), e: kf.e && kf.e.map((p) => movePath(p, mat)) })) }
+      : { a: 0, k: movePath(it.ks.k, mat) };
+    else if (shapeToPath(it)) pt = { a: 0, k: movePath(shapeToPath(it), mat) };
+    if (pt) masks.push({ inv: false, mode: "s", pt, o: { a: 0, k: 100 }, x: { a: 0, k: 0 }, nm: "Hole" });
+  });
+  collect(siblings, m);
+  if (!masks.length) return;
+  layer.hasMask = true;
+  layer.masksProperties = (layer.masksProperties || []).concat(masks);
+}
+
+// ---------- find every color in a Lottie ----------
+// Returns refs: { hex, layer, kind, shape, shapeName, grad, set(hex), clear() } for fills, strokes,
+// gradient stops, animated color keyframes, text colors, solid layers and color effects.
+// `shape` numbers each painted item in walk order, so it is stable for the same file.
+function collectRefs(anim) {
+  const refs = [];
+  let shapeCount = 0;
+  const add = (o) => refs.push({ ...o, hex: toHex(o.get()), set: (hex) => o.put(fromHex(hex)) });
+  const putInto = (arr, at = 0) => (c) => { arr[at] = c[0]; arr[at + 1] = c[1]; arr[at + 2] = c[2]; };
+
+  // a Lottie color property: static k = [r,g,b,a] or animated k = [{s, e?}, ...]
+  const colorProp = (prop, base) => {
+    if (!prop || prop.k == null) return;
+    if (prop.a === 1 && Array.isArray(prop.k)) {
+      prop.k.forEach((kf) => ["s", "e"].forEach((key) => {
+        const arr = kf[key];
+        if (Array.isArray(arr) && arr.length >= 3) add({ ...base, kind: base.kind + " (animated)", get: () => arr, put: putInto(arr) });
+      }));
+    } else if (Array.isArray(prop.k) && typeof prop.k[0] === "number") {
+      const arr = prop.k;
+      add({ ...base, get: () => arr, put: putInto(arr) });
+    }
+  };
+
+  // gradient: g.p stops, data = [offset, r, g, b] * p, then opacity pairs.
+  // Every gradient with the same stops shares one key, so it edits as one item.
+  const gradientStops = (arr, p, base) => {
+    const n = Math.min(p, Math.floor(arr.length / 4));
+    const key = base.kind + ":" + Array.from({ length: n }, (_, i) => Math.round(arr[i * 4] * 100) + toHex(arr.slice(i * 4 + 1, i * 4 + 4))).join(",");
+    for (let i = 0; i < n; i++) {
+      const o = i * 4 + 1;
+      add({ ...base, grad: { key, stop: i, offset: arr[i * 4] }, get: () => arr.slice(o, o + 3), put: putInto(arr, o) });
+    }
+  };
+  const gradientProp = (g, base) => {
+    if (!g || !g.k) return;
+    const p = g.p || 0;
+    if (g.k.a === 1) g.k.k.forEach((kf) => ["s", "e"].forEach((key) => Array.isArray(kf[key]) && gradientStops(kf[key], p, { ...base, kind: base.kind + " (animated)" })));
+    else if (Array.isArray(g.k.k)) gradientStops(g.k.k, p, base);
+  };
+
+  const KINDS = { fl: "Fill", st: "Stroke", gf: "Gradient fill", gs: "Gradient stroke" };
+  const shapes = (items, layer, path, lobj, groups) => (items || []).forEach((it, idx) => {
+    if (it.ty === "gr") return shapes(it.it, layer, path.concat(it.nm || "Group"), lobj, groups.concat(it));
+    if (!KINDS[it.ty]) return;
+    const isFill = it.ty === "fl" || it.ty === "gf";
+    const base = { layer, kind: KINDS[it.ty], shape: shapeCount++, shapeName: [layer, ...path].join(" / "), grad: null,
+      clear: () => { it.o = { a: 0, k: 0 }; },
+      hole: isFill ? () => cutHole(lobj, items.slice(0, idx), groups) : null };
+    if (it.ty === "fl" || it.ty === "st") colorProp(it.c, base); else gradientProp(it.g, base);
+  });
+
+  const layers = (list, prefix) => (list || []).forEach((l, i) => {
+    const label = (prefix ? prefix + " / " : "") + (l.nm || "Layer " + (i + 1));
+    const base = (kind) => ({ layer: label, kind, shape: shapeCount++, shapeName: label, grad: null, clear: null });
+    if (l.ty === 4) shapes(l.shapes, label, [], l, []);
+    if (l.ty === 1 && typeof l.sc === "string" && normHex(l.sc)) add({ ...base("Solid"), get: () => fromHex(normHex(l.sc)), put: (c) => { l.sc = toHex(c); } });
+    if (l.ty === 5 && l.t && l.t.d && Array.isArray(l.t.d.k)) l.t.d.k.forEach((kf) => {
+      const s = kf.s || {};
+      ["fc", "sc"].forEach((key) => { if (Array.isArray(s[key])) { const arr = s[key]; add({ ...base(key === "fc" ? "Text" : "Text stroke"), get: () => arr, put: putInto(arr) }); } });
+    });
+    (l.ef || []).forEach((ef) => (ef.ef || []).forEach((p) => { if (p.ty === 2) colorProp(p.v, base("Effect")); }));
+  });
+
+  layers(anim.layers, "");
+  (anim.assets || []).forEach((a) => { if (a.layers) layers(a.layers, a.nm || a.id); });
+  return refs;
+}
+
+// ---------- state ----------
+// Per file: edits { hex: hex | "clear" }, layerEdits { "hex|layer": hex | "clear" },
+// gradEdits { gradKey: { stop: hex } }, shapeEdits { shape: hex | "clear" }.
+const CLEAR = "clear";
+const HOLE = "hole";     // shapeEdits only: cut the shape out of its layer
+const files = [];
+let current = null;
+let player = null;
+let playing = true;
+let flash = null;        // { hex, layer? } | { grad } | { shape } while an eye is held
+let selected = null;     // shape number picked in the preview
+const $ = (id) => document.getElementById(id);
+const ic = (name) => `<span class="ms">${name}</span>`;
+const store = { get: (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+const EDIT_KEYS = ["edits", "layerEdits", "gradEdits", "shapeEdits"];
+const save = () => store.set("lottie-recolor", Object.fromEntries(files.map((f) => [f.name, Object.fromEntries(EDIT_KEYS.map((k) => [k, f[k]]))])));
+const saved = store.get("lottie-recolor", {});
+const hasEdits = (f) => EDIT_KEYS.some((k) => Object.keys(f[k]).length);
+const original = () => collectRefs(JSON.parse(JSON.stringify(current.original)));
+
+function addFile(name, data) {
+  name = name.replace(/\.json$/i, "");
+  if (!data || !Array.isArray(data.layers)) { toast(name + " is not a Lottie JSON"); return; }
+  let f = files.find((x) => x.name === name);
+  if (!f) {
+    const s = saved[name] || {};
+    f = { name, original: data };
+    EDIT_KEYS.forEach((k) => (f[k] = s[k] || {}));
+    files.push(f);
+  } else f.original = data;
+  renderFiles();
+  select(f);
+}
+
+// what a ref should become, or undefined to leave it
+function target(f, r) {
+  if (f.shapeEdits[r.shape] != null) return f.shapeEdits[r.shape];
+  if (r.grad) return (f.gradEdits[r.grad.key] || {})[r.grad.stop];
+  return f.layerEdits[r.hex + "|" + r.layer] || f.edits[r.hex];
+}
+const flashing = (r) => flash && (flash.shape != null ? flash.shape === r.shape
+  : flash.grad ? r.grad && r.grad.key === flash.grad
+  : !r.grad && flash.hex === r.hex && (!flash.layer || flash.layer === r.layer));
+
+// pick mode paints every shape a unique color so a click can be traced back to it
+const pickColor = (n) => "#" + [n % 50, Math.floor(n / 50) % 50, Math.floor(n / 2500) % 50].map((v) => (v * 5).toString(16).padStart(2, "0")).join("");
+const pickDecode = (r, g, b) => Math.round(r / 5) + Math.round(g / 5) * 50 + Math.round(b / 5) * 2500;
+
+// apply edits (and the held flash) to a fresh copy
+function build(f, mode = "view") {
+  const copy = JSON.parse(JSON.stringify(f.original));
+  const cut = new Set();
+  for (const r of collectRefs(copy)) {
+    // pick mode: shapes already see through stay out of the way so a click reaches what is behind them
+    if (target(f, r) === HOLE && r.hole && !cut.has(r.shape)) { cut.add(r.shape); r.hole(); }
+    if (mode === "pick") { r.set(pickColor(r.shape)); if ([CLEAR, HOLE].includes(target(f, r)) && r.clear) r.clear(); continue; }
+    let next = target(f, r);
+    if (mode === "view" && flashing(r)) next = FLASH;
+    if (next === CLEAR || next === HOLE) r.clear && r.clear();
+    else if (next && next !== r.hex) r.set(next);
+  }
+  return copy;
+}
+
+// ---------- preview ----------
+function loadPlayer() {
+  if (!current) return;
+  const frame = player ? player.currentFrame : 0;
+  if (player) player.destroy();
+  $("player").innerHTML = "";
+  player = lottie.loadAnimation({ container: $("player"), renderer: "svg", loop: true, autoplay: false, animationData: build(current) });
+  const total = Math.max(0, Math.floor(player.totalFrames) - 1);
+  $("scrub").max = total;
+  player.addEventListener("enterFrame", () => { $("scrub").value = Math.floor(player.currentFrame); $("frame").textContent = Math.floor(player.currentFrame) + " / " + total; });
+  if (playing) player.goToAndPlay(frame, true); else player.goToAndStop(frame, true);
+  $("frame").textContent = Math.floor(frame) + " / " + total;
+}
+let queued = false;
+const refresh = () => { if (queued) return; queued = true; setTimeout(() => { queued = false; loadPlayer(); }, 16); };
+
+const playIcon = () => ($("play").innerHTML = ic(playing ? "pause" : "play_arrow"));
+$("play").onclick = () => { playing = !playing; if (player) playing ? player.play() : player.pause(); playIcon(); };
+$("scrub").oninput = (e) => { playing = false; playIcon(); player && player.goToAndStop(+e.target.value, true); $("frame").textContent = e.target.value + " / " + $("scrub").max; };
+
+function setBg(bg) {
+  const c = $("canvas");
+  c.classList.toggle("checker", bg === "checker");
+  c.style.background = bg === "checker" ? "" : bg;
+  document.querySelectorAll("#bgs button").forEach((b) => b.classList.toggle("on", b.dataset.bg === bg));
+}
+document.querySelectorAll("#bgs button").forEach((b) => b.onclick = () => setBg(b.dataset.bg));
+$("bgCustom").oninput = (e) => setBg(e.target.value);
+
+// ---------- canvas: zoom, pan and click to pick ----------
+const stage = $("stage"), canvas = $("canvas");
+const view = { x: 0, y: 0, s: 1, base: 400, fitted: true };
+function applyView() {
+  canvas.style.width = canvas.style.height = view.base + "px";
+  canvas.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.s})`;
+  $("zoomPct").textContent = Math.round(view.s * 100) + "%";
+}
+function fit() {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  view.base = Math.max(160, Math.min(W, H) - 72);
+  view.s = 1; view.x = (W - view.base) / 2; view.y = (H - view.base) / 2; view.fitted = true;
+  applyView();
+}
+function zoomAt(factor, px, py) {
+  const s = Math.max(0.1, Math.min(16, view.s * factor));
+  view.x = px - ((px - view.x) * s) / view.s;
+  view.y = py - ((py - view.y) * s) / view.s;
+  view.s = s; view.fitted = false;
+  applyView();
+}
+const zoomCenter = (factor) => zoomAt(factor, stage.clientWidth / 2, stage.clientHeight / 2);
+$("zoomIn").onclick = () => zoomCenter(1.25);
+$("zoomOut").onclick = () => zoomCenter(0.8);
+$("zoomFit").onclick = fit;
+$("zoomBar").addEventListener("pointerdown", (e) => e.stopPropagation());
+new ResizeObserver(() => view.fitted && fit()).observe(stage);
+
+// trackpad pinch and ctrl or cmd scroll zoom; plain scroll pans
+stage.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const r = stage.getBoundingClientRect();
+  if (e.ctrlKey || e.metaKey) zoomAt(Math.exp(-e.deltaY * 0.01), e.clientX - r.left, e.clientY - r.top);
+  else { view.x -= e.deltaX; view.y -= e.deltaY; view.fitted = false; applyView(); }
+}, { passive: false });
+
+// drag pans; a click without dragging picks the shape under the pointer
+let drag = null;
+stage.addEventListener("pointerdown", (e) => {
+  if (e.button !== 0) return;
+  drag = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y, moved: false };
+  stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener("pointermove", (e) => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if (!drag.moved && Math.hypot(dx, dy) < 4) return;
+  drag.moved = true; stage.classList.add("dragging");
+  view.x = drag.vx + dx; view.y = drag.vy + dy; view.fitted = false; applyView();
+});
+stage.addEventListener("pointerup", (e) => {
+  if (drag && !drag.moved) pickAt(e.clientX, e.clientY);
+  drag = null; stage.classList.remove("dragging");
+});
+stage.addEventListener("dblclick", fit);
+
+function pickAt(x, y) {
+  if (!current || !player) return;
+  const layer = document.createElement("div");
+  layer.style.cssText = "position:absolute;inset:0;opacity:0;z-index:5";
+  canvas.appendChild(layer);
+  const anim = lottie.loadAnimation({ container: layer, renderer: "svg", loop: false, autoplay: false, animationData: build(current, "pick") });
+  anim.goToAndStop(player.currentFrame, true);
+  // topmost shape whose painted fill or stroke is under the pointer
+  const decode = (paint) => {
+    const url = paint && paint.match(/url\(#(.+?)\)/);
+    if (url) { const stop = layer.querySelector(`[id="${url[1]}"] stop`); paint = stop && (stop.getAttribute("stop-color") || stop.style.stopColor); }
+    const m = paint && paint.match(/(\d+),\s*(\d+),\s*(\d+)/);
+    return m ? pickDecode(+m[1], +m[2], +m[3]) : null;
+  };
+  const painted = (el, attr) => { const v = el.getAttribute(attr); return v && v !== "none" && el.getAttribute(attr + "-opacity") !== "0" ? v : null; };
+  // let the browser hit test only what is actually painted: a stroke-only path is hit on its line, not inside it
+  for (const el of layer.querySelectorAll("path, rect, ellipse, circle, polygon")) {
+    const fill = painted(el, "fill"), stroke = painted(el, "stroke");
+    el.style.pointerEvents = fill && stroke ? "visiblePainted" : fill ? "visibleFill" : stroke ? "visibleStroke" : "none";
+  }
+  let found = null;
+  for (const el of document.elementsFromPoint(x, y)) {
+    if (!layer.contains(el) || !(el instanceof SVGGeometryElement)) continue;
+    if ((found = decode(painted(el, "fill") || painted(el, "stroke"))) != null) break;
+  }
+  anim.destroy(); layer.remove();
+  if (found == null || !original().some((r) => r.shape === found)) { selected = null; renderColors(); return; }
+  selected = found;
+  setPanel("right", true);
+  renderColors();
+  $("list").scrollTop = 0;
+  flash = { shape: found }; refresh();
+  setTimeout(() => { if (flash && flash.shape === found) { flash = null; refresh(); } }, 450);
+}
+
+// ---------- panels ----------
+// widths are what he dragged to; layout() squeezes them when the window is too narrow,
+// without forgetting the chosen width, so the panel springs back when there is room again
+const RAIL = 48, MIDDLE_MIN = 320;
+const LIMITS = { left: { min: 180, max: 440, start: 240 }, right: { min: 300, max: 640, start: 380 } };
+const widths = { ...{ left: LIMITS.left.start, right: LIMITS.right.start }, ...store.get("lottie-recolor-widths", {}) };
+const isOpen = (side) => !$("app").classList.contains(side + "-closed");
+function layout() {
+  const avail = window.innerWidth;
+  let l = isOpen("left") ? widths.left : RAIL, r = isOpen("right") ? widths.right : RAIL;
+  let over = l + r + MIDDLE_MIN - avail;
+  if (over > 0 && isOpen("right")) { const cut = Math.min(over, r - LIMITS.right.min); r -= cut; over -= cut; }
+  if (over > 0 && isOpen("left")) { const cut = Math.min(over, l - LIMITS.left.min); l -= cut; over -= cut; }
+  $("app").style.gridTemplateColumns = `${l}px minmax(0, 1fr) ${r}px`;
+}
+function setPanel(side, open) {
+  $("app").classList.toggle(side + "-closed", !open);
+  store.set("lottie-recolor-panels", { left: isOpen("left"), right: isOpen("right") });
+  layout();
+}
+window.addEventListener("resize", layout);
+
+document.querySelectorAll(".resizer").forEach((h) => {
+  const side = h.dataset.side;
+  h.addEventListener("pointerdown", (e) => {
+    e.preventDefault(); h.setPointerCapture(e.pointerId);
+    h.classList.add("active"); document.body.classList.add("resizing");
+    const move = (ev) => {
+      const w = side === "left" ? ev.clientX : window.innerWidth - ev.clientX;
+      const other = isOpen(side === "left" ? "right" : "left") ? widths[side === "left" ? "right" : "left"] : RAIL;
+      widths[side] = Math.round(Math.max(LIMITS[side].min, Math.min(LIMITS[side].max, w, window.innerWidth - other - MIDDLE_MIN)));
+      layout();
+    };
+    const up = () => {
+      h.classList.remove("active"); document.body.classList.remove("resizing");
+      h.removeEventListener("pointermove", move); h.removeEventListener("pointerup", up);
+      store.set("lottie-recolor-widths", widths);
+    };
+    h.addEventListener("pointermove", move); h.addEventListener("pointerup", up);
+  });
+  h.addEventListener("dblclick", () => { widths[side] = LIMITS[side].start; store.set("lottie-recolor-widths", widths); layout(); });
+});
+document.querySelectorAll(".collapse").forEach((b) => b.onclick = () => setPanel(b.dataset.panel, $("app").classList.contains(b.dataset.panel + "-closed")));
+const panels = store.get("lottie-recolor-panels", { left: true, right: true });
+setPanel("left", panels.left); setPanel("right", panels.right);
+
+document.addEventListener("keydown", (e) => {
+  if (e.target.closest("input, textarea") || e.metaKey || e.ctrlKey) return;
+  if (e.key === "[") setPanel("left", $("app").classList.contains("left-closed"));
+  else if (e.key === "]") setPanel("right", $("app").classList.contains("right-closed"));
+  else if (e.key === "0") fit();
+  else if (e.key === "=" || e.key === "+") zoomCenter(1.25);
+  else if (e.key === "-") zoomCenter(0.8);
+  else if (e.key === "Escape" && selected != null) { selected = null; renderColors(); }
+  else if (e.key === " " && !e.target.closest("button")) { e.preventDefault(); $("play").click(); }
+});
+
+// ---------- file list ----------
+function renderFiles() {
+  $("files").innerHTML = "";
+  files.forEach((f) => {
+    const li = document.createElement("li");
+    li.className = (f === current ? "active " : "") + (hasEdits(f) ? "edited" : "");
+    li.innerHTML = `<span></span><span class="dot" title="Has changes"></span>`;
+    li.firstChild.textContent = f.name;
+    li.onclick = () => select(f);
+    $("files").appendChild(li);
+  });
+}
+function select(f) { current = f; selected = null; if (player) { player.destroy(); player = null; } renderFiles(); renderColors(); loadPlayer(); }
+
+// ---------- right panel ----------
+const SEE = `<span class="seeicon"></span>`;
+const CHECKER = "repeating-conic-gradient(#bbb 0 25%, #fff 0 50%) 0 0 / 10px 10px";
+const paintOf = (v) => (v === CLEAR || v === HOLE ? CHECKER : v);
+const changed = () => { save(); renderColors(); renderFiles(); refresh(); };
+const el = (html) => { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; };
+const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
+
+// a swatch with a native picker; onLive fires while dragging, onDone when the picker closes
+function swatch(value, onLive, onDone, size = "") {
+  const s = el(`<div class="swatch ${size}"><span class="from"></span><input type="color"></div>`);
+  s.style.background = paintOf(value);
+  const input = s.querySelector("input");
+  input.value = value === CLEAR ? "#ffffff" : value;
+  input.oninput = () => { s.style.background = input.value; onLive(input.value); };
+  input.onchange = () => onDone && onDone(input.value);
+  return s;
+}
+function hexField(value, onCommit) {
+  const h = el(`<input class="hex" spellcheck="false">`);
+  h.value = value === CLEAR ? "See through" : value.toUpperCase();
+  h.onchange = () => { const v = normHex(h.value); v ? onCommit(v) : (h.value = value === CLEAR ? "See through" : value.toUpperCase()); };
+  h.onkeydown = (e) => e.key === "Enter" && h.blur();
+  return h;
+}
+function eye(targetObj) {
+  const b = el(`<button class="ghost icon eye" title="Hold to find it in the preview">${ic("visibility")}</button>`);
+  b.addEventListener("pointerdown", () => { flash = targetObj; refresh(); });
+  ["pointerup", "pointerleave", "pointercancel"].forEach((ev) => b.addEventListener(ev, () => { if (flash) { flash = null; refresh(); } }));
+  return b;
+}
+const button = (label, title, onClick, on) => { const b = el(`<button class="ghost${label.startsWith("<span") ? " icon" : ""}${on ? " on" : ""}" title="${title}">${label}</button>`); b.onclick = onClick; return b; };
+
+function renderColors() {
+  const list = $("list");
+  list.innerHTML = "";
+  if (!current) return;
+  const refs = original();
+  if (selected != null) list.appendChild(selectedCard(refs.filter((r) => r.shape === selected)));
+
+  // shapes changed on their own, so a see-through shape can still be found and undone
+  const own = Object.keys(current.shapeEdits).map(Number).filter((s) => s !== selected);
+  if (own.length) {
+    list.appendChild(el(`<div class="section-label">Shapes changed on their own (${own.length})</div>`));
+    own.forEach((s) => {
+      const r = refs.find((x) => x.shape === s);
+      if (!r) return;
+      const v = current.shapeEdits[s];
+      const line = el(`<div class="row"><div class="line"><div class="swatch"></div><div class="meta"><div class="sub name"></div><div class="sub"></div></div><div class="actions"></div></div></div>`);
+      line.querySelector(".swatch").style.background = paintOf(v);
+      line.querySelector(".name").textContent = `Shape ${r.shape} · ${r.shapeName}`;
+      line.querySelector(".name").style.color = "var(--ink)";
+      line.querySelectorAll(".sub")[1].textContent = r.kind + (v === HOLE ? " · cut out as a hole" : v === CLEAR ? " · see through" : " · " + v.toUpperCase());
+      const a = line.querySelector(".actions");
+      a.append(eye({ shape: s }));
+      a.append(button("Edit", "Select this shape", () => { selected = s; renderColors(); }));
+      a.append(button(ic("undo"), "Undo", () => { delete current.shapeEdits[s]; changed(); }));
+      list.appendChild(line);
+    });
+  }
+  list.appendChild(el(`<div class="section-label">Colors</div>`));
+
+  // solid colors
+  const groups = new Map();
+  for (const r of refs.filter((r) => !r.grad)) {
+    if (!groups.has(r.hex)) groups.set(r.hex, { hex: r.hex, count: 0, kinds: new Set(), layers: new Map(), clearable: true });
+    const g = groups.get(r.hex);
+    g.count++; g.kinds.add(r.kind.replace(" (animated)", "")); g.clearable = g.clearable && !!r.clear;
+    g.layers.set(r.layer, (g.layers.get(r.layer) || 0) + 1);
+  }
+  const sorted = [...groups.values()].sort((a, b) => b.count - a.count);
+  $("colorsTitle").textContent = `Colors (${sorted.length})`;
+  sorted.forEach((g) => list.appendChild(colorRow(g)));
+
+  // gradients, one item per distinct set of stops
+  const grads = new Map();
+  for (const r of refs.filter((r) => r.grad)) {
+    if (!grads.has(r.grad.key)) grads.set(r.grad.key, { key: r.grad.key, kind: r.kind.replace(" (animated)", ""), stops: [], shapes: new Set(), layers: new Set() });
+    const g = grads.get(r.grad.key);
+    g.stops[r.grad.stop] = { hex: r.hex, offset: r.grad.offset };
+    g.shapes.add(r.shape); g.layers.add(r.layer);
+  }
+  if (grads.size) {
+    list.appendChild(el(`<div class="section-label">Gradients (${grads.size})</div>`));
+    [...grads.values()].sort((a, b) => b.shapes.size - a.shapes.size).forEach((g) => list.appendChild(gradientRow(g)));
+  }
+}
+
+function colorRow(g) {
+  const now = current.edits[g.hex] || g.hex;
+  const layerChanged = [...g.layers.keys()].some((l) => current.layerEdits[g.hex + "|" + l]);
+  const open = openRows.has(g.hex);
+  const row = el(`<div class="row${now !== g.hex || layerChanged ? " changed" : ""}${open ? " open" : ""}"><div class="line"><div class="meta"></div><div class="actions"></div></div><div class="layers"></div></div>`);
+  const set = (v) => { if (v === g.hex) delete current.edits[g.hex]; else current.edits[g.hex] = v; save(); refresh(); };
+  const sw = swatch(now, set, () => { renderColors(); renderFiles(); });
+  sw.querySelector(".from").style.background = g.hex;
+  sw.querySelector(".from").title = "Was " + g.hex.toUpperCase();
+  row.querySelector(".line").prepend(sw);
+  const meta = row.querySelector(".meta");
+  meta.append(hexField(now, (v) => { set(v); renderColors(); renderFiles(); }));
+  meta.append(el(`<div class="sub">${[...g.kinds].join(", ")} · ${plural(g.count, "use")} · ${plural(g.layers.size, "layer")}</div>`));
+  const actions = row.querySelector(".actions");
+  actions.append(eye({ hex: g.hex }));
+  if (g.clearable) actions.append(button(SEE, now === CLEAR ? "Make it solid again" : "Make it see through", () => { now === CLEAR ? delete current.edits[g.hex] : (current.edits[g.hex] = CLEAR); changed(); }, now === CLEAR));
+  actions.append(button(ic("undo"), "Back to " + g.hex.toUpperCase(), () => { delete current.edits[g.hex]; g.layers.forEach((_, l) => delete current.layerEdits[g.hex + "|" + l]); changed(); }));
+  actions.append(button(ic(open ? "expand_less" : "expand_more"), "Per layer", () => { open ? openRows.delete(g.hex) : openRows.add(g.hex); renderColors(); }));
+
+  const lw = row.querySelector(".layers");
+  g.layers.forEach((n, layer) => {
+    const key = g.hex + "|" + layer;
+    const val = current.layerEdits[key] || now;
+    const line = el(`<div class="line"><div class="sub"></div><div class="actions"></div></div>`);
+    line.prepend(swatch(val, (v) => { current.layerEdits[key] = v; save(); refresh(); }, () => { renderColors(); renderFiles(); }));
+    line.querySelector(".sub").textContent = `${layer} · ${n}` + (current.layerEdits[key] === CLEAR ? " · see through" : current.layerEdits[key] ? " · own color" : "");
+    const a = line.querySelector(".actions");
+    a.append(eye({ hex: g.hex, layer }));
+    if (g.clearable) a.append(button(SEE, "See through on this layer", () => { val === CLEAR ? delete current.layerEdits[key] : (current.layerEdits[key] = CLEAR); changed(); }, val === CLEAR));
+    a.append(button(ic("undo"), "Follow the main color", () => { delete current.layerEdits[key]; changed(); }));
+    lw.appendChild(line);
+  });
+  return row;
+}
+const openRows = new Set();
+
+function gradientRow(g) {
+  const edits = current.gradEdits[g.key] || {};
+  const stops = g.stops.map((s, i) => ({ ...s, now: edits[i] || s.hex }));
+  const bar = () => `linear-gradient(90deg, ${stops.map((s) => `${s.now} ${Math.round(s.offset * 100)}%`).join(", ")})`;
+  const row = el(`<div class="row grad${Object.keys(edits).length ? " changed" : ""}"><div class="head"><div><div class="bar"></div><div class="sub" style="margin-top:6px"></div></div><div class="actions"></div></div><div class="stops"></div></div>`);
+  row.querySelector(".bar").style.background = bar();
+  row.querySelector(".sub").textContent = `${g.kind} · ${plural(g.shapes.size, "shape")} · ${[...g.layers].slice(0, 3).join(", ")}${g.layers.size > 3 ? "…" : ""}`;
+  const set = (i, v) => {
+    const e = (current.gradEdits[g.key] = current.gradEdits[g.key] || {});
+    if (v === stops[i].hex) delete e[i]; else e[i] = v;
+    if (!Object.keys(e).length) delete current.gradEdits[g.key];
+    stops[i].now = v; row.querySelector(".bar").style.background = bar(); save(); refresh();
+  };
+  const a = row.querySelector(".actions");
+  a.append(eye({ grad: g.key }));
+  a.append(button(ic("undo"), "Back to the original gradient", () => { delete current.gradEdits[g.key]; changed(); }));
+  stops.forEach((s, i) => {
+    const stop = el(`<div class="stop${s.now !== s.hex ? " changed" : ""}"></div>`);
+    stop.append(swatch(s.now, (v) => set(i, v), () => { renderColors(); renderFiles(); }));
+    stop.append(hexField(s.now, (v) => { set(i, v); renderColors(); renderFiles(); }));
+    row.querySelector(".stops").append(stop);
+  });
+  return row;
+}
+
+// the shape picked in the preview, edited on its own
+function selectedCard(refs) {
+  const r = refs[0];
+  const val = current.shapeEdits[selected];
+  const card = el(`<div class="row selected changed"><div class="section-label">Selected shape</div><div class="line"><div class="meta"><div class="sub name"></div><div class="sub state"></div></div><div class="actions"></div></div></div>`);
+  card.querySelector(".name").textContent = `Shape ${r.shape} · ${r.shapeName}`;
+  card.querySelector(".state").textContent = r.kind + (val === HOLE ? " · cut out as a hole" : val === CLEAR ? " · see through" : val ? " · own color" : r.grad ? " · gradient" : " · " + r.hex.toUpperCase());
+  const set = (v) => { current.shapeEdits[selected] = v; save(); refresh(); };
+  if (!r.grad) card.querySelector(".line").prepend(swatch(val || target(current, r) || r.hex, set, () => { renderColors(); renderFiles(); }));
+  else card.querySelector(".line").prepend(el(`<div class="swatch" style="background:linear-gradient(90deg, ${refs.map((x) => x.hex).join(", ")})"></div>`));
+  const a = card.querySelector(".actions");
+  a.append(eye({ shape: selected }));
+  if (r.hole) a.append(button(val === HOLE ? "Fill hole" : "Cut a hole", val === HOLE ? "Put the shape back" : "Cut this shape out of its whole layer, so the background shows through", () => { val === HOLE ? delete current.shapeEdits[selected] : (current.shapeEdits[selected] = HOLE); changed(); }, val === HOLE));
+  if (r.clear) a.append(button(val === CLEAR ? "Make solid" : "See through", val === CLEAR ? "Show this shape again" : "Make only this shape see through", () => { val === CLEAR ? delete current.shapeEdits[selected] : (current.shapeEdits[selected] = CLEAR); changed(); }, val === CLEAR));
+  a.append(button(ic("undo"), "Undo changes to this shape", () => { delete current.shapeEdits[selected]; changed(); }));
+  a.append(button(ic("close"), "Deselect (Esc)", () => { selected = null; renderColors(); }));
+  return card;
+}
+
+$("resetAll").onclick = () => { if (!current) return; EDIT_KEYS.forEach((k) => (current[k] = {})); changed(); };
+
+// ---------- export ----------
+$("download").onclick = () => {
+  if (!current) return;
+  const blob = new Blob([JSON.stringify(build(current, "export"))], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = current.name + "-recolored.json";
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  toast("Saved " + a.download + " to Downloads");
+};
+$("copyMap").onclick = async () => {
+  if (!current) return;
+  const show = (v) => (v === HOLE ? "cut out as a hole" : v === CLEAR ? "see through" : v.toUpperCase());
+  const refs = original();
+  const lines = Object.entries(current.edits).map(([a, b]) => `${a.toUpperCase()} to ${show(b)}`)
+    .concat(Object.entries(current.layerEdits).map(([k, b]) => { const [a, l] = k.split("|"); return `${a.toUpperCase()} to ${show(b)} on ${l}`; }))
+    .concat(Object.entries(current.gradEdits).flatMap(([k, stops]) => Object.entries(stops).map(([i, b]) => { const r = refs.find((x) => x.grad && x.grad.key === k && x.grad.stop === +i); return `Gradient stop ${r ? r.hex.toUpperCase() : i} to ${show(b)}`; })))
+    .concat(Object.entries(current.shapeEdits).map(([s, b]) => { const r = refs.find((x) => x.shape === +s); return `${r ? r.shapeName : "Shape " + s} to ${show(b)}`; }));
+  try { await navigator.clipboard.writeText(lines.join("\n") || "No changes"); toast("Copied"); } catch (e) { toast("Clipboard blocked"); }
+};
+
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 1800); }
+
+// ---------- theme ----------
+function setTheme(t) {
+  document.documentElement.dataset.theme = t;
+  $("theme").innerHTML = ic(t === "dark" ? "light_mode" : "dark_mode");
+  store.set("lottie-recolor-theme", t);
+}
+$("theme").onclick = () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+setTheme(store.get("lottie-recolor-theme", null) || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+
+// ---------- open files ----------
+const readFiles = (list) => [...list].forEach((file) => file.text().then((txt) => { try { addFile(file.name, JSON.parse(txt)); } catch (e) { toast(file.name + " is not valid JSON"); } }));
+$("open").onchange = (e) => readFiles(e.target.files);
+const drop = $("drop");
+["dragenter", "dragover"].forEach((ev) => document.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add("over"); }));
+["dragleave", "drop"].forEach((ev) => document.addEventListener(ev, (e) => { e.preventDefault(); if (ev === "drop" || e.target === document.documentElement) drop.classList.remove("over"); }));
+document.addEventListener("drop", (e) => readFiles(e.dataTransfer.files));
+
+fit();
+(window.BUNDLED_LOTTIES || []).forEach((b) => addFile(b.name, b.data));
+if (files.length) select(files[0]);
+</script>
+</body>
+</html>

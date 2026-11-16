@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Five color core palette</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #08080a; color: #f5f4f9; font-family: Arial, Helvetica, sans-serif; }
+    main { max-width: 1500px; margin: auto; padding: 38px clamp(18px, 4vw, 62px) 100px; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #b5b3bd; }
+    h1 { font-size: clamp(48px, 7.2vw, 105px); line-height: .94; letter-spacing: -.075em; margin: 27px 0; max-width: 1000px; }
+    .lead { font-size: clamp(18px, 2vw, 24px); line-height: 1.35; max-width: 850px; margin: 0 0 60px; }
+    h2 { font-size: clamp(29px, 3vw, 47px); line-height: 1.02; letter-spacing: -.05em; margin: 0 0 22px; }
+    p { line-height: 1.45; }
+    .section { border-top: 1px solid #53525b; padding-top: 32px; margin-top: 60px; }
+    .comparison { display: flex; gap: 18px; overflow-x: auto; padding: 0 0 22px; }
+    figure { margin: 0; flex: 0 0 444px; }
+    figcaption { min-height: 79px; font-size: 16px; line-height: 1.35; }
+    figcaption strong { display: block; margin-bottom: 5px; }
+    figcaption span { color: #b5b3bd; }
+    .site { position: relative; width: 444px; height: 690px; overflow: hidden; }
+    .site img { display: block; width: 444px; height: 1438px; }
+    .replacement { position: absolute; left: 22px; top: 440px; width: 205px; height: 109px; background: #000; display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .replacement span { display: block; }
+    .expanded { grid-template-rows: repeat(2, 52px); row-gap: 5px; }
+    .corelist { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 25px; }
+    .coreitem { min-width: 0; }
+    .corecolor { height: 132px; padding: 12px; color: #000; display: flex; align-items: end; font-size: 14px; font-weight: 700; }
+    .corename { margin-top: 11px; font-size: 16px; font-weight: 700; }
+    .coremeta { color: #b5b3bd; font-size: 13px; margin-top: 4px; }
+    .method { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 80px); }
+    .method p { max-width: 570px; font-size: 17px; }
+    .variants { display: grid; gap: 14px; margin-top: 30px; }
+    .variantrow { display: grid; grid-template-columns: 158px repeat(3, minmax(0, 1fr)); gap: 7px; align-items: center; }
+    .variantname { font-size: 14px; font-weight: 700; }
+    .variantchip { min-height: 76px; padding: 10px; display: flex; align-items: end; color: #000; font-size: 12px; font-weight: 700; }
+    .variantchip.darktype { color: #f5f4f9; }
+    .caption { color: #b5b3bd; font-size: 14px; max-width: 700px; }
+    .decision { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+    .decision p { max-width: 560px; font-size: 17px; }
+    .decision a { color: #f5f4f9; }
+    @media (max-width: 850px) {
+      .corelist { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .method, .decision { grid-template-columns: 1fr; }
+      .variantrow { grid-template-columns: 100px repeat(3, minmax(0, 1fr)); }
+      .variantchip { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Portfolio color study / new proposal</div>
+    <h1>Five colors at the center.</h1>
+    <p class="lead">These five new colors are the palette. Lighter and darker versions are generated from them only when the composition needs more range. The outfit is outside this study.</p>
+
+    <section class="section" aria-labelledby="contextheading">
+      <div class="eyebrow">01 / At the scale you showed</div>
+      <h2 id="contextheading">Test the block on the black page.</h2>
+      <div class="comparison">
+        <figure>
+          <figcaption><strong>Your original</strong><span>Ten supplied values, paired in five columns.</span></figcaption>
+          <div class="site"><img src="site-reference.png" alt="Original portfolio screenshot with the supplied five by two palette block"></div>
+        </figure>
+        <figure>
+          <figcaption><strong>New core block</strong><span>Five new anchors in the same footprint.</span></figcaption>
+          <div class="site"><img src="site-reference.png" alt="Portfolio screenshot used as context"><div class="replacement" aria-label="Five new core colors in the original block position"><span style="background:#25A351"></span><span style="background:#E52751"></span><span style="background:#B8C625"></span><span style="background:#B637D5"></span><span style="background:#6555E6"></span></div></div>
+        </figure>
+        <figure>
+          <figcaption><strong>Core with derived shades</strong><span>The same anchors generate a light and dark block.</span></figcaption>
+          <div class="site"><img src="site-reference.png" alt="Portfolio screenshot used as context"><div class="replacement expanded" aria-label="Five lighter colors over five darker colors, derived from the core palette"><span style="background:#56D57B"></span><span style="background:#FF9DAF"></span><span style="background:#E6EC9D"></span><span style="background:#E27EFD"></span><span style="background:#A2A8FC"></span><span style="background:#005A52"></span><span style="background:#B10026"></span><span style="background:#748400"></span><span style="background:#702483"></span><span style="background:#3E2F96"></span></div></div>
+        </figure>
+      </div>
+      <p class="caption">The two proposals cover only the palette area in a copy of your screenshot. No outfit, imagery or page layout has been changed.</p>
+    </section>
+
+    <section class="section" aria-labelledby="coreheading">
+      <div class="eyebrow">02 / The primary palette</div>
+      <h2 id="coreheading">Five anchors, each with a different weight.</h2>
+      <div class="corelist">
+        <div class="coreitem"><div class="corecolor" style="background:#25A351">#25A351</div><div class="corename">Signal green</div><div class="coremeta">OKLCH 63 / .16 / 150</div></div>
+        <div class="coreitem"><div class="corecolor" style="background:#E52751">#E52751</div><div class="corename">Crimson rose</div><div class="coremeta">OKLCH 60 / .22 / 16</div></div>
+        <div class="coreitem"><div class="corecolor" style="background:#B8C625">#B8C625</div><div class="corename">Acid citron</div><div class="coremeta">OKLCH 79 / .17 / 115</div></div>
+        <div class="coreitem"><div class="corecolor" style="background:#B637D5">#B637D5</div><div class="corename">Electric violet</div><div class="coremeta">OKLCH 59 / .24 / 319</div></div>
+        <div class="coreitem"><div class="corecolor" style="background:#6555E6">#6555E6</div><div class="corename">Royal indigo</div><div class="coremeta">OKLCH 55 / .21 / 282</div></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="methodheading">
+      <div class="eyebrow">03 / How the shades are made</div>
+      <div class="method">
+        <div><h2 id="methodheading">Shift perceptual lightness, not an RGB brightness slider.</h2><p>The five core hues follow the relationships in your original block. Their lightness is intentionally uneven: citron is the light spike and indigo is the low note. That variation helps the five-color block avoid a flat middle row.</p></div>
+        <div><p>Each lighter or darker sample starts with its core OKLCH coordinates. A recorded lightness change sets the tone, a chroma change controls intensity and a small hue shift preserves the original green to teal and pink to red movement. Colors outside standard RGB are brought into range by reducing chroma while holding lightness and hue.</p><p class="caption">The core values remain the five primary colors. The samples below are generated options, not ten additional colors that must all appear on the site.</p></div>
+      </div>
+      <div class="variants">
+        <div class="variantrow"><div class="variantname">Signal green</div><div class="variantchip" style="background:#56D57B">Light #56D57B</div><div class="variantchip" style="background:#25A351">Core #25A351</div><div class="variantchip darktype" style="background:#005A52">Dark #005A52</div></div>
+        <div class="variantrow"><div class="variantname">Crimson rose</div><div class="variantchip" style="background:#FF9DAF">Light #FF9DAF</div><div class="variantchip" style="background:#E52751">Core #E52751</div><div class="variantchip darktype" style="background:#B10026">Dark #B10026</div></div>
+        <div class="variantrow"><div class="variantname">Acid citron</div><div class="variantchip" style="background:#E6EC9D">Light #E6EC9D</div><div class="variantchip" style="background:#B8C625">Core #B8C625</div><div class="variantchip darktype" style="background:#748400">Dark #748400</div></div>
+        <div class="variantrow"><div class="variantname">Electric violet</div><div class="variantchip" style="background:#E27EFD">Light #E27EFD</div><div class="variantchip" style="background:#B637D5">Core #B637D5</div><div class="variantchip darktype" style="background:#702483">Dark #702483</div></div>
+        <div class="variantrow"><div class="variantname">Royal indigo</div><div class="variantchip" style="background:#A2A8FC">Light #A2A8FC</div><div class="variantchip" style="background:#6555E6">Core #6555E6</div><div class="variantchip darktype" style="background:#3E2F96">Dark #3E2F96</div></div>
+      </div>
+    </section>
+
+    <section class="section decision" aria-labelledby="decisionheading">
+      <div><div class="eyebrow">04 / Recommendation</div><h2 id="decisionheading">Start with the five-color block.</h2></div>
+      <div><p>The new core block is the actual palette test. The paired version demonstrates how that palette can grow without choosing a second set of unrelated colors. The brighter pair samples should only be used where the page needs that extra contrast.</p><p>This is a proposal, not a final color decision. The <a href="palette.json">palette values</a> and <a href="palette-spec.json">shade recipe</a> are available to copy into Figma.</p></div>
+    </section>
+  </main>
+</body>
+</html>

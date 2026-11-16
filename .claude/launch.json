@@ -1,0 +1,63 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4319",
+        "--bind",
+        "0.0.0.0",
+        "--directory",
+        "../portfolio-site-preview"
+      ],
+      "port": 4319
+    },
+    {
+      "name": "site-build",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "../portfolio-site/scripts/serve.mjs",
+        "../portfolio-site/site",
+        "lan"
+      ],
+      "port": 4318
+    },
+    {
+      "name": "haven-worktree",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "../portfolio-haven/scripts/serve-site.mjs",
+        "4175"
+      ],
+      "port": 4175
+    },
+    {
+      "name": "motion-lab",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4185",
+        "--bind",
+        "127.0.0.1"
+      ],
+      "port": 4185
+    },
+    {
+      "name": "site-studio",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "../portfolio-site/scripts/serve.mjs",
+        "../portfolio-site/site",
+        "studio"
+      ],
+      "env": {
+        "PORT": "4320"
+      },
+      "port": 4320
+    }
+  ]
+}

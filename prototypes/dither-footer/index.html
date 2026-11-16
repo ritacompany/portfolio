@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dither footer preview</title>
+<style>
+@font-face { font-family:Satoshi; src:url(../../site/assets/fonts/satoshi-400.woff2) format('woff2'); font-weight:400; font-display:swap; }
+@font-face { font-family:Satoshi; src:url(../../site/assets/fonts/satoshi-500.woff2) format('woff2'); font-weight:500; font-display:swap; }
+:root { --m:40px; --g:calc(100vw / 1440); --n550:#85858f; --n900:#040405; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#040404; color:#e6e5e9; font-family:Satoshi,sans-serif; font-weight:400; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; } ul { list-style:none; } img { display:block; }
+.case-footer { padding:0; }
+.footer-transition { width:100%; aspect-ratio:1440/217; object-fit:cover; }
+.footer-content { position:relative; min-height:776px; padding:48px var(--m) 250px; overflow:hidden; }
+.footer-top { display:grid; grid-template-columns:1fr 289px 235px; column-gap:calc(176 * var(--g)); }
+.footer-label { font-size:16px; line-height:1.4; color:var(--n550); font-weight:400; }
+.footer-left nav { margin-top:64px; display:flex; flex-direction:column; gap:20px; }
+.footer-left nav a,.footer-email,.footer-social li { font-size:24px; line-height:1.16; letter-spacing:-.04em; }
+.back-top { display:block; font-size:14px; line-height:1; letter-spacing:.06em; color:var(--n550); text-transform:uppercase; }
+.footer-contact { display:flex; flex-direction:column; gap:64px; }
+.footer-email { text-decoration:underline; text-underline-offset:4px; }
+.footer-location { font-size:20px; line-height:1.32; letter-spacing:-.02em; margin-top:25px; width:340px; }
+.footer-location>span { color:#4b4b52; }
+.footer-social ul { margin-top:64px; display:flex; flex-direction:column; gap:20px; }
+.contact-button { display:inline-flex; align-self:flex-start; gap:2px; color:var(--n900); text-transform:uppercase; font-size:40px; font-weight:400; letter-spacing:-.04em; }
+.contact-button>span { display:flex; align-items:center; justify-content:center; background:#00c455; border-radius:12px; padding:13px; min-height:69px; }
+.contact-button>span:last-child { padding-inline:16px; }
+.contact-button:hover>span { background:#70ff42; }
+.footer-meta { margin-top:191px; display:flex; gap:173px; color:#65656e; font-size:12px; font-weight:400; letter-spacing:.08em; text-transform:uppercase; }
+.footer-wordmark { position:absolute; left:calc(-49.59 * var(--g)); top:549px; width:calc(1548.25 * var(--g)); max-width:none; height:auto; }
+
+.footer-transition { height:auto; aspect-ratio:1440/217; background:#0b0b0b; }
+.footer-transition canvas { display:block; width:100%; height:100%; }
+.footer-top { grid-template-columns:minmax(0,1fr) 289px 195px; }
+.footer-left nav { margin-top:56px; gap:9px; }
+.footer-contact { gap:48px; }
+.footer-social ul { margin-top:56px; gap:9px; }
+.footer-location { margin-top:16px; }
+.footer-meta { position:absolute; top:526px; left:40px; margin-top:0; gap:170px; }
+.footer-wordmark { top:549px; }
+a:focus-visible,button:focus-visible { outline:2px solid #00c455; outline-offset:6px; }
+.preview-controls { position:fixed; right:16px; bottom:16px; z-index:3; display:flex; gap:8px; }
+.preview-controls button { font:inherit; font-size:12px; border:1px solid #555; color:#e6e5e9; background:#171719; padding:8px 12px; border-radius:20px; cursor:pointer; }
+body.clean .preview-controls { display:none; }
+@media(max-width:900px) {
+.footer-content { padding:32px 24px 200px; min-height:740px; }
+.footer-top { grid-template-columns:1fr 1.4fr; gap:40px 24px; }
+.footer-contact { gap:32px; }
+.footer-social { grid-column:1; grid-row:2; }
+.footer-left nav,.footer-social ul { margin-top:32px; }
+.footer-location { width:auto; font-size:16px; }
+.footer-email,.footer-left nav a,.footer-social li { font-size:20px; }
+.contact-button { font-size:28px; }
+.contact-button>span { min-height:56px; padding:10px; }
+.footer-meta { position:static; margin-top:80px; gap:32px; flex-wrap:wrap; }
+.footer-wordmark { top:auto; bottom:-35px; }
+.footer-transition { min-height:150px; }
+}
+@media(max-width:540px) {
+.footer-top { grid-template-columns:1fr; gap:40px; }
+.footer-social { grid-column:auto; grid-row:auto; }
+.footer-contact { gap:24px; }
+.footer-content { padding-bottom:120px; }
+.footer-meta { margin-top:64px; font-size:10px; }
+.footer-wordmark { bottom:-12px; }
+}
+
+.editor { padding:20px 40px 24px; border-block:1px solid #303034; background:#141416; }
+.editor summary { cursor:pointer; font-size:18px; }
+.editor p { color:#aaaab4; margin:12px 0; font-size:14px; }
+.editor .actions { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0; }
+.editor button,.editor select { font:inherit; background:#242428; border:1px solid #494950; border-radius:6px; padding:8px 12px; color:#eee; cursor:pointer; }
+.control-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px 24px; }
+.control-grid label { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; font-size:13px; }
+.control-grid output { color:#c5f8d4; font-variant-numeric:tabular-nums; }
+.control-grid input[type=range] { width:100%; accent-color:#00c455; cursor:pointer; }
+.control-grid input[type=color] { width:52px; height:28px; background:transparent; border:0; }
+.control-grid select { width:100%; }
+.control-grid input[type=checkbox] { accent-color:#00c455; }
+.editor textarea { width:100%; min-height:160px; margin-top:16px; color:#e6e5e9; background:#090909; padding:12px; border:1px solid #555; }
+body.clean .editor { display:none; }
+@media(max-width:900px) { .control-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .editor { padding:20px 24px; } }
+@media(max-width:540px) { .control-grid { grid-template-columns:1fr 1fr; gap:20px 16px; } }
+
+.animation-wrap { position:relative; }
+.preview-controls { position:absolute; top:12px; right:12px; bottom:auto; }
+.editor { position:fixed; z-index:5; top:60px; right:12px; width:min(920px,calc(100vw - 24px)); max-height:calc(100vh - 80px); overflow:auto; padding:20px 24px; border:1px solid #444; border-radius:12px; box-shadow:0 12px 48px #0009; }
+.editor h2 { font-size:18px; font-weight:500; }
+.editor[hidden] { display:none; }
+.preview-controls button { background:#141416e8; }
+@media(min-width:700px) {
+.footer-transition { min-height:0; }
+.footer-layout { position:relative; overflow:hidden; }
+.footer-content { width:1440px; height:776px; min-height:0; padding:0; transform-origin:top left; }
+.footer-top { display:block; }
+.footer-left { position:absolute; left:40px; top:48px; }
+.back-top { height:9px; line-height:1; text-box-trim:trim-both; text-box-edge:cap alphabetic; }
+.footer-left nav { position:absolute; top:73px; margin:0; gap:20px; white-space:nowrap; }
+.footer-left nav a,.footer-email,.footer-social li { font-weight:500; text-box-trim:trim-both; text-box-edge:cap alphabetic; }
+.footer-contact { position:absolute; left:740.1665px; top:48px; display:block; width:289px; }
+.footer-label { font-size:16px; line-height:1.4; letter-spacing:-.16px; text-box-trim:trim-both; text-box-edge:cap alphabetic; color:#7b7b86; }
+.footer-contact>div { position:absolute; top:75px; }
+.footer-email { display:block; white-space:nowrap; }
+.footer-location { margin-top:25px; width:340px; font-weight:500; text-box-trim:trim-both; text-box-edge:cap alphabetic; }
+.contact-button { position:absolute; top:219px; display:flex; gap:0; font-weight:500; }
+.contact-button>span:first-child { width:70.721px; height:68.835px; padding:0; }
+.contact-button>span:last-child { width:203.129px; height:70.489px; padding:0; }
+.footer-social { position:absolute; left:1205.1665px; top:48px; }
+.footer-social ul { position:absolute; top:75px; margin:0; gap:20px; white-space:nowrap; }
+.footer-meta { position:absolute; top:528.489px; left:40px; margin:0; gap:0; width:738px; color:#4b4b52; letter-spacing:1.2px; text-box-trim:trim-both; text-box-edge:cap alphabetic; }
+.footer-meta time { position:absolute; left:356px; }
+.footer-wordmark { left:-49.59px; top:549.176px; bottom:auto; width:1548.251px; height:378.357px; }
+}
+
+html { min-height:100%; }
+body { min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; }
+.case-footer { width:100%; flex:none; }
+.resize-handle { position:absolute; z-index:4; left:0; right:0; bottom:0; height:14px; border:0; background:transparent; cursor:ns-resize; touch-action:none; color:#d2d2db; }
+.resize-handle::after { content:''; display:block; margin:auto; width:64px; height:4px; border-radius:4px; background:#888b; }
+.resize-handle:hover,.resize-handle:focus-visible { background:#ffffff18; }
+.resize-handle span { position:absolute; right:16px; bottom:12px; font:12px Satoshi,sans-serif; background:#171719; border-radius:4px; padding:4px 8px; opacity:0; pointer-events:none; }
+.resize-handle:hover span,.resize-handle:focus-visible span,body.resizing .resize-handle span { opacity:1; }
+.footer-layout { position:relative; }
+body.resizing { user-select:none; cursor:ns-resize; }
+body.clean .resize-handle { display:none; }
+@media(min-width:700px) {
+.footer-wordmark { top:auto; bottom:-151.533px; }
+.footer-meta { top:auto; bottom:237.297px; }
+}
+
+.preview-controls { z-index:8; }
+.editor { width:min(680px,calc(100vw - 24px)); }
+.editor .control-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.preview-controls .eye-toggle { width:38px; height:38px; padding:8px; display:grid; place-items:center; border-radius:50%; }
+.eye-toggle.is-open { color:#c5f8d4; border-color:#c5f8d4; }
+.panel-header { display:flex; align-items:center; justify-content:space-between; gap:24px; margin:-20px -24px 0; padding:16px 24px; border-bottom:1px solid #37373d; cursor:grab; touch-action:none; user-select:none; }
+.panel-header:active { cursor:grabbing; }
+.panel-header span { font-size:24px; color:#999; line-height:1; }
+.panel-header:focus-visible { outline:2px solid #00c455; outline-offset:-3px; }
+</style></head><body id="top">
+  <footer class="case-footer" id="contact" data-node="4659:13190">
+    <div class="animation-wrap"><div class="footer-transition" id="dither" role="img" aria-label="Animated dithered waves"></div><button class="resize-handle" id="resize-band" aria-label="Resize animation height"><span>Drag to resize animation</span></button><div class="preview-controls"><button id="toggle-settings" class="eye-toggle" aria-label="Show settings" title="Show settings" aria-expanded="false" aria-controls="shader-settings"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+    <section class="editor" id="shader-settings" aria-label="Shader settings" hidden>
+<div class="panel-header" id="panel-drag" tabindex="0" role="button" aria-label="Move settings panel with arrow keys"><h2>Adjust the waves</h2><span aria-hidden="true">⠿</span></div>
+<p>Start with White point: lower it to turn more gray into white. Midtone lift brightens the middle shades. Black point keeps the gaps dark.</p>
+<div class="actions"><button type="button" id="lighter">Brighter starting point</button><button type="button" id="original">Your original settings</button><button type="button" id="export">Export settings</button><button type="button" id="reference-size">Reset proportions</button></div>
+<div class="control-grid" id="controls"></div>
+<textarea id="settings-export" aria-label="Current shader settings" readonly hidden></textarea>
+<p id="save-state" role="status">Changes save in this browser.</p>
+</section>
+<div class="footer-layout"><div class="footer-content">
+      <div class="footer-top"><div class="footer-left"><a class="back-top" href="#top">↑ Back to top</a><nav aria-label="Footer"><a href="../../site/#about">About</a><a href="../../site/#work">Selected works</a><a href="mailto:hello@chadwickfenner.com">Contact</a></nav></div>
+      <div class="footer-contact"><p class="footer-label">Contact</p><div><a class="footer-email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a><p class="footer-location"><span>I’m currently living in Chicago, IL</span><br>and seeking opportunities in NYC.</p></div><a class="contact-button" href="mailto:hello@chadwickfenner.com"><span><img src="../../site/haven/assets/contact-icon.svg" width="40" height="40" alt=""></span><span>Contact</span></a></div>
+      <div class="footer-social"><p class="footer-label">Social</p><ul><li><span>↗ Linkedin</span></li><li><span>↗ Resume</span></li></ul></div></div>
+      <div class="footer-meta"><span>©2026, Chadwick Fenner</span><time id="chicago-time">10:24pm CST</time></div>
+      <img class="footer-wordmark" src="../../site/haven/assets/footer-wordmark.svg" alt="CHDWCK" width="1548" height="378">
+    </div><button class="resize-handle" id="resize-footer" aria-label="Resize footer height"><span>Drag to resize footer</span></button></div>
+  </footer>
+
+<script type="module">
+import { mountDither } from './dither.js';
+const config = {
+ waveColor:'#e6e5e9', backgroundColor:'#0b0b0b', ditherMode:'bayer', colorNum:10,
+ pixelSize:2, waveSpeed:0.05, waveFrequency:2.5, waveAmplitude:0.3, mouseEffect:'ripple',
+ mouseRadius:1, palette:[], scale:1.15, contrast:0.95, brightness:-0.13,
+ mouseStrength:0.85, trail:0.5, enableMouseInteraction:true, clickRipple:true,
+ intro:false, disableAnimation:false
+};
+const original = {...config, blackPoint:0, whitePoint:1, gamma:1, exposure:0};
+let bandHeight=217;
+let footerHeight=null;
+try { const saved=JSON.parse(localStorage.getItem('portfolio-dither-editor-v1')); if(saved) { Object.assign(config,saved.config); bandHeight=saved.height??217; footerHeight=saved.footerHeight??null; } } catch {}
+const band=document.querySelector('#dither');
+const renderer=mountDither(band,config);
+const definitions=[
+ ['whitePoint','White point',0.1,1.5,0.01,1],
+ ['gamma','Midtone lift',0.2,4,0.05,1],
+ ['exposure','Exposure',-2,3,0.05,0],
+ ['blackPoint','Black point',0,0.7,0.01,0],
+ ['brightness','Brightness',-0.5,0.8,0.01,-0.13],
+ ['contrast','Contrast',0.1,4,0.05,0.95],
+ ['colorNum','Colors',2,32,1,10],
+ ['pixelSize','Pixel size',1,8,1,2],
+ ['scale','Wave scale',0.1,5,0.05,1.15],
+ ['waveFrequency','Wave frequency',0.5,6,0.05,2.5],
+ ['waveAmplitude','Wave amplitude',0,1,0.01,0.3],
+ ['waveSpeed','Wave speed',0,0.3,0.005,0.05],
+ ['mouseRadius','Mouse radius',0.05,3,0.05,1],
+ ['mouseStrength','Mouse strength',0,3,0.05,0.85],
+ ['trail','Trail',0,1,0.01,0.5],
+ ['bandHeight','Band height at 1440px width',60,1000,1,217]
+];
+const grid=document.querySelector('#controls');
+for(const [key,title,min,max,step,fallback] of definitions) {
+ if(key!=='bandHeight' && config[key]===undefined) config[key]=fallback;
+ const label=document.createElement('label');
+ label.innerHTML=`<span>${title}</span><output for="control-${key}"></output><input id="control-${key}" aria-label="${title}" data-key="${key}" type="range" min="${min}" max="${max}" step="${step}">`;
+ grid.append(label);
+}
+for(const [key,title] of [['waveColor','Wave color'],['backgroundColor','Background color']]) {
+ const label=document.createElement('label');
+ label.innerHTML=`<span>${title}</span><output for="control-${key}"></output><input id="control-${key}" aria-label="${title}" data-key="${key}" type="color">`;
+ grid.append(label);
+}
+for(const [key,title,values] of [['ditherMode','Dither pattern',['bayer','bayer4','bayer2','halftone','lines','crosshatch','noise','none']],['mouseEffect','Mouse effect',['erase','reveal','ripple']]]) {
+ const label=document.createElement('label');
+ label.innerHTML=`<span>${title}</span><select id="control-${key}" aria-label="${title}" data-key="${key}">${values.map(v=>`<option>${v}</option>`).join('')}</select>`;
+ grid.append(label);
+}
+for(const [key,title] of [['enableMouseInteraction','Mouse interaction'],['clickRipple','Click ripple']]) {
+ const label=document.createElement('label');
+ label.innerHTML=`<span>${title}</span><input id="control-${key}" aria-label="${title}" data-key="${key}" type="checkbox">`;
+ grid.append(label);
+}
+function sync() {
+ grid.querySelectorAll('[data-key]').forEach(input=>{
+  const key=input.dataset.key, value=key==='bandHeight'?bandHeight:config[key];
+  if(input.type==='checkbox') input.checked=!!value; else input.value=value;
+  const output=input.parentElement.querySelector('output'); if(output) output.value=value;
+ });
+ band.style.height=(bandHeight*band.clientWidth/1440)+'px'; band.style.aspectRatio='auto'; band.style.background=config.backgroundColor;
+
+
+ document.querySelector('#settings-export').value=JSON.stringify({...config,bandHeight,footerHeight},null,2);
+}
+function apply() {
+ renderer.update(config); sync(); fitFooter();
+ try {localStorage.setItem('portfolio-dither-editor-v1',JSON.stringify({config,height:bandHeight,footerHeight}));} catch {document.querySelector('#save-state').textContent='Browser storage unavailable. Use Show settings to keep your values.';}
+}
+grid.addEventListener('input',event=>{
+ const input=event.target, key=input.dataset.key; if(!key)return;
+ const value=input.type==='checkbox'?input.checked:input.type==='range'?Number(input.value):input.value;
+ if(key==='bandHeight')bandHeight=value; else config[key]=value;
+ apply();
+});
+document.querySelector('#original').onclick=()=>{Object.assign(config,original);bandHeight=217;apply();};
+document.querySelector('#lighter').onclick=()=>{Object.assign(config,original,{waveColor:'#ffffff',blackPoint:0.12,whitePoint:0.55,gamma:1.45,exposure:0.25,brightness:0,contrast:1.25});apply();};
+document.querySelector('#export').onclick=()=>{const area=document.querySelector('#settings-export'); area.hidden=!area.hidden; if(!area.hidden){area.focus();area.select();}};
+
+document.querySelector('#reference-size').onclick=()=>{bandHeight=217;footerHeight=null;apply();};
+const settingsPanel=document.querySelector('#shader-settings');
+const settingsToggle=document.querySelector('#toggle-settings');
+function toggleSettings(open) {
+ settingsPanel.hidden=!open;
+ settingsToggle.setAttribute('aria-expanded',String(open));
+ settingsToggle.setAttribute('aria-label',open?'Hide settings':'Show settings');
+ settingsToggle.title=open?'Hide settings':'Show settings';
+ settingsToggle.classList.toggle('is-open',open);
+}
+settingsToggle.onclick=()=>toggleSettings(settingsPanel.hidden);
+const panelHeader=document.querySelector('#panel-drag');
+let panelDrag=null;
+function positionPanel(x,y) {
+ const bounds=settingsPanel.getBoundingClientRect();
+ settingsPanel.style.left=Math.max(0,Math.min(innerWidth-bounds.width,x))+'px';
+ settingsPanel.style.top=Math.max(0,Math.min(innerHeight-48,y))+'px';
+ settingsPanel.style.right='auto';
+}
+panelHeader.addEventListener('pointerdown',event=>{
+ if(event.button!==0)return;
+ const r=settingsPanel.getBoundingClientRect();
+ panelDrag={x:event.clientX,y:event.clientY,left:r.left,top:r.top};
+ panelHeader.setPointerCapture(event.pointerId);event.preventDefault();
+});
+panelHeader.addEventListener('pointermove',event=>{
+ if(panelDrag)positionPanel(panelDrag.left+event.clientX-panelDrag.x,panelDrag.top+event.clientY-panelDrag.y);
+});
+const endPanelDrag=()=>{panelDrag=null;};
+panelHeader.addEventListener('pointerup',endPanelDrag);
+panelHeader.addEventListener('pointercancel',endPanelDrag);
+panelHeader.addEventListener('lostpointercapture',endPanelDrag);
+panelHeader.addEventListener('keydown',event=>{
+ const shifts={ArrowLeft:[-20,0],ArrowRight:[20,0],ArrowUp:[0,-20],ArrowDown:[0,20]};
+ const delta=shifts[event.key];if(!delta)return;
+ event.preventDefault();const r=settingsPanel.getBoundingClientRect();positionPanel(r.left+delta[0],r.top+delta[1]);
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!settingsPanel.hidden){toggleSettings(false);settingsToggle.focus();}});
+const layout=document.querySelector('.footer-layout');
+const footerContent=document.querySelector('.footer-content');
+function fitFooter() {
+ const width=layout.clientWidth;
+ if(width>=700){const ratio=width/1440;const height=footerHeight===null?Math.max(776*ratio,innerHeight-bandHeight*ratio):footerHeight*ratio;layout.style.height=height+'px';footerContent.style.height=(height/ratio)+'px';footerContent.style.transform=`scale(${ratio})`;}
+ else {layout.style.height=footerHeight===null?'':Math.max(450,footerHeight*width/1440)+'px';footerContent.style.height='';footerContent.style.transform='';}
+ band.style.height=(bandHeight*band.clientWidth/1440)+'px';
+}
+function makeResizable(handle,kind) {
+ let dragging=null;
+ handle.addEventListener('pointerdown',event=>{
+  if(event.button!==0)return;
+  const ratio=band.clientWidth/1440;
+  dragging={y:event.clientY,height:kind==='band'?bandHeight:layout.getBoundingClientRect().height/ratio,ratio};
+  handle.setPointerCapture(event.pointerId); document.body.classList.add('resizing'); event.preventDefault();
+ });
+ handle.addEventListener('pointermove',event=>{
+  if(!dragging)return;
+  const next=Math.round(dragging.height+(event.clientY-dragging.y)/dragging.ratio);
+  if(kind==='band')bandHeight=Math.max(60,Math.min(1000,next));
+  else footerHeight=Math.max(600,Math.min(1800,next));
+  apply();
+ });
+ const finish=()=>{dragging=null;document.body.classList.remove('resizing');};
+ handle.addEventListener('pointerup',finish);handle.addEventListener('pointercancel',finish);handle.addEventListener('lostpointercapture',finish);
+ handle.addEventListener('keydown',event=>{
+  if(!['ArrowUp','ArrowDown'].includes(event.key))return;
+  event.preventDefault(); const delta=event.key==='ArrowUp'?-20:20;
+  if(kind==='band')bandHeight=Math.max(60,Math.min(1000,bandHeight+delta));
+  else footerHeight=Math.max(600,Math.min(1800,(footerHeight??layout.clientHeight/(band.clientWidth/1440))+delta));
+  apply();
+ });
+}
+makeResizable(document.querySelector('#resize-band'),'band');
+makeResizable(document.querySelector('#resize-footer'),'footer');
+addEventListener('resize',fitFooter);
+new ResizeObserver(fitFooter).observe(layout);
+fitFooter();
+sync(); renderer.update(config);
+if(new URLSearchParams(location.search).has('clean')) document.body.classList.add('clean');
+const fmt=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+const clock=()=>document.querySelector('#chicago-time').textContent=fmt.format(new Date());
+clock(); setInterval(clock,30000);
+</script></body></html>

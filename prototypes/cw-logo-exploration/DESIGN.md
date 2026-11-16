@@ -1,39 +1,29 @@
-# CW mark revision
+# CW mark: third exploration
 
-## What failed in the first studies
+## Brief and baseline
 
-The first pass compressed the original outline, then cut a few ends with masks. The C bowl, W valleys and main turns retained their soft curves, so the flat ends had no relationship to the rest of the form. At header size the cuts were nearly invisible. Enlarged, they looked accidental.
+The source is a continuous handwritten CW mark for Chadwick's portfolio header. Its recognizable parts are the open C, the diagonal climb into the first W peak, a shallow first valley, a deeper second valley and the rightward exit. The mark needs to work at 48 pixels and feel more resolved when enlarged.
 
-## What stays
+The first exploration failed because it cut a few ends while leaving the full stroke soft. The second exploration redrew the stroke. Its Soft square direction was more coherent, but visual comparison showed a rounded C bowl next to capped W peaks. The larger silhouette still mixed two kinds of geometry.
 
-The large C bowl, its rising movement into the first W peak, the shallow first W valley, the deep second W valley and the rightward exit are the recognizable gesture. The mark stays monochrome and wordmark-like. Its job is a portfolio header first, with enough control to hold up when enlarged.
+## Three structural ideas
 
-## Three shape systems to test
+1. **Structured curve:** A level C floor leads into a single diagonal spine. Both W valleys echo the C floor with short flats. Three outside crests use the same tight rounded turn. The memorable feature is the repeated floor and crest geometry, which makes the connected letters feel more like a custom wordmark.
+2. **Controlled pressure:** The C bowl and deep W valley carry the weight. Each upper crest narrows, including the rightward exit. The memorable feature is the light to heavy rhythm through the whole gesture, with no isolated decorative cut.
+3. **Compact gesture:** The C reaches less far into the W and the final exit is shorter. The W gets more of the mark's width. The memorable feature is a clearer letter balance rather than a change in stroke style.
 
-1. **Taut ribbon:** shorten the C rise, flatten its lowest arc slightly and narrow the W's rounded valleys. Use one consistent light-to-heavy rhythm through the whole stroke. The memorable feature is the controlled rise into the first W peak.
-2. **Soft square:** give the C bowl a flatter base, use straighter rising and falling runs, then round every turn with the same small radius. The W valleys and terminal logic follow the same geometry. The memorable feature is a scripted mark with architectural turns.
-3. **Brush tension, exploratory sketch:** taper every high point and the final exit, widen the weighted downstrokes and tighten the inner W turns. Pointed parts must be part of a complete thick-thin system, never isolated cuts.
+## Rejected sketches
 
-## Review tests
-
-- At 48 pixels, it must still read as the same CW gesture and feel balanced beside header links.
-- At 160 pixels, C and W must remain legible without a confusing extra letter at the join.
-- At 490 pixels, every peak, valley and terminal must look related. No accidental lumps, clipped ends or flat spots.
-- The new silhouette must improve the original's long C rise and soft overall character. If it does not, keep the original.
-
-## Review and rejection
-
-The brush sketch failed the large-scale test. Its narrow back crest intersected the widening return stroke and created a hole. Removing the curl solved the hole but made the right side read like a separate cup. It does not belong in the final comparison.
-
-The replacement third direction is **Balanced W**. It brings the first valley closer to the depth of the second, shortens the C rise and keeps a consistent bevel at its peaks and terminals. It tests letter rhythm rather than brush pressure.
-
-At header size, the main differences between the surviving studies are subtle. The enlarged comparison carries the decision: Taut ribbon makes all crests and ends taper as part of one pressure system, Soft square applies straighter runs and consistent bevels across the full mark, and Balanced W changes the W's proportions so its two valleys are easier to read.
+An early generated pressure outline produced a visible kink where the C floor entered its diagonal. A hand drawn outline then crossed itself near the first peak. Both failed the large view and were replaced. The delivered Controlled pressure direction uses a continuous sampled ribbon with stronger crest widths than the earlier Taut ribbon study.
 
 ## Scale review
 
-- **Original:** At 48 px the gesture is recognizable. At 160 px the C sweep dominates the W. At 490 px the rounded terminals and uneven W turns feel soft.
-- **Taut ribbon:** At 48 px the hairline crests lose weight. At 160 px the letters remain readable, with a sharper rhythm. At 490 px the tapering relates the C, both W valleys and the exit; the first peak feels especially energetic.
-- **Soft square:** At 48 px the weight and recognition are similar to the original. At 160 px the straighter rise and two W turns remain clear. At 490 px the flatter C base, straight connecting runs and repeated bevels make the corners and terminals feel related.
-- **Balanced W:** At 48 px the W is clearer, but the character changes little. At 160 px the two valleys are easier to distinguish. At 490 px the more even W rhythm is legible, though it weakens the source's distinctive shallow first turn.
+- **Original:** Recognizable at 48 pixels. The C dominates at 160 pixels. At 490 pixels its soft ends and long rise look informal.
+- **Previous Soft square:** Recognizable at 48 pixels. The straighter rise helps at 160 pixels. At 490 pixels the C bowl remains rounded while the W crests look capped.
+- **Structured curve:** The CW gesture and weight survive at 48 pixels. At 160 pixels the diagonal transition reads cleanly and the W remains distinct. At 490 pixels the flatter C floor, two related valleys and shared crest radius form the most consistent silhouette. No tight counter or accidental join is visible.
+- **Controlled pressure:** The fine points remain visible at 48 pixels, but carry less weight than the body. At 160 pixels the thick and thin rhythm reads clearly. At 490 pixels the tapered crests add energy, but the final exit is more delicate than the source.
+- **Compact gesture:** The W reads readily at 48 and 160 pixels. At 490 pixels the shorter proportions help balance the letters, but the round terminals retain much of the source's soft character.
 
-Soft square is the strongest close refinement for this brief. Taut ribbon has the strongest large graphic, but its finest points lose force in the header. Balanced W solves letter recognition at the cost of the source's most unusual rhythm. Soft square keeps the overall gesture, trims the long C climb and carries the firmer geometry through every turn rather than only at the ends.
+## Recommendation
+
+Structured curve is the strongest next direction. It improves the previous pick by changing the C bowl, the C to W transition, both W valleys and the outside turns as one geometry. Its width and weight remain useful in the header, and the enlarged mark has a more deliberate silhouette. Controlled pressure is the expressive alternative if the large graphic matters more than the header. Compact gesture is the conservative alternative, but it is not enough of a change for this brief.
