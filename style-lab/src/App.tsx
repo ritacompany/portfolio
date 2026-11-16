@@ -5,7 +5,7 @@ import { SelectedWorks } from "@/components/site/SelectedWorks";
 import { About } from "@/components/site/About";
 import { Footer } from "@/components/site/Footer";
 import { MobileMenu } from "@/components/site/MobileMenu";
-import { activeStyle, runStyle, showSwitcher } from "@/lab/runtime";
+import { runStyle, showSwitcher } from "@/lab/runtime";
 import { StyleSwitcher } from "@/lab/StyleSwitcher";
 
 // The whole homepage from his Hero master frame: hero, Selected works, About and footer. A style from
@@ -31,7 +31,7 @@ export default function App() {
         <Footer />
       </div>
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} returnFocusRef={menuButtonRef} />
-      {showSwitcher && <StyleSwitcher active={activeStyle?.id ?? null} />}
+      {showSwitcher && <StyleSwitcher />}
     </>
   );
 }

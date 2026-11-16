@@ -2,7 +2,7 @@
 //   node scripts/check.mjs figma     the whole page at 1440 (no style) against Figma's renders of his Hero master
 //   node scripts/check.mjs overflow  no sideways scroll from 320 to 2560, under every style
 //   node scripts/check.mjs typelock  every style keeps his copy, type and colour exactly; a planted change is caught
-//   node scripts/check.mjs switch    the ?lab switcher lists every style and loads the one picked
+//   node scripts/check.mjs switch    the ?lab switcher lists every style, switches live, and back to base is clean
 //   node scripts/check.mjs behavior  phone menu, phone bar, card hover, footer clock, gooey Contact
 //   node scripts/check.mjs reduced   reduced motion: every style shows everything on load
 //   node scripts/check.mjs stick     the stuck CHDWCK styles hold the word still through the works
@@ -255,9 +255,9 @@ async function switcher(browser, pg) {
   if (JSON.stringify(listed.ids) !== JSON.stringify(ids)) fail(`switcher lists ${listed.ids} but registry has ${ids}`);
   if (!listed.remember) fail("switcher shows no line on what to remember");
   for (const id of ids) {
-    await Promise.all([page.waitForURL((u) => u.searchParams.get("style") === id), page.click(`[data-lab-switcher] [data-style-id="${id}"]`)]);
-    await page.waitForLoadState("networkidle");
-    await page.waitForTimeout(200);
+    await page.click(`[data-lab-switcher] [data-style-id="${id}"]`);
+    await page.waitForTimeout(300);
+    if (new URL(page.url()).searchParams.get("style") !== id) fail(`picking ${id}: the address did not follow (${page.url()})`);
     const s = await page.evaluate(() => ({
       attr: document.documentElement.dataset.style, lab: window.__lab,
       remember: document.querySelector("[data-lab-remember]")?.textContent.trim(),
@@ -266,6 +266,21 @@ async function switcher(browser, pg) {
     if (s.attr !== id || s.lab.style !== id || !s.lab.setupRan || !s.remember) fail(`picking ${id}: ${JSON.stringify(s)}`);
     else console.log(`ok picked ${id}: data-style set, setup ran, "${s.remember.slice(0, 60)}"`);
   }
+  // Back to the base after every style: nothing a style left behind may show (tweens reverted,
+  // classes and CSS removed), so the page reads exactly as a fresh base page.
+  await page.click("[data-lab-switcher] button:first-of-type");
+  await page.waitForTimeout(400);
+  for (const y of [1200, 2400, 0]) { await page.evaluate((y) => scrollTo(0, y), y); await page.waitForTimeout(150); }
+  const after = await page.evaluate(readVisibility);
+  const leftovers = await page.evaluate(() => ({ attr: document.documentElement.dataset.style ?? null, tags: document.querySelectorAll("style[data-lab-style]").length, cls: document.documentElement.className }));
+  const fresh = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await fresh.goto(`${pg}?lab`, { waitUntil: "networkidle" });
+  await fresh.waitForTimeout(400);
+  const base = await fresh.evaluate(readVisibility);
+  await fresh.close();
+  const diffs = after.map((x, i) => (x !== base[i] ? `${base[i]} vs ${x}` : null)).filter(Boolean);
+  if (diffs.length || leftovers.attr || leftovers.tags || /lab-/.test(leftovers.cls)) fail(`back to base left something: ${JSON.stringify(leftovers)} ${diffs.slice(0, 3).join("; ")}`);
+  else console.log(`ok back to base after ${ids.length} styles: ${after.length} text elements as on a fresh page, no style CSS left`);
   await page.close();
   // Direct link without the switcher.
   const direct = await browser.newPage({ viewport: { width: 1440, height: 900 } });

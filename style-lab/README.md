@@ -17,6 +17,12 @@ npm run dev
 ```
 
 Opens on http://127.0.0.1:5190. Add `?lab` for the style switcher, or `?style=<id>` to open one style.
+Styles switch live, no reload.
+
+To scroll it away from this machine, `node scripts/hosted.mjs <out dir>` builds one hosted page (JS and
+CSS inlined, images and fonts beside it) for a claude.ai Artifact. It opens on `stuck-invert` with the
+switcher showing; `#<style id>` or `#base` on its link picks another. Published 16 Nov:
+https://claude.ai/artifact/CdH1zt7Zep3V7tv1cnDrW8 (private to his account).
 No `?style` is the Figma base: his Hero master as drawn, with only the 14 Nov states.
 
 ## How a style works

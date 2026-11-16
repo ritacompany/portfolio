@@ -23,9 +23,16 @@ export function makeKit(root: HTMLElement) {
       return lenis;
     },
   };
+  // Everything a style's setup creates with gsap is recorded in one context, so stopping reverts it:
+  // inline styles from its tweens come off and the page is back to the base.
+  const ctx = gsap.context(() => {});
+  let cleanup: void | (() => void);
+  const run = (setup: NonNullable<import("./types").LabStyle["setup"]>) => { ctx.add(() => { cleanup = setup(kit); }); };
   const stop = () => {
+    if (typeof cleanup === "function") cleanup();
+    ctx.revert();
     stops.splice(0).forEach((f) => f());
     ScrollTrigger.getAll().forEach((t) => t.kill());
   };
-  return { kit, stop };
+  return { kit, run, stop };
 }
