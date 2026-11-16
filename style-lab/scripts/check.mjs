@@ -6,6 +6,9 @@
 //   node scripts/check.mjs behavior  phone menu, phone bar, card hover, footer clock, gooey Contact
 //   node scripts/check.mjs reduced   reduced motion: every style shows everything on load
 //   node scripts/check.mjs stick     the stuck CHDWCK styles hold the word still through the works
+//   node scripts/check.mjs pixels    CHDWCK drifts, breaks into blocks in place, spreads and is gone by the works' end
+//   node scripts/check.mjs hosted    the hosted build, wrapped like the host: fonts, images, the reset and the lab layer
+//   node scripts/check.mjs tuner     the pixel tuner's sliders, handle, dock, resize, collapse, persistence, phone
 //   node scripts/check.mjs layers    a Tailwind utility beats the site CSS; the shadcn button renders
 // Each prints one OK token on success and exits 1 otherwise.
 
@@ -445,6 +448,224 @@ async function stick(browser, pg) {
   if (!process.exitCode) console.log(`STICK_OK ${ids.length} styles at 1440 and 1024, control moves`);
 }
 
+// Pixel breakup (G12). Reads the engine's own frame through window.__pixelBreak and checks the page.
+async function pixels(browser, pg) {
+  const open = async (id, width) => {
+    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    await page.goto(withStyle(pg, id), { waitUntil: "networkidle" });
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(600);
+    return page;
+  };
+  const at = async (page, y) => { await page.evaluate((y) => scrollTo(0, y), y); await page.waitForTimeout(250); };
+  // Ink mask of the word's box with every section but the hero's name hidden: share of ink kept.
+  const inkMask = async (page, box) => {
+    const shot = await page.screenshot({ clip: box });
+    return page.evaluate(async (b64) => {
+      const img = await new Promise((ok) => { const i = new Image(); i.onload = () => ok(i); i.src = `data:image/png;base64,${b64}`; });
+      const c = document.createElement("canvas"); c.width = img.width; c.height = img.height;
+      const x = c.getContext("2d"); x.drawImage(img, 0, 0);
+      const d = x.getImageData(0, 0, c.width, c.height).data; const m = [];
+      for (let k = 0; k < d.length; k += 4) m.push(d[k] + d[k + 1] + d[k + 2] > 300 ? 1 : 0);
+      return m;
+    }, shot.toString("base64"));
+  };
+  for (const width of [1440, 1024]) {
+    // Control: the base page has no engine and no canvas.
+    const base = await open(null, width);
+    const baseWorksH = await base.evaluate(() => document.querySelector(".works").offsetHeight);
+    const control = await base.evaluate(() => ({ engine: !!window.__pixelBreak, canvas: !!document.querySelector(".lab-px-layer canvas") }));
+    await base.close();
+    if (control.engine || control.canvas) fail(`${width} control: base page has the breakup ${JSON.stringify(control)}`);
+    else console.log(`ok ${width} control: base page has no breakup`);
+
+    const page = await open("pixel-break", width);
+    const f0 = await page.evaluate(() => window.__pixelBreak.frame());
+    const set = await page.evaluate(() => window.__pixelBreak.settings);
+    const lines = [];
+    let bad = false;
+    // Extra space under the works.
+    const worksH = await page.evaluate(() => document.querySelector(".works").offsetHeight);
+    if (Math.abs(worksH - baseWorksH - set.extraSpace) > 1) { bad = true; lines.push(`works ${worksH} vs base ${baseWorksH}, extra ${set.extraSpace}`); }
+    // Drift: the word's screen top moves by drift times the scroll.
+    const y1 = Math.max(10, f0.sBreak * 0.2), y2 = f0.sBreak * 0.8;
+    await at(page, y1); const t1 = await page.evaluate(() => document.querySelector(".hero__name").getBoundingClientRect().top);
+    await at(page, y2); const t2 = await page.evaluate(() => document.querySelector(".hero__name").getBoundingClientRect().top);
+    const want = -set.drift * (y2 - y1);
+    if (Math.abs(t2 - t1 - want) > 1) { bad = true; lines.push(`drift moved ${(t2 - t1).toFixed(1)} want ${want.toFixed(1)}`); }
+    // The works slide over it: the works title is painted above the word where they overlap.
+    // Just before and just after the break, with the works hidden, the ink must match.
+    await page.addStyleTag({ content: "[data-section='works'] { visibility: hidden !important; } [data-lab-tool], [data-lab-switcher] { display: none !important; }" });
+    await at(page, f0.sBreak - 2);
+    const fb = await page.evaluate(() => window.__pixelBreak.frame());
+    const vis = await page.evaluate(() => getComputedStyle(document.querySelector(".hero__name")).visibility);
+    const under = await page.evaluate(() => [getComputedStyle(document.querySelector(".hero__name")).zIndex, getComputedStyle(document.querySelector(".lab-px-layer")).zIndex]);
+    if (under.join() !== "-1,-1") { bad = true; lines.push(`word and canvas not under the works: z ${under}`); }
+    const box = { x: Math.max(0, fb.word.x), y: Math.max(0, fb.word.y), width: Math.min(width - Math.max(0, fb.word.x), fb.word.w), height: Math.min(900 - Math.max(0, fb.word.y), fb.word.h) };
+    if (box.height < 40) { bad = true; lines.push(`word not on screen at the break (${JSON.stringify(box)})`); }
+    const before = await inkMask(page, box);
+    await at(page, fb.sBreak + 2);
+    const fa = await page.evaluate(() => window.__pixelBreak.frame());
+    const visAfter = await page.evaluate(() => getComputedStyle(document.querySelector(".hero__name")).visibility);
+    const box2 = { ...box, y: box.y + (fa.word.y - fb.word.y) };
+    const after = await inkMask(page, { ...box2, y: Math.max(0, box2.y) });
+    let inkB = 0, both = 0;
+    for (let k = 0; k < before.length; k++) { if (before[k]) { inkB++; if (after[k]) both++; } }
+    const cover = inkB ? both / inkB : 0;
+    if (vis !== "visible" || visAfter !== "hidden" || fa.phase !== "break" || cover < 0.9) { bad = true; lines.push(`swap: DOM ${vis} then ${visAfter}, phase ${fa.phase}, canvas covers ${(cover * 100).toFixed(1)}% of the word's ink`); }
+    // Halfway: blocks outside the word's box.
+    await at(page, (f0.sBreak + f0.sEnd) / 2);
+    const fm = await page.evaluate(() => window.__pixelBreak.frame());
+    if (!(fm.phase === "break" && fm.outside > fm.drawn * 0.2)) { bad = true; lines.push(`halfway: ${fm.drawn} drawn, ${fm.outside} outside`); }
+    // The end: works bottom at the window bottom, nothing drawn and the canvas empty.
+    await at(page, f0.sEnd + 2);
+    const fe = await page.evaluate(() => window.__pixelBreak.frame());
+    const empty = await page.evaluate(() => { const c = document.querySelector(".lab-px-layer canvas"); const d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data; let a = 0; for (let k = 3; k < d.length; k += 4) a += d[k]; return a; });
+    const worksBottom = await page.evaluate(() => document.querySelector(".works").getBoundingClientRect().bottom);
+    if (fe.phase !== "gone" || fe.drawn !== 0 || empty !== 0 || Math.abs(worksBottom - 900) > 4) { bad = true; lines.push(`end: phase ${fe.phase}, ${fe.drawn} drawn, canvas alpha ${empty}, works bottom ${worksBottom.toFixed(1)}`); }
+    await page.close();
+    const summary = `${width}: ${f0.total} blocks, break at ${f0.sBreak.toFixed(0)}, gone at ${f0.sEnd.toFixed(0)}, drift ${(t2 - t1).toFixed(1)} of ${want.toFixed(1)}, swap covers ${(cover * 100).toFixed(1)}%, halfway ${fm.outside} of ${fm.drawn} outside, works +${worksH - baseWorksH}`;
+    if (bad) fail(`${summary}; ${lines.join("; ")}`); else console.log(`ok ${summary}`);
+  }
+  if (!process.exitCode) console.log("PIXELS_OK 1440 and 1024, control has none");
+}
+
+// The tuner (G13).
+async function tuner(browser, pg) {
+  let page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await page.goto(withStyle(pg, "pixel-break"), { waitUntil: "networkidle" });
+  await page.evaluate(() => { localStorage.clear(); });
+  await page.reload({ waitUntil: "networkidle" });
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForTimeout(500);
+  const f0 = await page.evaluate(() => window.__pixelBreak.frame());
+  const sig = async () => { await page.waitForTimeout(250); return page.evaluate(() => { const f = window.__pixelBreak.frame(); return `${f.drawn}|${f.sum.toFixed(2)}|${f.sBreak.toFixed(1)}|${f.sEnd.toFixed(1)}`; }); };
+  const sliders = await page.$$eval("[data-tuner] input[type=range][data-setting]", (els) => els.map((e) => ({ key: e.dataset.setting, min: +e.min, max: +e.max, value: +e.value })));
+  const dead = [];
+  for (const sl of sliders) {
+    // Hold the page mid breakup, then move this one slider and compare the drawn result.
+    await page.evaluate((y) => scrollTo(0, y), (f0.sBreak + f0.sEnd) * 0.5);
+    const before = await sig();
+    const target = sl.value - sl.min > (sl.max - sl.min) / 2 ? sl.min + (sl.max - sl.min) * 0.2 : sl.min + (sl.max - sl.min) * 0.8;
+    await page.$eval(`[data-tuner] input[data-setting="${sl.key}"]`, (el, v) => {
+      const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+      set.call(el, String(v)); el.dispatchEvent(new Event("input", { bubbles: true }));
+    }, target);
+    const fr = await page.evaluate(() => window.__pixelBreak.frame());
+    if (fr.sBreak !== f0.sBreak || fr.sEnd !== f0.sEnd) await page.evaluate((y) => scrollTo(0, y), (fr.sBreak + fr.sEnd) * 0.5);
+    const after = await sig();
+    if (before === after) dead.push(sl.key);
+    await page.click("[data-tuner-reset]");
+    await page.waitForTimeout(150);
+  }
+  if (dead.length) fail(`sliders with no effect: ${dead.join(", ")}`); else console.log(`ok ${sliders.length} sliders each change the result`);
+  // Drag the break point handle 120 px right.
+  await page.evaluate((y) => scrollTo(0, y), Math.max(0, f0.sBreak - 300));
+  await page.waitForTimeout(300);
+  const ox0 = await page.evaluate(() => window.__pixelBreak.settings.originX);
+  const h = await page.$eval("[data-handle=origin]", (e) => { const r = e.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+  await page.mouse.move(h.x, h.y); await page.mouse.down(); await page.mouse.move(h.x + 60, h.y, { steps: 4 }); await page.mouse.move(h.x + 120, h.y, { steps: 4 }); await page.mouse.up();
+  await page.waitForTimeout(200);
+  const ox1 = await page.evaluate(() => window.__pixelBreak.settings.originX);
+  const wordW = await page.evaluate(() => window.__pixelBreak.frame().word.w);
+  if (Math.abs((ox1 - ox0) * wordW - 120) > 3) fail(`origin drag moved ${((ox1 - ox0) * wordW).toFixed(1)} px, want 120`); else console.log(`ok break point handle dragged 120 px (origin ${ox0.toFixed(3)} to ${ox1.toFixed(3)})`);
+  // Dock: drag the grip to the left half.
+  const g = await page.$eval("[data-tuner-grip]", (e) => { const r = e.getBoundingClientRect(); return { x: r.left + 40, y: r.top + r.height / 2 }; });
+  await page.mouse.move(g.x, g.y); await page.mouse.down(); await page.mouse.move(300, g.y, { steps: 6 }); await page.mouse.up();
+  await page.waitForTimeout(200);
+  const dock = await page.$eval("[data-tuner]", (e) => ({ dock: e.dataset.dock, left: e.getBoundingClientRect().left }));
+  if (dock.dock !== "left" || dock.left > 40) fail(`dock: ${JSON.stringify(dock)}`); else console.log("ok dragged to the left side and docked there");
+  // Resize: drag the inner edge 80 px outward.
+  const w0 = await page.$eval("[data-tuner]", (e) => e.getBoundingClientRect().width);
+  const rz = await page.$eval("[data-tuner-resize]", (e) => { const r = e.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + 200 }; });
+  await page.mouse.move(rz.x, rz.y); await page.mouse.down(); await page.mouse.move(rz.x + 80, rz.y, { steps: 5 }); await page.mouse.up();
+  await page.waitForTimeout(200);
+  const w1 = await page.$eval("[data-tuner]", (e) => e.getBoundingClientRect().width);
+  if (Math.abs(w1 - w0 - 80) > 2) fail(`resize: ${w0} to ${w1}`); else console.log(`ok resized ${w0} to ${w1}`);
+  // Collapse and expand.
+  await page.click("[data-tuner-collapse]"); await page.waitForTimeout(150);
+  const collapsed = await page.evaluate(() => !document.querySelector("[data-tuner]") && !!document.querySelector("[data-tuner-expand]"));
+  await page.click("[data-tuner-expand]"); await page.waitForTimeout(150);
+  const expanded = await page.evaluate(() => !!document.querySelector("[data-tuner]"));
+  if (!collapsed || !expanded) fail(`collapse ${collapsed}, expand ${expanded}`); else console.log("ok collapses and expands");
+  // Persist: set block size 7, reload, still 7 and still docked left at the new width.
+  await page.$eval('[data-tuner] input[data-setting="block"]', (el) => { const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set; set.call(el, "7"); el.dispatchEvent(new Event("input", { bubbles: true })); });
+  await page.waitForTimeout(200);
+  await page.reload({ waitUntil: "networkidle" }); await page.waitForTimeout(500);
+  const kept = await page.evaluate(() => ({ block: window.__pixelBreak.settings.block, origin: window.__pixelBreak.settings.originX, dock: document.querySelector("[data-tuner]")?.dataset.dock, w: document.querySelector("[data-tuner]")?.getBoundingClientRect().width }));
+  if (kept.block !== 7 || Math.abs(kept.origin - ox1) > 1e-6 || kept.dock !== "left" || Math.abs(kept.w - w1) > 1) fail(`after reload: ${JSON.stringify(kept)}`); else console.log("ok settings, dock and width survive a reload");
+  // Copy settings: the JSON box holds the settings.
+  await page.click("[data-tuner-copy]");
+  const parsed = await page.$eval("[data-tuner-json]", (e) => { try { return JSON.parse(e.value); } catch { return null; } });
+  if (!parsed || parsed.block !== 7 || !("spread" in parsed)) fail("settings JSON missing"); else console.log("ok settings JSON ready to copy");
+  await page.evaluate(() => localStorage.clear());
+  await page.close();
+  // Phone: fits the screen, no sideways scroll, collapses.
+  page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await page.goto(withStyle(pg, "pixel-break"), { waitUntil: "networkidle" });
+  await page.waitForTimeout(400);
+  // Folded by default on the phone; open it.
+  const startsFolded = await page.evaluate(() => !document.querySelector("[data-tuner]") && !!document.querySelector("[data-tuner-expand]"));
+  if (!startsFolded) fail("phone: tuner should start folded");
+  await page.click("[data-tuner-expand]"); await page.waitForTimeout(150);
+  const phone = await page.evaluate(() => { const p = document.querySelector("[data-tuner]").getBoundingClientRect(); return { l: p.left, r: p.right, h: p.height, sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }; });
+  await page.click("[data-tuner-collapse]"); await page.waitForTimeout(150);
+  const phoneCollapsed = await page.evaluate(() => !document.querySelector("[data-tuner]"));
+  await page.close();
+  if (phone.l < 0 || phone.r > 390 || phone.h > 844 * 0.6 || phone.sw > phone.cw || !phoneCollapsed) fail(`phone: ${JSON.stringify(phone)}, collapsed ${phoneCollapsed}`);
+  else console.log(`ok 390: panel ${phone.l.toFixed(0)} to ${phone.r.toFixed(0)}, ${phone.h.toFixed(0)} tall, no sideways scroll, collapses`);
+  if (!process.exitCode) console.log("TUNER_OK sliders, handle, dock, resize, collapse, persistence, copy, phone");
+}
+
+// The hosted build (G15): built by scripts/hosted.mjs, wrapped the way the host wraps a page (its own
+// document with a small unlayered reset, the page in the body), then checked: fonts and images load
+// from the relative paths, the site CSS still wins over the reset, and a style's lab layer still
+// outranks the site CSS (the bug this caught: a style tag in the head ranked lab below legacy).
+async function hosted(browser) {
+  const { execSync } = await import("node:child_process");
+  const { writeFileSync } = await import("node:fs");
+  const dir = join(HERE, "dist-hosted");
+  execSync(`node scripts/hosted.mjs ${dir}`, { cwd: HERE, stdio: "ignore" });
+  const reset = "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><style>:root{color-scheme:light;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body>";
+  writeFileSync(join(dir, "wrapped.html"), `${reset}${readFileSync(join(dir, "index.html"), "utf8")}</body></html>`);
+  const srv = await serve(dir);
+  const read = async (hash) => {
+    const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    await page.goto(`${srv.url}wrapped.html${hash}`, { waitUntil: "networkidle" });
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(600);
+    const r = await page.evaluate(() => ({
+      style: document.documentElement.dataset.style ?? null,
+      font: getComputedStyle(document.querySelector(".hero__lede")).fontFamily,
+      satoshi: document.fonts.check("500 20px Satoshi"),
+      img: document.querySelector(".work-card-mondai img").naturalWidth,
+      wordmarkMax: getComputedStyle(document.querySelector(".footer__wordmark")).maxWidth,
+      worksH: document.querySelector(".works").offsetHeight,
+      extra: window.__pixelBreak?.settings.extraSpace ?? null,
+      blend: getComputedStyle(document.querySelector(".hero__name")).mixBlendMode,
+      z: getComputedStyle(document.querySelector(".hero__name")).zIndex,
+      switcher: !!document.querySelector("[data-lab-switcher]"),
+    }));
+    await page.close();
+    return r;
+  };
+  const base = await read("#base");
+  const px = await read("");
+  const inv = await read("#stuck-invert");
+  srv.server.close();
+  const checks = [
+    ["opens on pixel-break with the switcher", px.style === "pixel-break" && px.switcher],
+    ["#base opens the base", base.style === null],
+    ["Satoshi loads and the reset does not win", base.satoshi && /Satoshi/.test(base.font)],
+    ["images load from the relative paths", base.img > 0],
+    ["the reset's img max-width does not win", base.wordmarkMax === "none"],
+    ["lab outranks the site CSS (works +extra)", px.extra !== null && Math.abs(px.worksH - base.worksH - px.extra) <= 1],
+    ["lab outranks the site CSS (stuck-invert blend)", inv.blend === "difference" && inv.z === "3"],
+  ];
+  for (const [what, ok] of checks) if (!ok) fail(`hosted: ${what}: ${JSON.stringify({ base, px, inv })}`); else console.log(`ok hosted: ${what}`);
+  if (!process.exitCode) console.log("HOSTED_OK wrapped like the host, fonts, images, layers");
+}
+
 async function layers(browser, pg) {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await page.goto(`${pg}?lab`, { waitUntil: "networkidle" });
@@ -465,7 +686,7 @@ async function layers(browser, pg) {
   if (!process.exitCode) console.log(`LAYERS_OK utility over site CSS, shadcn button radius ${r.radius}`);
 }
 
-const modes = { figma, overflow, typelock, switch: switcher, behavior, reduced, stick, layers };
+const modes = { figma, overflow, typelock, switch: switcher, behavior, reduced, stick, pixels, tuner, hosted, layers };
 if (!modes[mode]) { console.error(`usage: node scripts/check.mjs ${Object.keys(modes).join("|")}`); process.exit(2); }
 if (!existsSync(join(HERE, "dist/index.html"))) { console.error("run npm run build first"); process.exit(2); }
 const pgSrv = await serve(join(HERE, "dist"));

@@ -3,7 +3,7 @@
 // The page's JS and CSS are inlined (the host only serves scripts from a few CDNs); images and fonts
 // ship beside it as files and are referenced relative to the page. The host wraps the page in its own
 // document and adds a small unlayered reset; the reverts at the end hand those properties back to the
-// site CSS. It opens on the stuck CHDWCK style with the switcher showing.
+// site CSS. It opens on the pixel breakup with the switcher and tuner showing.
 import { execSync } from "node:child_process";
 import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -13,7 +13,7 @@ const out = resolve(process.argv[2] ?? join(HERE, "dist-hosted"));
 const build = join(HERE, "dist-hosted-build");
 rmSync(build, { recursive: true, force: true });
 execSync(`npx vite build --base ./ --outDir ${build} --emptyOutDir`, {
-  cwd: HERE, stdio: "inherit", env: { ...process.env, VITE_LAB_HOSTED: "1", VITE_LAB_START: "stuck-invert" },
+  cwd: HERE, stdio: "inherit", env: { ...process.env, VITE_LAB_HOSTED: "1", VITE_LAB_START: "pixel-break" },
 });
 const appDir = join(build, "_app");
 const files = readdirSync(appDir);

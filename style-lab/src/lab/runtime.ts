@@ -35,7 +35,9 @@ function injectCss(style: LabStyle | null) {
     const tag = document.createElement("style");
     tag.dataset.labStyle = style.id;
     tag.textContent = `@layer lab {\n${style.css}\n}`;
-    document.head.append(tag);
+    // After every other stylesheet: a layer's rank is set where it first appears, and on the hosted
+    // page the site CSS sits in the body, so a tag in the head would rank lab below legacy.
+    document.body.append(tag);
   }
 }
 

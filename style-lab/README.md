@@ -20,7 +20,7 @@ Opens on http://127.0.0.1:5190. Add `?lab` for the style switcher, or `?style=<i
 Styles switch live, no reload.
 
 To scroll it away from this machine, `node scripts/hosted.mjs <out dir>` builds one hosted page (JS and
-CSS inlined, images and fonts beside it) for a claude.ai Artifact. It opens on `stuck-invert` with the
+CSS inlined, images and fonts beside it) for a claude.ai Artifact. It opens on `pixel-break` with the
 switcher showing; `#<style id>` or `#base` on its link picks another. Published 16 Nov:
 https://claude.ai/artifact/CdH1zt7Zep3V7tv1cnDrW8 (private to his account).
 No `?style` is the Figma base: his Hero master as drawn, with only the 14 Nov states.
@@ -48,6 +48,13 @@ may not: copy, font, size, weight, tracking, line height, case, colour of any te
 Selected works while the work scrolls past. `stuck-invert` floats it above with a difference blend, so the
 title and card art flip colour inside its letters; `stuck-behind` leaves it under the work with no blend.
 Desktop and tablet only; the phone's vertical CHDWCK is left alone.
+
+`pixel-break` is his idea from 16 Nov: CHDWCK drifts a little while Selected works slides over it, then
+breaks into pixel blocks sampled from the real letters, which spread and fade out by the bottom of the
+works (with extra room added there). The engine is `src/lab/styles/pixel-break/engine.ts`; the tuner
+beside it (`src/lab/tools/PixelTuner.tsx`) sets every number, has a draggable break point and wind handle
+on the page, docks left or right, resizes, folds away and keeps its settings in the browser. Copy settings
+gives the JSON to paste into `DEFAULTS` once he settles on a look.
 
 `soft-landing` is a proof style that exercises every knob so the checks have something real to hold. It
 is not from a reference.
