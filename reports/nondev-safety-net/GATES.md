@@ -12,6 +12,6 @@
 - [x] G5 No em or en dashes in the report.
   CHECK: node reports/nondev-safety-net/gates.mjs g5
   EXPECT: NO_DASH_OK
-- [ ] G6 Committed and pushed with only this folder staged; nothing under site/haven changed by this session.
+- [x] G6 Committed and pushed with only this folder staged; nothing under site/haven changed by this session.
   CHECK: node reports/nondev-safety-net/gates.mjs g6
   EXPECT: PUSHED_OK
