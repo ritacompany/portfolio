@@ -20,10 +20,11 @@ backed up on GitHub.
    The Mondai repo is private.
 2. **Nobody checks Claude's work but Claude.** The session that builds something is the same one that says
    it is fine. Nothing has a second, fresh agent review a change before it goes to the live branch.
-3. **Work is scattered across branches, with no undo plan for the live site.** 26 of 39 branches on GitHub
-   hold work that never reached main, there are 14 working copies on the Mac and this one is 31 changes
-   behind main. The live site is built from main, so finished work can sit and never ship, or two sessions
-   can undo each other. Nothing written says how to put the previous version back if a launch goes wrong.
+3. **No written undo plan for the live site.** Corrected after a closer check: the branches are in better
+   shape than the first count suggested. The site build lives on `claude/relaxed-ride-5mlbdu`; main holds CS2
+   writing and review tools and only two lab pages under `site/`. A trial merge of the two has no conflicts.
+   The 25 other unmerged branches are leftovers from finished or abandoned work and do not block the build.
+   What is missing is a written step for putting the previous live version back if launch goes wrong.
 4. **Claude can read his private keys.** No settings stop Claude reading folders like his SSH keys.
 
 The site checks (pictures, links, layout) were built earlier today and now run on every push. They are one
@@ -108,7 +109,7 @@ nothing covers it.
 | Site quality (links, pictures, layout) | GitHub runs `scripts/check-site.mjs`, `scripts/check-images.mjs` and `scripts/verify-responsive.mjs` on every push | Covered since today |
 | Matches the Figma design | `scripts/verify-pages.mjs`, `scripts/verify-1440.mjs`, `scripts/verify-haven.mjs` | Partly: they fail against old Figma references and are not in the push run |
 | Backups | Every branch is pushed to GitHub; `output/` goes to iCloud | Covered |
-| Branch sprawl | No routine; 26 unmerged branches, 14 working copies | Missing |
+| Branch sprawl | 26 unmerged branches are leftovers; the site branch merges into main with no conflicts (trial merge, 17 Nov) | Fine; tidy in the monthly sweep |
 | Live site deploy | `vercel.json` builds `public/`, the holding page, until launch; launch steps in `docs/SITE_SETUP.md` | Partly: no rollback steps written |
 | Repo visibility | Portfolio and harness repos are public | Missing |
 | Secrets in the repo | None found in a pattern search; the site uses no keys | Covered for now |
@@ -158,13 +159,12 @@ one line per item:
 - **Runs with:** `/code-review`, bundled with Claude Code, run by a fresh session on the branch.
 - **Cost:** one command per finished piece of work and some usage. Written into the merge step above.
 
-### 3. Branch sweep and an undo plan for the live site
+### 3. An undo plan for the live site
 
-- **Catches:** finished work stranded off main, sessions overwriting each other and a bad launch with no way
-  back.
-- **Runs with:** git and Vercel Instant Rollback. The rollback steps go into `docs/SITE_SETUP.md` next to the
-  launch steps.
-- **Cost:** one session to sort the 26 branches with his yes on each group, then the monthly sweep.
+- **Catches:** a bad launch with no way back.
+- **Runs with:** Vercel Instant Rollback. The steps go into `docs/SITE_SETUP.md` next to the launch steps,
+  plus one line: at launch the site branch merges into main, because the live site is built from main.
+- **Cost:** ten minutes of a session at launch.
 
 ### 4. Wall off private folders
 
