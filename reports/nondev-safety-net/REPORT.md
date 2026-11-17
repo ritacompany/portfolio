@@ -56,7 +56,7 @@ real hole; "missing" means nothing checks it.
 | Search and social previews | No picture or a bad one when the link is shared on LinkedIn or Slack | Title and description present on all four pages (checked today). No `og:image` or other share tags on any page | Missing for share previews |
 | Broken links and files | A link or image that points to nothing | `scripts/check-site.mjs` (`npm run check`): every local link and file resolves, no expiring Figma links | Strong for local links; outside links are not checked |
 | Fonts | Invisible text while fonts load, wrong weight | Every font has `font-display` set (checked today); fonts are preloaded | Fine. The capacity demo's mono font hides text until it loads (`block`), likely on purpose for the typing effect. One unused font file sits in the folder uncommitted |
-| Security basics for a static site | Leaked keys, unsafe headers | `vercel.json` sets nosniff, referrer and permissions headers. No secrets found in tracked files (pattern search today) | Fine for a static site. No content security policy, which is low risk with no forms or logins |
+| Security basics for a static site | Leaked keys, unsafe headers | `vercel.json` sets nosniff, referrer and permissions headers. No secrets found in tracked files (pattern search today) | Fine for the site itself. No content security policy, which is low risk with no forms or logins. The GitHub repo holding the source is public (see Built 17 Nov) |
 | Hosting and launch | Site launched still hidden from Google, or the wrong folder deployed | `docs/SITE_BUILD_PLAN.md` Phase 4 lists the flip: build points at `site/`, remove noindex, allow robots | Planned, not a check. Today the live deploy still serves the holding page in `public/` |
 | Git hygiene | Work lost or overwritten between sessions | `.claude/hooks/cs2-unpushed-guard.mjs` (CS2 only), staged by path rule | Fine. The repo history is 260 MB, mostly screenshots in `reports/`; not urgent |
 | Approval before changes | Claude changes the site without your yes | `.claude/hooks/site-review-gate.mjs` | Strong |
@@ -123,6 +123,37 @@ These do not need to run on every push. Do them in Phase 4, when the site goes p
 - Paid visual testing services (Percy, Applitools): the Playwright checks here already do pixel comparison.
 - More hooks or skills: the hooks you have are good at making Claude write checks. The gap is which checks
   exist and whether they run, which steps 1 and 2 close.
+
+## Built 17 Nov, on his yes
+
+Steps 1 and 2 above are now in the repo.
+
+- **`scripts/check-images.mjs`** checks every picture on all four pages at 390, 768, 1024 and 1440 wide on a
+  2x screen. It fails when a file has fewer pixels than the screen draws for it, or when a file is over
+  500 KB. It reads each file's real pixels, so a sharp 2x file is never counted as soft. A picture that is
+  meant to be soft can be marked in the page with a reason, and the reason prints every run so it stays
+  visible. Proven both ways: it catches the soft Mondai card on Home at phone width and passes Home at
+  desktop, where all four pictures are sharp.
+- **The run on every push** lives in `.github/workflows/site-checks.yml`. On every push to any branch,
+  GitHub runs three checks: every link and file resolves, every picture is sharp and light enough, and no
+  page scrolls sideways or logs an error from phone to desktop width. All three run even if one fails, so
+  one red cross lists everything.
+
+**First run on GitHub (run 1, commit fe6c455, 1 minute 10 seconds):** links passed, layout health passed,
+the image check failed. That matches the local run. GitHub only shows the step logs to someone signed in, so
+the exact list of soft pictures is read from the local run below.
+
+**Found while checking the run: the GitHub repo is public.** The repo page shows the Public label and the
+run page opened without signing in. Anyone can read all 1,336 files in it, including case study drafts, the
+CS1 evidence files with colleagues' words, `docs/about-source/_evidence/dictation_verbatim.txt` and the
+working notes. The `.gitignore` already keeps a few personal files out, which suggests public was never the
+intent for the rest. Making it private is a setting only he can change, on GitHub under Settings, General,
+Danger zone. After that, each push uses about a minute of GitHub's free monthly run time.
+
+What it says today (run locally): links pass, layout health passes, the image check fails on the two soft
+pictures outside Haven and on Haven's new profile background, which is still stretched up to 4 times at
+tablet width and weighs 618 KB. So the first GitHub run will show a red cross on the image step until those
+are fixed. That is the check doing its job, not a broken check.
 
 ## How the research was checked
 
