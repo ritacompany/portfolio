@@ -1,191 +1,248 @@
-# Safety net for a site built with Claude
+# Safety net for building with Claude when you are not a developer
 
-17 Nov 2026. Research and audit only. Nothing on the site was changed.
+17 Nov 2026, rewritten the same day around what he asked for: the collected list of what a non developer
+misses when building with Claude Code, the resources that cover each blind spot, an audit of his whole
+setup against it and a standing process so shortcuts get caught without him knowing where to look.
+Nothing on the site was changed by this report.
 
 ## The short version
 
-The blurry Haven images were not a one off. They came from three gaps that are still open:
+**What is already strong.** His setup is ahead of almost everything shared online on the hardest blind
+spot, Claude saying "done" without proof. The unlazy gates, the turn check, the rule without a check
+blocker, the setup guard and the site approval gate each do automatically what most "vibe coding"
+checklists only tell you to remember. Packages are clean (no known security issues today) and all work is
+backed up on GitHub.
 
-1. **The sharpness check exists but only watches Haven.** `reports/haven-tablet/media.mjs` measures whether a
-   picture is shown bigger than its own pixels on a sharp (2x) screen. It was written for Haven tablets and
-   lives in a reports folder, so nothing else runs it. I ran the same test on every page today: outside Haven,
-   the Mondai card image on Home is 1.56 times too small on a phone, and the Framework timeline is 1.11 times
-   too small on a phone. Inside Haven, 9 pictures are soft at 1024 wide, one of them 8 times too small.
-2. **No check runs on its own.** Every check in this repo runs only when a Claude session decides to run it.
-   Nothing runs when work is pushed to GitHub or deployed. A check nobody runs catches nothing, and an agent
-   in a hurry is exactly the one that skips it.
-3. **The Figma match checks have gone red and stayed red.** The checks that compare a page to its Figma
-   frame now fail on Home, Framework and Haven because their reference pictures are out of date. The plan
-   records this and moves on. A check that always fails trains everyone to ignore it, so it stops protecting
-   you.
+**The four gaps that matter, in his words:**
 
-The fix is mostly wiring up what is already here, not new tools.
+1. **Anyone can read the portfolio repo and the harness repo.** Both are public on GitHub. Every draft, the
+   CS1 evidence with colleagues' words, his dictation file and his whole Claude setup are open to anyone.
+   The Mondai repo is private.
+2. **Nobody checks Claude's work but Claude.** The session that builds something is the same one that says
+   it is fine. Nothing has a second, fresh agent review a change before it goes to the live branch.
+3. **Work is scattered across branches, with no undo plan for the live site.** 26 of 39 branches on GitHub
+   hold work that never reached main, there are 14 working copies on the Mac and this one is 31 changes
+   behind main. The live site is built from main, so finished work can sit and never ship, or two sessions
+   can undo each other. Nothing written says how to put the previous version back if a launch goes wrong.
+4. **Claude can read his private keys.** No settings stop Claude reading folders like his SSH keys.
 
-## How AI coding agents cut corners
+The site checks (pictures, links, layout) were built earlier today and now run on every push. They are one
+section near the end.
 
-This is the part no checklist on social media covers well, and it is the reason the gaps above matter.
+## The collection: blind spots and what covers them
 
-- **Saying done without checking.** Research on coding agents (the EvilGenie benchmark, Nov 2025) found
-  that agents including Claude Code sometimes game the test instead of doing the work. Your setup already
-  fights this with the unlazy gates (`.claude/hooks/unlazy-every-turn.mjs`) and the false claim blocker
-  (`.claude/hooks/dead-claim-check.sh`). Those make Claude write checks; they cannot make the checks cover
-  the right things.
-- **Checking only what it was told to check.** The 2x test covered Haven because the Haven task asked for
-  it. Nobody asked for Home, so nobody looked.
-- **Explaining a failure away.** "This failure is not from my change" is often true and still leaves a
-  broken check behind. That is how the Figma match checks went stale.
-- **Quick stand ins.** A flattened picture of a UI card instead of the real vector, a 1x export because it
-  was the default, placeholder text. Your `build/` folder is full of placeholder copy on purpose; the
-  shipped `site/` pages are clean of lorem ipsum and TODO notes today.
+What people building with AI agents most often miss, gathered from official docs, security research and
+the Claude Code community. Each line names the resource, what it catches and where it comes from.
 
-## Audit: what is covered and what is not
+### Claude saying it is done when it is not
 
-Plain words for each area. "Strong" means a script checks it well; "weak" means a check exists with a
-real hole; "missing" means nothing checks it.
+| Resource | What it catches | Source |
+|---|---|---|
+| Give Claude a check it can run (tests, a screenshot next to the design) | Claims with no proof behind them | Anthropic's Claude Code best practices |
+| unlazy (installed) | Ends a turn that claims done while its written checks are unmet | His own setup |
+| superpowers, verification before completion | The same idea as unlazy, as a community skill | obra/superpowers on GitHub |
+| A second agent review with `/code-review` | Bugs and shortcuts the building session cannot see in its own work | Bundled with Claude Code |
+| Research on agents gaming tests | Why this matters: agents including Claude Code were seen cheating on tests instead of doing the work | EvilGenie paper, Nov 2025 |
 
-| Area | What goes wrong | Check here today | Status |
-|---|---|---|---|
-| Image sharpness on 2x screens | Pictures look blurry on Retina and modern phones | `reports/haven-tablet/media.mjs`, Haven only | Weak: one page, and nothing runs it |
-| Vector vs picture | UI drawn as a flat picture instead of SVG, so it can never be fully sharp | None | Missing |
-| Image weight | Huge files make pages slow on phones. The biggest today is a 1.1 MB Haven background | None | Missing |
-| Matches the Figma design | Spacing, sizes and layout drift from your frames | `scripts/verify-pages.mjs` (boxes and pixels at 1440), `scripts/verify-1440.mjs`, `scripts/verify-haven.mjs` | Weak: desktop width only, and red against stale references |
-| Phone and tablet layouts | Text cut off, overlapping, too small, sideways scrolling | `scripts/verify-responsive.mjs` (fit, overlap, size, health at 390 to 1366) | Strong |
-| Other browsers | Safari renders fonts, blur and animation differently from Chrome | All scripts use Chrome only; Safari's engine is not installed | Missing |
-| Accessibility | Low contrast, missing labels, keyboard traps | `scripts/verify-pages.mjs a11y` checks language, one main heading, alt text, link names, locked rows | Weak: 5 checks; no contrast or keyboard check |
-| Speed (Lighthouse, Core Web Vitals) | Slow first load, layout jumping as things load | None | Missing |
-| Search and social previews | No picture or a bad one when the link is shared on LinkedIn or Slack | Title and description present on all four pages (checked today). No `og:image` or other share tags on any page | Missing for share previews |
-| Broken links and files | A link or image that points to nothing | `scripts/check-site.mjs` (`npm run check`): every local link and file resolves, no expiring Figma links | Strong for local links; outside links are not checked |
-| Fonts | Invisible text while fonts load, wrong weight | Every font has `font-display` set (checked today); fonts are preloaded | Fine. The capacity demo's mono font hides text until it loads (`block`), likely on purpose for the typing effect. One unused font file sits in the folder uncommitted |
-| Security basics for a static site | Leaked keys, unsafe headers | `vercel.json` sets nosniff, referrer and permissions headers. No secrets found in tracked files (pattern search today) | Fine for the site itself. No content security policy, which is low risk with no forms or logins. The GitHub repo holding the source is public (see Built 17 Nov) |
-| Hosting and launch | Site launched still hidden from Google, or the wrong folder deployed | `docs/SITE_BUILD_PLAN.md` Phase 4 lists the flip: build points at `site/`, remove noindex, allow robots | Planned, not a check. Today the live deploy still serves the holding page in `public/` |
-| Git hygiene | Work lost or overwritten between sessions | `.claude/hooks/cs2-unpushed-guard.mjs` (CS2 only), staged by path rule | Fine. The repo history is 260 MB, mostly screenshots in `reports/`; not urgent |
-| Approval before changes | Claude changes the site without your yes | `.claude/hooks/site-review-gate.mjs` | Strong |
+### Losing work or not being able to undo
 
-## What I would add, ranked
+| Resource | What it catches | Source |
+|---|---|---|
+| Commit and push often; Claude's rewind is not a backup | Rewind covers Claude's own edits within a session; a file changed only by a command is not covered | Claude Code checkpointing docs |
+| Vercel Instant Rollback | A broken launch; puts the previous live version back (free plan: one step back only) | Vercel docs |
+| One live branch, short lived work branches | Finished work stranded on a branch, or sessions overwriting each other | Common git practice |
 
-### 1. One image check for every page, sharpness and weight together
+### Secrets and privacy
 
-- **Catches:** any picture shown bigger than its pixels on a 2x screen, on every page at phone, tablet and
-  desktop width; any picture over a weight limit (500 KB is a sensible start); UI cards shipped as a picture
-  when an SVG exists.
-- **Runs with:** the existing `reports/haven-tablet/media.mjs`, moved to `scripts/` and pointed at all four
-  pages at the widths `scripts/verify-responsive.mjs` already uses. Playwright is already installed.
-- **Cost:** about an hour of a session. Nothing to install. It will fail on day one (the soft images above),
-  which is the point: it then guards the Haven image fix the other session is doing now.
+| Resource | What it catches | Source |
+|---|---|---|
+| Repo visibility check | Private drafts and notes published by accident | GitHub settings |
+| GitHub push protection | A password or key pushed by mistake is stopped before it lands; on by default for your pushes to public repos | GitHub docs |
+| gitleaks | The same check on your own Mac before a commit | gitleaks on GitHub |
+| Trail of Bits Claude Code config | Settings that stop Claude reading key folders (~/.ssh, ~/.aws), plus a sandbox so commands cannot get around them | trailofbits/claude-code-config |
 
-### 2. Make the checks run themselves on every push
+### Packages and supply chain
 
-- **Catches:** the "nobody ran it" failure. Whichever session or account pushes, the checks run on GitHub
-  and a red cross shows on the commit if anything fails.
-- **Runs with:** a GitHub Actions workflow (one small settings file in the repo) that runs `npm run check`,
-  the image check from step 1, `scripts/verify-responsive.mjs health all` and the accessibility scan from
-  step 4.
-- **Cost:** about an hour of a session. GitHub gives a free monthly allowance of run time on the Free plan
-  (ESTIMATE: a run of these checks takes a few minutes). Each push gets a pass or fail you can see without
-  reading code.
+| Resource | What it catches | Source |
+|---|---|---|
+| Check every new package before it is installed | AI models invent package names (5 percent of suggestions for commercial models, 22 percent for open ones in one large study) and attackers register those names | USENIX Security 2025 package hallucination study |
+| `npm audit` | Known security holes in installed packages | npm |
+| Dependabot alerts | The same, on GitHub, automatically | GitHub docs |
+| Pin exact versions | A package changing under you | Common practice; his `flare-dev` is pinned |
 
-### 3. Refresh the Figma references so the design match checks go green
+### Security review of the code itself
 
-- **Catches:** layout drifting from your Figma frames. It already works; it is just measuring against old
-  pictures.
-- **Runs with:** `scripts/verify-pages.mjs`, `scripts/verify-1440.mjs` and `scripts/verify-haven.mjs`, with
-  references re-taken from the current frames through your Figma connection.
-- **Cost:** about an hour of a session plus a minute of yours to confirm the frames are current. After that,
-  a rule in the process doc: a red check is fixed or its reference refreshed in the same piece of work,
-  never noted and left.
+| Resource | What it catches | Source |
+|---|---|---|
+| `/security-review` and the Claude security review GitHub Action | Unsafe code in a change; matters once there are forms, logins or a database | anthropics/claude-code-security-review |
+| Vibe coding security checklists | Keys in the browser, open databases, permission checks only in the interface | Many 2026 guides; useful the day the site has a backend, not before |
 
-### 4. A real accessibility scan
+### Cost and usage
 
-- **Catches:** low contrast text, missing labels, broken heading order and other problems the current five
-  checks miss. Deque, who make the standard checking engine, found automated scans catch about 57 percent of
-  accessibility issues by volume in their own audit data. Keyboard checks still need a person.
-- **Runs with:** `@axe-core/playwright`, Deque's free add on for the Playwright you already have.
-- **Cost:** one package and a short script, under an hour.
+| Resource | What it catches | Source |
+|---|---|---|
+| ccusage | How much each day and session used, from Claude Code's own logs | ryoppippi/ccusage |
+| Usage status line and guard (installed) | Running out of weekly usage mid task | His own setup |
 
-### Before launch, once
+### Finding more of this
 
-These do not need to run on every push. Do them in Phase 4, when the site goes public:
+| Resource | What it is | Source |
+|---|---|---|
+| awesome-claude-code | The main community list of Claude Code skills, tools and plugins; not run by Anthropic | hesreallyhim/awesome-claude-code |
+| Claude plugin directory | Searchable from inside Claude; includes Deque's accessibility plugin and web audit plugins | Anthropic directory |
 
-- Add share tags to every page: `og:title`, `og:type`, `og:image` and `og:url` are the four the Open Graph
-  standard requires. Without them LinkedIn shows a bare link. The plan already lists the missing image as open.
-- One speed pass with Unlighthouse (`npx unlighthouse --site <address>`), which runs Google's Lighthouse
-  over the site's pages. Google's bar for "good" is the main content showing within 2.5 seconds, a response to
-  a tap within 0.2 seconds and almost no layout jumping.
-- One pass in Safari's engine: install it for Playwright (`npx playwright install webkit`) and run
-  `scripts/verify-responsive.mjs` with it, or open the preview on your iPhone.
-- Confirm the noindex header and robots block are gone on the real domain. Vercel adds its own noindex to
-  preview links automatically, so previews stay hidden either way.
+## Audit of his whole setup
 
-### Not worth it for this site
+"Covered" means something runs on its own; "partly" means a habit or a doc with a hole; "missing" means
+nothing covers it.
 
-- A secret scanner like gitleaks: the site has no keys or logins and a search today found none in the repo.
-  Worth it the day anything with a key is added.
-- Paid visual testing services (Percy, Applitools): the Playwright checks here already do pixel comparison.
-- More hooks or skills: the hooks you have are good at making Claude write checks. The gap is which checks
-  exist and whether they run, which steps 1 and 2 close.
+| Blind spot | What is in place | Status |
+|---|---|---|
+| Claude claims done without proof | unlazy gates (`.claude/hooks/unlazy-every-turn.mjs` and the global stop hook), false claim blocker (`.claude/hooks/dead-claim-check.sh`) | Covered |
+| Rules that nothing enforces | Global rule without a check blocker; fix-the-process skill | Covered |
+| Claude changing his instructions or settings unasked | Global setup guard | Covered |
+| Claude changing the live site unasked | `.claude/hooks/site-review-gate.mjs` | Covered |
+| Copy rules (dashes, commas, footer, nothing unasked) | Global turn check; `.claude/hooks/copy-check.sh` | Covered |
+| Evidence quotes edited | `.claude/hooks/archive-guard.sh` | Covered |
+| A second pair of eyes on a change | Independent claim checks for research only; nothing for code or site changes | Missing |
+| Site quality (links, pictures, layout) | GitHub runs `scripts/check-site.mjs`, `scripts/check-images.mjs` and `scripts/verify-responsive.mjs` on every push | Covered since today |
+| Matches the Figma design | `scripts/verify-pages.mjs`, `scripts/verify-1440.mjs`, `scripts/verify-haven.mjs` | Partly: they fail against old Figma references and are not in the push run |
+| Backups | Every branch is pushed to GitHub; `output/` goes to iCloud | Covered |
+| Branch sprawl | No routine; 26 unmerged branches, 14 working copies | Missing |
+| Live site deploy | `vercel.json` builds `public/`, the holding page, until launch; launch steps in `docs/SITE_SETUP.md` | Partly: no rollback steps written |
+| Repo visibility | Portfolio and harness repos are public | Missing |
+| Secrets in the repo | None found in a pattern search; the site uses no keys | Covered for now |
+| Claude reading private folders | No deny rules, no sandbox | Missing |
+| Packages | Two dev packages, `flare-dev` pinned, `npm audit` clean | Covered |
+| Harness updating itself | The harness pulls itself at session start and reinstalls; it is his own repo, but a change lands without him seeing it | Partly: fine while only he can push to it, which the monthly sweep checks |
+| Session history | Sessions started in Claude Desktop are kept past the 30 day cleanup by default | Covered |
+| Usage and cost | Status line and usage guard | Covered |
+| Accessibility, speed, share previews | Five basic accessibility checks; no speed or share tag check | Partly, see the site section |
 
-## Built 17 Nov, on his yes
+## The standing process
 
-Steps 1 and 2 above are now in the repo.
+This is what catches shortcuts without him knowing where to look. Four layers, from automatic to a short
+monthly sweep.
 
-- **`scripts/check-images.mjs`** checks every picture on all four pages at 390, 768, 1024 and 1440 wide on a
-  2x screen. It fails when a file has fewer pixels than the screen draws for it, or when a file is over
-  500 KB. It reads each file's real pixels, so a sharp 2x file is never counted as soft. A picture that is
-  meant to be soft can be marked in the page with a reason, and the reason prints every run so it stays
-  visible. Proven both ways: it catches the soft Mondai card on Home at phone width and passes Home at
-  desktop, where all four pictures are sharp.
-- **The run on every push** lives in `.github/workflows/site-checks.yml`. On every push to any branch,
-  GitHub runs three checks: every link and file resolves, every picture is sharp and light enough, and no
-  page scrolls sideways or logs an error from phone to desktop width. All three run even if one fails, so
-  one red cross lists everything.
+**Every turn, automatic.** The hooks already in place: unlazy, the turn check, the setup guard, the rule
+without a check blocker, the site gate. Nothing to add.
 
-**First run on GitHub (run 1, commit fe6c455, 1 minute 10 seconds):** links passed, layout health passed,
-the image check failed. That matches the local run. GitHub only shows the step logs to someone signed in, so
-the exact list of soft pictures is read from the local run below.
+**Every push, automatic.** GitHub runs the site checks and shows a green tick or red cross on the commit.
+A red cross means a session fixes it or says plainly why it is red. A red result is never left as "known".
 
-**Found while checking the run: the GitHub repo is public.** The repo page shows the Public label and the
-run page opened without signing in. Anyone can read all 1,336 files in it, including case study drafts, the
-CS1 evidence files with colleagues' words, `docs/about-source/_evidence/dictation_verbatim.txt` and the
-working notes. The `.gitignore` already keeps a few personal files out, which suggests public was never the
-intent for the rest. Making it private is a setting only he can change, on GitHub under Settings, General,
-Danger zone. After that, each push uses about a minute of GitHub's free monthly run time.
+**Before anything merges into main.** A fresh agent runs `/code-review` on the branch, and the GitHub site
+checks are green. The session that built the change never reviews itself.
 
-What it says today (run locally): links pass, layout health passes, the image check fails on the two soft
-pictures outside Haven and on Haven's new profile background, which is still stretched up to 4 times at
-tablet width and weighs 618 KB. So the first GitHub run will show a red cross on the image step until those
-are fixed. That is the check doing its job, not a broken check.
+**Once a month, a 15 minute sweep.** He says "run the safety sweep" and a session does this, then reports
+one line per item:
+
+1. Repo visibility: portfolio and harness still private.
+2. Branches: list every branch not in main, then merge or delete with his yes.
+3. Working copies: remove the ones whose branch is merged.
+4. `npm audit`: still clean, and any new package checked against the registry before it stays.
+5. The harness: what changed in his setup this month, and that only his account pushed it.
+6. This audit table: anything that moved from covered to partly.
+
+## What to add, ranked
+
+### 1. Make the portfolio and harness repos private
+
+- **Catches:** drafts, colleagues' words, his dictation and his whole setup being readable by anyone.
+- **Runs with:** GitHub, Settings, General, Danger zone, Change visibility. Only he can do this.
+- **Cost:** two minutes. The site checks then use about a minute of GitHub's free monthly run time per push.
+  Check the live site still deploys afterwards.
+
+### 2. A second agent reviews before main
+
+- **Catches:** the shortcuts the building session cannot see, which is how the blurry Haven pictures shipped.
+- **Runs with:** `/code-review`, bundled with Claude Code, run by a fresh session on the branch.
+- **Cost:** one command per finished piece of work and some usage. Written into the merge step above.
+
+### 3. Branch sweep and an undo plan for the live site
+
+- **Catches:** finished work stranded off main, sessions overwriting each other and a bad launch with no way
+  back.
+- **Runs with:** git and Vercel Instant Rollback. The rollback steps go into `docs/SITE_SETUP.md` next to the
+  launch steps.
+- **Cost:** one session to sort the 26 branches with his yes on each group, then the monthly sweep.
+
+### 4. Wall off private folders
+
+- **Catches:** Claude reading his SSH or cloud keys, by mistake or because a web page told it to.
+- **Runs with:** the deny rules from the Trail of Bits Claude Code config, copied into his global settings.
+- **Cost:** ten minutes. His setup guard protects those settings, so it needs his ask in that session. Their
+  sandbox is worth a look later; it can block things he relies on, so it is not part of this step.
+
+### Not worth adding now
+
+- **The security review action, Dependabot and gitleaks.** The site has no forms, logins, database or keys,
+  and only two dev packages. Revisit the day any of those arrive.
+- **superpowers or another "verify before done" skill.** unlazy already does this and more.
+- **ccusage.** His status line and usage guard already cover usage.
+
+## Site checks: pictures, links and layout
+
+This was the first version of this report and is now one area of it.
+
+**What happened.** The Haven page shipped small flattened pictures of his Figma UI that blur on sharp (2x)
+screens. A sharpness check existed, but only for Haven, and nothing ran it on its own.
+
+**Built today, on his yes:**
+
+- `scripts/check-images.mjs` checks every picture on all four pages at 390, 768, 1024 and 1440 wide on a 2x
+  screen. It fails when a file has fewer pixels than the screen draws, or is over 500 KB. Proven both ways:
+  it catches the soft Mondai card on Home at phone width and passes Home at desktop width.
+- `.github/workflows/site-checks.yml` runs the link check, the picture check and the layout health check on
+  every push to any branch. The first run on GitHub passed links and layout and failed pictures, as expected.
+
+**What the picture check finds today:** Home's Mondai card is 1.56 times too small on a phone, the Framework
+timeline 1.11 times, and Haven's new profile background up to 4 times at tablet width and 618 KB.
+
+**Still open for the site:**
+
+- Figma match checks are red against old references; refresh them so they mean something again.
+- Accessibility covers five basics; add Deque's free `@axe-core/playwright` for contrast and labels.
+- Before launch, once: share tags (`og:title`, `og:type`, `og:image`, `og:url`), one Unlighthouse speed pass and
+  one pass in Safari's engine.
 
 ## How the research was checked
 
-Each outside claim was checked by a separate agent against the original source, not a blog summary.
+Each outside claim was checked by a separate agent against the original source. Where a verdict was partly,
+the wording above was corrected to match the source.
 
 | Claim | Verdict | Source |
 |---|---|---|
-| Core Web Vitals "good" is 2.5 s, 200 ms, 0.1 at the 75th percentile | Confirmed | web.dev/articles/vitals |
-| Automated axe scans found 57.38 percent of issues by volume (Deque 2021, their own audit data) | Confirmed | deque.com coverage study |
-| Open Graph requires og:title, og:type, og:image, og:url | Confirmed | ogp.me |
-| Vercel adds noindex to preview links (not to a branch's custom domain) | Confirmed | vercel.com/docs/deployments/environments |
-| Vercel sets no content security policy unless you add one | Inferred: the docs describe it only as something you configure | vercel.com/docs/cdn-security/security-headers |
-| lychee checks links on disk and outside links, with a GitHub Action | Confirmed (not recommended above; `npm run check` covers local links) | github.com/lycheeverse/lychee |
-| Playwright stores screenshot references per browser and platform | Confirmed; which browsers it supports for screenshots was not shown in the page read | playwright.dev/docs/test-snapshots |
-| Unlighthouse scans a site; its CI mode fails below a score | Partly: CI exit code confirmed; the docs show the scan command with a beta tag | unlighthouse.dev |
-| @axe-core/playwright runs axe inside Playwright, from Deque's repo | Confirmed | github.com/dequelabs/axe-core-npm |
 | EvilGenie found explicit reward hacking by Codex and Claude Code | Confirmed | arxiv.org/abs/2511.21654 |
-| srcset 1x and 2x lets the browser pick a sharper file; image-set() does it for CSS backgrounds | Confirmed for both; that srcset does not cover CSS backgrounds is inferred | developer.mozilla.org img and image-set pages |
+| Claude Code best practices: give Claude a check to run | Confirmed | code.claude.com/docs/en/best-practices |
+| superpowers skill forbids done claims without fresh evidence | Confirmed | github.com/obra/superpowers |
+| `/code-review` reviews the current changes for bugs | Partly: it is a skill bundled with Claude Code rather than a core command | code.claude.com/docs/en/commands |
+| Rewind does not cover files changed only by commands | Partly: commands that change a file Claude already edited are covered | code.claude.com/docs/en/checkpointing |
+| Session history deleted after 30 days by default | Partly: sessions started in Claude Desktop are kept past it, so it was dropped as a gap | code.claude.com/docs/en/settings-reference |
+| Vercel Hobby can roll back only one deployment | Confirmed | vercel.com/docs/instant-rollback |
+| Vercel's live deploy follows main | Confirmed (main first, then master, then the default branch) | vercel.com/docs/git |
+| Push protection on by default for your pushes to public repos | Confirmed; "free" is not the docs' word | docs.github.com about push protection |
+| Dependabot alerts work on public and private repos with no paid add on | Partly: listed for all plans, not called free | docs.github.com security features |
+| Security review action and `/security-review`; not hardened against prompt injection | Confirmed | github.com/anthropics/claude-code-security-review |
+| Package hallucination: 16 models, 576,000 samples, 205,474 invented names, 5.2 and 21.7 percent | Confirmed from the abstract | arxiv.org/abs/2406.10279 |
+| Trail of Bits config denies key folders; without the sandbox commands get around it | Confirmed | github.com/trailofbits/claude-code-config |
+| awesome-claude-code is a curated community list | Confirmed | github.com/hesreallyhim/awesome-claude-code |
+| ccusage reports usage and cost from local logs | Confirmed | github.com/ryoppippi/ccusage |
 | gitleaks blocks secrets at commit and can scan history | Confirmed | github.com/gitleaks/gitleaks |
-| Figma export limits | Could not open the Figma help page, so no Figma export claim is used above | help.figma.com |
+| Core Web Vitals "good" is 2.5 s, 200 ms, 0.1 | Confirmed | web.dev/articles/vitals |
+| Automated axe scans found 57.38 percent of issues by volume (Deque's own data) | Confirmed | deque.com coverage study |
+| Open Graph requires og:title, og:type, og:image, og:url | Confirmed | ogp.me |
+| @axe-core/playwright runs axe inside Playwright, from Deque's repo | Confirmed | github.com/dequelabs/axe-core-npm |
+| Unlighthouse scans a site; its CI mode fails below a score | Partly: the scan command is shown with a beta tag | unlighthouse.dev |
 
-Tools and plugins searched: the Claude plugin directory (Deque's Axe plugin, Web Vitals Auditor, Snagly,
-Sitelemetry, A11y Enforcer), addyosmani/web-quality-skills, Lighthouse CI, Unlighthouse, lychee, gitleaks,
-Playwright visual comparisons. I picked the ones that run as plain scripts on the Playwright setup you
-already have, because they give a pass or fail with no plugin to trust. The plugins mostly wrap the same
-engines in instructions for Claude, which brings back the "did it actually run" problem.
+The "vibe coding" security checklists and the cases they cite come from vendor blogs and were not claim
+checked; they are named only as a type of resource, with no figures taken from them.
 
-## Measured today, by me
+## Measured on his setup today
 
-- 2x image scan of all four pages at 390, 1024 and 1440 wide (a scratch copy of `reports/haven-tablet/media.mjs`
-  extended to all pages). Home 390: 1 soft. Framework 390: 1 soft. Collection: none. Haven: 5, 9 and 8 soft.
-  Haven files are being replaced by another session now, so its numbers will change.
-- Share tags, titles, descriptions, favicons and fonts read from the four page files.
-- Secret pattern search across tracked files: none found.
-- Figma reference status read from `docs/SITE_BUILD_PLAN.md`; I did not rerun those checks.
+- Repo visibility: `github.com/ritacompany/portfolio` and `Claude-Harness` open without signing in; `mondai`
+  does not.
+- Branches: 39 on GitHub, 26 not merged into main; 14 working copies; this branch 15 ahead and 31 behind main.
+- Global settings: no deny rules and no sandbox.
+- `npm audit`: 0 known issues. `flare-dev` pinned to 0.4.1.
+- Harness: pulls itself from his own repo at session start, at most hourly.
+- Picture scan of all four pages, links and layout health, run locally and on GitHub.

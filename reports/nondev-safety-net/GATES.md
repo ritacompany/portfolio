@@ -32,3 +32,10 @@
   EXPECT: WORKFLOW_OK
 - [x] G11 The workflow ran on GitHub after the push and its result was read (pass or the expected image failures).
   MANUAL: the run page on GitHub, read in the built-in browser; result recorded in REPORT.md.
+
+## Rewrite, 17 Nov (his correction: the report was about imagery, not the collection he asked for)
+
+- [x] G12 Report leads with the collection, the whole setup audit and the standing process; images are one section.
+  MANUAL: read REPORT.md headings in order.
+- [x] G13 Second round of research claims (14) independently checked; partly verdicts corrected in the text.
+  MANUAL: verdict table in REPORT.md under "How the research was checked".
