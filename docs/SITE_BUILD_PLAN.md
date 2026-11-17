@@ -6,6 +6,14 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### Seth Lukin motion removed, 16 Nov (latest)
+His call (16 Nov): ditch everything taken from Seth Lukin's site. Gone: the parked CHD then WCK name load
+(`site/motion-lab/home-load/`, `docs/motion/home-load/`), the Selected works card rise and the square
+reveal over each image (home-motion.js and .css), and the ASCII reveal options (`ascii-reveal.*`) with
+their edit panel controls (works-bridge.js). Kept: fixed nav, Product Designer exit, Lenis, the text
+fades, the title hold switch and the card hover. The works cards now scroll in plainly. Ledgers:
+home-motion G5, G6 and G18 and edit-panel-v2 G6 are abandoned for this reason. Do not bring them back.
+
 ### Home motion checks rebased, 16 Nov (latest)
 After the usage stop, the open items from 10 Nov, settled:
 1. Card versus Figma check: his master changed again. Card Section 4923:12087, re-exported 16 Nov, now
