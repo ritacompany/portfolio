@@ -5,6 +5,7 @@
 // the footer's top, because the site leaves out the Testimonials section he has on hold.
 // Prints FIGMA_SYNC_OK and exits 0 only when every check passes.
 // 11 Nov: lede and Selected works title re-read from the master (Neutral/200); see reports/figma-sync-2026-11/DIFF.md.
+// 16 Nov: Home work cards re-read from the master (docs/FIGMA_SYNC_2026-11-10.md, 16 Nov section).
 // Usage: node scripts/verify-figma-sync.mjs [--dump]
 
 import { createServer } from "node:http";
@@ -48,10 +49,13 @@ const desktop = [
   [".work-card-mondai .work-card__desc", { c: "#dedee5", fw: 400, fs: 13.75, ls: 0.02, x: 609.64, y: 1237.5, tol: 1 }],
   [".work-card-mondai .work-card__media", { x: 40, y: 1265.21, w: 879 }],
   [".work-card-haven", { x: 957, w: 443 }],
-  [".work-card-haven .work-card__name", { c: "#f2f1f8", x: 957, y: 1367.67 }],
-  [".work-card-haven .work-card__desc", { c: "#dedee5", fs: 14, ls: 0.02, x: 1187.79, y: 1369.67, tol: 1 }],
-  [".work-card-haven .work-card__media", { bg: "#0f0f1b", x: 957, y: 1397.38, w: 443, h: 443 }],
-  [".work-card-haven .haven-art__clip img", { x: 941.29, y: 1396.88, w: 487.35, h: 429.82, tol: 1 }],
+  // 16 Nov re-read of Card Section 4923:12087: Haven's image on top at 132.17, its label under it at
+  // 590.88; the image file is the 443 wide slice of Image 2; Learn more is the 130 by 34 Small button.
+  [".work-card-haven .work-card__name", { c: "#f2f1f8", x: 957, y: 1826.38 }],
+  [".work-card-haven .work-card__desc", { c: "#dedee5", fs: 14, ls: 0.02, x: 1211, y: 1828.38, tol: 1 }],
+  [".work-card-haven .work-card__media", { bg: "#0f0f1b", x: 957, y: 1367.67, w: 443, h: 443 }],
+  [".work-card-haven .haven-art__clip img", { x: 957, y: 1367.18, w: 443, h: 429.82, tol: 1 }],
+  [".work-card-mondai .work-card__media .button-sm", { fw: 700, fs: 16, x: 384.73, y: 1516.64, w: 130, h: 34, tol: 1 }],
   [".about-story", { line: "#1d1d21", y: 2109.99, h: 543 }],
   [".about-story .about__label", { c: "#d2d2db", x: 40, y: 2142.99 }],
   [".about-story .about__body", { c: "#d2d2db", x: 741, y: 2142.99, w: 595 }],

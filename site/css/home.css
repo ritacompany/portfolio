@@ -79,27 +79,32 @@
 }
 /* Mondai's description is drawn at 13.75 in the master (no text style); Haven's is Label/14. */
 .work-card-mondai .work-card__desc { --desc-x: calc(100% * 569.64 / 879); font-size: var(--card-desc-size); }
-.work-card-haven .work-card__desc { --desc-x: calc(100% * 230.79 / 443); }
+/* 16 Nov: Haven's description now starts 254 into its card (4923:12110). */
+.work-card-haven .work-card__desc { --desc-x: calc(100% * 254 / 443); }
 .work-card__media { position: relative; overflow: hidden; }
 /* The master lets the Mondai media run 4.17 past the card (579.45 tall). His call, 13 Nov: the two cards
    always end on one line, so the media is clipped to the card, 575.28 tall, losing 4.17 of the image's
    bottom; nothing else moves. The art is baked at 2x from his layers in 4923:12090 (gradient, laptop,
    glow, the 47 percent Neutral/900 veil); his noise effect is not baked. */
 .work-card-mondai .work-card__media { aspect-ratio: 879 / 575.28; }
-/* Haven, 4923:12104: the phone image on Haven's night blue, 443 square, drawn from the same image as
-   the phone card (no baked export), placed as in the master: 487.35 by 429.82 at -15.71, -0.5, in a
-   443 by 442.5 clip. The master adds a noise effect to the blue that is not drawn here. */
+/* Haven, 4923:12104: the phone image on Haven's night blue, 443 square. His 16 Nov master puts the name
+   and description under the image (label row 15.71 below it, at 590.88), the image top at 132.17, so
+   the head is ordered after the media; the card stays bottom aligned so both cards end on one line.
+   The image is his new visible fill on Image 2 (4923:12107), exported at 2x clipped to the square
+   (886 by 859): drawn 443 by 429.82 at 0, -0.5 in the 443 by 442.5 clip. The phone card uses the
+   same file. The master adds a noise effect to the blue that is not drawn here. */
 .work-card-haven .work-card__media { aspect-ratio: 1; }
 @media (min-width: 768px) {
+  .work-card-haven .work-card__head { order: 1; }
   .work-card-haven .work-card__media { background: var(--haven-card-night); }
   .work-card-haven .work-card__desk-art { display: none; }
   .work-card-haven .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; transition: transform 900ms var(--ease-expo-out); }
   .work-card-haven .haven-art__clip { position: absolute; left: 0; top: 0; width: 100%; height: 99.887%; overflow: hidden; }
-  .work-card-haven .haven-art__clip img { position: absolute; max-width: none; left: -3.546%; top: -0.113%; width: 110.01%; height: 97.134%; }
+  .work-card-haven .haven-art__clip img { position: absolute; max-width: none; left: 0; top: -0.113%; width: 100%; height: 97.134%; }
 }
 .work-card__media > img { width: 100%; height: auto; }
-/* Learn more keeps its Figma center (the frame draws the button at 98.5 percent scale). */
-.work-card__media .button-sm { position: absolute; left: calc(100% * 343.39 / 879); top: calc(100% * 250.87 / 575.28); }
+/* Learn more, 4923:12095: his 16 Nov Small button (130 by 34) at 344.73, 251.43 in the media. */
+.work-card__media .button-sm { position: absolute; left: calc(100% * 344.73 / 879); top: calc(100% * 251.43 / 575.28); }
 
 /* Work card states, tracker H11 (prototypes/homepage-foundations/work-card-states.html): the whole card
    is the link; hover eases the image in 3.5 percent, the label and description go white and Learn more
@@ -265,7 +270,9 @@
   /* Haven, 4929:12222: the phone in a square clip on Haven's night blue. */
   .work-card-haven .work-card__media { background: var(--haven-card-night); }
   .haven-art__clip { position: absolute; left: 10.452%; top: -9.625%; width: 78.904%; height: 119.558%; overflow: hidden; }
-  .haven-art__clip img { left: -3.612%; top: -0.115%; width: 112.034%; height: 98.924%; }
+  /* 16 Nov: the image file is the 443 wide slice of his Image 2 (see the desktop note), so it starts at
+     the clip's left edge: 312.94 times 443 / 487.35 = 284.46 of the 279.32 clip. */
+  .haven-art__clip img { left: 0; top: -0.115%; width: 101.84%; height: 98.924%; }
   .work-card:active .work-card__phone-art img { transform: scale(1.01); transition-duration: 150ms; }
 
   /* About, 4929:12243. Each row: a line, the label at the left, the body indented by the About label's

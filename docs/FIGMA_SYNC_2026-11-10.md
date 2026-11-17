@@ -98,3 +98,41 @@ Status: fixed (site now matches), kept (left as is on purpose, reason given), fl
 index.html: the hero line (D5), the CHDWCK image height (D13) and the Mondai image height (D23). Assets:
 chdwck-hero.svg, chdwck.svg, mondai-card@2x.webp, dolly.svg, menu.svg, new dolly-200.svg and
 logo-300.svg. The old haven-card@2x.webp is no longer drawn on Home and is left in place.
+
+## 16 Nov: Home work cards re-read
+
+Source: Card Section `4923:12087` in Master `4494:5909` (his call, 16 Nov: work off Master, not Master 2
+`5026:13389`, which explores other hero sections), and the Mobile works frame `4928:12018`. Read only.
+Master 2 has the same Haven order (image on top, label under it).
+
+| Id | Where | Figma (Master, 16 Nov) | Site before | Status | Change |
+|---|---|---|---|---|---|
+| N1 | Haven card order | image (Secondary Card) on top at 132.17 in the section, 443 square; label row 15.71 under it at 590.88; card bottom aligned, so both cards end on one line | label above the image | fixed | home.css: `.work-card-haven .work-card__head { order: 1 }` from 768 up; markup order unchanged. The phone keeps the name above the image, as his Mobile frame does |
+| N2 | Haven description | x 1211, 254 into the card | 230.79 into the card | fixed | home.css `--desc-x` |
+| N3 | Haven image | Image 2 `4923:12107` now shows a new fill (3228 by 2600 source); the frame is unchanged: 487.35 by 429.82 at -15.71, -0.5 in a 443 by 442.5 clip | the 10 Nov image (mean difference about 22 of 255) | fixed | `site/assets/home/haven-card-phone.webp` replaced by his node exported at 2x, which comes clipped to the square: 886 by 859. Drawn 443 by 429.82 at 0, -0.5. index.html width and height updated |
+| N4 | Haven phone card | Mobile frame: clip 279.32 by 279 at 37, -22.46; Image 2 312.94 wide at -10.09, -0.32 (unchanged placement, same new fill) | old image | fixed | the same file, placed from the clip's left edge at 284.46 wide (312.94 times 443 / 487.35) |
+| N5 | Learn more, Mondai card | the Small button master `4868:13675` is now 130 by 34: Satoshi Bold 16, tracking -1 percent, padding 8 and 11, 3 stroke, radius 32; the instance `4923:12095` sits at 344.73, 251.43 in the media | 184 by 47.55, Bold 24 | fixed | components.css `.button-sm` (the component, so every use follows); home.css position |
+| N6 | Mondai card | unchanged | | | |
+
+### For the main session (preview layer, `site/dev/preview/home-motion.css`)
+
+Not edited here. Two rules there still carry the old values and override the site in the preview:
+
+- `.work-card-haven .work-card__desc { --desc-x: calc(100% * 230.79 / 443) }` should be `254 / 443`.
+- Learn more is centred at 435.35, 274.85 of the media; the new centre is 409.73, 268.43 (344.73 + 65,
+  251.43 + 17).
+
+`.unlazy/home-motion/check.mjs figma` now throws, because the reveal it finishes was removed in 516113f
+(`window.__hm.reveals` is gone). `.unlazy/figma-sync-2/home-motion-figma.mjs` is the same check with that
+one line guarded; it prints FIGMA_MATCH and HOME_MOTION_OK figma on the preview build.
+
+### Proof
+
+- `node .unlazy/figma-sync-2/check.mjs order|button|image|phone`: FIGMA_SYNC2_OK for each, at 1440,
+  1024 and 402.
+- `node scripts/verify-figma-sync.mjs`: FIGMA_SYNC_OK 177 checks, with its Haven rows and a new Learn
+  more row set to these values.
+- `node scripts/build-preview.mjs site <dir>`: HOVER_STILL_OK 53 hovers.
+- `node scripts/verify-responsive.mjs`: Home passes fit, overlap and size; every page passes overlap and
+  size. Fit fails on the framework page's template carousel at 1200 and 1366, the same on the last
+  commit before this change (not caused here).
