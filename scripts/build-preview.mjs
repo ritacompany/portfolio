@@ -1,13 +1,29 @@
 // Builds the preview of the site that Chadwick tries in the review loop (docs/SITE_BUILD_PLAN.md).
 // Copies the site folder without dev, motion-lab and lib, and rewrites root paths to relative ones so
-// the copy works at the artifact address. Usage: node scripts/build-preview.mjs site <out dir>, then
-// publish <out dir>/index.html with the Artifact tool to https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST
-// (root <out dir>, every other file in files).
+// the copy works at the artifact address. Usage: node scripts/build-preview.mjs HEAD <out dir> builds from
+// the last commit (use this: the checkout is shared and holds other sessions' unsaved edits);
+// node scripts/build-preview.mjs site <out dir> builds from the working tree. It ends by printing the
+// Artifact publish call for the one preview link, PREVIEW_URL below.
+// The link belongs to the claude.ai account Claude Code on his Mac is signed in to, so any session there
+// can update it. Published 11 Nov 2026; the 9 Nov link before it was made on a different account and
+// reads as not found from here.
+export const PREVIEW_URL = "https://claude.ai/artifact/McviYhengPB92skSvB2YEu";
 // Review tools and proposals in site/dev/preview/ (the type review tool, CSS he tries before a change
 // moves into the site) are copied to preview/ and added to every page. They never reach the real site.
 import { cpSync, readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
-import { join, relative, dirname } from "node:path";
-const [src, out] = process.argv.slice(2);
+import { join, relative, dirname, resolve } from "node:path";
+let [src, out] = process.argv.slice(2);
+import { execSync } from "node:child_process";
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+if (!existsSync(src)) {
+  // A git ref: build from what is committed, not from the shared working tree.
+  const tmp = mkdtempSync(join(tmpdir(), "preview-src-"));
+  const repo = new URL("..", import.meta.url).pathname;
+  execSync(`git -C "${repo}" archive ${src} site | tar -x -C "${tmp}"`);
+  console.log("built from", src, execSync(`git -C "${repo}" rev-parse --short ${src}`).toString().trim());
+  src = join(tmp, "site");
+}
 cpSync(src, out, { recursive: true, filter: (p) => !/\/(dev|motion-lab|lib)(\/|$)/.test(relative(src, p) ? "/" + relative(src, p) : "") });
 const tools = join(src, "dev/preview");
 const extras = existsSync(tools) ? readdirSync(tools).filter((f) => /\.(css|js)$/.test(f)).sort() : [];
@@ -33,3 +49,8 @@ import { spawnSync } from "node:child_process";
 const check = spawnSync(process.execPath, [new URL("verify-hover-still.mjs", import.meta.url).pathname, out], { encoding: "utf8" });
 process.stdout.write(check.stdout); process.stderr.write(check.stderr);
 if (check.status !== 0) { console.error("preview refused: a hover moves something (scripts/verify-hover-still.mjs)"); process.exit(1); }
+out = resolve(out);
+const files = walk(out).map((f) => relative(out, f)).filter((f) => f !== "index.html").sort();
+writeFileSync(join(out, "..", "publish-files.json"), JSON.stringify(files.map((path) => ({ path }))));
+console.log(`publish: first Artifact read ${PREVIEW_URL} (a publish without that read is refused), then Artifact publish, url ${PREVIEW_URL}, file_path ${join(out, "index.html")}, root ${out},
+  files = the list in ${join(out, "..", "publish-files.json")} (${files.length} files). Leave capabilities out so the db stays.`);
