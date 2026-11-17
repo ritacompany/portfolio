@@ -63,3 +63,13 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
   CHECK: node /Users/chadwickfenner/.claude/skills/fix-the-process/scripts/check-fix-record.mjs fixes/2026-11-13-haven-tablet-review-misses.md
   EXPECT: fix record complete
   EVIDENCE: check-fix-record: fix record complete (status: not verified, layer 2)
+
+## Round 3: F1 rebuilt to his 1b pick, 16 Nov
+
+- [x] R8: from 768 to 1159 the MVP chart is his 1b timeline (Figma 5053:13372); every stage name fits inside its pill, every pill sits in the track, the end marker sits on line 6, nothing scrolls sideways, at 768, 834, 900, 1024, 1159 and 1180
+  CHECK: node reports/haven-tablet/verify.mjs 768,834,900,1024,1159,1180
+  EXPECT: ^HAVEN_TABLET_OK 12 of 12$
+  EVIDENCE: 16 Nov run after the pill colour fix: exit 0, HAVEN_TABLET_OK 12 of 12. Positive control: with the 14 Nov current.css it prints 2 problems (F1 1b timeline hidden) at 768. swap.mjs HAVEN_SWAP_OK 3 widths (390, 1200, 1440 unchanged). Screens at 768 and 1159 viewed against his frame
+
+- [x] R9: his Figma frame 5053:13391 shows the whole timeline with 48 px under it and his trimmed top kept (his yes, 16 Nov)
+  EVIDENCE: use_figma read back: frame 907 tall, track at y -31 as he set it, 48 px from the track bottom to the frame bottom, bottom aligned (was centred); the section grew to 1628 on its own auto layout
