@@ -1,5 +1,5 @@
 // Before and after at 2x: the old 1x picture and the new 2x render shown at the same size on a sharp
-// screen, side by side, cropped to a 320 x 240 window. Usage: node reports/haven-images/compare.mjs <outdir>
+// screen, side by side (the old files live in commit 35204b7; restore them to run this again), cropped to a 320 x 240 window. Usage: node reports/haven-images/compare.mjs <outdir>
 import { createRequire } from "node:module";
 import { serve } from "../haven-tablet/serve.mjs";
 const { server, base } = await serve();
