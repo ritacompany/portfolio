@@ -23,3 +23,15 @@ The test pages were too simple to show these, and all four are fixed: the scroll
 through pins and soft snap (the ending run had filmed the security phones), pinned elements are no longer
 read as moving, screen reader only text and aria-hidden tickers are skipped, and only items on screen count
 as not visible. A run that never reaches its target reports a capture problem, not a finding.
+
+## Rerun on current main, 17 Nov 2026
+After pulling the 13 and 14 Nov Haven tablet work.
+- Clean: data, access, mvp, testing, program, quiz, journey, profile, schedule.
+- Chat into security at 390 is now fine: browser score 0.03, down from 0.76. The 14 Nov "security pair one
+  height" change most likely fixed it.
+- Wires at 390: the same 4 px shift.
+- The ending is still flagged (scores 0.83 at 1440 and 0.96 at 390, the ending canvas growing from 0 to
+  430 px). The capture's frames show the ending headline dropping about 200 px and its paragraph
+  overlapping the cards, but a check in the built in browser at 1440 drew the ending differently (dark, text
+  not yet faded in), so the frames may be a headless rendering of the stage, not what a visitor sees.
+  Needs one real scroll through the ending at 1440 and 390 to settle.
