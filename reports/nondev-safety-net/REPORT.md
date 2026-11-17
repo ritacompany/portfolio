@@ -113,7 +113,7 @@ nothing covers it.
 | Live site deploy | `vercel.json` builds `public/`, the holding page, until launch; launch steps in `docs/SITE_SETUP.md` | Partly: no rollback steps written |
 | Repo visibility | Portfolio and harness repos are public | Missing |
 | Secrets in the repo | None found in a pattern search; the site uses no keys | Covered for now |
-| Claude reading private folders | No deny rules, no sandbox | Missing |
+| Claude reading private folders | Block added 17 Nov on his yes: Claude's file tools cannot read or edit ~/.ssh, ~/.aws or ~/.gnupg (tested: a read of ~/.ssh was refused) | Partly: shell commands can still reach them without the sandbox |
 | Packages | Two dev packages, `flare-dev` pinned, `npm audit` clean | Covered |
 | Harness updating itself | The harness pulls itself at session start and reinstalls; it is his own repo, but a change lands without him seeing it | Partly: fine while only he can push to it, which the monthly sweep checks |
 | Session history | Sessions started in Claude Desktop are kept past the 30 day cleanup by default | Covered |
