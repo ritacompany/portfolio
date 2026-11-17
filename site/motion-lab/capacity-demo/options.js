@@ -68,7 +68,8 @@ function crop(parent, src, [x0, y0, x1, y1], cls = "capdemo__crop") {
     clipPath: `inset(${pct(y0, IMG_H)} ${pct(IMG_W - x1, IMG_W)} ${pct(IMG_H - y1, IMG_H)} ${pct(x0, IMG_W)})` });
   return el;
 }
-const CURSOR_SVG = `<svg class="capdemo__cursor" viewBox="0 0 13 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1 L1 16.6 L4.9 12.9 L7.5 18.8 L10.1 17.7 L7.5 11.9 L12.4 11.9 Z" fill="#0a0a0a" stroke="#fff" stroke-width="1.1" stroke-linejoin="round"/></svg>`;
+// His cursor (16 Nov, left_ptr.svg). Its tip sits at about (49, 30) of the 256 square.
+const CURSOR_SVG = `<img class="capdemo__cursor capdemo__cursor--his" src="${new URL("assets/cursor.svg", import.meta.url)}" alt="" aria-hidden="true">`;
 
 function panelColour(src) {
   try {

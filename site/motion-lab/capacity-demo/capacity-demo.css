@@ -25,3 +25,5 @@
 .capdemo__group > *, .capdemo__btnwrap > * { position: absolute; }
 .capdemo__crop, .capdemo__chev { background-repeat: no-repeat; }
 .capdemo__caret { opacity: 0; }
+/* His cursor: 256 square, tip at (49, 30); sized so the pointer reads about as tall as the old arrow */
+.capdemo__cursor--his { width: 8.5cqw; margin-left: calc(-8.5cqw * 49 / 256); margin-top: calc(-8.5cqw * 30 / 256); }
