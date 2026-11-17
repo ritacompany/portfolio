@@ -1,0 +1,133 @@
+== 768
+ok   0.67x collage-2x.webp natural 2880x880 shown 768x293
+ok   0.70x wire-1-duration.png natural 364x748 shown 128x263
+ok   0.70x wire-2-passcode.png natural 364x748 shown 128x263
+ok   0.70x wire-3-quiz.png natural 364x748 shown 128x263
+ok   0.70x wire-4-matches.png natural 364x748 shown 128x263
+ok   0.70x wire-5-profile.png natural 364x748 shown 128x263
+ok   0.53x program-texture-3x.webp natural 2679x1377 shown 704x362
+ok   0.80x icon-magnet.webp natural 146x168 shown 58x67
+ok   0.80x icon-mirror.webp natural 121x226 shown 48x90
+ok   0.80x icon-lock.webp natural 152x231 shown 61x92
+ok   0.80x icon-yarn.webp natural 162x164 shown 65x66
+ok   0.80x icon-flower.webp natural 156x255 shown 62x102
+ok   0.80x quiz-phone.webp natural 682x1400 shown 272x559
+ok   0.69x profile-base.webp natural 2040x2031 shown 704x701
+ok   0.69x profile-background.webp natural 2040x2031 shown 704x701
+ok   0.70x profile-phone-straight.webp natural 879x1811 shown 309x636
+ok   0.65x profile-screen-expanded.webp natural 880x3740 shown 285x1211
+ok   0.65x profile-screen-header.webp natural 880x256 shown 285x83
+ok   0.65x profile-screen-footer.webp natural 880x319 shown 285x103
+ok   0.65x profile-screen-chip.webp natural 412x96 shown 133x31
+ok   1.00x profile-card-2x.webp natural 1360x727 shown 680x364
+ok   0.67x schedule-2x.webp natural 2094x914 shown 704x307
+ok   0.53x chat-still-2x.webp natural 628x1297 shown 167x346
+ok   0.70x security-pin-2x.webp natural 1002x1502 shown 353x529
+ok   0.70x security-discreet-2x.webp natural 928x1502 shown 327x529
+ok   1.00x w-p1-quiz.webp natural 454x930 shown 227x465
+ok   1.00x w-p2-profile.webp natural 454x927 shown 227x463
+ok   1.00x w-p3-events.webp natural 454x931 shown 227x465
+ok   1.00x w-p4-intro.webp natural 454x935 shown 227x467
+ok   1.00x w-p5-security.webp natural 454x938 shown 227x469
+security a 529 b 529
+ending-bar 44
+== 1024
+ok   0.89x collage-2x.webp natural 2880x880 shown 1024x391
+ok   0.98x wire-1-duration.png natural 364x748 shown 179x368
+ok   0.98x wire-2-passcode.png natural 364x748 shown 179x368
+ok   0.98x wire-3-quiz.png natural 364x748 shown 179x368
+ok   0.98x wire-4-matches.png natural 364x748 shown 179x368
+ok   0.98x wire-5-profile.png natural 364x748 shown 179x368
+ok   0.72x program-texture-3x.webp natural 2679x1377 shown 960x493
+ok   1.00x icon-magnet.webp natural 146x168 shown 73x84
+ok   1.00x icon-mirror.webp natural 121x226 shown 60x113
+ok   1.00x icon-lock.webp natural 152x231 shown 76x116
+ok   1.00x icon-yarn.webp natural 162x164 shown 81x82
+ok   1.00x icon-flower.webp natural 156x255 shown 78x128
+ok   1.00x quiz-phone.webp natural 682x1400 shown 340x699
+ok   0.94x profile-base.webp natural 2040x2031 shown 960x956
+ok   0.94x profile-background.webp natural 2040x2031 shown 960x956
+ok   0.96x profile-phone-straight.webp natural 879x1811 shown 421x867
+ok   0.88x profile-screen-expanded.webp natural 880x3740 shown 389x1652
+ok   0.88x profile-screen-header.webp natural 880x256 shown 389x113
+ok   0.88x profile-screen-footer.webp natural 880x319 shown 389x141
+ok   0.88x profile-screen-chip.webp natural 412x96 shown 182x42
+ok   1.00x profile-card-2x.webp natural 1360x727 shown 680x364
+ok   0.92x schedule-2x.webp natural 2094x914 shown 960x419
+ok   0.71x chat-still-2x.webp natural 628x1297 shown 223x461
+ok   0.97x security-pin-2x.webp natural 1002x1502 shown 486x728
+ok   0.97x security-discreet-2x.webp natural 928x1502 shown 450x728
+ok   1.00x w-p1-quiz.webp natural 454x930 shown 227x465
+ok   1.00x w-p2-profile.webp natural 454x927 shown 227x463
+ok   1.00x w-p3-events.webp natural 454x931 shown 227x465
+ok   1.00x w-p4-intro.webp natural 454x935 shown 227x467
+ok   1.00x w-p5-security.webp natural 454x938 shown 227x469
+security a 728 b 728
+ending-bar 44
+== 1180
+ok   0.82x collage-2x.webp natural 2880x880 shown 1180x361
+ok   0.81x wire-1-duration.png natural 364x748 shown 148x303
+ok   0.81x wire-2-passcode.png natural 364x748 shown 148x303
+ok   0.81x wire-3-quiz.png natural 364x748 shown 148x303
+ok   0.81x wire-4-matches.png natural 364x748 shown 148x303
+ok   0.81x wire-5-profile.png natural 364x748 shown 148x303
+ok   0.55x program-texture-3x.webp natural 2679x1377 shown 732x376
+ok   0.82x icon-magnet.webp natural 146x168 shown 60x69
+ok   0.82x icon-mirror.webp natural 121x226 shown 49x92
+ok   0.82x icon-lock.webp natural 152x231 shown 62x95
+ok   0.82x icon-yarn.webp natural 162x164 shown 66x67
+ok   0.82x icon-flower.webp natural 156x255 shown 64x104
+ok   0.82x quiz-phone.webp natural 682x1400 shown 279x573
+ok   0.55x profile-base.webp natural 2040x2031 shown 557x555
+ok   0.55x profile-background.webp natural 2040x2031 shown 557x555
+ok   0.56x profile-phone-straight.webp natural 879x1811 shown 245x505
+ok   0.51x profile-screen-expanded.webp natural 880x3740 shown 227x963
+ok   0.51x profile-screen-header.webp natural 880x256 shown 227x66
+ok   0.51x profile-screen-footer.webp natural 880x319 shown 227x82
+ok   0.51x profile-screen-chip.webp natural 412x96 shown 106x25
+ok   0.82x profile-card-2x.webp natural 1360x727 shown 557x298
+ok   0.82x schedule-2x.webp natural 2094x914 shown 858x374
+ok   0.82x chat-still-2x.webp natural 628x1297 shown 257x531
+ok   0.82x security-pin-2x.webp natural 1002x1502 shown 411x615
+ok   0.82x security-discreet-2x.webp natural 928x1502 shown 380x615
+ok   0.82x w-p1-quiz.webp natural 454x930 shown 186x381
+ok   0.82x w-p2-profile.webp natural 454x927 shown 186x380
+ok   0.82x w-p3-events.webp natural 454x931 shown 186x381
+ok   0.82x w-p4-intro.webp natural 454x935 shown 186x383
+ok   0.82x w-p5-security.webp natural 454x938 shown 186x384
+security a 615 b 615
+ending-bar 44
+== 1440
+ok   1.00x collage-2x.webp natural 2880x880 shown 1440x440
+ok   0.99x wire-1-duration.png natural 364x748 shown 180x370
+ok   0.99x wire-2-passcode.png natural 364x748 shown 180x370
+ok   0.99x wire-3-quiz.png natural 364x748 shown 180x370
+ok   0.99x wire-4-matches.png natural 364x748 shown 180x370
+ok   0.99x wire-5-profile.png natural 364x748 shown 180x370
+ok   0.67x program-texture-3x.webp natural 2679x1377 shown 893x459
+ok   1.00x icon-magnet.webp natural 146x168 shown 73x84
+ok   1.00x icon-mirror.webp natural 121x226 shown 60x113
+ok   1.00x icon-lock.webp natural 152x231 shown 76x116
+ok   1.00x icon-yarn.webp natural 162x164 shown 81x82
+ok   1.00x icon-flower.webp natural 156x255 shown 78x128
+ok   1.00x quiz-phone.webp natural 682x1400 shown 340x699
+ok   0.67x profile-base.webp natural 2040x2031 shown 680x677
+ok   0.67x profile-background.webp natural 2040x2031 shown 680x677
+ok   0.68x profile-phone-straight.webp natural 879x1811 shown 299x617
+ok   0.63x profile-screen-expanded.webp natural 880x3740 shown 276x1175
+ok   0.63x profile-screen-header.webp natural 880x256 shown 276x80
+ok   0.63x profile-screen-footer.webp natural 880x319 shown 276x100
+ok   0.63x profile-screen-chip.webp natural 412x96 shown 129x30
+ok   1.00x profile-card-2x.webp natural 1360x727 shown 680x364
+ok   1.00x schedule-2x.webp natural 2094x914 shown 1047x457
+ok   1.00x chat-still-2x.webp natural 628x1297 shown 314x648
+ok   1.00x security-pin-2x.webp natural 1002x1502 shown 501x751
+ok   1.00x security-discreet-2x.webp natural 928x1502 shown 464x751
+ok   0.85x w-p1-quiz.webp natural 454x930 shown 192x393
+ok   0.85x w-p2-profile.webp natural 454x927 shown 192x392
+ok   0.85x w-p3-events.webp natural 454x931 shown 192x394
+ok   0.85x w-p4-intro.webp natural 454x935 shown 192x395
+ok   0.85x w-p5-security.webp natural 454x938 shown 192x397
+security a 751 b 751
+ending-bar 44
+MEDIA_SHARP_OK

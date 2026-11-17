@@ -174,7 +174,8 @@
 .ending .stage:has(.has-active) { clip-path:inset(0 -100vw 0 -100vw); }
 .ending:has(.has-active) .ending__bottom { margin-top:0; }
 .pframe { overflow:hidden; }
-.pframe__overlay { position:absolute; left:-89.3747%; top:-3.9399%; width:282.5221%; max-width:none; height:112.7444%; }
+/* The overlay file is his Figma group as seen through the 680 x 677 frame (4264:7123), so it fills the frame. */
+.pframe__overlay { position:absolute; left:0; top:0; width:100%; height:100%; max-width:none; }
 @media(min-width:1160px) {
  .flow { height:calc(177 * var(--g)); }
  .phone { left:26.7236%; top:4.4591%; width:44.0131%; aspect-ratio:299.289/616.624; }

@@ -43,10 +43,10 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
   EXPECT: ^HAVEN_TABLET_OK 8 of 8$
   EVIDENCE: 14 Nov run: exit 0, HAVEN_TABLET_OK 8 of 8. F12 fixed in site/css/components.css on his word (13 Nov: the labels fit, the layout was wrong): measured labels 319, 190 and 297 px; the bar is 44 px at 768, 834, 1024, 1180 and 1440 on Haven and framework. Before the fixes: 55 problems
 
-- [ ] R3: F7 to F10 no picture is shown larger than its own pixels on a 2x screen, at 768, 1024, 1180 and 1440
+- [x] R3: F7 to F10 no picture is shown larger than its own pixels on a 2x screen, at 768, 1024, 1180 and 1440
   CHECK: node reports/haven-tablet/media.mjs 768,1024,1180,1440
   EXPECT: ^MEDIA_SHARP_OK$
-  EVIDENCE: unmet: 32 soft images; every Haven picture is a 1x export. Needs his 2x exports (Figma connector is on a view seat at its limit)
+  EVIDENCE: 17 Nov: exit 0, MEDIA_SHARP_OK. Every soft picture rendered from his Figma file at 2x (3x for the profile frame and program texture); see reports/haven-images/GATES.md
 
 - [x] R4: the tablet rules still move nothing at 390, 1200 and 1440
   CHECK: node reports/haven-tablet/swap.mjs
