@@ -12,7 +12,7 @@
 ## Next: flowers (his ask, 17 Nov, not started)
 - Explore and suggest which flowers to use, plus the elements that go with each one.
 - Go through all of his notes on the hero parts board first. Pull the references from there and from the 9 Nov chat "Hero systems visual: reference and concept board".
-- For the right side he asked for flowers that look "more vania", as dictated. My best reading is Vanda orchids, whose checkered blue petals match his note on 89 about a pattern inside the texture. Confirm with him before building on that. He also said "Simothy Vane" earlier, which is probably the same word.
+- For the right side he wants veiny flowers, meaning petals with visible veins (confirmed 17 Nov: "veiny"). He kept part 2, the veined petal from the cable flower reference, so start there. Good candidates: hellebore, hibiscus, Iris reticulata, striped squill, veined anemone. Check each one against his "cute, not cliche" rule.
 - He doesn't want sunflowers, roses or anything cliche. He wants them cute, in a couple of different styles.
 - Still to come after the flowers: flower layout, color distribution and detail.
 
