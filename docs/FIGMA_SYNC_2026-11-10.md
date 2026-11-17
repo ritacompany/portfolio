@@ -141,3 +141,16 @@ one line guarded; it prints FIGMA_MATCH and HOME_MOTION_OK figma on the preview 
 - `node scripts/verify-responsive.mjs`: Home passes fit, overlap and size; every page passes overlap and
   size. Fit fails on the framework page's template carousel at 1200 and 1366, the same on the last
   commit before this change (not caused here).
+
+## 17 Nov: Resume shown, back to top logged
+
+- D38 changed, his call 17 Nov: Resume shows in the footer on Home, Haven and the framework page, as in
+  Master (slot x 1091, the site draws 1090) and the Mobile footer (20.83 under LinkedIn). It has no href
+  until his resume file exists, so it is plain text: not focusable, no hover. The 10 Nov note that put it
+  at 1190 was wrong.
+- The component sheet (`site/dev/components/`), `scripts/figma-components.json` and
+  `scripts/figma-pages.json` now carry his 16 Nov Small button (4868:13675, 130 by 34) and the 16 Nov
+  Haven boxes, so the 1440 suite fails only where it failed before this work (framework boxes, Haven body).
+- Open, his ask 17 Nov, not now: a back to top button on the phone footer. The desktop footer already has
+  one (Back to Top Icon, x 40); the Mobile footer frame has none and the site hides it under 768. He is
+  still finalising the button; build it once he has.

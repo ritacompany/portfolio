@@ -336,6 +336,9 @@
   color: var(--neutral-100); text-decoration: none; white-space: nowrap;
 }
 .footer__out[hidden] { display: none; }
+/* Resume shows as in his frames but is not a link until his resume file exists (his call, 17 Nov): no
+   href, so it is not focusable and does not react to hover. */
+.footer__out:not([href]) { cursor: default; pointer-events: none; }
 /* LinkedIn and Resume share one wrapper so the phone footer can list them under "Links"; at tablet and
    desktop the wrapper steps aside and each link keeps its own grid column. */
 .footer__links { display: contents; }

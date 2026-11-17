@@ -303,11 +303,11 @@
     {
      "name": "Learn more",
      "sel": "[data-figma-node='5812:22904']",
-     "x": 383.39,
-     "y": 1516.08,
-     "w": 184,
-     "h": 48,
-     "why": "component at full size, centered where the master draws it at 98.2 percent (384.73, 1516.64, 181.32 by 46.89)"
+     "x": 384.73,
+     "y": 1516.64,
+     "w": 130,
+     "h": 34,
+     "why": "16 Nov re-read: his redrawn Small button, 4923:12095"
     },
     {
      "name": "Haven card",
@@ -323,7 +323,7 @@
      "name": "Haven name",
      "sel": "[data-figma-node='5812:22907']",
      "x": 957,
-     "y": 1367.67,
+     "y": 1826.38,
      "w": 56,
      "h": 14,
      "tol": 2,
@@ -332,8 +332,8 @@
     {
      "name": "Haven desc",
      "sel": "[data-figma-node='5812:22908']",
-     "x": 1187.79,
-     "y": 1369.67,
+     "x": 1211,
+     "y": 1828.38,
      "w": 140,
      "h": 10,
      "tol": 2,
@@ -343,7 +343,7 @@
      "name": "Haven media",
      "sel": "[data-figma-node='5812:22909']",
      "x": 957,
-     "y": 1397.38,
+     "y": 1367.67,
      "w": 443,
      "h": 443
     },
