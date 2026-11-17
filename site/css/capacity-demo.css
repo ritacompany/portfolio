@@ -1,0 +1,29 @@
+/* Capacity card demo on the framework page. Pairs with js/capacity-demo.js (docs/motion/capacity-stepper/).
+   The overlay sits exactly over the card image; every length is in cqw of the card, so it scales with it.
+   Only the script adds the overlay, and it never does with reduced motion on. */
+@font-face { font-family: "Heebo"; src: url("../assets/fonts/heebo-var-latin.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+@font-face { font-family: "IBM Plex Mono"; src: url("../assets/fonts/plex-mono-400.woff2") format("woff2"); font-weight: 400; font-display: block; }
+
+.capdemo, .fw-sec > .capdemo {
+  position: absolute !important; left: var(--cd-x); top: var(--cd-y); width: var(--cd-w) !important; height: var(--cd-h) !important; margin: 0 !important; max-width: none; z-index: 2; pointer-events: none; overflow: hidden;
+  container-type: inline-size; border-radius: 2.6cqw;
+}
+.capdemo > *, .capdemo__btnwrap > * { position: absolute; }
+.capdemo__patch { background: var(--capdemo-panel, #080808); }
+.capdemo__crop, .capdemo__chev { background-repeat: no-repeat; }
+.capdemo__caret { opacity: 0; }
+.capdemo__num {
+  font-family: "Heebo", sans-serif; font-weight: 700; color: #eeefec; line-height: 1;
+  text-align: center; font-feature-settings: "tnum" 1;
+}
+.capdemo__items { font-family: "IBM Plex Mono", monospace; font-weight: 400; color: #989c98; line-height: 1; text-align: center; }
+.capdemo__btn { border-radius: 50%; border-style: solid; box-sizing: border-box; }
+.capdemo__dim { background: var(--capdemo-panel, #080808); opacity: 0; border-radius: 50%; }
+/* His cursor: 256 square with its tip at (49, 30) */
+.capdemo__cursor {
+  left: 0; top: 0; width: 8.5cqw; height: auto; transform-origin: 0 0; will-change: transform;
+  margin-left: calc(-8.5cqw * 49 / 256); margin-top: calc(-8.5cqw * 30 / 256);
+}
+/* mondai-motion.css hides every section child until its script fades it in; the overlay is added after
+   that script has collected its items, so it opts out and manages its own opening */
+html .framework .fw-sec > .capdemo { opacity: 1 !important; visibility: visible !important; animation: none !important; }
