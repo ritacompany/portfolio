@@ -250,7 +250,8 @@
      then the description and a Learn more link on one row. The phone images are their own crops. */
   .works { padding: 96px 0 188px; box-shadow: none; }
   .works__title { font: var(--heading-40); letter-spacing: var(--heading-40-track); color: var(--neutral-050); }
-  .works__cards { flex-direction: column; gap: 40px; margin-top: 62px; }
+  /* His call, 16 Nov: the cards 64 apart, more than the frame's 40 (the About and menu rhythm). */
+  .works__cards { flex-direction: column; gap: 64px; margin-top: 62px; }
   .work-card-mondai, .work-card-haven { width: 100%; }
   .work-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0; }
   .work-card__head { display: contents; }

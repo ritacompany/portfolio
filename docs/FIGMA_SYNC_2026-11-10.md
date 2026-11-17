@@ -113,6 +113,8 @@ Master 2 has the same Haven order (image on top, label under it).
 | N4 | Haven phone card | Mobile frame: clip 279.32 by 279 at 37, -22.46; Image 2 312.94 wide at -10.09, -0.32 (unchanged placement, same new fill) | old image | fixed | the same file, placed from the clip's left edge at 284.46 wide (312.94 times 443 / 487.35) |
 | N5 | Learn more, Mondai card | the Small button master `4868:13675` is now 130 by 34: Satoshi Bold 16, tracking -1 percent, padding 8 and 11, 3 stroke, radius 32; the instance `4923:12095` sits at 344.73, 251.43 in the media | 184 by 47.55, Bold 24 | fixed | components.css `.button-sm` (the component, so every use follows); home.css position |
 | N6 | Mondai card | unchanged | | | |
+| N7 | Haven image background | the visible fill is a cut out phone on a transparent background (3228 by 2600); Figma shows the card's #0f0f1b through it, so the card reads as one navy field | first 16 Nov pass: the node export came flattened near black (#07070f), which showed as lighter navy bands either side of the image on the phone | fixed | the webp is now cut from that transparent source, cropped as Figma's fill does (centred cover, then the 443 slice): 886 by 860 with alpha; against his render the mean difference is about 1.5 of 255 |
+| N8 | Phone card gap | 40 between the Mondai and Haven cards | 40 | changed, his call 16 Nov | 64, the About and menu rhythm on the phone |
 
 ### For the main session (preview layer, `site/dev/preview/home-motion.css`)
 
@@ -130,6 +132,9 @@ one line guarded; it prints FIGMA_MATCH and HOME_MOTION_OK figma on the preview 
 
 - `node .unlazy/figma-sync-2/check.mjs order|button|image|phone`: FIGMA_SYNC2_OK for each, at 1440,
   1024 and 402.
+- Mobile footer, asked 16 Nov: it follows his footer frame `4929:12309`. Two known differences stay as
+  logged on 10 Nov: Resume is hidden until his resume file exists (D38) and the clock is live (D39). At
+  375, narrower than his 402 frame, the copyright line wraps to two lines.
 - `node scripts/verify-figma-sync.mjs`: FIGMA_SYNC_OK 177 checks, with its Haven rows and a new Learn
   more row set to these values.
 - `node scripts/build-preview.mjs site <dir>`: HOVER_STILL_OK 53 hovers.
