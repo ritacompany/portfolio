@@ -15,8 +15,32 @@ if (mode === "g3") {
   console.log("NO_DASH_OK");
 } else if (mode === "g6") {
   const x = (c) => execSync(c).toString();
-  const files = x("git show " + "-".repeat(2) + "name-only " + "-".repeat(2) + "format= HEAD").trim().split("\n");
+  const files = x("git show " + "-".repeat(2) + "name-only " + "-".repeat(2) + "format= da8d645").trim().split("\n");
   if (!files.every((p) => p.startsWith("reports/nondev-safety-net/"))) fail(files);
   if (x("git rev-parse HEAD") !== x("git rev-parse @{u}")) fail("not pushed");
   console.log("PUSHED_OK");
-} else fail("unknown mode");
+} else if (!["g7", "g8", "g9", "g10"].includes(mode)) fail("unknown mode");
+
+// Build gates (17 Nov). Each runs the real script and checks it fails where it must.
+import { spawnSync } from "node:child_process";
+const run = (args) => { const r = spawnSync("node", ["scripts/check-images.mjs", ...args], { encoding: "utf8" }); return { code: r.status, out: r.stdout + r.stderr }; };
+if (mode === "g7") {
+  const r = run(["home", "--widths", "390"]);
+  if (r.code !== 1 || !/mondai-card-phone-laptop\.webp is stretched/.test(r.out)) fail(r.out);
+  console.log("CATCHES_SOFT_OK");
+} else if (mode === "g8") {
+  const r = run(["home", "--widths", "1440"]);
+  const n = Number((r.out.match(/IMAGES_OK (\d+)/) || [])[1]);
+  if (r.code !== 0 || !(n > 0)) fail(r.out);
+  console.log("PASSES_SHARP_OK", n);
+} else if (mode === "g9") {
+  const r = run(["home", "--widths", "1440", "--max-kb", "50"]);
+  if (r.code !== 1 || !/HEAVY, over 50 KB/.test(r.out)) fail(r.out);
+  console.log("CATCHES_HEAVY_OK");
+} else if (mode === "g10") {
+  const y = readFileSync(".github/workflows/site-checks.yml", "utf8");
+  const need = ["push:", "npm run check", "scripts/check-images.mjs all", "scripts/verify-responsive.mjs health all", "playwright install"];
+  const miss = need.filter((n) => !y.includes(n));
+  if (miss.length || (y.match(/success\(\) \|\| failure\(\)/g) || []).length !== 3) fail(miss);
+  console.log("WORKFLOW_OK");
+}
