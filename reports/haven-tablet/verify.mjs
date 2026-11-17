@@ -7,7 +7,7 @@ const { server, base } = await serve();
 const { chromium } = createRequire(import.meta.url)("playwright");
 const browser = await chromium.launch();
 const problems = []; let runs = 0;
-for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 1024, 1180]) {
+for (const motion of ["reduce", "no-preference"]) for (const w of (process.argv[2] ? process.argv[2].split(",").map(Number) : [768, 834, 1024, 1180])) {
   runs++;
   const page = await browser.newPage({ viewport: { width: w, height: 1000 }, reducedMotion: motion });
   await page.goto(base + "/haven/", { waitUntil: "networkidle" });
@@ -31,12 +31,15 @@ for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 102
       const tail = S.bottom - last; if (tail > 170) out.push(`H2 ${n} ${Math.round(tail)} px empty under its content`);
     }
     const narrow = vw < 1160;
-    // F1 below 1160 the MVP chart is his desktop chart at 1160 px, scrolling sideways, with the case study
-    // end marker (580 px into the 1160 px image) in the first view; the stacked phase lists are gone
-    if (narrow) { const c = document.querySelector(".mvp__chart"), i = c.querySelector("img").getBoundingClientRect();
-      if (getComputedStyle(c).display === "none" || getComputedStyle(document.querySelector(".phases")).display !== "none") out.push("F1 chart hidden or phase lists showing");
-      else { if (Math.abs(i.width - 1160) > 1) out.push(`F1 chart ${Math.round(i.width)} wide`);
-        if (c.scrollLeft !== 0 || i.left + 580 > vw - 1) out.push(`F1 end marker at ${Math.round(i.left + 580)}, off screen at ${vw}`); } }
+    // F1 below 1160 his 1b timeline (Figma 5053:13372): the desktop chart and phase lists are out, every
+    // stage name fits inside its pill, every pill sits inside the track, and the end marker sits on line 6
+    if (narrow) { const tl = document.querySelector(".mvp__tl");
+      if (getComputedStyle(tl).display === "none" || getComputedStyle(document.querySelector(".mvp__chart")).display !== "none" || getComputedStyle(document.querySelector(".phases")).display !== "none") out.push("F1 1b timeline hidden or old chart showing");
+      else { const t = tl.querySelector(".tl__rows").getBoundingClientRect();
+        for (const p of tl.querySelectorAll(".tl__stage")) { const b = p.getBoundingClientRect();
+          if (p.scrollWidth > p.clientWidth || b.left < t.left - 0.5 || b.right > t.right + 0.5) { out.push(`F1 "${p.textContent}" pill ${Math.round(b.width)} px does not hold its name or leaves the track`); break; } }
+        const e = tl.querySelector(".tl__end").getBoundingClientRect(), line6 = t.left + (t.width - 1) / 2;
+        if (Math.abs((e.left + e.right) / 2 - line6) > 1.5) out.push(`F1 end marker off line 6 by ${Math.round((e.left + e.right) / 2 - line6)}`); } }
     // F2 F3 usability testing keeps its text on the left of the three flow cards, as on desktop
     { const a = R(".testing__text"), b = R(".tasks");
       if (a.right > b.left + 0.5 || Math.abs(a.top - b.top) > 2) out.push(`F2 testing text ${Math.round(a.left)}..${Math.round(a.right)} top ${Math.round(a.top)}, flows start ${Math.round(b.left)} top ${Math.round(b.top)}`);

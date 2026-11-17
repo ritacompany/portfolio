@@ -54,7 +54,7 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
   EVIDENCE: 13 Nov run: exit 0, 474 boxes identical at 390, 1200 and 1440; control differs at 768 (295) and 1180 (304)
 
 - [x] R5: F1 has researched examples and one recommended pattern, and he has picked before anything is rebuilt
-  EVIDENCE: timeline-research.md (nine examples), his yes 14 Nov; built in current.css below 1160. verify.mjs F1 passes 8 of 8 runs (end marker in the first view at 768); with the block stripped F1 fails
+  EVIDENCE: timeline-research.md (nine examples), his yes 14 Nov; built in current.css below 1160. verify.mjs F1 passes 8 of 8 runs (end marker in the first view at 768); with the block stripped F1 fails. 16 Nov: rebuilt to his 1b pick (Figma 5053:13372); verify.mjs 768,834,900,1024,1159,1180 HAVEN_TABLET_OK 12 of 12, swap.mjs HAVEN_SWAP_OK 3 widths
 
 - [x] R6: F13 is answered with what exists and a proposal for what does not
   EVIDENCE: answered in this session's reply; a session for live comments proposed as its own task

@@ -39,6 +39,7 @@
 .mvp__text { min-height:310px; }
 .mvp__lead { margin-top:40px; }
 .mvp__row { margin-top:80px; }
+.mvp__tl { display:none; } /* his 1b timeline, shown 768 to 1159 only (F1 below) */
 .gap-67 { display:none; }
 .wires { padding:64px 0 164px; border-bottom:1px solid var(--n800); }
 .wires__text { padding-top:0; }
@@ -221,11 +222,23 @@
   }
   /* His review, 13 Nov (reports/haven-tablet/FEEDBACK-13NOV.md). */
   @media (max-width: 1159.98px) {
-    /* F1: the MVP chart stays his desktop chart, held at 1160 px and scrolling sideways like the
-       wireframes row; the stacked phase lists step out (his yes, 14 Nov, timeline-research.md). */
-    .mvp__chart { display: block; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--n600) transparent; }
-    .mvp__timeline .mvp__chart img { width: 1160px; max-width: none; }
-    .phases { display: none; }
+    /* F1: his 1b timeline (Figma 5053:13372, his yes 16 Nov): one stage per row, names inside the
+       pills, 12 columns, end marker on the line after 06. Positions and widths are his, in px of his
+       704 px track, scaled to the track so every pill keeps its column span. */
+    .mvp__chart, .phases { display: none; }
+    .mvp__tl { display: block; padding-inline: var(--m); }
+    .tl__head { position: relative; height: 80px; }
+    .tl__head p { position: absolute; margin: 0; white-space: nowrap; text-box: trim-both cap alphabetic; }
+    .tl__end { top: 0; left: 50%; transform: translateX(-50%); font-size: 12px; line-height: 1; letter-spacing: 0.04em; text-transform: uppercase; color: var(--n500); }
+    .tl__launch { top: 23px; font-size: 16px; line-height: 1; color: var(--n100); }
+    .tl__launch-identity { left: 50%; transform: translateX(-50%); }
+    .tl__launch-community { right: 0; }
+    .tl__cols { position: absolute; top: 56px; left: 0; right: 1px; display: grid; grid-template-columns: repeat(12, 1fr); margin: 0; padding: 0; list-style: none; }
+    .tl__cols li { text-align: center; font-size: 14px; line-height: 1; color: var(--n300); text-box: trim-both cap alphabetic; }
+    .tl__rows { margin: 0; padding: 59px 0 3px; list-style: none; background: linear-gradient(to right, var(--n675) 1px, transparent 1px) 0 0 / calc((100% - 1px) / 12) 100% repeat-x; }
+    .tl__stage { box-sizing: border-box; display: flex; align-items: center; justify-content: flex-end; height: 36px; margin: 6px 0 0 calc(var(--x) / 704 * 100%); width: calc(var(--w) / 704 * 100%); padding-right: 11px; background: var(--n900); border-width: 1px; border-style: solid; border-radius: 0 1000px 1000px 0; font-size: 14px; line-height: 1; letter-spacing: 0.01em; font-weight: 700; color: var(--n100); white-space: nowrap; }
+    .tl__stage:first-child { margin-top: 0; }
+    .tl__stage.tl__first { margin-top: 56px; }
     /* F2, F3: the testing text stays on the left of the three flows, as on desktop; the flows narrow. */
     .testing__row { flex-direction: row; gap: 24px; }
     .testing__text { width: min(283px, 30%); flex: none; }
