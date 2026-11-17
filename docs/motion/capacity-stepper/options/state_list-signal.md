@@ -4,7 +4,7 @@ Plays once, 6.2 s, card 616 by 596.
 
 - 0.00 s: the card without its panel
 - 0.03 s: panel slices start to flicker in, pushed sideways
-- 0.95 s: slices settle into the panel
+- 0.75 s: slices settle into the panel; 0.95 s the live panel takes over
 - 1.30 s: cursor enters from the bottom right
 - 2.37 s: right arrow pressed; 2.51 s release, 7 hours
 - 2.87 s: right arrow pressed; 3.01 s release, 8 hours, about 5

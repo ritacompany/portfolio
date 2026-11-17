@@ -32,11 +32,11 @@ const HOURS_TO_ITEMS = { 6: 4, 7: 4, 8: 5 };
 const glide = cubicBezier(0.33, 0, 0.18, 1);
 const emphasized = cubicBezier(0.05, 0.7, 0.1, 1); // MD3 emphasized decelerate, for entrances
 const accelerate = cubicBezier(0.3, 0, 1, 1);      // MD3 accelerate, for exits
-const ENTRY_DUR = { type: 1.45, rise: 0.75, signal: 0.95, none: 0 };
+const ENTRY_DUR = { type: 1.1, rise: 0.75, signal: 0.95, none: 0 };
 
 // Click sequence, relative to S (when the cursor starts moving)
 function plan(entry, end) {
-  const S = ENTRY_DUR[entry] + 0.35;
+  const S = ENTRY_DUR[entry] + (entry === "type" ? 0.15 : 0.35);
   const PRESS = [
     { side: "R", down: S + 1.07, up: S + 1.21, to: 7 },
     { side: "R", down: S + 1.57, up: S + 1.71, to: 8 },
@@ -197,20 +197,20 @@ export function mount(img, { entry = "rise", end = "hide", plateSrc } = {}) {
       const q = emphasized(range(t, 0, ENTRY_DUR.rise));
       groupY = 24 * (1 - q); groupO = clamp(range(t, 0, 0.45));
     } else if (entry === "type") {
-      typeOn("label", t, 0.1, 0.55);
-      const a = range(t, 0.62, 1.02), c = range(t, 0.7, 1.1);
+      typeOn("label", t, 0.08, 0.42);
+      const a = range(t, 0.48, 0.8), c = range(t, 0.54, 0.86);
       numO = emphasized(a); numY = 8 * (1 - emphasized(a));
       btnO = emphasized(c);
-      typeOn("hours", t, 0.95, 0.3);
-      const shown = typeOn("line", t, 1.05, 0.4);
+      typeOn("hours", t, 0.7, 0.22);
+      const shown = typeOn("line", t, 0.78, 0.3);
       itemsO = shown > G.line.digitAt ? 1 : 0;
     } else if (entry === "signal") {
       const done = t >= ENTRY_DUR.signal;
       groupO = done ? 1 : 0;
-      const decay = 1 - range(t, 0.1, ENTRY_DUR.signal);
+      const decay = 1 - range(t, 0.1, 0.75); // settled well before the swap to the live layers
       for (const s of slices) {
         const on = t >= s.on * ENTRY_DUR.signal;
-        const flick = Math.sin(t * s.freq * 6.28 + s.phase) > 0.35 - 0.6 * (1 - decay); // stutters early, steadies late
+        const flick = t > 0.7 || Math.sin(t * s.freq * 6.28 + s.phase) > 0.35 - 0.6 * (1 - decay); // stutters early, steadies late
         s.el.style.opacity = done ? 0 : on && flick ? 1 : 0;
         const dx = s.amp * decay ** 2 * Math.sign(Math.sin(t * s.freq + s.phase));
         s.el.style.transform = `translateX(${cq(dx)})`;
