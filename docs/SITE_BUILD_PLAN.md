@@ -437,6 +437,8 @@ found, run Artifact list and use the "Chadwick Fenner, product designer" row; do
 as another account's link.
 
 Loop log:
+- 17 Nov, capacity card demo on the framework page (done on his yes: "i checked it works fine"). Type on
+  as it opens, his cursor, right right left left (76c1c9f). Tried on the preview link, version 4 built from cfe7bea.
 - 14 Nov, Start of week carousel on the framework page (done on his yes: "this works for the time being,
   it can always be improved later"). Center mode, his picks of 12 Nov, built 13 Nov (e65521e). Research,
   options and gates in docs/motion/week-carousel/.
