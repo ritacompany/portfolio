@@ -31,7 +31,7 @@
         },
         {
           "el": "time",
-          "text": "4:23:03pm CST",
+          "text": "4:24:05pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -185,7 +185,7 @@
       "tabular": [
         {
           "el": "time",
-          "text": "4:23:04pm CST",
+          "text": "4:24:06pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -538,7 +538,7 @@
         },
         {
           "el": "time",
-          "text": "4:23:08pm CST",
+          "text": "4:24:10pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -788,7 +788,7 @@
         },
         {
           "el": "time",
-          "text": "4:23:09pm CST",
+          "text": "4:24:11pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -946,7 +946,7 @@
         },
         {
           "el": "#chicago-time",
-          "text": "4:23:10pm CST",
+          "text": "4:24:12pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -1420,7 +1420,7 @@
         },
         {
           "el": "#chicago-time",
-          "text": "4:23:12pm CST",
+          "text": "4:24:13pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
