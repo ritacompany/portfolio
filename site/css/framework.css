@@ -163,15 +163,59 @@
   .fw-sec > .fw-logo + * { margin-top: 32px; }
 }
 
-/* Tablet fixes (N8, 12 Nov, reports/tablet-breakpoint/ISSUES.md), 768 to 1199 only so 390 is untouched.
-   T5: body lines held under 75 characters (480 px; Satoshi at 16 px runs about 6.5 px a character).
-   T4: the Example label and text stretch to one width, so the box they draw has no notch.
-   T6 and T7: no figure grows past its Figma width (the img width attribute), so small cards keep their
-   type in scale and the Action Item laptop stops at its Figma 892 by 1194. */
+/* Tablet, 768 to 1199 (round 2, 18 Nov, reports/framework-tablet-2/ISSUES.md). Replaces the first pass
+   (N8, d785d28) and keeps its fixes. Same method as Haven's tablet: the type steps down the way Haven's
+   does, and the spacing keeps the 1440 numbers wherever the relationship still exists in one column.
+   Every gap is between trimmed text boxes (cap top to baseline), as measured at 1440. Rhythm:
+     section top 64, bottom 120 (Haven at tablet); eyebrow to heading 40; heading to what follows 80;
+     subhead or label to its body 20; Label/14 C to its subhead 16; Label/12 to its value 16;
+     body to the next group 56; one body block to the next 26.5 (the line pitch of a paragraph break
+     inside one block, 22 + 16, less the 11.5 cap); text to a figure 40; a figure to text 56.
+   Pairs that sit side by side at 1440 and fit at 768 stay side by side: the hero's details and its
+   tagline beside the text, the four references, Capacity beside Effort, the two Schedule view notes.
+   Specificity: every rule starts with .framework .fw so it outranks the stacked rules for all widths
+   under 1200 above, which this block leaves alone so 390 is untouched. */
 @media (min-width: 768px) and (max-width: 1199.98px) {
-  .fw-sec > .s-body-16 { max-width: 480px; }
-  .fw-sec > [data-figma-node="5812:17127"], .fw-sec > [data-figma-node="5812:17128"] { align-self: stretch; max-width: 480px; }
-  .fw-sec > .fig { max-width: min(100%, var(--fig-w, 100%)); }
+  /* Type, as Haven: the title scales with the window from its 1440 size (212 / 1440 = 14.72vw), Heading/40
+     drops to 32, the ending heading to 6.66vw between 52 and 80. Body, labels and Heading/24 and /20 stay. */
+  .framework .fw {
+    --display-212: 400 clamp(72px, 14.72vw, 170px)/0.83 var(--font);
+    --display-96: 500 clamp(52px, 6.66vw, 80px)/0.98 var(--font);
+    --heading-40: 500 32px/36.8px var(--font);
+  }
+
+  /* Sections */
+  .framework .fw .fw-sec { padding-top: 64px; padding-bottom: 120px; }
+  .framework .fw .fw-sec:first-child { padding-top: 0; padding-bottom: 64px; }
+
+  /* The rhythm, general to particular (later rules win at equal specificity). */
+  .framework .fw .fw-sec > * + * { margin-top: 56px; }
+  .framework .fw .fw-sec > :first-child,
+  .framework .fw .fw-sec > :is(.panel-card, .panel-example, .vrule) + h2 { margin-top: 0; }
+  .framework .fw .fw-sec > * + :is(.fig, .sow) { margin-top: 40px; }
+  .framework .fw .fw-sec > :is(.s-body-16, .s-heading-24) + :is(.s-body-16, .s-heading-24) { margin-top: 26.5px; }
+  .framework .fw .fw-sec > :is(.s-heading-20, .s-label-14-c) + :is(.s-body-16, .s-heading-24) { margin-top: 20px; }
+  .framework .fw .fw-sec > .s-label-14-c + .s-heading-20 { margin-top: 16px; }
+  .framework .fw .fw-sec > .s-label-12 + .s-body-16 { margin-top: 16px; }
+  .framework .fw .fw-sec > :is(h2, .s-heading-20:first-child) + :is(.s-heading-40, .s-display-96) { margin-top: 40px; }
+  .framework .fw .fw-sec > :is(.s-heading-40, .s-display-96) + * { margin-top: 80px; }
+  .framework .fw .fw-sec > :is(.s-body-16, .s-heading-24) { max-width: 480px; }
+  .framework .fw .fw-sec > .s-heading-24.paras-tight { max-width: 640px; }
+
+  /* The Rollover effect subhead is a flex row (text beside its icon), so its words are not trimmed: the cap
+     top sits 5.55 under the box and the baseline 6 above its foot. The margins take that off, so the gaps
+     read 56 above the words and 20 under them, as for every other subhead. */
+  .framework .fw .fw-sec > .fb-effect { margin-top: 50.45px; }
+  .framework .fw .fw-sec > .fb-effect + .s-body-16 { margin-top: 14px; }
+
+  /* Rules: the hero's sits 24 under the details and 64 over the mark, as at 1440; the one inside Falling
+     behind closes a part, so it takes a section's 120 above and 64 below. */
+  .framework .fw .fw-sec > .rule { margin: 120px calc(-1 * var(--grid-margin)) 0 !important; }
+  .framework .fw .fw-sec > .rule + * { margin-top: 64px; }
+  .framework .fw .fw-sec[data-figma-node="5812:16447"] > .rule { margin-top: 24px !important; }
+
+  /* Figures: none grows past its Figma width (the first pass, T6 and T7). */
+  .framework .fw .fw-sec > .fig { max-width: min(100%, var(--fig-w, 100%)); }
   [data-figma-node="5812:16512"] { --fig-w: 896px; }
   [data-figma-node="5812:16598"] { --fig-w: 1090px; }
   [data-figma-node="5812:16775"] { --fig-w: 1167px; }
@@ -183,31 +227,53 @@
   [data-figma-node="5812:20358"] { --fig-w: 1050px; }
   [data-figma-node="5812:20260"] { --fig-w: 466px; }
   [data-figma-node="5812:20316"] { --fig-w: 815px; }
-}
-/* T2: Role, Affiliate and Focus as one row, as in his frame (4664:16790); T3: the four references as his
-   two by two grid (4508:10098). Grids replace the stacked column for these two sections only; margins from
-   the stacked rules above still space the rows, so each column keeps the same rhythm. */
-@media (min-width: 768px) and (max-width: 1199.98px) {
-  .fw-sec[data-figma-node="5812:16447"], .fw-sec[data-figma-node="5812:16470"] { display: grid; justify-items: start; align-items: start; }
-  .fw-sec[data-figma-node="5812:16447"] > *, .fw-sec[data-figma-node="5812:16470"] > * { grid-column: 1 / -1; }
-  .fw-sec[data-figma-node="5812:16447"] { grid-template-columns: max-content max-content minmax(0, 1fr); column-gap: 64px; }
-  .fw-sec[data-figma-node="5812:16447"] > .rule { justify-self: stretch; }
-  [data-figma-node="5812:16456"], [data-figma-node="5812:16457"] { grid-column: 1 !important; }
-  [data-figma-node="5812:16459"], [data-figma-node="5812:16460"] { grid-column: 2 !important; }
-  [data-figma-node="5812:16462"], [data-figma-node="5812:16463"] { grid-column: 3 !important; }
-  [data-figma-node="5812:16456"], [data-figma-node="5812:16459"], [data-figma-node="5812:16462"] { grid-row: 2; }
-  [data-figma-node="5812:16457"], [data-figma-node="5812:16460"], [data-figma-node="5812:16463"] { grid-row: 3; }
-  .fw-sec[data-figma-node="5812:16470"] { grid-template-columns: 1fr 1fr; column-gap: 48px; }
-  [data-figma-node="5812:16480"], [data-figma-node="5812:16481"], [data-figma-node="5812:16482"],
-  [data-figma-node="5812:16491"], [data-figma-node="5812:16492"], [data-figma-node="5812:16493"] { grid-column: 1 !important; }
-  [data-figma-node="5812:16485"], [data-figma-node="5812:16486"], [data-figma-node="5812:16487"],
-  [data-figma-node="5812:16496"], [data-figma-node="5812:16497"], [data-figma-node="5812:16498"] { grid-column: 2 !important; }
-  [data-figma-node="5812:16480"], [data-figma-node="5812:16485"] { grid-row: 3; }
-  [data-figma-node="5812:16481"], [data-figma-node="5812:16486"] { grid-row: 4; }
-  [data-figma-node="5812:16482"], [data-figma-node="5812:16487"] { grid-row: 5; }
-  [data-figma-node="5812:16491"], [data-figma-node="5812:16496"] { grid-row: 6; }
-  [data-figma-node="5812:16492"], [data-figma-node="5812:16497"] { grid-row: 7; }
-  [data-figma-node="5812:16493"], [data-figma-node="5812:16498"] { grid-row: 8; }
-  /* Name 26 px below its label's cap top, as in the frame (labels at 360, names at 386). */
-  .fw-sec[data-figma-node="5812:16470"] > .s-heading-20:not(h2) { margin-top: 16px; }
+
+  /* The Example box (first pass, T4): its label and text draw one box 480 wide, label 16 over the text. */
+  .framework .fw .fw-sec > [data-figma-node="5812:17127"] { margin-top: 56px !important; padding: 20px 20px 0; justify-self: stretch; align-self: stretch; max-width: 480px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17128"] { margin-top: 0 !important; padding: 16px 20px 20px; justify-self: stretch; align-self: stretch; max-width: 480px; }
+
+  /* Side by side pairs: a grid on the tablet's 8 columns (32 gutter) or two halves, rows set by hand
+     because the reading order runs down each column. Everything else spans the row. */
+  .framework .fw .fw-sec:is([data-figma-node="5812:16447"], [data-figma-node="5812:16470"], [data-figma-node="5812:17084"], [data-figma-node="5812:17143"]) {
+    display: grid; justify-items: start; align-items: start; column-gap: 32px;
+  }
+  .framework .fw .fw-sec:is([data-figma-node="5812:16447"], [data-figma-node="5812:16470"], [data-figma-node="5812:17084"], [data-figma-node="5812:17143"]) > * { grid-column: 1 / -1; }
+  .framework .fw .fw-sec:is([data-figma-node="5812:16447"], [data-figma-node="5812:16470"], [data-figma-node="5812:17084"], [data-figma-node="5812:17143"]) > .rule { justify-self: stretch; }
+
+  /* Hero: details on columns 1, 3 and 5; the mark and tagline on 1 to 4, the text on 5 to 8 from the mark's
+     top, as at 1440. Title 64 over the details (Haven's tablet hero). */
+  .framework .fw .fw-sec[data-figma-node="5812:16447"] { grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(5, auto) 1fr; }
+  .framework .fw .fw-sec > [data-figma-node="5812:16453"] { grid-row: 1; margin-bottom: 0; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16456"], [data-figma-node="5812:16459"], [data-figma-node="5812:16462"]) { grid-row: 2; margin-top: 64px; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16457"], [data-figma-node="5812:16460"], [data-figma-node="5812:16463"]) { grid-row: 3; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16456"], [data-figma-node="5812:16457"]) { grid-column: 1 / 3; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16459"], [data-figma-node="5812:16460"]) { grid-column: 3 / 5; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16462"], [data-figma-node="5812:16463"]) { grid-column: 5 / 9; }
+  .framework .fw .fw-sec[data-figma-node="5812:16447"] > .rule { grid-row: 4; }
+  .framework .fw .fw-sec[data-figma-node="5812:16447"] > .fw-logo { grid-row: 5; grid-column: 1 / 5; margin-top: 64px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:16466"] { grid-row: 6; grid-column: 1 / 5; margin-top: 32px; }
+  .framework .fw .fw-sec[data-figma-node="5812:16447"] > [data-figma-node="5812:16468"] { grid-row: 5 / span 2; grid-column: 5 / 9; margin-top: 64px; }
+
+  /* The four references (first pass, T3), two halves, rows down each column. */
+  .framework .fw .fw-sec[data-figma-node="5812:16470"] { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16480"], [data-figma-node="5812:16481"], [data-figma-node="5812:16482"], [data-figma-node="5812:16491"], [data-figma-node="5812:16492"], [data-figma-node="5812:16493"]) { grid-column: 1; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16485"], [data-figma-node="5812:16486"], [data-figma-node="5812:16487"], [data-figma-node="5812:16496"], [data-figma-node="5812:16497"], [data-figma-node="5812:16498"]) { grid-column: 2; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16480"], [data-figma-node="5812:16485"]) { grid-row: 3; margin-top: 80px; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16481"], [data-figma-node="5812:16486"]) { grid-row: 4; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16482"], [data-figma-node="5812:16487"]) { grid-row: 5; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16491"], [data-figma-node="5812:16496"]) { grid-row: 6; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16492"], [data-figma-node="5812:16497"]) { grid-row: 7; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16493"], [data-figma-node="5812:16498"]) { grid-row: 8; }
+
+  /* Capacity beside Effort, as at 1440; the timeline picture and the Example under them. */
+  .framework .fw .fw-sec[data-figma-node="5812:17084"] { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:17121"], [data-figma-node="5812:17122"]) { grid-column: 1; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:17124"], [data-figma-node="5812:17125"]) { grid-column: 2; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:17121"], [data-figma-node="5812:17124"]) { grid-row: 3; margin-top: 80px; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:17122"], [data-figma-node="5812:17125"]) { grid-row: 4; }
+
+  /* Schedule view: its two notes under the screen sit side by side, as at 1440. */
+  .framework .fw .fw-sec[data-figma-node="5812:17143"] { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20111"] { grid-column: 1; }
+  .framework .fw .fw-sec[data-figma-node="5812:17143"] > [data-figma-node="5812:20112"] { grid-column: 2; margin-top: 56px; }
 }
