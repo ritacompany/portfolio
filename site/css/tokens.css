@@ -139,6 +139,9 @@
   /* Not a Figma text style: the work card descriptions are drawn at 13.75 px with no style in the
      master (Mondai, 4923:12102) and on every phone card (4929:12207). */
   --card-desc-size: 13.75px;
+  /* The testimonial quote, 5073:12177 (18 Nov): Satoshi Medium 56, 109 percent, -4 percent, no text style. */
+  --quote-56: 500 56px/1.09 var(--font);
+  --quote-56-track: -0.04em;
   /* Not a Figma text style: the // before section labels is drawn at 15.17 px Medium (Collection
      frame, 5812:23010). Kept here so pages never carry raw type values. */
   --mark-15: 500 15.17px/1.16 var(--font);

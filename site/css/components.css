@@ -254,11 +254,13 @@
 .footer__transition-baked img { top: 0; width: 100%; height: 100%; }
 .footer__main {
   position: relative; height: 776px; overflow: hidden;
-  display: flex; flex-direction: column; gap: 183px;
+  display: flex; flex-direction: column; gap: 168px; /* 18 Nov: his Footer component's bottom row at 513.22, 15 higher */
   padding-top: 48px;
 }
 .footer__top, .footer__bottom { align-items: start; }
 .footer__bottom { align-items: end; }
+/* 18 Nov: the clock sits 164 after the 200 wide copyright, at x 404 (column 4 plus 14). */
+@media (min-width: 1200px) { .footer__bottom > .footer__meta + .footer__meta { margin-left: 14px; } }
 
 .footer__back {
   display: flex; align-items: center; justify-content: space-between;
@@ -321,8 +323,10 @@
 .footer__frame img { position: absolute; left: 0; top: -2.57%; width: 99.91%; height: 105.14%; max-width: none; }
 
 .footer__wordmark {
-  position: absolute; top: 549.18px; left: -3.444%;
-  width: 107.52%; height: auto; max-width: none; pointer-events: none;
+  /* 18 Nov: his Footer component re-spaced the letters (C -49.59, H 227.82, D 461.27, W 711.59, C 1011.37,
+     K 1288.78); chdwck.svg is that Decorative Typography group, 1550.71 by 382.69, glyph tops at 550.18. */
+  position: absolute; top: 550.18px; left: -3.444%;
+  width: 107.688%; height: auto; max-width: none; pointer-events: none;
 }
 
 .footer__meta {

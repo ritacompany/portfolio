@@ -154,3 +154,58 @@ one line guarded; it prints FIGMA_MATCH and HOME_MOTION_OK figma on the preview 
 - Open, his ask 17 Nov, not now: a back to top button on the phone footer. The desktop footer already has
   one (Back to Top Icon, x 40); the Mobile footer frame has none and the site hides it under 768. He is
   still finalising the button; build it once he has.
+
+## 18 Nov: Home re-read from Master
+
+Source: Master `4494:5909` read 18 Nov (desktop), the Phone menu `4928:11959` and the other Mobile frames
+`4929:12379`. His yes, 18 Nov: "all of the above" (page layout, phone menu, footer links, testimonials).
+Read only. Master 2 is ignored (his call, 16 Nov).
+
+| Id | Where | Figma (Master, 18 Nov) | Site before | Change |
+|---|---|---|---|---|
+| R1 | Page frame | the navbar stacked over a 916 hero; Selected works at 967.5 | hero 900, works at 899.5 | home.css: hero 968 tall |
+| R2 | Hero line | "I’m a system-minded, nuance led designer, looking for tomorrow’s problem in today’s perfectly reasonable decision." at 450.5 | the 10 Nov line at 468 | index.html, home.css |
+| R3 | Location | Chicago at 699.36, 480.5; relocate row at 502.5 | 623, 498 | home.css: column 6 plus 76.03 from 1200 up |
+| R4 | Hero wordmark | the CHDWCK text re-spaced and set further past both edges; glyph tops at 589.48 (his Master translates the frame by 589.482) | old outline at 580.51 | chdwck-hero.svg is his new outline, cut from the 1440 frame |
+| R5 | Selected works | the title is gone; cards 74 into a 778 tall section | title and 125 gap | title kept for screen readers only (visually hidden); padding 74 and 99 |
+| R6 | Haven card | label back above the image (132.17 into the cards), image 15.71 under it | the 16 Nov order (label under) | the 16 Nov order rule removed |
+| R7 | Card descriptions | Label/14 in Neutral/550 (#7b7b86) on both; Mondai at x 622.11 | Neutral/200; Mondai 13.75 at 609.64 | home.css; the phone cards keep 13.75 and Neutral/200 from the Mobile frame. The 16 Nov read already had these values; that pass missed them |
+| R8 | Mondai media | no veil and no Learn more at rest (the 47 percent Neutral/900 rectangle and the button are gone) | darker bake, button at rest | mondai-card@2x.webp rebaked from his 2x export (noise included); Learn more fades in on hover and focus only, nothing moves |
+| R9 | About | rows 569 and 234 tall; both bodies at x 858, 542 wide; third paragraph now "I love my cats, unexpected things, drag, good letter spacing and collaborative ideation." | 543 and 208; bodies at 741 and 740, 595 and 650 wide | home.css, index.html. His file has "I have have" and "cats ," again; the site keeps "I have" and drops the stray space |
+| R10 | Testimonials | new section 5073:12175, 2548.5 to 3348.5: Neutral/900, Neutral/700 line on top; quote 56 Medium, 109 percent, -4 percent; Allison Courtney, UX Researcher, avatar 66.82 on #33db84; "Full recommendation" and a LinkedIn link right aligned; three 7 px dots | none (on hold since 10 Nov) | built; a quote-56 token pair added to tokens.css (no Figma text style). Avatar exported at 3x. Under 1200 the quote steps to Heading/40, on the phone to Heading/24 with the source stacked; there is no frame for those widths yet |
+| R11 | Footer component | bottom row at 513.22 (15 higher), clock at x 404, the CHDWCK letters re-spaced (C -49.59, H 227.82, D 461.27, W 711.59, C 1011.37, K 1288.78), both variants | 528.21, column 4 (390), the old letters | components.css (every page): gap 168, clock plus 14 from 1200 up; chdwck.svg is his Decorative Typography group 4978:14844 |
+| R12 | Home footer links | Home, About, Selected works, Testimonials | About, Selected works, Contact | index.html |
+| R13 | Phone menu | About and Works only (Heading/40), About at 602, Works 651, Contact 780, email 817 | About, Selected works at the top | index.html, home.css: the block sits at the bottom, 100 between links and Contact |
+| R14 | Navbar | the desktop Master now uses the Base variant (no Product Designer) | Product Designer shown | kept: his Mobile hero still has it and the Home motion layer animates it. Flagged for him |
+
+Unchanged in the Mobile frames: hero, works, About and footer match the site. Resume stays visible (his
+17 Nov call) though the Master hides its slot (opacity 0).
+
+### Open, his to decide
+
+- The testimonial avatar in his file looks like his own portrait (the footer photo) on the green disc, next to Allison
+  Courtney's name. The site draws what the file has. It likely wants her photo.
+- The three dots promise more quotes; only one exists. They are drawn, not clickable.
+- The phone About copy in his Mobile frame is still the older third paragraph; the site shows the new one
+  on every width (one element).
+
+### For the main session (preview layer, not edited here)
+
+- `.works` padding and the panel's gap control (G3, 320) and the title pin (G4) act on a title that is now
+  visually hidden: the works section starts 74 above its cards in the Master.
+- Learn more: the Master no longer draws it at rest; the shipped site now fades it in on hover. The preview
+  centres it at 435.35, 274.85; its 16 Nov place is 409.73, 268.43.
+- The reveal and hover overlay sat on a darker Mondai bake; the new bake has no veil.
+
+### Proof
+
+- `node .unlazy/figma-sync-3/check.mjs hero|works|about|testimonials|footer|menu`: FIGMA_SYNC3_OK each.
+- `node scripts/verify-figma-sync.mjs`: FIGMA_SYNC_OK 200 checks (18 Nov values, testimonials added).
+- `node scripts/verify-pages.mjs boxes home`: BOXES_OK 31/31 against the 18 Nov boxes; `pixels home`
+  against his 18 Nov render (now `site/dev/pages/figma/home.png`).
+- Full page at 1440 against his render, mean difference per section (of 255): hero 0.88, works 2.24,
+  About 3.58, testimonials 2.52, footer 2.06.
+- The component sheet's footer pictures (`site/dev/components/figma/footer-*.png`) keep their old
+  transition band and now carry his 18 Nov Footer variants under it (4659:11955, 4862:14204), so
+  `verify-components pixels` passes again. The 1440 suite fails only where it failed before this work
+  (framework boxes, Haven body).
