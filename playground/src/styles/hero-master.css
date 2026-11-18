@@ -1,0 +1,99 @@
+/* Hero master, 15 Nov. His newer frame: file Desktop 1 MVP (5RO0m4bYYrTvbiaOgaU3tI), page CS, section
+   Hero (6109:21483), frame Hero master (6109:21820), 1440 wide. It is desktop only, so the phone keeps
+   his Mobile frames from the 14 Nov build and tablet keeps the 14 Nov tablet layout, with the new
+   copy, wordmark, title and Haven card order carried down.
+   Every rule here overrides styles/legacy/home.css, which stays as the 14 Nov base. */
+
+/* main is the size container: the wordmark, the hero height and the works title scale with the page
+   width (cqw), the way the 1440 frame would if it were stretched. */
+.home > main { container-type: inline-size; }
+
+/* Hero image, 6109:21821: 916 tall at 1440 (was 900). CHDWCK's cap top sits at 592 and its baseline
+   40 above the hero's bottom, so the hero grows with the wordmark: 592 + cap height + 40. */
+@media (min-width: 1200px) {
+  .hero { height: calc(592px + 284cqw / 14.4 + 40px); }
+
+  /* Location, 6109:21837: no longer on the column grid. It starts 100 past five twelfths of the frame
+     (x 700 at 1440) and its last line sits on the lede's last line (both end at y 534). */
+  .hero__intro { align-items: end; }
+  /* grid-column auto, or the grid area (not the full width) becomes the containing block. */
+  .hero__where { position: absolute; grid-column: auto; left: calc(41.6667% + 100px); bottom: 0; margin: 0; }
+}
+
+/* CHDWCK, 6109:21844: live text now, Satoshi Medium 392.504 at 1440, cap top at 592, starting 84 off
+   the left edge and running off the right. Live letters, so experiments can split and animate them.
+   Tracking per letter is set in Hero.tsx, fitted to Figma's render. */
+.hero__wordmark {
+  display: block; width: max-content;
+  font: 500 calc(392.504cqw / 14.4) / 0.83 var(--font);
+  color: var(--neutral-200); white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+.hero__wordmark > span { letter-spacing: var(--t, 0em); }
+/* The phone draws CHDWCK down the left edge instead (.hero__vertical). */
+@media (max-width: 767.98px) {
+  .hero__wordmark { display: none; }
+}
+@media (min-width: 1200px) {
+  .hero__name { top: 592px; left: calc(-84cqw / 14.4); width: auto; }
+}
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .hero__name { margin-left: calc(-84cqw / 14.4); }
+}
+
+/* Selected works, 6109:21845. The title moved from centred Heading/64 to a large left title that runs
+   17 off the left edge: Satoshi Medium 89 at 1440, Neutral/400, cap top 147.5 down the section. The
+   cards start 357.5 down; the section is 1345 tall, so 382.5 below the cards. */
+@media (min-width: 768px) {
+  .works { position: relative; padding: 357.5px 0 382.5px; }
+  .works > .layout-grid { display: block; position: absolute; top: 147.5px; left: 0; padding: 0; }
+  .works__cards { margin-top: 0; }
+  .works__title {
+    display: flex; gap: calc(13em / 89); margin-left: calc(-17em / 89);
+    font: 500 max(48px, 89cqw / 14.4) / 0.83 var(--font); letter-spacing: -0.04em;
+    color: var(--neutral-400); padding: 0;
+    text-box: trim-both cap alphabetic;
+  }
+  .works__title > span { display: block; text-box: trim-both cap alphabetic; }
+  .works__title span span { letter-spacing: var(--t, -0.04em); }
+}
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .works { padding: 240px 0 160px; }
+  .works > .layout-grid { top: 96px; }
+}
+
+/* Card heads, 6109:21849 and 6109:21867. Descriptions are Label/14 in Neutral/550 now (were Neutral/200,
+   Mondai's at 13.75), Mondai's at x 582.11 of 879, Haven's at 254 of 443. The slashes are Body/16.
+   From 768 up only: the phone cards keep his Mobile frames. */
+@media (min-width: 768px) {
+  .work-card__desc { font-size: 14px; color: var(--neutral-550); }
+  .work-card-mondai .work-card__desc { --desc-x: calc(100% * 582.11 / 879); font-size: 14px; }
+  .work-card-haven .work-card__desc { --desc-x: calc(100% * 254 / 443); }
+  .work-card__slashes { font: var(--body-16); letter-spacing: var(--body-16-track); }
+}
+
+/* Haven, 6109:21862: the name row sits under the image now, 15.71 below it. Phone keeps it on top, as
+   in his Mobile frames. */
+@media (min-width: 768px) {
+  .work-card-haven .work-card__head { order: 2; }
+}
+
+/* Learn more, Small button 6109:21794 as drawn on the Mondai image: Bold 16 (was 24), 8 by 11 padding,
+   3 px Neutral/200 outline, its box at 344.73, 251.42 of the 879 by 579.45 image. The media is still
+   clipped to 575.28 (his 13 Nov call), so the top is measured in pixels from the media's top. */
+.work-card__media .button-sm {
+  left: calc(100% * 344.73 / 879); top: calc(100% * 251.42 / 575.28);
+  padding: 8px calc(11px + 0.01em) 8px 11px;
+  border-color: var(--neutral-200); color: var(--neutral-200);
+  font: 700 16px/1.4 var(--font); letter-spacing: var(--body-16-track);
+}
+@media (hover: hover) {
+  .work-card:hover .work-card__media .button-sm { background: var(--neutral-200); color: var(--neutral-900); }
+}
+.work-card:focus-visible .work-card__media .button-sm { background: var(--neutral-200); color: var(--neutral-900); }
+
+/* Navbar, 6109:21834: the 24 tall bar sits 15 down with its items centred, so the logo and labels
+   start 20 down at 1440 (5 lower than the 14 Nov build drew them). Phone keeps its own top. */
+@media (min-width: 768px) {
+  .home { --navbar-top: 20px; }
+}
