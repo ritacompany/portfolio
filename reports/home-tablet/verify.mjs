@@ -35,9 +35,12 @@ for (const motion of ["reduce", "no-preference"]) for (const [w, h] of SIZES) {
     const lede = R(document.querySelector(".hero__lede")), name = R(document.querySelector(".hero__name"));
     if (lede.bottom > name.top) out.push("H1 hero line runs into the wordmark");
     if (Math.abs(name.bottom - hero.bottom) > 1) out.push(`H1 wordmark ends ${(hero.bottom - name.bottom).toFixed(0)} above the hero foot`);
-    // H3 the two card images end on one line (his call, 13 Nov: always bottom aligned)
-    const mb = R(document.querySelector(".work-card-mondai .work-card__media")).bottom, hb = R(document.querySelector(".work-card-haven .work-card__media")).bottom;
-    if (Math.abs(mb - hb) > 0.5) out.push(`H3 card bottoms ${(mb - hb).toFixed(2)} px apart`);
+    // H3 the two cards end on one line (his call, 13 Nov). Since his 16 Nov master (df46461) Haven's label sits
+    // under its image, so the line is the card's foot: both cards end together and Mondai's image ends on it.
+    const mc = R(document.querySelector(".work-card-mondai")).bottom, hc = R(document.querySelector(".work-card-haven")).bottom;
+    const mb = R(document.querySelector(".work-card-mondai .work-card__media")).bottom;
+    if (Math.abs(mc - hc) > 0.5) out.push(`H3 card bottoms ${(mc - hc).toFixed(2)} px apart`);
+    if (Math.abs(mb - mc) > 0.5) out.push(`H3 Mondai image ends ${(mb - mc).toFixed(2)} px off its card foot`);
     // Regressions the audit checked: no sideways scroll, card heads inside their card and not overlapping
     if (document.documentElement.scrollWidth > vw) out.push("sideways scroll");
     for (const card of document.querySelectorAll(".work-card")) {
