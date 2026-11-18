@@ -9,12 +9,16 @@
 - Current drawing: `v4-top-annotated.svg` (rendered as `v5-top-annotated.png`), built by `build.py` with STYLE "top".
 - Checks: `GATES.md`, run with `check_round.py` and `check_cables.py`. Cable containment must pass on every change.
 
-## Next: flowers (his ask, 17 Nov, not started)
-- Explore and suggest which flowers to use, plus the elements that go with each one.
-- Go through all of his notes on the hero parts board first. Pull the references from there and from the 9 Nov chat "Hero systems visual: reference and concept board".
-- For the right side he wants veiny flowers, meaning petals with visible veins (confirmed 17 Nov: "veiny"). He kept part 2, the veined petal from the cable flower reference, so start there. Good candidates: hellebore, hibiscus, Iris reticulata, striped squill, veined anemone. Check each one against his "cute, not cliche" rule.
-- He doesn't want sunflowers, roses or anything cliche. He wants them cute, in a couple of different styles.
-- Still to come after the flowers: flower layout, color distribution and detail.
+## Flowers (picked 18 Nov, not yet in the drawing)
+- Right side: nodding hellebore, "but veiny", so the veins cover each petal as a net. The noodle puff flowers stay on the right side too.
+- Coral: two kinds of flowers, one blooming at the branch tips and one growing out of the coral surface. The metal wire spray stays on the coral.
+- Open pick: which flowers go on the coral. Recommended: a mini bladder campion at the tips and striped squill bells out of the surface. Both are veined and neither repeats the hellebore. Not yet confirmed by him.
+- Sketches and reasoning: flower pick sheet, https://claude.ai/artifact/3guhq8RTQSVhqSmRF9q3Zd
+- His rules for every flower: cute, nothing cliche, no sunflowers or roses, no big circle flowers, nothing centered like an eye, nothing leaning oddly, flowers big enough to hold their own next to the tube.
+
+## Next
+- Once he confirms the coral flowers, build the flowers into `build.py` in place of the placeholder circles, then run the checks.
+- Still to come after that: flower layout, color distribution and detail.
 
 ## References
 - Hero parts board, with his keep and drop marks and his notes: https://claude.ai/artifact/RpSJqnuqNX7zb3s8mYUM1d
