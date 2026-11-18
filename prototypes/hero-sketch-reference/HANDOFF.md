@@ -11,9 +11,10 @@
 
 ## Flowers (picked 18 Nov, not yet in the drawing)
 - Right side: nodding hellebore, "but veiny", so the veins cover each petal as a net. The noodle puff flowers stay on the right side too.
-- Coral: two kinds of flowers, one blooming at the branch tips and one growing out of the coral surface. The metal wire spray stays on the coral.
-- Open pick: which flowers go on the coral. Recommended: a mini bladder campion at the tips and striped squill bells out of the surface. Both are veined and neither repeats the hellebore. Not yet confirmed by him.
-- Sketches and reasoning: flower pick sheet, https://claude.ai/artifact/3guhq8RTQSVhqSmRF9q3Zd
+- Coral (changed 18 Nov): no flowers on the branch tips. Flowers grow only out of the coral surface, next to the metal wire spray on the forks.
+- Coral flowers must be blooming flowers with several open petals. No round bells, balloons or pouches (he rejected bladder campion and the bell shapes).
+- Open pick: which surface flower. Six real photo options are on the flower pick sheet, https://claude.ai/artifact/3guhq8RTQSVhqSmRF9q3Zd. Recommended: strawberry saxifrage (Saxifraga stolonifera), because it blooms open with no center to read as an eye. Not yet confirmed by him.
+- Show flower options as real photos, not line drawings: he wants to see the actual flower. Reference photos from Wikimedia Commons are free. AI renders cost money, so quote the dollar cost first.
 - His rules for every flower: cute, nothing cliche, no sunflowers or roses, no big circle flowers, nothing centered like an eye, nothing leaning oddly, flowers big enough to hold their own next to the tube.
 
 ## Next
