@@ -53,8 +53,8 @@ Scope: the framework page from 768 to 1199 keeps the 1440 spacing rhythm and Hav
   EXPECT: /^FIT_ONLY_CAROUSEL \d+ carousel card\(s\), 0 other problems$/m
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=1b79479fc3d43a0747f4ff8321222ca89e49b90ce063fa60221838e7ffb58ddc; output-bytes=56
 
-- [ ] G11: committed with only my files and hunks (no git commit -a), branch pushed, never main, main checkout fast forwarded only if it tracks this branch
-  EVIDENCE: pending
+- [x] G11: committed with only my files and hunks (no git commit -a), branch pushed, never main, main checkout fast forwarded only if it tracks this branch
+  EVIDENCE: 8f5fca9 pushed to origin/claude/relaxed-ride-5mlbdu, staged by path (reports/framework-tablet-2, framework.css, the framework page); launch.json, the tablet-breakpoint shots and the font file left out as others' work. ~/Code/portfolio is on main, so not fast forwarded
 
-- [ ] G12: the framework page is open at 768 in the built-in browser pane for his audit
-  EVIDENCE: pending
+- [x] G12: the framework page is open at 768 in the built-in browser pane for his audit
+  EVIDENCE: 18 Nov: site-dev on port 8765, /mondai/framework/ at 768 by 1024, read back innerWidth 768, title 113.05 px, Heading/40 32 px; screenshot taken
