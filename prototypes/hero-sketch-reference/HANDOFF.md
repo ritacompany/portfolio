@@ -13,8 +13,8 @@
 - Right side: nodding hellebore, "but veiny", so the veins cover each petal as a net. The noodle puff flowers stay on the right side too.
 - Coral (changed 18 Nov): no flowers on the branch tips. Flowers grow only out of the coral surface, next to the metal wire spray on the forks.
 - Coral flowers must be blooming flowers with several open petals. No round bells, balloons or pouches (he rejected bladder campion and the bell shapes).
-- Coral flower, his pick 18 Nov: candy cane sorrel (Oxalis versicolor). Small soft white pinwheels plus red and white striped twisted buds, dotted over the coral, never coating it. The point is contrast: soft round petals against the spiky metal wire spray on the forks. He sees it going well with the veiny hellebore.
-- Right side hellebore: the look he wants is Helleborus x hybridus 'Yellow Spotted', nodding, with dark veins and spots down each petal. The plain side view and the cluster shot he called weird. Photos: flower pick sheet, https://claude.ai/artifact/3guhq8RTQSVhqSmRF9q3Zd
+- Coral flower, his pick 18 Nov: candy cane sorrel (Oxalis versicolor). Fully open flowers only (his call, 18 Nov): soft white five petal pinwheels, no striped buds or half open swirls. Dotted over the coral, never coating it. The point is contrast: soft round petals against the spiky metal wire spray on the forks. He sees it going well with the veiny hellebore.
+- Right side hellebore: the look he wants is Helleborus x hybridus 'Yellow Spotted', nodding, with dark veins and spots down each petal. Approved 18 Nov after seeing more photos of it. Photos: flower pick sheet, https://claude.ai/artifact/3guhq8RTQSVhqSmRF9q3Zd
 - Show flower options as real photos, not line drawings: he wants to see the actual flower. Reference photos from Wikimedia Commons are free. AI renders cost money, so quote the dollar cost first.
 - His rules for every flower: cute, nothing cliche, no sunflowers or roses, no big circle flowers, nothing centered like an eye, nothing leaning oddly, flowers big enough to hold their own next to the tube.
 
