@@ -31,7 +31,7 @@
         },
         {
           "el": "time",
-          "text": "4:24:05pm CST",
+          "text": "4:55:54pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -163,21 +163,27 @@
           "text": "I’m a system-minded, nuance led designer, designin",
           "wrap": "auto",
           "lines": 3,
-          "lastLineShare": 1.47
+          "lastLineShare": 1.47,
+          "lastLineWords": 7,
+          "wordLines": 3
         },
         {
           "el": "h1.hero__name",
           "text": "Chadwick Fenner CHDWCK",
           "wrap": "auto",
           "lines": 2,
-          "lastLineShare": 1
+          "lastLineShare": 1,
+          "lastLineWords": 2,
+          "wordLines": 1
         },
         {
           "el": "#works-title",
           "text": "Selected works",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 0.99
+          "lastLineShare": 0.99,
+          "lastLineWords": 2,
+          "wordLines": 1
         }
       ]
     },
@@ -185,7 +191,7 @@
       "tabular": [
         {
           "el": "time",
-          "text": "4:24:06pm CST",
+          "text": "4:55:55pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -281,14 +287,18 @@
           "text": "I’m a system-minded, nuance led designer, designin",
           "wrap": "auto",
           "lines": 5,
-          "lastLineShare": 0.69
+          "lastLineShare": 0.69,
+          "lastLineWords": 2,
+          "wordLines": 5
         },
         {
           "el": "#works-title",
           "text": "Selected works",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 0.99
+          "lastLineShare": 0.99,
+          "lastLineWords": 2,
+          "wordLines": 1
         }
       ]
     },
@@ -386,21 +396,27 @@
           "text": "Case study collection",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 1
+          "lastLineShare": 1,
+          "lastLineWords": 3,
+          "wordLines": 1
         },
         {
           "el": "span.context__title",
           "text": "Design system CS",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 0.99
+          "lastLineShare": 0.99,
+          "lastLineWords": 3,
+          "wordLines": 1
         },
         {
           "el": "span.context__title",
           "text": "Operations CS",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 0.99
+          "lastLineShare": 0.99,
+          "lastLineWords": 2,
+          "wordLines": 1
         }
       ]
     },
@@ -498,21 +514,27 @@
           "text": "Case study collection",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 1
+          "lastLineShare": 1,
+          "lastLineWords": 3,
+          "wordLines": 1
         },
         {
           "el": "span.context__title",
           "text": "Design system CS",
           "wrap": "auto",
           "lines": 2,
-          "lastLineShare": 0.19
+          "lastLineShare": 0.19,
+          "lastLineWords": 1,
+          "wordLines": 2
         },
         {
           "el": "span.context__title",
           "text": "Operations CS",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 0.94
+          "lastLineShare": 0.94,
+          "lastLineWords": 2,
+          "wordLines": 1
         }
       ]
     },
@@ -538,7 +560,7 @@
         },
         {
           "el": "time",
-          "text": "4:24:10pm CST",
+          "text": "4:55:59pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -788,7 +810,7 @@
         },
         {
           "el": "time",
-          "text": "4:24:11pm CST",
+          "text": "4:56:00pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -946,7 +968,7 @@
         },
         {
           "el": "#chicago-time",
-          "text": "4:24:12pm CST",
+          "text": "4:56:01pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -1354,35 +1376,45 @@
           "text": "Designed as a way for LGBTQIA+ youth to gain acces",
           "wrap": "pretty",
           "lines": 4,
-          "lastLineShare": 0.86
+          "lastLineShare": 0.86,
+          "lastLineWords": 5,
+          "wordLines": 2
         },
         {
           "el": "h3.h40.access__insights-title",
           "text": "5 key insights",
           "wrap": "pretty",
           "lines": 2,
-          "lastLineShare": 1
+          "lastLineShare": 1,
+          "lastLineWords": 3,
+          "wordLines": 1
         },
         {
           "el": "h4.visually-hidden",
           "text": "Key insights from testing",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 182.5
+          "lastLineShare": 182.5,
+          "lastLineWords": 4,
+          "wordLines": 1
         },
         {
           "el": "p.h20.program__intro",
           "text": "Confidantes support the user in two capacities:",
           "wrap": "pretty",
           "lines": 3,
-          "lastLineShare": 0.56
+          "lastLineShare": 0.56,
+          "lastLineWords": 3,
+          "wordLines": 2
         },
         {
           "el": "p.h40.ending__close",
           "text": "Identity was the first phase.Community is the next",
           "wrap": "pretty",
           "lines": 3,
-          "lastLineShare": 0.85
+          "lastLineShare": 0.85,
+          "lastLineWords": 4,
+          "wordLines": 2
         }
       ]
     },
@@ -1420,7 +1452,7 @@
         },
         {
           "el": "#chicago-time",
-          "text": "4:24:13pm CST",
+          "text": "4:56:02pm CST",
           "fvn": "tabular-nums",
           "live": true
         }
@@ -1763,35 +1795,45 @@
           "text": "Designed as a way for LGBTQIA+ youth to gain acces",
           "wrap": "pretty",
           "lines": 4,
-          "lastLineShare": 0.89
+          "lastLineShare": 0.89,
+          "lastLineWords": 5,
+          "wordLines": 2
         },
         {
           "el": "h3.h40.access__insights-title",
           "text": "5 key insights",
           "wrap": "pretty",
           "lines": 2,
-          "lastLineShare": 1
+          "lastLineShare": 1,
+          "lastLineWords": 3,
+          "wordLines": 1
         },
         {
           "el": "h4.visually-hidden",
           "text": "Key insights from testing",
           "wrap": "auto",
           "lines": 1,
-          "lastLineShare": 182.5
+          "lastLineShare": 182.5,
+          "lastLineWords": 4,
+          "wordLines": 1
         },
         {
           "el": "p.h20.program__intro",
           "text": "Confidantes support the user in two capacities:",
           "wrap": "pretty",
           "lines": 3,
-          "lastLineShare": 0.39
+          "lastLineShare": 0.39,
+          "lastLineWords": 2,
+          "wordLines": 2
         },
         {
           "el": "p.h40.ending__close",
           "text": "Identity was the first phase.Community is the next",
           "wrap": "pretty",
           "lines": 3,
-          "lastLineShare": 0.85
+          "lastLineShare": 0.85,
+          "lastLineWords": 4,
+          "wordLines": 2
         }
       ]
     }
@@ -1827,5 +1869,8 @@
         264
       ]
     }
-  }
+  },
+  "findings": [
+    "balanced-headlines: /mondai/ @390 span.context__title \"Design system CS\" ends on one word"
+  ]
 }

@@ -9,9 +9,14 @@ import { createRequire } from "node:module";
 import { writeFileSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 
-// The repo lists playwright as a dev dependency; a cloud session has it installed globally, so load it
-// through require, which finds either.
-const { chromium } = createRequire(import.meta.url)("playwright");
+// The repo lists playwright as a dev dependency; a cloud session has it installed globally instead,
+// so fall back to the global install when the local one is missing.
+import { execSync } from "node:child_process";
+const load = () => {
+  try { return createRequire(import.meta.url)("playwright"); }
+  catch { return createRequire(execSync("npm root -g").toString().trim() + "/")("playwright"); }
+};
+const { chromium } = load();
 
 const base = process.argv[2] || "http://127.0.0.1:4318";
 const out = process.argv[3] || new URL("../reports/taste-audit.json", import.meta.url).pathname;
@@ -100,7 +105,13 @@ const audit = () => {
       const lines = [...new Set(rects.map((r) => Math.round(r.top)))].length;
       const lastWidth = rects.filter((r) => Math.round(r.top) === Math.max(...rects.map((q) => Math.round(q.top)))).reduce((a, r) => a + r.width, 0);
       const box = el.getBoundingClientRect().width;
-      return { el: sel(el), text: el.textContent.trim().replace(/\s+/g, " ").slice(0, 50), wrap: s.textWrapStyle || s.textWrap, lines, lastLineShare: +(lastWidth / box).toFixed(2) };
+      // Words on the last line, measured word by word so a mixed size heading still counts right.
+      const tops = []; const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      for (let n; (n = walker.nextNode());) for (const m of n.data.matchAll(/\S+/g)) { const r = document.createRange(); r.setStart(n, m.index); r.setEnd(n, m.index + m[0].length); const b = r.getClientRects()[0]; if (b) tops.push(Math.round(b.top)); }
+      const last = Math.max(...tops);
+      const lastLineWords = tops.filter((t) => Math.abs(t - last) <= 3).length;
+      const wordLines = [...tops].sort((a, b) => a - b).filter((t, i, a) => i === 0 || t - a[i - 1] > 3).length;
+      return { el: sel(el), text: el.textContent.trim().replace(/\s+/g, " ").slice(0, 50), wrap: s.textWrapStyle || s.textWrap, lines, lastLineShare: +(lastWidth / box).toFixed(2), lastLineWords, wordLines };
     });
   return res;
 };
@@ -135,5 +146,25 @@ report.ran = [...report.ran];
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, JSON.stringify(report, null, 2));
 console.log(`report: ${out}`);
+
+// Findings: what fails an entry's check, deduplicated across widths. Alpha borders and image
+// hairlines are listed in the report only; on a single flat surface they render the same, so they
+// are a judgment call, never a finding.
+const findings = new Set();
+for (const [where, r] of Object.entries(report.pages)) {
+  const page = where.split(" @")[0];
+  for (const t of r.tabular) if (t.live && !/tabular-nums/.test(t.fvn)) findings.add(`tabular-numbers: ${page} ${t.el} updates live without tabular-nums`);
+  for (const o of r.optical) if (!o.pass) findings.add(`optical-centre: ${page} ${o.el} "${o.text}" label off centre by ${Math.abs(o.diff)}px (confirm with a pixel crop)`);
+  for (const c of r.concentric) if (!c.pass) findings.add(`concentric-radius: ${page} ${c.el} in ${c.parent} has radius ${c.inner}, wants ${c.want}`);
+  for (const sh of r.shadows) {
+    const layers = sh.value.split(/,(?![^(]*\))/).filter((l) => !/inset/.test(l));
+    const blurs = layers.map((l) => parseFloat((l.match(/(-?[\d.]+)px/g) || [])[2] || 0));
+    if (layers.length === 1 && blurs[0] > 2) findings.add(`layered-shadows: ${page} ${sh.el} has one shadow layer with ${blurs[0]}px blur`);
+  }
+  for (const h of r.headlines) if (h.wordLines > 1 && h.lastLineWords === 1) findings.add(`balanced-headlines: ${page} @${where.split("@")[1]} ${h.el} "${h.text.slice(0, 30)}" ends on one word`);
+}
+report.findings = [...findings];
+writeFileSync(out, JSON.stringify(report, null, 2));
+console.log(report.findings.length ? `findings: ${report.findings.length}\n  ` + report.findings.join("\n  ") : "findings: 0");
 if (report.ran.length === 6 && Object.keys(report.pages).length === pages.length * widths.length) console.log("taste audit complete: 6 of 6 checks ran");
 else { console.log(`only ${report.ran.length} checks ran`); process.exit(1); }

@@ -19,3 +19,14 @@ Evidence in this folder:
 - `haven-intro-390-before.png` and `-after.png`: "capacities:" alone on a line, then fixed.
 - `title-390-current.png` and `title-390-balance-rejected.png`: why balance was not applied to the
   collection titles.
+
+## The check as a build step (18 Nov 2026)
+
+`npm run taste` (with `npm run dev` going) now ends with a findings list. Proven on planted mistakes:
+run against the site as it was before these fixes, plus a planted stylesheet on Haven (a single
+`0 6px 6px` black shadow on the pills, pill labels pushed 3px off centre, 24px corners on footer
+links inside 24px parents), it reported all five kinds: the three unfixed clocks, ten off centre
+pills, two single layer shadows, the corner mismatch and the Haven phone orphan. On the fixed site
+it reports one finding, the collection title left on purpose above. Alpha borders and image
+hairlines stay in the report as information, never as findings.
+
