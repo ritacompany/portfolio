@@ -1,0 +1,1831 @@
+{
+  "base": "http://127.0.0.1:4318",
+  "ran": [
+    "tabular",
+    "optical",
+    "concentric",
+    "borders",
+    "shadows",
+    "headlines"
+  ],
+  "pages": {
+    "/ @1440": {
+      "tabular": [
+        {
+          "el": "span.mirror",
+          "text": "7",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "5",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "3",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "time",
+          "text": "4:23:03pm CST",
+          "fvn": "tabular-nums",
+          "live": true
+        }
+      ],
+      "optical": [
+        {
+          "el": "span.button-sm",
+          "text": "Learn more",
+          "capTopGap": 11.5,
+          "baselineBottomGap": 12,
+          "diff": -0.5,
+          "pass": true
+        },
+        {
+          "el": "a.button.is-goo",
+          "text": "Contact",
+          "capTopGap": 23,
+          "baselineBottomGap": 23.7,
+          "diff": -0.8,
+          "pass": true
+        }
+      ],
+      "concentric": [
+        {
+          "el": "span",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38.5,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span.button__icon",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span.button__label",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38.4,
+          "want": 38.4,
+          "pass": true
+        }
+      ],
+      "borders": [
+        {
+          "el": "span.button-sm",
+          "via": "border",
+          "color": "rgb(232, 231, 238)",
+          "alpha": false
+        },
+        {
+          "el": "div.about__row.about-story",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "div.about__row.about-role",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "#contact",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.button__icon",
+          "via": "border",
+          "color": "rgba(0, 0, 0, 0)",
+          "alpha": true
+        },
+        {
+          "el": "span.button__label",
+          "via": "border",
+          "color": "rgba(0, 0, 0, 0)",
+          "alpha": true
+        }
+      ],
+      "images": [
+        {
+          "el": "img.hero__wordmark",
+          "hairline": false
+        },
+        {
+          "el": "img.work-card__desk-art",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.footer__wordmark",
+          "hairline": false
+        }
+      ],
+      "shadows": [],
+      "headlines": [
+        {
+          "el": "p.hero__lede.col-1",
+          "text": "I’m a system-minded, nuance led designer, designin",
+          "wrap": "auto",
+          "lines": 3,
+          "lastLineShare": 1.47
+        },
+        {
+          "el": "h1.hero__name",
+          "text": "Chadwick Fenner CHDWCK",
+          "wrap": "auto",
+          "lines": 2,
+          "lastLineShare": 1
+        },
+        {
+          "el": "#works-title",
+          "text": "Selected works",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 0.99
+        }
+      ]
+    },
+    "/ @390": {
+      "tabular": [
+        {
+          "el": "time",
+          "text": "4:23:04pm CST",
+          "fvn": "tabular-nums",
+          "live": true
+        }
+      ],
+      "optical": [
+        {
+          "el": "a.button.button-compact",
+          "text": "Contact",
+          "capTopGap": 12.9,
+          "baselineBottomGap": 13,
+          "diff": 0,
+          "pass": true
+        }
+      ],
+      "concentric": [
+        {
+          "el": "span.button__icon",
+          "parent": "a.button.button-compact",
+          "outer": 21,
+          "gap": 0,
+          "inner": 21,
+          "want": 21,
+          "pass": true
+        },
+        {
+          "el": "span.button__label",
+          "parent": "a.button.button-compact",
+          "outer": 21,
+          "gap": 0.5,
+          "inner": 20.4,
+          "want": 20.4,
+          "pass": true
+        }
+      ],
+      "borders": [
+        {
+          "el": "span.button__icon",
+          "via": "border",
+          "color": "rgb(232, 231, 238)",
+          "alpha": false
+        },
+        {
+          "el": "span.button__label",
+          "via": "border",
+          "color": "rgb(232, 231, 238)",
+          "alpha": false
+        },
+        {
+          "el": "div.about__row.about-story",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "div.about__row.about-role",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "#contact",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        }
+      ],
+      "images": [
+        {
+          "el": "img.mondai-art__laptop",
+          "hairline": false
+        },
+        {
+          "el": "img.mondai-art__glow",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        }
+      ],
+      "shadows": [],
+      "headlines": [
+        {
+          "el": "p.hero__lede.col-1",
+          "text": "I’m a system-minded, nuance led designer, designin",
+          "wrap": "auto",
+          "lines": 5,
+          "lastLineShare": 0.69
+        },
+        {
+          "el": "#works-title",
+          "text": "Selected works",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 0.99
+        }
+      ]
+    },
+    "/mondai/ @1440": {
+      "tabular": [
+        {
+          "el": "span.mirror",
+          "text": "7",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "5",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "3",
+          "fvn": "normal",
+          "live": false
+        }
+      ],
+      "optical": [
+        {
+          "el": "span.badge.badge-lg",
+          "text": "Case study 1",
+          "capTopGap": 23.8,
+          "baselineBottomGap": 24.2,
+          "diff": -0.4,
+          "pass": true
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "text": "Case study 2",
+          "capTopGap": 23.8,
+          "baselineBottomGap": 24.2,
+          "diff": -0.4,
+          "pass": true
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "text": "Case study 3",
+          "capTopGap": 23.9,
+          "baselineBottomGap": 24.1,
+          "diff": -0.3,
+          "pass": true
+        }
+      ],
+      "concentric": [],
+      "borders": [
+        {
+          "el": "a.context.context-top",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "a.context.context-both",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px 1px 0px 0px inset, rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "div.context.context-locked",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        }
+      ],
+      "images": [],
+      "shadows": [],
+      "headlines": [
+        {
+          "el": "#collection-label",
+          "text": "Case study collection",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 1
+        },
+        {
+          "el": "span.context__title",
+          "text": "Design system CS",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 0.99
+        },
+        {
+          "el": "span.context__title",
+          "text": "Operations CS",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 0.99
+        }
+      ]
+    },
+    "/mondai/ @390": {
+      "tabular": [
+        {
+          "el": "span.mirror",
+          "text": "7",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "5",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "3",
+          "fvn": "normal",
+          "live": false
+        }
+      ],
+      "optical": [
+        {
+          "el": "span.badge.badge-lg",
+          "text": "Case study 1",
+          "capTopGap": 14.8,
+          "baselineBottomGap": 15.2,
+          "diff": -0.4,
+          "pass": true
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "text": "Case study 2",
+          "capTopGap": 14.8,
+          "baselineBottomGap": 15.2,
+          "diff": -0.4,
+          "pass": true
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "text": "Case study 3",
+          "capTopGap": 14.9,
+          "baselineBottomGap": 15.1,
+          "diff": -0.3,
+          "pass": true
+        }
+      ],
+      "concentric": [],
+      "borders": [
+        {
+          "el": "a.context.context-top",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "a.context.context-both",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px 1px 0px 0px inset, rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "div.context.context-locked",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.badge.badge-lg",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        }
+      ],
+      "images": [],
+      "shadows": [],
+      "headlines": [
+        {
+          "el": "#collection-label",
+          "text": "Case study collection",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 1
+        },
+        {
+          "el": "span.context__title",
+          "text": "Design system CS",
+          "wrap": "auto",
+          "lines": 2,
+          "lastLineShare": 0.19
+        },
+        {
+          "el": "span.context__title",
+          "text": "Operations CS",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 0.94
+        }
+      ]
+    },
+    "/mondai/framework/ @1440": {
+      "tabular": [
+        {
+          "el": "span.mirror",
+          "text": "7",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "5",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "3",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "time",
+          "text": "4:23:08pm CST",
+          "fvn": "tabular-nums",
+          "live": true
+        }
+      ],
+      "optical": [
+        {
+          "el": "a.button.is-goo",
+          "text": "Contact",
+          "capTopGap": 23,
+          "baselineBottomGap": 23.7,
+          "diff": -0.8,
+          "pass": true
+        }
+      ],
+      "concentric": [
+        {
+          "el": "span",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38.5,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span.button__icon",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span.button__label",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38.4,
+          "want": 38.4,
+          "pass": true
+        }
+      ],
+      "borders": [
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.panel-card",
+          "via": "inset shadow",
+          "color": "rgb(56, 56, 61) 0px 0px 0px 1px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "#contact",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.button__icon",
+          "via": "border",
+          "color": "rgba(0, 0, 0, 0)",
+          "alpha": true
+        },
+        {
+          "el": "span.button__label",
+          "via": "border",
+          "color": "rgba(0, 0, 0, 0)",
+          "alpha": true
+        }
+      ],
+      "images": [
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.footer__wordmark",
+          "hairline": false
+        }
+      ],
+      "shadows": [],
+      "headlines": []
+    },
+    "/mondai/framework/ @390": {
+      "tabular": [
+        {
+          "el": "span.mirror",
+          "text": "7",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "5",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "3",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "time",
+          "text": "4:23:09pm CST",
+          "fvn": "tabular-nums",
+          "live": true
+        }
+      ],
+      "optical": [],
+      "concentric": [],
+      "borders": [
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "section.fw-sec",
+          "via": "inset shadow",
+          "color": "rgb(18, 18, 20) 0px -1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "#contact",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        }
+      ],
+      "images": [
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img.fig",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        }
+      ],
+      "shadows": [],
+      "headlines": []
+    },
+    "/haven/ @1440": {
+      "tabular": [
+        {
+          "el": "span.mirror",
+          "text": "7",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "5",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "3",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.role__num",
+          "text": "01",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.role__num",
+          "text": "02",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "#chicago-time",
+          "text": "4:23:10pm CST",
+          "fvn": "tabular-nums",
+          "live": true
+        }
+      ],
+      "optical": [
+        {
+          "el": "span.pill",
+          "text": "Interview insight 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 3",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Confidante role 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 4",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 3",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 4",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 4",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 2",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill.cr-pill",
+          "text": "Interview insight 2",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 5",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 3",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "a.button.is-goo",
+          "text": "Contact",
+          "capTopGap": 23,
+          "baselineBottomGap": 23.7,
+          "diff": -0.8,
+          "pass": true
+        }
+      ],
+      "concentric": [
+        {
+          "el": "span",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38.5,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span.button__icon",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38,
+          "want": 38.4,
+          "pass": true
+        },
+        {
+          "el": "span.button__label",
+          "parent": "a.button.is-goo",
+          "outer": 38.4,
+          "gap": 0,
+          "inner": 38.4,
+          "want": 38.4,
+          "pass": true
+        }
+      ],
+      "borders": [
+        {
+          "el": "div.ticker.rule-t",
+          "via": "border",
+          "color": "rgb(18, 18, 20)",
+          "alpha": false
+        },
+        {
+          "el": "hr.section-rule",
+          "via": "border",
+          "color": "rgb(18, 18, 20)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill.cr-pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "#contact",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        },
+        {
+          "el": "span.button__icon",
+          "via": "border",
+          "color": "rgba(0, 0, 0, 0)",
+          "alpha": true
+        },
+        {
+          "el": "span.button__label",
+          "via": "border",
+          "color": "rgba(0, 0, 0, 0)",
+          "alpha": true
+        }
+      ],
+      "images": [
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.program__texture",
+          "hairline": false
+        },
+        {
+          "el": "img.quiz__phone",
+          "hairline": false
+        },
+        {
+          "el": "img.pframe__collage",
+          "hairline": false
+        },
+        {
+          "el": "img.pframe__overlay",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__case",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__content",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__header",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__footer",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__chip",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.cr-still",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.footer__wordmark",
+          "hairline": false
+        }
+      ],
+      "shadows": [
+        {
+          "el": "img.phone__chip",
+          "layers": 2,
+          "value": "rgba(6, 6, 12, 0.6) 0px 1.25655px 0px 0px, rgba(32, 62, 168, 0.34) 0px 5.0262px 11.3103px -1.25655px"
+        }
+      ],
+      "headlines": [
+        {
+          "el": "p.h24.hero__tagline",
+          "text": "Designed as a way for LGBTQIA+ youth to gain acces",
+          "wrap": "pretty",
+          "lines": 4,
+          "lastLineShare": 0.86
+        },
+        {
+          "el": "h3.h40.access__insights-title",
+          "text": "5 key insights",
+          "wrap": "pretty",
+          "lines": 2,
+          "lastLineShare": 1
+        },
+        {
+          "el": "h4.visually-hidden",
+          "text": "Key insights from testing",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 182.5
+        },
+        {
+          "el": "p.h20.program__intro",
+          "text": "Confidantes support the user in two capacities:",
+          "wrap": "pretty",
+          "lines": 3,
+          "lastLineShare": 0.56
+        },
+        {
+          "el": "p.h40.ending__close",
+          "text": "Identity was the first phase.Community is the next",
+          "wrap": "pretty",
+          "lines": 3,
+          "lastLineShare": 0.85
+        }
+      ]
+    },
+    "/haven/ @390": {
+      "tabular": [
+        {
+          "el": "span.mirror",
+          "text": "7",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "5",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.mirror",
+          "text": "3",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.role__num",
+          "text": "01",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "span.role__num",
+          "text": "02",
+          "fvn": "normal",
+          "live": false
+        },
+        {
+          "el": "#chicago-time",
+          "text": "4:23:12pm CST",
+          "fvn": "tabular-nums",
+          "live": true
+        }
+      ],
+      "optical": [
+        {
+          "el": "span.pill",
+          "text": "Interview insight 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 3",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Confidante role 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 4",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 3",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 4",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 4",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 1",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 2",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill.cr-pill",
+          "text": "Interview insight 2",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Interview insight 5",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        },
+        {
+          "el": "span.pill",
+          "text": "Testing insight 3",
+          "capTopGap": 13.6,
+          "baselineBottomGap": 15.4,
+          "diff": -1.8,
+          "pass": true
+        }
+      ],
+      "concentric": [],
+      "borders": [
+        {
+          "el": "div.ticker.rule-t",
+          "via": "border",
+          "color": "rgb(18, 18, 20)",
+          "alpha": false
+        },
+        {
+          "el": "hr.section-rule",
+          "via": "border",
+          "color": "rgb(18, 18, 20)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill.cr-pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "span.pill",
+          "via": "border",
+          "color": "rgb(123, 123, 134)",
+          "alpha": false
+        },
+        {
+          "el": "#contact",
+          "via": "inset shadow",
+          "color": "rgb(29, 29, 33) 0px 1px 0px 0px inset",
+          "alpha": false
+        }
+      ],
+      "images": [
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.program__texture",
+          "hairline": false
+        },
+        {
+          "el": "img.quiz__phone",
+          "hairline": false
+        },
+        {
+          "el": "img.pframe__collage",
+          "hairline": false
+        },
+        {
+          "el": "img.pframe__overlay",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__case",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__content",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__header",
+          "hairline": false
+        },
+        {
+          "el": "img.phone__footer",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.cr-still",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img.end-phone",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        },
+        {
+          "el": "img",
+          "hairline": false
+        }
+      ],
+      "shadows": [
+        {
+          "el": "img.phone__chip",
+          "layers": 2,
+          "value": "rgba(6, 6, 12, 0.6) 0px 0.658599px 0px 0px, rgba(32, 62, 168, 0.34) 0px 2.6344px 5.92811px -0.658599px"
+        }
+      ],
+      "headlines": [
+        {
+          "el": "p.h24.hero__tagline",
+          "text": "Designed as a way for LGBTQIA+ youth to gain acces",
+          "wrap": "pretty",
+          "lines": 4,
+          "lastLineShare": 0.89
+        },
+        {
+          "el": "h3.h40.access__insights-title",
+          "text": "5 key insights",
+          "wrap": "pretty",
+          "lines": 2,
+          "lastLineShare": 1
+        },
+        {
+          "el": "h4.visually-hidden",
+          "text": "Key insights from testing",
+          "wrap": "auto",
+          "lines": 1,
+          "lastLineShare": 182.5
+        },
+        {
+          "el": "p.h20.program__intro",
+          "text": "Confidantes support the user in two capacities:",
+          "wrap": "pretty",
+          "lines": 3,
+          "lastLineShare": 0.39
+        },
+        {
+          "el": "p.h40.ending__close",
+          "text": "Identity was the first phase.Community is the next",
+          "wrap": "pretty",
+          "lines": 3,
+          "lastLineShare": 0.85
+        }
+      ]
+    }
+  },
+  "fontTnum": {
+    "400": {
+      "proportional": [
+        273.2,
+        132.2
+      ],
+      "tabular": [
+        264,
+        264
+      ]
+    },
+    "500": {
+      "proportional": [
+        277.2,
+        142.4
+      ],
+      "tabular": [
+        264,
+        264
+      ]
+    },
+    "700": {
+      "proportional": [
+        282,
+        154.2
+      ],
+      "tabular": [
+        264,
+        264
+      ]
+    }
+  }
+}
