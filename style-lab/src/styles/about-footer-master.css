@@ -1,0 +1,26 @@
+/* About and footer from his Hero master frame (Desktop 1 MVP, page CS, 6109:21820), 15 Nov. Every rule
+   here overrides styles/legacy/home.css and components.css, which stay as the 14 Nov base. */
+
+/* About, 6109:21873. The story body widened to 659 (was 595) and its row is 517 tall (was 543); the
+   role body is 660 wide (was 650). Phone keeps his Mobile frames. */
+@media (min-width: 768px) {
+  .about-story .about__body { width: min(659px, 100%); }
+  .about-role .about__body { width: min(660px, 100%); }
+}
+@media (min-width: 1200px) {
+  .about-story { min-height: 517px; }
+}
+
+/* Footer, instance 6109:21959. Back to top sits 1 lower than the 14 Nov build drew it and so do the portraits
+   (measured against Figma's render; the contact column and the bottom row already land). */
+@media (min-width: 1200px) {
+  .footer__back { margin-top: 1px; }
+  .footer__portraits { margin-top: 1px; }
+}
+/* The CHDWCK band was redrawn: 1550.71 by 382.69 at -49.59, 549.18 (was 1548.25 by 378.36), letters a
+   little larger and set closer. chdwck-master.svg is Figma's own export of that group. */
+@media (min-width: 1200px) {
+  .footer__wordmark { left: calc(100% * -49.59 / 1440); width: calc(100% * 1550.71 / 1440); }
+}
+/* The outlined Button (component 6109:21490) sets CONTACT in Medium now, Heading/40 (was Bold 40). */
+.button:not(.button-compact) .button__label { font-weight: 500; }

@@ -1,0 +1,4 @@
+/* CHDWCK sits under everything in the works, card labels included. */
+@media (min-width: 768px) {
+  .hero__name { z-index: -1; }
+}
