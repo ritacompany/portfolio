@@ -18,6 +18,14 @@
 - Show flower options as real photos, not line drawings: he wants to see the actual flower. Reference photos from Wikimedia Commons are free. AI renders cost money, so quote the dollar cost first.
 - His rules for every flower: cute, nothing cliche, no sunflowers or roses, no big circle flowers, nothing centered like an eye, nothing leaning oddly, flowers big enough to hold their own next to the tube.
 
+## Parts styling (started 18 Nov)
+- Method: a more detailed sketch (shape and placement), a flat color version of the same drawing (palette), and a prompt (materials). The AI model makes the photo; we only make sketches.
+- Each part gets a pick sheet of real photos with a recommendation, like the flower sheet. Order: pipe, then the parts seen through it (planter, coral base, secondary power connector), then the two cord styles, cord heads (grips, plugs on the box, the secondary connector), spring, box and the stub on its side, then coral, wire spray and noodle puffs, then palette and what glows, then floor or floating, then stem directions last.
+- The black spiky bursts on the coral are the wire spray (kit part 76).
+- Pipe, his pick 18 Nov: the look of kit part 18, the glass elbow, which was his original inspiration. Satin frosted glass with thick clear coupling rings where each bend meets a straight run and thick rounded rims at the open ends; insides show as soft colored shapes. His change: his pipe has color. The tint is chosen with the palette. Pick sheet: https://claude.ai/artifact/PfG16o5vRrJRqin2bUrB6x
+- The pipe's parts: three open ends (both leg tops and the bottom left opening), two elbows, one tee where the crossbar meets the right leg, and the straight runs between.
+- His spring idea: a narrow cat toy coil.
+
 ## Next
 - Build the flowers into `build.py` in place of the placeholder circles, then run the checks.
 - Still to come after that: flower layout, color distribution and detail.
