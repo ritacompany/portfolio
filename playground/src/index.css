@@ -1,0 +1,113 @@
+/* Playground styles.
+
+   Three layers, lowest to highest:
+   1. Tailwind's theme and base (preflight).
+   2. legacy: the 14 Nov site CSS, copied unchanged from site/css on branch claude/relaxed-ride-5mlbdu.
+      It draws the hero and Selected works exactly as the plain HTML site does.
+   3. Tailwind components and utilities. Any utility class wins over a legacy rule, so an experiment
+      can restyle a part in place with className, and a 21st.dev or shadcn component is never fought
+      by the site CSS.
+   Unlayered CSS beats every layer; keep experiment CSS inside a layer or use utilities. */
+
+@layer theme, base, legacy, components, utilities;
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "./styles/legacy/tokens.css" layer(legacy);
+@import "./styles/legacy/base.css" layer(legacy);
+@import "./styles/legacy/grid.css" layer(legacy);
+@import "./styles/legacy/components.css" layer(legacy);
+@import "./styles/legacy/home.css" layer(legacy);
+@import "./styles/hero-master.css" layer(legacy);
+
+/* shadcn and 21st.dev components read these. The site is dark only, so :root and .dark hold the same
+   values, mapped onto his Figma neutrals. */
+@custom-variant dark (&:is(.dark *));
+
+:root,
+.dark {
+  --background: #040405;          /* Neutral/900, the page */
+  --foreground: #f2f1f8;          /* Neutral/050 */
+  --card: #0b0b0d;                /* Neutral/850 */
+  --card-foreground: #f2f1f8;
+  --popover: #0e0e0f;             /* Neutral/825 */
+  --popover-foreground: #f2f1f8;
+  --primary: #e8e7ee;             /* Neutral/100 */
+  --primary-foreground: #040405;
+  --secondary: #1d1d21;           /* Neutral/700 */
+  --secondary-foreground: #f2f1f8;
+  --muted: #121214;               /* Neutral/800 */
+  --muted-foreground: #7b7b86;    /* Neutral/550 */
+  --accent: #1d1d21;
+  --accent-foreground: #f2f1f8;
+  --destructive: #d2142a;         /* Xoxo/200 */
+  --border: #28282b;              /* Neutral/675 */
+  --input: #28282b;
+  --ring: #ffffff;
+  --radius: 0.625rem;
+  --chart-1: #01f76c;
+  --chart-2: #9090f7;
+  --chart-3: #f47f97;
+  --chart-4: #dfec90;
+  --chart-5: #d236fd;
+}
+
+@theme inline {
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* His Figma neutrals and accents as Tailwind colors: bg-neutral-900, text-babylon-100 and so on.
+     These replace Tailwind's own neutral scale with his. */
+  --color-neutral-000: var(--neutral-000);
+  --color-neutral-050: var(--neutral-050);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-550: var(--neutral-550);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-675: var(--neutral-675);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-850: var(--neutral-850);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-1000: var(--neutral-1000);
+  --color-babylon-100: var(--babylon-100);
+  --color-bloom-100: var(--bloom-100);
+  --color-xoxo-100: var(--xoxo-100);
+  --color-juice-100: var(--juice-100);
+  --color-barney-100: var(--barney-100);
+  --color-haven-night: var(--haven-card-night);
+
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart-out: cubic-bezier(0.25, 1, 0.5, 1);
+}

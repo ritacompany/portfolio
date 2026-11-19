@@ -1,0 +1,9 @@
+/* Rhythm: a longer breath after the cards and before About. */
+@media (min-width: 1200px) {
+  .works { padding-bottom: calc(382.5px * 1.25); }
+}
+/* Accent: the About rule lines brighten one step on hover, in his own neutral. */
+.about__row { transition: box-shadow 600ms var(--ease-expo-out); }
+@media (hover: hover) {
+  .about__row:hover { box-shadow: inset 0 1px 0 var(--neutral-550); }
+}
