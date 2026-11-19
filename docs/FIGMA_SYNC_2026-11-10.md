@@ -208,3 +208,8 @@ Unchanged in the Mobile frames: hero, works, About and footer match the site. Re
   transition band and now carry his 18 Nov Footer variants under it (4659:11955, 4862:14204), so
   `verify-components pixels` passes again. The 1440 suite fails only where it failed before this work
   (framework boxes, Haven body).
+- Later 18 Nov, his call: testimonials is not finished, so the section and its footer link are hidden
+  (`hidden`, `data-hidden-until`), not deleted. The footer follows About at 2548.5. The checks and the
+  reference render (`site/dev/pages/figma/home.png`) leave the section out; R10's build is kept for when
+  he is done. To bring it back: drop the two `hidden` attributes in index.html and restore the 18 Nov
+  testimonial rows in the checks.

@@ -175,6 +175,7 @@
    percent, -4 percent, Neutral/050; 51 under it the person row (avatar 66.82 on Mondai green, 24 to the
    name at Body/16 and the role at Label/14, 9 apart) with "Full recommendation" and the LinkedIn link
    right aligned; 43 under that, three 7 px dots 8 apart. */
+.testimonials[hidden], .footer__nav li[hidden] { display: none; }
 .testimonials { min-height: 800px; padding-top: 199.5px; background: var(--neutral-900); box-shadow: inset 0 1px 0 var(--neutral-700); }
 .testimonials__inner { align-content: start; }
 .testimonial { grid-column: 2 / span 10; margin: 0; }

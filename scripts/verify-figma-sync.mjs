@@ -64,14 +64,8 @@ const desktop = [
   [".about-role .about__label", { c: "#d2d2db", x: 40, y: 2350.5 }],
   [".about__when", { c: "#7b7b86", x: 40, y: 2375.5 }],
   [".about-role .about__body", { c: "#d2d2db", x: 858, y: 2350.5, w: 542 }],
-  // Testimonials 5073:12175, new in the Master 18 Nov.
-  [".testimonials", { line: "#1d1d21", bg: "#040405", y: 2548.5, h: 800 }],
-  [".testimonial__quote p", { c: "#f2f1f8", fw: 500, fs: 56, ls: -0.04, x: 157, y: 2748, w: 1126 }],
-  [".testimonial__name", { c: "#f2f1f8", fs: 16, x: 247.82, y: 3040.41 }],
-  [".testimonial__role", { c: "#7b7b86", fs: 14, x: 247.82, y: 3060.41 }],
-  [".testimonial__label", { c: "#7b7b86", fs: 14, y: 3040.49 }],
-  [".testimonial__link span", { c: "#e8e7ee", x: 1201.17, y: 3059.91, tol: 1.5 }],
-  [".footer", { line: "#1d1d21", y: 3348.5, h: 777 }],
+  // Testimonials 5073:12175 is built but hidden until he finishes it (18 Nov), so the footer follows About.
+  [".footer", { line: "#1d1d21", y: 2548.5, h: 777 }],
   [".footer__back span", { c: "#7b7b86", x: 59.29, fy: 48.5 }],
   [".footer__nav li:first-child a", { c: "#e8e7ee", x: 40, fy: 122 }],
   [".footer__contact .footer__label", { c: "#7b7b86", x: 623, fy: 49 }],

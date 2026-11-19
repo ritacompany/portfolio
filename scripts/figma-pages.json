@@ -170,7 +170,7 @@
    "url": "/",
    "image": "dev/pages/figma/home.png",
    "w": 1440,
-   "h": 4125.5,
+   "h": 3325.5,
    "css": "css/home.css",
    "boxes": [
     {
@@ -396,60 +396,16 @@
      "h": 118
     },
     {
-     "name": "testimonials",
-     "sel": "[data-figma-node='5073:12175']",
-     "x": 0,
-     "y": 2548.5,
-     "w": 1440,
-     "h": 800
-    },
-    {
-     "name": "quote",
-     "sel": "[data-figma-node='5073:12177'] p",
-     "x": 157,
-     "y": 2748,
-     "w": 1126,
-     "h": 223,
-     "tol": 3,
-     "why": "cap trimmed, four lines"
-    },
-    {
-     "name": "avatar",
-     "sel": "[data-figma-node='5073:12183']",
-     "x": 157,
-     "y": 3022,
-     "w": 66.82,
-     "h": 66.82
-    },
-    {
-     "name": "Allison name",
-     "sel": "[data-figma-node='5073:12181']",
-     "x": 247.82,
-     "y": 3040.41,
-     "w": 115,
-     "h": 11,
-     "tol": 3,
-     "why": "Body/16 in a hug box; the site measures its glyphs 112.44 wide against Figma 115"
-    },
-    {
-     "name": "dots",
-     "sel": "[data-figma-node='5073:12326']",
-     "x": 701.5,
-     "y": 3131.82,
-     "w": 37,
-     "h": 7
-    },
-    {
      "name": "footer",
      "sel": "[data-figma-node='5812:22998']",
      "x": 0,
-     "y": 3348.5,
+     "y": 2548.5,
      "w": 1440,
      "h": 777,
      "tol": 1.5
     }
    ],
-   "source": "Portfolio Design IarvWaqjIwrZ2afQmMxKm6, VC master 4494:5909, read 18 Nov 2026 (docs/FIGMA_SYNC_2026-11-10.md, 18 Nov section): the navbar stacked over a 916 hero, no Selected works title, the Testimonials section 5073:12175 in, the footer at 3348.5."
+   "source": "Portfolio Design IarvWaqjIwrZ2afQmMxKm6, VC master 4494:5909, read 18 Nov 2026 (docs/FIGMA_SYNC_2026-11-10.md, 18 Nov section): the navbar stacked over a 916 hero, no Selected works title, the Testimonials section 5073:12175 in, the footer at 3348.5. Testimonials (2548.5 to 3348.5) is hidden until he finishes it (18 Nov), so it is cut from the render and the boxes and the footer moves up by 800."
   },
   "framework": {
    "frame": "5812:16446",
