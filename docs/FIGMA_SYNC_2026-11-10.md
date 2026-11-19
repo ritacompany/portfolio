@@ -183,8 +183,7 @@ Unchanged in the Mobile frames: hero, works, About and footer match the site. Re
 
 ### Open, his to decide
 
-- The testimonial avatar in his file looks like his own portrait (the footer photo) on the green disc, next to Allison
-  Courtney's name. The site draws what the file has. It likely wants her photo.
+- The testimonial avatar is a placeholder (his word, 18 Nov); he will supply the real photo later.
 - The three dots promise more quotes; only one exists. They are drawn, not clickable.
 - The phone About copy in his Mobile frame is still the older third paragraph; the site shows the new one
   on every width (one element).
