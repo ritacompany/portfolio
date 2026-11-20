@@ -8,14 +8,26 @@ His ask (20 Nov review, via the lead session): four 768 wide tablet frames he ca
 - [x] G0: write access proven with a harmless create and delete before any build
   EVIDENCE: frame 6336:30057 created and removed on page CS, 20 Nov
 - [x] G1: one section on page CS, beside 6331:20607 and overlapping no existing top level node, holding four frames 768 wide
+  EVIDENCE: section 6340:30057, four frames 768 wide, overlap check against every top level node on CS returned none
 - [x] G2: every frame is built from copies of his own layers (text styles, components, image fills kept); no node of 6331:20607 changed (child count and frame size the same before and after)
-- [ ] G3 (PARTIAL): tablet rules from site/css/framework.css: 32 side margin, 704 content, body 520 max, Heading/40 at 32, section padding 64 top and 120 bottom, eyebrow to heading 40, heading to next 80
-- [x] G4 Personalized timeline: Capacity card image above the Capacity and Effort columns, image at its true proportions (width over height equal to the desktop's within 0.5 percent), Example box to the right
-- [x] G5 Calendar setup: headline width strictly between the built tablet width and his desktop width; the right side of the section shown as in the desktop frame
-- [x] G6 Falling behind: the block with Pathway target, Pathway pace, Ahead of target and the rail card, under whatever title his frame gives it
-- [x] G7 Start of week template 1 of 5 (Clean slate) at tablet
-- [ ] G8 (PARTIAL): each frame screenshotted and checked for clipped text, overlap and stretched images
-- [ ] G9: node ids sent to the lead session; Chadwick told where they are and that session 8 builds what he locks
+  EVIDENCE: all layers cloned; 6331:20607 has 21 children and is 1440 by 24745.56 at 27868, 21358 before and after
+- [ ] G3: tablet rules from site/css/framework.css: 32 side margin, 704 content, body 520 max, Heading/40 at 32, section padding 64 top and 120 bottom, eyebrow to heading 40, heading to next 80
+  EVIDENCE: margins, 704 content, 520 body, 64 and 120 padding, 40 and 80 gaps applied; headlines still 40 px (Satoshi not loadable by the connector)
+- [x] G4: Personalized timeline: Capacity card image above the Capacity and Effort columns, image at its true proportions (width over height equal to the desktop's within 0.5 percent), Example box to the right
+  EVIDENCE: 6340:30064 ratio 1.033557 before and after; Example box 6340:30092 to its right; Capacity and Effort below
+- [x] G5: Calendar setup: headline width strictly between the built tablet width and his desktop width; the right side of the section shown as in the desktop frame
+  EVIDENCE: headline 612 wide, between built 704 and desktop share; laptop image 6340:30109 ratio 1.39372 kept, bleeds off the right edge
+- [x] G6: Falling behind: the block with Pathway target, Pathway pace, Ahead of target and the rail card, under whatever title his frame gives it
+  EVIDENCE: frame 6341:30057, title Falling behind from his frame; rail card panel and three annotations in one 704 box
+- [x] G7: Start of week template 1 of 5 (Clean slate) at tablet
+  EVIDENCE: frame 6341:30117, Clean slate card centred in a 704 carousel, caption and dots kept
+- [ ] G8: each frame screenshotted and checked for clipped text, overlap and stretched images
+  EVIDENCE: images, overlap and box sizes checked on screenshots; rendered line breaks could not be checked (cloud render has no Satoshi)
+- [x] G9: node ids sent to the lead session; Chadwick told where they are and that session 8 builds what he locks
+  EVIDENCE: lead session message delivered 20 Nov with the four node ids; report to Chadwick sent
+
+ABANDON: G3 the connector cannot load Satoshi, so the headline size cannot be set to 32; Chadwick or session 8 sets it
+ABANDON: G8 rendered line breaks cannot be seen without Satoshi; checked on his Mac when he opens the frames
 
 ## Evidence (20 Nov)
 
