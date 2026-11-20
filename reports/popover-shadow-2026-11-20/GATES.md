@@ -12,4 +12,4 @@ shows (his words, 20 Nov).
 - [x] G4 Sharp at 2x: built from 2x Figma exports, lossless webp, 1094 x 1018 for a 547 x 509 slot.
 - [x] G5 Breakpoints: live shots at 390, 768 and 1440, reduced motion on and off, in shots/. Layout unchanged.
 - [x] G6 Scope: only the image and this report folder change. No CSS, no HTML, no heading spacing.
-- [ ] G7 Shipped: pushed, draft PR into claude/relaxed-ride-5mlbdu, preview artifact, lead told.
+- [x] G7 Shipped: pushed, draft PR #29 into claude/relaxed-ride-5mlbdu, preview artifact https://claude.ai/artifact/7ygywsnJepVm6TmqR9eBew, lead told.
