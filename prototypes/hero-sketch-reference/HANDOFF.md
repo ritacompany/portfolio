@@ -25,6 +25,8 @@
 - Pipe, his pick 18 Nov: the look of kit part 18, the glass elbow, which was his original inspiration. Satin frosted glass with thick clear coupling rings where each bend meets a straight run and thick rounded rims at the open ends; insides show as soft colored shapes. His change: his pipe has color. The tint is chosen with the palette. Pick sheet: https://claude.ai/artifact/PfG16o5vRrJRqin2bUrB6x
 - The pipe's parts: three open ends (both leg tops and the bottom left opening), two elbows, one tee where the crossbar meets the right leg, and the straight runs between.
 - His spring idea: a narrow cat toy coil.
+- Round 2 (planter, coral base, secondary connector), sheet https://claude.ai/artifact/FE1Y9pDxdk7MnP7DuM9jEo. Not picked. On 20 Nov he said the sheet was confusing and mixed together. Rebuild it before asking again: two separate sections (planter, then connector), each opening with a crop of the current drawing ringing where the part sits, then one big photo per option with its name and one plain sentence, the pick under the options. No kit images unless they show that exact thing, no four box grids, no prompt words on the sheet (keep those here). Options and picks stay the same. Planter: net pot, molded cup, chrome cup, drilled rubber stopper (pick, its taper is already the planter shape and its holes explain the wires). Connector: clear lever connector (pick), molded splitter boot, screw terminal block. Photos are Wikimedia Commons and Openverse; the scratchpad copies were lost, so download them again.
+- Sheets that worked for him: one question per page section, a photo per option, the pick stated once.
 
 ## Next
 - Build the flowers into `build.py` in place of the placeholder circles, then run the checks.
