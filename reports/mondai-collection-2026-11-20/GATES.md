@@ -47,8 +47,8 @@ home to collection to framework page change is built from the settled decision, 
 - [x] G9: Figma frame re-read right before the final build step shows no change he made that the build lacks (node list and text compared).
   EVIDENCE: 20 Nov: get_metadata of 6331:27875 re-read after the build, byte identical to the first read (node ids, names, positions); text matched against get_design_context of the same session.
 
-- [ ] G10: Preview artifact at 390, 768 and 1440 published; draft PR into claude/relaxed-ride-5mlbdu open; lead sent the PR link.
-  EVIDENCE: pending
+- [x] G10: Preview artifact at 390, 768 and 1440 published; draft PR into claude/relaxed-ride-5mlbdu open; lead sent the PR link.
+  EVIDENCE: 20 Nov: artifact https://claude.ai/artifact/LPQDoodChTDDuyiXEKfw7H (2x shots at three widths, live cursor button with the edit panel); draft PR https://github.com/ritacompany/portfolio/pull/30; lead message delivered.
 
 - [ ] G11: Chadwick has felt the cursor button on the published tuner (site/dev/cursor-button/) and sent values back or said it feels right (motion rules: an interactive piece stays open until he has).
   EVIDENCE: pending
