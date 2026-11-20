@@ -3,124 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CW mark exploration</title>
+  <title>CW mark, third exploration</title>
   <style>
-    @font-face {
-      font-family: Satoshi;
-      src: url('../homepage-foundations/fonts/satoshi-400.woff2') format('woff2');
-      font-weight: 400;
-    }
-    @font-face {
-      font-family: Satoshi;
-      src: url('../homepage-foundations/fonts/satoshi-700.woff2') format('woff2');
-      font-weight: 700;
-    }
+    @font-face { font-family: Satoshi; src: url('../homepage-foundations/fonts/satoshi-400.woff2') format('woff2'); font-weight: 400; }
+    @font-face { font-family: Satoshi; src: url('../homepage-foundations/fonts/satoshi-700.woff2') format('woff2'); font-weight: 700; }
     * { box-sizing: border-box; }
-    html { background: #101013; }
-    body {
-      margin: 0;
-      color: #eeecf0;
-      background: #101013;
-      font-family: Satoshi, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    main { max-width: 1440px; margin: 0 auto; padding: 44px clamp(22px, 5vw, 80px) 100px; }
-    .eyebrow { color: #aaa9b0; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
-    h1 { max-width: 950px; margin: 30px 0 16px; font-size: clamp(44px, 6.4vw, 92px); line-height: 1.02; letter-spacing: -.055em; font-weight: 400; }
-    .intro { max-width: 660px; color: #bbb9c1; font-size: clamp(17px, 2vw, 21px); line-height: 1.5; }
-    .section-head { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 16px; border-bottom: 1px solid #4b4a50; padding-bottom: 20px; }
-    .section-head h2 { margin: 0; font-size: clamp(28px, 3.4vw, 44px); font-weight: 400; letter-spacing: -.035em; }
-    .section-head p { margin: 0; color: #aaa9b0; font-size: 13px; }
-    .row { padding: 32px 0 42px; border-bottom: 1px solid #333239; }
-    .row-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 15px; margin-bottom: 25px; }
-    .index { font-size: 13px; color: #aaa9b0; font-variant-numeric: tabular-nums; }
-    h3 { margin: 0; font-size: 27px; font-weight: 400; letter-spacing: -.025em; }
-    .pick { border: 1px solid #dddbe2; border-radius: 99px; padding: 6px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
-    .previews { display: grid; grid-template-columns: minmax(230px, 1fr) minmax(220px, 1fr) minmax(400px, 1.9fr); gap: 12px; }
-    .preview { position: relative; min-height: 240px; padding: 22px; background: #1b1b21; border: 1px solid #303037; overflow: hidden; }
-    .preview.large { min-height: 300px; }
-    .scale { display: block; margin-bottom: 26px; color: #88878f; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; }
-    .navigation { display: flex; align-items: center; gap: 40px; margin-top: 7px; }
-    .navigation img { display: block; width: 48px; height: auto; }
-    .navigation span { color: #bbb9c1; font-size: 12px; white-space: nowrap; }
-    .medium img { display: block; width: 160px; max-width: 100%; height: auto; margin-top: 30px; }
-    .large img { display: block; width: min(100%, 490px); height: auto; margin: 14px auto 0; }
-    .row-note { max-width: 800px; margin: 20px 0 0; color: #aaa9b0; font-size: 16px; line-height: 1.5; }
-    .recommendation { margin-top: 58px; padding: 34px; background: #dedee5; color: #17171b; }
-    .recommendation span { color: #55545c; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
-    .recommendation h2 { margin: 15px 0; font-size: clamp(30px, 4vw, 50px); font-weight: 400; letter-spacing: -.04em; }
-    .recommendation p { max-width: 750px; margin: 0; font-size: 18px; line-height: 1.5; }
-    @media (max-width: 1000px) {
-      .previews { grid-template-columns: 1fr 1fr; }
-      .preview.large { grid-column: 1 / -1; }
-    }
-    @media (max-width: 620px) {
-      main { padding-top: 28px; }
-      .previews { grid-template-columns: 1fr; }
-      .preview.large { grid-column: auto; }
-      .section-head { display: block; }
-      .section-head p { margin-top: 8px; }
-      .preview { min-height: 200px; }
-      .preview.large { min-height: 250px; }
-      .navigation { gap: 25px; }
-    }
+    html { background: #111115; }
+    body { margin: 0; background: #111115; color: #ebe9ef; font-family: Satoshi, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    main { max-width: 1460px; margin: 0 auto; padding: 48px clamp(20px, 5vw, 72px) 96px; }
+    .eyebrow { color: #aaa8b2; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; }
+    h1 { max-width: 900px; margin: 24px 0 14px; font-size: clamp(42px, 6vw, 82px); font-weight: 400; letter-spacing: -.055em; line-height: 1.04; }
+    .intro { max-width: 720px; margin: 0 0 52px; color: #b8b6c0; font-size: 19px; line-height: 1.52; }
+    .row { margin: 0 0 18px; padding: 31px; background: #232329; border: 1px solid #34343c; border-radius: 14px; }
+    .row.pick { background: #29292f; border-color: #b8b6c0; }
+    .head { display: flex; align-items: baseline; gap: 17px; flex-wrap: wrap; margin-bottom: 24px; }
+    .number { color: #aaa8b2; font-size: 14px; font-variant-numeric: tabular-nums; }
+    h2 { margin: 0; font-size: 29px; font-weight: 400; letter-spacing: -.025em; }
+    .tag { border: 1px solid #a6a4af; border-radius: 99px; padding: 5px 11px; color: #d9d8df; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; }
+    .scales { display: grid; grid-template-columns: minmax(200px, .95fr) minmax(180px, .9fr) minmax(420px, 1.8fr); gap: 16px; }
+    .cell { min-height: 240px; padding: 17px; border: 1px solid #383840; border-radius: 9px; }
+    .cell.large { min-height: 270px; }
+    .scale { display: block; color: #9997a2; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+    .nav { display: flex; align-items: center; gap: 28px; margin-top: 57px; }
+    .nav img { width: 48px; height: auto; display: block; }
+    .nav span { color: #b8b6c0; font-size: 12px; white-space: nowrap; }
+    .medium img { display: block; width: 160px; max-width: 100%; height: auto; margin: 48px auto 0; }
+    .large img { display: block; width: min(100%, 490px); height: auto; margin: 39px auto 0; }
+    .note { max-width: 800px; margin: 20px 0 0; color: #b8b6c0; font-size: 16px; line-height: 1.52; }
+    .decision { margin-top: 52px; padding: 34px; background: #dedee5; color: #17171b; border-radius: 12px; }
+    .decision span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+    .decision h2 { margin: 15px 0; font-size: clamp(32px, 4vw, 52px); }
+    .decision p { max-width: 780px; margin: 0; font-size: 18px; line-height: 1.55; }
+    @media (max-width: 1000px) { .scales { grid-template-columns: 1fr 1fr; } .cell.large { grid-column: 1 / -1; } }
+    @media (max-width: 630px) { main { padding-top: 28px; } .row { padding: 19px; } .scales { grid-template-columns: 1fr; } .cell.large { grid-column: auto; } .cell { min-height: 190px; } .cell.large { min-height: 220px; } .nav { margin-top: 38px; gap: 18px; } .medium img { margin-top: 35px; } .large img { margin-top: 30px; } }
   </style>
 </head>
 <body>
   <main>
     <div class="eyebrow">L3 exploration / CW mark</div>
-    <h1>One gesture.<br>Three shape systems.</h1>
-    <p class="intro">The earlier cuts did not improve the mark. These studies redraw the C sweep and W turns as complete forms, then test them beside the original at header and enlarged sizes.</p>
+    <h1>One gesture, drawn with more intent.</h1>
+    <p class="intro">This pass compares the original and the previous Soft square pick with three new systems. The test is whether the C, W and terminals feel designed together when the mark grows beyond the header.</p>
 
-    <div class="section-head">
-      <h2>Compare the forms</h2>
-      <p>48 px header / 160 px / large</p>
-    </div>
-
-    <section class="row" aria-labelledby="source-title">
-      <div class="row-title"><span class="index">00</span><h3 id="source-title">Original</h3></div>
-      <div class="previews">
-        <div class="preview"><span class="scale">Header / 48 px</span><div class="navigation"><img src="original.svg" alt="Original mark at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
-        <div class="preview medium"><span class="scale">Medium / 160 px</span><img src="original.svg" alt="Original mark at medium size"></div>
-        <div class="preview large"><span class="scale">Large / 490 px</span><img src="original.svg" alt="Original mark enlarged"></div>
+    <section class="row" aria-labelledby="original">
+      <div class="head"><span class="number">00</span><h2 id="original">Original</h2><span class="tag">Source</span></div>
+      <div class="scales">
+        <div class="cell"><span class="scale">Header / 48 px</span><div class="nav"><img src="original.svg" alt="Original CW mark at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="cell medium"><span class="scale">Medium / 160 px</span><img src="original.svg" alt="Original CW mark at medium size"></div>
+        <div class="cell large"><span class="scale">Large / 490 px</span><img src="original.svg" alt="Original CW mark enlarged"></div>
       </div>
-      <p class="row-note">The generous C sweep is the signature. Its long climb and rounded ends feel softer once the mark becomes a graphic rather than a small nav detail.</p>
+      <p class="note">The open C, climbing join and uneven W turns are the recognisable gesture. At large scale, the round terminals and long diagonal give the mark a softer, more informal silhouette.</p>
     </section>
 
-    <section class="row" aria-labelledby="taut-title">
-      <div class="row-title"><span class="index">01</span><h3 id="taut-title">Taut ribbon</h3></div>
-      <div class="previews">
-        <div class="preview"><span class="scale">Header / 48 px</span><div class="navigation"><img src="01-taut.svg" alt="Taut ribbon at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
-        <div class="preview medium"><span class="scale">Medium / 160 px</span><img src="01-taut.svg" alt="Taut ribbon at medium size"></div>
-        <div class="preview large"><span class="scale">Large / 490 px</span><img src="01-taut.svg" alt="Taut ribbon enlarged"></div>
+    <section class="row" aria-labelledby="previous">
+      <div class="head"><span class="number">02</span><h2 id="previous">Soft square</h2><span class="tag">Previous pick</span></div>
+      <div class="scales">
+        <div class="cell"><span class="scale">Header / 48 px</span><div class="nav"><img src="02-soft-square.svg" alt="Previous Soft square mark at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="cell medium"><span class="scale">Medium / 160 px</span><img src="02-soft-square.svg" alt="Previous Soft square mark at medium size"></div>
+        <div class="cell large"><span class="scale">Large / 490 px</span><img src="02-soft-square.svg" alt="Previous Soft square mark enlarged"></div>
       </div>
-      <p class="row-note">The C rise is shorter and the W carries a consistent pressure rhythm. Every high point and ending tapers. It has the most energy enlarged, but the thin tips lose some presence at header size.</p>
+      <p class="note">The straighter runs helped, but the C bowl stayed round while the W peaks became capped. The result had a rule for its ends without fully resolving the larger silhouette.</p>
     </section>
 
-    <section class="row" aria-labelledby="square-title">
-      <div class="row-title"><span class="index">02</span><h3 id="square-title">Soft square</h3><span class="pick">Recommended</span></div>
-      <div class="previews">
-        <div class="preview"><span class="scale">Header / 48 px</span><div class="navigation"><img src="02-soft-square.svg" alt="Soft square at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
-        <div class="preview medium"><span class="scale">Medium / 160 px</span><img src="02-soft-square.svg" alt="Soft square at medium size"></div>
-        <div class="preview large"><span class="scale">Large / 490 px</span><img src="02-soft-square.svg" alt="Soft square enlarged"></div>
+    <section class="row pick" aria-labelledby="structure">
+      <div class="head"><span class="number">04</span><h2 id="structure">Structured curve</h2><span class="tag">New pick</span></div>
+      <div class="scales">
+        <div class="cell"><span class="scale">Header / 48 px</span><div class="nav"><img src="04-structure.svg" alt="Structured curve mark at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="cell medium"><span class="scale">Medium / 160 px</span><img src="04-structure.svg" alt="Structured curve mark at medium size"></div>
+        <div class="cell large"><span class="scale">Large / 490 px</span><img src="04-structure.svg" alt="Structured curve mark enlarged"></div>
       </div>
-      <p class="row-note">The C base is flatter, the rises are straighter and each turn uses a controlled bevel. Both ends follow that same geometry. This keeps the original gesture while giving the larger mark a firmer, more deliberate silhouette.</p>
+      <p class="note">The C has a level base and a firmer rising spine. Both W valleys echo that flatter floor, while the three outer crests share the same tight radius. It makes the whole mark feel drawn from one set of decisions.</p>
     </section>
 
-    <section class="row" aria-labelledby="balanced-title">
-      <div class="row-title"><span class="index">03</span><h3 id="balanced-title">Balanced W</h3></div>
-      <div class="previews">
-        <div class="preview"><span class="scale">Header / 48 px</span><div class="navigation"><img src="03-balanced.svg" alt="Balanced W at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
-        <div class="preview medium"><span class="scale">Medium / 160 px</span><img src="03-balanced.svg" alt="Balanced W at medium size"></div>
-        <div class="preview large"><span class="scale">Large / 490 px</span><img src="03-balanced.svg" alt="Balanced W enlarged"></div>
+    <section class="row" aria-labelledby="pressure">
+      <div class="head"><span class="number">05</span><h2 id="pressure">Controlled pressure</h2><span class="tag">Alternative</span></div>
+      <div class="scales">
+        <div class="cell"><span class="scale">Header / 48 px</span><div class="nav"><img src="05-pressure.svg" alt="Controlled pressure mark at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="cell medium"><span class="scale">Medium / 160 px</span><img src="05-pressure.svg" alt="Controlled pressure mark at medium size"></div>
+        <div class="cell large"><span class="scale">Large / 490 px</span><img src="05-pressure.svg" alt="Controlled pressure mark enlarged"></div>
       </div>
-      <p class="row-note">Both W valleys sit at similar depths, which makes the letters easier to read. That rhythm is stronger at medium size, but it moves further from the original's distinctive shallow first turn.</p>
+      <p class="note">Heavy lower arcs and slimmer crests create a repeated pressure rhythm through the full stroke. It has the most movement enlarged, though the delicate peaks carry less weight at 48 pixels.</p>
     </section>
 
-    <section class="recommendation">
+    <section class="row" aria-labelledby="compact">
+      <div class="head"><span class="number">06</span><h2 id="compact">Compact gesture</h2><span class="tag">Alternative</span></div>
+      <div class="scales">
+        <div class="cell"><span class="scale">Header / 48 px</span><div class="nav"><img src="06-compact.svg" alt="Compact gesture mark at header size"><span>Work&nbsp;&nbsp; About&nbsp;&nbsp; Contact</span></div></div>
+        <div class="cell medium"><span class="scale">Medium / 160 px</span><img src="06-compact.svg" alt="Compact gesture mark at medium size"></div>
+        <div class="cell large"><span class="scale">Large / 490 px</span><img src="06-compact.svg" alt="Compact gesture mark enlarged"></div>
+      </div>
+      <p class="note">Shortening the C climb and final exit gives the W more of the width. It reads clearly, but the round stroke character is still close to the source, so it is the conservative option.</p>
+    </section>
+
+    <section class="decision">
       <span>Recommendation</span>
-      <h2>Take 02 forward.</h2>
-      <p>Soft square improves the large form through one rule applied everywhere: flatter curves, straighter runs and consistent bevels. It retains enough of the original at 48 pixels. The choice is whether that firmer character feels like Chadwick's mark; if the original's handwritten softness is essential, keep the source.</p>
+      <h2>Take Structured curve forward.</h2>
+      <p>It changes the shape of the C and both W valleys, not just their endpoints. That is the visible gain over Soft square at 490 pixels. Its weight still survives at 48 pixels. The next decision is visual taste: whether this firmer, more typographic character feels like Chadwick's signature.</p>
     </section>
   </main>
 </body>

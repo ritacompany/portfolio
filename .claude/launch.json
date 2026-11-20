@@ -4,14 +4,56 @@
     {
       "name": "site-dev",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "site"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "site"
+      ],
       "port": 8765
+    },
+    {
+      "name": "portfolio-site-dev",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8766",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/Users/chadwickfenner/Code/portfolio-site/site"
+      ],
+      "port": 8766
     },
     {
       "name": "code-folder-preview",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8791", "--bind", "127.0.0.1", "--directory", "/private/tmp/claude-501/-Users-chadwickfenner-Code-portfolio-site/a39da883-d0a7-4ddc-a62d-310fa8042290/scratchpad/preview"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8791",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/private/tmp/claude-501/-Users-chadwickfenner-Code-portfolio-site/a39da883-d0a7-4ddc-a62d-310fa8042290/scratchpad/preview"
+      ],
       "port": 8791
+    },
+    {
+      "name": "site-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4319",
+        "--bind",
+        "0.0.0.0",
+        "--directory",
+        "../portfolio-site-preview"
+      ],
+      "port": 4319
     }
   ]
 }

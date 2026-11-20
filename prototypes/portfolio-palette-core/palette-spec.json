@@ -1,0 +1,39 @@
+{
+  "model": "OKLCH",
+  "neutrals": {
+    "black": "#000000",
+    "white": "#F5F4F9"
+  },
+  "families": [
+    {
+      "name": "Signal green",
+      "core": { "L": 0.63, "C": 0.16, "h": 150 },
+      "light": { "dL": 0.15, "dC": 0.01, "dh": 0 },
+      "dark": { "dL": -0.21, "dC": -0.08, "dh": 35 }
+    },
+    {
+      "name": "Crimson rose",
+      "core": { "L": 0.60, "C": 0.22, "h": 16 },
+      "light": { "dL": 0.20, "dC": -0.10, "dh": -8 },
+      "dark": { "dL": -0.12, "dC": -0.02, "dh": 6 }
+    },
+    {
+      "name": "Acid citron",
+      "core": { "L": 0.79, "C": 0.17, "h": 115 },
+      "light": { "dL": 0.13, "dC": -0.07, "dh": -3 },
+      "dark": { "dL": -0.21, "dC": -0.02, "dh": 3 }
+    },
+    {
+      "name": "Electric violet",
+      "core": { "L": 0.59, "C": 0.24, "h": 319 },
+      "light": { "dL": 0.16, "dC": -0.04, "dh": 0 },
+      "dark": { "dL": -0.17, "dC": -0.08, "dh": 0 }
+    },
+    {
+      "name": "Royal indigo",
+      "core": { "L": 0.55, "C": 0.21, "h": 282 },
+      "light": { "dL": 0.21, "dC": -0.09, "dh": -2 },
+      "dark": { "dL": -0.16, "dC": -0.05, "dh": 1 }
+    }
+  ]
+}

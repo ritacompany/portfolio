@@ -8,6 +8,14 @@ Chadwick has asked in several chats for no stroke on the footer portraits (9 Nov
 
 Chadwick set the responsive grids to follow the desktop grid. Tablet is 8 columns with 32px margins and 32px gutters. Mobile is 4 columns with 24px margins and 24px gutters. Desktop stays 12 columns with 40px margins and 40px gutters. All are stretch grids in Figma with no fixed column width. Margin equals gutter at every size so the page edge reads as one more gutter, and 12, 8 and 4 keep halves and quarters intact. Breakpoints are 1200 and 768. Full spec is in `docs/PROJECT_CONTEXT.md`.
 
+## 2026-10-31: Free Dither experiment parked for an original-reference recreation
+
+Chadwick asked to put the free Dither preview on hold and try to recreate the React Bits Pro Dither Wave effect he prefers. His supplied recording is the motion reference. The separate independent shader study is in `prototypes/ribbon-footer/`. It is an approximation for review, not an approved or exact match. The earlier free-component preview and its saved browser settings remain separate.
+
+## 2026-10-31: Dither footer review candidate
+
+Chadwick supplied his free React Bits Dither configuration and Footer.png as the actual footer reference. He corrected the footer font to Satoshi after initially saying Plus Jakarta Sans. The standalone candidate in `prototypes/dither-footer/` preserves his shader settings, uses the existing footer SVG assets and defaults to the shallow band in his reference. It includes a 600px band comparison. This is a preview for review, not approval to replace the live footer.
+
 ## 2026-10-28: Haven uses Chadwick's corrected spacing
 
 Chadwick said he fixed the extra frames and the upper and lower margins himself. The current Haven master is the source for implementation. Do not apply the earlier spacing review's proposals over those corrections. The local page update preserves the existing quiz and profile motion and integrates the previously built chat turn and five-card ending. These integrations remain candidates for his review.

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-label="Five accent colors shown on near black and off white">
+  <rect width="1200" height="690" fill="#EDECF1"/>
+  <text x="52" y="70" fill="#101115" font-family="Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-2">Five bright accents, two neutral grounds</text>
+  <text x="52" y="111" fill="#101115" font-family="Arial, sans-serif" font-size="18">Same five colors on both surfaces. On the light ground, near black outlines keep every swatch distinct.</text>
+  <rect x="0" y="152" width="1200" height="258" fill="#101115"/>
+  <text x="52" y="194" fill="#EDECF1" font-family="Arial, sans-serif" font-size="22" font-weight="700">ON NEAR BLACK</text>
+  <rect x="52" y="219" width="208" height="150" fill="#00B659"/>
+  <rect x="274" y="219" width="208" height="150" fill="#F895A7"/>
+  <rect x="496" y="219" width="208" height="150" fill="#E5EEA1"/>
+  <rect x="718" y="219" width="208" height="150" fill="#DD5BFE"/>
+  <rect x="940" y="219" width="208" height="150" fill="#A1A5F9"/>
+  <text x="66" y="345" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">GREEN</text>
+  <text x="288" y="345" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">PINK</text>
+  <text x="510" y="345" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">CITRON</text>
+  <text x="732" y="345" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">VIOLET</text>
+  <text x="954" y="345" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">PERIWINKLE</text>
+  <text x="52" y="466" fill="#101115" font-family="Arial, sans-serif" font-size="22" font-weight="700">ON OFF WHITE</text>
+  <rect x="52" y="492" width="208" height="150" fill="#00B659" stroke="#101115" stroke-width="3"/>
+  <rect x="274" y="492" width="208" height="150" fill="#F895A7" stroke="#101115" stroke-width="3"/>
+  <rect x="496" y="492" width="208" height="150" fill="#E5EEA1" stroke="#101115" stroke-width="3"/>
+  <rect x="718" y="492" width="208" height="150" fill="#DD5BFE" stroke="#101115" stroke-width="3"/>
+  <rect x="940" y="492" width="208" height="150" fill="#A1A5F9" stroke="#101115" stroke-width="3"/>
+  <text x="66" y="618" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">#00B659</text>
+  <text x="288" y="618" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">#F895A7</text>
+  <text x="510" y="618" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">#E5EEA1</text>
+  <text x="732" y="618" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">#DD5BFE</text>
+  <text x="954" y="618" fill="#101115" font-family="Arial, sans-serif" font-size="16" font-weight="700">#A1A5F9</text>
+</svg>
