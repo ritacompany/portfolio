@@ -1,0 +1,15 @@
+/* Cursor button (js/cursor-button.js, docs/motion/cursor-button/). The Small button from components.css,
+   lifted out of the page so it can follow the pointer. Outline while it follows, white while the mouse
+   is down (his 10 Nov ruling on the Small button). */
+.cursor-btn {
+  position: fixed; left: 0; top: 0; z-index: 50;
+  pointer-events: none; visibility: hidden; opacity: 0;
+  transition: none; will-change: transform, opacity;
+  /* The outline keeps a solid page colour inside: over a busy screenshot a see through pill let the
+     label collide with the type underneath (review round 1). Still the outline state, not the fill. */
+  background: var(--neutral-900);
+}
+.cursor-btn.is-pressed { background: var(--neutral-100); border-color: var(--neutral-100); color: var(--neutral-900); }
+/* Over the image the system cursor gives way to the button. Only while the script is running for a
+   mouse, so a touch screen or a failed script keeps the normal pointer. */
+html.cursor-btn-on [data-cursor].is-cursor, html.cursor-btn-on [data-cursor].is-cursor * { cursor: none; }

@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="/css/grid.css">
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/cursor-button.css">
+  <link rel="stylesheet" href="/css/page-transition.css">
+  <script src="/js/page-transition.js"></script>
 </head>
 <body>
   <div class="canvas home" id="top" data-figma-node="5812:22862">
@@ -54,20 +57,20 @@
       <section class="works" id="work" aria-labelledby="works-title" data-figma-node="5812:22886">
         <h2 class="works__title visually-hidden" id="works-title">Selected works</h2>
         <div class="works__cards">
-          <a class="work-card work-card-mondai" href="/mondai/" data-figma-node="5812:22891">
+          <a class="work-card work-card-mondai" href="/mondai/" data-figma-node="5812:22891" data-pt="mondai-title">
             <span class="work-card__head">
               <span class="work-card__name" data-figma-node="5812:22894">Mondai</span>
               <span class="work-card__slashes" aria-hidden="true" data-figma-node="5812:22895">//</span>
               <span class="work-card__kind" data-figma-node="5812:22896">Case study collection</span>
               <span class="work-card__desc" data-figma-node="5812:22898">Tech career navigator</span>
             </span>
-            <span class="work-card__media" data-figma-node="5812:22899">
+            <span class="work-card__media" data-figma-node="5812:22899" data-cursor="View collection">
               <img class="work-card__desk-art" src="/assets/home/mondai-card@2x.webp" alt="" width="879" height="580">
               <span class="work-card__phone-art" data-bleed data-figma-node="4928:12059">
                 <img class="mondai-art__laptop" src="/assets/home/mondai-card-phone-laptop.webp" alt="" width="817" height="1024" loading="lazy">
                 <img class="mondai-art__glow" src="/assets/home/mondai-card-phone-glow.webp" alt="" width="455" height="467" loading="lazy">
               </span>
-              <span class="button-sm" data-figma-node="5812:22904" data-overlay>Learn more</span>
+              <span class="button-sm" data-figma-node="5812:22904" data-overlay>View collection</span>
             </span>
             <span class="work-card__more link-nav-sm" data-figma-node="4929:12215">Learn more</span>
           </a>
@@ -76,7 +79,7 @@
               <span class="work-card__name" data-figma-node="5812:22907">Haven</span>
               <span class="work-card__desc" data-figma-node="5812:22908">LGBTQIA + youth app</span>
             </span>
-            <span class="work-card__media" data-figma-node="5812:22909">
+            <span class="work-card__media" data-figma-node="5812:22909" data-cursor="View case study">
               <img class="work-card__desk-art" src="/assets/home/haven-card@2x.webp" alt="The Haven app on a phone, wrapped in a glowing purple cable" width="435" height="435">
               <span class="work-card__phone-art" data-bleed data-figma-node="4929:12238">
                 <span class="haven-art__clip"><img src="/assets/home/haven-card-phone.webp" alt="The Haven app on a phone, wrapped in a glowing purple cable" width="886" height="860" loading="lazy"></span>
@@ -188,5 +191,6 @@
 <script type="module" src="/js/contact-goo.js"></script>
 <script type="module" src="/js/home-phone.js"></script>
 <script src="/js/site.js" defer></script>
+<script src="/js/cursor-button.js" defer></script>
 </body>
 </html>
