@@ -26,4 +26,5 @@ code that does it. His yes to build: the [site change] card, 20 Nov.
   EVIDENCE: 20 Nov, TABLET_OK 8 of 8
 - [x] G6: shared suites: size and health pass; fit fails only on the Start of week side cards, as before this work
   EVIDENCE: RESPONSIVE_SIZE_OK and RESPONSIVE_HEALTH_OK 5 widths; fit lists only img.sow__card at 1366
-- [ ] G7: committed by path with only my hunks, pushed to claude/relaxed-ride-5mlbdu, never main
+- [x] G7: committed by path with only my hunks, pushed to claude/relaxed-ride-5mlbdu, never main
+  EVIDENCE: 6f7dfc7 pushed; .claude/launch.json, shots and the font file left out
