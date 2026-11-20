@@ -15,7 +15,7 @@ const state = (still) => {
   const vh = innerHeight;
   return items.map((e) => ({ id: e.dataset.figmaNode || e.className, below: e.getBoundingClientRect().top + scrollY > 2 * vh, shown: shown(e), still: still.includes(e.dataset.figmaNode) }));
 };
-for (const motion of ["no-preference", "reduce"]) for (const w of [768, 1024, 1180]) {
+for (const motion of ["no-preference", "reduce"]) for (const w of [768, 1024, 1150]) {
   runs++;
   const tag = `${w} ${motion === "reduce" ? "reduced" : "motion"}`;
   const page = await b.newPage({ viewport: { width: w, height: 1000 }, reducedMotion: motion });

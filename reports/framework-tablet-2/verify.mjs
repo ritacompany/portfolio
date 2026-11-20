@@ -10,7 +10,7 @@ const problems = [];
 let runs = 0;
 
 if (mode === "rollover") {
-  for (const w of [390, 768, 1024, 1180]) {
+  for (const w of [390, 768, 1024, 1150]) {
     runs++;
     const page = await open(b, base, w);
     const r = await page.evaluate(() => {
@@ -23,7 +23,7 @@ if (mode === "rollover") {
   }
   finish(`FW_ROLLOVER_OK ${runs} widths`);
 } else {
-  for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 1024, 1180]) {
+  for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 1024, 1150]) {
     runs++;
     const page = await open(b, base, w, motion);
     if (motion === "no-preference") await page.waitForTimeout(2500); // let the last entrances finish

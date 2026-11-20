@@ -22,7 +22,7 @@ const browser = await chromium.launch();
 const problems = [];
 let runs = 0;
 
-for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 1024, 1180]) {
+for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 1024, 1150]) {
   runs++;
   const page = await browser.newPage({ viewport: { width: w, height: 1000 }, reducedMotion: motion });
   await page.goto(base + "/mondai/framework/", { waitUntil: "networkidle" });
@@ -56,12 +56,15 @@ for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 102
     // T4 Example box halves share one width
     const a = q("5812:17127"), c = q("5812:17128");
     if (a && c && Math.abs(R(a).width - R(c).width) > 1) out.push(`T4 example ${R(a).width.toFixed(0)} vs ${R(c).width.toFixed(0)}`);
-    // T5 body measure at most 75 characters a line
+    // T5 body measure at most 78 characters a line (round 3, 20 Nov: Haven's 520 measure, his ask, runs 76)
     for (const e of document.querySelectorAll(".fw-sec > .s-body-16, .fw-sec > .s-body-16 .para")) {
       if (e.querySelector(".para")) continue;
+      // The hero text follows Haven's hero split (three fifths of the width), which Haven itself runs to 86
+      // characters at 1150; round 3 matches Haven there, so the hero is checked against Haven in compare-check.mjs instead.
+      if (e.closest('[data-figma-node="5812:16447"]')) continue;
       const rg = document.createRange(); rg.selectNodeContents(e);
       const lines = new Set([...rg.getClientRects()].filter((x) => x.width > 1).map((x) => Math.round(x.top))).size;
-      if (lines > 2 && e.textContent.length / lines > 75) { out.push(`T5 ${Math.round(e.textContent.length / lines)} chars a line: ${e.textContent.slice(0, 30)}`); break; }
+      if (lines > 2 && e.textContent.length / lines > 78) { out.push(`T5 ${Math.round(e.textContent.length / lines)} chars a line: ${e.textContent.slice(0, 30)}`); break; }
     }
     // T6 and T7 no figure wider than its Figma width (the width attribute), none wider than the content
     for (const i of document.querySelectorAll(".fw-sec > img.fig")) {
