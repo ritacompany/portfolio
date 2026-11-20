@@ -74,8 +74,13 @@ time numbers are now one table, marked ESTIMATE, with all three sprints and Ment
 screen rate. Unsourced lines about his intent were cut or tied to a record. The grid audit's
 27 of 33 is in section 6 as a check that still fails its own test.
 
+## Decided by him
+
+- 20 Nov 2026: the case study stays on the 2026 work; the 2024 to 2025 build appears only as the
+  starting point in section 1. Decided by: Chadwick, picking "Stay on 2026" over three early decisions
+  from the record (the temporary system, dark only for now, the move to its own library file).
+
 ## Open, only he can answer
 
-- Which two decisions from the original 2024 to 2025 build he would defend first in an interview.
 - Whether he worked on Peer Connect on 21 Sep (the day counts show no chat and no commit that day):
   the baseline is 5 days without it, 6 with it.

@@ -10,11 +10,14 @@ draft PR #11. Read this, then `FRAME.md`, then `DRAFT.md`. Nothing here quotes M
   1 fixed) and a blind completion check (11 findings fixed or listed); both in `VERIFY.md`.
 - Gates: all six met (`GATES.md`); `node reference/design-system-cs/draft/check-draft.mjs` passes.
 
+## Decided
+
+- 20 Nov: stay on the 2026 work; no early build decision added (`FRAME.md`, Decided by him).
+
 ## Waiting on him
 
-1. Which two decisions from the original 2024 to 2025 build he would defend first (anchors section 3).
-2. Peer Connect baseline: 5 days used; 6 if he worked on 21 Sep.
-3. Three lines in `FRAME.md`, "Lines he must confirm or strike".
+1. Peer Connect baseline: 5 days used; 6 if he worked on 21 Sep.
+2. Three lines in `FRAME.md`, "Lines he must confirm or strike".
 
 ## Next action
 
