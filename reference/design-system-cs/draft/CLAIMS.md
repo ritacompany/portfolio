@@ -1,0 +1,39 @@
+# Design system CS: claims behind draft 1
+
+7 Nov 2026. Every fact and number in `DRAFT.md`, with its mark and where it lives. Mondai paths are
+in the Mondai repo (`ritacompany/mondai`, main at 7d041e8 on 7 Nov). No quotes: this repo is public.
+CONFIRMED means a record states it (for a decision, the record names him or his yes). ESTIMATE means
+measured by a stated method with known gaps, and the gap is named.
+
+| Id | Claim as the draft uses it | Mark | Source |
+| --- | --- | --- | --- |
+| C1 | He started the system in Sep 2024 from a CTA button, the palette, four brand images and two typefaces (Heebo, IBM Plex Sans); he added the mono font later. Two years to Nov 2026 | CONFIRMED | `reference/design-system-cs/ANSWERS.md` item 4 (his answer, 21 Oct); `SOURCES.md` section 1, the 29 Aug 2024 ChatGPT row and the 15 Sep 2024 Discord row, both CONFIRMED (the Sep 2024 date; not the PARAPHRASE causal chain row) |
+| C2 | Jul 2025: designers were not using the system correctly; he ran a workshop on components, variables and auto layout | CONFIRMED | `SOURCES.md` section 4 (28 Jul to 4 Aug and 29 to 31 Jul 2025 rows) |
+| C3 | Oct 2025: he was cleaning other designers' screens: images in place of system icons, no auto layout | CONFIRMED | `SOURCES.md` section 1 (22 and 30 Oct 2025 row) |
+| C4 | Mar 2026: he gave the whole system to an AI as a PDF to write screen prompts from; it still needed a designer's eye | CONFIRMED | Mondai `design-system-ai/EVIDENCE.md`, Act one |
+| C5 | 1 Oct 2026 library audit: 94 components, 90 undescribed (so 4 described); 235 variables, 0 with a code name; 1,272 gaps and 1,315 paddings typed by hand | CONFIRMED as recorded (the audit deck was made by an AI session he commissioned) | `SOURCES.md` section 1, 1 Oct 2026 row (deck on his Mac); code names and descriptions also in Mondai `design-system-ai/evidence/PORTFOLIO-HANDOFF.md` |
+| C6 | 25 Sep 2026: 236 buttons on the desktop MVP screens in 33 widths, 47 set to hug | CONFIRMED | Mondai `process/BUTTON-AUDIT-MVP.md` |
+| C7 | 20 Sep 2026: an agent's screens passed gates on the spacing, type, colour and radius scales with buttons the system never had; the audit tested token membership only and passed wrong button shapes; he rejected the screens by eye | CONFIRMED | Mondai `design-system-ai/EVIDENCE.md`, Act two; `cohorts/REBUILD.md` |
+| C8 | 23 Sep 2026: one 12 column grid on the core frame, margins on column edges; earlier grid values were AI sessions' numbers, removed from the repo; affects every desktop layout | CONFIRMED (record); who decided is not named in the entry | Mondai `mondai/reference/DECISIONS.md`, 2026-09-23 "Core frame grid" |
+| C9 | 27 Sep 2026: areas side by side 32, 40 or 48, the smallest step at or above the largest gap inside either area; he set 48 as the maximum after seeing the eight screens at 64 laid out at 48; three revisions over 25 to 27 Sep | CONFIRMED | Mondai `mondai/reference/DECISIONS.md`, 2026-09-25 (three entries) and 2026-09-27 |
+| C10 | About 800 screen links pointed at the raw scale; of three options he picked filling the ladder gaps (his A for 1); a script moved 669 onto roles, left 122 for his call, now 30 raw | CONFIRMED for 669, 122 and 30; ESTIMATE for the 800 (no surviving scan) | Mondai `design-system-ai/reports/efficiency-numbers/NUMBERS.md` (main e940fa18), N20; `mondai/reference/DECISIONS.md`, 2026-10-02 |
+| C11 | 30 Sep 2026: inputs get one outline ladder, no filled state; the filled state covered for value text looking like placeholder text; states are tokens named for the job | CONFIRMED (he simplified the inputs himself) | Mondai `mondai/reference/DECISIONS.md`, 2026-09-30 "Input field states" |
+| C12 | 2 and 6 Oct 2026: an AI redesign marked 41 element types as new components; he had to backtrack; acted on elements get states and live on a component chosen by job; repetition never makes a component; the three screen route removed | CONFIRMED | Mondai `mondai/reference/DECISIONS.md`, 2026-10-02 and 2026-10-06 "Component or not" |
+| C13 | 25 Sep 2026: fill by default; a button outside a container is one or two columns wide; plugin built screens hugged by default, 80 of 145 buttons on Cohorts NEW; hug where fill belongs breaks responsiveness | CONFIRMED | Mondai `mondai/reference/DECISIONS.md`, 2026-09-25 "Fill by default" |
+| C14 | 6 Nov 2026 Figma read: 105 of 106 components described (Context menu missing); 425 of 431 variables with a web code name; 137 variables named retired, deprecated or retiring | CONFIRMED | Mondai `design-system-ai/evidence/figma-read-2026-11-06.json` |
+| C15 | The label check caught 5 of 6 planted mistakes, then 6 of 6 after a fix; the grid audit caught 27 of 33 on synthetic pages and is recorded FAIL for one step wider, last area not filling and deep rows | CONFIRMED | Mondai `ops/check-ledger.md`; `design-system-ai/EVIDENCE.md`, Act two |
+| C16 | The agent test scorer caught 8 of 8 planted mistakes before its counts were used | CONFIRMED | Mondai `design-system-ai/evidence/AGENT-TEST-BEFORE.md`, Protocol step 7 |
+| C17 | Agent test, 22 Oct: three fresh agents rebuilt M4.1 from the library and a picture, no skills or repo files; 24, 30 and 40 mistakes, mean 31; screen has 53 texts and 23 instances; all 53 texts right; every colour bound to a published role; defects: Text/Display reads as a size, Small button is not the 44 tall button, trimmed text boxes, no Upcoming date tile state used | CONFIRMED | Mondai `design-system-ai/evidence/AGENT-TEST-BEFORE.md` |
+| C18 | 19 Sep 2026: thirteen page agents at once; three clean, one half built, nine nothing; a five hour usage window drained in 75 minutes | CONFIRMED | Mondai `design-system-ai/EVIDENCE.md`, Act two |
+| C19 | Active days to handoff: Peer Connect 5 (6 if 21 Sep counts), mentor side 10, mentee side 6 (5 shared), Mentor events 6, Studio 4 | CONFIRMED | Mondai `design-system-ai/reports/efficiency-numbers/NUMBERS.md` (main e940fa18), N1 to N5 |
+| C20 | Screens at handoff: Peer Connect 39, mentor 99, mentee 72, Mentor events 69, Studio 42; per active day 7.8, 9.9, 12.0, 11.5, 10.5 | CONFIRMED inputs; the ratio is arithmetic | Mondai `design-system-ai/reports/efficiency-numbers/NUMBERS.md` (main e940fa18), N1 to N6 |
+| C21 | Not used in draft 1 after the numbers file landed (fix hours against build hours are floors) | ESTIMATE | Mondai `design-system-ai/reports/efficiency-numbers/NUMBERS.md` (main e940fa18), N7 |
+| C22 | Since Sep 2026 most Figma execution was done by AI sessions he directed and approved | CONFIRMED as recorded | `SOURCES.md`, How to read the marks |
+| C23 | His problem definition: a system only its author could use well; the design system is the subject, AI one part | CONFIRMED (his direction, 6 Nov) | `reference/design-system-cs/concept/NEXT-SESSIONS.md` on branch `claude/design-system-cs-concept` (PR #10), His direction |
+| C24 | Known faults the Figma check finds in handed off screens: mentor side 596 on 99 screens (about 6 a screen), mentee side 97, Mentor events 0 of the agents' own (22 on his own cloned home screen), Studio 0; the later two were built under the rule that a Figma change ends only with the check clean | CONFIRMED | Mondai `design-system-ai/reports/efficiency-numbers/NUMBERS.md` (main e940fa18), N9 |
+| C25 | Studio's last review round was its largest (21 asks); Mentor events 41 of 84 comments (49%) repeated an earlier ask | CONFIRMED | Mondai `design-system-ai/reports/efficiency-numbers/NUMBERS.md` (main e940fa18), N12 and N13 |
+| C26 | Library components, 19 Oct: 6.7% of gaps and 1.9% of paddings bound | CONFIRMED (19 Oct, not re-read 6 Nov) | Mondai `design-system-ai/reports/efficiency-numbers/NUMBERS.md` (main e940fa18), N25 |
+
+## Pending
+
+None. NUMBERS.md landed on Mondai main (e940fa18) on 7 Nov; C10, C19, C20 and C24 to C26 now cite it.
