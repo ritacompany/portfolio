@@ -163,6 +163,54 @@
   .fw-sec > .fw-logo + * { margin-top: 32px; }
 }
 
+/* The ending, example results (his ask 14 Nov, built 20 Nov, reports/cs2-results-ending/). From the preview he
+   reviewed (portfolio reference/cs2/review-2026-11-07/ending-filled-preview.html): the eyebrow, a Display/96
+   title, What I tested beside How, three stat columns 360 wide with a rule, a tag, a 136 number with a 44
+   "of 8", eight dots and a label, then All three passed and the What I changed close. It flows rather than
+   sitting at absolute positions; the gaps are between trimmed text boxes, cap top to baseline, measured from
+   the preview at 1440 (its 148 and 137 padding is Haven's ending, 153.5 to the eyebrow's cap). */
+.fw-sec.fw-end-sec > * { position: static; }
+.fw-end__ctx, .fw-end__stats { display: grid; column-gap: 24px; margin: 0; padding: 0; list-style: none; }
+.fw-end__ctx { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fw-end__ctx dd { margin: 21.5px 0 0; max-width: 470px; }
+.fw-end__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 78px; }
+.fw-end__stat { border-top: 1px solid var(--neutral-600); padding-top: 43.3px; }
+.fw-end__num { margin-top: 38.7px; font: 500 136px/0.85 var(--font); letter-spacing: -0.05em; color: var(--neutral-050); white-space: nowrap; }
+.fw-end__den { margin-left: 6px; font-size: 0.32em; letter-spacing: -0.02em; color: var(--neutral-525); }
+.fw-end__dots { display: flex; gap: 6px; margin-top: 34.6px; }
+.fw-end__dots i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--neutral-575); }
+.fw-end__dots i.on { background: var(--neutral-050); border-color: var(--neutral-050); }
+.fw-end__label { margin-top: 25.5px; max-width: 300px; }
+.fw-end__passed { margin-top: 43.5px; }
+.fw-end__key { margin-top: 89.3px; }
+.fw-end__close { margin-top: 27.9px; max-width: 900px; font: 500 32px/38px var(--font); letter-spacing: -0.04em; color: var(--neutral-400); }
+.fw-end__close b { font-weight: 700; color: var(--neutral-100); }
+@media (min-width: 1200px) {
+  .fw-sec.fw-end-sec { padding: 153.5px 0 144px; }
+  .fw-end__eyebrow { margin-left: 156px; }
+  .fw-end__title { margin: 73.6px 0 0 149px; width: 1291px; }
+  .fw-end { margin: 77.3px 0 0 156px; width: 1128px; }
+  .fw-end__key, .fw-end__close { margin-left: 116px; } /* x 272 on the page */
+}
+/* Under 1200 the section stacks like the rest of the page: the eyebrow, the title and the block under them are
+   its three items, so the page's rhythm sets the gaps around them. The phone stacks the columns. */
+@media (max-width: 1199.98px) {
+  .fw-sec.fw-end-sec > .fw-end { align-self: stretch; max-width: none; }
+}
+@media (max-width: 767.98px) {
+  .fw-end__ctx, .fw-end__stats { grid-template-columns: minmax(0, 1fr); }
+  .fw-end__ctx dd { margin-top: 16px; }
+  .fw-end__ctx > div + div { margin-top: 40px; }
+  .fw-end__stats { margin-top: 64px; row-gap: 48px; }
+  .fw-end__stat { padding-top: 32px; }
+  .fw-end__num { margin-top: 28px; font-size: 104px; }
+  .fw-end__dots { margin-top: 28px; }
+  .fw-end__label { margin-top: 20px; }
+  .fw-end__passed { margin-top: 48px; }
+  .fw-end__key { margin-top: 64px; }
+  .fw-end__close { margin-top: 20px; font-size: 24px; line-height: 28px; }
+}
+
 /* Tablet, 768 to 1199 (round 2, 18 Nov, reports/framework-tablet-2/ISSUES.md). Replaces the first pass
    (N8, d785d28) and keeps its fixes. Same method as Haven's tablet: the type steps down the way Haven's
    does, and the spacing keeps the 1440 numbers wherever the relationship still exists in one column.
