@@ -82,5 +82,5 @@ screen rate. Unsourced lines about his intent were cut or tied to a record. The 
 
 ## Open, only he can answer
 
-- Whether he worked on Peer Connect on 21 Sep (the day counts show no chat and no commit that day):
-  the baseline is 5 days without it, 6 with it.
+None. Peer Connect's baseline is 5 days, decided from the records (no commit or chat on 21 Sep); not a question for him.
+
