@@ -25,8 +25,8 @@ Scope: the framework page from 768 to 1199 keeps the 1440 spacing rhythm and Hav
 - [x] G5: item 3: the cause of the hard edge in the Schedule view popover gradient is found and written in ISSUES.md with a crop, whether it is also at 1440 is stated, and it is fixed or its fix is handed over with what it needs
   EVIDENCE: handed over, not fixed. Cause: baked into schedule-gaps@2x.webp (the popover shadow stops in a hard band across the Usability findings card); same file at 1440, so the edge is there too. Crops shots/item3-popover-edge-1440-brightened.png and -768-. A re-render needs his Figma file; the Figma connector hit its daily limit on his View seat 18 Nov. Handover section in ISSUES.md
 
-- [ ] G6: item 5: the footer with numbers is identified with him and made to respond at tablet and 390, or handed over with his answer recorded
-  EVIDENCE: pending
+- [x] G6: item 5: the footer with numbers is identified with him and made to respond at tablet and 390, or handed over with his answer recorded
+  EVIDENCE: handed over 20 Nov. "Footer with numbers" was not his phrase (it came from the brief); the item is the CS2 example results ending, which he confirmed in this session: "i did want them on the page now". It is being built by the session "Build the CS2 results ending into the framework page" (local_0e6f12d1), not here
 
 - [x] G7: item 6: with motion on, every section item on the page starts hidden or animates and ends fully shown after a scroll through, and with reduced motion every item is shown without scrolling, at 768, 1024 and 1180
   CHECK: node reports/framework-tablet-2/motion.mjs
