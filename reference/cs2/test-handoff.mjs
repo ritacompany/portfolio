@@ -1,7 +1,7 @@
 // Proves the cross account handoff holds: the usage hook, the handoff check, the return packet check,
 // that BROWSER_MODE.md states every copy rule check-copy.mjs enforces, that nothing existing broke, and
 // that a new session on either account is pointed at the handoff.
-// Usage: node test-handoff.mjs [usage|handoff|packet|drift|regress|wiring]   (no argument runs all)
+// Usage: node test-handoff.mjs [usage|handoff|packet|drift|regress|wiring|locations]   (no argument runs all)
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -214,6 +214,22 @@ suite('wiring', () => {
     ['CLAUDE.md sends Claude in the browser to BROWSER_MODE.md before anything else', /claude\.ai[\s\S]{0,400}BROWSER_MODE\.md/.test(read('CLAUDE.md').split('## Whose portfolio')[0])],
     ['the browser brief asks him for no setup: no Project, pasted instructions, uploads or syncing', !/\b(Project instructions|[Uu]pload by hand|sync the GitHub|make a claude\.ai Project)\b/.test(read('reference/cs2/BROWSER_MODE.md'))],
     ['AGENTS.md points to the handoff and the browser brief', /HANDOFF\.md/.test(read('AGENTS.md')) && /BROWSER_MODE\.md/.test(read('AGENTS.md'))],
+  ];
+});
+
+suite('locations', () => {
+  // 20 Nov: the handoff sent a session to the Portfolio Design file after CS2 had moved to the MVP file.
+  const reg = JSON.parse(fs.readFileSync(path.join(root, 'reference/figma-locations.json'), 'utf8'));
+  const stale = reg.stale[0];
+  const planted = GOOD_HANDOFF.replace('## Next action\n', `## Next action\nRead the frame ${stale.node} in file ${stale.file} first.\n`);
+  const p = checkHandoff(planted);
+  const own = checkHandoff(GOOD_HANDOFF).filter(x => /Figma|stale|figma-locations|figma\.com/.test(x));
+  const unpointed = checkHandoff(GOOD_HANDOFF.replace(/figma-locations\.json/g, 'the notes'));
+  return [
+    ['a handoff naming a stale frame fails', p.some(x => x.includes(stale.node) && /stale/.test(x)), p.join(' | ')],
+    ['a handoff restating a file key fails', p.some(x => x.includes(`restates Figma file key ${stale.file}`)), p.join(' | ')],
+    ['a handoff that does not point at the registry fails', unpointed.some(x => /does not point at/.test(x)), unpointed.join(' | ')],
+    ['the real handoff has no Figma location problem', own.length === 0, own.join(' | ')],
   ];
 });
 

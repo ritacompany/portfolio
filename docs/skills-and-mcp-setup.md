@@ -56,7 +56,7 @@ Measured in this session (1M context window):
 
 **1. Turn off 100 of your 142 account skills in claude.ai, keep them listed below.** This is the biggest win. It frees the allowance so the skills you keep actually trigger. Nothing is lost: claude.ai keeps each one and a toggle brings it back.
 
-**2. Move figma-mondai out of every session and into the Mondai repo only.** It is the work account, CS2 must never use it (HANDOFF, 3 Nov) and it is user scope today, so it loads in the portfolio too. Re-add it as local scope for `~/Code/Mondai`. The portfolio keeps the Figma connector on your own account.
+**2. Withdrawn 20 Nov: keep figma-mondai where the portfolio can reach it.** This said CS2 must never use the work account. On 20 Nov the CS2 frame was in a file opened through that login, so moving it out would have cut the portfolio off from it. Which account opens which file now lives in `reference/figma-locations.json`.
 
 **3. One home per skill.** Each duplicate keeps one copy, chosen by where it is used:
 

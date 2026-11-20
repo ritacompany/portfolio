@@ -4,10 +4,13 @@
 // It needs the header lines (Updated, By, Section, Loop step) and every heading below with something
 // under it ("None" is fine). The repo is public and his record never goes in git (CS2_PROCESS.md,
 // Storage), so a quotation of eight words or more is refused: point to where the source lives instead.
+// Figma locations live only in reference/figma-locations.json: a handoff that restates a file key or names a
+// frame the registry marks stale fails, and so does a registry entry not verified within its age limit.
 // Prints HANDOFF_PASS and exits 0, or lists every problem, prints HANDOFF_FAIL and exits 1.
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
+import { checkPointers, checkRegistry, REGISTRY } from '../../scripts/check-figma-locations.mjs';
 
 export const HEADINGS = [
   'Where it stopped',
@@ -17,6 +20,11 @@ export const HEADINGS = [
   'Waiting for Claude Code',
   'Read first',
 ];
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../..');
+function loadRegistry() {
+  try { return JSON.parse(fs.readFileSync(path.join(ROOT, REGISTRY), 'utf8')); } catch { return null; }
+}
 
 export function checkHandoff(raw) {
   const text = raw.replace(/<!--[\s\S]*?-->/g, '');
@@ -43,6 +51,9 @@ export function checkHandoff(raw) {
       if (m[1].trim().split(/\s+/).length >= 8) problems.push(`line ${i + 1}: a quotation of 8 words or more; point to where the source lives instead`);
     if (/[—–]|\s--\s/.test(line)) problems.push(`line ${i + 1}: dash`);
   });
+  const reg = loadRegistry();
+  if (!reg) problems.push(`${REGISTRY} missing or unreadable: it is where the handoff points for every Figma location`);
+  else problems.push(...checkPointers(reg, { 'reference/cs2/HANDOFF.md': text }).map(p => p.replace(/^reference\/cs2\/HANDOFF\.md:?/, 'line').trim()));
   return problems;
 }
 
@@ -59,6 +70,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const updated = (raw.match(/^Updated:\s*(.+)$/m) || [])[1];
   if (last && updated && Date.parse(updated.replace(' ', 'T')) + 3 * 3600000 < Date.parse(last))
     problems.push(`"Updated:" ${updated} is older than the last CS2 work commit (${last.slice(0, 16)}); rewrite Where it stopped and Next action for where things stand now`);
+  const reg = loadRegistry();
+  if (reg) problems.push(...checkRegistry(reg, new Date().toISOString().slice(0, 10)).map(p => `${REGISTRY}: ${p}`));
   if (problems.length) { console.log(problems.map(p => `  ${p}`).join('\n')); console.log('HANDOFF_FAIL'); process.exit(1); }
   console.log('HANDOFF_PASS');
 }

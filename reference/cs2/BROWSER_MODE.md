@@ -16,6 +16,11 @@ GitHub, as he always does, and says something like pick up where we left off. Th
    action and the `Updated:` time, so he can see it is current. Ask him nothing first.
 2. Start on the next action.
 
+Where his designs are in Figma: `reference/figma-locations.json`, never a key or frame id from any other
+file. This chat has no Figma, so it never tells him a frame is missing or Figma is blocked. When he says a
+design now lives somewhere else, take his word, put the file, page and frame name in the handoff under
+"Waiting for Claude Code" and carry on; Claude Code verifies it and updates the registry.
+
 If `HANDOFF.md` is not in what you can see, say that in one line: the chat needs the portfolio repo
 attached. Do not work from memory or from an older copy.
 

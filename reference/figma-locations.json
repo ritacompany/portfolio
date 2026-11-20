@@ -1,0 +1,101 @@
+{
+  "about": "Where each live design is in Figma right now. The one home for Figma file keys, pages and frame ids. Chadwick moves files between his two Figma accounts, so a pointer anywhere else goes stale; every other file points here. Read it before any Figma call. When a frame is not where this says, search the other files in `files` by frame name before telling him anything is missing or blocked, then update the entry. Check: node scripts/check-figma-locations.mjs",
+  "maxAgeDays": 7,
+  "files": [
+    {
+      "key": "5RO0m4bYYrTvbiaOgaU3tI",
+      "name": "Desktop 1 (MVP)",
+      "account": "opened through the Rita Dev login, the Mondai work Figma account (Full seat on its team, 20 Nov); which account owns the file is not recorded",
+      "access": "read and write through the Figma connection in Claude Code, 20 Nov",
+      "checked": "2026-11-20"
+    },
+    {
+      "key": "IarvWaqjIwrZ2afQmMxKm6",
+      "name": "Portfolio Design",
+      "account": "his personal Figma account; the Rita Dev login has only a View seat here",
+      "access": "read only and rate limited through the Rita Dev login, 20 Nov",
+      "checked": "2026-11-20"
+    }
+  ],
+  "designs": [
+    {
+      "id": "cs2-framework",
+      "what": "CS2 framework case study, the current frame",
+      "file": "5RO0m4bYYrTvbiaOgaU3tI",
+      "page": {
+        "name": "CS",
+        "id": "5658:1061"
+      },
+      "frame": {
+        "name": "mondai framework cS most current",
+        "id": "6331:20607"
+      },
+      "verified": "2026-11-20",
+      "how": "use_figma read of the node, name and parent page matched"
+    },
+    {
+      "id": "mondai-collection",
+      "what": "Mondai case study collection page (replaces the old Mondai case studies frame)",
+      "file": "5RO0m4bYYrTvbiaOgaU3tI",
+      "page": {
+        "name": "CS",
+        "id": "5658:1061"
+      },
+      "frame": {
+        "name": "Mondai case study collection",
+        "id": "6331:27875"
+      },
+      "verified": "2026-11-20",
+      "how": "use_figma read of the node, name and parent page matched"
+    },
+    {
+      "id": "haven-cs",
+      "what": "Haven case study as carried into the MVP file (style reference)",
+      "file": "5RO0m4bYYrTvbiaOgaU3tI",
+      "page": {
+        "name": "CS",
+        "id": "5658:1061"
+      },
+      "frame": {
+        "name": "Transported Haven CS",
+        "id": "5812:21569"
+      },
+      "verified": "2026-11-20",
+      "how": "listed as a top level frame on page CS"
+    }
+  ],
+  "stale": [
+    {
+      "design": "cs2-framework",
+      "file": "IarvWaqjIwrZ2afQmMxKm6",
+      "node": "4269:9433",
+      "was": "framework case study WIP frame, page VC",
+      "since": "2026-11-20",
+      "why": "CS2 moved to the MVP file; current frame is cs2-framework"
+    },
+    {
+      "design": "cs2-framework",
+      "file": "5RO0m4bYYrTvbiaOgaU3tI",
+      "node": "5763:2448",
+      "was": "Mondai Framework CS Master",
+      "since": "2026-11-20",
+      "why": "renamed Mondai Framework CS Master OLD in the file"
+    },
+    {
+      "design": "cs2-framework",
+      "file": "5RO0m4bYYrTvbiaOgaU3tI",
+      "node": "6228:102151",
+      "was": "mondai fraework CS Master NEW",
+      "since": "2026-11-20",
+      "why": "superseded by mondai framework cS most current"
+    },
+    {
+      "design": "haven-cs",
+      "file": "5RO0m4bYYrTvbiaOgaU3tI",
+      "node": "5733:19874",
+      "was": "Haven CS Master",
+      "since": "2026-11-20",
+      "why": "node no longer exists in the file"
+    }
+  ]
+}
