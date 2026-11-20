@@ -52,5 +52,5 @@ Scope: the framework page ends with the example results ending he reviewed (endi
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/Users/chadwickfenner/Code/portfolio-site; path=107572ec95e7/16 entries; EXPECT=matched; output-sha256=bece8b6c6fdbf2bcff1556fe9182ea5a52ef02487966a8371e31d20c6561a782; output-bytes=26
 
-- [ ] G9: committed as only my files and hunks on claude/relaxed-ride-5mlbdu, pushed, and the page open at 1440 and 768 in the built-in browser for his review
-  EVIDENCE: pending
+- [x] G9: committed as only my files and hunks on claude/relaxed-ride-5mlbdu, pushed, and the page open at 1440 and 768 in the built-in browser for his review
+  EVIDENCE: 2022028 holds only index.html (the ending section), framework.css (the ending block) and reports/cs2-results-ending/; .claude/launch.json and the tablet-breakpoint shots left unstaged; pushed to origin claude/relaxed-ride-5mlbdu; built-in browser tab seed at 1440 and tab-1 at 768 on http://localhost:8766/mondai/framework/, scrolled to the ending (20 Nov)
