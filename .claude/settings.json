@@ -125,6 +125,11 @@
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-copy-match.mjs\"",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-location.mjs\" pre",
+            "timeout": 10
           }
         ]
       },
@@ -197,6 +202,15 @@
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/cs2-cost-guard.mjs\" stop",
             "timeout": 15
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-location.mjs\" stop",
+            "timeout": 10
           }
         ]
       }

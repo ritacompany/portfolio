@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // PreToolUse check for Figma writes to the CS2 case study frames. The copy guard only protects the copy
 // files; this makes sure the text that reaches Figma is that copy. A write is a CS2 write when its code
-// names a frame id listed in CS2_PROCESS.md or a frame named "Mondai CS". Then every text string in the
+// names a CS2 frame id (CS2_PROCESS.md or reference/figma-locations.json) or a frame named "Mondai CS". Then every text string in the
 // code is checked against the copy rules (check-copy.mjs --fragments), and every string of four or more
 // words must appear in a copy file (reference/cs2/copy/) or a layout plan (reference/cs2/layout/), where
 // figure text is written. Anything else is refused (exit 2) with the strings at fault. Not a CS2 write: exit 0.
@@ -19,6 +19,12 @@ const cs2 = path.join(root, 'reference/cs2');
 
 const processDoc = fs.existsSync(path.join(cs2, 'CS2_PROCESS.md')) ? fs.readFileSync(path.join(cs2, 'CS2_PROCESS.md'), 'utf8') : '';
 const ids = new Set(processDoc.match(/\b\d{4}:\d{4}\b/g) || []);
+// The CS2 frames are wherever reference/figma-locations.json says now, plus the ones it marks stale.
+try {
+  const reg = JSON.parse(fs.readFileSync(path.join(root, 'reference/figma-locations.json'), 'utf8'));
+  for (const d of reg.designs || []) if (d.id === 'cs2-framework') ids.add(d.frame.id);
+  for (const s of reg.stale || []) if (s.design === 'cs2-framework') ids.add(s.node);
+} catch {}
 const targetsCs2 = /Mondai CS/.test(code) || [...ids].some(id => code.includes(id));
 if (!targetsCs2) process.exit(0);
 

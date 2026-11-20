@@ -52,6 +52,10 @@ he is. Mondai product mechanics are background for the case studies and nothing 
 
 ## What's in this folder
 
+- `reference/figma-locations.json` : where every live design is in Figma right now (file, page, frame, account,
+  last verified), and the only place a file key or frame id is written. He moves files between his two Figma
+  accounts: read it before any Figma call, and when a frame is not there, search its other files by frame name
+  before telling him anything is missing or blocked. `node scripts/check-figma-locations.mjs`.
 - `docs/PROJECT_CONTEXT.md` : purpose, the Figma file that is the visual source of truth,
   current work and the layout guardrails. Read first.
 - `docs/ABOUT.md` and `docs/VOICE.md` : approved biography and approved writing guidance. Both

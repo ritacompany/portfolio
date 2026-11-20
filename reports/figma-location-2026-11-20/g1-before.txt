@@ -1,0 +1,25 @@
+Live designs (reference/figma-locations.json):
+  cs2-framework: Desktop 1 (MVP) 5RO0m4bYYrTvbiaOgaU3tI, page CS 5658:1061, frame "mondai framework cS most current" 6331:20607, verified 2026-11-20
+  mondai-collection: Desktop 1 (MVP) 5RO0m4bYYrTvbiaOgaU3tI, page CS 5658:1061, frame "Mondai case study collection" 6331:27875, verified 2026-11-20
+  haven-cs: Desktop 1 (MVP) 5RO0m4bYYrTvbiaOgaU3tI, page CS 5658:1061, frame "Transported Haven CS" 5812:21569, verified 2026-11-20
+Known files, search these by frame name when a frame is not where it says:
+  Desktop 1 (MVP) 5RO0m4bYYrTvbiaOgaU3tI: read and write through the Figma connection in Claude Code, 20 Nov
+  Portfolio Design IarvWaqjIwrZ2afQmMxKm6: read only and rate limited through the Rita Dev login, 20 Nov
+  reference/cs2/HANDOFF.md:28: names 5763:2448 (Mondai Framework CS Master), which the registry marks stale for cs2-framework: renamed Mondai Framework CS Master OLD in the file
+  reference/cs2/HANDOFF.md:30: restates Figma file key 5RO0m4bYYrTvbiaOgaU3tI; point at reference/figma-locations.json instead
+  reference/cs2/HANDOFF.md:30: names 5763:2448 (Mondai Framework CS Master), which the registry marks stale for cs2-framework: renamed Mondai Framework CS Master OLD in the file
+  reference/cs2/HANDOFF.md:30: names 5733:19874 (Haven CS Master), which the registry marks stale for haven-cs: node no longer exists in the file
+  reference/cs2/HANDOFF.md:61: restates Figma file key IarvWaqjIwrZ2afQmMxKm6; point at reference/figma-locations.json instead
+  reference/cs2/HANDOFF.md:61: names 4269:9433 (framework case study WIP frame, page VC), which the registry marks stale for cs2-framework: CS2 moved to the MVP file; current frame is cs2-framework
+  reference/cs2/HANDOFF.md:87: names 5763:2448 (Mondai Framework CS Master), which the registry marks stale for cs2-framework: renamed Mondai Framework CS Master OLD in the file
+  reference/cs2/HANDOFF.md:89: restates Figma file key 5RO0m4bYYrTvbiaOgaU3tI; point at reference/figma-locations.json instead
+  reference/cs2/HANDOFF.md:89: names 5733:19874 (Haven CS Master), which the registry marks stale for haven-cs: node no longer exists in the file
+  reference/cs2/HANDOFF.md:91: names 5763:2448 (Mondai Framework CS Master), which the registry marks stale for cs2-framework: renamed Mondai Framework CS Master OLD in the file
+  reference/cs2/HANDOFF.md:135: restates Figma file key 5RO0m4bYYrTvbiaOgaU3tI; point at reference/figma-locations.json instead
+  reference/cs2/HANDOFF.md:135: names 5733:19874 (Haven CS Master), which the registry marks stale for haven-cs: node no longer exists in the file
+  reference/cs2/HANDOFF.md:141: restates Figma file key IarvWaqjIwrZ2afQmMxKm6; point at reference/figma-locations.json instead
+  reference/cs2/HANDOFF.md:141: names 4269:9433 (framework case study WIP frame, page VC), which the registry marks stale for cs2-framework: CS2 moved to the MVP file; current frame is cs2-framework
+  reference/cs2/WORKING_LOOP.md:79: names 4269:9433 (framework case study WIP frame, page VC), which the registry marks stale for cs2-framework: CS2 moved to the MVP file; current frame is cs2-framework
+  reference/cs2/CS2_PROCESS.md:201: names 4269:9433 (framework case study WIP frame, page VC), which the registry marks stale for cs2-framework: CS2 moved to the MVP file; current frame is cs2-framework
+  reference/cs2/HANDOFF.md: does not point at reference/figma-locations.json
+FIGMA_LOCATIONS_FAIL

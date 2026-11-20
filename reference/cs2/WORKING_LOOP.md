@@ -49,7 +49,7 @@ before the first reply, then HANDOFF.md for where things stand.
 - Keep his sections as the page names them. Never invent a new section, never split one by word count and
   never make a text only block.
 - Layout, per version: list the points the section needs (A, B, C, D), each one a decision and the thinking
-  or research behind it. Decide which points need a visual, from how the screens in his portfolio frame
+  or research behind it. Decide which points need a visual, from how the screens in his current CS2 frame
   actually work: an interaction that is talked about gets shown. Count the images, then pick a
   layout from his pool with that many image frames and room for the text (Case study layouts section, page
   VC, T1I T2I T3I). Points without an image go together with the text beside an image, never alone. Draw it
@@ -76,7 +76,7 @@ before the first reply, then HANDOFF.md for where things stand.
 - If the frame tiles are missing in a new worktree, copy .cs2-canvas/img from ~/Code/portfolio (the main
   checkout keeps the latest copy, since archiving a session deletes its worktree; copy them back there after
   a re-export) or
-  re-export frame 4269:9433 from Figma and tile it (1500px tiles named fNN_y.png) before building.
+  re-export the CS2 frame from Figma (reference/figma-locations.json) and tile it (1500px tiles named fNN_y.png) before building.
 
 ## Checks, in order
 
