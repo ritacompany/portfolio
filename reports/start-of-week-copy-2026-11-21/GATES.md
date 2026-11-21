@@ -23,5 +23,5 @@ Scope: the five Start of week descriptions are short enough to stay within three
 - [x] G5: Chadwick said yes to the texts before anything in the page or final-copy.md changed
   EVIDENCE: his yes, 21 Nov, in chat, to the round 2 texts
 
-- [ ] G6: pushed to claude/fw-start-of-week-copy, draft PR into claude/fw-integration open, lead session told in one line
-  EVIDENCE: pending
+- [x] G6: pushed to claude/fw-start-of-week-copy, draft PR into claude/fw-integration open, lead session told in one line
+  EVIDENCE: pushed; draft PR #38 into claude/relaxed-ride-5mlbdu (lead moved the base); lead chat closing, so told Chadwick directly per its message
