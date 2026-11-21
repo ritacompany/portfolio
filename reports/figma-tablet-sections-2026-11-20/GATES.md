@@ -55,3 +55,11 @@ ABANDON: G8 rendered line breaks cannot be seen without Satoshi; checked on his 
     against five desktop boxes: all heights matched), but the cloud render still draws the old line breaks, so the
     rendered text could not be checked here. On a machine with Satoshi, Figma lays text out again on open (inferred from
     how Figma handles font changes, not tested).
+
+## Added 21 Nov, his ask: the other four Start of week templates
+
+Cloned from his edited template 1 frame (6341:30117), so his widths carry over (narrative 437, caption 314), with each
+desktop template's carousel and caption swapped in: template 2 Catching up 6345:30110, 3 Rollover 6345:30525,
+4 Recalibration 6345:30930, 5 Reset 6345:31358. Stacked under template 1 in the same section; no overlap with any
+other top level node; 6331:20607 unchanged (21 children, 24745.56 tall). Captions at 314 run 5 lines (measured with the
+site's Satoshi); the box heights are set for that, the cloud render still draws the desktop breaks.
