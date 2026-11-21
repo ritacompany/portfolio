@@ -1,0 +1,68 @@
+/* Preview of his tablet frames on the framework page, 21 Nov. On his yes this block moves to the end of
+   site/css/framework.css and the two images move to site/assets/framework/.
+   Source: Figma 5RO0m4bYYrTvbiaOgaU3tI, section "Tablet sections for Chadwick, 20 Nov"
+   (reports/figma-tablet-sections-2026-11-20/). His frames set 768; between 768 and 1159 the same layout
+   scales with the content width: columns share it in his proportions, images keep their shape, text widths
+   are caps. His headlines sit at 40 in Figma only because the tool could not set 32, so the page keeps
+   Heading/40 at 32 and carries his Calendar line breaks over in em (660 at 40 is 16.5em). Images his frames
+   crop differently from the desktop exports show his tablet export as the image's background (padding-left
+   100% empties the content box), so the img keeps its alt text and the desktop file. */
+@media (min-width: 768px) and (max-width: 1159.98px) {
+  /* Personalized timeline: Capacity over Effort on the left; the card, then the Example, on the right.
+     Two columns of their own heights, so CSS columns with a forced break before the card. */
+  .framework .fw .fw-sec[data-figma-node="5812:17084"] { display: block; columns: 2; column-gap: 32px; padding-bottom: 164px; }
+  .framework .fw .fw-sec[data-figma-node="5812:17084"] > * { break-inside: avoid; }
+  .framework .fw .fw-sec[data-figma-node="5812:17084"] > :is(h2, [data-figma-node="5812:17087"]) { column-span: all; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17087"] { margin-bottom: 80px; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:17121"], [data-figma-node="5812:17089"]) { margin-top: 0; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17122"] { margin-top: 20px; max-width: 520px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17124"] { margin-top: 32px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17125"] { margin-top: 20px; max-width: 520px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17089"] {
+    break-before: column; display: block; width: 100% !important; height: auto !important;
+    max-width: 336px; aspect-ratio: 336 / 260; object-fit: cover; border-radius: 17px; /* his 336 is the cap: the export is 616 px wide */
+  }
+  .framework .fw .fw-sec > [data-figma-node="5812:17127"] { margin-top: 28px !important; padding: 0; max-width: none; background: none; border-radius: 0; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17128"] { margin-top: 16px !important; padding: 0; max-width: none; background: none; border-radius: 0; }
+
+  /* Calendar setup: the laptop full width under the headline, the three answers under it. */
+  .framework .fw .fw-sec[data-figma-node="5812:17129"] { padding-bottom: 164px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17134"] { max-width: 16.5em; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17138"] {
+    order: 1; margin-top: 80px; width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 704 / 428;
+    box-sizing: border-box; padding-left: 100%; background: url("calendar-setup-tablet.webp") center / 100% 100% no-repeat;
+  }
+  .framework .fw .fw-sec > [data-figma-node="5812:17137"] { order: 2; margin-top: 37px; max-width: 578px; }
+
+  /* Falling behind, first part: the rail card and its three notes in one box, card 400 and notes 256 at 768
+     with 24 between them and 23 at the right; the box is as tall as the card. */
+  .framework .fw .fw-sec[data-figma-node="5812:20248"] {
+    display: grid; justify-items: start; align-items: start;
+    grid-template-columns: 1px min(calc((100% - 25px) * 400 / 679), 466px) 24px minmax(0, 256fr) minmax(0, 23fr); /* the card never grows past its desktop 466 */
+    grid-template-rows: repeat(9, auto) 1fr;
+  }
+  .framework .fw .fw-sec[data-figma-node="5812:20248"] > * { grid-column: 1 / -1; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20254"] { grid-row: 1; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20255"] { grid-row: 2; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20258"] { grid-row: 3; max-width: 457px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20259"] {
+    display: block; grid-row: 4 / span 7; justify-self: stretch; align-self: stretch; margin-top: 40px !important;
+  }
+  .framework .fw .fw-sec > [data-figma-node="5812:20260"] {
+    grid-column: 2; grid-row: 4 / span 7; margin-top: 41px; margin-bottom: 1px;
+    width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 400 / 481; border-radius: 15px 0 0 15px;
+    box-sizing: border-box; padding-left: 100%; background: url("right-rail-tablet.webp") center / 100% 100% no-repeat;
+  }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:20296"], [data-figma-node="5812:20297"], [data-figma-node="5812:20299"], [data-figma-node="5812:20300"], [data-figma-node="5812:20302"], [data-figma-node="5812:20303"]) { grid-column: 4; max-width: 520px; } /* the body measure, past his 256 at wide tablets */
+  .framework .fw .fw-sec > [data-figma-node="5812:20296"] { grid-row: 4; margin-top: 96px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20297"] { grid-row: 5; margin-top: 20px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20299"] { grid-row: 6; margin-top: 32px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20300"] { grid-row: 7; margin-top: 20px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20302"] { grid-row: 8; margin-top: 32px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:20303"] { grid-row: 9; margin-top: 20px; }
+  .framework .fw .fw-sec[data-figma-node="5812:20248"] > .rule { justify-self: stretch; margin-top: 164px !important; }
+
+  /* Start of week: his text widths. */
+  .framework .fw .fw-sec > [data-figma-node="5812:20715"] { max-width: 437px; }
+  .framework .fw .fw-sec[data-figma-node="5812:20498"] .sow__desc { max-width: 314px; }
+}

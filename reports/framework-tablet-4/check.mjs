@@ -1,5 +1,5 @@
 // Round 4, G1 and G2: the Capacity card's overlay sits exactly on the card at every width, the card keeps its
-// desktop size at tablet, the cursor demo plays, and reduced motion mounts nothing.
+// size from his tablet frame (336 by 260) at tablet, the cursor demo plays, and reduced motion mounts nothing.
 // Run with the site served on 4318 (PORT=4318 node scripts/serve.mjs). Prints CAPCARD_OK or the failures.
 import { createRequire } from "node:module";
 const { chromium } = createRequire(import.meta.url)("playwright");
@@ -27,11 +27,19 @@ for (const [w, reduce] of [[390, false], [768, false], [1024, false], [1150, fal
   if (reduce) { if (r.cap) fails.push(`${tag}: overlay mounted with reduced motion`); }
   else {
     if (!r.cap) fails.push(`${tag}: no overlay`);
-    else if (r.img.some((v, k) => Math.abs(v - r.cap[k]) > 0.5)) fails.push(`${tag}: overlay ${r.cap.map(Math.round)} vs card ${r.img.map(Math.round)}`);
+    else {
+      // At tablet his frame (21 Nov) crops the card with object-fit: cover, so the overlay is the whole drawn image,
+      // centred on the card box; elsewhere it is the card box itself.
+      const cover = w >= 768 && w < 1160;
+      const dh = cover ? r.img[2] * 596 / 616 : r.img[3];
+      const want = [r.img[0], r.img[1] + (r.img[3] - dh) / 2, r.img[2], dh];
+      if (want.some((v, k) => Math.abs(v - r.cap[k]) > 0.5)) fails.push(`${tag}: overlay ${r.cap.map(Math.round)} vs drawn card ${want.map(Math.round)}`);
+    }
     if (!cursorSeen) fails.push(`${tag}: cursor never shown`);
     if (r.num && !/6/.test(r.num)) fails.push(`${tag}: ends at ${r.num}, not 6`);
   }
-  if (w >= 768 && w < 1160 && (Math.abs(r.img[2] - 308) > 0.5 || Math.abs(r.img[3] - 298) > 0.5)) fails.push(`${tag}: card ${r.img[2]} by ${r.img[3]}, not 308 by 298`);
+  // His tablet frame (21 Nov): the card is 336 by 260 at tablet (it was the desktop 308 by 298 in round 4)
+  if (w >= 768 && w < 1160 && (Math.abs(r.img[2] - 336) > 0.5 || Math.abs(r.img[3] - 260) > 0.5)) fails.push(`${tag}: card ${r.img[2]} by ${r.img[3]}, not 336 by 260`);
   console.log(tag, JSON.stringify(r), cursorSeen ? "cursor seen" : "");
   await p.close();
 }

@@ -68,7 +68,7 @@ for (const motion of ["reduce", "no-preference"]) for (const w of [768, 834, 102
     }
     // T6 and T7 no figure wider than its Figma width (the width attribute), none wider than the content
     for (const i of document.querySelectorAll(".fw-sec > img.fig")) {
-      const fw = +i.getAttribute("width");
+      const fw = i.dataset.figmaNode === "5812:17089" ? 336 : +i.getAttribute("width"); // his tablet frame sets the Capacity card to 336 (21 Nov)
       if (R(i).width > fw + 0.5) out.push(`T6/T7 ${i.dataset.figmaNode} ${R(i).width.toFixed(0)} > ${fw}`);
       if (R(i).right > vw - margin + 0.5) out.push(`T6/T7 ${i.dataset.figmaNode} past the margin`);
     }

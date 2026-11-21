@@ -187,8 +187,14 @@ export function mount(img) {
     cursor.style.transform = `translate(${(tip[0] / IMG_W) * 100}cqw, ${(tip[1] / IMG_W) * 100}cqw) scale(${1 - 0.1 * pressDepth(t)})`;
   }
   function layout() {
-    // Custom properties, because the stacked layouts force section children to static and auto size
-    for (const [k, v] of [["--cd-x", img.offsetLeft], ["--cd-y", img.offsetTop], ["--cd-w", img.offsetWidth], ["--cd-h", img.offsetHeight]]) box.style.setProperty(k, `${v}px`);
+    // Custom properties, because the stacked layouts force section children to static and auto size.
+    // At tablet his frame crops the card (object-fit: cover), so the overlay takes the whole drawn image, centred on the box.
+    let x = img.offsetLeft, y = img.offsetTop, w = img.offsetWidth, h = img.offsetHeight;
+    if (getComputedStyle(img).objectFit === "cover") {
+      const s = Math.max(w / IMG_W, h / IMG_H), rw = IMG_W * s, rh = IMG_H * s;
+      x += (w - rw) / 2; y += (h - rh) / 2; w = rw; h = rh;
+    }
+    for (const [k, v] of [["--cd-x", x], ["--cd-y", y], ["--cd-w", w], ["--cd-h", h]]) box.style.setProperty(k, `${v}px`);
   }
   layout();
   seek(0);

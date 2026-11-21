@@ -66,7 +66,7 @@ for (const w of [768, 1024, 1150, 1180]) {
   // scaled from 1440 by the window (zoom 1180 / 1440), as it is from 1200 up.
   if (w === 1180 && Math.abs(fw.z - 1180 / 1440) > 0.002) problems.push(`1180 not in the desktop composition (zoom ${fw.z})`);
   if (w < 1160) {
-    const widths = await F.page.evaluate(() => [...document.querySelectorAll(".fw-sec > .s-body-16")].filter((e) => !e.closest('[data-figma-node="5812:16447"]') && !e.matches(".oneline")).map((e) => e.getBoundingClientRect().width));
+    const widths = await F.page.evaluate(() => [...document.querySelectorAll(".fw-sec > .s-body-16")].filter((e) => !e.closest('[data-figma-node="5812:16447"]') && !e.matches(".oneline") && e.dataset.figmaNode !== "5812:17137") /* his tablet frame sets the Calendar answers to 578 (21 Nov) */.map((e) => e.getBoundingClientRect().width));
     const max = Math.max(...widths);
     if (max > 520.5) problems.push(`${w} body ${max.toFixed(0)} wide, want at most 520`);
     if (max < 519.5) problems.push(`${w} no body block reaches 520 (widest ${max.toFixed(0)})`);

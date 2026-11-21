@@ -437,6 +437,9 @@ found, run Artifact list and use the "Chadwick Fenner, product designer" row; do
 as another account's link.
 
 Loop log:
+- 21 Nov, his four tablet frames on the framework page (Personalized timeline, Calendar setup, Falling behind,
+  Start of week text widths): built on his Yes to the [site change] card, from the preview in site/dev/framework-tablet/;
+  reports/figma-tablet-sections-2026-11-20/. Waiting on him to try it.
 - 17 Nov, capacity card demo on the framework page (done on his yes: "i checked it works fine"). Type on
   as it opens, his cursor, right right left left (76c1c9f). Tried on the preview link, version 4 built from cfe7bea.
 - 14 Nov, Start of week carousel on the framework page (done on his yes: "this works for the time being,
