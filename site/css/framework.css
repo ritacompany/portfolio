@@ -338,6 +338,10 @@
   .framework .fw .fw-sec > :is([data-figma-node="5812:17124"], [data-figma-node="5812:17125"]) { grid-column: 2; }
   .framework .fw .fw-sec > :is([data-figma-node="5812:17121"], [data-figma-node="5812:17124"]) { grid-row: 3; margin-top: 80px; }
   .framework .fw .fw-sec > :is([data-figma-node="5812:17122"], [data-figma-node="5812:17125"]) { grid-row: 4; }
+  /* The Capacity card's animated overlay is absolutely placed over the card from the card's offsets, which
+     count from the section's padding box. Placed in a grid column it would count from the grid area instead
+     and land a margin to the right (round 4, his ask 20 Nov: the card stays exactly as at desktop). */
+  .framework .fw .fw-sec[data-figma-node="5812:17084"] > .capdemo { grid-column: auto; grid-row: auto; }
 
   /* Schedule view: its two notes under the screen sit side by side, as at 1440. */
   .framework .fw .fw-sec[data-figma-node="5812:17143"] { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
