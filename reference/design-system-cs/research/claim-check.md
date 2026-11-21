@@ -1,10 +1,7 @@
-# Claim check for CONTENT.md: NOT RUN
+# Claim check for CONTENT.md
 
-21 Nov 2026. Status: **not run, gate G3 not met.**
-
-Why: the project cost guard (`.claude/hooks/cs2-cost-guard.mjs`) allows three sub agents per turn
-unless he asks for more. The three research agents used that allowance, and the guard refused the
-claim check agent. The guard was not bypassed.
+21 Nov 2026. Status: **run.** The first attempt was refused by the project cost guard (three sub
+agents a turn); Chadwick approved a fourth agent in chat and it ran in the next turn.
 
 How it must run: one fresh Sonnet agent that gets only the claims and links below, never
 `CONTENT.md`. It opens each page and returns SUPPORTED, PARTLY, NOT SUPPORTED or COULD NOT OPEN with
@@ -41,4 +38,18 @@ Not in scope of the check: the Mondai evidence (N ids and paths), which is count
 and the decision inventory, and the findings carried from earlier notes, which had their own claim
 checks (`research_notes/.../claim-check.md`).
 
-Verdicts: none yet.
+## Verdicts (fresh Sonnet agent, saw only this list, opened every link)
+
+- C1 PARTLY: levels and the staff line are right, but tokens are named: every level requires experience with design tokens and staff makes decisions about tokens. Corrected.
+- C2 SUPPORTED: "No systems-level thinking" is a level III promotion gap, not a hard blocker. Wording kept off the blocker sense.
+- C3, C4, C5, C6, C7 SUPPORTED.
+- C8 PARTLY: the 80% and 95% thresholds are plans, not reached. Corrected.
+- C9 SUPPORTED: the page says over 12,000. Corrected to over.
+- C10, C11, C12, C14, C15, C16, C20, C22 SUPPORTED. C22: the Careem posting has since been removed.
+- C13 PARTLY: the page says the most useful improvements came from things no metric flagged, without naming transcripts as the single best source. Corrected.
+- C17 NOT SUPPORTED on the public page: n=147 shows, the percentages do not; they may be in the gated report. Marked unconfirmed in CONTENT.md.
+- C18 PARTLY: numbers match the subtitle; the body is paywalled. Already marked preview only.
+- C19 PARTLY: the wardens line is tied to the large team stage. Not used in a recommendation.
+- C21 COULD NOT OPEN: 404 on 21 Nov. Marked in CONTENT.md.
+
+Count: 15 supported, 5 partly, 1 not supported, 1 could not open (22).

@@ -18,13 +18,17 @@ tokens reads junior. What the evidence does show is stronger than a quote: the e
 part everyone already has, and the pages that spend words on it are the ones with nothing else to
 show.
 
-- Semantic tokens are near universal: 85% of systems have a semantic tier and 90% a primitive tier
-  (zeroheight 2026, n=147, RESEARCH).
-- Employer ladders put the mechanics at entry level. One framework puts working with component and
-  token usage at its first level and owning architecture decisions at its fourth; a levelling template
-  puts "the fundamentals of system design" at junior. GitLab's design system ladder starts at
-  Product Designer and never names tokens at any level; its senior and staff rungs are triage,
-  deciding what belongs in the system, adoption and cross team work (RESEARCH, three ladders).
+- Semantic tokens look near universal: 85% of systems with a semantic tier and 90% with a primitive
+  tier (zeroheight 2026, n=147, RESEARCH). Caution: those figures come from the 19 Oct note; the
+  claim check found n=147 on the public report page but not the percentages, which may sit in the
+  gated full report. Do not cite them publicly until reread.
+- Employer ladders put the mechanics at entry level. One framework puts understanding component and
+  token usage at its first level and owning architecture decisions at its fourth; a levelling
+  template puts "the fundamentals of system design" at junior. GitLab's design system ladder asks
+  every level for experience with design tokens, then gives staff the decisions about tokens and
+  foundations; its senior and staff rungs are triage, deciding what belongs in the system, adoption
+  and cross team work (RESEARCH, three ladders). Token knowledge is required of everyone; what moves
+  a level is deciding.
 - Of 13 colour and token write ups by respected teams, about 10 use semantic tokens without
   explaining them. The clearest page that does explain them (Pendo) is also the one with no count,
   method or cost (CRAFT LORE, read as a pattern across 13).
@@ -42,7 +46,8 @@ to what he decided about colour and how he knows it held.
 **Table stakes** (assumed; junior if dwelt on)
 
 - A primitive to role to component chain and the naming anatomy behind it. Near universal (85% and
-  90%, zeroheight) and placed at entry level by the ladders above. Atlassian's own docs teach it in
+  90%, zeroheight, unconfirmed on the public page), required at every level by GitLab and placed at
+  entry level by the other two ladders. Atlassian's own docs teach it in
   one line; a reviewer does not need it taught again.
 - A component library with variants and states, documented. 92% of systems include documentation and
   90% define tokens in a design tool (zeroheight). In the 42 case study map, atomic levels or a
@@ -61,8 +66,8 @@ to what he decided about colour and how he knows it held.
   small text contrast. Radix: every one of 12 steps has a job, with a stated contrast guarantee for
   text steps.
 - A count before and after, with the method. Primer audited every colour pair across themes and put
-  the check in CI on every pull request; Harvey phased lint from warnings to pre commit errors at
-  about 80% and 95% adoption; Island migrated about 12,000 token uses at 98.75% accuracy.
+  the check in CI on every pull request; Harvey lints primitives now and plans legacy warnings at
+  80% adoption and pre commit errors at 95%; Island migrated over 12,000 token uses at 98.75% accuracy.
 - A named failure of the system itself. Island: a text token chosen because its hex matched a
   background broke in dark mode; hover and pressed collapsed into one token.
 - The system shown working on real screens, not on a specimen sheet (map: Swapnil, Nasir, Linear;
@@ -103,7 +108,8 @@ to what he decided about colour and how he knows it held.
   mistakes that lint, axe and visual checks caught, and still found that passing did not settle what
   ships. A general essay puts the ceiling on checking as the share of wrong work the checker accepts.
 - A human gate: what the lead set, checked and overruled. 1Password puts a human gate before work
-  starts; Atlassian found its best gains by reading transcripts, which no metric flagged.
+  starts; Atlassian says its most useful improvements came from things no metric flagged, found
+  partly by inspecting traces.
 - Evaluation by a designer on a Figma library. Every published agent test found was run by engineers
   on code; none by a designer on a library (map and this pass, no counterexample).
 - An employer now asks for exactly this: Careem's design systems role lists AI assisted audits and
@@ -179,16 +185,17 @@ rulings were reversed.
 ## Gates
 
 - G1, G2, G4, G5: met by this file (`check-content.mjs` and a manual read for Oxford commas and quotes).
-- G3: **not met.** Every new claim comes from a page an agent opened this session, but the independent
-  claim check could not run: the project's cost guard caps a turn at three sub agents, and the three
-  research agents used them. `claim-check.md` records the 22 claims and links ready for the check,
-  marked NOT RUN. It needs one fresh Sonnet agent in the next turn.
+- G3: met. An independent Sonnet agent, given only the claims and links in `claim-check.md`, opened
+  every page: 15 supported, 5 partly, 1 not supported, 1 could not open. Every partly and not
+  supported claim was corrected in this file (GitLab does name tokens; Harvey's thresholds are
+  plans; the zeroheight percentages are unconfirmed; Atlassian's transcript line; Figma's wardens
+  belong to the large team stage; the Jaiswal page now 404s).
 
 ## Sources
 
 Opened this pass (new):
 
-- RESEARCH, employer ladder: [GitLab, Product Designer, Design System job description](https://handbook.gitlab.com/job-description-library/product/product-designer-design-system/), modified 30 Oct 2026. Levels Product Designer to Distinguished; tokens not named.
+- RESEARCH, employer ladder: [GitLab, Product Designer, Design System job description](https://handbook.gitlab.com/job-description-library/product/product-designer-design-system/), modified 30 Oct 2026. Levels Product Designer to Distinguished; experience with design tokens required at every level, token decisions at staff.
 - RESEARCH, anonymous ladder (no author or organisation named): [Design Career Framework v3.0](https://mikeofmagnesia.github.io/career-framework/product-design.html), 2025. Read through a summarising fetch; level wording paraphrased by the tool except "Design systems, not just screens" and "No systems-level thinking".
 - RESEARCH, levelling template (author not named): [Design systems levelling sheet](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit).
 - CRAFT LORE: [Ariel Salminen, What's a design systems lead](https://arielsalminen.com/2023/whats-a-design-systems-lead/), Feb 2023.
@@ -218,9 +225,9 @@ Opened this pass (new):
 
 Used from earlier notes (opened in those passes, not reopened now):
 
-- RESEARCH, survey n=147: [zeroheight Design Systems Report 2026](https://report.zeroheight.com) via `research_notes/Design system case study readiness/maturity-signals.md`. Vendor with an interest in documentation.
+- RESEARCH, survey n=147: [zeroheight Design Systems Report 2026](https://report.zeroheight.com) via `research_notes/Design system case study readiness/maturity-signals.md`. Vendor with an interest in documentation. The claim check (21 Nov) could not find the tier, documentation or modes percentages on the public page; treat them as unconfirmed.
 - Employer: [Careem, Senior Product Designer, Design Systems](https://jobs.intodesignsystems.com/jobs/careem-senior-product-designer-design-systems-2ffpq7) via `research_notes/Design system case study hooks/hiring-signals-2026.md`.
-- CRAFT LORE, engineer: [Sujeet Jaiswal, Design system adoption foundations](https://sujeet.pro/articles/design-system-adoption-foundations), same note.
+- CRAFT LORE, engineer: [Sujeet Jaiswal, Design system adoption foundations](https://sujeet.pro/articles/design-system-adoption-foundations), same note. Returned 404 on 21 Nov; find its new address before citing it publicly.
 - Engineering log: [Kaelig Deloumeau-Prigent, agent teams](https://www.kaelig.fr/design-system-components-with-ai-agent-teams/) and the NordVPN benchmark via [Into Design Systems](https://intodesignsystems.substack.com/p/how-to-measure-if-ai-agents-actually), via `ai-design-system-landscape.md`.
 - Team write up: [1Password, agent driven design system](https://1password.com/blog/agent-driven-design-system), via the 42 case study map.
 - The 42 case study map, the reference board (24 pages) and the Etsy, NN/g, Kennedy, Learnist, Bogdan, Geoco and ADPList findings, all as recorded in those files.
