@@ -34,15 +34,16 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 
 <div class="bar">
   <div class="opts" role="group" aria-label="Options">
-    <button id="o-a" data-o="a" aria-pressed="true">A · Rows together</button>
+    <button id="o-a" data-o="a" aria-pressed="false">A · Rows together</button>
     <button id="o-b" data-o="b" aria-pressed="false">B · Accordion</button>
-    <button id="o-c" data-o="c" aria-pressed="false">C · Pathway by pathway</button>
+    <button id="o-c" data-o="c" aria-pressed="true">C · Pathway by pathway</button>
     <button id="o-live" data-o="live" aria-pressed="false">Live now</button>
   </div>
   <div class="ctl">
     <span>Starts</span>
     <div class="opts" role="group" aria-label="When it starts">
-      <button id="t-view" data-t="view" aria-pressed="true">In view</button>
+      <button id="t-view" data-t="view" aria-pressed="true">Plays once it is all on screen</button>
+      <button id="t-scrub" data-t="scrub" aria-pressed="false">Follows your scroll</button>
       <button id="t-pixel" data-t="pixel" aria-pressed="false">First pixel, as live</button>
     </div>
     <label><input type="checkbox" id="rm"> Reduced motion</label>
@@ -78,7 +79,7 @@ const WHAT = {
   live: "<b>Live now.</b> What the page does today: three bands fade in, opacity only, 0.16 s apart. Switch Starts to “First pixel, as live” and scroll at reading speed to see why it never shows: it finishes while the lower rows are still below the screen."
 };
 const fig = document.getElementById("fig");
-let opt = "a", trig = "view", armed = false, anims = [], start = null, io = null;
+let opt = "c", trig = "view", armed = false, anims = [], start = null, io = null;
 
 function piece(clip) { const d = document.createElement("div"); d.className = "piece"; d.style.clipPath = clip; fig.appendChild(d); return d; }
 function play(el, kf, delay, dur, easing = EASE) { const a = el.animate(kf, { duration: dur, delay, easing, fill: "both" }); anims.push(a); }
@@ -120,12 +121,26 @@ function build() {
   return () => anims.forEach((a) => { a.currentTime = 0; a.play(); });
 }
 
+// Plays once it is all on screen: the whole diagram has cleared a line 20 percent up from the bottom of the
+// window, so the reader's eye is on it. Follows your scroll: the same motion, its progress tied to where the
+// diagram sits, from its top 15 percent up the window to fully above the 20 percent line.
+let scrubbing = false;
+const total = () => Math.max(0, ...anims.map((a) => { const t = a.effect.getTiming(); return t.delay + t.duration; }));
+function scrubFrame() {
+  if (!scrubbing) return;
+  const vh = innerHeight, r = fig.getBoundingClientRect();
+  const from = vh * 0.85, to = vh * 0.8 - r.height;
+  const p = Math.min(1, Math.max(0, (from - r.top) / (from - to)));
+  const t = p * total(); anims.forEach((a) => { a.currentTime = t; });
+  requestAnimationFrame(scrubFrame);
+}
 function arm() {
-  io && io.disconnect();
+  io && io.disconnect(); scrubbing = false;
   start = build(); armed = !!start;
   if (!start) return;
+  if (trig === "scrub") { armed = false; scrubbing = true; requestAnimationFrame(scrubFrame); return; }
   io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting && armed) { armed = false; start(); io.disconnect(); } },
-    { threshold: trig === "pixel" ? 0 : 0.6 });
+    trig === "pixel" ? { threshold: 0 } : { threshold: 0.99, rootMargin: "0px 0px -20% 0px" });
   io.observe(fig);
 }
 function select(o) {
@@ -144,9 +159,9 @@ document.querySelectorAll("[data-t]").forEach((b) => b.addEventListener("click",
 document.getElementById("rm").addEventListener("change", () => select(opt));
 document.getElementById("replay").addEventListener("click", () => {
   const r = fig.getBoundingClientRect();
-  if (r.top < innerHeight && r.bottom > 0) { io && io.disconnect(); start = build(); if (start) start(); }
+  if (trig !== "scrub" && r.top < innerHeight && r.bottom > 0) { io && io.disconnect(); start = build(); if (start) start(); }
   else select(opt);
 });
 if (matchMedia("(prefers-reduced-motion: reduce)").matches) document.getElementById("rm").checked = true;
-select("a");
+select("c");
 </script>
