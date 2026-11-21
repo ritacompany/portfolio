@@ -1,50 +1,46 @@
 # Site cursor: style guide
 
-Live motion. Runs in the visitor's browser from `site/js/site.js`; tuned on `site/dev/cursor/`.
+Live motion. Runs in the visitor's browser from `site/js/site.js` once approved; tuned on `site/dev/cursor/`.
 
-## Reference
-cursors.framer.wiki, "Simple Replace": a small solid dot replaces the system cursor and, over a card,
-becomes a pill label that follows the pointer.
+## Reference, measured
+cursors.framer.wiki, "Simple Replace" (the home page of that site). Measured in Chromium on 21 Nov, not
+from memory; `node scripts/check-cursor.mjs REF` measures it again and compares ours.
+- Dot: 24 by 24, rgb(255, 255, 255), fully round, drop shadow `0 12px 24px rgba(0, 0, 0, 0.2)`, no blend
+  mode, no border.
+- Follow: none. The dot is drawn exactly on the pointer.
+- Ordinary links: no change.
+- Over a hover target it grows into a white pill (44 tall, padding 10 by 15, label and arrow) on a spring:
+  about 90 percent of the way at 40 percent of the time, a 2 percent overshoot, settled by about 350 ms.
+- Mouse down: the dot shrinks to about 0.83.
 
-Take: the dot as the only cursor, the pill that travels with the pointer, the label living in the cursor
-instead of on the card.
-Leave: anything that blends, trails, magnetises or adds a second shape. No blend modes, no lag trail, no
-spring wobble on text (the TYPE rule: text never overshoots).
+Take: the dot exactly (size, white, shadow, no lag, no link state) and the spring of the grow.
+Not taken, his calls: the hover shape is the Learn more small button in its default outline look, not a
+white pill, and it turns white only on mouse down.
 
 ## The pieces
-- Dot: solid Neutral/100, 12 px, follows the pointer with light easing (frame rate independent lerp).
-- Link hint: over any other link or button the dot grows to 24 px and thins to 32 percent, so the link
-  under it stays readable. A hollow 32 px ring was tried first and dropped: its edge cut through the
-  letters of the nav links (review round 1).
-- Card button: over the Mondai card media the dot grows into the Learn more small button in its default
-  look (transparent fill, 3 px Neutral/100 outline, Neutral/100 text), sized to the real button's box. The
-  shape grows solid out of the dot, then the fill drains outward into the outline as it opens; the label
-  fades in once the outline has thinned (from 55 percent of the morph).
-- Press: mouse down over the card fills the pill Neutral/100, text Neutral/900, scale 0.98. Release lets
-  the card link open `/mondai/`. No separate hover look and no Neutral/300 pressed look on the cursor.
+- Dot: as measured above.
+- Card button: over the Mondai card media the dot springs into the Learn more small button (3 px
+  Neutral/100 outline, transparent, Neutral/100 text), sized to the real button's box. It grows solid out
+  of the dot, then the fill drains into the outline; the label fades in from 40 percent of the 420 ms grow.
+- Press: mouse down turns it white (Neutral/100 fill, Neutral/900 text, scale 0.98). Three ways in, on
+  trial: A flood from the pointer, B sweep left to right, C outline thickens inward. 220 ms each. Release
+  lets the card link open `/mondai/`.
 
 ## Patterns and rules used
-- Frequency of use: the cursor is used constantly, so moves are short (morph 360 ms on a cubic out
-  curve, link hint 200 ms, press 120 ms) and the follow ease is light.
-- Interruptible: every state change is a CSS transition from current values, so leaving the card halfway
-  through the morph reverses from where it is.
-- Origin aware: the pill grows out of the dot at the pointer, never from the card's center.
+- Interruptible: every change is a CSS transition from current values.
+- Origin aware: the button grows out of the dot at the pointer; the flood starts at the pointer.
 - Doherty threshold: hover and press respond on the next frame.
-- Animated properties: one fixed, out of flow shape changes width, height and an inset box-shadow (the
-  drain), plus transform and opacity. A clip-path version was tried first and dropped: clipping a full
-  size pill showed the drain as two horizontal bars. The shape's size change moves nothing else on the
-  page (it sits in a 0 by 0 fixed container), so the layout rule's reason does not apply.
+- One fixed, out of flow shape changes width, height and an inset box-shadow plus transform and
+  opacity; it moves nothing else on the page.
 
 ## Where it runs
 - Only with `(hover: hover) and (pointer: fine)`. Touch and coarse pointers keep the system cursor and
-  the static Learn more on the card.
-- Text fields keep the text cursor and the dot hides over them.
+  the static Learn more on the card. Text fields keep the text cursor.
 - The static Learn more on the Mondai card hides while the custom cursor runs and still shows on keyboard
   focus at its Figma position.
 
 ## Reduced motion
-The cursor sits exactly on the pointer and swaps state with no transition: dot, ring, pill and press
-appear at rest.
+The cursor swaps state with no transition: dot, button and press appear at rest.
 
 ## Not in scope
-Haven card: plain link dot for now. It could get the same treatment with its own label.
+Haven card: plain dot for now. It could get the same treatment with its own label.

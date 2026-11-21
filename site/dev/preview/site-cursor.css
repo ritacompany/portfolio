@@ -7,36 +7,30 @@ html.has-site-cursor :is(input:not([type="button"], [type="submit"], [type="chec
 .site-cursor {
   position: fixed; left: 0; top: 0; z-index: 2147483000; width: 0; height: 0;
   pointer-events: none; opacity: 0; transition: opacity 150ms var(--ease-quart-out);
-  --cur-dur: 200ms;
-  /* Cubic out, gentler at the start than quart out: quart covered 41 percent of the grow in the first
-     40 ms and read as a pop in review round 2. */
-  --cur-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  /* The reference's grow, measured on cursors.framer.wiki 21 Nov: about 90 percent of the way at 40
+     percent of the time, a 2 percent overshoot, settled by 80 percent. */
+  --cur-spring: linear(0, 0.25 9%, 0.45 15%, 0.62 23%, 0.79 30%, 0.92 39%, 1.005 45%, 1.02 54%, 1.022 60%, 1.015 67%, 1.007 74%, 1.002 82%, 1);
+  /* Reference drop shadow: 0 12 24 at 20 percent black. */
+  --cur-drop: 0 12px 24px rgb(0 0 0 / 0.2);
 }
 .site-cursor.is-shown { opacity: 1; }
 .site-cursor[data-state="hidden"] { opacity: 0; }
 
-/* One shape for every state, out of the page flow, so its size changes move nothing else. Dot: 12 px with
-   the inset fill covering it. Link: a 24 px dot at 32 percent, so the link under it stays readable (a hollow ring cut through the letters). Button: the small button's
-   box (components.css .button-sm) with the fill drained to the 3 px outline. */
+/* One shape, out of the page flow so its size changes move nothing else. Dot: 24 px pure white (the
+   inset fill covers it). Button: the small button's box with the fill drained to the 3 px outline. */
 .site-cursor__shape {
   position: absolute; left: 0; top: 0; overflow: hidden;
   width: var(--cur-dot); height: var(--cur-dot); border-radius: 999px;
-  /* 30 px of fill: more than the dot needs, so on the way to the button the shape grows solid first and
-     the hollow opens partway through, which reads as the fill draining into the outline. */
-  box-shadow: inset 0 0 0 30px var(--neutral-100);
-  background-color: transparent; color: var(--neutral-100);
+  box-shadow: inset 0 0 0 30px var(--neutral-000), var(--cur-drop);
+  color: var(--neutral-100);
   transform: translate(-50%, -50%);
-  transition: width var(--cur-dur) var(--cur-ease), height var(--cur-dur) var(--cur-ease),
-    box-shadow var(--cur-dur) var(--cur-ease),
-    background-color 120ms var(--ease-quart-out), color 120ms var(--ease-quart-out), transform 120ms var(--ease-quart-out);
-}
-.site-cursor[data-state="link"] .site-cursor__shape {
-  width: var(--cur-ring); height: var(--cur-ring);
-  box-shadow: inset 0 0 0 30px rgb(232 231 238 / var(--cur-link-alpha));
+  transition: width var(--cur-morph) var(--cur-spring), height var(--cur-morph) var(--cur-spring),
+    box-shadow var(--cur-morph) var(--ease-quart-out), color var(--cur-press-dur) var(--ease-quart-out),
+    transform var(--cur-press-dur) var(--ease-quart-out);
 }
 .site-cursor[data-state="pill"] .site-cursor__shape {
   width: var(--cur-pill-w); height: var(--cur-pill-h);
-  box-shadow: inset 0 0 0 3px var(--neutral-100);
+  box-shadow: inset 0 0 0 3px var(--neutral-100), var(--cur-drop);
 }
 
 /* The label sits centred at its final size and the opening shape reveals it. */
@@ -48,17 +42,45 @@ html.has-site-cursor :is(input:not([type="button"], [type="submit"], [type="chec
   position: absolute; left: 50%; top: 50%; transform: translate(calc(-50% + 0.02em), -50%);
   opacity: 0; transition: opacity 120ms var(--ease-quart-out);
 }
-.site-cursor[data-state="pill"] .site-cursor__label { opacity: 1; transition: opacity 200ms var(--ease-quart-out) calc(var(--cur-dur) * 0.55); }
+.site-cursor[data-state="pill"] .site-cursor__label { opacity: 1; transition: opacity 200ms var(--ease-quart-out) calc(var(--cur-morph) * 0.4); }
 /* Measures the button box: the same padding and outline width as .button-sm. */
 .site-cursor__probe {
   position: absolute; left: -9999px; top: 0; visibility: hidden;
   padding: 12px calc(16px + 0.04em) 12px 16px; border: 3px solid transparent;
 }
 
-/* Press, his call 21 Nov: the white filled look is the cursor's press state. */
-.site-cursor[data-state="pill"].is-pressed .site-cursor__shape {
-  background-color: var(--neutral-100); color: var(--neutral-900);
-  transform: translate(-50%, -50%) scale(var(--cur-press));
+/* Press, his call 21 Nov: it turns white only on mouse down (Neutral/100 fill, Neutral/900 text, scale).
+   The ink layer is the white state, revealed differently by each option. */
+.site-cursor__ink {
+  position: absolute; inset: 0; border-radius: inherit;
+  background: var(--neutral-100); color: var(--neutral-900);
+  clip-path: circle(0 at 50% 50%);
+  transition: clip-path var(--cur-press-dur) var(--ease-quart-out);
+}
+.site-cursor__ink .site-cursor__label { opacity: 1; transition: none; }
+.site-cursor[data-state="pill"].is-pressed .site-cursor__shape { transform: translate(-50%, -50%) scale(var(--cur-press)); }
+
+/* A, flood: the white floods out from the pointer (the pill's centre) like ink. */
+.site-cursor[data-press="flood"][data-state="pill"].is-pressed .site-cursor__ink { clip-path: circle(75% at 50% 50%); }
+
+/* B, sweep: the white wipes across left to right and the text flips colour as it passes. */
+.site-cursor[data-press="sweep"] .site-cursor__ink { clip-path: inset(0 100% 0 0); transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+/* An even sweep, not front loaded: quart out had 55 percent covered at 40 ms (review round 5). */
+.site-cursor[data-press="sweep"][data-state="pill"].is-pressed .site-cursor__ink { clip-path: inset(0 0 0 0); }
+
+/* C, thicken: the 3 px outline grows inward until the pill is solid, the reverse of the dot draining
+   into the outline on the way in. The light label fades out at once and the dark one fades in once the
+   fill has closed, so no text ever sits across the closing slot (review rounds 4 and 5). */
+.site-cursor[data-press="thicken"] .site-cursor__ink { background: transparent; clip-path: none; transition: none; }
+.site-cursor[data-press="thicken"] .site-cursor__ink .site-cursor__label { opacity: 0; transition: opacity 80ms var(--ease-quart-out); }
+.site-cursor[data-press="thicken"][data-state="pill"].is-pressed .site-cursor__shape {
+  box-shadow: inset 0 0 0 30px var(--neutral-100), var(--cur-drop);
+  transition: width var(--cur-morph) var(--cur-spring), height var(--cur-morph) var(--cur-spring),
+    box-shadow var(--cur-press-dur) var(--ease-quart-out), transform var(--cur-press-dur) var(--ease-quart-out);
+}
+.site-cursor[data-press="thicken"][data-state="pill"].is-pressed .site-cursor__shape > .site-cursor__label { opacity: 0; transition: opacity 50ms linear; }
+.site-cursor[data-press="thicken"][data-state="pill"].is-pressed .site-cursor__ink .site-cursor__label {
+  opacity: 1; transition: opacity calc(var(--cur-press-dur) * 0.5) var(--ease-quart-out) calc(var(--cur-press-dur) * 0.45);
 }
 
 .site-cursor.is-reduced, .site-cursor.is-reduced * { transition: none !important; }

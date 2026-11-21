@@ -8,15 +8,20 @@ Scope: a dot cursor on every page that loads site.js, which becomes the Learn mo
 
 Harness: `node scripts/check-cursor.mjs <gate>` serves `site/` and drives Chromium. Each gate prints `<gate> PASS` only after every assertion holds. `node scripts/check-cursor.mjs control` runs the G3 absence check against a fine pointer page, where the cursor must exist, so G3 cannot pass on a checker that never finds anything.
 
-- [x] G1: Over the Mondai card media at 1440 the cursor shows "Learn more" with the small button outline look (3 px Neutral/100 outline, transparent fill, Neutral/100 text); outside it the cursor is the 12 px dot.
+- [x] G0: The dot matches the reference (cursors.framer.wiki, Simple Replace) measured live: size, fill and drop shadow.
+  CHECK: node scripts/check-cursor.mjs REF
+  EXPECT: REF PASS
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=83ef1bc32008/16 entries; EXPECT=matched; output-sha256=b704aeb3306033db763f20e11f5a098baa4775a44598b362892869454c2d859d; output-bytes=93
+
+- [x] G1: Over the Mondai card media at 1440 the cursor shows "Learn more" with the small button outline look (3 px Neutral/100 outline, transparent fill, Neutral/100 text); outside it the cursor is the 24 px white dot.
   CHECK: node scripts/check-cursor.mjs G1
   EXPECT: G1 PASS
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=1bc8318dedf2/16 entries; EXPECT=matched; output-sha256=8f40d27201d862881cc84b95437e36babf3d65b59198e8615faa8175859487da; output-bytes=57
 
-- [x] G2: Mouse down over the card gives the press look (Neutral/100 fill, Neutral/900 text, scale 0.98); the click lands on /mondai/.
+- [x] G2: With each of the three press options, mouse down over the card ends in the press look (Neutral/100 fill, Neutral/900 text, scale 0.98, judged from pixels); the click lands on /mondai/.
   CHECK: node scripts/check-cursor.mjs G2
   EXPECT: G2 PASS
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=1bc8318dedf2/16 entries; EXPECT=matched; output-sha256=4c0fca0f0c58e44d4d084199bb6498f7d3abfc6de3962f067a83b7f120857d21; output-bytes=72
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=83ef1bc32008/16 entries; EXPECT=matched; output-sha256=fddb9dbd3685608312e29a731402fbc153d99203fbb8e6c54b9381445c3ac428; output-bytes=162
 
 - [x] G3: With a touch, coarse pointer emulated, no custom cursor element renders and the static Learn more shows.
   CHECK: node scripts/check-cursor.mjs G3
@@ -33,7 +38,7 @@ Harness: `node scripts/check-cursor.mjs <gate>` serves `site/` and drives Chromi
   EXPECT: G4 PASS
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=1bc8318dedf2/16 entries; EXPECT=matched; output-sha256=7d8c7608a403d908443127f1e32256c9b74f65c50fbb34f7527faafabfc5a3d9; output-bytes=80
 
-- [x] G5: Reduced motion emulated: the cursor sits on the pointer with no easing and its parts have no transition.
+- [x] G5: Reduced motion emulated: the cursor sits on the pointer and its parts have no transition.
   CHECK: node scripts/check-cursor.mjs G5
   EXPECT: G5 PASS
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=1bc8318dedf2/16 entries; EXPECT=matched; output-sha256=add01f7fbb30c9d814ccfb149e0a6da8a77cc4eba3771e10d8ac2ed03286d15e; output-bytes=86
@@ -43,8 +48,8 @@ Harness: `node scripts/check-cursor.mjs <gate>` serves `site/` and drives Chromi
   EXPECT: G6 PASS
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=1bc8318dedf2/16 entries; EXPECT=matched; output-sha256=c9a6577efde17fd9376d5d453b4f36c8a1f658e9ea3635b2c718e702847245bd; output-bytes=64
 
-- [x] G7: A screen recording and frame strip of hover, morph and press sent to him for review.
-  EVIDENCE: 21 Nov, sent in chat: frames/cursor-hover-morph-press.mp4 (real time, 1440) and frames/after-strip.png (exact frames by seeking paused transitions).
+- [ ] G7: A frame strip of the dot against the reference, the morph, and the three press options, plus a recording of each option, sent to him for review.
+  EVIDENCE: pending
 
 - [ ] G8: He has felt it on the tuner page and sent settings back or said it feels right (motion-rules.md, interactive pieces). Stays open until he answers.
   EVIDENCE: pending

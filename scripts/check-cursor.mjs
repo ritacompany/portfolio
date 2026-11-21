@@ -88,32 +88,67 @@ const gates = {
     await wait(700);
     c = await cursor(pg);
     must(c.state === "dot", `state outside is ${c.state}`);
-    must(c.dot.opacity === "1" && Math.abs(c.dot.w - 12) < 0.6 && Math.abs(c.dot.h - 12) < 0.6, `dot ${c.dot.w}x${c.dot.h} opacity ${c.dot.opacity}`);
-    must(c.dot.shadow.includes(NEUTRAL_100), `dot colour ${c.dot.shadow}`);
+    must(c.dot.opacity === "1" && Math.abs(c.dot.w - 24) < 0.6 && Math.abs(c.dot.h - 24) < 0.6, `dot ${c.dot.w}x${c.dot.h} opacity ${c.dot.opacity}`);
+    must(c.dot.shadow.includes("rgb(255, 255, 255)") && /12px 24px/.test(c.dot.shadow), `dot colour and drop shadow ${c.dot.shadow}`);
     must(c.label === "Learn more" && c.labelOpacity === "0", "label still showing outside");
     await ctx.close();
     return `pill ${btn.pw.toFixed(1)}x${btn.ph.toFixed(1)} vs button ${btn.bw.toFixed(1)}x${btn.bh.toFixed(1)}; dot ${c.dot.w.toFixed(1)}px`;
   },
-  async G2() {
+  // Every press option must end in the same look: the pill reads as Neutral/100 with Neutral/900 text,
+  // scaled 0.98. Judged from pixels, so it holds whichever layer draws the white.
+  // The dot against the reference itself, measured live, so this compares to the source and not to numbers
+  // copied from it: size, fill, radius and drop shadow at rest away from any card.
+  async REF() {
+    const rc = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const rp = await rc.newPage();
+    await rp.goto("https://cursors.framer.wiki/", { waitUntil: "networkidle", timeout: 60000 });
+    await rp.mouse.move(380, 520); await rp.mouse.move(400, 530); await wait(900);
+    const ref = await rp.evaluate(() => { const el = document.querySelector(".framer-pointer-events-none"); if (!el) return null; const r = el.getBoundingClientRect(), cs = getComputedStyle(el); return { w: r.width, h: r.height, bg: cs.backgroundColor, shadow: cs.boxShadow }; });
+    await rc.close();
+    must(ref, "reference cursor element not found on cursors.framer.wiki");
     const { ctx, pg } = await open();
-    const b = await media(pg);
-    await pg.mouse.move(b.x + b.width * 0.5, b.y + b.height * 0.5, { steps: 5 });
-    await wait(600);
-    await pg.mouse.down();
-    await wait(250);
-    const c = await cursor(pg);
-    must(c.state === "pill", `state ${c.state}`);
-    must(c.pill.bg === NEUTRAL_100, `press fill ${c.pill.bg}`);
-    must(c.pill.color === NEUTRAL_900, `press text ${c.pill.color}`);
-    const m = c.pill.transform.match(/matrix\(([-\d.e]+), [-\d.e]+, [-\d.e]+, ([-\d.e]+)/);
-    must(m && Math.abs(+m[1] - 0.98) < 0.002 && Math.abs(+m[2] - 0.98) < 0.002, `press transform ${c.pill.transform}`);
-    must(!/rgb\(210, 210, 219\)/.test(c.pill.bg + c.pill.shadow), "uses the Neutral/300 pressed look");
-    const nav = pg.waitForURL(/\/mondai\/$/, { timeout: 5000 });
-    await pg.mouse.up();
-    await nav;
-    const url = pg.url();
+    await pg.mouse.move(200, 200); await pg.mouse.move(220, 210); await wait(500);
+    const ours = await pg.evaluate(() => { const el = document.querySelector(".site-cursor__shape"), r = el.getBoundingClientRect(), cs = getComputedStyle(el); return { w: r.width, h: r.height, shadow: cs.boxShadow }; });
     await ctx.close();
-    return `press ${c.pill.bg} / ${c.pill.color} / ${m[1]}; landed ${new URL(url).pathname}`;
+    must(Math.abs(ours.w - ref.w) < 0.6 && Math.abs(ours.h - ref.h) < 0.6, `size ${ours.w}x${ours.h} vs reference ${ref.w}x${ref.h}`);
+    must(ours.shadow.includes(ref.bg), `fill: ours ${ours.shadow} lacks reference ${ref.bg}`);
+    const drop = ref.shadow.replace(/\s+/g, " ");
+    must(ours.shadow.replace(/\s+/g, " ").includes(drop), `drop shadow: reference ${drop}, ours ${ours.shadow}`);
+    return `reference ${ref.w}px ${ref.bg} / ${drop}; ours ${ours.w}px`;
+  },
+  async G2() {
+    const notes = [];
+    for (const style of ["flood", "sweep", "thicken"]) {
+      const { ctx, pg } = await open();
+      await pg.evaluate((st) => window.SiteCursor.set({ pressStyle: st }), style);
+      const b = await media(pg);
+      await pg.mouse.move(b.x + b.width * 0.5, b.y + b.height * 0.5, { steps: 5 });
+      await wait(700);
+      await pg.mouse.down();
+      await wait(500);
+      const c = await cursor(pg);
+      must(c.state === "pill", `${style}: state ${c.state}`);
+      const m = c.pill.transform.match(/matrix\(([-\d.e]+), [-\d.e]+, [-\d.e]+, ([-\d.e]+)/);
+      must(m && Math.abs(+m[1] - 0.98) < 0.002 && Math.abs(+m[2] - 0.98) < 0.002, `${style}: press transform ${c.pill.transform}`);
+      const r = await pg.evaluate(() => { const q = document.querySelector(".site-cursor__shape").getBoundingClientRect(); return { x: q.x, y: q.y, w: q.width, h: q.height }; });
+      const png = await pg.screenshot({ clip: { x: r.x + 8, y: r.y + 6, width: r.w - 16, height: r.h - 12 } });
+      const px = await pg.evaluate(async (b64) => {
+        const img = await createImageBitmap(await (await fetch("data:image/png;base64," + b64)).blob());
+        const cv = new OffscreenCanvas(img.width, img.height), g = cv.getContext("2d"); g.drawImage(img, 0, 0);
+        const d = g.getImageData(0, 0, img.width, img.height).data; let light = 0, dark = 0, n = d.length / 4;
+        for (let i = 0; i < d.length; i += 4) { const [R, G, B] = [d[i], d[i + 1], d[i + 2]];
+          if (Math.abs(R - 232) < 10 && Math.abs(G - 231) < 10 && Math.abs(B - 238) < 10) light++;
+          else if (R < 40 && G < 40 && B < 40) dark++; }
+        return { light: light / n, dark: dark / n };
+      }, png.toString("base64"));
+      must(px.light > 0.55 && px.dark > 0.08, `${style}: pill not Neutral/100 with dark text when pressed (light ${px.light.toFixed(2)}, dark ${px.dark.toFixed(2)})`);
+      const nav = pg.waitForURL(/\/mondai\/$/, { timeout: 5000 });
+      await pg.mouse.up();
+      await nav;
+      notes.push(`${style} light ${px.light.toFixed(2)} dark ${px.dark.toFixed(2)} scale ${m[1]} -> ${new URL(pg.url()).pathname}`);
+      await ctx.close();
+    }
+    return notes.join("; ");
   },
   async G3() {
     const out = [];

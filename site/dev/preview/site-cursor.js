@@ -1,41 +1,43 @@
 // Site cursor, proposal (docs/motion/site-cursor/). Lives in site/dev/preview until Chadwick says yes; then
 // this block moves into site/js/site.js and site-cursor.css into site/css/components.css, unchanged.
 //
-// A 12 px Neutral/100 dot replaces the system cursor on devices that hover with a fine pointer. Over links
-// and buttons it grows to a 24 px see-through dot (32 percent) so what is under it stays readable. Over the Mondai card media
-// ([data-cursor="button"]) it grows into the Learn more small button in its default look: the shape opens
-// from the dot to the pill while the fill drains into the 3 px outline. Mouse down fills it (Neutral/100,
-// Neutral/900 text, 98 percent); the card link takes the click. Text fields keep the text cursor.
-// Reduced motion: no easing, no morph. Tuned through window.SiteCursor.set() and the edit panel.
+// Copied from the reference, cursors.framer.wiki "Simple Replace", measured on the live page 21 Nov:
+// a 24 px pure white dot with a 0 12 24 drop shadow at 20 percent black, drawn exactly on the pointer
+// (no lag) and unchanged over ordinary links. Over the Mondai card media ([data-cursor="button"]) it springs
+// into the Learn more small button in its default look (his call: outline, Neutral/100 text). It turns
+// white only on mouse down; three press transitions are on trial (O.pressStyle: flood, sweep, thicken).
+// The card link takes the click. Text fields keep the text cursor. Reduced motion: no morph.
 (function siteCursor() {
   if (window.SiteCursor) return;
   const fine = matchMedia("(hover: hover) and (pointer: fine)");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-  const O = { lerp: 0.35, dot: 12, ring: 24, alpha: 0.32, morph: 360, link: 200, press: 0.98 };
+  const O = { lerp: 1, dot: 24, morph: 420, pressStyle: "flood", pressScale: 0.98, pressDur: 220 };
   const BUTTON = '[data-cursor="button"], .work-card-mondai .work-card__media';
-  const LINK = 'a[href], button:not(:disabled), [role="button"], [role="link"], [role="tab"], label[for], summary, select, input[type="button"], input[type="submit"], input[type="checkbox"], input[type="radio"], input[type="range"], [data-cursor="link"]';
   const TEXT = 'input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, [contenteditable=""], [contenteditable="true"]';
-  let root, shape, label, probe, on = false, x = 0, y = 0, tx = 0, ty = 0, raf = 0, last = 0, shown = false, state = "";
+  let root, shape, label, ink, inkLabel, probe, on = false, x = 0, y = 0, tx = 0, ty = 0, raf = 0, last = 0, shown = false, state = "";
 
   const vars = () => {
     if (!root) return;
     const s = root.style;
     s.setProperty("--cur-dot", O.dot + "px");
-    s.setProperty("--cur-ring", O.ring + "px");
-    s.setProperty("--cur-link-alpha", O.alpha);
-    s.setProperty("--cur-press", O.press);
+    s.setProperty("--cur-morph", O.morph + "ms");
+    s.setProperty("--cur-press", O.pressScale);
+    s.setProperty("--cur-press-dur", O.pressDur + "ms");
+    root.dataset.press = O.pressStyle;
   };
   const build = () => {
     root = document.createElement("div");
     root.className = "site-cursor";
     root.setAttribute("aria-hidden", "true");
-    root.innerHTML = '<span class="site-cursor__shape"><span class="site-cursor__label">Learn more</span></span><span class="site-cursor__probe">Learn more</span>';
-    shape = root.firstChild; label = shape.firstChild; probe = root.lastChild;
+    root.innerHTML = '<span class="site-cursor__shape"><span class="site-cursor__label">Learn more</span>'
+      + '<span class="site-cursor__ink"><span class="site-cursor__label">Learn more</span></span></span>'
+      + '<span class="site-cursor__probe">Learn more</span>';
+    shape = root.firstChild; label = shape.firstChild; ink = shape.lastChild; inkLabel = ink.firstChild; probe = root.lastChild;
     vars();
     document.body.append(root);
   };
   const paint = () => { root.style.transform = `translate3d(${x}px, ${y}px, 0)`; };
-  // Light easing: a lerp per 60 fps frame, corrected for the real frame time so 120 Hz feels the same.
+  // The reference sits on the pointer (lerp 1). Kept as a control in case he wants a trail later.
   const tick = (now) => {
     if (!root) { raf = 0; return; }
     const dt = last ? Math.min(64, now - last) : 1000 / 60; last = now;
@@ -44,21 +46,16 @@
     if (Math.abs(tx - x) < 0.1 && Math.abs(ty - y) < 0.1) { x = tx; y = ty; raf = 0; last = 0; paint(); return; }
     paint(); raf = requestAnimationFrame(tick);
   };
-  // One shape for every state. Its box grows from the dot to the link dot or to the small button's exact box
-  // (measured from a hidden copy with the button's type and padding) while its inset fill drains to the
-  // edge, so the fill reads as flowing outward into the outline. Moves into or out of the button take the
-  // morph duration; dot and link moves take the shorter link duration.
   const setState = (next, el) => {
     if (next === state) return;
-    const prev = state; state = next;
+    state = next;
     if (next === "pill") {
       const text = el.getAttribute("data-cursor-label") || "Learn more";
-      label.textContent = probe.textContent = text;
+      label.textContent = inkLabel.textContent = probe.textContent = text;
       const r = probe.getBoundingClientRect();
       root.style.setProperty("--cur-pill-w", r.width + "px");
       root.style.setProperty("--cur-pill-h", r.height + "px");
     }
-    root.style.setProperty("--cur-dur", (next === "pill" || prev === "pill" ? O.morph : O.link) + "ms");
     if (next !== "pill") root.classList.remove("is-pressed");
     root.dataset.state = next;
   };
@@ -66,8 +63,7 @@
     if (!el || !el.closest) return setState("dot");
     if (el.closest(TEXT)) return setState("hidden");
     const btn = el.closest(BUTTON);
-    if (btn) return setState("pill", btn);
-    setState(el.closest(LINK) ? "link" : "dot");
+    setState(btn ? "pill" : "dot", btn);
   };
   const move = (e) => {
     if (e.pointerType === "touch") return;
@@ -121,16 +117,22 @@
   const set = (k) => (v) => window.SiteCursor.set({ [k]: v });
   const def = {
     id: "site-cursor", title: "Cursor", tab: "Motion",
-    note: "Dot everywhere, a see-through dot over links, Learn more over the Mondai card. Hold the mouse down on the card for the press look.",
+    note: "Hold the mouse down on the Mondai card to feel the press. Keys 1, 2, 3 switch the press option.",
     controls: [
-      { key: "lerp", label: "Follow", hint: "Share of the gap closed each frame; 1 sits on the pointer", min: 0.1, max: 1, step: 0.01, value: O.lerp, default: 0.35, onInput: set("lerp") },
-      { key: "dot", label: "Dot size", min: 6, max: 24, step: 1, unit: "px", value: O.dot, default: 12, onInput: set("dot") },
-      { key: "ring", label: "Dot over links", min: 12, max: 56, step: 1, unit: "px", value: O.ring, default: 24, onInput: set("ring") },
-      { key: "alpha", label: "Dot over links, opacity", min: 0.1, max: 1, step: 0.01, value: O.alpha, default: 0.32, onInput: set("alpha") },
-      { key: "link", label: "Link move duration", min: 0, max: 600, step: 10, unit: "ms", value: O.link, default: 200, onInput: set("link") },
-      { key: "morph", label: "Dot to button", min: 0, max: 900, step: 10, unit: "ms", value: O.morph, default: 360, onInput: set("morph") },
-      { key: "press", label: "Press scale", min: 0.9, max: 1, step: 0.005, value: O.press, default: 0.98, onInput: set("press") },
+      { key: "pressStyle", label: "Press option", type: "select", value: O.pressStyle, default: "flood",
+        options: [["flood", "A Flood from the pointer"], ["sweep", "B Sweep left to right"], ["thicken", "C Outline thickens inward"]], onInput: set("pressStyle") },
+      { key: "pressDur", label: "Press fill duration", min: 60, max: 600, step: 10, unit: "ms", value: O.pressDur, default: 220, onInput: set("pressDur") },
+      { key: "pressScale", label: "Press scale", min: 0.8, max: 1, step: 0.005, value: O.pressScale, default: 0.98, hint: "The reference dot shrinks to about 0.83 on press", onInput: set("pressScale") },
+      { key: "morph", label: "Dot to button", min: 0, max: 900, step: 10, unit: "ms", value: O.morph, default: 420, onInput: set("morph") },
+      { key: "dot", label: "Dot size", min: 8, max: 40, step: 1, unit: "px", value: O.dot, default: 24, hint: "Reference: 24", onInput: set("dot") },
+      { key: "lerp", label: "Follow", hint: "1 sits on the pointer, as the reference does", min: 0.1, max: 1, step: 0.01, value: O.lerp, default: 1, onInput: set("lerp") },
     ],
   };
   if (window.EditPanel) window.EditPanel.register(def); else (window.EditPanelQueue ||= []).push(def);
+  addEventListener("keydown", (e) => {
+    const m = { 1: "flood", 2: "sweep", 3: "thicken" }[e.key];
+    if (!m || (e.target.closest && e.target.closest("input, textarea, select, [contenteditable]"))) return;
+    const g = window.EditPanel && window.EditPanel.group && window.EditPanel.group("site-cursor");
+    g ? g.set({ pressStyle: m }) : window.SiteCursor.set({ pressStyle: m });
+  });
 })();
