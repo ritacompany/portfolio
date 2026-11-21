@@ -1,0 +1,9 @@
+/* Test page chrome only. Lays itself out from its own width so the edit panel can dock beside it. */
+body { background: var(--neutral-900); color: var(--neutral-100); container-type: inline-size; }
+.page-head { padding: 48px var(--grid-margin, 40px) 0; max-width: 900px; }
+.page-head h1 { font: 700 32px/1.1 var(--font); margin: 0 0 12px; }
+.page-head p { font: 400 16px/1.5 var(--font); color: var(--neutral-300); margin: 0 0 24px; }
+.try-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+.field { display: flex; gap: 8px; align-items: center; font: 400 14px/1 var(--font); color: var(--neutral-300); }
+.field input { background: var(--neutral-800); color: var(--neutral-100); border: 1px solid var(--neutral-600); border-radius: 6px; padding: 8px 10px; font: inherit; }
+.canvas.home .works { padding-top: 64px; padding-bottom: 120px; }
