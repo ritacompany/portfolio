@@ -10,12 +10,12 @@ His notes (21 Nov, via the lead session): 1 card text readable at 768; 2 a fade 
 4 no gap between a description and the dots at any width; 5 Figma: caption text fills and hugs, parents hug;
 6 Figma: his adjusted gradient on all five templates, matching on both sides.
 
-- [ ] G1: notes 1 to 4 in the preview (cards at desktop size from 768 up, fade in his formula, 390 and 1440 rects unchanged, no gap)
+- [x] G1: notes 1 to 4 in the preview (cards at desktop size from 768 up, fade in his formula, 390 and 1440 rects unchanged, no gap)
   CHECK: node reports/start-of-week-tablet-2026-11-21/sow-check.mjs http://localhost:4318/dev/start-of-week-tablet/
   EXPECT: SOW_CHECK_OK
-- [ ] G2: the check fails on the page without this work (control)
-  CHECK: node reports/start-of-week-tablet-2026-11-21/sow-check.mjs http://localhost:4318/mondai/framework/ || echo CONTROL_FAILS_AS_EXPECTED
-  EXPECT: SOW_CHECK_FAIL
+  EVIDENCE: 21 Nov, SOW_CHECK_OK 479 assertions
+- [x] G2: the check fails on the page without this work (control, run before the move)
+  EVIDENCE: 21 Nov, before the move: SOW_CHECK_FAIL 23 of 455 on the live page (no fade, cards scaled at 1150).
 - [x] G3: Figma notes 5 and 6 on all five tablet templates, desktop frame untouched
   EVIDENCE: 21 Nov use_figma: in each template the description and "Scroll to view more templates" are FILL / HUG with no
   max width, the label frame and its two texts FILL / HUG, the dots block FILL / HUG, caption, Frame 2087331160 and
@@ -23,16 +23,22 @@ His notes (21 Nov, via the lead session): 1 card text readable at 768; 2 a fade 
   Gradient stops on all five rectangles 0 / 0.0559 (0.63) / 0.2236 (0) / 0.5 / 0.7764 (0) / 0.9441 (0.63) / 1: his
   Recalibration frame's adjusted stops (0.0488 left, 0.9370 right) averaged so both sides match; the other four had
   the desktop 0.1263 / 0.8663. 6331:20607 before and after: 21 children, 1440 by 24745.56 at 27868, 21358.
-- [ ] G4: review preview published with 390, 768, 1024, 1150 and 1440, and his yes on a [site change] card
-  EVIDENCE: pending
-- [ ] G5: on his yes the preview moves into the shipped files and G1 passes on the live page
+- [x] G4: review preview published with 390, 768, 1024, 1150 and 1440, and his yes on a [site change] card
+  EVIDENCE: https://claude.ai/artifact/XxxDoQBTNVXtxwg2YR7fXw (version 3 also fixes the preview tool: stylesheet image
+  paths made relative so Calendar setup and the right rail show at tablet, and a Refresh button). His "yes", 21 Nov.
+- [x] G5: on his yes the preview moves into the shipped files and G1 passes on the live page
   CHECK: node reports/start-of-week-tablet-2026-11-21/sow-check.mjs http://localhost:4318/mondai/framework/
   EXPECT: SOW_CHECK_OK
-- [ ] G6: existing checks still pass on the live page (figma-tablet-sections build-check, framework-tablet-2, -3, -4, tablet-breakpoint, fw-sync-2026-11-20, falling-behind-motion)
+  EVIDENCE: 21 Nov, SOW_CHECK_OK 479 assertions on the live page
+- [x] G6: existing checks still pass on the live page (figma-tablet-sections build-check, framework-tablet-2, -3, -4, tablet-breakpoint, fw-sync-2026-11-20, falling-behind-motion)
   CHECK: node reports/figma-tablet-sections-2026-11-20/build-check.mjs http://localhost:4318/mondai/framework/
   EXPECT: BUILD_CHECK_OK
-- [ ] G7: own branch pushed, draft PR into claude/fw-integration, one line with the link to the lead session
-  EVIDENCE: pending
+  EVIDENCE: 21 Nov on the live page: BUILD_CHECK_OK 142, FW_TABLET2_OK 8 of 8, FW_MOTION_OK 6 runs, ROUND3_OK, CAPCARD_OK,
+  TABLET_OK 8 of 8, fw-sync hero, nav, boxes, oneline, resched, eyebrows, rollover, footer and scroll all OK, AUDIT_OK,
+  FALLING BEHIND ROW CHECK PASSED, site check OK, RESPONSIVE_HEALTH_OK
+- [x] G7: own branch pushed, draft PR into the integration branch, Chadwick told
+  EVIDENCE: PR #35, base moved to claude/relaxed-ride-5mlbdu at the lead's message (fw-integration folded into it);
+  the lead chat closed, so Chadwick was told in this chat
 
 ## Notes
 
