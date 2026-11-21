@@ -89,7 +89,7 @@ const gates = {
     c = await cursor(pg);
     must(c.state === "dot", `state outside is ${c.state}`);
     must(c.dot.opacity === "1" && Math.abs(c.dot.w - 24) < 0.6 && Math.abs(c.dot.h - 24) < 0.6, `dot ${c.dot.w}x${c.dot.h} opacity ${c.dot.opacity}`);
-    must(c.dot.shadow.includes("rgb(255, 255, 255)") && /12px 24px/.test(c.dot.shadow), `dot colour and drop shadow ${c.dot.shadow}`);
+    must(c.dot.shadow.includes("rgb(232, 231, 238)") && /12px 24px/.test(c.dot.shadow), `dot colour and drop shadow ${c.dot.shadow}`);
     must(c.label === "Learn more" && c.labelOpacity === "0", "label still showing outside");
     await ctx.close();
     return `pill ${btn.pw.toFixed(1)}x${btn.ph.toFixed(1)} vs button ${btn.bw.toFixed(1)}x${btn.bh.toFixed(1)}; dot ${c.dot.w.toFixed(1)}px`;
@@ -104,24 +104,33 @@ const gates = {
     await rp.goto("https://cursors.framer.wiki/", { waitUntil: "networkidle", timeout: 60000 });
     await rp.mouse.move(380, 520); await rp.mouse.move(400, 530); await wait(900);
     const ref = await rp.evaluate(() => { const el = document.querySelector(".framer-pointer-events-none"); if (!el) return null; const r = el.getBoundingClientRect(), cs = getComputedStyle(el); return { w: r.width, h: r.height, bg: cs.backgroundColor, shadow: cs.boxShadow }; });
+    // The reference's pressed state: hold the mouse down and measure the settled size.
+    await rp.mouse.down(); await wait(700);
+    if (ref) ref.pressW = await rp.evaluate(() => document.querySelector(".framer-pointer-events-none").getBoundingClientRect().width);
+    await rp.mouse.up();
     await rc.close();
     must(ref, "reference cursor element not found on cursors.framer.wiki");
     const { ctx, pg } = await open();
     await pg.mouse.move(200, 200); await pg.mouse.move(220, 210); await wait(500);
     const ours = await pg.evaluate(() => { const el = document.querySelector(".site-cursor__shape"), r = el.getBoundingClientRect(), cs = getComputedStyle(el); return { w: r.width, h: r.height, shadow: cs.boxShadow }; });
+    await pg.mouse.down(); await wait(700);
+    ours.pressW = await pg.evaluate(() => document.querySelector(".site-cursor__shape").getBoundingClientRect().width);
+    await pg.mouse.up(); await wait(700);
+    ours.backW = await pg.evaluate(() => document.querySelector(".site-cursor__shape").getBoundingClientRect().width);
     await ctx.close();
     must(Math.abs(ours.w - ref.w) < 0.6 && Math.abs(ours.h - ref.h) < 0.6, `size ${ours.w}x${ours.h} vs reference ${ref.w}x${ref.h}`);
-    must(ours.shadow.includes(ref.bg), `fill: ours ${ours.shadow} lacks reference ${ref.bg}`);
+    must(ours.shadow.includes("rgb(232, 231, 238)"), `fill: ours ${ours.shadow} is not Neutral/100 (his call 21 Nov; the reference is ${ref.bg})`);
     const drop = ref.shadow.replace(/\s+/g, " ");
     must(ours.shadow.replace(/\s+/g, " ").includes(drop), `drop shadow: reference ${drop}, ours ${ours.shadow}`);
-    return `reference ${ref.w}px ${ref.bg} / ${drop}; ours ${ours.w}px`;
+    must(Math.abs(ours.pressW - ref.pressW) < 0.6, `pressed: ours ${ours.pressW} vs reference ${ref.pressW}`);
+    must(Math.abs(ours.backW - ref.w) < 0.6, `after release: ours ${ours.backW} vs ${ref.w}`);
+    return `reference ${ref.w}px, pressed ${ref.pressW.toFixed(1)}px, ${drop}; ours ${ours.w}px, pressed ${ours.pressW.toFixed(1)}px, back to ${ours.backW}px`;
   },
   async G2() {
     const notes = [];
-    for (const style of ["ripple", "ping", "squeeze"]) {
+    for (const style of ["ripple"]) {
       const { ctx, pg } = await open();
-      await pg.evaluate((st) => window.SiteCursor.set({ pressStyle: st }), style);
-      const b = await media(pg);
+            const b = await media(pg);
       await pg.mouse.move(b.x + b.width * 0.5, b.y + b.height * 0.5, { steps: 5 });
       await wait(700);
       await pg.mouse.down();

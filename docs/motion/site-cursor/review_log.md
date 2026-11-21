@@ -40,3 +40,8 @@ Fresh eyes: dot now matches the reference in size and white; option C sliced its
 Fresh eyes: Chadwick, 21 Nov: the options must be proper pressed states, found on 21st.dev, ideally outline to fill. Sweep is a hover pattern (21st.dev lists its fill sweep as hover and focus) and was too slow for a click; thicken blanked the label. Both replaced with press components from 21st.dev, their demo videos watched frame by frame.
 - P0: options B sweep and C thicken were not press interactions. Replaced by B ping and C squeeze; A flood kept as ripple and shortened to 140 ms. Needs a fresh eyes round 7 to close (subagent limit reached this session).
 - P1: ping and squeeze faded the fill in over 70 ms and showed a muddy grey frame at 30 ms. Now instant.
+
+## Round 7
+Fresh eyes: Chadwick, 21 Nov: dot to Neutral/100; proper states; take what the reference's code and its press animation give. Read the reference's component module: one spring, stiffness 400, damping 30, mass 1, and a 20 px pressed variant. Rebuilt every change on that spring and added the dot press on any click.
+- P1: press options B ping and C squeeze removed after his pick of A.
+- P2: our press and release sizes match the reference within 0.4 px at every sampled time (scratch comparison, 21 Nov); REF checks rest, pressed and released sizes against the live page.

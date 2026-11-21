@@ -7,27 +7,27 @@ html.has-site-cursor :is(input:not([type="button"], [type="submit"], [type="chec
 .site-cursor {
   position: fixed; left: 0; top: 0; z-index: 2147483000; width: 0; height: 0;
   pointer-events: none; opacity: 0; transition: opacity 150ms var(--ease-quart-out);
-  /* The reference's grow, measured on cursors.framer.wiki 21 Nov: about 90 percent of the way at 40
-     percent of the time, a 2 percent overshoot, settled by 80 percent. */
-  --cur-spring: linear(0, 0.25 9%, 0.45 15%, 0.62 23%, 0.79 30%, 0.92 39%, 1.005 45%, 1.02 54%, 1.022 60%, 1.015 67%, 1.007 74%, 1.002 82%, 1);
-  /* Reference drop shadow: 0 12 24 at 20 percent black. */
+  /* Reference drop shadow: 0 12 24 at 20 percent black. --cur-spring and --cur-morph come from the script:
+     the reference's spring (stiffness 400, damping 30, mass 1) as a linear() curve and its settle time. */
   --cur-drop: 0 12px 24px rgb(0 0 0 / 0.2);
 }
 .site-cursor.is-shown { opacity: 1; }
 .site-cursor[data-state="hidden"] { opacity: 0; }
 
-/* One shape, out of the page flow so its size changes move nothing else. Dot: 24 px pure white (the
-   inset fill covers it). Button: the small button's box with the fill drained to the 3 px outline. */
+/* One shape, out of the page flow so its size changes move nothing else. Every size change runs on the
+   reference's spring. Dot: 24 px Neutral/100 (the inset fill covers it); pressed 20 px. Button: the small
+   button's box with the fill drained to the 3 px outline. */
 .site-cursor__shape {
   position: absolute; left: 0; top: 0; overflow: hidden;
   width: var(--cur-dot); height: var(--cur-dot); border-radius: 999px;
-  box-shadow: inset 0 0 0 30px var(--neutral-000), var(--cur-drop);
+  box-shadow: inset 0 0 0 30px var(--neutral-100), var(--cur-drop);
   color: var(--neutral-100);
   transform: translate(-50%, -50%);
   transition: width var(--cur-morph) var(--cur-spring), height var(--cur-morph) var(--cur-spring),
-    box-shadow var(--cur-morph) var(--ease-quart-out), color var(--cur-press-dur) var(--ease-quart-out),
-    transform var(--cur-press-dur) var(--ease-quart-out);
+    box-shadow var(--cur-morph) var(--ease-quart-out), transform var(--cur-press-dur) var(--ease-quart-out);
 }
+/* Dot pressed, the reference's pressed variant: any click shrinks the dot to 20 px; release springs back. */
+.site-cursor[data-state="dot"].is-pressed .site-cursor__shape { width: var(--cur-dot-press); height: var(--cur-dot-press); }
 .site-cursor[data-state="pill"] .site-cursor__shape {
   width: var(--cur-pill-w); height: var(--cur-pill-h);
   box-shadow: inset 0 0 0 3px var(--neutral-100), var(--cur-drop);
@@ -49,8 +49,8 @@ html.has-site-cursor :is(input:not([type="button"], [type="submit"], [type="chec
   padding: 12px calc(16px + 0.04em) 12px 16px; border: 3px solid transparent;
 }
 
-/* Press, his call 21 Nov: it turns white only on mouse down (Neutral/100 fill, Neutral/900 text, scale).
-   The ink layer is the white state, revealed differently by each option. */
+/* Press, his call 21 Nov: the button turns white only on mouse down (Neutral/100 fill, Neutral/900 text,
+   scale). The ink layer is that white state. */
 .site-cursor__ink {
   position: absolute; inset: 0; border-radius: inherit;
   background: var(--neutral-100); color: var(--neutral-900);
@@ -60,38 +60,9 @@ html.has-site-cursor :is(input:not([type="button"], [type="submit"], [type="chec
 .site-cursor__ink .site-cursor__label { opacity: 1; transition: none; }
 .site-cursor[data-state="pill"].is-pressed .site-cursor__shape { transform: translate(-50%, -50%) scale(var(--cur-press)); }
 
-/* A, ripple (21st.dev "Ripple Button", ddoemonn: an outline button that fills from the press point). The
-   white floods out from the pointer, which is the pill's centre. */
-.site-cursor[data-press="ripple"][data-state="pill"].is-pressed .site-cursor__ink { clip-path: circle(75% at 50% 50%); }
-
-/* B, ping (21st.dev "Ripple Buttons", ai2, its Ping and Echo variants: a copy of the outline rings outward
-   on click). The pill fills at once and its outline rings out and fades, so the press reads even on a
-   quick click. */
-.site-cursor__echo {
-  position: absolute; left: 0; top: 0; width: var(--cur-pill-w); height: var(--cur-pill-h);
-  border: 3px solid var(--neutral-100); border-radius: 999px; box-sizing: border-box;
-  transform: translate(-50%, -50%); opacity: 0;
-}
-.site-cursor[data-press="ping"] .site-cursor__ink,
-.site-cursor[data-press="squeeze"] .site-cursor__ink { clip-path: none; opacity: 0; transition: none; }
-/* Instant: a 70 ms fade left a muddy grey frame at 30 ms. */
-.site-cursor[data-press="ping"][data-state="pill"].is-pressed .site-cursor__ink,
-.site-cursor[data-press="squeeze"][data-state="pill"].is-pressed .site-cursor__ink { opacity: 1; }
-.site-cursor[data-press="ping"][data-state="pill"].is-pressed .site-cursor__echo { animation: cur-echo 480ms var(--ease-quart-out) 1 both; }
-@keyframes cur-echo {
-  from { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
-  to { opacity: 0; transform: translate(-50%, -50%) scale(1.22, 1.6); }
-}
-
-/* C, squeeze (21st.dev "Press Depth", ddoemonn, and the reference cursor, which shrinks to about 0.83 on
-   press): the pill fills at once and dips in, then settles at the held scale on a spring. */
-.site-cursor[data-press="squeeze"][data-state="pill"].is-pressed .site-cursor__shape { animation: cur-squeeze 300ms linear 1 both; }
-@keyframes cur-squeeze {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  30% { transform: translate(-50%, -50%) scale(0.92); }
-  65% { transform: translate(-50%, -50%) scale(0.99); }
-  100% { transform: translate(-50%, -50%) scale(var(--cur-press)); }
-}
+/* Button pressed, his pick 21 Nov (A, from 21st.dev "Ripple Button": an outline button that fills from the
+   press point): the white floods out from the pointer, the pill's centre. Same Neutral/100 as the stroke. */
+.site-cursor[data-state="pill"].is-pressed .site-cursor__ink { clip-path: circle(75% at 50% 50%); }
 
 .site-cursor.is-reduced, .site-cursor.is-reduced * { transition: none !important; animation: none !important; }
 
