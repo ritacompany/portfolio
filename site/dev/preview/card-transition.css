@@ -16,4 +16,5 @@
 .ct-veil { position: absolute; inset: 0; background: var(--neutral-900); }
 .ct-pic { position: absolute; inset: 0; will-change: clip-path, opacity; }
 .ct-bg, .ct-img, .ct-text { position: absolute; left: 0; top: 0; transform-origin: 0 0; max-width: none; will-change: transform; }
+.ct-shade { position: absolute; inset: 0; background: var(--neutral-900); opacity: 0; }
 .ct-text { margin: 0; padding: 0; white-space: nowrap; }

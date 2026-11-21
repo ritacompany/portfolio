@@ -6,9 +6,9 @@ between the two shows Home's last frame (the browser holds it until the new page
 | State | When | Look |
 |---|---|---|
 | Rest | before the release | Home as it is; the cursor in its Learn more button press |
-| Exit | 0 to 220 ms on Home | a copy of the card sits exactly on the card; a Neutral/900 veil fades over everything else, cursor included |
-| Hand over | the page load | Home's last frame: the card alone on Neutral/900 |
-| Arrival start | 0 ms on `/mondai/` | the same frame, drawn by the collection page: picture, name, //, label and description at the card's rects |
+| Exit | 0 to 220 ms on Home | a copy of the card's picture and shared words sits exactly on the card; a Neutral/900 veil fades over everything else, the description, the phone's Learn more and the cursor included |
+| Hand over | the page load | Home's last frame: the card's picture and words alone on Neutral/900 |
+| Arrival start | 0 ms on `/mondai/` | the same frame, drawn by the collection page: picture, name, // and label at the card's rects |
 | Travel | spring: A 0.84 s, B 0.68 s, C 1.25 s | per direction, below |
 | Settle | the spring within 0.5 percent | the words sit on the real title and label at their real size and colour; copies removed |
 | Fill | A and B from 60 percent of the travel, C from 30 percent | nav, intro and rows fade in place, power1 out: A and B 1.0 s with 0.12 s steps, C 0.7 s with 0.08 s steps (C's intro from 75 percent) |
@@ -22,7 +22,7 @@ between the two shows Home's last frame (the browser holds it until the new page
 | B. Dock | shrinks along an arc into the mark's 40 px circle (corner rounds to a circle on the way); fades out between 50 and 85 percent | travels to the title, grows | travel to the list label, dropping first (vertical move leads) | fades in from 60 percent, under the closing picture | k 120, d 22 |
 | C. Zoom | is part of the page's world: zooms with it from half to full size; fades out in the first 30 percent | is the real title, riding the page from 0.5 to 1 scale | travel in screen space to where the page's label is that frame | rides the page; fades in from 30 percent | k 40, d 13 |
 
-Description ("Tech career navigator") and the phone's Learn more: fade out over the first 12 percent in every direction. A shared word the card does not draw at that width (the phone has no //) fades in at 85 percent, as its partner lands.
+Description ("Tech career navigator") and the phone's Learn more: go with Home under the veil in every direction. The picture is shaded to 35 percent in the first quarter of the travel (C: first fifth) so the words never cross its screen text. A shared word the card does not draw at that width (the phone has no //) fades in at 85 percent, as its partner lands.
 
 ## Interrupt
 A click, key or wheel during the arrival jumps to End. During the exit on Home nothing interrupts: it is

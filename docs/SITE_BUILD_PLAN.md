@@ -432,6 +432,7 @@ Preview link: https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST (private to him)
 `node scripts/build-preview.mjs site <dir>`, then publish to that same url.
 
 Loop log:
+- 21 Nov, card to collection transition (step 1, proposed): three directions for the move from the Mondai card on Home to the collection page, A Open, B Dock, C Zoom, on a test build at https://claude.ai/artifact/Vk1mZz4hirZJi9pVuHxnwR (direction in the edit panel, Motion tab). Pick: B. Docs and gates in docs/motion/card-transition/. Waiting on him.
 - 14 Nov, Start of week carousel on the framework page (done on his yes: "this works for the time being,
   it can always be improved later"). Center mode, his picks of 12 Nov, built 13 Nov (e65521e). Research,
   options and gates in docs/motion/week-carousel/.

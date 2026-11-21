@@ -28,7 +28,7 @@ What is on both sides, measured in the code:
 | "//", Mark/15, Neutral/200 | "//", Mark/15, Neutral/500 | travels, colour only |
 | "Case study collection", Label/12 C, Neutral/300 | the list label, Label/12 C, Neutral/400 | travels, colour only |
 | the card picture | nothing | each direction treats it differently: this is what makes the three different |
-| "Tech career navigator" | nothing | fades out where it is |
+| "Tech career navigator" | nothing | goes with Home under the veil |
 
 Take: the shared words travel in every direction, at their real sizes at both ends, so nothing jumps.
 Not taken: a crossfade of either page around them; a rise on any text (the masked rise was rejected); the
@@ -69,7 +69,7 @@ moves.
   with no jump.
 - Fades for collection only items: A and B 1.0 s, 0.12 s steps, from 60 percent of the travel; C 0.7 s,
   0.08 s steps, from 30 percent, once the picture has gone, and the intro waits until 75 percent so the
-  travelling label never crosses it. Card only text fades in the first 12 percent.
+  travelling label never crosses it. Card only text never reaches the collection: it goes under Home's veil. The picture is shaded to 35 percent before the words cross it.
 
 ## Rules used
 - Shared element, origin aware, no layout shift (only transform, opacity and clip path move; the real page is

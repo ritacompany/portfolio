@@ -115,8 +115,9 @@ async function stepped(dir, w, h, { every = 1000 / 30, keep = false } = {}) {
   await c.close();
   return { dir, w, h, exit, arrive, lastHome, lastArrive, info, near, state };
 }
-async function restShot(w, h) {
-  const c = await ctx(w, h, { seek: false });
+// Same direction stored as the run it is compared with, so the edit panel's "changed" dot matches too.
+async function restShot(w, h, dir = "A") {
+  const c = await ctx(w, h, { seek: false, dir });
   const page = await c.newPage();
   await page.goto(base + "/mondai/index.html", { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
@@ -154,12 +155,13 @@ if (gate === "CAPTURE") {
 if (gate === "G1" || gate === "G2" || gate === "G3" || gate === "CONTROL") {
   let ctrl = 0;
   for (const [w, h] of WIDTHS) {
-    const rest = gate === "G2" ? await restShot(w, h) : null;
     for (const dir of DIRS) {
+      const rest = gate === "G2" ? await restShot(w, h, dir) : null;
       const r = await stepped(dir, w, h);
       if (!r) continue;
       if (gate === "G1") { const d = await diff(r.lastHome, r.arrive[0].png); console.log(`  ${dir} ${w}: home last vs arrival first mean ${d.mean.toFixed(3)}, off ${(d.big * 100).toFixed(3)}%`); if (!close(d)) fail(`${dir} ${w}: jump across the page change`); }
       if (gate === "CONTROL") { const mid = r.arrive[Math.floor(r.arrive.length / 4)].png; const d = await diff(r.lastHome, mid); console.log(`  ${dir} ${w}: home last vs arrival mid travel mean ${d.mean.toFixed(3)}`); if (!close(d)) ctrl++; }
+      if (gate === "G2" && process.env.CT_DUMP) { mkdirSync(OUT, { recursive: true }); writeFileSync(path.join(OUT, `g2-${dir}-${w}-rest.png`), rest); writeFileSync(path.join(OUT, `g2-${dir}-${w}-end.png`), r.lastArrive); }
       if (gate === "G2") { const d = await diff(rest, r.lastArrive); console.log(`  ${dir} ${w}: arrival end vs direct visit mean ${d.mean.toFixed(3)}, off ${(d.big * 100).toFixed(3)}%; layers ${r.state.layers}, transform ${r.state.transform}`); if (!close(d) || r.state.layers || r.state.transform !== "none") fail(`${dir} ${w}: the arrival does not end on the page at rest`); }
       if (gate === "G3" && (!r.near || !r.near.length)) fail(`${dir} ${w}: no word copies to measure`);
       if (gate === "G3") for (const n of r.near || []) { console.log(`  ${dir} ${w}: ${n.word} off by ${n.dx.toFixed(2)}, ${n.dy.toFixed(2)}, width ${n.dw.toFixed(2)}`); if (n.dx > 1.5 || n.dy > 1.5 || n.dw > 1.5) fail(`${dir} ${w}: ${n.word} jumps at the hand over`); }

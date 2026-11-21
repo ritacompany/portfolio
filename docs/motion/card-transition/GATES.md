@@ -2,6 +2,8 @@
 
 OWNS: site/dev/preview/card-transition.js, site/dev/preview/card-transition.css, scripts/check-card-transition.mjs, docs/motion/card-transition/**
 
+Status, 21 Nov: every runnable gate (G1 to G7 and the G1 control) printed PASS on the final preview build. Evidence fingerprints were not recorded through the unlazy checker, so the boxes stay unticked until it is run with approval. M1 waits on him. The review log's motion check fails until a fresh eyes round closes round 4 (the reviewer limit per turn was reached).
+
 Scope: three directions (A Open, B Dock, C Zoom) for the move from the Mondai card on Home to the Mondai
 collection page, on the preview build. Nothing in the shipped site changes until his yes.
 

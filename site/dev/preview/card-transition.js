@@ -19,7 +19,7 @@
     dir: "A", exit: 220,
     kA: 80, dA: 18, kB: 120, dB: 22, kC: 40, dC: 13,
   };
-  const FILL = { A: 0.6, B: 0.6, C: 0.3 }; // share of the travel (spring progress) at which the page only items start
+  const FILL = { A: 0.45, B: 0.45, C: 0.35 }; // share of the travel (spring progress) at which the page only items start
   // C draws the page while it moves, so its items fade quicker than the shared 1.4 s and start at once.
   const FADE = { A: [1000, 120], B: [1000, 120], C: [700, 80] }; // share of the travel at which the page only items start to fade in
   const store = {
@@ -70,7 +70,7 @@
   const mix = (a, b, p) => { const x = rgb(a), y = rgb(b); return `rgba(${x.map((v, i) => (i < 3 ? Math.round(lerp(v, y[i], p)) : +lerp(v, y[i], p).toFixed(3))).join(", ")})`; };
   const box = (el) => { const r = el.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; };
   const lerpBox = (a, b, p) => ({ x: lerp(a.x, b.x, p), y: lerp(a.y, b.y, p), w: lerp(a.w, b.w, p), h: lerp(a.h, b.h, p) });
-  const TEXT_PROPS = ["font-family", "font-size", "font-weight", "line-height", "letter-spacing", "text-transform", "color", "text-box-trim", "text-box-edge", "font-feature-settings", "-webkit-font-smoothing"];
+  const TEXT_PROPS = ["font-family", "font-size", "font-weight", "line-height", "letter-spacing", "text-transform", "color", "text-box-trim", "text-box-edge", "font-feature-settings", "-webkit-font-smoothing", "padding-inline-end"];
   const styleOf = (el) => { const cs = getComputedStyle(el), o = {}; for (const p of TEXT_PROPS) o[p] = cs.getPropertyValue(p); return o; };
   const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(), cs = getComputedStyle(el); return r.width > 0 && r.height > 0 && cs.visibility !== "hidden" && cs.display !== "none" && +cs.opacity > 0; };
   const px = (v) => parseFloat(v) || 0;
@@ -116,13 +116,16 @@
       wrap.append(i);
       return { el: i, r: d.r };
     });
-    return { wrap, bg, imgs };
+    // A Neutral/900 shade over the picture: the words travel across it, so it darkens under them first.
+    const shade = make("ct-shade", wrap);
+    return { wrap, bg, imgs, shade };
   }
   // Draw the picture as if its frame were the box F: the frame clips, the picture covers it from its centre.
-  function paintMedia(M, snap, F, radius = 0, opacity = 1) {
+  function paintMedia(M, snap, F, radius = 0, opacity = 1, shade = 0) {
     const vw = innerWidth, vh = innerHeight, o = snap.r;
     M.wrap.style.clipPath = `inset(${F.y.toFixed(2)}px ${(vw - F.x - F.w).toFixed(2)}px ${(vh - F.y - F.h).toFixed(2)}px ${F.x.toFixed(2)}px round ${radius.toFixed(2)}px)`;
     M.wrap.style.opacity = opacity.toFixed(4);
+    M.shade.style.opacity = shade.toFixed(4);
     const s = Math.max(F.w / o.w, F.h / o.h), cx = F.x + F.w / 2, cy = F.y + F.h / 2, ox = o.x + o.w / 2, oy = o.y + o.h / 2;
     place(M.bg, cx - (o.w * s) / 2, cy - (o.h * s) / 2, 1);
     M.bg.style.transform += ` scale(${s.toFixed(5)})`;
@@ -150,7 +153,8 @@
     const texts = ["name", "slashes", "kind"].map((k) => d[k]).filter(Boolean).map((p) => {
       const e = textCopy(p.text, p.st, layer); place(e, p.r.x, p.r.y); return e;
     });
-    for (const x of d.extras) place(extraCopy(x, layer), x.r.x, x.r.y);
+    // Card only parts (the description, the phone's Learn more) are left under the veil: they do not
+    // continue to the collection, so they go with Home and never meet the travelling words.
     return { M, texts };
   }
   function exitFrame(t) {
@@ -240,7 +244,7 @@
       const el = textCopy(P[to].textContent.trim(), b.st, R.wordsLayer);
       R.words.push({ el, a, b, s0, real: P[to], ls0: px(a.st["letter-spacing"]) / s0, ls1: px(b.st["letter-spacing"]) });
     }
-    R.extras = d.extras.map((p) => ({ p, el: extraCopy(p, R.wordsLayer) }));
+    R.extras = []; // card only parts went with Home's veil
 
     // Page only items fade in place in reading order: one step per line, the shared 1.4 s power1 out.
     const order = [P.header, P.intro, ...P.rows].filter(Boolean);
@@ -287,18 +291,18 @@
     // ---- The picture
     if (dir === "A") {
       const F = lerpBox(media, { x: 0, y: 0, w: vw, h: vh }, p);
-      paintMedia(R.M, d.media, F, 0, 1 - smooth(range(p, 0.35, 0.85)));
+      paintMedia(R.M, d.media, F, 0, 1 - smooth(range(p, 0.35, 0.85)), 0.65 * smooth(range(p, 0, 0.25)));
     } else if (dir === "B") {
       const M = D.mark ? D.mark.r : { x: D.h1.r.x - 60, y: D.h1.r.y, w: 40, h: 40 };
       const px1 = p, py1 = 1 - (1 - p) ** 1.6; // y leads x: the centre travels on an arc, not a diagonal
       const w = lerp(media.w, M.w, p), h = lerp(media.h, M.h, p);
       const cx = lerp(media.x + media.w / 2, M.x + M.w / 2, px1), cy = lerp(media.y + media.h / 2, M.y + M.h / 2, py1);
       const F = { x: cx - w / 2, y: cy - h / 2, w, h };
-      paintMedia(R.M, d.media, F, Math.min(w, h) / 2 * smooth(range(p, 0.2, 0.85)), 1 - smooth(range(p, 0.5, 0.85)));
+      paintMedia(R.M, d.media, F, Math.min(w, h) / 2 * smooth(range(p, 0.2, 0.75)), 1 - smooth(range(p, 0.45, 0.75)), 0.65 * smooth(range(p, 0, 0.25)));
     } else {
       cam = camera(R, p);
       canvas.style.transform = p >= 1 ? "" : `translate3d(${cam.tx.toFixed(2)}px, ${cam.ty.toFixed(2)}px, 0) scale(${cam.s.toFixed(5)})`;
-      paintMedia(R.M, d.media, toScreen(cam, toWorld(cam, media)), 0, 1 - smooth(range(p, 0, 0.3)));
+      paintMedia(R.M, d.media, toScreen(cam, toWorld(cam, media)), 0, 1 - smooth(range(p, 0, 0.3)), 0.65 * smooth(range(p, 0, 0.2)));
     }
 
     // ---- Shared words
@@ -321,12 +325,12 @@
     for (const x of R.extras) {
       const r = cam ? toScreen(cam, toWorld(cam, x.p.r)) : x.p.r;
       place(x.el, r.x, r.y, cam ? cam.s / cam.s0 : 1);
-      x.el.style.opacity = (1 - smooth(range(p, 0, 0.12))).toFixed(4);
+      x.el.style.opacity = (1 - power1Out(t / 180)).toFixed(4); // gone in 180 ms by time, not progress, so a fast spring start never cuts it
     }
 
     // ---- The mark
     if (P.mark) {
-      const m = dir === "A" ? range(p, 0.5, 1) : dir === "B" ? range(p, 0.6, 1) : range(p, 0.3, 0.7);
+      const m = dir === "A" ? range(p, 0.5, 1) : dir === "B" ? range(p, 0.5, 0.9) : range(p, 0.3, 0.7);
       imp(P.mark, "opacity", power1Out(m).toFixed(4));
     }
     for (const el of [P.brand, P.label, P.mark, ...R.fadeList.map((f) => f.el), ...R.extraFades.map((f) => f.el)]) quiet(el);
