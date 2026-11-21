@@ -13,4 +13,5 @@ Scope: the diagram in "The foundation we built on" only. Nothing else on the pag
 - [x] G5: no change outside the Foundation section (diff reviewed hunk by hunk)
   EVIDENCE: diff touches only the Foundation code in mondai-motion.js (row mask removed, openCols and its observer added, replay clears the layer), the Foundation row of framework-page.md and the Foundation block of framework-audit-gates.mjs
 - [ ] G6: Pathway order settled with him once, after reading the Mondai archive; his answer recorded in his words, and applied to the diagram and copy only if he says so
-- [ ] G7: branch claude/fw-foundation-motion pushed, draft PR into claude/relaxed-ride-5mlbdu, lead session sent the link
+- [x] G7: branch claude/fw-foundation-motion pushed, draft PR into claude/relaxed-ride-5mlbdu, lead session sent the link
+  EVIDENCE: pushed; draft PR https://github.com/ritacompany/portfolio/pull/33 into claude/relaxed-ride-5mlbdu; lead session sent the link 21 Nov
