@@ -125,29 +125,51 @@
     }
     return f;
   }
-  // The Foundation diagram is type, frames and arrows, not a screen, so it never moves as one block. Its
-  // three rows (Pathways, Focus areas, Action items) fade in from the top, 0.16 s apart, opacity only, the
-  // order the Hierarchy line beside it reads (his pick, 13 Nov; reports/nov12-audit/foundation). One image,
-  // so each row is a band of an alpha mask driven by its own registered custom property.
-  const ROWS = { "5812:16512": [0.41, 0.71] };
-  const ROW = { dur: 1000, step: 160, lead: 450, ease: "cubic-bezier(0.22, 1, 0.36, 1)" }; // lead: the words around it start first, as in the clip he picked
-  let rowProps = false;
-  try { ["--mm-r0", "--mm-r1", "--mm-r2"].forEach((name) => CSS.registerProperty({ name, syntax: "<number>", inherits: false, initialValue: "1" })); rowProps = true; }
-  catch (e) { rowProps = e && e.name === "InvalidModificationError"; } // already registered still works
-  const ROW_MASK = (cut) => `linear-gradient(to bottom, rgba(0,0,0,var(--mm-r0)) 0 ${cut[0] * 100}%, rgba(0,0,0,var(--mm-r1)) ${cut[0] * 100}% ${cut[1] * 100}%, rgba(0,0,0,var(--mm-r2)) ${cut[1] * 100}%)`;
-  const clearRows = (img) => { ["maskImage", "webkitMaskImage"].forEach((k) => { img.style[k] = ""; }); ["--mm-r0", "--mm-r1", "--mm-r2"].forEach((k) => img.style.removeProperty(k)); };
-  function openRows(img, delay) {
-    if (!rowProps) { // no registered properties: the diagram fades like text
-      img.style.clipPath = "none";
-      const a = img.animate([{ opacity: 0 }, { opacity: 1 }], { duration: T.textDur * 1000, delay, easing: TEXT_EASE, fill: "both" });
-      a.finished.then(() => { opened(img); a.cancel(); }, () => {});
-      return;
+  // The Foundation diagram is type, frames and arrows, not a screen, so it never moves as one block. It
+  // comes in Pathway by Pathway (his pick, 20 Nov; reports/foundation-motion-2026-11-20): 01 to 05 left
+  // to right, 0.14 s apart, each rising and fading in, the dotted link to the next drawing from the left,
+  // and each Pathway's Focus areas then Action items following under it 0.2 s and 0.4 s after it lands.
+  // It starts once the whole diagram has cleared a line 5 percent up from the bottom of the window (20 percent
+  // was a little late, his note 21 Nov),
+  // so it plays where the reader is looking (the earlier wipe and row fade started on the first pixel and
+  // finished below the screen). One image, so the pieces are copies of it, each clipped to its part, on a
+  // layer over the image that is removed when the motion ends. Bands and column edges are measured from
+  // the 1791 by 754 export.
+  const COLS = "5812:16512";
+  const FD = { W: 1791, H: 754, step: 140, down: 200, dur: 600, rise: 12, link: [260, 320], line: 0.95, ease: "cubic-bezier(0.22, 1, 0.36, 1)" };
+  const FD_ROW = { P: [0, 300], F: [310, 542], X: [542, 754] }; // Pathway label and box, arrow and Focus areas, arrow and Action items
+  const fdCol = (i) => [Math.max(0, i * 378 - 4), Math.min(FD.W, i * 378 + 282)];
+  const fdPct = (v, of) => (v / of * 100).toFixed(3) + "%";
+  const fdInset = (y0, y1, x0 = 0, x1 = FD.W) => `inset(${fdPct(y0, FD.H)} ${fdPct(FD.W - x1, FD.W)} ${fdPct(FD.H - y1, FD.H)} ${fdPct(x0, FD.W)})`;
+  const clearCols = (img) => { if (img._mmLayer) { img._mmLayer.remove(); img._mmLayer = null; } };
+  function openCols(img, delay) {
+    clearCols(img);
+    const host = img.offsetParent || img.parentElement;
+    const layer = document.createElement("div");
+    layer.className = "mm-fd"; layer.setAttribute("aria-hidden", "true");
+    // important: the phone and tablet layouts set every section child static and full width
+    // fractional layout px (offset values round, and a 0.4 px squash shows as a jump at the hand back);
+    // the 1200 to 1439 layout scales the canvas, so screen distances are divided by that scale
+    const ir = img.getBoundingClientRect(), hr = host.getBoundingClientRect(), k = hr.width / host.offsetWidth || 1, ics = getComputedStyle(img);
+    const box = { position: "absolute", margin: "0", left: `${(ir.left - hr.left) / k - host.clientLeft}px`, top: `${(ir.top - hr.top) / k - host.clientTop}px`, width: ics.width, height: ics.height, "max-width": "none", "pointer-events": "none", visibility: "visible", opacity: "1", "clip-path": "none", transform: "none" };
+    Object.entries(box).forEach(([k, v]) => layer.style.setProperty(k, v, "important"));
+    host.appendChild(layer); img._mmLayer = layer;
+    const src = img.currentSrc || img.src, rise = Math.max(6, FD.rise * img.offsetWidth / 896), anims = [];
+    // each piece is the same image drawn the same way, so the hand back to the real image is seamless
+    const piece = (clip) => { const d = new Image(); d.src = src; d.alt = ""; d.style.cssText = `position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;margin:0;clip-path:${clip}`; layer.appendChild(d); return d; };
+    const up = [{ opacity: 0, transform: `translateY(${rise.toFixed(1)}px)` }, { opacity: 1, transform: "none" }];
+    const go = (el, kf, at, dur, easing = FD.ease) => anims.push(el.animate(kf, { duration: dur, delay: delay + at, easing, fill: "both" }));
+    for (let i = 0; i < 5; i++) {
+      const [x0, x1] = fdCol(i), t = i * FD.step;
+      go(piece(fdInset(...FD_ROW.P, x0, x1)), up, t, FD.dur);
+      go(piece(fdInset(...FD_ROW.F, x0, x1)), up, t + FD.down, FD.dur);
+      go(piece(fdInset(...FD_ROW.X, x0, x1)), up, t + 2 * FD.down, FD.dur);
+      if (i < 4) {
+        const c1 = fdCol(i + 1)[0];
+        go(piece(fdInset(150, 215, x1, x1)), [{ clipPath: fdInset(150, 215, x1, x1) }, { clipPath: fdInset(150, 215, x1, c1) }], t + FD.link[0], FD.link[1], "ease-out");
+      }
     }
-    ["--mm-r0", "--mm-r1", "--mm-r2"].forEach((k) => img.style.setProperty(k, "0"));
-    img.style.maskImage = img.style.webkitMaskImage = ROW_MASK(ROWS[img.dataset.figmaNode]);
-    img.style.clipPath = "none";
-    const anims = [0, 1, 2].map((i) => img.animate([{ [`--mm-r${i}`]: 0 }, { [`--mm-r${i}`]: 1 }], { duration: ROW.dur, delay: delay + ROW.lead + i * ROW.step, easing: ROW.ease, fill: "both" }));
-    Promise.all(anims.map((a) => a.finished)).then(() => { clearRows(img); opened(img); anims.forEach((a) => a.cancel()); }, () => {});
+    Promise.all(anims.map((a) => a.finished)).then(() => { opened(img); clearCols(img); }, () => {});
   }
   const opened = (img) => { img.style.clipPath = "none"; img.style.transform = ""; img.style.willChange = ""; img.dataset.mmDone = "1"; };
   function openMask(imgs, delay) {
@@ -156,7 +178,7 @@
       const photo = maskFrames(T.from), flat = maskFrames(T.fromFlat);
       imgs.forEach((img) => {
         const id = img.dataset.figmaNode;
-        if (ROWS[id]) { openRows(img, delay); return; }
+        if (id === COLS) { openCols(img, delay); return; }
         img.style.willChange = "clip-path, transform";
         const f = PHOTO.includes(id) ? photo : flat;
         const a = img.animate(f, { duration: T.maskDur * 1000, delay, easing: "linear", fill: "both" });
@@ -166,11 +188,13 @@
   }
 
   // ---- Observers, as Haven: text 100 px inside the screen, media on any pixel, skipped past shows at once
-  let textIO = null, maskIO = null;
+  let textIO = null, maskIO = null, fdIO = null;
   const textDone = new Set(), maskDone = new Set(); // triggered once; a new observer skips them
   function observe() {
     textIO && textIO.disconnect();
     maskIO && maskIO.disconnect();
+    fdIO && fdIO.disconnect();
+    masks.forEach((el) => { el._mmWatch = false; });
     textIO = new IntersectionObserver((entries) => {
       const now = [];
       for (const e of entries) {
@@ -187,8 +211,29 @@
         else if (e.boundingClientRect.bottom < 0) { imgs.forEach(opened); maskIO.unobserve(e.target); maskDone.add(e.target); }
       }
     }, { rootMargin: "0px" });
+    // The Foundation diagram: all of it above the 5 percent line, or already reaching past the top. Its
+    // clip hides it, so an intersection ratio never rises; while any of it is on screen its box is read
+    // every frame instead, and the frame loop stops once it starts.
+    fdIO = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        const el = e.target;
+        if (e.isIntersecting && !el._mmWatch) {
+          el._mmWatch = true;
+          const tick = () => {
+            if (!el._mmWatch) return;
+            const r = el.getBoundingClientRect();
+            if (r.bottom <= innerHeight * FD.line && r.bottom > 0) { el._mmWatch = false; fdIO.unobserve(el); maskDone.add(el); openMask([el], arrivalMs()); return; }
+            requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        } else if (!e.isIntersecting) {
+          el._mmWatch = false;
+          if (e.boundingClientRect.bottom < 0) { opened(el); fdIO.unobserve(el); maskDone.add(el); }
+        }
+      }
+    }, { rootMargin: "0px" });
     texts.concat(weeks).forEach((el) => textDone.has(el) || textIO.observe(el));
-    masks.concat(weeks).forEach((el) => maskDone.has(el) || maskIO.observe(el));
+    masks.concat(weeks).forEach((el) => maskDone.has(el) || (el.dataset.figmaNode === COLS ? fdIO : maskIO).observe(el));
   }
   observe();
 
@@ -210,7 +255,7 @@
     allTexts().concat(allImgs()).forEach((el) => {
       el.getAnimations().forEach((a) => a.cancel());
       el.style.visibility = el.style.opacity = el.style.clipPath = el.style.transform = el.style.willChange = "";
-      clearRows(el);
+      clearCols(el);
       delete el.dataset.mmDone;
     });
     textDone.clear(); maskDone.clear();
