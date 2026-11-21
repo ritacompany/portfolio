@@ -34,5 +34,5 @@ Scope: the Target and pace and Calendar setup images show at every width both on
   EXPECT: FINDINGS_OK
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=717fe78f66f0/16 entries; EXPECT=matched; output-sha256=c938ae8b07197d74ecdeed9bfdcb04b48944980f8caf85d5261f869c21cbb9d2; output-bytes=12
 
-- [ ] G7: branch pushed, draft PR open into claude/relaxed-ride-5mlbdu (the lead moved the base there; same code as claude/fw-integration plus a handoff note), review preview republished, lead session sent the PR link
-  EVIDENCE: pending
+- [x] G7: branch pushed, draft PR open into claude/relaxed-ride-5mlbdu (the lead moved the base there; same code as claude/fw-integration plus a handoff note), review preview republished, lead session sent the PR link
+  EVIDENCE: manual; branch claude/fw-fixes-round2 pushed; draft PR #37 into claude/relaxed-ride-5mlbdu https://github.com/ritacompany/portfolio/pull/37; preview https://claude.ai/artifact/BcAwMa7dxD7PGvxsPHjQsd built with builder 920a44a; lead session_01NtNprpF2S84rwN3GY1iDpG sent the PR link
