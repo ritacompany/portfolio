@@ -141,6 +141,9 @@ const gates = {
           else if (R < 40 && G < 40 && B < 40) dark++; }
         return { light: light / n, dark: dark / n };
       }, png.toString("base64"));
+      // His note 21 Nov: the fill must be the stroke's colour. Compare the computed colours directly.
+      const cols = await pg.evaluate(() => { const sh = getComputedStyle(document.querySelector(".site-cursor__shape")).boxShadow, ink = getComputedStyle(document.querySelector(".site-cursor__ink")).backgroundColor; return { stroke: (sh.match(/rgba?\([^)]*\)/) || [""])[0], ink }; });
+      if (style !== "thicken") must(cols.ink === "rgb(232, 231, 238)" && cols.stroke === "rgb(232, 231, 238)", `${style}: fill ${cols.ink} vs stroke ${cols.stroke}`);
       must(px.light > 0.55 && px.dark > 0.08, `${style}: pill not Neutral/100 with dark text when pressed (light ${px.light.toFixed(2)}, dark ${px.dark.toFixed(2)})`);
       const nav = pg.waitForURL(/\/mondai\/$/, { timeout: 5000 });
       await pg.mouse.up();

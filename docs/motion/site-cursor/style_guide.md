@@ -31,6 +31,7 @@ white pill, and it turns white only on mouse down.
   out and fades, 480 ms (21st.dev "Ripple Buttons", ai2, Ping and Echo). C squeeze: fills at once, dips
   to 0.92 and settles at 0.98 on a spring, 300 ms (21st.dev "Press Depth", ddoemonn, and the reference
   cursor's own shrink on press). Release lets the card link open `/mondai/`.
+  His pick, 21 Nov: A ripple. The fill is the stroke's colour, Neutral/100 (232, 231, 238), checked in G2.
 
 ## Patterns and rules used
 - Interruptible: every change is a CSS transition from current values.
