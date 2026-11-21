@@ -50,7 +50,7 @@ entrance above, Media the media entrance.
 | --- | --- | --- |
 | Introduction | Text, Arrival | Haven's hero is text only and arrives this way; same job, same motion |
 | Competitive analysis | Text, stepping line by line down the two by two grid (label, name, body), both cards in a row together | Haven's insight cards step one card at a time; here each card is three loose items at Figma positions, so the step runs by line, which keeps the grid reading as one block |
-| The foundation we built on | Text, Media on the diagram | A framed diagram is a media frame in Haven (the MVP timeline, the collage) |
+| The foundation we built on | Text; the diagram comes in Pathway by Pathway (his pick, 20 Nov): 01 to 05 left to right 0.14 s apart, each rising 12 px and fading in over 0.6 s, the dotted link to the next drawing from the left, its Focus areas and Action items following 0.2 s and 0.4 s after it. It starts only once the whole diagram has cleared a line 20 percent up from the bottom of the window | The diagram is one image, so pieces of it play on a layer over it and hand back to the image at the end. The wipe (11 Nov) and the row fade (13 Nov) started on its first pixel and finished below the screen, which is why he never saw either (reports/foundation-motion-2026-11-20) |
 | Growth Journey | Text, Media on the screen | Product screen in a frame, as Haven's schedule and security screens |
 | Pathway | Text, Media | As above |
 | Action Hub | Text, Media | As above |
