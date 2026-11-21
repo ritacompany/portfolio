@@ -14,53 +14,49 @@ public and his record never goes in git, so no quotations from the research: nam
 ~/Documents/CS2-research/ instead.
 -->
 
-Updated: 2026-11-16 21:30
+Updated: 2026-11-21 13:20
 By: Claude Code
 Section: 3
-Loop step: 3
+Loop step: 4
 
 ## Where it stopped
 
-CS2 copy is settled in reference/cs2/review-2026-11-07/final-copy.md (hero A and ending C, 9 Nov). The page is built in code, not Figma: ~/Code/portfolio-site, branch claude/relaxed-ride-5mlbdu, site/mondai/framework/ (Figma reference 5812:16446). Haven's page wide motion (text fades, media curtains, Lenis at 0.1) is live on it from site/js/mondai-motion.js and site/css/mondai-motion.css (4927816).
+The framework page is built in code on branch claude/relaxed-ride-5mlbdu, site/mondai/framework/. On 20 and 21 Nov a lead chat (session_01NtNprpF2S84rwN3GY1iDpG) ran his page review through parallel sessions, one branch and draft PR each. Figma source: file Desktop 1 (MVP) 5RO0m4bYYrTvbiaOgaU3tI, page CS 5658:1061, frame "mondai framework cS most current" 6331:20607; his tablet frames in section 6340:30057 (Start of week templates 1 to 5 included); new collection page 6331:27875. The Portfolio Design file IarvWaqjIwrZ2afQmMxKm6 is stale for CS2.
 
-His audit of the built page, 11 Nov, done and pushed (540cf43, ba266fc): both sources lines cut (recorded in final-copy.md, 0253bd6); schedule view line on one line at desktop; The Rollover effect rebuilt as live text with its icon centred and 25 percent smaller, the line beside it past the text; ending bar chevrons inside the highlight, equal padding, Explore more case studies plain text; Action Item laptop rises in and outruns the page past its screen; Rollover panel slides in from the left; Foundation diagram wipes open 01 to 05 (his pick); Mondai mark at the end of the title row. Gates in docs/motion/framework-page-GATES.md on that branch: 11 met, G13 (footer outline) waits on him, motion-check not applicable. The Falling behind carry animation was built then reverted at his word: page wide motion only.
+Combined work: branch claude/fw-integration holds the working branch plus #31 (sync and desktop fixes: darker hero paragraph, nav and title spacing, Rescheduling 32 heading to body, Schedule view intro on one line, Rollover icon centred, footer from his frame marked not final, rail block eyebrow renamed Target and pace), #32 (his v4 Rollover row, section animates in as a whole), #26 (Capacity card overlay at tablet), #28 (his four tablet frames built in, 768 to 1159 from the grid), #29 (popover gradient fades in below the selected card) and #33 (Foundation diagram Pathway by Pathway, order Branding then Networking; #33 is already merged into the working branch). Every tablet, motion, sync and build check passes on it (lead ran them 21 Nov; three outdated checks were updated to his 20 Nov rules in bf55291). Review preview of it, 390, 768 and 1440: https://claude.ai/artifact/RK6mHiZRn1DHdUg13mDZ3A. claude/fw-integration is not yet merged into the working branch: the merge waits on his yes.
 
-Since 11 Nov, in ~/Code/portfolio-site with him: his 12 Nov notes are tracked one owner per item in reports/nov12-audit/GATES.md on that branch, nine of eleven closed and checked: curtain pick A (9084a83), project logos above the tagline on the framework and Haven pages (47149a4), footer portraits with no rim (7bf19d5, in docs/DECISIONS.md), Capacity cut to his yes (00273ab, final-copy.md c69ecb6), Falling behind synced to his v4 frame (8bacdaa), the Rollover slide in removed (59b0f4d), every section synced to his current frame 4269:9433 (e811763; the page was first built from the older 5RO0m4bY copy), tablet layout fixed at 768 to 1180 (d785d28), and the Foundation diagram's rows fading in from the top, his pick (857261a). Open there: N11, the 1440 check's Figma reference data predates those syncs and needs refreshing once the Figma seat's rate limit lifts; N9, the Start of week carousel, which he says is still bad and start-of-week owns. The ending: research, his pick of concept A, three versions of A with reader checks (versions/ending.md) and a test plan (review-2026-11-07/ending-test-plan.md, 16c584f); the page still carries version C. His frame still shows the longer Capacity copy; the page keeps his approved cut. The capacity card now plays his pick of the cursor demo (16 Nov, option A: the panel types on in 1.1 s, then his cursor clicks right, right, left, left, 6 to 8 and back to 6 hours, and disappears), live on the page (76c1c9f), checked at 1440, 768 and 390 with reduced motion on and off; docs and the other two options in docs/motion/capacity-stepper/ on that branch. It still waits on him trying it: the preview link is on the first account, so this account could not republish it.
+Running on 21 Nov, each PRs into claude/fw-integration: fixes round 2 (session_01NtNprpn8h42gEu6mo3DqDR, branch claude/fw-fixes-round2: Rescheduling issue he still sees at desktop and tablet, Target and pace image missing on the left, other Schedule view mismatches); Start of week tablet (session_01NtNprpbbC9k3oXd6qCy4Ao, claude/fw-start-of-week-tablet: card text bigger at tablet, side fades at 768 scaled to the viewport from his adjusted template, no gap above the dots; in Figma, text layers hug and his gradient on all five templates); Start of week copy (session_01NtNprpjQEbdZJq48MP1sdh, claude/fw-start-of-week-copy: every template description at most three lines at 1440, proposals for his yes first).
+
+Separate PRs: #24 review preview standard (docs/REVIEW_PREVIEW.md, scripts/review-preview/), #25 footer humanizer report (words wait on his yes), #27 Figma location registry (waits on his yes before it becomes a rule), #30 Mondai collection page, cursor button, page change built as provisional (no settled transition record found; session_01NtNprre3q34uGCT52zKqq9 asked him).
 
 ## Next action
 
-His pick among the ending versions, then build it. When Figma access returns, refresh the 1440 reference data (N11) and update the Capacity text in his frame to the approved cut.
+Get his yes to merge claude/fw-integration into claude/relaxed-ride-5mlbdu, then merge each running session's PR into it as he approves, rerun the checks listed in Where it stopped, and republish the review preview to the same link.
 
 ## Decided in chat, not yet in files
 
-- Bodies give reasoning and research for each decision; a feature list fails (29 Oct).
-- Headlines introduce the screen or problem and connect to the block before without signposting; problem headlines carry no solution.
-- No missed state; dimming plus the time dropping off is enough.
-- Calendar stays one section plus his smaller interaction square.
+- Review format from 20 Nov: the real page at 390, 768 and 1440 in one published viewer, no other widths (in PR #24, not merged).
+- Tablet frames are the target at 768 only; 768 to 1159 follows from the grid, never fixed positions; his tablet text widths are fixed on purpose.
+- Rail block eyebrow Target and pace; the Rollover block keeps Falling behind. His Figma frame still says Falling behind on the rail block.
+- Popover gradient starts below the selected card: the session's reading, his yes not given; his Figma frame still has the old gradient.
 
 ## Open questions for Chadwick
 
-- Rollover effect icon: Figma v4 sets it at 19.24 by 25.66, larger than the 25 percent smaller size he asked for on 11 Nov; the page follows Figma.
-
-- Pathway order: foundation diagram and live Growth Journey screen say Networking then Branding; archive, DECISIONS and his 18 Mar words say Branding then Networking. (The streak is settled: DECISIONS 24 Oct, no streak.)
-- Recalibration: archive says Accept and Keep are equal weight; his portfolio record says the skip path carries a warning. If the archive is wrong, it needs fixing in the Mondai repo.
-- Section 3 card 02: drop the 18,000 learners line there, keeping the Motion reference and a one line lesson.
+- Merge claude/fw-integration into the working branch.
+- Footer words (PR #25) and the Figma location process (PR #27).
+- The settled page transition between home, collection and framework (PR #30 session).
+- Phone fixes for the framework page against Haven (reports/mobile-breakpoint/ISSUES.md, ten measured differences): yes or no.
+- Remove #26's leftover .capdemo grid rule, now inert after #28.
 
 ## Waiting for Claude Code
 
-- Voice pass and the three line headline rule are not enforced by any hook; fixes/2026-10-29-canvas-copy-unchecked.md and fixes/2026-10-28-schedule-view-thin-content.md are not verified.
-- The copy hook flags CSS custom properties (two hyphens) as dashes in HTML. Needs his allow setup edit to fix.
+- After the merge: republish the preview, update docs/SITE_BUILD_PLAN.md loop log (he has not tried the tablet build on a device yet).
+- Earlier items still open: voice pass and three line headline rule not enforced by a hook; the copy hook flags CSS custom properties as dashes.
 
 ## Read first
 
-- The built page and its motion: ~/Code/portfolio-site on branch claude/relaxed-ride-5mlbdu, site/mondai/framework/index.html, site/js/mondai-motion.js, docs/motion/framework-page.md and framework-page-GATES.md
-
-- mondai/reference/PRODUCT_KNOWLEDGE_ARCHIVE.md and DECISIONS.md (attach ritacompany/mondai first)
-- Haven CS Master ending section and hero, Figma 5RO0m4bYYrTvbiaOgaU3tI node 5733:19874
-- docs/VOICE-draft.md
-- reference/cs2/WORKING_LOOP.md
-- reference/cs2/versions/map-and-falling-behind.md (the part in hand)
-- reference/cs2/outline/CS2-outline-and-copy.md (The order)
-- The CS2 canvas (claude.ai/artifact/MVBwcVxzgtZvVmdsWE9C37) and his notes on it
-- His Figma frame 4269:9433 in the Portfolio Design file IarvWaqjIwrZ2afQmMxKm6 (read text with a read only use_figma script)
-- reports/Schedule view how it works.md
+- This file, then reference/cs2/WORKING_LOOP.md
+- claude/fw-integration and the PR list above; each session's reports/<name>-2026-11-2x/GATES.md
+- docs/REVIEW_PREVIEW.md on claude/review-preview-standard
+- His Figma frames named in Where it stopped
+- mondai/reference/PRODUCT_KNOWLEDGE_ARCHIVE.md (attach ritacompany/mondai first)
