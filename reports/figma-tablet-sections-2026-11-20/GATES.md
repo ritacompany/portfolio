@@ -88,3 +88,17 @@ site/assets/framework/ and site/js/capacity-demo.js.
   timeline, Calendar setup and the first part of Falling behind; round 3 lets the Calendar answers run 578; T6/T7
   lets the Capacity card reach his 336). Two caps added after the preview so wide tablets stay sharp and readable:
   the Capacity card stops at 336 and body text at 520; the tablet images are 3x exports.
+
+## Merge with sessions 8, 1 and 6 (21 Nov, his Yes on the [site change] card)
+
+Merged origin/claude/fw-tablet-build (PR #26) and origin/claude/fw-falling-behind-motion (PR #32, which carries
+fw-sync-fixes PR #31). One conflict, both CSS blocks kept (theirs first, his tablet frames after).
+- [x] B5: his frames still hold on the merged page, and 390, 1200 and 1440 match the merged branches without this block
+  CHECK: node reports/figma-tablet-sections-2026-11-20/build-check.mjs http://localhost:4318/mondai/framework/
+  EXPECT: BUILD_CHECK_OK
+  EVIDENCE: 21 Nov, BUILD_CHECK_OK 142 assertions; baseline-rects.json regenerated from #32 plus #26 served on :4320.
+  Also: CAPCARD_OK (round 4 check moved to his 336 by 260 card and the drawn card overlay), FW_MOTION_OK 6 runs,
+  FALLING BEHIND ROW CHECK PASSED, TABLET_OK 8 of 8, RESPONSIVE_SIZE_OK and RESPONSIVE_HEALTH_OK, fw-sync gates OK
+  except rollover. Failing the same way on the merged branches without this work (not this session's): fw-sync
+  rollover (session 6 removed session 1's tablet card rules), round 3 body 734 (session 1's Schedule view one line
+  intro) and tablet-2 Schedule view 32 against 20 (session 1's Rescheduling gap).

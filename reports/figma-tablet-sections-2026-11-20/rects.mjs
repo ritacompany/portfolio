@@ -18,7 +18,8 @@ export async function rects(page, w, url = 'http://localhost:4318/mondai/framewo
 }
 if (process.argv[2] === 'baseline') {
   const b = await chromium.launch(); const p = await b.newPage({ reducedMotion: 'reduce' });
-  const out = {}; for (const w of [390, 1200, 1440]) out[w] = await rects(p, w);
+  const out = {}; const url = process.argv[3] || 'http://localhost:4318/mondai/framework/';
+  for (const w of [390, 1200, 1440]) out[w] = await rects(p, w, url);
   const fs = await import('node:fs'); fs.writeFileSync(new URL('./baseline-rects.json', import.meta.url), JSON.stringify(out));
   console.log('baseline written'); await b.close();
 }
