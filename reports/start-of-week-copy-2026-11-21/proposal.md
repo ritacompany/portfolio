@@ -23,4 +23,17 @@ What each cut loses:
 - Recalibration: the contrast with Rollover (one unfinished week) and his set their own or skip it with a warning.
 - Reset: why it is not Catching up (the old plan is too far behind to catch up to).
 
-Humanizer pass: draft, audit (fragment "One button, so..." rewritten as a full sentence; no AI vocabulary, no dashes, no Oxford commas, no new facts), final as above.
+Humanizer pass, round 1: skimmed (audit done in my head, only one fragment fixed). Redone in full on his question, 21 Nov.
+
+Round 2 (full pass). Audit findings on the round 1 texts:
+- Rollover "next to the new pace" states a layout fact the archive does not give (it says the pace tile carries the situation, not where it sits). Invented detail: fixed.
+- Recalibration "far fewer hours than they set" loosened the archive's "below roughly half declared capacity". Fixed to "about half".
+- Catching up "closes the rest" was vague about what is closed. Fixed to "the rest of the gap".
+- Reset "can't win by default" kept: it is his reasoning (users pick keep my plan because it is the default) said plainly, not an aphorism. Longer versions run to four lines at 314px.
+- No dashes, no Oxford commas, no AI vocabulary, no passive voice hiding the actor, no new facts.
+
+Final (lines at 1440 / Figma 461 box / 390 / 314):
+- Catching up: A user who is behind sees how many days they made up last week and how finishing early closes the rest of the gap. (2 / 2 / 3 / 3)
+- Rollover: Unfinished Action Items wait in the new week under a magenta tag. The screen shows the new pace, so the plan never changes unseen. (2 / 3 / 3 / 3)
+- Recalibration: After weeks under about half the hours they set, this screen suggests a capacity that fits. They can take it or keep their plan. (2 / 2 / 3 / 3)
+- Reset: After a long absence, the week rebuilds from today and keeps their progress. It has one button, so keep my plan can’t win by default. (2 / 3 / 3 / 3)

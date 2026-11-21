@@ -17,8 +17,8 @@ Scope: the five Start of week descriptions are short enough to stay within three
 - [ ] G3: every product claim in the new texts traces to PRODUCT_KNOWLEDGE_ARCHIVE.md Start of Week states (lines 124 to 142) and nothing he needs is dropped without being named to him
   EVIDENCE: pending
 
-- [ ] G4: humanizer full pass (draft, audit, final) run on the new texts
-  EVIDENCE: pending
+- [x] G4: humanizer full pass (draft, audit, final) run on the new texts
+  EVIDENCE: round 2, 21 Nov, findings and final in proposal.md (round 1 was a skim)
 
 - [ ] G5: Chadwick said yes to the texts before anything in the page or final-copy.md changed
   EVIDENCE: pending
