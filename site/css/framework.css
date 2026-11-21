@@ -3,8 +3,10 @@
    figures at their Figma positions; the 390, 768 and 1200 compositions come in Phase 3. Product
    screens and diagrams are 2x exports from the frame (site/assets/framework/). */
 
-.framework { --navbar-top: 24px; }
-.fw { padding-top: 136px; }
+/* 20 Nov: his current frame (6331:20607) draws a 52 tall navbar from the page top with the logo at 19, and moves
+   the title down to 164. Framework only: Home and Haven frames still carry the old navbar. */
+.framework { --navbar-top: 19px; }
+.fw { padding-top: 164px; }
 .fw-sec { position: relative; box-shadow: inset 0 -1px 0 var(--neutral-800); }
 .fw-sec > * { position: absolute; }
 .fig { display: block; max-width: none; }
@@ -160,8 +162,11 @@
 
 /* The Rollover effect subhead (his ask, 11 Nov): live text with its icon centred on the line, the icon
    25 percent smaller than the flattened export it replaces (19.5 by 21.5 there). */
-.fb-effect { display: flex; align-items: flex-start; gap: 12px; }
-.fb-effect img { width: 19.24px; height: 25.66px; flex: none; margin-top: -5.83px; } /* 4966:14310, title cap top 5.83 below the icon frame (12 Nov) */
+/* 20 Nov, his current frame (6331:24655): the icon frame and the words centre on one 26 px row, so the icon's middle
+   sits on the middle of the cap height. The words are not trimmed inside the flex row, so the row's top is 5.55 above
+   the cap top (1610.45 for his 1616). */
+.fb-effect { display: flex; align-items: center; gap: 12px; }
+.fb-effect img { width: 19.24px; height: 25.66px; flex: none; }
 
 /* The Mondai mark on the hero: his file moved it off the title row (12 Nov) to sit above the tagline,
    40 by 40.57 at the 40 px margin, the tagline 32 below it (WIP Mondai framework case study 4269:9433,
@@ -339,3 +344,17 @@
   .framework .fw .fw-sec > [data-figma-node="5812:20111"] { grid-column: 1; }
   .framework .fw .fw-sec[data-figma-node="5812:17143"] > [data-figma-node="5812:20112"] { grid-column: 2; margin-top: 56px; }
 }
+
+/* 20 Nov fixes (reports/fw-sync-2026-11-20/).
+   Schedule view intro: one line wherever its words fit the room the section gives it, and a wrap only when they do not
+   (he has seen it break into a short second line several times). No measure caps it; check.mjs oneline guards it. */
+.framework .fw .fw-sec > .oneline { max-width: 100%; }
+/* Rescheduling an Action Item: 32 between the heading and its body at every width, as in his frame (at 1440 the
+   inline positions carry it: 1444 plus the 14 cap, then 1490). */
+@media (max-width: 1159.98px) {
+  .framework .fw .fw-sec > [data-figma-node="5812:20246"] + [data-figma-node="5812:20247"] { margin-top: 32px; }
+}
+/* Footer, his Other pages variant (6331:20545, 20 Nov, not final): the Contact label is Medium, not Bold. The list and
+   the hidden Resume are in the markup; Testimonials stays hidden until its Home section ships, as on Home. */
+.footer-other .button__label { font-weight: 500; }
+.footer-other .footer__nav li[hidden] { display: none; }
