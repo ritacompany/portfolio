@@ -63,3 +63,20 @@ desktop template's carousel and caption swapped in: template 2 Catching up 6345:
 4 Recalibration 6345:30930, 5 Reset 6345:31358. Stacked under template 1 in the same section; no overlap with any
 other top level node; 6331:20607 unchanged (21 children, 24745.56 tall). Captions at 314 run 5 lines (measured with the
 site's Satoshi); the box heights are set for that, the cloud render still draws the desktop breaks.
+
+# Build of his edited frames (21 Nov, his ask: "are you going to update them in the file based on what I put there")
+
+Preview first (site review loop): site/dev/framework-tablet/ (tablet.css, two tablet image exports from his frames,
+capacity-demo.js copy whose overlay follows the cropped card). On his yes it moves into site/css/framework.css,
+site/assets/framework/ and site/js/capacity-demo.js.
+
+- [x] B1: at 768 every gap and width in his four frames, and the same structure at 1024 and 1150 with nothing overflowing; 390, 1200 and 1440 unchanged
+  CHECK: node reports/figma-tablet-sections-2026-11-20/build-check.mjs
+  EXPECT: BUILD_CHECK_OK
+  EVIDENCE: 21 Nov, BUILD_CHECK_OK 142 assertions; control: the live page fails 100 of 142 (it has the old tablet layout)
+- [x] B2: every entrance still runs and ends shown on the preview at 768, 1024 and 1150, motion on and off
+  EVIDENCE: reports/framework-tablet-2/motion.mjs pointed at /dev/framework-tablet/: FW_MOTION_OK 6 runs
+- [x] B3: the capacity card demo overlay sits on the cropped card (overlay is the whole drawn image, centred on the box)
+  EVIDENCE: 768 img 400,320 336x260, overlay 400,287 336x325; 1024 img 464x359, overlay 464x449; end frame screenshot clean
+- [ ] B4: his yes on a [site change] card, then the preview moves into the shipped files and B1 runs against /mondai/framework/
+  EVIDENCE: pending
