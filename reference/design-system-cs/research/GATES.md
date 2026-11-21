@@ -22,3 +22,9 @@ the check on return.
 - [ ] G5: No dash punctuation, no Oxford commas, no quotes of Chadwick or Mondai sources (public repo).
   CHECK: node reference/design-system-cs/research/check-content.mjs
   EXPECT: CONTENT-PASS
+
+## Status, 21 Nov 2026 (research session)
+
+- G1, G2, G5: check prints CONTENT-PASS. G4: answered under Tokens or colour in CONTENT.md.
+- G3: not met. The script passes because claim-check.md exists, but the independent check did not
+  run: the cost guard capped the turn at three sub agents. claim-check.md holds the claims, marked NOT RUN.
