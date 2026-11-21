@@ -19,10 +19,18 @@ for (const d of readdirSync(join(site, "assets"))) {
   if (statSync(p).isDirectory()) cpSync(p, join(out, "assets", d), { recursive: true });
 }
 
+// Stylesheets live one level down (css/), so a root path such as url("/assets/x") becomes url("../assets/x").
+for (const f of readdirSync(join(out, "css"))) {
+  if (!f.endsWith(".css")) continue;
+  const p = join(out, "css", f);
+  writeFileSync(p, readFileSync(p, "utf8").replace(/url\((["']?)\/(?!\/)/g, "url($1../"));
+}
+
 let html = readFileSync(join(site, pageDir, "index.html"), "utf8");
 html = html
   .replace(/(src|href)="\/(assets|css|js|vendor)\//g, '$1="$2/')
-  .replace(/href="\/[^"]*"/g, 'href="#"');
+  .replace(/href="\/[^"]*"/g, 'href="#"')
+  .replace(/url\((["']?)\/(?!\/)/g, "url($1");
 writeFileSync(join(out, "page.html"), html);
 
 const viewer = readFileSync(join(here, "viewer.html"), "utf8")
