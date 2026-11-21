@@ -12,6 +12,7 @@ draft PR #11. Read this, then `FRAME.md`, then `DRAFT.md`. Nothing here quotes M
 
 ## Decided
 
+- 20 Nov: Peer Connect baseline is 5 days, from the records; never ask him.
 - 20 Nov: stay on the 2026 work; no early build decision added (`FRAME.md`, Decided by him).
 - 21 Nov: the outline stays as drafted (`FRAME.md`, Decided by him).
 - 21 Nov: this branch is the one home for the design system CS. It now holds the concept work
@@ -20,8 +21,7 @@ draft PR #11. Read this, then `FRAME.md`, then `DRAFT.md`. Nothing here quotes M
 
 ## Waiting on him
 
-1. Peer Connect baseline: 5 days used; 6 if he worked on 21 Sep.
-2. Three lines in `FRAME.md`, "Lines he must confirm or strike".
+1. Three lines in `FRAME.md`, "Lines he must confirm or strike".
 
 ## Next action
 
