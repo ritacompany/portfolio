@@ -129,13 +129,14 @@
   // comes in Pathway by Pathway (his pick, 20 Nov; reports/foundation-motion-2026-11-20): 01 to 05 left
   // to right, 0.14 s apart, each rising and fading in, the dotted link to the next drawing from the left,
   // and each Pathway's Focus areas then Action items following under it 0.2 s and 0.4 s after it lands.
-  // It starts only once the whole diagram has cleared a line 20 percent up from the bottom of the window,
+  // It starts once the whole diagram has cleared a line 5 percent up from the bottom of the window (20 percent
+  // was a little late, his note 21 Nov),
   // so it plays where the reader is looking (the earlier wipe and row fade started on the first pixel and
   // finished below the screen). One image, so the pieces are copies of it, each clipped to its part, on a
   // layer over the image that is removed when the motion ends. Bands and column edges are measured from
   // the 1791 by 754 export.
   const COLS = "5812:16512";
-  const FD = { W: 1791, H: 754, step: 140, down: 200, dur: 600, rise: 12, link: [260, 320], ease: "cubic-bezier(0.22, 1, 0.36, 1)" };
+  const FD = { W: 1791, H: 754, step: 140, down: 200, dur: 600, rise: 12, link: [260, 320], line: 0.95, ease: "cubic-bezier(0.22, 1, 0.36, 1)" };
   const FD_ROW = { P: [0, 300], F: [310, 542], X: [542, 754] }; // Pathway label and box, arrow and Focus areas, arrow and Action items
   const fdCol = (i) => [Math.max(0, i * 378 - 4), Math.min(FD.W, i * 378 + 282)];
   const fdPct = (v, of) => (v / of * 100).toFixed(3) + "%";
@@ -210,7 +211,7 @@
         else if (e.boundingClientRect.bottom < 0) { imgs.forEach(opened); maskIO.unobserve(e.target); maskDone.add(e.target); }
       }
     }, { rootMargin: "0px" });
-    // The Foundation diagram: all of it above the 20 percent line, or already reaching past the top. Its
+    // The Foundation diagram: all of it above the 5 percent line, or already reaching past the top. Its
     // clip hides it, so an intersection ratio never rises; while any of it is on screen its box is read
     // every frame instead, and the frame loop stops once it starts.
     fdIO = new IntersectionObserver((entries) => {
@@ -221,7 +222,7 @@
           const tick = () => {
             if (!el._mmWatch) return;
             const r = el.getBoundingClientRect();
-            if (r.bottom <= innerHeight * 0.8 && r.bottom > 0) { el._mmWatch = false; fdIO.unobserve(el); maskDone.add(el); openMask([el], arrivalMs()); return; }
+            if (r.bottom <= innerHeight * FD.line && r.bottom > 0) { el._mmWatch = false; fdIO.unobserve(el); maskDone.add(el); openMask([el], arrivalMs()); return; }
             requestAnimationFrame(tick);
           };
           requestAnimationFrame(tick);

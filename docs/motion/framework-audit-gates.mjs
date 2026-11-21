@@ -65,7 +65,7 @@ try {
   }
 
   // Foundation diagram: Pathway by Pathway (his pick, 20 Nov). Not started while part of it is still low on
-  // the screen; once all of it clears the 20 percent line a layer of pieces plays over the hidden image,
+  // the screen; once all of it clears the 5 percent line a layer of pieces plays over the hidden image,
   // and at the end the layer is gone and the image itself is open.
   for (const [w, h] of [[1440, 900], [768, 1024], [390, 844]]) {
     const page = await browser.newPage({ viewport: { width: w, height: h } });

@@ -130,15 +130,15 @@ function build() {
   return () => anims.forEach((a) => { a.currentTime = 0; a.play(); });
 }
 
-// Plays once it is all on screen: the whole diagram has cleared a line 20 percent up from the bottom of the
+// Plays once it is all on screen: the whole diagram has cleared a line 5 percent up from the bottom of the
 // window, so the reader's eye is on it. Follows your scroll: the same motion, its progress tied to where the
-// diagram sits, from its top 15 percent up the window to fully above the 20 percent line.
+// diagram sits, from its top 15 percent up the window to fully above the 5 percent line.
 let scrubbing = false;
 const total = () => Math.max(0, ...anims.map((a) => { const t = a.effect.getTiming(); return t.delay + t.duration; }));
 function scrubFrame() {
   if (!scrubbing) return;
   const vh = innerHeight, r = fig.getBoundingClientRect();
-  const from = vh * 0.85, to = vh * 0.8 - r.height;
+  const from = vh * 0.85, to = vh * 0.95 - r.height;
   const p = Math.min(1, Math.max(0, (from - r.top) / (from - to)));
   const t = p * total(); anims.forEach((a) => { a.currentTime = t; });
   requestAnimationFrame(scrubFrame);
@@ -152,8 +152,8 @@ function arm() {
     io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting && armed) { armed = false; start(); io.disconnect(); } }, { threshold: 0 });
     io.observe(fig); return;
   }
-  // as on the page: starts once the whole diagram has cleared the line 20 percent up from the bottom
-  const tick = () => { if (!armed) return; const r = fig.getBoundingClientRect(); if (r.bottom <= innerHeight * 0.8 && r.bottom > 0) { armed = false; start(); return; } requestAnimationFrame(tick); };
+  // as on the page: starts once the whole diagram has cleared the line 5 percent up from the bottom
+  const tick = () => { if (!armed) return; const r = fig.getBoundingClientRect(); if (r.bottom <= innerHeight * 0.95 && r.bottom > 0) { armed = false; start(); return; } requestAnimationFrame(tick); };
   requestAnimationFrame(tick);
 }
 function select(o) {
