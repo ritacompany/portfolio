@@ -69,7 +69,7 @@ async function imagesAt(b, url, label) {
   const bad = [];
   for (const w of WIDTHS) {
     const p = await b.newPage({ viewport: { width: w, height: 900 }, reducedMotion: "reduce" });
-    await p.goto(url, { waitUntil: "networkidle" });
+    await p.goto(url, { waitUntil: "load" });
     for (const [name, node] of Object.entries(IMAGES)) {
       const { std, why } = await paintedStd(p, node);
       if (!(std > 12)) bad.push(`${label} ${w}: ${name} looks blank (pixel std ${std.toFixed(1)}${why ? ", " + why : ""})`);
