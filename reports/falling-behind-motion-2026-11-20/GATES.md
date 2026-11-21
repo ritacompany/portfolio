@@ -11,7 +11,7 @@ Scope: session 6 of the 20 Nov CS2 review: the Rollover row (5812:20316) and its
   EVIDENCE: fb-1160.png, fb-768.png, row-768.png, row-390.png here (Playwright, reduced motion). Under 1160 the row image keeps the panel's left edge baked in while .panel-card is display none; label 5812:20314 top 1150 sits above the row top 1232 at 768; at 390 the row is 342 wide, tag text about 5 px; at 1160 .fw zoom 0.806 so body 16 px renders about 12.9 px.
 
 - [ ] G3: his motion pick is recorded here in his words before any motion build
-  EVIDENCE: pending
+  EVIDENCE: his words 21 Nov: "We figured out the whole section animates in." Built as a dev preview (site/dev/falling-behind/: the Rollover card and row leave STILL and enter like the rail; row image rollover-v5@2x.webp from Falling behind v4 6331:24623 at 2x). Videos here, today vs new at 1440 and 390. Waiting on his yes to ship to the page.
 
 - [ ] G4: under 1160 the row shows no half card, its label follows it, the tag reads at 390, and there is no sideways scroll at 390, 768, 1160 or 1440, built on claude/fw-sync-fixes
   EVIDENCE: pending
