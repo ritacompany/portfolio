@@ -33,12 +33,12 @@ function serveUnder(dir) {
     s.listen(0, () => res(s));
   });
 }
-function buildPreview(cssOverride) {
+function buildPreview(cssOverride, ref = "origin/claude/review-preview-standard") {
   const work = mkdtempSync(join(tmpdir(), "fwr2-"));
   const builder = join(work, "build.mjs"), out = join(work, "out");
   // The standard builder from its branch, run against this checkout's site/.
-  const src = execFileSync("git", ["show", "origin/claude/review-preview-standard:scripts/review-preview/build.mjs"], { cwd: root, encoding: "utf8" });
-  const viewer = execFileSync("git", ["show", "origin/claude/review-preview-standard:scripts/review-preview/viewer.html"], { cwd: root, encoding: "utf8" });
+  const src = execFileSync("git", ["show", `${ref}:scripts/review-preview/build.mjs`], { cwd: root, encoding: "utf8" });
+  const viewer = execFileSync("git", ["show", `${ref}:scripts/review-preview/viewer.html`], { cwd: root, encoding: "utf8" });
   const dir = join(root, "scripts", "review-preview");
   writeFileSync(builder, src.replace('const here = dirname(fileURLToPath(import.meta.url));', `const here = ${JSON.stringify(dir)};`)
     .replace('readFileSync(join(here, "viewer.html"), "utf8")', `${JSON.stringify(viewer)}`));
@@ -51,7 +51,16 @@ async function paintedStd(p, node) {
   const el = p.locator(`[data-figma-node="${node}"]`);
   await el.scrollIntoViewIfNeeded();
   await p.waitForTimeout(400);
-  await p.evaluate(() => Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; }))));
+  // the element's own image, and its CSS background when it has one, finished loading (or failed)
+  await p.evaluate(async (node) => {
+    const e = document.querySelector(`[data-figma-node="${node}"]`);
+    const waits = [];
+    if (e.tagName === "IMG" && !e.complete) waits.push(new Promise((r) => { e.onload = e.onerror = r; }));
+    const bg = getComputedStyle(e).backgroundImage.match(/url\("?([^")]+)"?\)/);
+    if (bg) waits.push(new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = bg[1]; }));
+    await Promise.race([Promise.all(waits), new Promise((r) => setTimeout(r, 5000))]);
+  }, node);
+  await p.waitForTimeout(200);
   const box = await el.boundingBox();
   if (!box || box.width < 50 || box.height < 50) return { std: 0, why: `box ${JSON.stringify(box)}` };
   const buf = await el.screenshot();
@@ -95,9 +104,14 @@ const gates = {
     const s = await serveUnder(out);
     fails.push(...await imagesAt(b, `http://localhost:${s.address().port}/sub/page.html`, "preview"));
     s.close();
-    // control: the unfixed CSS in the same preview must fail at tablet
+    // the same page through the builder his 21 Nov preview used (07e515d, before it rewrote CSS paths): must pass with this CSS
+    const outPinned = buildPreview(null, "07e515d");
+    const s1 = await serveUnder(outPinned);
+    fails.push(...await imagesAt(b, `http://localhost:${s1.address().port}/sub/page.html`, "old-builder preview"));
+    s1.close();
+    // control: the unfixed CSS through that builder must fail at tablet, as his preview did
     const oldCss = execFileSync("git", ["show", "origin/claude/fw-integration:site/css/framework.css"], { cwd: root, encoding: "utf8" });
-    const outOld = buildPreview(oldCss);
+    const outOld = buildPreview(oldCss, "07e515d");
     const s2 = await serveUnder(outOld);
     const ctl = await imagesAt(b, `http://localhost:${s2.address().port}/sub/page.html`, "control");
     s2.close();
