@@ -23,12 +23,12 @@ for (const w of [768, 1024, 1150]) {
   const img = await R('5812:17089'), exL = await R('5812:17127'), exT = await R('5812:17128'), hl = await R('5812:17087');
   const col = (c - 32) / 2;
   near(capT.x, 32, `${w} PT left column x`); near(img.x, 32 + col + 32, `${w} PT right column x`);
-  near(img.w, col, `${w} PT card width`); near(img.w / img.h, 336 / 260, `${w} PT card shape`, 0.01);
+  near(img.w, Math.min(col, 336), `${w} PT card width`); near(img.w / img.h, 336 / 260, `${w} PT card shape`, 0.01);
   near(img.y, capT.y, `${w} PT card top = Capacity top`); near(capT.y - hl.b, 80, `${w} PT headline to columns`);
   near(capB.y - capT.b, 20, `${w} PT Capacity title to body`); near(effT.y - capB.b, 32, `${w} PT Capacity to Effort`);
   near(effB.y - effT.b, 20, `${w} PT Effort title to body`); near(exL.y - img.b, 28, `${w} PT card to Example`);
   near(exT.y - exL.b, 16, `${w} PT Example label to text`); near(exT.w, col, `${w} PT Example text width`);
-  near(capB.w, col, `${w} PT Capacity body width`, 1);
+  near(capB.w, Math.min(col, 520), `${w} PT Capacity body width`, 1);
   const ptEnd = Math.max(effB.b, exT.b); near(capT.sh - ptEnd, 164, `${w} PT bottom padding`);
   // Calendar
   const cHl = await R('5812:17134'), cImg = await R('5812:17138'), cCap = await R('5812:17137');
@@ -45,7 +45,7 @@ for (const w of [768, 1024, 1150]) {
   const unit = (c - 1 - 24) / (400 + 256 + 23);
   near(rail.x, 33, `${w} FB card x`); const cardW = Math.min(400 * unit, 466); near(rail.w, cardW, `${w} FB card width`, 1); near(rail.w / rail.h, 400 / 481, `${w} FB card shape`, 0.01);
   near(rail.y, box.y + 1, `${w} FB card top`); near(box.b, rail.b + 1, `${w} FB box as tall as the card`);
-  near(l1.x, rail.r + 24, `${w} FB notes x`); near(b1.w, (c - 1 - cardW - 24) * 256 / 279, `${w} FB notes width`, 1.5);
+  near(l1.x, rail.r + 24, `${w} FB notes x`); near(b1.w, Math.min((c - 1 - cardW - 24) * 256 / 279, 520), `${w} FB notes width`, 1.5);
   near(l1.y - box.y, 56, `${w} FB first note from box top`); near(b1.y - l1.b, 20, `${w} FB label to body`);
   near(l2.y - b1.b, 32, `${w} FB note to note`); near(b2.y - l2.b, 20, `${w} FB label to body 2`); near(l3.y - b2.b, 32, `${w} FB note to note 2`); near(b3.y - l3.b, 20, `${w} FB label to body 3`);
   ok(b3.b <= box.b, `${w} FB notes inside the box`);

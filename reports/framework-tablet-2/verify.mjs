@@ -45,7 +45,12 @@ if (mode === "rollover") {
         if ((a === "S" || a === "L") && c === "B") return 20; if (a === "B" && c === "B") return 26.5;
         return 56;
       };
+      // His tablet frames (21 Nov) set their own gaps in Personalized timeline, Calendar setup and the first part of
+      // Falling behind; reports/figma-tablet-sections-2026-11-20/build-check.mjs checks those against his frames.
+      const HIS_SECS = new Set(["5812:17084", "5812:17129"]);
+      const HIS = new Set(["5812:20258", "5812:20259", "5812:20260", "5812:20296", "5812:20297", "5812:20299", "5812:20300", "5812:20302", "5812:20303", "5812:20250"]);
       for (const s of document.querySelectorAll(".fw-sec")) {
+        if (HIS_SECS.has(s.dataset.figmaNode)) continue;
         const hero = s.dataset.figmaNode === "5812:16447";
         const sr = s.getBoundingClientRect();
         const items = [...s.children].filter((c) => getComputedStyle(c).display !== "none" && !c.matches(".capdemo, [data-figma-node='5812:17128']")).map((c) => {
@@ -64,6 +69,7 @@ if (mode === "rollover") {
           let above = null;
           for (const o of items) if (o !== it && o.bottom <= it.top + 0.5 && (!above || o.bottom > above.bottom)) above = o;
           if (!above) continue;
+          if (HIS.has(it.id) || HIS.has(above.id)) continue;
           const g = it.top - above.bottom, w = want(above.k, it.k, hero ? "hero" : "");
           if (Math.abs(g - w) > 1.5) out.push(`${s.getAttribute("aria-label")}: ${above.id} (${above.k}) to ${it.id} (${it.k}) ${g.toFixed(1)}, want ${w}`);
         }

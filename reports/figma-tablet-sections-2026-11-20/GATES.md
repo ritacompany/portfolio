@@ -78,5 +78,13 @@ site/assets/framework/ and site/js/capacity-demo.js.
   EVIDENCE: reports/framework-tablet-2/motion.mjs pointed at /dev/framework-tablet/: FW_MOTION_OK 6 runs
 - [x] B3: the capacity card demo overlay sits on the cropped card (overlay is the whole drawn image, centred on the box)
   EVIDENCE: 768 img 400,320 336x260, overlay 400,287 336x325; 1024 img 464x359, overlay 464x449; end frame screenshot clean
-- [ ] B4: his yes on a [site change] card, then the preview moves into the shipped files and B1 runs against /mondai/framework/
-  EVIDENCE: pending
+- [x] B4: his yes on a [site change] card, then the preview moves into the shipped files and B1 runs against /mondai/framework/
+  CHECK: node reports/figma-tablet-sections-2026-11-20/build-check.mjs http://localhost:4318/mondai/framework/
+  EXPECT: BUILD_CHECK_OK
+  EVIDENCE: 21 Nov, his Yes on the card; BUILD_CHECK_OK 142 assertions on the live page. Also on the live page:
+  ROUND3_OK, FW_TABLET2_OK 8 of 8, FW_MOTION_OK 6 runs, TABLET_OK 8 of 8, RESPONSIVE_SIZE_OK and
+  RESPONSIVE_HEALTH_OK 5 widths, fit lists only the Start of week side cards at 1366 as before.
+  The three older checks now leave the gaps his frames set to build-check.mjs (tablet-2 verify skips Personalized
+  timeline, Calendar setup and the first part of Falling behind; round 3 lets the Calendar answers run 578; T6/T7
+  lets the Capacity card reach his 336). Two caps added after the preview so wide tablets stay sharp and readable:
+  the Capacity card stops at 336 and body text at 520; the tablet images are 3x exports.

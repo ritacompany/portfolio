@@ -15,12 +15,12 @@
   .framework .fw .fw-sec[data-figma-node="5812:17084"] > :is(h2, [data-figma-node="5812:17087"]) { column-span: all; }
   .framework .fw .fw-sec > [data-figma-node="5812:17087"] { margin-bottom: 80px; }
   .framework .fw .fw-sec > :is([data-figma-node="5812:17121"], [data-figma-node="5812:17089"]) { margin-top: 0; }
-  .framework .fw .fw-sec > [data-figma-node="5812:17122"] { margin-top: 20px; max-width: none; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17122"] { margin-top: 20px; max-width: 520px; }
   .framework .fw .fw-sec > [data-figma-node="5812:17124"] { margin-top: 32px; }
-  .framework .fw .fw-sec > [data-figma-node="5812:17125"] { margin-top: 20px; max-width: none; }
+  .framework .fw .fw-sec > [data-figma-node="5812:17125"] { margin-top: 20px; max-width: 520px; }
   .framework .fw .fw-sec > [data-figma-node="5812:17089"] {
-    break-before: column; display: block; width: 100% !important; max-width: none; height: auto !important;
-    aspect-ratio: 336 / 260; object-fit: cover; border-radius: 17px;
+    break-before: column; display: block; width: 100% !important; height: auto !important;
+    max-width: 336px; aspect-ratio: 336 / 260; object-fit: cover; border-radius: 17px; /* his 336 is the cap: the export is 616 px wide */
   }
   .framework .fw .fw-sec > [data-figma-node="5812:17127"] { margin-top: 28px !important; padding: 0; max-width: none; background: none; border-radius: 0; }
   .framework .fw .fw-sec > [data-figma-node="5812:17128"] { margin-top: 16px !important; padding: 0; max-width: none; background: none; border-radius: 0; }
@@ -30,7 +30,7 @@
   .framework .fw .fw-sec > [data-figma-node="5812:17134"] { max-width: 16.5em; }
   .framework .fw .fw-sec > [data-figma-node="5812:17138"] {
     order: 1; margin-top: 80px; width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 704 / 428;
-    box-sizing: border-box; padding-left: 100%; background: url("calendar-setup-tablet@2x.webp") center / 100% 100% no-repeat;
+    box-sizing: border-box; padding-left: 100%; background: url("calendar-setup-tablet.webp") center / 100% 100% no-repeat;
   }
   .framework .fw .fw-sec > [data-figma-node="5812:17137"] { order: 2; margin-top: 37px; max-width: 578px; }
 
@@ -51,9 +51,9 @@
   .framework .fw .fw-sec > [data-figma-node="5812:20260"] {
     grid-column: 2; grid-row: 4 / span 7; margin-top: 41px; margin-bottom: 1px;
     width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 400 / 481; border-radius: 15px 0 0 15px;
-    box-sizing: border-box; padding-left: 100%; background: url("right-rail-tablet@2x.webp") center / 100% 100% no-repeat;
+    box-sizing: border-box; padding-left: 100%; background: url("right-rail-tablet.webp") center / 100% 100% no-repeat;
   }
-  .framework .fw .fw-sec > :is([data-figma-node="5812:20296"], [data-figma-node="5812:20297"], [data-figma-node="5812:20299"], [data-figma-node="5812:20300"], [data-figma-node="5812:20302"], [data-figma-node="5812:20303"]) { grid-column: 4; max-width: none; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:20296"], [data-figma-node="5812:20297"], [data-figma-node="5812:20299"], [data-figma-node="5812:20300"], [data-figma-node="5812:20302"], [data-figma-node="5812:20303"]) { grid-column: 4; max-width: 520px; } /* the body measure, past his 256 at wide tablets */
   .framework .fw .fw-sec > [data-figma-node="5812:20296"] { grid-row: 4; margin-top: 96px; }
   .framework .fw .fw-sec > [data-figma-node="5812:20297"] { grid-row: 5; margin-top: 20px; }
   .framework .fw .fw-sec > [data-figma-node="5812:20299"] { grid-row: 6; margin-top: 32px; }
