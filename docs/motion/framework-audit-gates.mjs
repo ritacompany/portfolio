@@ -64,20 +64,24 @@ try {
     await page.close();
   }
 
-  // Foundation diagram: wipes open from the left, no settle, then opens fully
-  {
-    const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  // Foundation diagram: Pathway by Pathway (his pick, 20 Nov). Not started while part of it is still low on
+  // the screen; once all of it clears the 20 percent line a layer of pieces plays over the hidden image,
+  // and at the end the layer is gone and the image itself is open.
+  for (const [w, h] of [[1440, 900], [768, 1024], [390, 844]]) {
+    const page = await browser.newPage({ viewport: { width: w, height: h } });
     await page.goto(url, { waitUntil: "networkidle" });
-    await page.evaluate(() => { const e = document.querySelector('[data-figma-node="5812:16512"]'); __mm.lenis.scrollTo(e.getBoundingClientRect().top + scrollY - 300, { immediate: true }); });
-    await page.waitForTimeout(450);
-    const mid = await page.evaluate(() => { const c = getComputedStyle(document.querySelector('[data-figma-node="5812:16512"]')); return { clip: c.clipPath, tf: c.transform }; });
-    await page.waitForTimeout(1500);
-    const end = await page.evaluate(() => getComputedStyle(document.querySelector('[data-figma-node="5812:16512"]')).clipPath);
-    const r = /inset\(0px ([\d.]+)% 0px 0px\)/.exec(mid.clip);
-    ok(r && +r[1] > 5 && +r[1] < 95, `Foundation mid wipe ${mid.clip}`);
-    ok(mid.tf === "none", `Foundation scales while it opens (${mid.tf})`);
-    ok(end === "none", `Foundation not open at the end (${end})`);
-    console.log(`Foundation: mid ${mid.clip}, end ${end}`);
+    const sel = '[data-figma-node="5812:16512"]';
+    const to = (frac) => page.evaluate(([s, frac]) => { const e = document.querySelector(s); __mm.lenis.scrollTo(e.getBoundingClientRect().top + scrollY - innerHeight * frac, { immediate: true }); }, [sel, frac]);
+    await to(0.9); await page.waitForTimeout(400);
+    const early = await page.evaluate((s) => ({ layer: !!document.querySelector(".mm-fd"), clip: getComputedStyle(document.querySelector(s)).clipPath }), sel);
+    await to(0.3); await page.waitForTimeout(500);
+    const mid = await page.evaluate(() => { const l = document.querySelector(".mm-fd"); return { layer: !!l, pieces: l ? l.children.length : 0 }; });
+    await page.waitForTimeout(2200);
+    const end = await page.evaluate((s) => ({ layer: !!document.querySelector(".mm-fd"), clip: getComputedStyle(document.querySelector(s)).clipPath }), sel);
+    ok(!early.layer && early.clip !== "none", `${w}: Foundation started while still low on the screen (${JSON.stringify(early)})`);
+    ok(mid.layer && mid.pieces === 19, `${w}: Foundation pieces not playing (${JSON.stringify(mid)})`);
+    ok(!end.layer && end.clip === "none", `${w}: Foundation not handed back to the image (${JSON.stringify(end)})`);
+    console.log(`${w} Foundation: early ${JSON.stringify(early)}, mid ${mid.pieces} pieces, end ${JSON.stringify(end)}`);
     await page.close();
   }
 

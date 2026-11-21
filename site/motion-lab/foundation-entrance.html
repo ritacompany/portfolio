@@ -1,0 +1,167 @@
+<title>Foundation entrance options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: a sticky control strip over a stand-in of the page section, dark like the framework page (single dark theme by choice) */
+@font-face { font-family: "Satoshi"; src: url("/assets/fonts/satoshi-400.woff2") format("woff2"); font-weight: 400; font-display: block; }
+:root {
+  --bg: #050506; --panel: #111113; --line: #26262b; --fg: #f2f2f3; --lede: #e6e6e8; --muted: #8d8d95; --dim: #5d5d66; --accent: #2fc24a;
+  --sans: "Satoshi", "Inter", system-ui, sans-serif;
+  color-scheme: dark;
+}
+html, body { background: var(--bg); color: var(--fg); }
+body { margin: 0; font-family: var(--sans); font-size: 16px; line-height: 1.45; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: 12px max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+button { font: inherit; font-size: 14px; color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ctl { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: 14px; color: var(--muted); }
+.ctl label { display: flex; gap: 6px; align-items: center; }
+.what { max-width: 62ch; margin: 28px auto 0; color: var(--muted); font-size: 15px; min-height: 4.4em; }
+.what b { color: var(--fg); font-weight: 400; }
+.spacer { height: 85vh; display: grid; place-items: center; color: var(--dim); font-size: 14px; }
+.sec { max-width: 1040px; margin: 0 auto; display: grid; gap: 28px; }
+.eyebrow { color: var(--dim); font-size: 20px; margin: 0; }
+.lede { font-size: clamp(24px, 3.4vw, 40px); line-height: 1.2; margin: 0; max-width: 19em; text-wrap: balance; color: var(--lede); }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; max-width: 435px; }
+.cols h3 { font-size: 20px; font-weight: 400; margin: 0; }
+.cols p { margin: 0; color: var(--muted); }
+.fig { position: relative; width: 100%; max-width: 896px; aspect-ratio: 1791 / 754; }
+.piece { position: absolute; inset: 0; background: url("/assets/framework/foundation@2x.webp") 0 0 / 100% 100% no-repeat; will-change: transform, opacity, clip-path; }
+.foot { height: 70vh; }
+</style>
+
+<div class="bar">
+  <div class="opts" role="group" aria-label="Options">
+    <button id="o-a" data-o="a" aria-pressed="false">A · Rows together</button>
+    <button id="o-b" data-o="b" aria-pressed="false">B · Accordion</button>
+    <button id="o-c" data-o="c" aria-pressed="true">C · Pathway by pathway</button>
+    <button id="o-live" data-o="live" aria-pressed="false">Live now</button>
+  </div>
+  <div class="ctl">
+    <span>Starts</span>
+    <div class="opts" role="group" aria-label="When it starts">
+      <button id="t-view" data-t="view" aria-pressed="true">Plays once it is all on screen</button>
+      <button id="t-scrub" data-t="scrub" aria-pressed="false">Follows your scroll</button>
+      <button id="t-pixel" data-t="pixel" aria-pressed="false">First pixel, as live</button>
+    </div>
+    <label><input type="checkbox" id="rm"> Reduced motion</label>
+    <button id="replay">Replay</button>
+  </div>
+</div>
+
+<p class="what" id="what"></p>
+<div class="spacer">Scroll down to the diagram</div>
+
+<section class="sec" aria-label="The foundation we built on">
+  <p class="eyebrow">The foundation we built on</p>
+  <p class="lede">Mondai calls the whole route to a user’s new career, and the curriculum that gets them there, their Growth Journey.</p>
+  <div class="cols"><h3>Pathways</h3><p>The Growth Journey is made up of five Pathways, taken one at a time and in order, each covering a different part of getting into tech.</p></div>
+  <div class="fig" id="fig" role="img" aria-label="The five Pathways, Discovery, Cognition, Networking, Branding and Opportunity, each with Focus Areas and Action Items below it."></div>
+  <div class="cols"><h3>Hierarchy</h3><p>Each Pathway holds Action Items, the individual pieces of work the user does, grouped into Focus Areas by theme.</p></div>
+</section>
+<div class="foot"></div>
+
+<script>
+// The diagram is one image (1791 by 754 at 2x). Each option cuts it into pieces with clip-path and moves
+// the pieces with the Web Animations API. Row bands and column edges were measured from the image.
+const W = 1791, H = 754;
+const ROW = { P: [0, 310], F: [310, 542], X: [542, 754] }; // Pathways, arrow + Focus areas, arrow + Action items
+const colX = (i) => [Math.max(0, i * 378 - 4), Math.min(W, i * 378 + 282)];
+const pct = (v, of) => (v / of * 100).toFixed(3) + "%";
+const inset = (y0, y1, x0 = 0, x1 = W) => `inset(${pct(y0, H)} ${pct(W - x1, W)} ${pct(H - y1, H)} ${pct(x0, W)})`;
+const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+const WHAT = {
+  a: "<b>A · Rows together.</b> All five Pathways arrive as one row, then every Focus area with its arrows, then every Action item. Each row rises 14 px and fades in, 0.28 s apart, so the layers read top down.",
+  b: "<b>B · Accordion.</b> The Pathway row arrives, then the Focus areas slide down out from under it, then the Action items slide out from under those, like panels opening. It shows each layer sitting inside the one above.",
+  c: "<b>C · Pathway by pathway.</b> 01 to 05 come in left to right with the dotted links drawing between them, and each Pathway’s Focus areas and Action items drop in under it as it lands. This is the left to right reading the wipe was meant to give.",
+  live: "<b>Live now.</b> What the page does today: three bands fade in, opacity only, 0.16 s apart. Switch Starts to “First pixel, as live” and scroll at reading speed to see why it never shows: it finishes while the lower rows are still below the screen."
+};
+const fig = document.getElementById("fig");
+let opt = "c", trig = "view", armed = false, anims = [], start = null, io = null;
+
+function piece(clip) { const d = document.createElement("div"); d.className = "piece"; d.style.clipPath = clip; fig.appendChild(d); return d; }
+function play(el, kf, delay, dur, easing = EASE) { const a = el.animate(kf, { duration: dur, delay, easing, fill: "both" }); anims.push(a); }
+const rise = (y) => [{ opacity: 0, transform: `translateY(${y}px)` }, { opacity: 1, transform: "none" }];
+
+function build() {
+  anims.forEach((a) => a.cancel()); anims = []; fig.innerHTML = "";
+  if (document.getElementById("rm").checked) { piece("none"); return null; } // reduced motion: the still, nothing moves
+  if (opt === "a") {
+    ["P", "F", "X"].forEach((k, i) => play(piece(inset(...ROW[k])), rise(14), i * 280, 700));
+  } else if (opt === "b") {
+    play(piece(inset(...ROW.P)), rise(10), 0, 600);
+    [["F", 340], ["X", 820]].forEach(([k, delay]) => {
+      const [y0, y1] = ROW[k], h = y1 - y0;
+      // a window the size of the band; the row starts one band higher inside it and slides down out from under the row above
+      const win = document.createElement("div");
+      win.style.cssText = `position:absolute;left:0;right:0;top:${pct(y0, H)};height:${pct(h, H)};overflow:hidden`;
+      fig.appendChild(win);
+      const el = piece(inset(y0, y1)); win.appendChild(el);
+      el.style.inset = "auto"; el.style.left = "0"; el.style.width = "100%"; el.style.top = `-${(y0 / h * 100).toFixed(3)}%`; el.style.height = `${(H / h * 100).toFixed(3)}%`;
+      play(el, [{ transform: `translateY(-${pct(h + 8, H)})` }, { transform: "translateY(0)" }], delay, 760);
+    });
+  } else if (opt === "c") {
+    for (let i = 0; i < 5; i++) {
+      const [x0, x1] = colX(i), t = i * 140;
+      play(piece(inset(0, 300, x0, x1)), rise(12), t, 600);
+      play(piece(inset(...ROW.F, x0, x1)), rise(12), t + 200, 600);
+      play(piece(inset(...ROW.X, x0, x1)), rise(12), t + 400, 600);
+      if (i < 4) {
+        const c0 = x1, c1 = colX(i + 1)[0];
+        play(piece(inset(150, 215, c0, c1)), [{ clipPath: inset(150, 215, c0, c0) }, { clipPath: inset(150, 215, c0, c1) }], t + 260, 320, "ease-out");
+      }
+    }
+  } else {
+    const cuts = [0, 0.41 * H, 0.71 * H, H]; // the live mask bands and timing (lead 0.45 s, step 0.16 s, 1 s each)
+    for (let i = 0; i < 3; i++) play(piece(inset(cuts[i], cuts[i + 1])), [{ opacity: 0 }, { opacity: 1 }], 450 + i * 160, 1000);
+  }
+  anims.forEach((a) => a.pause()); // hold at the first frame until it starts
+  return () => anims.forEach((a) => { a.currentTime = 0; a.play(); });
+}
+
+// Plays once it is all on screen: the whole diagram has cleared a line 20 percent up from the bottom of the
+// window, so the reader's eye is on it. Follows your scroll: the same motion, its progress tied to where the
+// diagram sits, from its top 15 percent up the window to fully above the 20 percent line.
+let scrubbing = false;
+const total = () => Math.max(0, ...anims.map((a) => { const t = a.effect.getTiming(); return t.delay + t.duration; }));
+function scrubFrame() {
+  if (!scrubbing) return;
+  const vh = innerHeight, r = fig.getBoundingClientRect();
+  const from = vh * 0.85, to = vh * 0.8 - r.height;
+  const p = Math.min(1, Math.max(0, (from - r.top) / (from - to)));
+  const t = p * total(); anims.forEach((a) => { a.currentTime = t; });
+  requestAnimationFrame(scrubFrame);
+}
+function arm() {
+  io && io.disconnect(); scrubbing = false;
+  start = build(); armed = !!start;
+  if (!start) return;
+  if (trig === "scrub") { armed = false; scrubbing = true; requestAnimationFrame(scrubFrame); return; }
+  io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting && armed) { armed = false; start(); io.disconnect(); } },
+    trig === "pixel" ? { threshold: 0 } : { threshold: 0.99, rootMargin: "0px 0px -20% 0px" });
+  io.observe(fig);
+}
+function select(o) {
+  opt = o;
+  document.querySelectorAll("[data-o]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.o === o)));
+  document.getElementById("what").innerHTML = WHAT[o];
+  if (fig.getBoundingClientRect().top < innerHeight) scrollTo({ top: 0 });
+  arm();
+}
+document.querySelectorAll("[data-o]").forEach((b) => b.addEventListener("click", () => select(b.dataset.o)));
+document.querySelectorAll("[data-t]").forEach((b) => b.addEventListener("click", () => {
+  trig = b.dataset.t;
+  document.querySelectorAll("[data-t]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  select(opt);
+}));
+document.getElementById("rm").addEventListener("change", () => select(opt));
+document.getElementById("replay").addEventListener("click", () => {
+  const r = fig.getBoundingClientRect();
+  if (trig !== "scrub" && r.top < innerHeight && r.bottom > 0) { io && io.disconnect(); start = build(); if (start) start(); }
+  else select(opt);
+});
+if (matchMedia("(prefers-reduced-motion: reduce)").matches) document.getElementById("rm").checked = true;
+select("c");
+</script>
