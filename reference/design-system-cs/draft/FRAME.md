@@ -79,6 +79,9 @@ screen rate. Unsourced lines about his intent were cut or tied to a record. The 
 - 20 Nov 2026: the case study stays on the 2026 work; the 2024 to 2025 build appears only as the
   starting point in section 1. Decided by: Chadwick, picking "Stay on 2026" over three early decisions
   from the record (the temporary system, dark only for now, the move to its own library file).
+- 21 Nov 2026: the outline stays as drafted: the six sections and headings above, with "measured
+  by its readers" as the spine. Decided by: Chadwick ("keep"), after seeing how it differs from his
+  6 Nov outline.
 
 ## Open, only he can answer
 
