@@ -358,6 +358,16 @@
 @media (max-width: 1159.98px) {
   .framework .fw .fw-sec > [data-figma-node="5812:20246"] + [data-figma-node="5812:20247"] { margin-top: 32px; }
 }
+/* 21 Nov, his note on the 768 preview: on a tablet no line of text runs the whole frame and none ends on a last line
+   of one or two words. The Schedule view intro takes his measure, breaking after "between" (that phrase is 430 at
+   16 px, the next word ends at 455), so it reads as two even lines at every tablet width; this replaces the 20 Nov
+   one line rule under 1160. Headlines and running text balance their lines, so no block ends on a short last row
+   (Chrome balances up to six lines; longer blocks wrap as before). Start of week is another session's and is left alone. Checked by reports/fw-fixes-round2-2026-11-21/check.mjs orphans. */
+@media (min-width: 768px) and (max-width: 1159.98px) {
+  .framework .fw .fw-sec > .oneline { max-width: 27.5em; }
+  .framework .fw .fw-sec:not([data-figma-node="5812:20498"]) > :is(.s-heading-40, .s-display-96) { text-wrap: balance; }
+  .framework .fw .fw-sec:not([data-figma-node="5812:20498"]) :is(.s-body-16, .s-heading-24, .s-label-14, .s-heading-20, .fw-end__close):not(.oneline) { text-wrap: balance; }
+}
 /* Footer, his Other pages variant (6331:20545, 20 Nov, not final): the Contact label is Medium, not Bold. The list and
    the hidden Resume are in the markup; Testimonials stays hidden until its Home section ships, as on Home. */
 .footer-other .button__label { font-weight: 500; }

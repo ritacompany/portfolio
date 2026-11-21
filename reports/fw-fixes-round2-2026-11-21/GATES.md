@@ -34,5 +34,10 @@ Scope: the Target and pace and Calendar setup images show at every width both on
   EXPECT: FINDINGS_OK
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=717fe78f66f0/16 entries; EXPECT=matched; output-sha256=c938ae8b07197d74ecdeed9bfdcb04b48944980f8caf85d5261f869c21cbb9d2; output-bytes=12
 
+- [x] G8: his 21 Nov tablet rule: at every width from 768 to 1159 (4 px steps) the Schedule view intro breaks after "between" into two lines and no text block outside Start of week ends on a last line of one or two words (one listed exception: the Capacity paragraph at 904 to 911); the check catches the short last lines with the rule removed
+  CHECK: node reports/fw-fixes-round2-2026-11-21/check.mjs orphans
+  EXPECT: ORPHANS_OK
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=44bae77e6169/16 entries; EXPECT=matched; output-sha256=1605f443867a0f758c1cc35ff0d7e8db0e362af6dcb3c297be232f087a39be4a; output-bytes=89
+
 - [x] G7: branch pushed, draft PR open into claude/relaxed-ride-5mlbdu (the lead moved the base there; same code as claude/fw-integration plus a handoff note), review preview republished, lead session sent the PR link
   EVIDENCE: manual; branch claude/fw-fixes-round2 pushed; draft PR #37 into claude/relaxed-ride-5mlbdu https://github.com/ritacompany/portfolio/pull/37; preview https://claude.ai/artifact/BcAwMa7dxD7PGvxsPHjQsd built with builder 920a44a; lead session_01NtNprpF2S84rwN3GY1iDpG sent the PR link

@@ -37,12 +37,14 @@ Everything in the Schedule view section sits within 1.5 px of the frame (fw-sync
 
 ## 768
 
-His tablet section has no Schedule view frame (no Schedule view or Rescheduling text in 6340:30057), so there is
-nothing of his to match at 768. What the page does there now, for him to rule on:
+His tablet section has no Schedule view frame. His rule from the 768 preview (21 Nov): no line runs the whole frame
+and nothing ends on a bottom row of one or two words. Built for every tablet width, 768 to 1159:
 
-1. The intro line wraps at 768 with a short second line ("they like."). The rule from 20 Nov keeps it on one line
-   only where it fits; at 768 its 16 px words need 734 px and the column has 704, so it fits on one line from about 800 up.
-2. Rescheduling stacks: heading, body, then the popover image at 547 wide, left aligned, with about 157 px empty
-   to its right. At 1440 the image sits left of the text. Side by side does not fit at 768 without shrinking the
-   image below 400.
-3. The two notes under the schedule sit side by side at 768, as at 1440.
+1. The Schedule view intro breaks after "between" into two lines (max width 27.5em, the phrase is 430 at 16 px).
+   This replaces the 20 Nov one line rule on a tablet; the fw-sync oneline gate now skips 768 to 1159.
+2. Headlines and running text balance their lines, so no block ends on a short last row. Before, at 768 alone:
+   they like, own color, confusing, headed, them, the target, Journey, what's left and more.
+3. Left as it was: Start of week (another session owns it; its headline ends on "week." at 768) and the Capacity
+   paragraph at 904 to 911, which runs 7 lines and ends on "it later."; Chrome balances six lines at most.
+4. Rescheduling stacks: heading, body, then the popover image at 547 wide, left aligned, about 157 px empty to its
+   right at 768. Side by side does not fit at 768 without shrinking the image below 400.

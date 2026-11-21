@@ -150,6 +150,52 @@ const gates = {
     if (got !== want) fails.push(`served image is not the PR #29 export (sha256 ${sha.slice(0, 12)})`);
     if (!sha.startsWith("6b8aed6c")) fails.push(`sha256 ${sha.slice(0, 12)} not 6b8aed6c`);
   },
+  // His 21 Nov note: on a tablet no text block ends on a last line of one or two words, and the Schedule view intro
+  // breaks after "between" into two lines. Start of week is another session's and is skipped. Known exception, listed
+  // for him: the Capacity paragraph (5812:17122) runs 7 lines at 904 to 911 and Chrome balances six at most.
+  async orphans() {
+    const b = await chromium.launch();
+    const p = await b.newPage({ viewport: { width: 768, height: 900 }, reducedMotion: "reduce" });
+    await p.goto(`${site}/mondai/framework/`, { waitUntil: "load" });
+    await p.evaluate(() => document.fonts.ready);
+    const scan = () => p.evaluate(() => {
+      const out = [];
+      for (const e of document.querySelectorAll(".fw .t")) {
+        if (!e.offsetParent || e.closest('.sow, [data-figma-node="5812:20498"]') || e.classList.contains("fw-end__num")) continue;
+        const blocks = e.querySelectorAll(".para").length ? [...e.querySelectorAll(".para")] : [e];
+        for (const blk of blocks) {
+          const range = document.createRange(), walker = document.createTreeWalker(blk, NodeFilter.SHOW_TEXT), words = [];
+          let n; while ((n = walker.nextNode())) { const re = /\S+/g; let m; while ((m = re.exec(n.data))) { range.setStart(n, m.index); range.setEnd(n, m.index + m[0].length); const rs = range.getClientRects(); if (rs.length) words.push({ w: m[0], top: Math.round(rs[rs.length - 1].top) }); } }
+          const lines = [...new Set(words.map((x) => x.top))];
+          if (lines.length < 2) continue;
+          const last = words.filter((x) => x.top === lines.at(-1));
+          if (last.length <= 2) out.push({ node: e.dataset.figmaNode || e.closest("[data-figma-node]")?.dataset.figmaNode, last: last.map((x) => x.w).join(" "), lines: lines.length });
+        }
+      }
+      const i = document.querySelector('[data-figma-node="5812:17150"]'), r = document.createRange(), ws = [];
+      const t = i.firstChild; const re = /\S+/g; let m;
+      while ((m = re.exec(t.data))) { r.setStart(t, m.index); r.setEnd(t, m.index + m[0].length); ws.push({ w: m[0], top: Math.round(r.getClientRects()[0].top) }); }
+      const tops = [...new Set(ws.map((x) => x.top))];
+      return { out, intro: { lines: tops.length, end1: ws.filter((x) => x.top === tops[0]).at(-1).w } };
+    });
+    for (let w = 768; w < 1160; w += 4) {
+      await p.setViewportSize({ width: w, height: 900 }); await p.waitForTimeout(60);
+      const r = await scan();
+      if (r.intro.lines !== 2 || r.intro.end1 !== "between") fails.push(`${w}: intro ${r.intro.lines} lines, first ends "${r.intro.end1}"`);
+      for (const o of r.out) {
+        if (o.node === "5812:17122" && w >= 904 && w <= 911) continue;
+        fails.push(`${w}: ${o.node} ends on "${o.last}"`);
+      }
+    }
+    // control: the same scan without the balance rule finds the short last lines he saw at 768
+    await p.setViewportSize({ width: 768, height: 900 });
+    await p.addStyleTag({ content: ".framework .fw .fw-sec * { text-wrap: wrap !important; } .framework .fw .fw-sec > .oneline { max-width: 100% !important; }" });
+    await p.waitForTimeout(100);
+    const c = await scan();
+    if (!(c.out.length >= 3 && c.intro.end1 !== "between")) fails.push(`control: unbalanced 768 not caught ${JSON.stringify(c)}`);
+    else console.log(`control: ${c.out.length} short last lines and the intro wrap caught at 768 without the rule`);
+    await b.close();
+  },
   async findings() {
     const f = join(root, "reports/fw-fixes-round2-2026-11-21/FINDINGS.md");
     if (!existsSync(f)) return fails.push("FINDINGS.md missing");
