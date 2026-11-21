@@ -24,10 +24,10 @@ Scope: the Target and pace and Calendar setup images show at every width both on
   EXPECT: POPOVER_OK
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=717fe78f66f0/16 entries; EXPECT=matched; output-sha256=c05530940fa6864762c5be61411e22050c5b3790a1a9b73c65dc214ec0e037a4; output-bytes=11
 
-- [ ] G5: every existing framework check passes on this branch
+- [x] G5: every existing framework check passes on this branch
   CHECK: node reports/fw-fixes-round2-2026-11-21/run-existing.mjs
   EXPECT: ALL_EXISTING_OK
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=717fe78f66f0/16 entries; EXPECT=matched; output-sha256=88e6f91a907c8d664bd0805ef0d81d8e9c5c61f371fd383a46b36a21eba8000b; output-bytes=1248
 
 - [x] G6: Schedule view at 768 and 1440 compared against his frames; every difference left is listed for him in FINDINGS.md rather than guessed at, with the desktop compare image saved
   CHECK: node reports/fw-fixes-round2-2026-11-21/check.mjs findings
