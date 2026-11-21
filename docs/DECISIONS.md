@@ -1,5 +1,9 @@
 # Portfolio decisions
 
+## 2026-11-21: Figma locations live in one registry
+
+Chadwick said yes (21 Nov) to making this the standing rule. He moves Figma files between his two accounts, and every pointer written into a handoff went stale on the next move (3 Nov, 20 Nov). So `reference/figma-locations.json` is the only place a Figma file key or frame id is written; every other file names the design and points there. A session reads it before any Figma call; when a frame is not where it says, it searches the other files there by frame name and updates the entry, and it never tells him Figma is blocked or a frame is missing until every known file was tried. Held by `scripts/check-figma-locations.mjs` (run at every handoff save) and `.claude/hooks/figma-location.mjs`. Fix record: `fixes/2026-11-20-figma-location-registry.md`.
+
 ## 2026-11-12: No stroke on the footer portraits, on any page
 
 Chadwick has asked in several chats for no stroke on the footer portraits (9 Nov: "neither should have a stroke"; again 12 Nov). The rim was the pill's light background being antialiased separately from the photo, so a thin grey line showed around the black suit. The fix had only ever been made in the preview layer (`site/dev/preview/proposals.css`), which the real pages never load, so it kept coming back. It now lives in `site/css/components.css` (`.footer__pill`: one `clip-path` for the background and the photo, no `border-radius` plus `overflow`), which every page's footer uses. Keep it there: do not reintroduce `border-radius` or `overflow: hidden` on `.footer__pill`, and fix footer issues in `site/css`, never only in a preview file.
