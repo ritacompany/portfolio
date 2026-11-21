@@ -250,11 +250,13 @@
   (function clock() {
     var el = document.getElementById("chicago-time"); if (!el) return;
     function tick() {
-      var t = new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", hour: "numeric", minute: "2-digit", timeZoneName: "short" }).formatToParts(new Date());
+      var t = new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", hour: "numeric", minute: "2-digit", second: "2-digit", timeZoneName: "short" }).formatToParts(new Date());
       var g = function (k) { return (t.find(function (x) { return x.type === k; }) || {}).value || ""; };
-      el.textContent = g("hour") + ":" + g("minute") + g("dayPeriod").toLowerCase() + " " + g("timeZoneName");
+      el.textContent = g("hour") + ":" + g("minute") + ":" + g("second") + g("dayPeriod").toLowerCase() + " " + g("timeZoneName");
     }
-    tick(); setInterval(tick, 30000);
+    // On each second boundary, so the seconds count up in step with the real clock.
+    (function next() { tick(); setTimeout(next, 1000 - (Date.now() % 1000) + 20); })();
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) tick(); });
   })();
 
   // ---- Nav reads over the light feedback block by switching to dark ----

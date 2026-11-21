@@ -26,7 +26,7 @@ function checkLog(file) {
   if (!rounds.length) return fail(`${file}: no "## Round N" sections`);
   const last = rounds[rounds.length - 1], n = last.split(/\s/)[0];
   const p0 = last.split("\n").filter((l) => /^\s*-\s*P0\b/.test(l));
-  const eyes = /^Fresh eyes:\s*\S/m.test(last);
+  const eyes = /^Fresh eyes:[ \t]*\S/m.test(last); // [ \t], not \s: an empty entry must not borrow the next line
   const ranked = /^\s*-\s*P[0-2]\b/m.test(last) || /^No problems? (found|left)/mi.test(last);
   if (p0.length) fail(`${file}: round ${n} has ${p0.length} open P0: ${p0[0].trim()}`);
   if (!eyes) fail(`${file}: round ${n} has no "Fresh eyes:" entry`);

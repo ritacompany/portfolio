@@ -7,7 +7,7 @@ if (section && !reduced) {
       const { mountChatPhone } = await import('./chat-rotate.js');
       const instance = await mountChatPhone(section);
       section.classList.add('has-chat');
-      instance.draw();
+      instance.remeasure();
       window.__chat = instance;
     } catch (error) {
       section.classList.remove('has-chat');

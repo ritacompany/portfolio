@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Button states</title>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="buttons.css">
+</head>
+<body>
+  <header class="page-head">
+    <h1>Button and Small button states</h1>
+    <p>Phase 2. Three options for hover, pressed and focus. Each row shows the states side by side; hover and press the "Try it" pair to feel them. Focus is the same 2 px white ring everywhere. Never shipped: the build leaves site/dev out.</p>
+  </header>
+  <main>
+    <section class="opt opt-a" data-opt="a">
+      <h2>A. Fill</h2>
+      <p>The outline fills with Neutral/100 and the text and icon turn dark: icon pill first, label 60 ms behind. Pressed sinks to Neutral/300 and shrinks to 98 percent. The plainest and the most obviously clickable.</p>
+      <div class="states"><span class="col">Default</span><span class="col">Hover</span><span class="col">Pressed</span><span class="col">Focus</span><span class="lab">Button</span><a class="button " href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><a class="button is-hover" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><a class="button is-pressed" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><a class="button is-focus" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><span class="lab">Small button</span><button class="button-sm " type="button">Learn more</button><button class="button-sm is-hover" type="button">Learn more</button><button class="button-sm is-pressed" type="button">Learn more</button><button class="button-sm is-focus" type="button">Learn more</button></div>
+      <div class="try"><span>Try it</span><a class="button " href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><button class="button-sm " type="button">Learn more</button></div>
+    </section>
+    <section class="opt opt-b" data-opt="b">
+      <h2>B. Roll</h2>
+      <p>The outline stays. The label rolls up out of its pill and the same word rolls in from below; the mail icon tips 12 degrees. Pressed thickens the stroke inward. Quiet at rest, the one people would remember.</p>
+      <div class="states"><span class="col">Default</span><span class="col">Hover</span><span class="col">Pressed</span><span class="col">Focus</span><span class="lab">Button</span><a class="button " href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></span></a><a class="button is-hover" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></span></a><a class="button is-pressed" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></span></a><a class="button is-focus" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></span></a><span class="lab">Small button</span><button class="button-sm " type="button"><span class="roll"><span>Learn more</span><span aria-hidden="true">Learn more</span></span></button><button class="button-sm is-hover" type="button"><span class="roll"><span>Learn more</span><span aria-hidden="true">Learn more</span></span></button><button class="button-sm is-pressed" type="button"><span class="roll"><span>Learn more</span><span aria-hidden="true">Learn more</span></span></button><button class="button-sm is-focus" type="button"><span class="roll"><span>Learn more</span><span aria-hidden="true">Learn more</span></span></button></div>
+      <div class="try"><span>Try it</span><a class="button " href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></span></a><button class="button-sm " type="button"><span class="roll"><span>Learn more</span><span aria-hidden="true">Learn more</span></span></button></div>
+    </section>
+    <section class="opt opt-c" data-opt="c">
+      <h2>C. Join</h2>
+      <p>The seam between the two pills closes: the label slides under the icon and the icon's ring fades, so the button becomes one shape. Small button squares its corners. Pressed fills with Neutral/800. Ties the hover to the button's own construction.</p>
+      <div class="states"><span class="col">Default</span><span class="col">Hover</span><span class="col">Pressed</span><span class="col">Focus</span><span class="lab">Button</span><a class="button " href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><a class="button is-hover" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><a class="button is-pressed" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><a class="button is-focus" href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><span class="lab">Small button</span><button class="button-sm " type="button">Learn more</button><button class="button-sm is-hover" type="button">Learn more</button><button class="button-sm is-pressed" type="button">Learn more</button><button class="button-sm is-focus" type="button">Learn more</button></div>
+      <div class="try"><span>Try it</span><a class="button " href="#"><span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span><span class="button__label">Contact</span></a><button class="button-sm " type="button">Learn more</button></div>
+    </section>
+  </main>
+</body>
+</html>

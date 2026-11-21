@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Liquid Contact button motion</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/contact-liquid.css">
+<link rel="stylesheet" href="contact-liquid.css">
+</head>
+<body>
+<div id="c">
+  <div class="host" id="host">
+    <a class="button" href="mailto:hello@chadwickfenner.com">
+      <span class="button__icon" aria-hidden="true"><img src="../assets/ui/mail-asterisk.svg" alt=""></span>
+      <span class="button__label">Contact</span>
+    </a>
+    <span class="cursor"></span>
+  </div>
+</div>
+<script type="module">
+  // Motion lab page for the liquid mix. Plan: docs/motion/contact-liquid/. window.seek(t) replays the
+  // scripted pointer (DEMO in the engine) from 0 to t in fixed 60 Hz steps, so any frame renders the same.
+  import { liquid, demoAt, DEMO, startLiquid } from "../js/contact-liquid.js";
+  document.body.classList.toggle("is-render", !!window.__RENDER__);
+  await document.fonts.ready;
+  const host = document.getElementById("host"), cur = host.querySelector(".cursor");
+  const DUR = DEMO[DEMO.length - 1][0];
+  if (window.__RENDER__ || new URLSearchParams(location.search).has("seek")) {
+    const u = liquid(host.querySelector(".button"));
+    window.seek = (t) => {
+      t = ((t % DUR) + DUR) % DUR;
+      const W = u.btn.offsetWidth, H = u.btn.offsetHeight, steps = Math.round(t * 60);
+      u.reset();
+      for (let s = 0; s < steps; s++) u.step(demoAt(s / 60, W, H));
+      u.paint();
+      const p = demoAt(t, W, H);
+      cur.style.transform = `translate(${p.x}px, ${p.y}px) scale(${p.down ? 0.8 : 1})`;
+    };
+    window.liquidUnit = u;
+    window.seek(0);
+  } else {
+    window.liquidRun = startLiquid(host);
+  }
+  window.__liquidReady = true;
+</script>
+</body>
+</html>

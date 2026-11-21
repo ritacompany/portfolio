@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capacity demo</title>
+<link rel="stylesheet" href="capacity-demo.css">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  .stage { position: relative; width: min(80vw, calc(80vh * 616 / 596)); margin: 0 auto; top: 50%; transform: translateY(-50%); }
+  .stage .card { width: 100%; aspect-ratio: 616 / 596; background: url("../../assets/framework/timeline@2x.webp") center / 100% 100% no-repeat; }
+  body.diff .capdemo__patch, body.diff .capdemo__cursor { display: none; }
+  body.diff .capdemo { mix-blend-mode: difference; }
+</style>
+</head>
+<body>
+<div class="stage"><div class="card" role="img" aria-label="Capacity card"></div></div>
+<script>
+  // Render page for scripts/render.mjs: window.seek(t). ?diff shows the live layers over the export as a difference.
+  window.__RENDER__ = true;
+  window.__demoReady = new Promise((r) => (window.__resolveDemo = r));
+  window.seek = async (t) => { (await window.__demoReady).seek(t); };
+</script>
+<script type="module">
+  const resolve = window.__resolveDemo;
+  if (location.search.includes("diff")) document.body.classList.add("diff");
+  const { mount, DUR, G } = await import("./capacity-demo.js");
+  const img = document.querySelector(".card");
+  img.src = "../../assets/framework/timeline@2x.webp"; // the renderer waits on <img> decodes, which hang here, so the card is a background
+  const pre = new Image(); pre.src = img.src;
+  await Promise.all([document.fonts.load('700 100px "Heebo"', "678"), document.fonts.load('400 20px "IBM Plex Mono"', "45"), pre.complete ? 0 : new Promise((r) => pre.addEventListener("load", r, { once: true }))]);
+  const demo = mount(img);
+  addEventListener("resize", demo.layout);
+  resolve(demo);
+  window.DUR = DUR; window.G = G; window.demo = demo;
+  const t = new URLSearchParams(location.search).get("t");
+  demo.seek(t ? Number(t) : 0);
+  window.__READY__ = true;
+</script>
+</body>
+</html>

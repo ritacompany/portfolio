@@ -1,0 +1,116 @@
+V1 Q1 yes | V1.S2, V1.S3
+V1.S1 Q2 no
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | opens the block
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | follows from S1
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | follows from S2
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 yes | launch status does not follow from the decision before it and is not needed to follow the point
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | scope statement that follows
+V2 Q1 yes | V2.S2, V2.S4
+V2.S1 Q2 no
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | opens the block
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | follows from S1
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | follows from S2
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | follows from S3
+V3 Q1 yes | V3.S4, V3.S5
+V3.S1 Q2 no
+V3.S1 Q3 no
+V3.S1 Q4 no
+V3.S1 Q5 no | opens the block
+V3.S2 Q2 no
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | follows from S1 and label
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | follows from S2
+V3.S4 Q2 no
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | gives the reason for asking
+V3.S5 Q2 no
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 yes | the risk of over-promising does not follow from typing an exact number instead of picking ranges, so the "so" breaks the logic
+V3.S6 Q2 no
+V3.S6 Q3 no
+V3.S6 Q4 no
+V3.S6 Q5 no | label and sentence name the second thing from S1
+V3.S7 Q2 no
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 no | example begins
+V3.S8 Q2 no
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | follows from S7
+V3.S9 Q2 no
+V3.S9 Q3 no
+V3.S9 Q4 no
+V3.S9 Q5 no | follows from S8
+V4 Q1 yes | V4.S2, V4.S3
+V4.S1 Q2 no
+V4.S1 Q3 no
+V4.S1 Q4 no
+V4.S1 Q5 no | opens the block
+V4.S2 Q2 no
+V4.S2 Q3 no
+V4.S2 Q4 no
+V4.S2 Q5 no | follows from S1
+V4.S3 Q2 no
+V4.S3 Q3 no
+V4.S3 Q4 no
+V4.S3 Q5 no | gives the reason for S2
+V4.S4 Q2 no
+V4.S4 Q3 no
+V4.S4 Q4 no
+V4.S4 Q5 no | label defines it
+V4.S5 Q2 no
+V4.S5 Q3 no
+V4.S5 Q4 no
+V4.S5 Q5 no | follows from S4
+V4.S6 Q2 no
+V4.S6 Q3 no
+V4.S6 Q4 yes | K2
+V4.S6 Q5 no | label defines it
+V4.S7 Q2 no
+V4.S7 Q3 no
+V4.S7 Q4 no
+V4.S7 Q5 no | follows from S6
+V4.S8 Q2 no
+V4.S8 Q3 no
+V4.S8 Q4 no
+V4.S8 Q5 no | follows from S7
+V4.S9 Q2 no
+V4.S9 Q3 no
+V4.S9 Q4 no
+V4.S9 Q5 no | label defines it
+V4.S10 Q2 no
+V4.S10 Q3 no
+V4.S10 Q4 no
+V4.S10 Q5 no | follows from S9

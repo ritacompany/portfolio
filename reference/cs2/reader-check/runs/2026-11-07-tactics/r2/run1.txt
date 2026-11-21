@@ -1,0 +1,112 @@
+V1 Q1 yes | V1.S2, V1.S5
+V1.S1 Q2 no
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | follows, adds when users open it
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | states the reason for the page
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | follows from S2
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 yes | adds nothing, the reason only arrives in S5
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | gives the reason
+V2 Q1 yes | V2.S4, V2.S5
+V2.S1 Q2 no
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | opens the block clearly
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | follows from S1
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | follows
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | gives the reason for S3
+V2.S5 Q2 no
+V2.S5 Q3 no
+V2.S5 Q4 no
+V2.S5 Q5 no | Active is explained in the sentence
+V3 Q1 yes | V3.S2, V3.S3, V3.S5, V3.S7
+V3.S1 Q2 no
+V3.S1 Q3 no
+V3.S1 Q4 no
+V3.S1 Q5 no | adds the aiming and heading framing
+V3.S2 Q2 yes | right rail
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | follows from S1
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | gives the reason for S2
+V3.S4 Q2 no
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | defines the label
+V3.S5 Q2 no
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 no | follows
+V3.S6 Q2 no
+V3.S6 Q3 no
+V3.S6 Q4 no
+V3.S6 Q5 no | defines the label
+V3.S7 Q2 no
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 no | gives a reason
+V3.S8 Q2 no
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | short, follows
+V3.S9 Q2 no
+V3.S9 Q3 no
+V3.S9 Q4 no
+V3.S9 Q5 no | defines the label
+V3.S10 Q2 no
+V3.S10 Q3 no
+V3.S10 Q4 no
+V3.S10 Q5 no | follows
+V4 Q1 yes | V4.S2, V4.S3, V4.S4
+V4.S1 Q2 no
+V4.S1 Q3 no
+V4.S1 Q4 no
+V4.S1 Q5 no | states the mechanic
+V4.S2 Q2 no
+V4.S2 Q3 no
+V4.S2 Q4 no
+V4.S2 Q5 no | motivates the decision
+V4.S3 Q2 no
+V4.S3 Q3 no
+V4.S3 Q4 no
+V4.S3 Q5 no | follows from S2
+V4.S4 Q2 no
+V4.S4 Q3 no
+V4.S4 Q4 no
+V4.S4 Q5 no | reason for not asking
+V4.S5 Q2 no
+V4.S5 Q3 no
+V4.S5 Q4 no
+V4.S5 Q5 no | explains the knock on effect
+V4.S6 Q2 no
+V4.S6 Q3 no
+V4.S6 Q4 no
+V4.S6 Q5 no | follows from S5
+V4.S7 Q2 no
+V4.S7 Q3 no
+V4.S7 Q4 no
+V4.S7 Q5 no | short, follows

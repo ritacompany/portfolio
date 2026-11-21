@@ -1,0 +1,5 @@
+/* CHDWCK rides above the works and blends by difference: over the near black page it reads as it
+   always does; over the title and the card art it inverts them inside its letters. */
+@media (min-width: 768px) {
+  .hero__name { z-index: 3; mix-blend-mode: difference; }
+}

@@ -1,0 +1,35 @@
+/* Layout of the component sheet only. Nothing here ships. */
+
+.sheet__head, .sheet__set > h2, .sheet__notes { padding-inline: var(--grid-margin); }
+.sheet__head { padding-block: 64px 32px; max-width: 900px; }
+.sheet__head h1 { font: var(--heading-40); letter-spacing: var(--heading-40-track); margin-bottom: 16px; }
+.sheet__head p { font: var(--body-16); letter-spacing: var(--body-16-track); color: var(--neutral-500); }
+
+.sheet__set { padding-block: 48px; border-top: 1px solid var(--neutral-800); }
+.sheet__set > h2 {
+  font: var(--heading-24); letter-spacing: var(--heading-24-track); margin-bottom: 12px;
+}
+.sheet__set > h2 span { font: var(--label-14-c); letter-spacing: var(--label-14-c-track); color: var(--neutral-550); margin-left: 12px; }
+.sheet__notes {
+  display: grid; gap: 6px; max-width: 900px; margin-bottom: 24px; padding-left: calc(var(--grid-margin) + 18px);
+  font: var(--body-16); letter-spacing: var(--body-16-track); color: var(--neutral-500);
+}
+
+.sheet__pair { display: flex; flex-wrap: wrap; gap: 40px; padding-inline: var(--grid-margin); }
+.sheet__set.is-wide .sheet__pair { flex-direction: column; padding-inline: 0; }
+.sheet__pair figure { margin: 0; }
+.sheet__pair figcaption {
+  font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase;
+  color: var(--neutral-550); margin-bottom: 12px;
+}
+.sheet__set.is-wide figcaption { padding-inline: var(--grid-margin); }
+
+/* A stage is a box the size of the Figma set; variants sit at their Figma positions inside it. */
+.stage { display: block; position: relative; background: var(--neutral-1000); outline: 1px dashed var(--neutral-700); outline-offset: 0; }
+img.stage { max-width: none; }
+.stage > * { position: absolute; }
+.stage[data-stage="context-list"] > * { width: 100%; }
+
+.sheet__grid { height: 120px; margin-top: 24px; }
+.sheet__col { background: color-mix(in srgb, var(--xoxo-200) 22%, transparent); display: flex; align-items: flex-end; padding: 8px; }
+.sheet__col span { font: var(--label-12); color: var(--neutral-400); }

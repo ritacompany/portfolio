@@ -1,0 +1,22 @@
+[
+ {
+  "id": "r4-hero",
+  "block": "Hero",
+  "field": "Right 1",
+  "cur": "Mondai builds each user a curriculum for the tech career they choose, called their Growth Journey, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.",
+  "new": "Mondai builds each user a curriculum for the tech career they choose, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.",
+  "tactic": "Your no repeats rule (found by the final reader check)",
+  "why": "The final reader check ran on the whole page in order. It flagged the foundation headline as only restating the hero (3 of 3): the hero already names the Growth Journey, then the foundation block names and defines it. The foundation block owns the name, so the hero drops it. Nothing else changes.",
+  "src": "No new claim."
+ },
+ {
+  "id": "r4-end",
+  "block": "Ending",
+  "field": "Body 1",
+  "cur": "I decided what success looks like before the first week ran. The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.",
+  "new": "The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.",
+  "tactic": "Reader check flag: process story",
+  "why": "Flagged 2 of 3 as process story (when you decided the measures). Cutting it, the body opens on what the framework is meant to do and goes straight to the two measures.",
+  "src": "No new claim."
+ }
+]

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live review control</title>
+<style>
+  body { margin: 0; background: #0e0e0e; color: #eee; font: 16px/1.5 system-ui, sans-serif; }
+  .spacer { height: 110vh; display: grid; place-items: center; color: #777; }
+  section { max-width: 1160px; margin: 0 auto; padding: 0 24px 120px; }
+  h2 { font-size: 40px; margin: 0 0 32px; }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .card { background: #1b1b1b; border-radius: 12px; overflow: hidden; opacity: 0; cursor: pointer; }
+  .card img { display: block; width: 100%; aspect-ratio: 400 / 520; background: #262626; }
+  .card .label { padding: 12px 14px; font-weight: 600;  }
+  .after { margin-top: 40px; max-width: 640px; color: #bbb; }
+  @media (max-width: 700px) { .row { grid-template-columns: repeat(2, 1fr); gap: 8px; } h2 { font-size: 28px; } }
+</style>
+</head>
+<body>
+<div class="spacer">Scroll down</div>
+<section id="pieces">
+  <h2>The pieces before the framework</h2>
+  <div class="row">
+    <div class="card"><img data-src="a"><div class="label">Curriculum built with two educators</div></div>
+    <div class="card"><img data-src="b"><div class="label">Onboarding quiz with twelve questions</div></div>
+    <div class="card"><img data-src="c"><div class="label">Career pages for each target role</div></div>
+    <div class="card"><img data-src="d"><div class="label">Calendar sync plan, never shipped</div></div>
+  </div>
+  <p class="after">Each piece worked on its own. Nothing joined them into a plan someone changing careers could follow.</p>
+</section>
+<div class="spacer">End</div>
+<script src="../vendor/gsap-3.13.0.min.js"></script>
+<script>
+  const colors = { a: "#3b6ea5", b: "#a5683b", c: "#4f8a4a", d: "#7a4fa0" };
+  const svg = (c) => "data:image/svg+xml," + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="520"><rect width="400" height="520" fill="${c}"/></svg>`);
+  const cards = [...document.querySelectorAll(".card")];
+  cards.forEach((card) => { const img = card.querySelector("img"); img.src = svg(colors[img.dataset.src]); });
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) gsap.set(cards, { opacity: 1 });
+  else {
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      gsap.to(cards, { opacity: 1, duration: 0.8, stagger: 0.18, ease: "power1.out" });
+    }, { threshold: 0.2 });
+    io.observe(document.querySelector("#pieces .row"));
+  }
+  cards.forEach((card) => {
+    card.addEventListener("pointerenter", () => gsap.to(card, { scale: 1.03, duration: 0.25, ease: "power2.out", overwrite: "auto" }));
+    card.addEventListener("pointerleave", () => gsap.to(card, { scale: 1, duration: 0.25, ease: "power2.out", overwrite: "auto" }));
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+V1 Q1 yes | V1.S2, V1.S5
+V1.S1 Q2 no
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | follows as the opening
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | gives the reason for the page
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | lists what sits on the page
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 yes | says it was intentional but adds nothing, and "them" is vague
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | gives the reason for placing the dates here
+V2 Q1 yes | V2.S4, V2.S5
+V2.S1 Q2 no
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | sets up the screen
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | states the design question
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | follows from the screen
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | reason for the headline tone
+V2.S5 Q2 no
+V2.S5 Q3 no
+V2.S5 Q4 no
+V2.S5 Q5 no | Active is defined in the sentence
+V3 Q1 yes | V3.S2, V3.S3
+V3.S1 Q2 no
+V3.S1 Q3 no
+V3.S1 Q4 no
+V3.S1 Q5 no | opens the block
+V3.S2 Q2 yes | right rail
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | follows from S1
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | gives the reason the target holds
+V3.S4 Q2 no
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | defines the target
+V3.S5 Q2 no
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 no | adds how the target behaves
+V3.S6 Q2 no
+V3.S6 Q3 no
+V3.S6 Q4 yes | K2
+V3.S6 Q5 no | defines the pace
+V3.S7 Q2 no
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 no | adds the update rhythm and its reason
+V3.S8 Q2 no
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | adds a starting case
+V3.S9 Q2 no
+V3.S9 Q3 no
+V3.S9 Q4 no
+V3.S9 Q5 no | defines the gap
+V3.S10 Q2 no
+V3.S10 Q3 no
+V3.S10 Q4 no
+V3.S10 Q5 no | rail defined in S2
+V4 Q1 yes | V4.S3, V4.S4
+V4.S1 Q2 no
+V4.S1 Q3 no
+V4.S1 Q4 no
+V4.S1 Q5 no | opens with the effect
+V4.S2 Q2 no
+V4.S2 Q3 no
+V4.S2 Q4 no
+V4.S2 Q5 no | gives the reason for the design
+V4.S3 Q2 no
+V4.S3 Q3 no
+V4.S3 Q4 no
+V4.S3 Q5 no | states the decision
+V4.S4 Q2 no
+V4.S4 Q3 no
+V4.S4 Q4 no
+V4.S4 Q5 yes | repeats S3's reason and "the math on screen" is not explained
+V4.S5 Q2 no
+V4.S5 Q3 no
+V4.S5 Q4 no
+V4.S5 Q5 no | explains the mechanism
+V4.S6 Q2 no
+V4.S6 Q3 no
+V4.S6 Q4 no
+V4.S6 Q5 no | follows from S5
+V4.S7 Q2 no
+V4.S7 Q3 no
+V4.S7 Q4 no
+V4.S7 Q5 no | closes the effect

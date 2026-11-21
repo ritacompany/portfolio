@@ -1,0 +1,223 @@
+<title>Framework CS tactics</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a working review sheet. Each section is a split row, the frame text as it stands on the left and numbered findings on the right, like a copy editor's margin. */
+:root{
+  --bg:#f3f4f1; --surface:#ffffff; --fg:#141513; --muted:#5d6259; --line:#d9dcd4;
+  --accent:#0e7d14; --accent-soft:#e2f2e1; --mag:#b0139f; --mag-soft:#f8e4f5;
+  --warn:#9a5b00; --warn-soft:#fbefd9; --bad:#a3271d; --bad-soft:#f8e2df;
+  --ins:#0e7d14; --del:#a3271d;
+  --display:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1240px;margin:0 auto}
+header.top{padding-block:40px 24px;border-bottom:1px solid var(--line);display:grid;gap:12px}
+.kicker{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(28px,4vw,44px)/1.08 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font:700 24px/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 13px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin:0;color:var(--muted)}
+p{margin:0}
+.lede{max-width:70ch;color:var(--muted)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;padding-block:10px;font:500 13px/1.3 var(--mono)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar .count b{font-variant-numeric:tabular-nums}
+.bar .status{color:var(--muted)}
+.bar nav{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;min-width:0;flex:1 1 100%;padding-bottom:2px}
+.bar nav a{white-space:nowrap}
+.bar nav a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px}
+.bar nav a:hover,.bar nav a:focus-visible{color:var(--fg);border-color:var(--fg)}
+section.block{padding-block:40px;border-bottom:1px solid var(--line);display:grid;gap:20px;scroll-margin-top:56px}
+.prose{display:grid;gap:12px;max-width:72ch}
+.prose ul,.prose ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.order{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.order ol{margin:0;padding-left:22px;display:grid;gap:4px;font-size:15px}
+.order li.moved{color:var(--accent);font-weight:600}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:10px;min-width:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.opt{position:relative}
+.opt.pick{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.pickTag{font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.mock{display:grid;gap:8px;padding:12px;border-radius:6px;background:#0b0b0b;color:#f2f2f2}
+.mock .l{font:500 18px/1.2 var(--display)}
+.mock .r{font:400 14px/1.45 var(--body);color:#cfcfcf}
+.mock .eb{font:500 13px/1 var(--body);color:#9a9a9a}
+.mock .big{font:500 30px/1.02 var(--display);letter-spacing:-.02em}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.cur{display:grid;gap:10px;position:sticky;top:64px}
+@media (max-width:860px){.cur{position:static}}
+.cur figure{margin:0}
+.cur img{display:block;width:100%;border-radius:6px;border:1px solid var(--line);background:#000}
+.cur figcaption{font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:4px}
+.field{display:grid;gap:2px}
+.field .lab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field .txt{white-space:pre-wrap;font-size:15px}
+.field.hl .txt{font:500 19px/1.25 var(--display)}
+.finds{display:grid;gap:12px;counter-reset:f}
+.find{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.find[data-state="accept"]{border-color:var(--accent)}
+.find[data-state="reject"]{opacity:.62}
+.fhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.num{font:600 13px/1 var(--mono);font-variant-numeric:tabular-nums}
+.chip{font:600 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:4px 7px;border-radius:4px}
+.k-order{background:var(--accent-soft);color:var(--accent)}
+.k-clarity{background:var(--warn-soft);color:var(--warn)}
+.k-ai{background:var(--mag-soft);color:var(--mag)}
+.k-fact{background:var(--bad-soft);color:var(--bad)}
+.k-typo{background:var(--line);color:var(--fg)}
+.tog{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tog button{font:600 12px/1 var(--mono);padding:7px 10px;background:transparent;color:var(--muted);border:0;cursor:pointer}
+.tog button+button{border-left:1px solid var(--line)}
+.tog button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
+.tog button[aria-pressed="true"].a{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"].r{background:var(--bad);color:var(--bg)}
+.pair{display:grid;gap:6px}
+.pair .was,.pair .now{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;font-size:15px}
+.pair .tag{font:600 11px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pair .was .t{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--del);text-decoration-thickness:1px}
+.pair .was.nostrike .t{text-decoration:none}
+.pair .now .t{color:var(--fg)}
+.why{font-size:14px;color:var(--muted)}
+.why b{color:var(--fg);font-weight:600}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted)}
+.note{font-size:14px;border-left:3px solid var(--warn);padding-left:10px;color:var(--fg)}
+footer{padding-block:32px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.tog{flex-wrap:wrap}
+.tog button[aria-pressed="true"][data-v="accept"]{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="change"]{background:var(--warn);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="discuss"]{background:var(--mag);color:var(--bg)}
+.tog button[aria-pressed="true"][data-v="reject"]{background:var(--bad);color:var(--bg)}
+.find[data-state="change"]{border-color:var(--warn)}
+.find[data-state="discuss"]{border-color:var(--mag)}
+.notelab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.notein{width:100%;font:15px/1.45 var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;resize:vertical;min-height:44px}
+.notein:focus-visible{outline:2px solid var(--fg);outline-offset:1px}
+.notestate{font:400 12px/1.3 var(--mono);color:var(--muted);min-height:1em}
+.opt .find{margin-top:4px}
+.ans{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px}
+.okbox{border:1px dashed var(--line);border-radius:8px;padding:10px 14px}
+.okbox summary{cursor:pointer;font:600 13px/1.3 var(--mono);color:var(--muted)}
+.okbox[open]{display:grid;gap:10px}
+.okrow{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+.oklab{font-size:15px}
+.tog{max-width:100%}
+.prose,.why,.src,.field .txt,.pair .t,.mock p{overflow-wrap:anywhere}
+section.block,.wrap{min-width:0}
+section.block>*{min-width:0}
+@media (max-width:640px){.tog{margin-left:0;width:100%}.tog button{flex:1 1 40%;min-height:40px}.tog button+button{border-left:1px solid var(--line)}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="kicker">Mondai framework case study · tactics pass · nothing changed in Figma</div>
+  <h1>Framework CS tactics pass</h1>
+  <p class="lede">Each proposal shows the text as it stands in the final copy, the new text, the tactic and why. Pick Accept, Accept with changes, Discuss or Reject, and add a note whenever you want. Choices and notes save to this page and I read them back. Nothing is changed in Figma.</p>
+</header>
+
+<div class="bar" id="bar">
+  <span class="count">Accepted <b id="cA">0</b> · With changes <b id="cC">0</b> · Discuss <b id="cD">0</b> · Rejected <b id="cR">0</b> · Open <b id="cO">0</b></span>
+  <span class="status" id="saveState">Marks save on this device</span>
+  <nav id="toc"></nav>
+</div>
+
+<section class="block" id="intro"><h2>What this pass found</h2><div class="prose"><p><b>Two last items, 8 Nov.</b> All 16 of your round 3 marks are applied. Then I ran the reader check once on the whole page in order, every block, in its final form. Thirteen of fifteen blocks pass. These two are what it found; both are cuts of words already there, nothing new.</p><p>Not listed because they need nothing from you: Aisha (your call, she stays) and the foundation block having no decision of its own (it defines terms, which is its job). One flag was my mistake in the check itself: it judged the Personalized timeline text without its Capacity label, so it read capacity as undefined. On the page the label is there.</p></div></section>
+
+<section class="block" id="checks">
+  <h2>What ran and what did not</h2>
+  <div class="prose"><ul><li><b>Dashes, Oxford commas, wording, casing:</b> run-checks.mjs on both lines. Pass.</li><li><b>Reader check:</b> whole page in final form, three runs (runs/2026-11-07-tactics/final). Both items here are the fixes for its flags.</li><li><b>Fit:</b> no headline or caption changes.</li></ul></div>
+</section>
+
+<section class="block" id="props"><h2>Proposals, in page order</h2><div class="finds"><article class="find" id="tw-hero">
+<div class="fhead"><span class="num">1. Hero</span><span class="src">Right 1</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">Mondai builds each user a curriculum for the tech career they choose, called their Growth Journey, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">Mondai builds each user a curriculum for the tech career they choose, and it can take months to finish. Most users don’t have the same hours free every week, so a plan that expects a steady pace would have them falling behind from the first week.</span></div></div>
+<p class="why"><b>Tactic:</b> Your no repeats rule (found by the final reader check)</p><p class="why">The final reader check ran on the whole page in order. It flagged the foundation headline as only restating the hero (3 of 3): the hero already names the Growth Journey, then the foundation block names and defines it. The foundation block owns the name, so the hero drops it. Nothing else changes.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tw-hero">Your note</label><textarea class="notein" id="n-tw-hero" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article><article class="find" id="tw-end">
+<div class="fhead"><span class="num">2. Ending</span><span class="src">Body 1</span><span class="tog" role="group" aria-label="Mark proposal"><button type="button" data-v="accept" aria-pressed="false">Accept</button><button type="button" data-v="change" aria-pressed="false">Accept with changes</button><button type="button" data-v="discuss" aria-pressed="false">Discuss</button><button type="button" data-v="reject" aria-pressed="false">Reject</button></span></div>
+<div class="pair"><div class="was"><span class="tag">Now</span><span class="t">I decided what success looks like before the first week ran. The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.</span></div>
+<div class="now"><span class="tag">New</span><span class="t">The framework is meant to give the user weeks they can actually finish, so the measure I’m watching is how many planned weeks close with every Action Item done, and how often Rollover Action Items clear in the week they land in.</span></div></div>
+<p class="why"><b>Tactic:</b> Reader check flag: process story</p><p class="why">Flagged 2 of 3 as process story (when you decided the measures). Cutting it, the body opens on what the framework is meant to do and goes straight to the two measures.</p><p class="src">Source: No new claim.</p><label class="notelab" for="n-tw-end">Your note</label><textarea class="notein" id="n-tw-end" rows="2" placeholder="Optional. Say what you would change, what you are unsure of or what to ask."></textarea><span class="notestate" aria-live="polite"></span></article></div></section>
+
+<footer>Source text: reference/cs2/review-2026-11-07/final-copy.md, 7 Nov, for Figma frame 5763:2448. Working files: reference/cs2/review-2026-11-07/tactics/.</footer>
+</div>
+
+<script>
+const IDS = ["tw-hero", "tw-end"];
+const state = {};   // id -> {mark, note}
+let db = null;
+const KEY = 'fcs-tactics-1';
+function load(){ try{ Object.assign(state, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){} }
+function saveLocal(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function get(id){ return state[id] || (state[id] = {mark:'', note:''}); }
+function paint(){
+  const c = {accept:0, change:0, discuss:0, reject:0};
+  document.querySelectorAll('.find').forEach(el=>{
+    const s = get(el.id);
+    el.dataset.state = s.mark;
+    el.querySelectorAll('.tog button').forEach(b=> b.setAttribute('aria-pressed', String(b.dataset.v === s.mark)));
+    const ta = el.querySelector('.notein');
+    if (ta && document.activeElement !== ta && ta.value !== (s.note||'')) ta.value = s.note || '';
+    if (c[s.mark] !== undefined) c[s.mark]++;
+  });
+  document.getElementById('cA').textContent = c.accept;
+  document.getElementById('cC').textContent = c.change;
+  document.getElementById('cD').textContent = c.discuss;
+  document.getElementById('cR').textContent = c.reject;
+  document.getElementById('cO').textContent = document.querySelectorAll('.find .tog').length - c.accept - c.change - c.discuss - c.reject;
+}
+async function push(id, el){
+  const st = el && el.querySelector('.notestate');
+  if (!db){ if (st) st.textContent = 'Saved on this device only'; return; }
+  const s = get(id);
+  try{
+    await db.doc('marks/'+id).set({finding:id, mark:s.mark||'', note:s.note||'', at:Date.now()});
+    if (st) st.textContent = 'Saved for Claude';
+    document.getElementById('saveState').textContent = 'Saved for Claude to read';
+  }catch(e){ if (st) st.textContent = 'Not saved for Claude, kept on this device'; }
+}
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.tog button'); if(!b) return;
+  const el = b.closest('.find'); const s = get(el.id);
+  s.mark = (s.mark === b.dataset.v) ? '' : b.dataset.v;
+  saveLocal(); paint(); push(el.id, el);
+  if (s.mark === 'change' || s.mark === 'discuss'){ const ta = el.querySelector('.notein'); if (ta && !ta.value) ta.focus(); }
+});
+const timers = {};
+document.addEventListener('input', e=>{
+  const ta = e.target.closest('.notein'); if(!ta) return;
+  const el = ta.closest('.find'); get(el.id).note = ta.value; saveLocal();
+  const st = el.querySelector('.notestate'); if (st) st.textContent = 'Typing';
+  clearTimeout(timers[el.id]); timers[el.id] = setTimeout(()=>push(el.id, el), 900);
+});
+document.addEventListener('focusout', e=>{
+  const ta = e.target.closest && e.target.closest('.notein'); if(!ta) return;
+  const el = ta.closest('.find'); clearTimeout(timers[el.id]); push(el.id, el);
+});
+load(); paint();
+(async()=>{
+  const t = setTimeout(()=>{ document.getElementById('saveState').textContent = 'Saved on this device only'; }, 10000);
+  try{
+    db = window.claude ? await window.claude.use('db') : null;
+    if(!db){ clearTimeout(t); document.getElementById('saveState').textContent = 'Saved on this device only'; return; }
+    const snap = await db.collection('marks').get();
+    clearTimeout(t);
+    (snap.docs||[]).forEach(d=>{ const x = d.data(); if (x && x.finding && IDS.includes(x.finding)) state[x.finding] = {mark:x.mark||'', note:x.note||''}; });
+    saveLocal(); paint();
+    document.getElementById('saveState').textContent = 'Choices and notes save for Claude to read';
+  }catch(e){ clearTimeout(t); document.getElementById('saveState').textContent = 'Saved on this device only'; }
+})();
+</script>

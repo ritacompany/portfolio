@@ -1,0 +1,187 @@
+<title>Framework CS copy review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a working review sheet. Each section is a split row, the frame text as it stands on the left and numbered findings on the right, like a copy editor's margin. */
+:root{
+  --bg:#f3f4f1; --surface:#ffffff; --fg:#141513; --muted:#5d6259; --line:#d9dcd4;
+  --accent:#0e7d14; --accent-soft:#e2f2e1; --mag:#b0139f; --mag-soft:#f8e4f5;
+  --warn:#9a5b00; --warn-soft:#fbefd9; --bad:#a3271d; --bad-soft:#f8e2df;
+  --ins:#0e7d14; --del:#a3271d;
+  --display:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c0d0c; --surface:#151715; --fg:#e9ebe6; --muted:#9aa095; --line:#2a2e29;
+  --accent:#3ddc45; --accent-soft:#132a14; --mag:#f05ade; --mag-soft:#2c1029;
+  --warn:#f0b04a; --warn-soft:#2b210f; --bad:#ff7a6e; --bad-soft:#2e1513; --ins:#3ddc45; --del:#ff7a6e; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1240px;margin:0 auto}
+header.top{padding-block:40px 24px;border-bottom:1px solid var(--line);display:grid;gap:12px}
+.kicker{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(28px,4vw,44px)/1.08 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font:700 24px/1.2 var(--display);margin:0;text-wrap:balance}
+h3{font:600 13px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin:0;color:var(--muted)}
+p{margin:0}
+.lede{max-width:70ch;color:var(--muted)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;padding-block:10px;font:500 13px/1.3 var(--mono)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.bar .count b{font-variant-numeric:tabular-nums}
+.bar .status{color:var(--muted)}
+.bar nav{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;min-width:0;flex:1 1 100%;padding-bottom:2px}
+.bar nav a{white-space:nowrap}
+.bar nav a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px}
+.bar nav a:hover,.bar nav a:focus-visible{color:var(--fg);border-color:var(--fg)}
+section.block{padding-block:40px;border-bottom:1px solid var(--line);display:grid;gap:20px;scroll-margin-top:56px}
+.prose{display:grid;gap:12px;max-width:72ch}
+.prose ul,.prose ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.order{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.order ol{margin:0;padding-left:22px;display:grid;gap:4px;font-size:15px}
+.order li.moved{color:var(--accent);font-weight:600}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:10px;min-width:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.opt{position:relative}
+.opt.pick{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.pickTag{font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.mock{display:grid;gap:8px;padding:12px;border-radius:6px;background:#0b0b0b;color:#f2f2f2}
+.mock .l{font:500 18px/1.2 var(--display)}
+.mock .r{font:400 14px/1.45 var(--body);color:#cfcfcf}
+.mock .eb{font:500 13px/1 var(--body);color:#9a9a9a}
+.mock .big{font:500 30px/1.02 var(--display);letter-spacing:-.02em}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.cur{display:grid;gap:10px;position:sticky;top:64px}
+@media (max-width:860px){.cur{position:static}}
+.cur figure{margin:0}
+.cur img{display:block;width:100%;border-radius:6px;border:1px solid var(--line);background:#000}
+.cur figcaption{font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:4px}
+.field{display:grid;gap:2px}
+.field .lab{font:600 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field .txt{white-space:pre-wrap;font-size:15px}
+.field.hl .txt{font:500 19px/1.25 var(--display)}
+.finds{display:grid;gap:12px;counter-reset:f}
+.find{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+.find[data-state="accept"]{border-color:var(--accent)}
+.find[data-state="reject"]{opacity:.62}
+.fhead{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.num{font:600 13px/1 var(--mono);font-variant-numeric:tabular-nums}
+.chip{font:600 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:4px 7px;border-radius:4px}
+.k-order{background:var(--accent-soft);color:var(--accent)}
+.k-clarity{background:var(--warn-soft);color:var(--warn)}
+.k-ai{background:var(--mag-soft);color:var(--mag)}
+.k-fact{background:var(--bad-soft);color:var(--bad)}
+.k-typo{background:var(--line);color:var(--fg)}
+.tog{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tog button{font:600 12px/1 var(--mono);padding:7px 10px;background:transparent;color:var(--muted);border:0;cursor:pointer}
+.tog button+button{border-left:1px solid var(--line)}
+.tog button:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
+.tog button[aria-pressed="true"].a{background:var(--accent);color:var(--bg)}
+.tog button[aria-pressed="true"].r{background:var(--bad);color:var(--bg)}
+.pair{display:grid;gap:6px}
+.pair .was,.pair .now{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;font-size:15px}
+.pair .tag{font:600 11px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.pair .was .t{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--del);text-decoration-thickness:1px}
+.pair .was.nostrike .t{text-decoration:none}
+.pair .now .t{color:var(--fg)}
+.why{font-size:14px;color:var(--muted)}
+.why b{color:var(--fg);font-weight:600}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted)}
+.note{font-size:14px;border-left:3px solid var(--warn);padding-left:10px;color:var(--fg)}
+footer{padding-block:32px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="kicker">Mondai framework case study · copy review · read only, nothing changed in Figma</div>
+  <h1>Framework CS copy review</h1>
+  <p class="lede">Every eyebrow, headline, body and caption in the Mondai Framework CS Master frame, top to bottom. Left: the text as it stands in Figma. Right: numbered findings with the proposed text. Mark each one accept or reject as you read; your marks save to this page and I can read them back.</p>
+</header>
+
+<div class="bar" id="bar">
+  <span class="count">Accepted <b id="cA">0</b> · Rejected <b id="cR">0</b> · Open <b id="cO">0</b></span>
+  <span class="status" id="saveState">Marks save on this device</span>
+  <nav id="toc"></nav>
+</div>
+
+<section class="block" id="verdict">
+  <h2>Verdict on the order</h2>
+  <div class="prose">__VERDICT__</div>
+  <div class="order">__ORDER__</div>
+</section>
+
+<section class="block" id="hero">
+  <h2>Background (hero) options</h2>
+  <div class="prose">__HERO_INTRO__</div>
+  <div class="opts">__HERO__</div>
+</section>
+
+<section class="block" id="ending">
+  <h2>Ending options</h2>
+  <div class="prose">__END_INTRO__</div>
+  <div class="opts">__END__</div>
+</section>
+
+<section class="block" id="checks">
+  <h2>What ran and what did not</h2>
+  <div class="prose">__CHECKS__</div>
+</section>
+
+__SECTIONS__
+
+<footer>Frame read from Figma file 5RO0m4bYYrTvbiaOgaU3tI, frame 5763:2448, on 7 Nov. Kinds: order, clarity, AI pattern (humanizer pattern number), fact, typo.</footer>
+</div>
+
+<script>
+const IDS = __IDS__;
+const state = {};
+let db = null;
+function load(){ try{ const s = JSON.parse(localStorage.getItem('fcs-review')||'{}'); Object.assign(state,s);}catch(e){} }
+function saveLocal(){ try{ localStorage.setItem('fcs-review', JSON.stringify(state)); }catch(e){} }
+function paint(){
+  let a=0,r=0;
+  document.querySelectorAll('.find').forEach(el=>{
+    const v = state[el.id]||'';
+    el.dataset.state=v;
+    el.querySelector('button.a').setAttribute('aria-pressed', v==='accept');
+    el.querySelector('button.r').setAttribute('aria-pressed', v==='reject');
+    if(v==='accept')a++; else if(v==='reject')r++;
+  });
+  document.getElementById('cA').textContent=a;
+  document.getElementById('cR').textContent=r;
+  document.getElementById('cO').textContent=IDS.length-a-r;
+}
+async function setMark(id,v){
+  state[id] = (state[id]===v) ? '' : v;
+  saveLocal(); paint();
+  if(db){
+    const st=document.getElementById('saveState');
+    try{ await db.doc('marks/'+id).set({finding:id,mark:state[id],at:Date.now()}); st.textContent='Saved for Claude to read'; }
+    catch(e){ st.textContent='Saved on this device only'; }
+  }
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.tog button'); if(!b) return;
+  setMark(b.closest('.find').id, b.classList.contains('a')?'accept':'reject');
+});
+load(); paint();
+(async()=>{
+  try{
+    db = window.claude ? await window.claude.use('db') : null;
+    if(!db) return;
+    const t=setTimeout(()=>{},10000);
+    const snap = await db.collection('marks').get();
+    clearTimeout(t);
+    (snap.docs||snap||[]).forEach(d=>{ const x = d.data ? d.data() : d; if(x && x.finding && IDS.includes(x.finding)) state[x.finding]=x.mark||''; });
+    saveLocal(); paint();
+    document.getElementById('saveState').textContent='Marks save for Claude to read';
+  }catch(e){ document.getElementById('saveState').textContent='Marks save on this device'; }
+})();
+</script>

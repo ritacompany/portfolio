@@ -1,0 +1,262 @@
+V1 Q1 yes | V1.S6
+V1.S1 Q2 no | -
+V1.S1 Q3 no
+V1.S1 Q4 no | -
+V1.S1 Q5 no | opens the block
+V1.S2 Q2 no | -
+V1.S2 Q3 no
+V1.S2 Q4 no | -
+V1.S2 Q5 no | follows from S1
+V1.S3 Q2 no | -
+V1.S3 Q3 no
+V1.S3 Q4 no | -
+V1.S3 Q5 no | follows from S2
+V1.S4 Q2 no | -
+V1.S4 Q3 no
+V1.S4 Q4 no | -
+V1.S4 Q5 no | plain project context
+V1.S5 Q2 yes | Haven
+V1.S5 Q3 no
+V1.S5 Q4 no | -
+V1.S5 Q5 no | Confidante is defined in the sentence
+V1.S6 Q2 no | -
+V1.S6 Q3 no
+V1.S6 Q4 no | -
+V1.S6 Q5 no | decision and reason are clear
+V2 Q1 no | -
+V2.S1 Q2 no | -
+V2.S1 Q3 no
+V2.S1 Q4 no | -
+V2.S1 Q5 no | follows from the risk in K1
+V2.S2 Q2 no | -
+V2.S2 Q3 no
+V2.S2 Q4 no | -
+V2.S2 Q5 no | caption for the 35% figure
+V2.S3 Q2 no | -
+V2.S3 Q3 no
+V2.S3 Q4 no | -
+V2.S3 Q5 no | adds who the figure covers
+V2.S4 Q2 no | -
+V2.S4 Q3 no
+V2.S4 Q4 no | -
+V2.S4 Q5 no | caption for the 40% figure
+V2.S5 Q2 no | -
+V2.S5 Q3 no
+V2.S5 Q4 no | -
+V2.S5 Q5 no | adds who the figure covers
+V3 Q1 yes | V3.S1, V3.S2
+V3.S1 Q2 no | -
+V3.S1 Q3 no
+V3.S1 Q4 no | -
+V3.S1 Q5 no | opens the reason
+V3.S2 Q2 no | -
+V3.S2 Q3 no
+V3.S2 Q4 no | -
+V3.S2 Q5 no | follows from S1
+V3.S3 Q2 no | -
+V3.S3 Q3 no
+V3.S3 Q4 no | -
+V3.S3 Q5 no | insight under its label
+V3.S4 Q2 no | -
+V3.S4 Q3 no
+V3.S4 Q4 no | -
+V3.S4 Q5 no | continues insight 1
+V3.S5 Q2 no | -
+V3.S5 Q3 no
+V3.S5 Q4 no | -
+V3.S5 Q5 no | insight under its label
+V3.S6 Q2 no | -
+V3.S6 Q3 no
+V3.S6 Q4 no | -
+V3.S6 Q5 no | insight under its label
+V3.S7 Q2 no | -
+V3.S7 Q3 no
+V3.S7 Q4 no | -
+V3.S7 Q5 no | insight under its label
+V3.S8 Q2 no | -
+V3.S8 Q3 no
+V3.S8 Q4 no | -
+V3.S8 Q5 no | insight under its label
+V4 Q1 yes | V4.S1, V4.S2, V4.S3
+V4.S1 Q2 no | -
+V4.S1 Q3 no
+V4.S1 Q4 no | -
+V4.S1 Q5 no | states the decision
+V4.S2 Q2 no | -
+V4.S2 Q3 no
+V4.S2 Q4 no | -
+V4.S2 Q5 no | follows from S1
+V4.S3 Q2 no | -
+V4.S3 Q3 no
+V4.S3 Q4 no | -
+V4.S3 Q5 no | resolves S2
+V5 Q1 no | -
+V5.S1 Q2 yes | top matches
+V5.S1 Q3 yes
+V5.S1 Q4 no | -
+V5.S1 Q5 no | follows from its label
+V5.S2 Q2 no | -
+V5.S2 Q3 yes
+V5.S2 Q4 no | -
+V5.S2 Q5 no | follows from S1
+V6 Q1 no | -
+V6.S1 Q2 no | -
+V6.S1 Q3 no
+V6.S1 Q4 no | -
+V6.S1 Q5 no | opens the block
+V6.S2 Q2 no | -
+V6.S2 Q3 no
+V6.S2 Q4 no | -
+V6.S2 Q5 no | insight under its label
+V6.S3 Q2 no | -
+V6.S3 Q3 no
+V6.S3 Q4 no | -
+V6.S3 Q5 no | insight under its label
+V6.S4 Q2 no | -
+V6.S4 Q3 no
+V6.S4 Q4 no | -
+V6.S4 Q5 no | insight under its label
+V6.S5 Q2 no | -
+V6.S5 Q3 no
+V6.S5 Q4 no | -
+V6.S5 Q5 no | insight under its label
+V6.S6 Q2 no | -
+V6.S6 Q3 no
+V6.S6 Q4 no | -
+V6.S6 Q5 no | signposts the blocks below
+V7 Q1 no | -
+V7.S1 Q2 no | -
+V7.S1 Q3 no
+V7.S1 Q4 no | -
+V7.S1 Q5 no | opens the block
+V7.S2 Q2 no | -
+V7.S2 Q3 no
+V7.S2 Q4 no | -
+V7.S2 Q5 no | introduces the two items under it
+V8 Q1 yes | V8.S1
+V8.S1 Q2 yes | quiz
+V8.S1 Q3 no
+V8.S1 Q4 no | -
+V8.S1 Q5 no | decision and reason are clear
+V8.S2 Q2 no | -
+V8.S2 Q3 no
+V8.S2 Q4 no | -
+V8.S2 Q5 no | follows from S1
+V8.S3 Q2 no | -
+V8.S3 Q3 no
+V8.S3 Q4 no | -
+V8.S3 Q5 no | follows from S2
+V9 Q1 yes | V9.S2, V9.S3, V9.S4
+V9.S1 Q2 yes | introductory chat
+V9.S1 Q3 yes
+V9.S1 Q4 no | -
+V9.S1 Q5 no | sets up the problem
+V9.S2 Q2 no | -
+V9.S2 Q3 no
+V9.S2 Q4 no | -
+V9.S2 Q5 no | follows from S1
+V9.S3 Q2 no | -
+V9.S3 Q3 no
+V9.S3 Q4 no | -
+V9.S3 Q5 no | follows from S2
+V9.S4 Q2 no | -
+V9.S4 Q3 no
+V9.S4 Q4 no | -
+V9.S4 Q5 no | states the decision and defines the introductory chat
+V9.S5 Q2 no | -
+V9.S5 Q3 no
+V9.S5 Q4 no | -
+V9.S5 Q5 no | follows from S4
+V10 Q1 yes | V10.S4, V10.S5
+V10.S1 Q2 no | -
+V10.S1 Q3 no
+V10.S1 Q4 no | -
+V10.S1 Q5 no | opens the block
+V10.S2 Q2 no | -
+V10.S2 Q3 no
+V10.S2 Q4 no | -
+V10.S2 Q5 no | extends S1
+V10.S3 Q2 no | -
+V10.S3 Q3 no
+V10.S3 Q4 no | -
+V10.S3 Q5 no | follows from S2
+V10.S4 Q2 no | -
+V10.S4 Q3 no
+V10.S4 Q4 no | -
+V10.S4 Q5 no | follows from S3
+V10.S5 Q2 no | -
+V10.S5 Q3 no
+V10.S5 Q4 no | -
+V10.S5 Q5 no | states the decision
+V11 Q1 yes | V11.S2, V11.S3
+V11.S1 Q2 no | -
+V11.S1 Q3 no
+V11.S1 Q4 no | -
+V11.S1 Q5 no | opens the block
+V11.S2 Q2 no | -
+V11.S2 Q3 no
+V11.S2 Q4 no | -
+V11.S2 Q5 no | decision and reason are clear
+V11.S3 Q2 no | -
+V11.S3 Q3 no
+V11.S3 Q4 no | -
+V11.S3 Q5 no | follows from S2
+V12 Q1 yes | V12.S2, V12.S3
+V12.S1 Q2 no | -
+V12.S1 Q3 no
+V12.S1 Q4 no | -
+V12.S1 Q5 no | sets up the reason
+V12.S2 Q2 no | -
+V12.S2 Q3 no
+V12.S2 Q4 no | -
+V12.S2 Q5 no | follows from S1
+V12.S3 Q2 no | -
+V12.S3 Q3 no
+V12.S3 Q4 no | -
+V12.S3 Q5 no | follows from S2
+V13 Q1 no | -
+V13.S1 Q2 no | -
+V13.S1 Q3 no
+V13.S1 Q4 no | -
+V13.S1 Q5 no | opens the block
+V13.S2 Q2 no | -
+V13.S2 Q3 no
+V13.S2 Q4 no | -
+V13.S2 Q5 no | follows from S1
+V14 Q1 yes | V14.S5, V14.S6
+V14.S1 Q2 no | -
+V14.S1 Q3 no
+V14.S1 Q4 no | -
+V14.S1 Q5 no | opens the block
+V14.S2 Q2 no | -
+V14.S2 Q3 no
+V14.S2 Q4 no | -
+V14.S2 Q5 no | completes S1
+V14.S3 Q2 no | -
+V14.S3 Q3 no
+V14.S3 Q4 yes | K8
+V14.S3 Q5 no | follows from the two needs
+V14.S4 Q2 no | -
+V14.S4 Q3 no
+V14.S4 Q4 yes | K10
+V14.S4 Q5 no | follows from S3
+V14.S5 Q2 no | -
+V14.S5 Q3 no
+V14.S5 Q4 yes | K11
+V14.S5 Q5 no | follows from S4
+V14.S6 Q2 no | -
+V14.S6 Q3 no
+V14.S6 Q4 no | -
+V14.S6 Q5 no | follows from S5
+V14.S7 Q2 no | -
+V14.S7 Q3 no
+V14.S7 Q4 yes | K13
+V14.S7 Q5 no | follows from S6
+V14.S8 Q2 no | -
+V14.S8 Q3 no
+V14.S8 Q4 yes | K4
+V14.S8 Q5 no | closes the recap
+V14.S9 Q2 no | -
+V14.S9 Q3 no
+V14.S9 Q4 yes | K4
+V14.S9 Q5 no | closes the recap

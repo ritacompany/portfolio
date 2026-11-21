@@ -1,0 +1,5 @@
+/* Scroll fixes, preview only (his yes, 11 Nov; docs/motion/smooth-scroll-research.md). Pairs with scroll-fixes.js.
+   A link to a section lands just under the fixed nav. --scroll-land is the nav's bottom edge, measured by
+   scroll-fixes.js, so it follows the nav instead of a typed number. :where keeps this at zero specificity,
+   so a landing a page sets on purpose (Home's About at 112 px on phones, from the frame) still wins. */
+:where([id]) { scroll-margin-top: var(--scroll-land, 0px); }

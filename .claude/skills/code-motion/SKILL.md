@@ -1,21 +1,29 @@
 ---
 name: code-motion
-description: Build, render and review a portfolio animation from code. Use for any case study motion, a looping mockup, a scroll driven moment, a rotating phone or a clip rendered to MP4.
+description: Plan, build and review any portfolio animation, live in the browser or rendered to video. Use for scroll entrances, stagger, sticky or pinned sections, parallax, scroll scrubs, hover motion, a scripted mockup on the page, a looping mockup, a rotating phone, a clip rendered to MP4, or an interactive hover or press effect on a site component.
 ---
 
 # Code motion
 
-Rules: .claude/motion-rules.md (a project motion plan wins over it).
+Rules: .claude/motion-rules.md. Patterns and principles: .claude/motion-patterns.md. A project motion plan
+wins over both.
 
-1. Reference: write docs/motion/<piece>/style_guide.md, then state_list.md. Real Figma exports only. Motion inside media only.
-2. Build a page with window.seek(t) using site/lib/motion.js, plus its reduced motion still (one frame, nothing moves). Samples: site/motion-lab/spring-sample.html (time), site/motion-lab/scroll-sample.html (scroll).
-3. Render a clip:
-   node scripts/render.mjs --page site/motion-lab/spring-sample.html --width 720 --height 900 --fps 60 --dur 4.6
-   Scroll scrub: node scripts/render.mjs --page site/motion-lab/scroll-sample.html --mode scroll --scroll "#scene" --start "top top" --end "bottom bottom" --dur 3 --fps 30
-   One still: add --still 1.5. Element only: --clip "#c". Retina: --dpr 2.
-4. Review: node scripts/motion-review.mjs output/motion/<clip>.mp4 --state docs/motion/<piece>/state_list.md --loop
-   Render again at --width 390 and review that clip too. Rounds at 30 fps for speed; the final at 60.
-5. Rank problems P0, P1, P2 (no scores). Spawn a fresh eyes subagent on Sonnet with only the style
-   guide, state list and review images; log both lists as a round in review_log.md. Fix every P0;
-   another round only while a P0 is open. Done when motion-check log and strips both PASS.
-6. Determinism check before shipping: render twice, the sha256 lines must match. Run at most two renders at once; three in parallel crashed one Chrome.
+1. Pick live or clip (motion-rules.md, "Two kinds of motion"). Live is the default on a page.
+2. Reference: write docs/motion/<piece>/style_guide.md, naming live or clip and the patterns it uses from
+   motion-patterns.md, then state_list.md. Real Figma exports only.
+3. Build.
+   Live: on the page, through site/js/motion.js (GSAP, ScrollTrigger, Lenis). Shared entrances first.
+   Clip: a page with window.seek(t) using site/lib/motion.js. Samples: site/motion-lab/spring-sample.html
+   (time), site/motion-lab/scroll-sample.html (scroll). Render:
+   `node scripts/render.mjs --page site/motion-lab/spring-sample.html --width 720 --height 900 --fps 60 --dur 4.6`
+   Scroll scrub: add `--mode scroll --scroll "#scene" --start "top top" --end "bottom bottom"`.
+   One still: `--still 1.5`. Element only: `--clip "#c"`. Retina: `--dpr 2`.
+   Both: a reduced motion version, at rest.
+4. Review as motion-rules.md sets out: live through scripts/live-capture.mjs (both widths, reduced motion, hover);
+   clips through motion-review.mjs at both widths. Rounds at 30 fps for speed; the final at 60.
+5. Rank problems P0, P1, P2 (no scores). Spawn a fresh eyes subagent on Sonnet with only the style guide,
+   state list and review images; log both lists as a round in review_log.md. Fix every P0; another round
+   only while a P0 is open. Done when motion-check log passes, live-capture prints LIVE_CAPTURE_CLEAN for live pieces and the strips
+   check passes for clips.
+6. Clips only: render twice before shipping, the sha256 lines must match. Run at most two renders at once;
+   three in parallel crashed one Chrome.

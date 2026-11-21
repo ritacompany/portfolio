@@ -1,0 +1,33 @@
+VERSION V1: A: the user's situation, then the project (Haven's order)
+  (label) Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+V1.S1 Designed as an AI guide for newcomers from underrepresented backgrounds finding their way into tech.
+V1.S2 There’s no set path into tech, so Mondai’s AI writes each user a curriculum for the career they choose, and it can take months.
+V1.S3 Most users don’t have the same hours free every week, so a plan that expects a steady pace would leave them behind from week one.
+V1.S4 When I started on the MVP, the curriculum was a list in a fixed order, with calendar integration planned and nothing connecting them.
+V1.S5 I designed the weekly framework that turns it into weeks each user can finish.
+V1.S6 Mondai hasn’t launched, so this case study shows the reasoning rather than results.
+
+VERSION V2: B: what existed, the question it left, then the answer
+  (label) Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+V2.S1 Designed as an AI career navigator for the next generation of hustlers from underrepresented backgrounds.
+V2.S2 When I started on Mondai’s MVP, the curriculum its AI writes for each user already had a fixed order, and calendar integration was planned.
+V2.S3 There was no way yet to decide how much of it belongs in a single week, and the whole curriculum can take months.
+V2.S4 The answer depends on the user, because most of them don’t have the same hours free every week.
+V2.S5 So I designed a weekly framework that plans each week around the hours they say they can give and still holds when a week runs short.
+V2.S6 Mondai hasn’t launched, so what follows is the reasoning behind each decision rather than results.
+
+VERSION V3: C: two users, one curriculum
+  (label) Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+V3.S1 Designed as a way for newcomers from underrepresented backgrounds to find a path into tech that fits around their life.
+V3.S2 Two users can choose the same tech career and have very different weeks.
+V3.S3 One can give 5 hours a week and the other 15, and either can have a week where almost nothing gets done.
+V3.S4 Mondai’s AI writes each of them a curriculum that can take months, so one framework has to work for both.
+V3.S5 I designed the weekly framework that turns it into weeks they can finish, planned from the hours they say they can give.
+V3.S6 Mondai hasn’t launched, so this case study shows the reasoning: how much lands in a week and what happens when a week runs short.
+
+VERSION V4: D: the short version
+  (label) Role: Founding designer. Affiliate: Mondai. Focus: Design, research and strategy.
+V4.S1 Designed as an AI guide for newcomers from underrepresented backgrounds finding their way into tech.
+V4.S2 Each user's Growth Journey splits into Pathways, and every Pathway holds Focus Areas full of Action Items.
+V4.S3 My manager asked me to fix the weekly plan after a long meeting, so I tried three approaches before landing on one.
+V4.S4 Mondai hasn't launched, so this case study shows the reasoning rather than results.

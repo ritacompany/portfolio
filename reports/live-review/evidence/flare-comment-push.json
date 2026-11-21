@@ -1,0 +1,15 @@
+{
+  "origin": "http://localhost:4320",
+  "snapshot": {
+    "updatedAt": "2026-11-14T18:20:53.637Z",
+    "changes": [
+      {
+        "selector": "[data-flare-id=\"e99akb\"]",
+        "path": "#haven-title",
+        "textSnippet": "Haven CS",
+        "comment": "[CANVAS] test: heading one step smaller at tablet\n\nCurrent element in context:\n<div class=\"hero__top\">\n  <h1 class=\"display tb-item\" id=\"haven-title\" style=\"opacity: 1; visibility: inherit;\" data-flare-id=\"e99akb\">Haven CS</h1>\n  <dl class=\"meta tb-item\">Scope</dl>\n</div>",
+        "changes": []
+      }
+    ]
+  }
+}

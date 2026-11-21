@@ -1,0 +1,52 @@
+1440 h-hero-r1 [p.tb-item, hero, 473px, 400 16px/22.4px, -0.16px]: page 5 to 4 lines, standalone 5 to 4: not clipped, counted in the hero column
+1440 h-hero-r2 [p.tb-item, hero, 473px, 400 16px/22.4px, -0.16px]: page 3 to 5 lines, standalone 3 to 5: not clipped, counted in the hero column
+1440 h-data-cap1 [p.data-card__caption, slot, 259px, 400 16px/22.4px, normal]: page 1 to 1 lines, standalone 1 to 1: fits
+1440 h-links [p., flow, 371px, 400 14px/19.6px, 0.28px]: page 2 to 2 lines, standalone 2 to 2: fits
+1440 h-links [p., flow, 302px, 400 14px/19.6px, 0.28px]: page 2 to 2 lines, standalone 2 to 2: fits
+1440 h-access-i1 [p.card__body, slot, 330px, 400 14px/19.6px, 0.14px]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-access-i4 [p.card__body, slot, 330px, 400 14px/19.6px, 0.14px]: page 3 to 2 lines, standalone 3 to 2: fits
+1440 h-mvp-head [p.h40, flow, 888px, 500 40px/46px, -1.6px]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-mvp-body [p.body, flow, 359px, 400 16px/22.4px, -0.16px]: page 3 to 4 lines, standalone 3 to 4: fits
+1440 h-wires [p.h40, flow, 755px, 500 40px/46px, -1.6px]: page 4 to 4 lines, standalone 4 to 4: fits
+1440 h-test-head [p.h40, flow, 283px, 500 40px/46px, -1.6px]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-test-i1 [p.tcard__body, slot, 268px, 500 16px/22.4px, normal]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-test-i4 [p.tcard__body, slot, 268px, 500 16px/22.4px, normal]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-bridge [p.h64, flow, 1081px, 700 64px/69.76px, -2.56px]: page 4 to 3 lines, standalone 4 to 3: fits
+1440 h-program-head [p.h40, flow, 646px, 500 40px/46px, -1.6px]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-quiz-head [p.h40, flow, 819px, 500 40px/46px, -1.6px]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-quiz-body [span.tb-item, flow, 410px, 400 16px/22.4px, -0.16px]: page 6 to 5 lines, standalone 6 to 5: fits
+1440 h-journey [p.h40, flow, 683px, 500 40px/46px, -1.6px]: page 3 to 3 lines, standalone 3 to 3: fits
+1440 h-journey also 1 [p.body, flow, 310px, 400 16px/22.4px, -0.16px]: page 8 to 8 lines, standalone 8 to 8: fits
+1440 h-sched-head [p.h40, flow, 738px, 500 40px/46px, -1.6px]: page 2 to 2 lines, standalone 2 to 2: fits
+1440 h-sched-body [span.tb-item, flow, 238px, 400 16px/22.4px, -0.16px]: page 12 to 7 lines, standalone 12 to 7: fits
+1440 h-chat-body [p.body, flow, 360px, 400 16px/22.4px, -0.16px]: page 6 to 5 lines, standalone 6 to 5: fits
+1440 h-end-cap3 [p.end-caption, slot, 273px, 700 16px/22.4px, normal]: page 2 to 2 lines, standalone 2 to 2: fits
+1440 control: planted long hero makes the column 12 lines: control ok
+1440 control: planted long caption [p.data-card__caption, slot, 259px, 400 16px/22.4px, normal]: page 1 to 3 lines, standalone 1 to 3: control ok (caught)
+390 h-hero-r1 [p.tb-item, hero, 358px, 400 16px/22.4px, -0.16px]: page 6 to 5 lines, standalone 6 to 5: not clipped, counted in the hero column
+390 h-hero-r2 [p.tb-item, hero, 358px, 400 16px/22.4px, -0.16px]: page 4 to 7 lines, standalone 4 to 7: not clipped, counted in the hero column
+390 h-data-cap1 [p.data-card__caption, slot, 308px, 400 16px/22.4px, normal]: page 1 to 1 lines, standalone 1 to 1: fits
+390 h-links [p., flow, 358px, 400 14px/19.6px, 0.28px]: page 2 to 2 lines, standalone 2 to 2: fits
+390 h-links [p., flow, 302px, 400 14px/19.6px, 0.28px]: page 2 to 2 lines, standalone 2 to 2: fits
+390 h-access-i1 [p.card__body, slot, 308px, 400 14px/19.6px, 0.14px]: page 3 to 3 lines, standalone 3 to 3: fits
+390 h-access-i4 [p.card__body, slot, 308px, 400 14px/19.6px, 0.14px]: page 3 to 2 lines, standalone 3 to 2: fits
+390 h-mvp-head [p.h40, flow, 358px, 500 28px/32.2px, -1.12px]: page 5 to 5 lines, standalone 5 to 5: fits
+390 h-mvp-body [p.body, flow, 358px, 400 16px/22.4px, -0.16px]: page 3 to 4 lines, standalone 3 to 4: fits
+390 h-wires [p.h40, flow, 358px, 500 28px/32.2px, -1.12px]: page 6 to 6 lines, standalone 6 to 6: fits
+390 h-test-head [p.h40, flow, 283px, 500 28px/32.2px, -1.12px]: page 2 to 2 lines, standalone 2 to 2: fits
+390 h-test-i1 [p.tcard__body, slot, 307px, 500 16px/22.4px, normal]: page 3 to 2 lines, standalone 3 to 2: fits
+390 h-test-i4 [p.tcard__body, slot, 307px, 500 16px/22.4px, normal]: page 3 to 2 lines, standalone 3 to 2: fits
+390 h-bridge [p.h64, flow, 334px, 700 32px/34.88px, -0.96px]: page 5 to 4 lines, standalone 5 to 4: fits
+390 h-program-head [p.h40, flow, 358px, 500 28px/32.2px, -1.12px]: page 4 to 3 lines, standalone 4 to 3: fits
+390 h-quiz-head [p.h40, flow, 358px, 500 28px/32.2px, -1.12px]: page 5 to 6 lines, standalone 5 to 6: fits
+390 h-quiz-body [span.tb-item, flow, 358px, 400 16px/22.4px, -0.16px]: page 6 to 5 lines, standalone 6 to 5: fits
+390 h-journey [p.h40, flow, 358px, 500 28px/32.2px, -1.12px]: page 4 to 4 lines, standalone 4 to 4: fits
+390 h-journey also 1 [p.body, flow, 358px, 400 16px/22.4px, -0.16px]: page 7 to 7 lines, standalone 7 to 7: fits
+390 h-sched-head [p.h40, flow, 358px, 500 28px/32.2px, -1.12px]: page 3 to 3 lines, standalone 3 to 3: fits
+390 h-sched-body [span.tb-item, flow, 358px, 400 16px/22.4px, -0.16px]: page 8 to 5 lines, standalone 8 to 5: fits
+390 h-chat-body [p.body, flow, 358px, 400 16px/22.4px, -0.16px]: page 6 to 5 lines, standalone 6 to 5: fits
+390 h-end-cap3 [p.end-caption, slot, 242px, 700 18.5577px/25.9808px, normal]: page 3 to 2 lines, standalone 3 to 3: fits
+390 control: planted long hero makes the column 14 lines: control ok
+390 control: planted long caption [p.data-card__caption, slot, 308px, 400 16px/22.4px, normal]: page 1 to 3 lines, standalone 1 to 3: control ok (caught)
+hero right column at 1440: 10 lines with the gap (limit 10); at 390: 13
+HAVEN_FIT_OK

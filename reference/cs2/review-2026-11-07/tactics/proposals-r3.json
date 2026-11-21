@@ -1,0 +1,162 @@
+[
+ {
+  "id": "r3-comp-head",
+  "block": "Competitive analysis",
+  "field": "Headline",
+  "cur": "There was no direct model for Mondai, so I looked at learning and task tracking products that each solve part of the problem.",
+  "new": "Mondai had no direct model, but learning apps and task trackers each solve part of the problem.",
+  "tactic": "Reader check flag: process story",
+  "why": "Flagged 3 of 3 as process story (so I looked at tells how the work was done). The new headline states the finding the cards show. Measured: 3 lines at 791px.",
+  "src": "Archive:493 to :495: no direct reference class; learning apps and task tools are adjacent products for pattern reference (CONFIRMED)."
+ },
+ {
+  "id": "r3-card01",
+  "block": "Competitive analysis",
+  "field": "Card 01",
+  "cur": "Studies find that tracking real progress against a goal helps people reach it. So, like CareerFoundry, Mondai shows two dates side by side: the target date the plan sets and the pace date the user’s progress points to.",
+  "new": "Studies find that tracking real progress against a goal makes reaching it more likely. So, like CareerFoundry, Mondai shows two dates side by side: the target date the plan sets and the pace date the user’s progress points to.",
+  "tactic": "Your no repeats rule (the pace definition you flagged); your wording rule",
+  "why": "The reader check flagged the rail's pace definition as a restatement of this card (2 of 3). I first cut the definitions here, and the next check said target date and pace date were then undefined at first use (2 of 3). So this card keeps the short gloss, since it is where the reader first meets the two dates, and the rail definitions drop their restated first clauses and keep only what is new (see the two rail items). Only change here: people becomes makes reaching it more likely, for your wording rule.",
+  "src": "CareerFoundry has a target and pace concept (your 7 Nov correction). Harkin et al. 2016 (citation check 7 Nov)."
+ },
+ {
+  "id": "r3-card02",
+  "block": "Competitive analysis",
+  "field": "Card 02",
+  "cur": "Motion showed me AI could find free time in a user’s calendar. But research shows that pushing people to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.",
+  "new": "Motion uses AI to find free time in a user’s calendar. But research shows that pushing students to schedule didn’t help them stick with it, so a connected calendar suggests where the work fits, and the plan still runs without one.",
+  "tactic": "Reader check flag: process story; your wording rule",
+  "why": "Flagged 3 of 3 as process story (showed me tells how you learned it). Now it states what Motion does, like the other cards. People becomes students: the Baker study was students in an online course.",
+  "src": "Baker, Evans and Dee 2016 (citation check 7 Nov: scheduling nudges in an online course)."
+ },
+ {
+  "id": "r3-card03",
+  "block": "Competitive analysis",
+  "field": "Card 03",
+  "cur": "Linear opens straight onto the work in front of you. I borrowed that, so Mondai’s home screen shows only this week’s work, and the full route to the goal has its own page.",
+  "new": "Linear opens straight onto the work in front of you, and so does Mondai: its home screen shows only this week’s work.",
+  "tactic": "Your no repeats rule",
+  "why": "The full route to the goal has its own page is said again, almost word for word, by the Growth Journey headline two blocks later (the whole route has a page of its own). That block owns it. Also, I borrowed that read as process story to the reader check (2 of 3), so the card now states the match plainly.",
+  "src": "No new claim."
+ },
+ {
+  "id": "r3-schedule",
+  "block": "Schedule view",
+  "field": "Body 1",
+  "cur": "The list stays the default view. Syncing a calendar is optional, so the plan has to work without one, and the user can switch between the list and the schedule whenever they like.",
+  "new": "The list stays the default view, and the user can switch between the list and the schedule whenever they like.",
+  "tactic": "Your no repeats rule",
+  "why": "Third time the page says sync is optional and the plan works without it: card 02, the Calendar setup headline, here. The reader has just read the setup headline, so the reason for the default is already in their head.",
+  "src": "No new claim."
+ },
+ {
+  "id": "r3-schedule-b5",
+  "block": "Schedule view",
+  "field": "Body 5",
+  "cur": "Its time is only a suggestion. An Action Item is due by the end of its week, Saturday night, so one without a time is fine, and finishing it still counts. When a week has no room left, the item stays in the list without a time.",
+  "new": "An Action Item’s time is only a suggestion. It’s due by the end of its week, Saturday night, so one without a time is fine, and finishing it still counts. When a week has no room left, the item stays in the list without a time.",
+  "tactic": "Reader check flag: unclear reference",
+  "why": "Flagged 3 of 3: Its has no clear antecedent after the sentence about automatic moving. Naming the Action Item fixes it; the rest is your text.",
+  "src": "No new claim."
+ },
+ {
+  "id": "r3-rail-body",
+  "block": "Falling behind, part 1: the right rail",
+  "field": "Body",
+  "cur": "Both sit in a rail down the right side of the Action Hub, and the target stays put on purpose. If it moved every time a week went badly, the user would never see that they’d slipped, and their pace falling behind a target that holds is what’s meant to get them back on track.",
+  "new": "Both sit in a rail down the right side of the Action Hub. If the target moved every time a week went badly, the user would never see that they’d slipped, and seeing their pace fall behind it is what’s meant to get them back on track.",
+  "tactic": "Your no repeats rule (my own line from round 2)",
+  "why": "My round 2 line said the target stays put, and your Pathway target definition right under it says it holds steady. Same block, same point. The body now gives only the why; the definition gives the what.",
+  "src": "Archive:80 and :84 (unchanged from round 2)."
+ },
+ {
+  "id": "r3-rail-target",
+  "block": "Falling behind, part 1: the right rail",
+  "field": "Pathway target",
+  "cur": "The date this Pathway should be done by, set from the hours the user gives each week. It holds steady through an ordinary week and moves when those hours change.",
+  "new": "Set from the user’s capacity, it holds steady through an ordinary week and moves when their capacity changes.",
+  "tactic": "Your no repeats rule",
+  "why": "Two repeats out: the date this Pathway should be done by restates card 01's target date the plan sets, and the hours the user gives each week re-explains capacity, which Personalized timeline defined. What is left is only what is new: what sets it and when it moves.",
+  "src": "Capacity moves the target (Archive:86, CONFIRMED)."
+ },
+ {
+  "id": "r3-rail-pace",
+  "block": "Falling behind, part 1: the right rail",
+  "field": "Pathway pace",
+  "cur": "Where the user’s progress says they will finish. It updates once a week, so nobody watches it tick with every finished item. In week one it matches the target.",
+  "new": "It updates once a week, so nobody watches it tick with every finished item. In week one it matches the target.",
+  "tactic": "Your no repeats rule (the one you flagged)",
+  "why": "The first sentence restates card 01 (the pace date the user's progress points to); the reader check flagged it 2 of 3. The label above it, Pathway pace, is what it refers to, so the definition keeps only the two new facts.",
+  "src": "No new claim."
+ },
+ {
+  "id": "r3-roll-label",
+  "block": "Falling behind, part 2: Rollover",
+  "field": "Rollover label",
+  "cur": "An Action Item still open when the week ends on Saturday night.",
+  "new": "An Action Item carried over from last week.",
+  "tactic": "Your no repeats rule",
+  "why": "The label repeated the headline right above it (still open on Saturday night). It now says what the Rollover tag marks on the screen, which nothing else in the block says.",
+  "src": "Rolled over items carry into next week (Archive:106, CONFIRMED)."
+ },
+ {
+  "id": "r3-roll-earlier",
+  "block": "Falling behind, part 2: Rollover",
+  "field": "Body, third sentence",
+  "cur": "An earlier version asked users to choose at that moment, with the math on screen, and we cut it because it felt like a gate, not a guide.",
+  "new": "Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide.",
+  "tactic": "Reader check flag: process story, against refute the rejected option (cs-t24) and the wrong turn (cs-t29)",
+  "why": "Flagged 3 of 3 again as process story (an earlier version was cut). The new sentence keeps the rejected option and its reason and drops the history. What it loses: the page's one admitted wrong turn, which the case study bank ranks among the most credible moves. My pick is Reject, keep yours; Accept if you read the history as process story.",
+  "src": "Your accepted copy."
+ },
+ {
+  "id": "r3-buffer-b2",
+  "block": "Buffer flow",
+  "field": "Body 2",
+  "cur": "A week only holds the hours a user gave, so finishing early leaves nothing left to do. Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.",
+  "new": "A week only holds as much as the user’s capacity, so finishing early leaves nothing left to do. Pulling work forward is the only way to move the pace ahead of the target, or back toward it after a short week.",
+  "tactic": "Your no repeats rule",
+  "why": "Same as the target line: the hours a user gave re-explains capacity. Your sentence otherwise unchanged.",
+  "src": "Dynamic weekly bundling never exceeds declared capacity (Archive:104, CONFIRMED)."
+ },
+ {
+  "id": "r3-buffer-b3",
+  "block": "Buffer flow",
+  "field": "Body 3",
+  "cur": "So the message depends on the gap. A user who is ahead is told they can widen their lead. A user who is behind still gets the finish celebrated, then hears that pulling work forward is how they close the gap.",
+  "new": "What the screen says depends on the gap. A user who is ahead is told they can widen their lead. A user who is behind still gets the finish celebrated, then hears that pulling work forward is how they close the gap.",
+  "tactic": "Reader check flag: unclear reference",
+  "why": "Flagged 3 of 3: the message has no antecedent, and So does not follow from Body 2. The rest is your text.",
+  "src": "No new claim."
+ },
+ {
+  "id": "r3-buffer-b4",
+  "block": "Buffer flow",
+  "field": "Body 4",
+  "cur": "That’s why the screen shows up the moment the week’s work is done instead of at the start of next week: how much a user can pull forward depends on the days left.",
+  "new": "That’s why the screen doesn’t wait for the start of next week: how much a user can pull forward depends on the days left.",
+  "tactic": "Your no repeats rule",
+  "why": "Body 1 already says the screen appears the moment the last Action Item is done. Body 4 keeps only the new part, the reason.",
+  "src": "No new claim."
+ },
+ {
+  "id": "r3-clean",
+  "block": "Start of week",
+  "field": "1 of 5, Clean slate",
+  "cur": "A clean slate only means something when nothing carried over, so a week that ends with an Action Item still open goes to Rollover instead.",
+  "new": "This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead.",
+  "tactic": "Fit: your three line caption limit",
+  "why": "Measured at its frame width, 259px: 4 lines, over your three line limit. My first fix (so one open Action Item means Rollover) was flagged 3 of 3 as not following, so this one says plainly when the template shows and what happens otherwise. 3 lines.",
+  "src": "No new claim."
+ },
+ {
+  "id": "r3-end",
+  "block": "Ending",
+  "field": "Headline",
+  "cur": "The framework is built and Mondai hasn’t launched, so the numbers that would show it working don’t exist yet.",
+  "new": "The framework is built, so the question left is whether it works for the users it was made for.",
+  "tactic": "Your no repeats rule",
+  "why": "The hero now says Mondai hasn't launched, and the reader check flagged the ending headline as restating it (2 of 3). The headline now poses the open question, and Body 1 and 2 answer it with the two numbers and the next step. Measured: 3 lines at 708px.",
+  "src": "Pre launch (your 7 Nov correction)."
+ }
+]

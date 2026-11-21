@@ -66,8 +66,8 @@ The leadership CS is after launch (C4).
 
 | # | Item | Owner | Stage | Waits on | Status |
 |---|---|---|---|---|---|
-| H5 | Hero element roster: seven elements, which three carry the superpowers. His canvas plan: one sticker, two 3D, one flat object (CD), two images, one label. Open: the disco ball (loves it, does not map to a superpower, would need his own version), the second 3D element, the photo of him (may go or be fixed), "babies" (his canvas note says all contingent on it) | C | 1 | nothing | decision |
-| H6 | Superpower concepts. Energy that pulls people in: welcome mat. Pattern recognition: no settled idea; cats pattern considered, worried the animation gets too complex on a real photo. Quietly moving the needle: "potentially" a kooky red wig. Two of three still need a settled concept | C | 2 | H6t | open |
+| H5 | Hero element roster: seven elements, which three carry the superpowers. His canvas plan: one sticker, two 3D, one flat object (CD), two images, one label. Open: the disco ball (loves it, does not map to a superpower, would need his own version), the second 3D element, the photo of him (may go or be fixed), "babies" (his canvas note says all contingent on it) | C | 1 | nothing | parked 8 Nov: the old hero plan is scrapped for launch, kept as context only (D8) |
+| H6 | Superpower concepts. Energy that pulls people in: welcome mat. Pattern recognition: no settled idea; cats pattern considered, worried the animation gets too complex on a real photo. Quietly moving the needle: "potentially" a kooky red wig. Two of three still need a settled concept | C | 2 | H6t | parked 8 Nov: the old hero plan is scrapped for launch, kept as context only (D8) |
 | H6t | Cats animation test: how a cat cutout pattern could move, built from the cat cutouts on the canvas, so he can keep or drop the cats idea on evidence | AI | 1 | nothing | done, awaiting his review: `prototypes/homepage-foundations/cats-motion-test.html` (Multiply recommended, Sort backup, Ripple overcomplicated) |
 | H1 | Hero headline: keep "I'm not really that cool," or move to the "convinced that people would be happier" line as a marquee that settles on hover, centered or left at the superpower indent. He asked for help with this messaging | both | 1 | nothing | done, his copy in Figma |
 | H3 | "Homosexual 1991 to current" line: keep, tune or cut | C | 1 | nothing | open |
@@ -91,18 +91,18 @@ The leadership CS is after launch (C4).
 | H22 | Something else he meant to add about the hero and forgot | C | 1 | nothing | open |
 | H23 | Header style: VS Goods narrow creative buttons with the small background; does it work with this design | both | 1 | nothing | decision: options ready, awaiting his pick: `prototypes/homepage-foundations/header-styles.html` (take 1 today's spread, take 2 narrow buttons on a plate; AI recommends take 2; VS Goods screenshot not found in the named frames, take 2 built from his description) |
 | H21 | Earlier animations for this page: check which still work after the redesign, before new motion is planned | AI | 1 | nothing | done, awaiting his review: `reports/homepage-animation-audit.md` (little homepage motion existed; Haven scroll and reveal grammar recommended as the base) |
-| H5m | Make the visuals: his own disco ball if it stays, the 3D elements, the superpower visuals, the photo | C | 3 | H5, H6, H6t | open |
+| H5m | Make the visuals: his own disco ball if it stays, the 3D elements, the superpower visuals, the photo | C | 3 | H5, H6, H6t | parked 8 Nov: the old hero plan is scrapped for launch, kept as context only (D8) |
 | H8 | Navigation: none in the hero; appears once past it, at the superpowers section (cw logo, Work, About, Contact) | AI | 2 | H14, H23 | built on default today's header style, provisional: `prototypes/homepage-foundations/nav-scroll.html` (drops in as the hero leaves, About opens the H14 panel; a toggle shows it with H23 take 2) |
-| H15a | Superpowers section layout, shortened so work starts within the third screen (frame is 2068 tall today) | both | 3 | H6, H1, F3 | open |
+| H15a | Superpowers section layout, shortened so work starts within the third screen (frame is 2068 tall today) | both | 3 | H6, H1, F3 | parked 8 Nov: the old hero plan is scrapped for launch, kept as context only (D8) |
 | H13 | Collection page: Mondai card hover and arrow, page interactions, components, simple first. If the design system CS misses launch, the card links straight to the framework CS with labels changed to match | AI proposes, C approves | 2 | F9, F10 | built on default list layout, provisional: `prototypes/homepage-foundations/collection-page.html` (Mondai card hover and arrow, row states, design system CS switch: ready, coming soon row, or straight to framework with the card label changed to "Case study"; "Coming soon" pill text is a placeholder) |
 | H16a | Footer transition animation | AI | 2 | H16 | options ready, awaiting his pick: both H16 options animated and scroll scrubbed in `prototypes/homepage-foundations/footer-transitions.html` |
 | F5 | About 320 of empty black below the work cards: tighten or keep for something | C | 2 | H11 | open |
-| H20 | Hero composition in Figma with the real elements and final copy | C | 4 | H5m, H1, H3, H4, H23 | open |
-| H15b | Superpowers section with the real visuals, one simple animation idea each | both | 4 | H5m, H15a, F3 | open |
+| H20 | Hero composition in Figma with the real elements and final copy | C | 4 | H5m, H1, H3, H4, H23 | parked 8 Nov: the old hero plan is scrapped for launch, kept as context only (D8) |
+| H15b | Superpowers section with the real visuals, one simple animation idea each | both | 4 | H5m, H15a, F3 | parked 8 Nov: the old hero plan is scrapped for launch, kept as context only (D8) |
 | H10 | Section titles for work and about, once the About content has moved into the panel | C | 3 | H14 | decision |
-| H9 | Background grid: continue, stop or change at the superpowers section; never behind work or about. His note: easier once the superpowers section is in place | AI prototypes, C picks | 4 | H15a | open |
-| H7 | Hero to superpowers motion: the three superpower elements travel from the hero into their frames; hero marquee; simple element animations; parallax where it helps; scroll speed tuned so the superpowers step before work feels short | AI, C approves | 5 | H20, H15b, H21, H8 | open |
-| S1 | Build the homepage in code | AI | 6 | S0, H7, H9, H10, H16a, H8, H11, F5, H12, H19, F1, F2, F3 | open |
+| H9 | Background grid: continue, stop or change at the superpowers section; never behind work or about. His note: easier once the superpowers section is in place | AI prototypes, C picks | 4 | H15a | parked 8 Nov: the old hero plan is scrapped for launch, kept as context only (D8) |
+| H7 | Hero to superpowers motion: the three superpower elements travel from the hero into their frames; hero marquee; simple element animations; parallax where it helps; scroll speed tuned so the superpowers step before work feels short | AI, C approves | 5 | H20, H15b, H21, H8 | parked 8 Nov: the old hero plan is scrapped for launch, kept as context only (D8) |
+| S1 | Build the homepage in code | AI | 6 | S0 | open: built from the transported home frame, plan in `docs/SITE_BUILD_PLAN.md` |
 | S2 | Build the collection page and the case study pages | AI | 6 | S0, H13, C1 | open |
 | S3 | Site wide QA: links, hovers, states, breakpoints | AI, C audits | 7 | S1, S2 | open |
 | S4 | Deploy to Vercel on chadwickfenner.com, indexing on | AI, C for domain access | 8 | S3 | open |
@@ -110,6 +110,10 @@ The leadership CS is after launch (C4).
 
 ## Decisions
 
+- **D8 The transported home is the launch homepage. Decided by Chadwick, 8 Nov.** The old hero
+  version (element roster, separate superpowers section, hero motion) is scrapped for now and kept
+  only as context. Earlier homepage work counts only where it is basic motion. Build follows
+  `docs/SITE_BUILD_PLAN.md`.
 - **D2 Superpowers sit between the hero and work. Decided by Chadwick, 15 Oct.** The hero does
   not say who he is; the superpowers section does, in a short step, with the about panel a
   click away. Hiring research (`reports/What gets designers interviewed.md`: 10 to 30 second
@@ -159,6 +163,8 @@ At most two besides the coordinator, and only on rows whose Waits on is done.
    area file it picks up (`reference/cs2/CS2_PROCESS.md` for the framework CS).
 
 ## In flight
+
+- **Site build (8 Nov):** he moved the four pages into Figma file `5RO0m4bYYrTvbiaOgaU3tI`, page CS: Transported home `5812:22862`, Multi-CS Model `5812:22999`, Haven CS `5812:21569`, Framework CS `5812:16446`, with the shared components beside them. Plan, color audit and type table in `docs/SITE_BUILD_PLAN.md`. The transported home has no separate superpowers section or hero elements, so the stage plan above (H5 to H7 before S1) may be superseded; his call 8 Nov (D8): the transported home launches, the old hero rows are parked.
 
 - **Coordinator (21 Oct, stopped at 87% of the 5 hour limit):** homepage waits on him: D7 headline (the biggest unblock), hero roster, header, footer and collection picks, reviews of the stage 1 and 2 prototypes, and the cleaned master copy `4308:6176`. Design system CS: his answers to GAPS.md are in `reference/design-system-cs/ANSWERS.md`; the angle leans to a system set up so AI can build from it; recommended after image is one token change moving through every screen; tokens finish on the other account within days. Open: the CS2 guard false-flagging git pulls (his yes or no), and the triage session waits on his call about `claude/confident-poincare-b10757` (`claude/journey-map-prototype` is safe to delete).
 

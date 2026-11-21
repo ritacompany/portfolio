@@ -1,0 +1,262 @@
+V1 Q1 yes | V1.S6
+V2 Q1 no | none
+V3 Q1 yes | V3.S1, V3.S2
+V4 Q1 yes | V4.S1, V4.S3
+V5 Q1 no | none
+V6 Q1 no | none
+V7 Q1 no | none
+V8 Q1 yes | V8.S1
+V9 Q1 yes | V9.S2, V9.S3, V9.S4
+V10 Q1 yes | V10.S4, V10.S5
+V11 Q1 yes | V11.S2, V11.S3
+V12 Q1 yes | V12.S2, V12.S3
+V13 Q1 no | none
+V14 Q1 yes | V14.S5, V14.S6
+V1.S1 Q2 no
+V1.S1 Q3 no
+V1.S1 Q4 no
+V1.S1 Q5 no | follows
+V1.S2 Q2 no
+V1.S2 Q3 no
+V1.S2 Q4 no
+V1.S2 Q5 no | follows
+V1.S3 Q2 no
+V1.S3 Q3 no
+V1.S3 Q4 no
+V1.S3 Q5 no | follows
+V1.S4 Q2 no
+V1.S4 Q3 no
+V1.S4 Q4 no
+V1.S4 Q5 no | follows
+V1.S5 Q2 no
+V1.S5 Q3 no
+V1.S5 Q4 no
+V1.S5 Q5 no | follows
+V1.S6 Q2 no
+V1.S6 Q3 no
+V1.S6 Q4 no
+V1.S6 Q5 no | follows
+V2.S1 Q2 no
+V2.S1 Q3 no
+V2.S1 Q4 no
+V2.S1 Q5 no | follows
+V2.S2 Q2 no
+V2.S2 Q3 no
+V2.S2 Q4 no
+V2.S2 Q5 no | caption for the stat
+V2.S3 Q2 no
+V2.S3 Q3 no
+V2.S3 Q4 no
+V2.S3 Q5 no | adds who and condition
+V2.S4 Q2 no
+V2.S4 Q3 no
+V2.S4 Q4 no
+V2.S4 Q5 no | caption for the stat
+V2.S5 Q2 no
+V2.S5 Q3 no
+V2.S5 Q4 no
+V2.S5 Q5 no | adds who and condition
+V3.S1 Q2 no
+V3.S1 Q3 no
+V3.S1 Q4 no
+V3.S1 Q5 no | follows
+V3.S2 Q2 no
+V3.S2 Q3 no
+V3.S2 Q4 no
+V3.S2 Q5 no | follows
+V3.S3 Q2 no
+V3.S3 Q3 no
+V3.S3 Q4 no
+V3.S3 Q5 no | follows
+V3.S4 Q2 no
+V3.S4 Q3 no
+V3.S4 Q4 no
+V3.S4 Q5 no | follows
+V3.S5 Q2 no
+V3.S5 Q3 no
+V3.S5 Q4 no
+V3.S5 Q5 no | follows
+V3.S6 Q2 no
+V3.S6 Q3 no
+V3.S6 Q4 no
+V3.S6 Q5 no | follows
+V3.S7 Q2 no
+V3.S7 Q3 no
+V3.S7 Q4 no
+V3.S7 Q5 no | follows
+V3.S8 Q2 no
+V3.S8 Q3 no
+V3.S8 Q4 no
+V3.S8 Q5 no | follows
+V4.S1 Q2 no
+V4.S1 Q3 no
+V4.S1 Q4 no
+V4.S1 Q5 no | follows
+V4.S2 Q2 no
+V4.S2 Q3 no
+V4.S2 Q4 no
+V4.S2 Q5 no | follows
+V4.S3 Q2 no
+V4.S3 Q3 no
+V4.S3 Q4 no
+V4.S3 Q5 no | follows
+V5.S1 Q2 no
+V5.S1 Q3 yes
+V5.S1 Q4 no
+V5.S1 Q5 no | follows
+V5.S2 Q2 no
+V5.S2 Q3 yes
+V5.S2 Q4 no
+V5.S2 Q5 no | follows
+V6.S1 Q2 no
+V6.S1 Q3 no
+V6.S1 Q4 no
+V6.S1 Q5 no | follows
+V6.S2 Q2 no
+V6.S2 Q3 no
+V6.S2 Q4 no
+V6.S2 Q5 no | follows
+V6.S3 Q2 no
+V6.S3 Q3 no
+V6.S3 Q4 no
+V6.S3 Q5 no | follows
+V6.S4 Q2 no
+V6.S4 Q3 no
+V6.S4 Q4 no
+V6.S4 Q5 no | follows
+V6.S5 Q2 no
+V6.S5 Q3 no
+V6.S5 Q4 no
+V6.S5 Q5 no | follows
+V6.S6 Q2 no
+V6.S6 Q3 no
+V6.S6 Q4 no
+V6.S6 Q5 no | follows
+V7.S1 Q2 no
+V7.S1 Q3 no
+V7.S1 Q4 no
+V7.S1 Q5 no | follows
+V7.S2 Q2 no
+V7.S2 Q3 no
+V7.S2 Q4 no
+V7.S2 Q5 no | follows
+V8.S1 Q2 no
+V8.S1 Q3 no
+V8.S1 Q4 no
+V8.S1 Q5 no | follows
+V8.S2 Q2 no
+V8.S2 Q3 no
+V8.S2 Q4 no
+V8.S2 Q5 no | follows
+V8.S3 Q2 no
+V8.S3 Q3 no
+V8.S3 Q4 no
+V8.S3 Q5 no | follows
+V9.S1 Q2 no
+V9.S1 Q3 yes
+V9.S1 Q4 no
+V9.S1 Q5 no | follows
+V9.S2 Q2 no
+V9.S2 Q3 no
+V9.S2 Q4 no
+V9.S2 Q5 no | follows
+V9.S3 Q2 no
+V9.S3 Q3 no
+V9.S3 Q4 no
+V9.S3 Q5 no | follows
+V9.S4 Q2 no
+V9.S4 Q3 no
+V9.S4 Q4 no
+V9.S4 Q5 no | follows
+V9.S5 Q2 no
+V9.S5 Q3 no
+V9.S5 Q4 no
+V9.S5 Q5 no | follows
+V10.S1 Q2 no
+V10.S1 Q3 no
+V10.S1 Q4 no
+V10.S1 Q5 no | follows
+V10.S2 Q2 no
+V10.S2 Q3 no
+V10.S2 Q4 no
+V10.S2 Q5 no | follows
+V10.S3 Q2 no
+V10.S3 Q3 no
+V10.S3 Q4 no
+V10.S3 Q5 no | follows
+V10.S4 Q2 no
+V10.S4 Q3 no
+V10.S4 Q4 no
+V10.S4 Q5 no | follows
+V10.S5 Q2 no
+V10.S5 Q3 no
+V10.S5 Q4 no
+V10.S5 Q5 no | follows
+V11.S1 Q2 no
+V11.S1 Q3 no
+V11.S1 Q4 no
+V11.S1 Q5 no | follows
+V11.S2 Q2 no
+V11.S2 Q3 no
+V11.S2 Q4 no
+V11.S2 Q5 no | follows
+V11.S3 Q2 no
+V11.S3 Q3 no
+V11.S3 Q4 no
+V11.S3 Q5 no | follows
+V12.S1 Q2 no
+V12.S1 Q3 no
+V12.S1 Q4 no
+V12.S1 Q5 no | follows
+V12.S2 Q2 no
+V12.S2 Q3 no
+V12.S2 Q4 no
+V12.S2 Q5 no | follows
+V12.S3 Q2 no
+V12.S3 Q3 no
+V12.S3 Q4 no
+V12.S3 Q5 no | follows
+V13.S1 Q2 no
+V13.S1 Q3 no
+V13.S1 Q4 no
+V13.S1 Q5 no | follows
+V13.S2 Q2 no
+V13.S2 Q3 no
+V13.S2 Q4 no
+V13.S2 Q5 no | follows
+V14.S1 Q2 no
+V14.S1 Q3 no
+V14.S1 Q4 no
+V14.S1 Q5 no | follows
+V14.S2 Q2 no
+V14.S2 Q3 no
+V14.S2 Q4 no
+V14.S2 Q5 no | follows
+V14.S3 Q2 no
+V14.S3 Q3 no
+V14.S3 Q4 yes | K8
+V14.S3 Q5 no | follows
+V14.S4 Q2 no
+V14.S4 Q3 no
+V14.S4 Q4 yes | K10
+V14.S4 Q5 no | follows
+V14.S5 Q2 no
+V14.S5 Q3 no
+V14.S5 Q4 yes | K11, K12
+V14.S5 Q5 no | follows
+V14.S6 Q2 no
+V14.S6 Q3 no
+V14.S6 Q4 yes | K9
+V14.S6 Q5 no | follows
+V14.S7 Q2 no
+V14.S7 Q3 no
+V14.S7 Q4 yes | K13
+V14.S7 Q5 no | follows
+V14.S8 Q2 no
+V14.S8 Q3 no
+V14.S8 Q4 yes | K4
+V14.S8 Q5 no | follows
+V14.S9 Q2 no
+V14.S9 Q3 no
+V14.S9 Q4 yes | K4
+V14.S9 Q5 no | follows

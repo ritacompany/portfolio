@@ -1,0 +1,15 @@
+/* Range inputs for the tuner: a thin Neutral/700 track, a Neutral/100 thumb, a visible focus ring. */
+@layer components {
+  .lab-tuner { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  .lab-range { -webkit-appearance: none; appearance: none; height: 18px; background: transparent; cursor: pointer; }
+  .lab-range::-webkit-slider-runnable-track { height: 3px; border-radius: 3px; background: var(--neutral-700); }
+  .lab-range::-moz-range-track { height: 3px; border-radius: 3px; background: var(--neutral-700); }
+  .lab-range::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 14px; height: 14px; margin-top: -5.5px; border-radius: 50%;
+    background: var(--neutral-100); box-shadow: 0 0 0 3px var(--neutral-800);
+  }
+  .lab-range::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: var(--neutral-100); }
+  .lab-range:focus-visible { outline: none; }
+  .lab-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--neutral-800), 0 0 0 5px var(--neutral-300); }
+  .lab-tuner button:focus-visible, .lab-tuner [data-handle]:focus-visible { outline: 2px solid var(--neutral-300); outline-offset: 2px; }
+}

@@ -1,0 +1,133 @@
+VERSION V1: Hero
+V1.S1 Designed as a way for LGBTQIA+ youth to gain access to affirming environments.
+V1.S2 For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience.
+V1.S3 The lack of affirming environments at home and in their communities is linked to a higher risk of suicide.
+V1.S4 This project was developed as part of a UX bootcamp.
+V1.S5 The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante.
+V1.S6 Just having Haven on their phone could put a user at risk, so I designed it to stay hidden and to keep every chat by text.
+
+VERSION V2: The data
+  (label) The data
+V2.S1 The Trevor Project studied how affirming spaces and accepting adults relate to that risk.
+  (label) Affirming spaces
+  (label) 35%
+V2.S2 Lower odds of a suicide attempt.
+V2.S3 LGBTQ youth who reported at least one affirming space had 35% lower odds of reporting a suicide attempt.
+  (label) Source: The Trevor Project
+  (label) Accepting adults
+  (label) 40%
+V2.S4 Less likely to attempt suicide.
+V2.S5 LGBTQ youth who had at least one affirming adult in their home were 40% less likely to attempt suicide.
+  (label) Source: The Trevor Project
+
+VERSION V3: Demographic access
+  (label) Demographic access
+V3.S1 Minors need a guardian’s consent to join a study.
+V3.S2 Asking would out the teens who need Haven most, so I interviewed two proxy groups instead.
+  (label) 3 Subject matter experts
+  (label) 3 LGBTQIA+ college students
+  (label) 6 Total interviews
+  (label) 5 key insights
+  (label) Insight 1, Humanizing experts
+V3.S3 When choosing between experts, users look for what makes each one feel human.
+V3.S4 They want to know the expert will understand them.
+  (label) Insight 2, Sensitive conversations
+V3.S5 Users were uncomfortable discussing sensitive identity topics aloud, especially when someone nearby could overhear.
+  (label) Insight 3, Unique identities
+V3.S6 A one size fits all identity model could flatten the demographic differences that shape each user’s unique experience.
+  (label) Insight 4, Scheduling concerns
+V3.S7 Users need to pick a time when they can be alone and feel safe talking to an expert.
+  (label) Insight 5, Personal security
+V3.S8 Users are concerned with using an LGBTQIA+ product in case disapproving guardians or peers may find out.
+
+VERSION V4: Designing an MVP
+  (label) Designing an MVP
+V4.S1 Because the subject is complicated and sensitive, I planned Haven as an MVP in two phases: identity first, then community.
+V4.S2 An interview made it clear that Haven needs identity and community together.
+V4.S3 There wasn’t time to design both, so I split them into two phases and decided which features mattered most now.
+
+VERSION V5: Wireframes
+  (label) Wireframes
+V5.S1 My first wireframes gave users a chat length to pick, a passcode as their only security and their top three Confidantes to swipe through.
+V5.S2 Testing changed all three.
+
+VERSION V6: Usability testing
+  (label) Usability testing
+V6.S1 Six participants tested three key flows.
+  (label) 01 Confidante match enrollment
+  (label) 02 Select a Confidante
+  (label) 03 Schedule a chat
+  (label) Insight 1
+V6.S2 Users weren’t sure whether they’d talk to the expert by text, voice or video.
+  (label) Insight 2
+V6.S3 Users had trouble understanding the duration section of the scheduling page.
+  (label) Insight 3
+V6.S4 Users were concerned that the design lacked enough security features.
+  (label) Insight 4
+V6.S5 Users wanted to know more about each Confidante before choosing one.
+V6.S6 Each solution below is tagged with the interview and testing insights that shaped it.
+
+VERSION V7: The Confidante program
+  (label) The Confidante program
+V7.S1 The Confidante program is built to adapt to each user’s needs and comfort.
+V7.S2 Confidantes support the user in two capacities:
+  (label) 01 A community liaison that connects the user to different people and communities.
+  (label) 02 A source of support for users who need guidance or someone to talk to.
+
+VERSION V8: Primary identity quiz
+  (label) Primary identity quiz
+V8.S1 One identity model for every user would flatten the differences that shape their experience, so the quiz matches users on the experiences they pick.
+  (label) Tags: Interview insight 1, Interview insight 3, Confidante role 1
+V8.S2 The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing.
+V8.S3 Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.
+
+VERSION V9: Testing synthesis
+  (label) Testing synthesis
+V9.S1 Haven’s early flow asked users to choose a Confidante before they could have an introductory chat.
+  (label) Tags: Interview insight 1, Testing insight 4
+  (label) Confidante selection journey flow
+V9.S2 Testing showed users hesitating over which Confidante to pick.
+V9.S3 They went back and forth between profiles, and some undid their choice after making it.
+V9.S4 I moved selection after the introductory chat, which exists to help them decide.
+V9.S5 In the revised flow, users can chat with more than one Confidante before choosing one.
+
+VERSION V10: Confidante profile
+  (label) Confidante profile
+V10.S1 Users need to understand who the Confidante is before making a decision.
+V10.S2 They need to feel understood, represented and safe.
+  (label) Tags: Interview insight 1, Interview insight 3, Testing insight 4
+V10.S3 Shared experiences, differences and humanized bios help users compare Confidantes and decide whom to schedule a chat with.
+V10.S4 Testing showed that those details needed more prominence.
+V10.S5 I made shared experiences the focus of the page and replaced vertical swiping with suggested Confidantes along the bottom, so users could switch between profiles.
+
+VERSION V11: Scheduling a chat
+  (label) Scheduling a chat
+V11.S1 Users needed to know what to expect before booking an introductory chat.
+V11.S2 Testers were confused about how chats would work and how long they would last, so the scheduling screen now says they happen by text, last a set 30 minutes and can end early.
+V11.S3 That lets users pick a time when they can be alone.
+  (label) Tags: Interview insight 4, Testing insight 1, Testing insight 2
+
+VERSION V12: Chat-based interactions
+  (label) Chat-based interactions
+V12.S1 When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.
+  (label) Tags: Interview insight 2
+V12.S2 Chats happen by text, not voice or video, so users don’t have to say anything sensitive out loud.
+V12.S3 Each chat has a set length and can end early, which leaves users in control of when and how much they share.
+
+VERSION V13: Security features
+  (label) Security features
+V13.S1 Privacy is a condition for access.
+V13.S2 Users need safeguards that protect the app before, during and after a conversation.
+  (label) Tags: Interview insight 5, Testing insight 3
+
+VERSION V14: Where things stand
+  (label) Where things stand
+V14.S1 Haven’s initial MVP phase was built around two needs:
+V14.S2 To be understood and to be safe.
+V14.S3 A quiz pairs users with Confidantes who share their experiences.
+V14.S4 Profiles lead with the experiences a user and Confidante share.
+V14.S5 Intro chats happen by text, at a time the user can be alone.
+V14.S6 An intro chat comes first, so users can see if it feels right.
+V14.S7 Haven can hide behind a different icon on the user’s phone.
+V14.S8 Identity was the first phase.
+V14.S9 Community is the next.
