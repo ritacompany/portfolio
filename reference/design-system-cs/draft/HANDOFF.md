@@ -26,6 +26,6 @@ Nothing. The three lines in `FRAME.md` belonged to draft 1 and go with it.
 
 ## Next action
 
-Work from `../outline-2/MATERIAL.md`: confirm the token audit reading, capture the Figma visuals for
-sections 1 and 3, make the token chain and pipeline diagrams, then sentences section by section,
-part one first. Check: `node reference/design-system-cs/outline-2/check.mjs ../mondai`.
+Content first, story last (`../outline-2/MATERIAL.md`, Order of work, his call 21 Nov). Start with the
+tokens block in the framework CS loop (`reference/cs2/WORKING_LOOP.md`); opening and ending last.
+Check: `node reference/design-system-cs/outline-2/check.mjs ../mondai`.

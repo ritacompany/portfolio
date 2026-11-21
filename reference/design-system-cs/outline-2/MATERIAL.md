@@ -14,7 +14,21 @@ are ids in `../NUMBERS.md`; decisions are rows in `../concept/DECISION-INVENTORY
   Chadwick, in chat on 21 Nov, after saying draft 1's direction was off, too broad and
   light on AI.
 
-## The frame
+- 21 Nov 2026, later: content first, story last, the way the framework CS is written
+  (`reference/cs2/WORKING_LOOP.md`). The content sections (tokens, layout and components, setting
+  agents up, proving it works) are written first, block by block, from what he wants to show. The
+  story, the opening (hero) and the ending are found and written last, around that content. The frame
+  below is a working guess until then, not a brief. Decided by: Chadwick, in chat on 21 Nov.
+
+## Order of work
+
+1. Content sections, in this order unless he picks another: tokens; layout and components; setting
+   agents up to build from it; proving it works. Each runs the framework CS loop: he names the block
+   and what it needs, three versions per round that differ in structure, his comments, revise.
+2. The story: what the finished sections argue, found from them, then the frame rewritten.
+3. The opening (hero, with the system shown whole) and the ending (still imperfect), last.
+
+## The frame (working, rewritten after the content sections)
 
 1. **Reader.** A hiring manager for a senior or lead product design role, deciding in a scan whether
    he can be trusted with a system other people and agents build from.
@@ -28,7 +42,7 @@ are ids in `../NUMBERS.md`; decisions are rows in `../concept/DECISION-INVENTORY
 
 ## Part one: the system and its craft
 
-### 1. Opening: the system itself
+### 1. Opening: the system itself (written last)
 
 - **Job.** Show the system before any story; one line on where it started (Sep 2024, a button, a
   palette, four brand images, two typefaces) and what changed in 2026.
@@ -102,7 +116,7 @@ are ids in `../NUMBERS.md`; decisions are rows in `../concept/DECISION-INVENTORY
 - **Tactic.** t29 the wrong turn and the signal missed, with t12 before and after.
 - **Missing.** The agent test's after run (owned by the evidence chat in Mondai).
 
-### 6. Still imperfect
+### 6. Ending: still imperfect (written last)
 
 - **Items.** Component wiring (N25), the after run, the disputed token audit if still open, the grid
   audit's 27 of 33 (N15).
@@ -118,5 +132,5 @@ system makes possible.
 ## Next
 
 1. Confirm the token audit reading (section 2 caution) against the tokens chat's record.
-2. Capture the Figma visuals for sections 1 and 3, and make the two diagrams (sections 2 and 4).
-3. Then sentences, section by section, starting with part one.
+2. The first content block: tokens, from what he wants it to show. Capture its visuals from Figma.
+3. Section 1's Figma spread waits for the opening, at the end.
