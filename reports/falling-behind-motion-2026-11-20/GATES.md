@@ -25,5 +25,5 @@ Scope: session 6 of the 20 Nov CS2 review: the Rollover row (5812:20316) and its
 - [x] G7: the lead session knows whether this fix collides with the tablet Figma edit by sessions 7 and 8
   EVIDENCE: told the lead 20 Nov that his v4 edit replaces session 1's under 1160 card; lead and session 1 replied it can go. Session 7 owns the tablet build; this change only swaps the image and the motion list, no tablet layout rules.
 
-- [ ] G8: a draft PR into claude/relaxed-ride-5mlbdu exists and its link went to the lead session
-  EVIDENCE: pending
+- [x] G8: a draft PR into claude/relaxed-ride-5mlbdu exists and its link went to the lead session
+  EVIDENCE: https://github.com/ritacompany/portfolio/pull/32 (draft, into claude/relaxed-ride-5mlbdu); link sent to the lead session 21 Nov.
