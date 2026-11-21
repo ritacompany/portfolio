@@ -1,45 +1,107 @@
-/* Collection page (Mondai), Figma 5812:22999 at 1440 by 900. Layout only: color and type come from
-   tokens.css, the parts from components.css. */
+/* Mondai case study collection, Figma 6331:27875 at 1440 by 949 (replaced the Multi-CS list 5812:22999,
+   20 Nov). Layout only: color and type come from tokens.css, the navbar from components.css.
+   Figma at 1440: title block 693.45 wide, centred, top 106; cards row 1202 wide (three 392.67 cards,
+   12 apart), centred, top 319.09; card header 14 tall, image slot 394 by 469 starting 34 below it;
+   frame ends 127 below the cards. Between 1200 and 1440 everything keeps its share of the width. */
 
-.collection { min-height: 100vh; align-content: start; padding-top: 167px; padding-bottom: 25px; }
+/* Figma draws the navbar at the frame's top edge here: logo 13.98 down, links 9 down in a 42 bar. */
+.canvas:has(> .collection) { --navbar-top: 14px; }
 
-.collection__brand { display: flex; align-items: center; gap: 20px; }
-/* The mark's ring stroke bleeds 0.79 px past its 40 by 40.57 Figma box; the box keeps Figma's size. */
-.collection__mark { flex: none; position: relative; width: 40px; height: 40.57px; }
-.collection__mark img { position: absolute; left: -0.793px; top: -0.793px; width: 41.586px; height: 42.156px; max-width: none; }
-.collection__brand h1 {
-  font: var(--heading-40); letter-spacing: var(--heading-40-track);
-  color: var(--neutral-050); padding-inline-end: 0.04em;
-  text-box: trim-both cap alphabetic;
-}
-.collection__intro {
-  width: min(668.69px, 100%); margin-top: 40px;
-  font: var(--heading-20); letter-spacing: var(--heading-20-track);
-  color: var(--neutral-300);
-  text-box: trim-both cap alphabetic;
+.collection {
+  --w: min(100vw, 1440px);
+  min-height: 100vh;
+  padding: 106px 0 127px;
+  display: flex; flex-direction: column; align-items: center;
 }
 
-.collection__list { margin-top: 94.43px; }
-.collection__label { display: flex; align-items: center; gap: 16px; }
-.collection__slashes {
-  font: var(--mark-15); letter-spacing: var(--mark-15-track); color: var(--neutral-500);
+/* Title: the Mondai wordmark (an outlined vector in Figma) with the label sitting on its baseline */
+.collection__title { display: flex; align-items: flex-end; gap: 14px; }
+.collection__wordmark { width: calc(var(--w) * 586.433 / 1440); line-height: 0; }
+.collection__wordmark img { width: 100%; height: auto; }
+.collection__kind {
+  width: 93.02px; padding-bottom: 3px;
+  font: 400 16px/1.09 var(--font); color: var(--neutral-200);
   text-box: trim-both cap alphabetic;
 }
-.collection__label h2 {
-  font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase;
-  color: var(--neutral-400); font-weight: 400;
-  text-box: trim-both cap alphabetic;
-}
-.collection__rows { list-style: none; padding: 0; margin-top: 20px; }
 
-/* Phase 3: the page keeps its order and spacing rhythm; only the top padding and gaps tighten. */
+/* Cards */
+.collection__cards {
+  list-style: none; padding: 0; margin: 56px 0 0;
+  width: calc(var(--w) * 1202 / 1440);
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: calc(var(--w) * 12 / 1440);
+}
+.cs-card__link, .cs-card { display: flex; flex-direction: column; gap: 20px; color: inherit; text-decoration: none; }
+.cs-card__head { display: flex; align-items: center; gap: 20px; height: 14px; }
+.cs-card__link .cs-card__head { gap: 10px; }
+.cs-card__title {
+  font: var(--body-20); letter-spacing: var(--body-20-track); white-space: nowrap;
+  color: var(--neutral-550);
+  text-box: trim-both cap alphabetic;
+}
+.cs-card__link .cs-card__title { color: var(--neutral-050); }
+.cs-card__icon { flex: none; display: block; }
+/* The arrow's stroke bleeds past its 14.03 by 10.83 Figma box; drawn at the exported size */
+.cs-card__arrow { width: 16.02px; height: 13.16px; margin-left: -0.82px; }
+.cs-card__lock { width: 11.89px; height: 14.69px; }
+
+.cs-card__media {
+  position: relative; display: block; overflow: hidden;
+  aspect-ratio: 394 / 469; width: 100%;
+  background: var(--neutral-700);
+}
+.cs-card__media > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Operations: Neutral/700 under a 68 percent black layer, the label centred */
+.cs-card__media-empty::before, .cs-card__media-ds::after {
+  content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.68);
+}
+/* Design system: the glitch texture at Figma's crop (824 by 518 at -181, -14.44), the same black layer */
+.cs-card__media-ds { background: #151414; }
+.cs-card__media-ds > img {
+  position: absolute; max-width: none;
+  left: calc(100% * -181 / 394); top: calc(100% * -14.436 / 469);
+  width: calc(100% * 824 / 394); height: calc(100% * 518 / 469);
+}
+.cs-card__soon {
+  position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font: var(--label-12); letter-spacing: var(--label-12-track); white-space: nowrap;
+  color: var(--neutral-550);
+}
+
+/* Hover and focus on the live card. The cursor turns into the button (cursor-button.js); keyboard focus
+   gets the same button, still, in the middle of the image. */
+.cs-card__media > img { transform: scale(1); transition: transform 900ms var(--ease-expo-out); }
+.cs-card__arrow { transition: transform 500ms var(--ease-expo-out); }
+@media (hover: hover) {
+  .cs-card__link:hover .cs-card__media > img { transform: scale(1.035); }
+  .cs-card__link:hover .cs-card__arrow { transform: translateX(4px); }
+}
+.cs-card__link:active .cs-card__media > img { transform: scale(1.01); transition-duration: 150ms; }
+.cs-card__link:focus-visible { outline: none; }
+.cs-card__link:focus-visible .cs-card__media { outline: 2px solid var(--neutral-000); outline-offset: 6px; }
+.cs-card__link:focus-visible .cs-card__media > img { transform: scale(1.035); }
+.cs-card__focus {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%;
+  opacity: 0; pointer-events: none; transition: opacity 300ms var(--ease-quart-out);
+}
+.cs-card__link:focus-visible .cs-card__focus { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .cs-card__media > img, .cs-card__arrow { transition: none; transform: none !important; }
+}
+
+/* Tablet: the same composition on the 8 column page, cards share the width inside the margins */
 @media (max-width: 1199.98px) {
-  .collection { padding-top: 136px; padding-bottom: 64px; }
-  .collection__list { margin-top: 72px; }
+  .collection { --w: 100vw; padding: 136px var(--grid-margin) 96px; }
+  .collection__wordmark { width: min(586.43px, calc(100vw - 2 * var(--grid-margin) - 107px)); }
+  .collection__cards { width: 100%; margin-top: 48px; column-gap: 12px; }
+  .cs-card__title { font-size: 18px; }
 }
+/* Phone: one card per row, the label tucks under the wordmark's right edge */
 @media (max-width: 767.98px) {
-  .collection { padding-top: 112px; }
-  .collection__brand { gap: 16px; }
-  .collection__intro { margin-top: 28px; }
-  .collection__list { margin-top: 56px; }
+  .collection { padding-top: 112px; padding-bottom: 72px; align-items: stretch; }
+  .collection__title { flex-direction: column; align-items: flex-end; gap: 12px; }
+  .collection__wordmark { width: 100%; }
+  .collection__kind { width: auto; padding: 0; }
+  .collection__cards { grid-template-columns: minmax(0, 1fr); row-gap: 40px; margin-top: 40px; }
+  .cs-card__title { font-size: 20px; }
 }

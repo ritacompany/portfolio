@@ -7,25 +7,25 @@
   html:not(.mm-off) .framework .fw-sec > :not(.fig):not(.week),
   html:not(.mm-off) .framework .week__slide > .t,
   html:not(.mm-off) .framework .ending-bar,
-  html:not(.mm-off) .collection .collection__brand,
-  html:not(.mm-off) .collection .collection__intro,
-  html:not(.mm-off) .collection .collection__label,
-  html:not(.mm-off) .collection .collection__rows > li {
+  html:not(.mm-off) .collection .collection__title,
+  html:not(.mm-off) .collection .cs-card__head,
+  html:not(.mm-off) .collection .cs-card__media-empty {
     opacity: 0; visibility: hidden;
   }
   /* Product screens: closed at their top edge until they open */
   html:not(.mm-off) .framework .fw-sec > .fig,
-  html:not(.mm-off) .framework .week__slide img {
+  html:not(.mm-off) .framework .week__slide img,
+  html:not(.mm-off) .collection .cs-card__media > img {
     clip-path: inset(0 0 100% 0);
   }
 
   html:not(.mm-ready) .framework .fw-sec > *,
   html:not(.mm-ready) .framework .week__slide > *,
   html:not(.mm-ready) .framework .ending-bar,
-  html:not(.mm-ready) .collection .collection__brand,
-  html:not(.mm-ready) .collection .collection__intro,
-  html:not(.mm-ready) .collection .collection__label,
-  html:not(.mm-ready) .collection .collection__rows > li {
+  html:not(.mm-ready) .collection .collection__title,
+  html:not(.mm-ready) .collection .cs-card__head,
+  html:not(.mm-ready) .collection .cs-card__media-empty,
+  html:not(.mm-ready) .collection .cs-card__media > img {
     animation: mm-failsafe 0s 3s forwards;
   }
 }

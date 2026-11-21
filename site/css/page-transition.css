@@ -1,0 +1,41 @@
+/* Page change, PROVISIONAL (20 Nov). Pairs with js/page-transition.js; style guide in
+   docs/motion/page-transition/. Browsers without cross document view transitions just change page.
+   1. The pages never flash: the old page fades out into the page colour (Neutral/900) while the new
+      one fades in over it, so there is no white or empty frame between them.
+   2. The title you clicked becomes the next page's title: the Mondai card name on Home grows into the
+      Mondai wordmark; the Framework CS card title grows into the case study's Framework CS heading. */
+@view-transition { navigation: auto; }
+
+html { background: var(--neutral-900); }
+
+::view-transition-old(root) { animation: pt-out 220ms var(--ease-quart-out) both; }
+::view-transition-new(root) { animation: pt-in 420ms var(--ease-quart-out) 120ms both; }
+@keyframes pt-out { to { opacity: 0; } }
+@keyframes pt-in { from { opacity: 0; } }
+
+/* The shared titles: named only on the side of a forward click (see the script) */
+html.pt-out-mondai-title .work-card-mondai .work-card__name,
+html.pt-in-mondai-title .collection__wordmark { view-transition-name: mondai-title; }
+html.pt-out-framework-title .cs-card__link .cs-card__title,
+html.pt-in-framework-title .fw-title { view-transition-name: framework-title; }
+
+::view-transition-group(mondai-title),
+::view-transition-group(framework-title) { animation-duration: 700ms; animation-timing-function: var(--ease-expo-out); }
+/* Small type scaled up blurs, so the arriving title takes over early and the old one goes fast */
+::view-transition-old(mondai-title), ::view-transition-old(framework-title) { animation: pt-out 180ms linear both; }
+/* Keep each snapshot's own shape, pinned left, so a wide heading box never stretches the small title */
+::view-transition-old(mondai-title), ::view-transition-new(mondai-title),
+::view-transition-old(framework-title), ::view-transition-new(framework-title) { height: 100%; width: auto; }
+::view-transition-new(mondai-title), ::view-transition-new(framework-title) { animation: pt-in 360ms linear both; }
+
+/* The arriving title must be there to morph into: the page entrance (mondai-motion) waits for it.
+   Important wins over the entrance's own animation. */
+html.pt-in-mondai-title .collection .collection__title,
+html.pt-in-framework-title .framework .fw-title { opacity: 1 !important; visibility: visible !important; }
+
+/* The cursor button never travels with the page */
+.cursor-btn { view-transition-name: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
