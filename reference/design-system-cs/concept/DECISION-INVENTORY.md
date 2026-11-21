@@ -22,6 +22,10 @@ CONFIRMED where the log names him, ASSUMED where it does not.
 | Aug 2025 | The system moves from a page in the design board to its own shared library file | Developers to use components directly from it | T | CONFIRMED (`SOURCES.md` section 4) | Whether developers did (GAPS 10) |
 | 2 Oct 2026 | Dark only, one mode | The 1 Oct audit's open question; developers set up one theme | T | CONFIRMED | None |
 | 19 Aug 2026 | Gold is not part of the system | A colour that never existed spread because it was written down and every later session repeated it | P, A | ASSUMED | Who caught it |
+| 17 Oct 2026 | Every token name says what it paints or spaces, its job then its state, and means one value | An audit found one size word meaning different pixels and colour roles missing most of what the product paints, so people and agents picked wrong tokens | T, A | CONFIRMED (Mondai DECISIONS.md, 17 Oct) | None |
+| 21 Oct 2026 | Colour judged by job across 11 sheets: elements compared by purpose and use, never because they share a colour or an outline; one token per job | The by job audit (N30) showed one job painted in several colours | P, T, A | CONFIRMED (his rulings recorded in `process/token-picker/colour-by-job/HIS-DECISIONS-21OCT.md`) | Applied counts in N31 |
+| 22 Oct 2026 | Pressed one step lighter than hover, green included; state text never dimmer than rest | The states sheet of the 21 Oct pass left pressed open | P, T, A | CONFIRMED (Mondai DECISIONS.md, 22 Oct) | None |
+| 22 Oct 2026 | Roles only in the colour pickers; three roles renamed for what they paint | Primitives were most of every picker (N32) and he found the system confusing to use | T, A | CONFIRMED (Mondai DECISIONS.md, 22 Oct) | None |
 | May 2026 | Colour carries meaning (magenta for rollover, not an alert); the mono and Heebo label split; sentence case | Brand and voice reasoning (`reference/cs2/reasoning/design-system-and-voice.md`, framework CS owns it) | P | CONFIRMED | Scope: shared with the framework CS, note and leave |
 
 ## Layout: grid and spacing
