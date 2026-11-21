@@ -5,13 +5,14 @@
 // a 24 px pure white dot with a 0 12 24 drop shadow at 20 percent black, drawn exactly on the pointer
 // (no lag) and unchanged over ordinary links. Over the Mondai card media ([data-cursor="button"]) it springs
 // into the Learn more small button in its default look (his call: outline, Neutral/100 text). It turns
-// white only on mouse down; three press transitions are on trial (O.pressStyle: flood, sweep, thicken).
+// white only on mouse down; three press transitions from 21st.dev press components are on trial
+// (O.pressStyle: ripple, ping, squeeze).
 // The card link takes the click. Text fields keep the text cursor. Reduced motion: no morph.
 (function siteCursor() {
   if (window.SiteCursor) return;
   const fine = matchMedia("(hover: hover) and (pointer: fine)");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-  const O = { lerp: 1, dot: 24, morph: 420, pressStyle: "flood", pressScale: 0.98, pressDur: 220 };
+  const O = { lerp: 1, dot: 24, morph: 420, pressStyle: "ripple", pressScale: 0.98, pressDur: 140 };
   const BUTTON = '[data-cursor="button"], .work-card-mondai .work-card__media';
   const TEXT = 'input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, [contenteditable=""], [contenteditable="true"]';
   let root, shape, label, ink, inkLabel, probe, on = false, x = 0, y = 0, tx = 0, ty = 0, raf = 0, last = 0, shown = false, state = "";
@@ -31,7 +32,7 @@
     root.setAttribute("aria-hidden", "true");
     root.innerHTML = '<span class="site-cursor__shape"><span class="site-cursor__label">Learn more</span>'
       + '<span class="site-cursor__ink"><span class="site-cursor__label">Learn more</span></span></span>'
-      + '<span class="site-cursor__probe">Learn more</span>';
+      + '<span class="site-cursor__echo"></span><span class="site-cursor__probe">Learn more</span>';
     shape = root.firstChild; label = shape.firstChild; ink = shape.lastChild; inkLabel = ink.firstChild; probe = root.lastChild;
     vars();
     document.body.append(root);
@@ -119,9 +120,9 @@
     id: "site-cursor", title: "Cursor", tab: "Motion",
     note: "Hold the mouse down on the Mondai card to feel the press. Keys 1, 2, 3 switch the press option.",
     controls: [
-      { key: "pressStyle", label: "Press option", type: "select", value: O.pressStyle, default: "flood",
-        options: [["flood", "A Flood from the pointer"], ["sweep", "B Sweep left to right"], ["thicken", "C Outline thickens inward"]], onInput: set("pressStyle") },
-      { key: "pressDur", label: "Press fill duration", min: 60, max: 600, step: 10, unit: "ms", value: O.pressDur, default: 220, onInput: set("pressDur") },
+      { key: "pressStyle", label: "Press option", type: "select", value: O.pressStyle, default: "ripple",
+        options: [["ripple", "A Ripple from the pointer"], ["ping", "B Fill and ping the outline"], ["squeeze", "C Fill and squeeze"]], onInput: set("pressStyle") },
+      { key: "pressDur", label: "Press fill duration", min: 40, max: 400, step: 10, unit: "ms", value: O.pressDur, default: 140, onInput: set("pressDur") },
       { key: "pressScale", label: "Press scale", min: 0.8, max: 1, step: 0.005, value: O.pressScale, default: 0.98, hint: "The reference dot shrinks to about 0.83 on press", onInput: set("pressScale") },
       { key: "morph", label: "Dot to button", min: 0, max: 900, step: 10, unit: "ms", value: O.morph, default: 420, onInput: set("morph") },
       { key: "dot", label: "Dot size", min: 8, max: 40, step: 1, unit: "px", value: O.dot, default: 24, hint: "Reference: 24", onInput: set("dot") },
@@ -130,7 +131,7 @@
   };
   if (window.EditPanel) window.EditPanel.register(def); else (window.EditPanelQueue ||= []).push(def);
   addEventListener("keydown", (e) => {
-    const m = { 1: "flood", 2: "sweep", 3: "thicken" }[e.key];
+    const m = { 1: "ripple", 2: "ping", 3: "squeeze" }[e.key];
     if (!m || (e.target.closest && e.target.closest("input, textarea, select, [contenteditable]"))) return;
     const g = window.EditPanel && window.EditPanel.group && window.EditPanel.group("site-cursor");
     g ? g.set({ pressStyle: m }) : window.SiteCursor.set({ pressStyle: m });

@@ -118,7 +118,7 @@ const gates = {
   },
   async G2() {
     const notes = [];
-    for (const style of ["flood", "sweep", "thicken"]) {
+    for (const style of ["ripple", "ping", "squeeze"]) {
       const { ctx, pg } = await open();
       await pg.evaluate((st) => window.SiteCursor.set({ pressStyle: st }), style);
       const b = await media(pg);

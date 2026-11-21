@@ -22,9 +22,15 @@ white pill, and it turns white only on mouse down.
 - Card button: over the Mondai card media the dot springs into the Learn more small button (3 px
   Neutral/100 outline, transparent, Neutral/100 text), sized to the real button's box. It grows solid out
   of the dot, then the fill drains into the outline; the label fades in from 40 percent of the 420 ms grow.
-- Press: mouse down turns it white (Neutral/100 fill, Neutral/900 text, scale 0.98). Three ways in, on
-  trial: A flood from the pointer, B sweep left to right, C outline thickens inward. 220 ms each. Release
-  lets the card link open `/mondai/`.
+
+- Press: mouse down turns it white (Neutral/100 fill, Neutral/900 text, scale 0.98), mostly there
+  within 60 ms so even a quick click shows it. Three options, each taken from a 21st.dev component built
+  for a press (hover sweeps and hold to confirm fills were rejected as not press patterns):
+  A ripple: the white floods out from the pointer, 140 ms (21st.dev "Ripple Button", ddoemonn: an
+  outline button that fills from the press point). B ping: fills at once and a copy of the outline rings
+  out and fades, 480 ms (21st.dev "Ripple Buttons", ai2, Ping and Echo). C squeeze: fills at once, dips
+  to 0.92 and settles at 0.98 on a spring, 300 ms (21st.dev "Press Depth", ddoemonn, and the reference
+  cursor's own shrink on press). Release lets the card link open `/mondai/`.
 
 ## Patterns and rules used
 - Interruptible: every change is a CSS transition from current values.

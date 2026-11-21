@@ -35,3 +35,8 @@ Fresh eyes: dot now matches the reference in size and white; option C sliced its
 - P1: option B: quart out covered 55 percent at 40 ms. Now an even in out sweep.
 - P2: option A: letters split between white and dark mid flood; that is the flood passing, kept.
 - P2: the drop shadow does not show against the black page in the dot comparison; REF measures it numerically.
+
+## Round 6
+Fresh eyes: Chadwick, 21 Nov: the options must be proper pressed states, found on 21st.dev, ideally outline to fill. Sweep is a hover pattern (21st.dev lists its fill sweep as hover and focus) and was too slow for a click; thicken blanked the label. Both replaced with press components from 21st.dev, their demo videos watched frame by frame.
+- P0: options B sweep and C thicken were not press interactions. Replaced by B ping and C squeeze; A flood kept as ripple and shortened to 140 ms. Needs a fresh eyes round 7 to close (subagent limit reached this session).
+- P1: ping and squeeze faded the fill in over 70 ms and showed a muddy grey frame at 30 ms. Now instant.
