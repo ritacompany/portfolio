@@ -13,3 +13,10 @@ Why he has never seen it: the diagram's entrance starts on its first pixel at th
 - C, pathway by pathway: the stagger he heard about and the 01 to 05 reading the wipe was meant to give.
 - Live now, so he can finally see today's version; a switch shows it starting on the first pixel as live.
 All start when 60 percent of the diagram is in view.
+
+## 21 Nov
+
+"in order to see it properly i need to see the smoothscroll we use for timing. also yes ur right change the order"
+
+- The preview now runs the page's smooth scroll (Lenis, lerp 0.1, wheel multiplier 1) and the page's start rule, so timing feels as on the page.
+- Pathway order is Branding then Networking. His current Figma frame (6331:20607) already has the diagram in that order (labels 6331:20712 Branding, 6331:20727 Networking); the page's image was exported from the older frame. The page image's two labels were swapped to match, and the alt text in the page and in scripts/framework-page/build.py. The live Growth Journey product screen in the frame still shows Networking then Branding; it is a product screenshot and was left alone.

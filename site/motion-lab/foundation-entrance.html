@@ -28,7 +28,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 .cols h3 { font-size: 20px; font-weight: 400; margin: 0; }
 .cols p { margin: 0; color: var(--muted); }
 .fig { position: relative; width: 100%; max-width: 896px; aspect-ratio: 1791 / 754; }
-.piece { position: absolute; inset: 0; background: url("/assets/framework/foundation@2x.webp") 0 0 / 100% 100% no-repeat; will-change: transform, opacity, clip-path; }
+.piece { position: absolute; inset: 0; background: url("/motion-lab/foundation-order@2x.webp") 0 0 / 100% 100% no-repeat; will-change: transform, opacity, clip-path; }
 .foot { height: 70vh; }
 </style>
 
@@ -58,11 +58,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   <p class="eyebrow">The foundation we built on</p>
   <p class="lede">Mondai calls the whole route to a user’s new career, and the curriculum that gets them there, their Growth Journey.</p>
   <div class="cols"><h3>Pathways</h3><p>The Growth Journey is made up of five Pathways, taken one at a time and in order, each covering a different part of getting into tech.</p></div>
-  <div class="fig" id="fig" role="img" aria-label="The five Pathways, Discovery, Cognition, Networking, Branding and Opportunity, each with Focus Areas and Action Items below it."></div>
+  <div class="fig" id="fig" role="img" aria-label="The five Pathways, Discovery, Cognition, Branding, Networking and Opportunity, each with Focus Areas and Action Items below it."></div>
   <div class="cols"><h3>Hierarchy</h3><p>Each Pathway holds Action Items, the individual pieces of work the user does, grouped into Focus Areas by theme.</p></div>
 </section>
 <div class="foot"></div>
 
+<script src="/vendor/lenis-1.1.20.min.js"></script>
 <script>
 // The diagram is one image (1791 by 754 at 2x). Each option cuts it into pieces with clip-path and moves
 // the pieces with the Web Animations API. Row bands and column edges were measured from the image.
@@ -79,6 +80,14 @@ const WHAT = {
   live: "<b>Live now.</b> What the page does today: three bands fade in, opacity only, 0.16 s apart. Switch Starts to “First pixel, as live” and scroll at reading speed to see why it never shows: it finishes while the lower rows are still below the screen."
 };
 const fig = document.getElementById("fig");
+// The framework page's smooth scroll, at its setting (site/js/mondai-motion.js): Lenis, lerp 0.1, wheel multiplier 1
+let lenis = null;
+if (window.Lenis && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  lenis = new window.Lenis({ lerp: 0.1, wheelMultiplier: 1 });
+  const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+  requestAnimationFrame(raf);
+}
+const toTop = () => (lenis ? lenis.scrollTo(0, { immediate: true }) : scrollTo({ top: 0 }));
 let opt = "c", trig = "view", armed = false, anims = [], start = null, io = null;
 
 function piece(clip) { const d = document.createElement("div"); d.className = "piece"; d.style.clipPath = clip; fig.appendChild(d); return d; }
@@ -139,15 +148,19 @@ function arm() {
   start = build(); armed = !!start;
   if (!start) return;
   if (trig === "scrub") { armed = false; scrubbing = true; requestAnimationFrame(scrubFrame); return; }
-  io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting && armed) { armed = false; start(); io.disconnect(); } },
-    trig === "pixel" ? { threshold: 0 } : { threshold: 0.99, rootMargin: "0px 0px -20% 0px" });
-  io.observe(fig);
+  if (trig === "pixel") {
+    io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting && armed) { armed = false; start(); io.disconnect(); } }, { threshold: 0 });
+    io.observe(fig); return;
+  }
+  // as on the page: starts once the whole diagram has cleared the line 20 percent up from the bottom
+  const tick = () => { if (!armed) return; const r = fig.getBoundingClientRect(); if (r.bottom <= innerHeight * 0.8 && r.bottom > 0) { armed = false; start(); return; } requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
 }
 function select(o) {
   opt = o;
   document.querySelectorAll("[data-o]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.o === o)));
   document.getElementById("what").innerHTML = WHAT[o];
-  if (fig.getBoundingClientRect().top < innerHeight) scrollTo({ top: 0 });
+  if (fig.getBoundingClientRect().top < innerHeight) toTop();
   arm();
 }
 document.querySelectorAll("[data-o]").forEach((b) => b.addEventListener("click", () => select(b.dataset.o)));

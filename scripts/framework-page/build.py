@@ -27,7 +27,7 @@ SECS = [
 ]
 
 FIGS = {  # node: (section, file, x, y, w, h, alt)
- "5812:16512": ("5812:16501", "foundation", 160, 2213, 895.5, 377, "The five Pathways, Discovery, Cognition, Networking, Branding and Opportunity, each with Focus Areas and Action Items below it."),
+ "5812:16512": ("5812:16501", "foundation", 160, 2213, 895.5, 377, "The five Pathways, Discovery, Cognition, Branding, Networking and Opportunity, each with Focus Areas and Action Items below it."),
  "5812:16598": ("5812:16590", "growth-journey", 350, 3137, 1090, 695, "The Growth Journey page in Mondai, showing the whole route with its target, pace and progress."),
  "5812:16775": ("5812:16769", "pathway", 0, 4380, 1167, 692, "A Pathway page in Mondai, with its Focus Areas and Action Items in order."),
  "5812:16790": ("5812:16782", "action-hub", 0, 5650, 1166, 734, "The Action Hub in Mondai: the week's headline, its Action Items and the right rail."),
