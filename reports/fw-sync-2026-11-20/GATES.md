@@ -39,7 +39,7 @@ Scope: the built framework page matches frame 6331:20607 (mondai framework cS mo
   EXPECT: EYEBROWS_OK
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=7f4fb4b02918/15 entries; EXPECT=matched; output-sha256=ad12bef78b3c68528e4b3061923bd208706cd18f47eb7add51ddcc9c2512187b; output-bytes=12
 
-- [x] G8: Rollover effect icon centred on the title's cap height within 1 px at 1440 and the title cap top at 1616; under 1160 the Rollover figure draws a whole card (radius and outline on all four sides)
+- [x] G8: Rollover effect icon centred on the title's cap height within 1 px at 1440 and the title cap top at 1616; under 1160 the Rollover figure fits its section (21 Nov, lead: the card styling was replaced by his v4 row in PR #32, so the gate checks fit only)
   CHECK: node reports/fw-sync-2026-11-20/check.mjs 4318 rollover
   EXPECT: ROLLOVER_OK
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=7f4fb4b02918/15 entries; EXPECT=matched; output-sha256=b7b1bca5c015d647343e1eff0f3098cd070b46955217bcc6143b0d5144544769; output-bytes=12

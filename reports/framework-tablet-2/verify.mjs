@@ -64,7 +64,9 @@ if (mode === "rollover") {
           let above = null;
           for (const o of items) if (o !== it && o.bottom <= it.top + 0.5 && (!above || o.bottom > above.bottom)) above = o;
           if (!above) continue;
-          const g = it.top - above.bottom, w = want(above.k, it.k, hero ? "hero" : "");
+          const g = it.top - above.bottom;
+          // 20 Nov, his ask: Rescheduling an Action Item keeps 32 between its heading and body at every width.
+          const w = above.id === "5812:20246" && it.id === "5812:20247" ? 32 : want(above.k, it.k, hero ? "hero" : "");
           if (Math.abs(g - w) > 1.5) out.push(`${s.getAttribute("aria-label")}: ${above.id} (${above.k}) to ${it.id} (${it.k}) ${g.toFixed(1)}, want ${w}`);
         }
       }

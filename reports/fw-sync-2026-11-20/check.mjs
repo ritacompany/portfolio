@@ -125,7 +125,8 @@ const gates = {
       const q = await open("/mondai/framework/", w);
       const s = await q.evaluate(() => { const e = document.querySelector('[data-figma-node="5812:20316"]'), c = getComputedStyle(e);
         return { outline: c.outlineStyle, radius: c.borderTopRightRadius, padR: parseFloat(c.paddingRight), bg: c.backgroundColor, w: e.getBoundingClientRect().width, cw: e.parentElement.clientWidth }; });
-      if (s.outline !== "solid" || s.radius !== "16px" || !(s.padR > 0) || s.bg !== "rgb(4, 4, 5)") fails.push(`${w}: Rollover card ${JSON.stringify(s)}`);
+      // The card styling this pass added under 1160 was replaced by his Falling behind v4 row (PR #32, session 6),
+      // whose image carries its own background, so only the fit is checked here now.
       if (s.w > s.cw) fails.push(`${w}: Rollover card wider than its section`);
     }
   },

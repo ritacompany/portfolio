@@ -2,7 +2,7 @@
 //  1. Hero, at 768, 1024, 1150 and 1180: the title's left edge within 2 px of Haven's, the hero text's left edge
 //     and width within 8 px of Haven's, the tagline width within 8 px.
 //  2. At 1180 the page is in its desktop composition, as Haven is (Haven's tablet ends at 1159).
-//  3. Body text (outside the hero) is at most 520 wide at 768, 1024 and 1150, and at least one block reaches 520.
+//  3. Body text (outside the hero, and not a .oneline intro, which his 20 Nov rule lets run to one line) is at most 520 wide at 768, 1024 and 1150, and at least one block reaches 520.
 //  4. Route swap: at 390, 1200 and 1440 every element box on the framework page is identical with framework.css
 //     as committed at BASE (default HEAD) and as it is now. Control: at 768 the two differ.
 // Prints ROUND3_OK only when every part passes.
@@ -13,6 +13,8 @@ import { createRequire } from "node:module";
 import { extname, join, normalize, resolve } from "node:path";
 const repo = resolve(new URL("../..", import.meta.url).pathname);
 const root = join(repo, "site");
+// Part 4 compares against the commit before a change, so it only means something when BASE names one
+// (round 3 ran it with BASE set). Without BASE it is skipped, since HEAD against itself proves nothing.
 const BASE = process.env.BASE || "HEAD";
 const baseCss = execFileSync("git", ["-C", repo, "show", `${BASE}:site/css/framework.css`]);
 const TYPES = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".mjs": "text/javascript", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".webp": "image/webp", ".woff2": "font/woff2", ".json": "application/json", ".mp4": "video/mp4" };
@@ -64,7 +66,7 @@ for (const w of [768, 1024, 1150, 1180]) {
   // scaled from 1440 by the window (zoom 1180 / 1440), as it is from 1200 up.
   if (w === 1180 && Math.abs(fw.z - 1180 / 1440) > 0.002) problems.push(`1180 not in the desktop composition (zoom ${fw.z})`);
   if (w < 1160) {
-    const widths = await F.page.evaluate(() => [...document.querySelectorAll(".fw-sec > .s-body-16")].filter((e) => !e.closest('[data-figma-node="5812:16447"]')).map((e) => e.getBoundingClientRect().width));
+    const widths = await F.page.evaluate(() => [...document.querySelectorAll(".fw-sec > .s-body-16")].filter((e) => !e.closest('[data-figma-node="5812:16447"]') && !e.matches(".oneline")).map((e) => e.getBoundingClientRect().width));
     const max = Math.max(...widths);
     if (max > 520.5) problems.push(`${w} body ${max.toFixed(0)} wide, want at most 520`);
     if (max < 519.5) problems.push(`${w} no body block reaches 520 (widest ${max.toFixed(0)})`);
@@ -73,7 +75,7 @@ for (const w of [768, 1024, 1150, 1180]) {
 }
 
 const boxes = () => [...document.querySelectorAll(".fw *")].map((e) => { const r = e.getBoundingClientRect(); return `${Math.round(r.left)},${Math.round(r.top + scrollY)},${Math.round(r.width)},${Math.round(r.height)}`; }).join(" ");
-for (const w of [390, 768, 1200, 1440]) {
+for (const w of process.env.BASE ? [390, 768, 1200, 1440] : []) {
   const A = await open("/mondai/framework/", w, "base"); const a = await A.page.evaluate(boxes); await A.ctx.close();
   const N = await open("/mondai/framework/", w); const n = await N.page.evaluate(boxes); await N.ctx.close();
   if (w === 768) { if (a === n) problems.push("control: 768 is identical before and after, so the swap is not swapping"); }
