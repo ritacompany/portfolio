@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Site cursor</title>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/grid.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/dev/preview/site-cursor.css">
+  <link rel="stylesheet" href="cursor.css">
+  <script src="/dev/preview/edit-panel.js" data-fluid defer></script>
+</head>
+<body>
+  <header class="page-head">
+    <h1>Site cursor</h1>
+    <p>A Neutral/100 dot replaces the system cursor. Over links it opens to a ring; over the Mondai card it grows into Learn more, and holding the mouse down gives the filled press look. Release opens the card link. Tune it in the panel (E opens and closes it). Never shipped: the build leaves site/dev out.</p>
+    <div class="try-row">
+      <a href="#" class="link-nav-sm">A plain link</a>
+      <button class="button-sm" type="button">Small button</button>
+      <label class="field">A text field <input type="text" placeholder="Text cursor here"></label>
+    </div>
+  </header>
+  <div class="canvas home">
+    <section class="works" id="work" aria-label="Selected works">
+      <div class="works__cards">
+        <a class="work-card work-card-mondai" href="/mondai/">
+          <span class="work-card__head">
+            <span class="work-card__name">Mondai</span>
+            <span class="work-card__slashes" aria-hidden="true">//</span>
+            <span class="work-card__kind">Case study collection</span>
+            <span class="work-card__desc">Tech career navigator</span>
+          </span>
+          <span class="work-card__media" data-cursor="button" data-cursor-label="Learn more">
+            <img class="work-card__desk-art" src="/assets/home/mondai-card@2x.webp" alt="" width="879" height="580">
+            <span class="work-card__phone-art" data-bleed>
+              <img class="mondai-art__laptop" src="/assets/home/mondai-card-phone-laptop.webp" alt="" width="817" height="1024" loading="lazy">
+              <img class="mondai-art__glow" src="/assets/home/mondai-card-phone-glow.webp" alt="" width="455" height="467" loading="lazy">
+            </span>
+            <span class="button-sm" data-overlay>Learn more</span>
+          </span>
+          <span class="work-card__more link-nav-sm">Learn more</span>
+        </a>
+        <a class="work-card work-card-haven" href="/haven/">
+          <span class="work-card__head">
+            <span class="work-card__name">Haven</span>
+            <span class="work-card__desc">LGBTQIA + youth app</span>
+          </span>
+          <span class="work-card__media">
+            <img class="work-card__desk-art" src="/assets/home/haven-card@2x.webp" alt="The Haven app on a phone, wrapped in a glowing purple cable" width="435" height="435">
+            <span class="work-card__phone-art" data-bleed>
+              <span class="haven-art__clip"><img src="/assets/home/haven-card-phone.webp" alt="The Haven app on a phone, wrapped in a glowing purple cable" width="939" height="828" loading="lazy"></span>
+            </span>
+          </span>
+          <span class="work-card__more link-nav-sm">Learn more</span>
+        </a>
+      </div>
+    </section>
+  </div>
+<script src="/dev/preview/site-cursor.js" defer></script>
+</body>
+</html>

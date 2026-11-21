@@ -1,0 +1,69 @@
+/* Site cursor, proposal (docs/motion/site-cursor/). Pairs with site-cursor.js; moves into
+   site/css/components.css on his yes. The system cursor hides only once the script has started
+   (html.has-site-cursor), so a page whose script fails keeps it. Text fields keep the text cursor. */
+html.has-site-cursor, html.has-site-cursor * { cursor: none !important; }
+html.has-site-cursor :is(input:not([type="button"], [type="submit"], [type="checkbox"], [type="radio"], [type="range"]), textarea, [contenteditable=""], [contenteditable="true"]) { cursor: text !important; }
+
+.site-cursor {
+  position: fixed; left: 0; top: 0; z-index: 2147483000; width: 0; height: 0;
+  pointer-events: none; opacity: 0; transition: opacity 150ms var(--ease-quart-out);
+  --cur-dur: 200ms;
+  /* Cubic out, gentler at the start than quart out: quart covered 41 percent of the grow in the first
+     40 ms and read as a pop in review round 2. */
+  --cur-ease: cubic-bezier(0.33, 1, 0.68, 1);
+}
+.site-cursor.is-shown { opacity: 1; }
+.site-cursor[data-state="hidden"] { opacity: 0; }
+
+/* One shape for every state, out of the page flow, so its size changes move nothing else. Dot: 12 px with
+   the inset fill covering it. Link: a 24 px dot at 32 percent, so the link under it stays readable (a hollow ring cut through the letters). Button: the small button's
+   box (components.css .button-sm) with the fill drained to the 3 px outline. */
+.site-cursor__shape {
+  position: absolute; left: 0; top: 0; overflow: hidden;
+  width: var(--cur-dot); height: var(--cur-dot); border-radius: 999px;
+  /* 30 px of fill: more than the dot needs, so on the way to the button the shape grows solid first and
+     the hollow opens partway through, which reads as the fill draining into the outline. */
+  box-shadow: inset 0 0 0 30px var(--neutral-100);
+  background-color: transparent; color: var(--neutral-100);
+  transform: translate(-50%, -50%);
+  transition: width var(--cur-dur) var(--cur-ease), height var(--cur-dur) var(--cur-ease),
+    box-shadow var(--cur-dur) var(--cur-ease),
+    background-color 120ms var(--ease-quart-out), color 120ms var(--ease-quart-out), transform 120ms var(--ease-quart-out);
+}
+.site-cursor[data-state="link"] .site-cursor__shape {
+  width: var(--cur-ring); height: var(--cur-ring);
+  box-shadow: inset 0 0 0 30px rgb(232 231 238 / var(--cur-link-alpha));
+}
+.site-cursor[data-state="pill"] .site-cursor__shape {
+  width: var(--cur-pill-w); height: var(--cur-pill-h);
+  box-shadow: inset 0 0 0 3px var(--neutral-100);
+}
+
+/* The label sits centred at its final size and the opening shape reveals it. */
+.site-cursor__label, .site-cursor__probe {
+  font: 700 24px/1.16 var(--font); letter-spacing: var(--heading-24-track); text-transform: uppercase;
+  white-space: nowrap; text-box: trim-both cap alphabetic;
+}
+.site-cursor__label {
+  position: absolute; left: 50%; top: 50%; transform: translate(calc(-50% + 0.02em), -50%);
+  opacity: 0; transition: opacity 120ms var(--ease-quart-out);
+}
+.site-cursor[data-state="pill"] .site-cursor__label { opacity: 1; transition: opacity 200ms var(--ease-quart-out) calc(var(--cur-dur) * 0.55); }
+/* Measures the button box: the same padding and outline width as .button-sm. */
+.site-cursor__probe {
+  position: absolute; left: -9999px; top: 0; visibility: hidden;
+  padding: 12px calc(16px + 0.04em) 12px 16px; border: 3px solid transparent;
+}
+
+/* Press, his call 21 Nov: the white filled look is the cursor's press state. */
+.site-cursor[data-state="pill"].is-pressed .site-cursor__shape {
+  background-color: var(--neutral-100); color: var(--neutral-900);
+  transform: translate(-50%, -50%) scale(var(--cur-press));
+}
+
+.site-cursor.is-reduced, .site-cursor.is-reduced * { transition: none !important; }
+
+/* The cursor carries Learn more, so the static one on the Mondai card steps aside on fine pointers and
+   comes back for keyboard focus at its Figma position. */
+html.has-site-cursor .work-card-mondai .work-card__media .button-sm { opacity: 0; }
+html.has-site-cursor .work-card-mondai:focus-visible .work-card__media .button-sm { opacity: 1; }
