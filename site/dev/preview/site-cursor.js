@@ -6,7 +6,7 @@
 // on the pointer and unchanged over ordinary links; every change runs on one spring (stiffness 400,
 // damping 30, mass 1); pressed shrinks it to 20 px. Colour is Neutral/100 (his call 21 Nov, to match the
 // button) instead of the reference's white.
-// States: hidden, dot, dot pressed (any click), button (over the Mondai card media, the Learn more small
+// States: hidden, dot, dot pressed (any click), button (over either work card's media, the Learn more small
 // button in its outline look), button pressed (his pick 21 Nov: white ripples out from the pointer, scale
 // 0.98; the card link takes the click). Text fields keep the text cursor. Reduced motion: no motion.
 (function siteCursor() {
@@ -14,7 +14,7 @@
   const fine = matchMedia("(hover: hover) and (pointer: fine)");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   const O = { lerp: 1, dot: 24, dotPress: 20, stiffness: 400, damping: 30, mass: 1, pressScale: 0.98, pressDur: 140 };
-  const BUTTON = '[data-cursor="button"], .work-card-mondai .work-card__media';
+  const BUTTON = '[data-cursor="button"], .work-card .work-card__media';
   const TEXT = 'input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, [contenteditable=""], [contenteditable="true"]';
   let root, shape, label, ink, inkLabel, probe, on = false, x = 0, y = 0, tx = 0, ty = 0, raf = 0, last = 0, shown = false, state = "";
 
@@ -135,7 +135,7 @@
   const set = (k) => (v) => window.SiteCursor.set({ [k]: v });
   const def = {
     id: "site-cursor", title: "Cursor", tab: "Motion",
-    note: "Click anywhere for the dot's press; hold on the Mondai card for the button's press. Defaults are the reference's own values.",
+    note: "Click anywhere for the dot's press; hold on a work card for the button's press. Defaults are the reference's own values.",
     controls: [
       { key: "dot", label: "Dot size", min: 8, max: 40, step: 1, unit: "px", value: O.dot, default: 24, hint: "Reference: 24", onInput: set("dot") },
       { key: "dotPress", label: "Dot pressed", min: 8, max: 40, step: 1, unit: "px", value: O.dotPress, default: 20, hint: "Reference: 20", onInput: set("dotPress") },
