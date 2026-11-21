@@ -437,6 +437,8 @@ found, run Artifact list and use the "Chadwick Fenner, product designer" row; do
 as another account's link.
 
 Loop log:
+- 21 Nov, framework headlines at three lines from 768 to 1159: built on his Yes to the [site change] card, from site/dev/headline-lines/;
+  reports/headline-lines-2026-11-21/. Waiting on him to try it.
 - 21 Nov, his four tablet frames on the framework page (Personalized timeline, Calendar setup, Falling behind,
   Start of week text widths): built on his Yes to the [site change] card, from the preview in site/dev/framework-tablet/;
   reports/figma-tablet-sections-2026-11-20/. Waiting on him to try it.

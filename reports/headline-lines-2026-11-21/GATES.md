@@ -27,11 +27,11 @@ Scope: measure every framework section headline from 768 to 1159, find the width
 - [x] G5: review preview built with the two fixes (root url paths in stylesheets made relative, Refresh button keeping width and scroll) at 390, 768, 1024, 1150 and 1440, and published
   EVIDENCE: built from dev/headline-lines; in Playwright the viewer showed buttons 390,768,1024,1150,1440, the Calendar tablet background loaded (200, ../assets path), Refresh reloaded at 768 and kept scrollY 5000; published https://claude.ai/artifact/CvyAVQbrR8CSZYBD7dUQkL (21 Nov)
 
-- [ ] G6: his yes on a [site change] card, then the rules move into site/css/framework.css and G2 passes on the shipped page
-  EVIDENCE: pending
+- [x] G6: his yes on a [site change] card, then the rules move into site/css/framework.css and G2 passes on the shipped page
+  EVIDENCE: his Yes, ship all on the [site change] card (21 Nov); rules in site/css/framework.css, his tablet frame Calendar 16.5em rule removed; check-lines.mjs on the shipped page printed LINES_OK, 394 widths x 14 headlines
 
-- [ ] G7: after shipping, the existing checks pass: framework-tablet-2, framework-tablet-3, framework-tablet-4, tablet-breakpoint, fw-sync-2026-11-20, falling-behind-motion-2026-11-20 and the figma-tablet-sections build check
-  EVIDENCE: pending
+- [x] G7: after shipping, the existing checks pass: framework-tablet-2, framework-tablet-3, framework-tablet-4, tablet-breakpoint, fw-sync-2026-11-20, falling-behind-motion-2026-11-20 and the figma-tablet-sections build check
+  EVIDENCE: 21 Nov on the shipped page: BUILD_CHECK_OK 144 (Calendar assertion changed from 4 lines at 16.5em to 3 lines at 22.187em, note in the file), FW_TABLET2_OK, FW_TYPE_OK, FW_ROLLOVER_OK, FW_MOTION_OK, FIT_ONLY_CAROUSEL, ROUND3_OK, CAPCARD_OK, TABLET_OK, all nine fw-sync checks OK, AUDIT_OK, FALLING BEHIND ROW CHECK PASSED. Not passing: framework-tablet-2/swap.mjs (390 147 differ, 1200 17, 1440 17), and it fails the same way with this change stashed, so it was already failing on claude/fw-integration; G4 here covers 390, 1160 and 1440 for this change
 
-- [ ] G8: draft PR into claude/fw-integration, and one line with the link to the lead session
-  EVIDENCE: pending
+- [x] G8: draft PR into claude/fw-integration, and one line with the link to the lead session
+  EVIDENCE: draft PR #36 into claude/fw-integration; lead session sent the link (21 Nov)
