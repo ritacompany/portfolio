@@ -394,7 +394,7 @@
   .framework .fw .fw-sec > [data-figma-node="5812:17134"] { max-width: 16.5em; }
   .framework .fw .fw-sec > [data-figma-node="5812:17138"] {
     order: 1; margin-top: 80px; width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 704 / 428;
-    box-sizing: border-box; padding-left: 100%; background: url("/assets/framework/calendar-setup-tablet.webp") center / 100% 100% no-repeat;
+    box-sizing: border-box; padding-left: 100%; background: url("../assets/framework/calendar-setup-tablet.webp") center / 100% 100% no-repeat;
   }
   .framework .fw .fw-sec > [data-figma-node="5812:17137"] { order: 2; margin-top: 37px; max-width: 578px; }
 
@@ -415,7 +415,7 @@
   .framework .fw .fw-sec > [data-figma-node="5812:20260"] {
     grid-column: 2; grid-row: 4 / span 7; margin-top: 41px; margin-bottom: 1px;
     width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 400 / 481; border-radius: 15px 0 0 15px;
-    box-sizing: border-box; padding-left: 100%; background: url("/assets/framework/right-rail-tablet.webp") center / 100% 100% no-repeat;
+    box-sizing: border-box; padding-left: 100%; background: url("../assets/framework/right-rail-tablet.webp") center / 100% 100% no-repeat;
   }
   .framework .fw .fw-sec > :is([data-figma-node="5812:20296"], [data-figma-node="5812:20297"], [data-figma-node="5812:20299"], [data-figma-node="5812:20300"], [data-figma-node="5812:20302"], [data-figma-node="5812:20303"]) { grid-column: 4; max-width: 520px; } /* the body measure, past his 256 at wide tablets */
   .framework .fw .fw-sec > [data-figma-node="5812:20296"] { grid-row: 4; margin-top: 96px; }
