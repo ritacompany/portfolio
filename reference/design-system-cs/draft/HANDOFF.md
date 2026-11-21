@@ -14,18 +14,18 @@ draft PR #11. Read this, then `FRAME.md`, then `DRAFT.md`. Nothing here quotes M
 
 - 20 Nov: Peer Connect baseline is 5 days, from the records; never ask him.
 - 20 Nov: stay on the 2026 work; no early build decision added (`FRAME.md`, Decided by him).
-- 21 Nov: the outline stays as drafted (`FRAME.md`, Decided by him).
+- 21 Nov, later: outline 2 replaces draft 1's outline (`../outline-2/MATERIAL.md`, Decided by him).
+  Draft 1 is a record, not a base. Next work starts from outline 2.
 - 21 Nov: this branch is the one home for the design system CS. It now holds the concept work
   (`concept/`, `NUMBERS.md`), the reference board and the October readiness research; their PRs
   (#10, #9, #4) are closed as superseded.
 
 ## Waiting on him
 
-1. Three lines in `FRAME.md`, "Lines he must confirm or strike".
+Nothing. The three lines in `FRAME.md` belonged to draft 1 and go with it.
 
 ## Next action
 
-On his review: take his comments on draft 1 section by section. NUMBERS.md landed (Mondai main
-e940fa18) and the draft now uses it: the opening's fault card, the sprint table in section 5, the
-corrected spacing figures and three new imperfect items. When the agent test's after run lands, pair
-it with the 31 mistakes card.
+Work from `../outline-2/MATERIAL.md`: confirm the token audit reading, capture the Figma visuals for
+sections 1 and 3, make the token chain and pipeline diagrams, then sentences section by section,
+part one first. Check: `node reference/design-system-cs/outline-2/check.mjs ../mondai`.

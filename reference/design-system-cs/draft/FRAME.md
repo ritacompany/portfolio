@@ -83,6 +83,12 @@ screen rate. Unsourced lines about his intent were cut or tied to a record. The 
   by its readers" as the spine. Decided by: Chadwick ("keep"), after seeing how it differs from his
   6 Nov outline.
 
+## Superseded, 21 Nov 2026
+
+The frame and sections above are draft 1's. Outline 2 replaces them: `../outline-2/MATERIAL.md`,
+Decided by: Chadwick, 21 Nov 2026, after reading this outline and calling its direction off, too broad
+and light on AI. Draft 1 stays as a record, not a base.
+
 ## Open, only he can answer
 
 None. Peer Connect's baseline is 5 days, decided from the records (no commit or chat on 21 Sep); not a question for him.
