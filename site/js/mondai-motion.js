@@ -34,12 +34,14 @@
   // Scroll linked instead of the entrance (his audit, 11 Nov). The laptop: a curtain and settle inside a
   // laptop frame read wrong, so the whole laptop slides up as it arrives, then moves up faster than the
   // page once the reader is halfway down its screen, so nobody stares at the keyboard.
-  // No entrance at all (his note, 12 Nov: the slide in from the left felt wrong): the Rollover panel and
-  // its row image are simply there; its label and text fade like every other text item.
+  // The Rollover panel and its row enter like the Pathway rail above them (his note and yes, 21 Nov: the whole
+  // section animates in). Since his Falling behind v4 edit the row sits on the same glitch strip as the rail, so
+  // the card fades with the text and the row opens with the curtain. The 11 Nov slide in from the left stays
+  // retired (his note, 12 Nov).
   const LAPTOP = "5812:16973";
   // The Capacity card (5812:17089) stays still too: a cursor demo plays on top of it (his 11 Nov ask,
   // site/js/capacity-demo.js, owned by the capacity session).
-  const STILL = ["5812:20311", "5812:20316", "5812:17089"];
+  const STILL = ["5812:17089"];
   const scrolled = new Set([LAPTOP, ...STILL]);
   const TEXT_EASE = "cubic-bezier(0.5, 1, 0.89, 1)"; // power1 out, as Haven's GSAP fade
 

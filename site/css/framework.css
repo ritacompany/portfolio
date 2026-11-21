@@ -354,20 +354,6 @@
 @media (max-width: 1159.98px) {
   .framework .fw .fw-sec > [data-figma-node="5812:20246"] + [data-figma-node="5812:20247"] { margin-top: 32px; }
 }
-/* The Rollover figure is the left part of a card that, at 1440, also holds the Rollover label. Under 1160 the label
-   moves above it and the card behind it is hidden, which left the export's rounded left edge cut off flat on the right.
-   The figure now draws the whole card: the card's fill as a right inset matching the export's own left inset
-   (40 of 815), its radius and its outline. */
-@media (max-width: 1159.98px) {
-  .framework .fw .fw-sec > [data-figma-node="5812:20316"] {
-    box-sizing: border-box; padding-right: min(40px, 4.68%);
-    background: var(--neutral-900); border-radius: 16px;
-    outline: 1px solid var(--neutral-600); outline-offset: -1px;
-  }
-}
-@media (min-width: 768px) and (max-width: 1159.98px) {
-  .framework .fw [data-figma-node="5812:20316"] { --fig-w: 855px; }
-}
 /* Footer, his Other pages variant (6331:20545, 20 Nov, not final): the Contact label is Medium, not Bold. The list and
    the hidden Resume are in the markup; Testimonials stays hidden until its Home section ships, as on Home. */
 .footer-other .button__label { font-weight: 500; }
