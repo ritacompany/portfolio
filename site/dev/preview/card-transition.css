@@ -1,0 +1,19 @@
+/* Card to collection transition, proposal (docs/motion/card-transition/). Pairs with card-transition.js;
+   moves into site/css/components.css on his yes. */
+
+/* The collection's nav waits for the script to check whether it arrived from the card, so a transition
+   never starts with the nav already drawn. A direct visit shows it as soon as the script runs; if the
+   script never runs, it shows after 1 s. Reduced motion never hides it. */
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.ct-checked) .canvas:has(> main.collection) > .page-header { visibility: hidden; animation: ct-failsafe 0s 1s forwards; }
+}
+@keyframes ct-failsafe { to { visibility: visible; } }
+
+.ct-layer { position: fixed; inset: 0; z-index: 2147482000; pointer-events: none; overflow: hidden; contain: strict; }
+.ct-layer--exit { pointer-events: auto; }
+.ct-layer--pic.is-under { z-index: 0; }
+.ct-layer--words { z-index: 2147482001; }
+.ct-veil { position: absolute; inset: 0; background: var(--neutral-900); }
+.ct-pic { position: absolute; inset: 0; will-change: clip-path, opacity; }
+.ct-bg, .ct-img, .ct-text { position: absolute; left: 0; top: 0; transform-origin: 0 0; max-width: none; will-change: transform; }
+.ct-text { margin: 0; padding: 0; white-space: nowrap; }
