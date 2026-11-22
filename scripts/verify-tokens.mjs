@@ -2,6 +2,7 @@
 // IarvWaqjIwrZ2afQmMxKm6 on 10 Nov 2026 (local collections 01 Portfolio, 02 Haven and 03 Mondai, thirteen
 // text styles; docs/FIGMA_SYNC_2026-11-10.md). It used to read the stale copy in 5RO0m4bYYrTvbiaOgaU3tI.
 // The expected values below are copied from that Figma read, not from tokens.css.
+// 22 Nov: text styles re-read from IarvWaqjIwrZ2afQmMxKm6: Body/16 tracking 0, new Label/14 C M.
 // Prints TOKENS_OK and exits 0 only when every value matches.
 
 import { readFileSync } from "node:fs";
@@ -45,8 +46,8 @@ const type = [
   ["Display/212", 400, 212, 0.83, -0.055], ["Display/96", 500, 96, 0.98, -0.04],
   ["Heading/64", 500, 64, 1.09, -0.04], ["Heading/40", 500, 40, 1.15, -0.04],
   ["Heading/24", 500, 24, 1.16, -0.04], ["Heading/20", 500, 20, 1.32, -0.02],
-  ["Body/20", 400, 20, 1.32, -0.02], ["Body/16", 400, 16, 1.4, -0.01], ["Body/16 M", 500, 16, 1.32, -0.01],
-  ["Label/14", 400, 14, 1.4, 0.02], ["Label/14 C", 400, 14, 1, 0.06],
+  ["Body/20", 400, 20, 1.32, -0.02], ["Body/16", 400, 16, 1.4, 0], ["Body/16 M", 500, 16, 1.32, -0.01],
+  ["Label/14", 400, 14, 1.4, 0.02], ["Label/14 C", 400, 14, 1, 0.06], ["Label/14 C M", 500, 14, 1, 0.06],
   ["Label/12", 400, 12, 1.4, 0.04], ["Label/12 C", 400, 12, 1.4, 0.1]
 ];
 
