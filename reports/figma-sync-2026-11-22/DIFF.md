@@ -31,17 +31,15 @@ Status: applied (site now matches), kept (left on purpose, reason given), open (
 | H6 | `6364:28932`, `6364:28940` card descriptions | Neutral/200, Mondai at 13.75 | Label/14, Neutral/550; x 622 and 1211 | applied; phone keeps Neutral/200 from its own frame |
 | H7 | `6364:28953`, `6364:28960` About bodies | x 741 and 740, 595 and 650 wide | x 858, 542 wide; rows 569 and 234 | applied |
 | H8 | `6364:28953` About copy | "I love my cats, drag, unexpected experiences" | "I love my cats, unexpected things, drag" | applied. Figma also has "I have have an eye" and "cats ," : the doubled word and the space were not copied |
-| H9 | `6364:29031` Testimonials | not built (on hold) | quote, person, LinkedIn source, three dots; 800 tall | applied, provisional below 1200 (no tablet or phone frame) |
-| H10 | `6364:29051` footer links | About, Selected works, Contact | Home, About, Selected works, Testimonials | applied; phone menu shows Testimonials too |
+| H9 | `6364:29031` Testimonials | not built (on hold) | quote, person, LinkedIn source, three dots; 800 tall | built, then hidden with its links: on hold at his ask (docs/DECISIONS.md, 22 Nov) |
+| H10 | `6364:29051` footer links | About, Selected works, Contact | Home, About, Selected works, Testimonials | applied; Testimonials hidden in the footer and the phone menu with the section |
 | H11 | `5812:22904` Learn more pill on the Mondai card | on the card | not in the newest frame | kept: the site cursor work (PR 34, preview only) replaces it |
 | H12 | Resume link | hidden | opacity 0 in Figma | kept hidden until his resume file |
 
 ## Open, his call
 
-- Q1 Testimonial quote and avatar. The quote is not in `reference/`, so it is unchecked against Allison's real
-  LinkedIn text. The avatar in the frame is his own cut out portrait on green, not hers. The LinkedIn link goes to
-  his recommendations page.
-- Q2 The three dots promise more quotes; there is one.
+- Testimonials is on hold (docs/DECISIONS.md, 22 Nov). For when it comes back: the quote is not in `reference/`,
+  the avatar in the frame is his own portrait and the three dots stand for one quote.
 - Q3 The phone hero line (`4928:11928`, Portfolio Design) still paraphrases the old desktop line.
 - Q4 No light mode exists in this frame; nothing to sync there.
 

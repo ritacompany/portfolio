@@ -28,7 +28,7 @@ const dump = process.argv.includes("--dump");
 
 // [selector, expected]. c: text colour, bg: background colour, line: inset top line colour, fw: weight,
 // fs: size px, ls: tracking as a share of size, x/y/w/h: box (tol default 1.5), fy: y from the footer top,
-// content: computed content url contains, text: textContent.
+// content: computed content url contains, text: textContent, display: computed display.
 const desktop = [
   // 22 Nov: re-read from "Mondai home newest" 6364:28896 (Desktop 1 MVP file 5RO0m4bYYrTvbiaOgaU3tI, page CS);
   // reports/figma-sync-2026-11-22/DIFF.md. The Testimonials section is in this frame, so the footer starts at 3349.
@@ -60,18 +60,15 @@ const desktop = [
   [".about-role .about__label", { c: "#d2d2db", x: 40, y: 2351 }],
   [".about__when", { c: "#7b7b86", x: 40, y: 2376 }],
   [".about-role .about__body", { c: "#d2d2db", x: 858, y: 2351, w: 542, h: 118 }],
-  [".testimonials", { line: "none", y: 2549, h: 800 }],
-  [".quote__text p", { c: "#f2f1f8", fw: 500, fs: 56, ls: -0.04, x: 157, y: 2748, w: 1126, h: 223 }],
-  [".quote__avatar", { bg: "#33db84", x: 157, y: 3022, w: 67, h: 67 }],
-  [".quote__name", { c: "#f2f1f8", fs: 16, ls: 0, x: 248, y: 3040 }],
-  [".quote__role", { c: "#7b7b86", fs: 14, x: 248, y: 3060 }],
-  [".quote__source-label", { c: "#7b7b86", fs: 14, x: 1148, y: 3040 }],
-  [".quote__link span", { c: "#e8e7ee", x: 1201, y: 3060 }],
-  [".quote__dots .is-on", { bg: "#dedee5", x: 702, y: 3132, w: 7 }],
-  [".footer", { line: "#1d1d21", y: 3349, h: 777 }],
+  // Testimonials (6364:29031) is in the frame but hidden on the site, on hold at his ask (22 Nov), so the
+  // footer follows About and its parts are measured from its own top.
+  [".testimonials", { display: "none" }],
+  [".footer", { line: "#1d1d21", y: 2549, h: 777 }],
   [".footer__back span", { c: "#7b7b86", x: 59, fy: 48 }],
   [".footer__nav li:first-child a", { c: "#e8e7ee", x: 40, fy: 122, text: "Home" }],
-  [".footer__nav li:last-child a", { text: "Testimonials" }],
+  [".footer__nav li:nth-child(3) a", { text: "Selected works" }],
+  [".footer__nav li:nth-child(4)", { display: "none" }],
+  [".menu__links li:nth-child(3)", { display: "none" }],
   [".footer__contact .footer__label", { c: "#7b7b86", x: 623, fy: 49 }],
   [".footer__email", { c: "#e8e7ee", x: 623, fy: 124 }],
   [".footer__note p:first-child", { c: "#4b4b52", fy: 166 }],
@@ -140,7 +137,7 @@ try {
         const sh = cs.boxShadow === "none" ? "none" : (cs.boxShadow.match(/rgba?\([^)]*\)/) || [""])[0];
         return { c: hex(cs.color), bg: hex(cs.backgroundColor), line: sh === "none" ? "none" : hex(sh), fw: +cs.fontWeight, fs: parseFloat(cs.fontSize),
           ls: cs.letterSpacing === "normal" ? 0 : parseFloat(cs.letterSpacing) / parseFloat(cs.fontSize),
-          x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height, fy: r.top + scrollY - ft, content: cs.content, text: el.textContent.trim() };
+          x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height, fy: r.top + scrollY - ft, content: cs.content, text: el.textContent.trim(), display: cs.display };
       });
     }, list);
     list.forEach(([sel, want], i) => {

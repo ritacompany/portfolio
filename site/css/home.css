@@ -168,6 +168,7 @@
 /* Testimonials, 6364:29031: 800 tall, no line above. Quote centered at 1126 of 1440, Medium 56, line
    61, tracking -4 percent (no text style in Figma); 51 below it the person and the LinkedIn source;
    the three dots 43 under that. The avatar is his own cut out portrait on green in the frame. */
+.testimonials[hidden] { display: none; }
 .testimonials { position: relative; height: 800px; padding: 199px calc(100% * 157 / 1440) 0; }
 .testimonial { margin: 0; }
 .quote__text { margin: 0; }

@@ -32,6 +32,7 @@
    CONTACT M3), as drawn in Figma. Screen readers get the plain word from aria-label. */
 .mirror { display: inline-block; transform: scaleX(-1); }
 .navbar__links li, .footer__nav li { display: flex; }
+.footer__nav li[hidden] { display: none; }
 
 /* Link, 5812:22559. Styles: Block, Nav, Footer. States: Default, Hover, Pressed. */
 .link-block, .link-nav, .link-footer {
