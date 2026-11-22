@@ -6,9 +6,9 @@
 //              16 Nov).
 //   Text       card labels, About and Current role fade in as Haven's text blocks do (1.4 s, 0.15 s apart,
 //              once the block is 100 px inside the screen).
-//   Cards      at rest the image only; hover brings in the black layer and Learn more as the outline; the
-//              pressing the card swaps Learn more to the white button. Product Designer rests at the nav
-//              link colour. A refresh starts at the top of the page.
+//   Cards      no hover layer and no hover Learn more (his ask, 21 Nov): the site cursor carries Learn more
+//              on a fine pointer. Pressing the card swaps the static Learn more to the white button.
+//              Product Designer rests at the nav link colour. A refresh starts at the top of the page.
 //   Panel      sliders for every value he may tune, saved in this browser only.
 (() => {
   const home = document.querySelector(".home");
@@ -25,7 +25,6 @@
     titleAt: 38,     // vh, where the title holds
     hold: 70,        // vh, scroll the title holds alone before the first card comes in
     titleHold: 0,    // 1 holds the title while the cards rise (the first pass); 0 scrolls it, as the reference
-    overlay: 0.47,   // Neutral/900 layer on hover, 47 percent as his frame (Rectangle 3003)
     roleFrom: 0.7,   // Product Designer starts to leave when the works section top is this far down the screen
     roleTo: 0.35,    // and is gone by here
   };
@@ -37,7 +36,6 @@
     root.style.setProperty("--hm-works-gap", V.worksGap + "px");
     root.style.setProperty("--hm-title-at", V.titleAt + "vh");
     root.style.setProperty("--hm-hold", V.hold + "vh");
-    root.style.setProperty("--rv-card-overlay", V.overlay);
     root.classList.toggle("hm-hold", V.titleHold === 1);
   };
   applyCss();
@@ -156,22 +154,18 @@
   };
   requestAnimationFrame(frame);
 
-  // ---- Card hover. Mouse only: a tap on a phone or tablet opens the card.
+  // ---- Card press. No hover state (his ask, 21 Nov): the site cursor carries Learn more on a fine pointer.
+  //      Each card gets the static Learn more in its media (touch and keyboard focus show it); pressing the
+  //      card swaps it to the white button (his call, 10 Nov).
   cards.forEach((card) => {
     const media = card.querySelector(".work-card__media");
     if (!media) return;
     let btn = media.querySelector(".button-sm");
     if (!btn) { const src = home.querySelector(".work-card__media .button-sm"); if (!src) return; btn = src.cloneNode(true); btn.removeAttribute("data-figma-node"); media.append(btn); }
-    // Hover shows Learn more as the outline; pressing the card swaps it to the white button (his call, 10 Nov,
-    // replacing the fill near the middle).
-    card.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse" && hoverable.matches) card.classList.add("hm-hot"); });
-    card.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse" && hoverable.matches) card.classList.add("hm-hot"); });
     card.addEventListener("pointerdown", (e) => { if (e.button === 0) card.classList.add("hm-press"); });
-    ["pointerup", "pointercancel"].forEach((t) => card.addEventListener(t, () => card.classList.remove("hm-press")));
-    card.addEventListener("pointerleave", () => card.classList.remove("hm-hot", "hm-press"));
+    ["pointerup", "pointercancel", "pointerleave"].forEach((t) => card.addEventListener(t, () => card.classList.remove("hm-press")));
     card.addEventListener("keydown", (e) => { if (e.key === "Enter") card.classList.add("hm-press"); });
-    card.addEventListener("focus", () => { if (card.matches(":focus-visible")) card.classList.add("hm-hot"); });
-    card.addEventListener("blur", () => card.classList.remove("hm-hot", "hm-press"));
+    card.addEventListener("blur", () => card.classList.remove("hm-press"));
   });
 
   // ---- Panel.
@@ -180,7 +174,6 @@
     ["titleAt", "Title holds at", 15, 60, 1, "vh"],
     ["hold", "Title holds alone for", 0, 160, 5, "vh of scroll"],
     ["titleHold", "Title holds in place (0 off, 1 on)", 0, 1, 1, ""],
-    ["overlay", "Dark layer on hover", 0, 0.9, 0.01, ""],
     ["roleFrom", "Product Designer starts leaving at", 0.2, 1, 0.05, "of screen"],
     ["roleTo", "and is gone at", 0, 0.9, 0.05, "of screen"],
   ];

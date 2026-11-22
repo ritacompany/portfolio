@@ -23,7 +23,7 @@ Card 02 (his, user pass applied): Motion uses AI to find free time in a user’s
 Card 03: Linear opens straight onto the work in front of you, and so does Mondai: its home screen shows only this week’s work.
 Card 04: Every learning app I reviewed, even the most structured, let learners fit lessons around their day. So the plan sets the goal, and each user decides where in their day the work goes.
   Why card 04 lost target and pace: his overkill point. Card 01 already carries target and pace as the borrowed idea, the Growth Journey block names the journey's pair and the rail block defines them; card 04 was the one repeating it.
-Sources: Harkin et al. 2016; Baker, Evans and Dee 2016
+Sources: CUT 11 Nov, his call on the built page (was: Harkin et al. 2016; Baker, Evans and Dee 2016). The studies stay as the evidence behind cards 01 and 02.
   Citation check 7 Nov (all seven confirmed by Crossref, findings from abstracts): Kizilcec 2017 is the right year and paper (goal setting and planning in six MOOCs, card 04); the 2020 in the portfolio record is a different paper. Villar 2013 (progress bars in web surveys) and Lally 2010 (habit formation) support no card and are cut. Harkin is card 01, Baker card 02. After the tactics pass (8 Nov) cards 03 and 04 cite no study, so Bandura and Schunk, Patall and Kizilcec are off the sources line. Harkin is mostly health goals, so card 01 says studies, not learners.
 
 ## The foundation we built on (CHANGED)
@@ -57,7 +57,7 @@ Body: I couldn’t know yet how the AI would behave or what it would do well. Th
 
 ## Personalized timeline (CHANGED)
 Headline: How many Action Items a user gets in a week depends on two things, and the user sets one of them.
-Capacity: Each user tells Mondai how many hours they can give each week, the first time they open the Action Hub. Everything else is planned from that number. Mondai asks instead of learning the number from how the user works, because learning it would leave the first two or three weeks without a real plan. The risk is that users promise more time than they have, so the screen has them type an exact number of hours, which makes them count, instead of picking a generous range. If their weeks keep falling short, the plan can lower it later.
+Capacity (cut 12 Nov, his yes, so the text ends above the image): Each user types the hours they can give each week, the first time they open the Action Hub. Mondai plans everything from that number. Learning it from how they work would leave the first two or three weeks without a real plan. An exact number makes them count, where a range lets them promise more than they have. The plan can lower it later.
 Effort (label was Cognitive load): How much work each Action Item takes, which Mondai sizes item by item.
 Example: Aisha’s capacity is 6 hours a week. Last week that fit 4 Action Items. This week it fits 3, because this week’s take more effort.
 
@@ -88,7 +88,7 @@ Headline (Satoshi Medium 40): When an Action Item is still open on Saturday nigh
 Rollover label (his): An Action Item carried over from last week.
 Subhead (his): The Rollover effect
 Body: A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.
-Sources line to add under the block: Soman and Cheema 2004.
+Sources line: CUT 11 Nov, his call on the built page (was: Soman and Cheema 2004).
 
 ## Buffer flow (CHANGED)
 Headline (his): Finish the week’s work early and the days that are left become room to catch up or to get further ahead.
@@ -113,6 +113,18 @@ Eyebrow: What’s still open
 Headline: The least settled rule is the one for when Recalibration steps in, because no user had lived a week with the plan yet.
 Body 1: Right now it steps in after three weeks in a row where a user finishes less than about half the hours they set. That line is a starting point, and the first users’ weeks will move it.
 Body 2: It comes too early if most users who see it skip it and catch up anyway, and too late if users stop coming back before it ever shows.
+
+## Ending, example results (his ask 14 Nov: build it in Figma in place of version C)
+Every number is an example until the tests in ending-test-plan.md run. Reader check PASS, round 4 (reader-check/runs/2026-11-13-end-filled/r4). Version C above stays here for the record; in Figma it is hidden, not deleted.
+Eyebrow: The test
+Headline: No one had lived a week with the plan. Eight people lived two weeks of it.
+What I tested: Whether people give the hours they say they can, and whether the target and pace dates and Rollover make sense unexplained.
+How: Each person typed their hours, worked a plan sized to them for two real weeks and logged every session. A prototype click-through only shows what people say they'd do. Each test needed at least 5 of 8 to pass.
+Capacity: 6 of 8 spent at least four fifths of the hours they typed
+Target and pace: 7 of 8 predicted what a short week does to their dates
+Rollover: 6 of 8 read carried over work as the plan helping them
+Under the numbers: All three passed.
+What I changed: The two who spent less than four fifths had typed the most hours, so their plans overfilled. Recalibration, which offers a lower number, now steps in after two short weeks instead of three.
 
 ## Not changed by him and left as is
 Footer links, the Haven hero (not this case study's work, his note).

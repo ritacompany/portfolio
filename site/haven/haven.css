@@ -70,8 +70,8 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 .display { font-size: 212px; line-height: 1; letter-spacing: -0.055em; font-weight: 500; color: var(--n100); }
 .h64 { font-size: 64px; line-height: 1.09; letter-spacing: -0.04em; font-weight: 500; color: var(--n050); }
 .h40 { font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 500; color: var(--n050); text-wrap: pretty; }
-.h24 { font-size: 24px; line-height: 1.16; letter-spacing: -0.01em; font-weight: 500; color: var(--n050); }
-.h20 { font-size: 20px; line-height: 1.32; font-weight: 500; color: var(--n050); }
+.h24 { font-size: 24px; line-height: 1.16; letter-spacing: -0.01em; font-weight: 500; color: var(--n050); text-wrap: pretty; }
+.h20 { font-size: 20px; line-height: 1.32; font-weight: 500; color: var(--n050); text-wrap: pretty; }
 .eyebrow { font-size: 20px; line-height: 1.32; font-weight: 500; color: var(--n525); } /* Neutral/525 on every section label, 11 Nov */
 .body { font-size: 16px; line-height: 1.4; font-weight: 500; color: var(--n200); text-wrap: pretty; }
 .body-400 { color: var(--n300); } /* Neutral/400 body text moved to Neutral/300 in Figma, 11 Nov */

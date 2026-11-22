@@ -8,12 +8,11 @@
     worksGap: ["Gap above the section", "px"],
     titleAt: ["Title holds at", "vh"],
     hold: ["Title holds alone for", "vh"],
-    overlay: ["Dark layer on hover", ""],
     roleFrom: ["Product Designer leaves from", "of screen"],
     roleTo: ["and is gone at", "of screen"],
   };
   const SECTIONS = [
-    ["works-layout", "Selected works layout", ["worksGap", "titleHold", "titleAt", "hold", "overlay"], null],
+    ["works-layout", "Selected works layout", ["worksGap", "titleHold", "titleAt", "hold"], null],
     ["nav", "Nav", ["roleFrom", "roleTo"], null],
   ];
   let tries = 0;

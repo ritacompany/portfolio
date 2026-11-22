@@ -1,0 +1,18 @@
+/* The hold, switched on by stick.ts once it has measured. The word moves by exactly the distance
+   scrolled between s0 and s1, so on screen it stands still. */
+@keyframes lab-stick { to { transform: translateY(var(--stick-d)); } }
+.lab-stick-on .hero__name {
+  animation: lab-stick linear both;
+  animation-timeline: scroll(root block);
+  animation-range: var(--stick-s0) var(--stick-s1);
+  will-change: transform;
+}
+/* It floats over the cards, so it must never catch a click meant for them. */
+@media (min-width: 768px) {
+  .hero__name { pointer-events: none; }
+}
+/* Tablet draws the word in flow; it needs a position for z-index to apply, and the 14 Nov top offset
+   (580.51, meant for the absolute desktop placement) must not come with it. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .hero__name { position: relative; top: 0; }
+}

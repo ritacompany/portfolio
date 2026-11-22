@@ -19,17 +19,10 @@
 /* ---- His phone and tablet review, 9 Nov (docs/REVIEW_2026-11-09.md). Values he may tune sit in the
         variables on :root so a control panel can move them. ---- */
 :root {
-  --rv-card-overlay: 0.5;      /* R3: black over the card image on hover */
   --rv-portrait-scale: 0.7;    /* R2: footer portraits on tablet */
   --rv-about-gap: 40px;        /* R12: About label to its text on phone (was 24) */
   --rv-card-gap: 16px;         /* R14: card text to Learn more on phone */
   --rv-learn-scale: 0.6;       /* R14: Learn more size on phone; the Figma Small button is 184 by 58 */
-}
-
-/* R3. Work cards: the black layer over the image. Its hover, the Learn more motion and the swap to the
-       filled state near the middle now live in home-motion.css and home-motion.js. */
-.work-card__media::after {
-  content: ""; position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none;
 }
 
 /* R4. The Mondai card export carries a lighter 7 px strip down its right edge. Widen the image by those

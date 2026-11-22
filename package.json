@@ -6,7 +6,8 @@
     "build:site": "node scripts/build.mjs site",
     "dev": "node scripts/serve.mjs",
     "check": "node scripts/check-site.mjs",
-    "studio": "PORT=4320 node scripts/serve.mjs site studio"
+    "studio": "PORT=4320 node scripts/serve.mjs site studio",
+    "taste": "node scripts/taste-audit.mjs"
   },
   "devDependencies": {
     "flare-dev": "0.4.1",

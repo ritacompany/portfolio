@@ -57,7 +57,7 @@ he is. Mondai product mechanics are background for the case studies and nothing 
 - `docs/ABOUT.md` and `docs/VOICE.md` : approved biography and approved writing guidance. Both
   deliberately empty until something is reviewed and approved. Never fill them with guesses.
 - `docs/DECISIONS.md` : durable choices and the reasoning.
-- `.claude/motion-rules.md` : animation rules, render contract and review loop. Skill: `code-motion`. A case study's own motion plan wins where the two differ.
+- `.claude/motion-rules.md` and `.claude/motion-patterns.md` : motion rules for live page animation and rendered clips, the scroll patterns and the principles behind them. Skill: `code-motion`. A case study's own motion plan wins where the two differ.
 - `NEXT.md` : the current short list of what to do next.
 - `LEDGER.md` : build state for `build/`, decisions, what is open.
 - `layout-decision-board/` : small local tool for working through layout choices.
