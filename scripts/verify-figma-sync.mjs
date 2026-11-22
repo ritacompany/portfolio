@@ -5,6 +5,8 @@
 // the footer's top, because the site leaves out the Testimonials section he has on hold.
 // Prints FIGMA_SYNC_OK and exits 0 only when every check passes.
 // 11 Nov: lede and Selected works title re-read from the master (Neutral/200); see reports/figma-sync-2026-11/DIFF.md.
+// 18 Nov: hero, works, About, testimonials and footer links re-read from the master (18 Nov section).
+// 16 Nov: Home work cards re-read from the master (docs/FIGMA_SYNC_2026-11-10.md, 16 Nov section).
 // Usage: node scripts/verify-figma-sync.mjs [--dump]
 
 import { createServer } from "node:http";
@@ -32,34 +34,38 @@ const dump = process.argv.includes("--dump");
 const desktop = [
   [".navbar__role", { c: "#7b7b86", x: 389.36 }],
   [".navbar__links .link-nav", { c: "#f2f1f8" }],
-  [".hero__lede", { c: "#dedee5", fw: 500, fs: 20, ls: -0.02, x: 40, y: 468, w: 457, h: 66 }],
+  [".hero__lede", { c: "#dedee5", fw: 500, fs: 20, ls: -0.02, x: 40, y: 450.5, w: 457, h: 66 }],
   [".hero__lede-wide", {
-    text: "I’m a system-minded, nuance led designer, designing for what we know now, while leaving space for what may change our minds." }],
-  [".hero__city", { c: "#7b7b86", x: 623, y: 498, tol: 1 }],
-  [".hero__move img", { x: 623, y: 519, w: 16, tol: 1 }],
-  [".hero__move span", { c: "#dedee5", fw: 400, fs: 16, x: 645, y: 521.5, tol: 1 }],
-  [".hero__wordmark", { y: 580.51, h: 293, w: 1440, tol: 1 }],
+    text: "I’m a system-minded, nuance led designer, looking for tomorrow’s problem in today’s perfectly reasonable decision." }],
+  [".hero__city", { c: "#7b7b86", x: 699.36, y: 480.5, tol: 1 }],
+  [".hero__move img", { x: 699.36, y: 501.5, w: 16, tol: 1 }],
+  [".hero__move span", { c: "#dedee5", fw: 400, fs: 16, x: 721.36, y: 504, tol: 1 }],
+  [".hero__wordmark", { y: 589.48, h: 293, w: 1440, tol: 1 }],
   [".works", { line: "none" }],
-  [".works__title", { c: "#dedee5", fs: 64, x: 518.5, y: 1064.5, w: 403 }],
-  [".work-card-mondai", { x: 40, y: 1235.5, w: 879 }],
-  [".work-card-mondai .work-card__name", { c: "#f2f1f8", x: 40, y: 1235.5 }],
-  [".work-card__slashes", { c: "#dedee5", x: 117.06, y: 1237, tol: 2 }],
-  [".work-card__kind", { c: "#dedee5", fw: 400, fs: 12, ls: 0.1, x: 139.11, y: 1238, tol: 2 }],
-  [".work-card-mondai .work-card__desc", { c: "#dedee5", fw: 400, fs: 13.75, ls: 0.02, x: 609.64, y: 1237.5, tol: 1 }],
-  [".work-card-mondai .work-card__media", { x: 40, y: 1265.21, w: 879 }],
+  // 18 Nov: the Selected works title is gone from the Master (kept visually hidden for screen readers).
+  [".work-card-mondai", { x: 40, y: 1041.51, w: 879 }],
+  [".work-card-mondai .work-card__name", { c: "#f2f1f8", x: 40, y: 1041.51 }],
+  [".work-card__slashes", { c: "#dedee5", x: 117.06, y: 1043.01, tol: 2 }],
+  [".work-card__kind", { c: "#dedee5", fw: 400, fs: 12, ls: 0.1, x: 139.11, y: 1044.01, tol: 2 }],
+  [".work-card-mondai .work-card__desc", { c: "#7b7b86", fw: 400, fs: 14, ls: 0.02, x: 622.11, y: 1043.51, tol: 1 }],
+  [".work-card-mondai .work-card__media", { x: 40, y: 1071.22, w: 879 }],
   [".work-card-haven", { x: 957, w: 443 }],
-  [".work-card-haven .work-card__name", { c: "#f2f1f8", x: 957, y: 1367.67 }],
-  [".work-card-haven .work-card__desc", { c: "#dedee5", fs: 14, ls: 0.02, x: 1187.79, y: 1369.67, tol: 1 }],
-  [".work-card-haven .work-card__media", { bg: "#0f0f1b", x: 957, y: 1397.38, w: 443, h: 443 }],
-  [".work-card-haven .haven-art__clip img", { x: 941.29, y: 1396.88, w: 487.35, h: 429.82, tol: 1 }],
-  [".about-story", { line: "#1d1d21", y: 2109.99, h: 543 }],
-  [".about-story .about__label", { c: "#d2d2db", x: 40, y: 2142.99 }],
-  [".about-story .about__body", { c: "#d2d2db", x: 741, y: 2142.99, w: 595 }],
-  [".about-role", { line: "#1d1d21", y: 2652.99, h: 208 }],
-  [".about-role .about__label", { c: "#d2d2db", x: 40, y: 2688.99 }],
-  [".about__when", { c: "#7b7b86", x: 40, y: 2713.99 }],
-  [".about-role .about__body", { c: "#d2d2db", x: 740, y: 2688.99, w: 650 }],
-  [".footer", { line: "#1d1d21", h: 777 }],
+  // 18 Nov re-read of Master 4494:5909: Haven's label back above its image (132.17 into the cards);
+  // the image file is the 443 wide slice of Image 2; Learn more is the 130 by 34 Small button.
+  [".work-card-haven .work-card__name", { c: "#f2f1f8", x: 957, y: 1173.67 }],
+  [".work-card-haven .work-card__desc", { c: "#7b7b86", fs: 14, ls: 0.02, x: 1211, y: 1175.67, tol: 1 }],
+  [".work-card-haven .work-card__media", { bg: "#0f0f1b", x: 957, y: 1203.38, w: 443, h: 443 }],
+  [".work-card-haven .haven-art__clip img", { x: 957, y: 1202.89, w: 443, h: 429.82, tol: 1 }],
+  [".work-card-mondai .work-card__media .button-sm", { fw: 700, fs: 16, x: 384.73, y: 1322.65, w: 130, h: 34, tol: 1 }],
+  [".about-story", { line: "#1d1d21", y: 1745.5, h: 569 }],
+  [".about-story .about__label", { c: "#d2d2db", x: 40, y: 1778.5 }],
+  [".about-story .about__body", { c: "#d2d2db", x: 858, y: 1778.5, w: 542 }],
+  [".about-role", { line: "#1d1d21", y: 2314.5, h: 234 }],
+  [".about-role .about__label", { c: "#d2d2db", x: 40, y: 2350.5 }],
+  [".about__when", { c: "#7b7b86", x: 40, y: 2375.5 }],
+  [".about-role .about__body", { c: "#d2d2db", x: 858, y: 2350.5, w: 542 }],
+  // Testimonials 5073:12175 is built but hidden until he finishes it (18 Nov), so the footer follows About.
+  [".footer", { line: "#1d1d21", y: 2548.5, h: 777 }],
   [".footer__back span", { c: "#7b7b86", x: 59.29, fy: 48.5 }],
   [".footer__nav li:first-child a", { c: "#e8e7ee", x: 40, fy: 122 }],
   [".footer__contact .footer__label", { c: "#7b7b86", x: 623, fy: 49 }],
@@ -68,8 +74,9 @@ const desktop = [
   [".footer__note p:last-child", { c: "#e8e7ee" }],
   [".footer__contact .button", { x: 623, fy: 268 }],
   [".footer__pill", { x: 1208.66, fy: 49, w: 85.95, h: 253.45 }],
-  [".footer__meta", { c: "#4b4b52", x: 40, fy: 528.21 }],
-  [".footer__out span", { c: "#e8e7ee", x: 762.83, fy: 528.01 }],
+  [".footer__meta", { c: "#4b4b52", x: 40, fy: 513.22 }],
+  [".footer__meta + .footer__meta", { x: 404, fy: 513.22 }],
+  ["footer .footer__out span", { c: "#e8e7ee", x: 762.83, fy: 512.91 }],
   [".footer__wordmark", { fy: 550.17, tol: 2 }]
 ];
 const phone = [

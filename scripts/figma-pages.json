@@ -170,7 +170,7 @@
    "url": "/",
    "image": "dev/pages/figma/home.png",
    "w": 1440,
-   "h": 3638,
+   "h": 3325.5,
    "css": "css/home.css",
    "boxes": [
     {
@@ -187,15 +187,15 @@
      "name": "lede",
      "sel": "[data-figma-node='4929:12396']",
      "x": 40,
-     "y": 468,
+     "y": 450.5,
      "w": 457,
      "h": 66
     },
     {
      "name": "Chicago",
      "sel": "[data-figma-node='5812:22880']",
-     "x": 623,
-     "y": 498,
+     "x": 699.36,
+     "y": 480.5,
      "w": 90,
      "h": 10,
      "tol": 1
@@ -203,8 +203,8 @@
     {
      "name": "dolly",
      "sel": "[data-figma-node='5812:22882']",
-     "x": 623,
-     "y": 519,
+     "x": 699.36,
+     "y": 501.5,
      "w": 16,
      "h": 16,
      "tol": 1
@@ -212,8 +212,8 @@
     {
      "name": "relocate",
      "sel": "[data-figma-node='5812:22884']",
-     "x": 645,
-     "y": 521.5,
+     "x": 721.36,
+     "y": 504,
      "w": 185,
      "h": 11,
      "tol": 1
@@ -222,7 +222,7 @@
      "name": "CHDWCK glyphs",
      "sel": "[data-figma-node='5812:22885'] img",
      "x": 0,
-     "y": 580.51,
+     "y": 589.48,
      "w": 1440,
      "h": 293,
      "why": "his live text outlined and clipped to the frame; glyph tops at 580.51 (render bounds)"
@@ -231,23 +231,15 @@
      "name": "works section",
      "sel": "[data-figma-node='5812:22886']",
      "x": 0,
-     "y": 899.5,
+     "y": 967.5,
      "w": 1440,
-     "h": 1210.99
-    },
-    {
-     "name": "Selected works",
-     "sel": "[data-figma-node='5812:22888']",
-     "x": 518.5,
-     "y": 1064.5,
-     "w": 403,
-     "h": 46
+     "h": 778
     },
     {
      "name": "Mondai card",
      "sel": "[data-figma-node='5812:22891']",
      "x": 40,
-     "y": 1235.5,
+     "y": 1041.51,
      "w": 879,
      "h": 604.99,
      "tol": 1.5
@@ -256,7 +248,7 @@
      "name": "Mondai name",
      "sel": "[data-figma-node='5812:22894']",
      "x": 40,
-     "y": 1235.5,
+     "y": 1041.51,
      "w": 66,
      "h": 14,
      "tol": 2,
@@ -266,7 +258,7 @@
      "name": "Mondai slashes",
      "sel": "[data-figma-node='5812:22895']",
      "x": 117.06,
-     "y": 1237,
+     "y": 1043.01,
      "w": 11,
      "h": 11,
      "tol": 2,
@@ -276,7 +268,7 @@
      "name": "Mondai kind",
      "sel": "[data-figma-node='5812:22896']",
      "x": 139.11,
-     "y": 1238,
+     "y": 1044.01,
      "w": 170,
      "h": 9,
      "tol": 2.5,
@@ -285,9 +277,9 @@
     {
      "name": "Mondai desc",
      "sel": "[data-figma-node='5812:22898']",
-     "x": 609.64,
-     "y": 1237.5,
-     "w": 136,
+     "x": 622.11,
+     "y": 1043.51,
+     "w": 139,
      "h": 10,
      "tol": 2
     },
@@ -295,7 +287,7 @@
      "name": "Mondai media",
      "sel": "[data-figma-node='5812:22899']",
      "x": 40,
-     "y": 1265.21,
+     "y": 1071.22,
      "w": 879,
      "h": 575.28,
      "why": "the master runs the media 4.17 past the card box; his call 13 Nov: both cards end on one line, so it is clipped to the card"
@@ -303,17 +295,17 @@
     {
      "name": "Learn more",
      "sel": "[data-figma-node='5812:22904']",
-     "x": 383.39,
-     "y": 1516.08,
-     "w": 184,
-     "h": 48,
-     "why": "component at full size, centered where the master draws it at 98.2 percent (384.73, 1516.64, 181.32 by 46.89)"
+     "x": 384.73,
+     "y": 1322.65,
+     "w": 130,
+     "h": 34,
+     "why": "16 Nov re-read: his redrawn Small button, 4923:12095"
     },
     {
      "name": "Haven card",
      "sel": "[data-figma-node='5812:22905']",
      "x": 957,
-     "y": 1235.5,
+     "y": 1041.51,
      "w": 443,
      "h": 604.88,
      "tol": 1.5,
@@ -323,7 +315,7 @@
      "name": "Haven name",
      "sel": "[data-figma-node='5812:22907']",
      "x": 957,
-     "y": 1367.67,
+     "y": 1173.67,
      "w": 56,
      "h": 14,
      "tol": 2,
@@ -332,8 +324,8 @@
     {
      "name": "Haven desc",
      "sel": "[data-figma-node='5812:22908']",
-     "x": 1187.79,
-     "y": 1369.67,
+     "x": 1211,
+     "y": 1175.67,
      "w": 140,
      "h": 10,
      "tol": 2,
@@ -343,7 +335,7 @@
      "name": "Haven media",
      "sel": "[data-figma-node='5812:22909']",
      "x": 957,
-     "y": 1397.38,
+     "y": 1203.38,
      "w": 443,
      "h": 443
     },
@@ -351,39 +343,39 @@
      "name": "about story row",
      "sel": "[data-figma-node='5812:22915']",
      "x": 0,
-     "y": 2109.99,
+     "y": 1745.5,
      "w": 1440,
-     "h": 543
+     "h": 569
     },
     {
      "name": "About label",
      "sel": "[data-figma-node='5812:22919']",
      "x": 40,
-     "y": 2142.99,
+     "y": 1778.5,
      "w": 53,
      "h": 14
     },
     {
      "name": "About body",
      "sel": "[data-figma-node='5812:22920']",
-     "x": 741,
-     "y": 2142.99,
-     "w": 595,
-     "h": 430
+     "x": 858,
+     "y": 1778.5,
+     "w": 542,
+     "h": 456
     },
     {
      "name": "role row",
      "sel": "[data-figma-node='5812:22921']",
      "x": 0,
-     "y": 2652.99,
+     "y": 2314.5,
      "w": 1440,
-     "h": 208
+     "h": 234
     },
     {
      "name": "Current role",
      "sel": "[data-figma-node='5812:22925']",
      "x": 40,
-     "y": 2688.99,
+     "y": 2350.5,
      "w": 105,
      "h": 14
     },
@@ -391,29 +383,29 @@
      "name": "2024 - current",
      "sel": "[data-figma-node='5812:22926']",
      "x": 40,
-     "y": 2713.99,
+     "y": 2375.5,
      "w": 95,
      "h": 10
     },
     {
      "name": "role body",
      "sel": "[data-figma-node='5812:22927']",
-     "x": 740,
-     "y": 2688.99,
-     "w": 650,
-     "h": 92
+     "x": 858,
+     "y": 2350.5,
+     "w": 542,
+     "h": 118
     },
     {
      "name": "footer",
      "sel": "[data-figma-node='5812:22998']",
      "x": 0,
-     "y": 2860.49,
+     "y": 2548.5,
      "w": 1440,
      "h": 777,
      "tol": 1.5
     }
    ],
-   "source": "Portfolio Design IarvWaqjIwrZ2afQmMxKm6, VC master 4494:5909, read 10 Nov 2026 (docs/FIGMA_SYNC_2026-11-10.md). The Testimonials section (2860.49 to 3853.99) is on hold at his ask and is cut from the render and the boxes; the footer is moved up by its 993.5."
+   "source": "Portfolio Design IarvWaqjIwrZ2afQmMxKm6, VC master 4494:5909, read 18 Nov 2026 (docs/FIGMA_SYNC_2026-11-10.md, 18 Nov section): the navbar stacked over a 916 hero, no Selected works title, the Testimonials section 5073:12175 in, the footer at 3348.5. Testimonials (2548.5 to 3348.5) is hidden until he finishes it (18 Nov), so it is cut from the render and the boxes and the footer moves up by 800."
   },
   "framework": {
    "frame": "5812:16446",

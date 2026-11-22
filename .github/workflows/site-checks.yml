@@ -1,0 +1,30 @@
+# Site checks on every push (17 Nov 2026, his yes). Runs the same scripts a session runs by hand, so a
+# check no longer depends on a session remembering it. Every step runs even if an earlier one failed, so
+# one red cross on GitHub lists every problem at once. Plain words for each step are in
+# reports/nondev-safety-net/REPORT.md.
+name: Site checks
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Install the test browser
+        run: npx playwright install --with-deps chromium
+      - name: Every link and file resolves
+        if: success() || failure()
+        run: npm run check
+      - name: Every picture is sharp on a 2x screen and not too heavy
+        if: success() || failure()
+        run: node scripts/check-images.mjs all
+      - name: No sideways scroll, failed file or console error at phone to desktop widths
+        if: success() || failure()
+        run: node scripts/verify-responsive.mjs health all

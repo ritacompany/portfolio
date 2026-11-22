@@ -6,6 +6,14 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### Seth Lukin motion removed, 16 Nov (latest)
+His call (16 Nov): ditch everything taken from Seth Lukin's site. Gone: the parked CHD then WCK name load
+(`site/motion-lab/home-load/`, `docs/motion/home-load/`), the Selected works card rise and the square
+reveal over each image (home-motion.js and .css), and the ASCII reveal options (`ascii-reveal.*`) with
+their edit panel controls (works-bridge.js). Kept: fixed nav, Product Designer exit, Lenis, the text
+fades, the title hold switch and the card hover. The works cards now scroll in plainly. Ledgers:
+home-motion G5, G6 and G18 and edit-panel-v2 G6 are abandoned for this reason. Do not bring them back.
+
 ### Home motion checks rebased, 16 Nov (latest)
 After the usage stop, the open items from 10 Nov, settled:
 1. Card versus Figma check: his master changed again. Card Section 4923:12087, re-exported 16 Nov, now
@@ -110,9 +118,7 @@ his X (`assets/ui/close.svg`, 4929:12498, added by him 10 Nov). His lede reads "
 
 ### Handoff, 10 Nov, hover highlight (from session "Portfolio: hover highlight"; read with the Figma note below)
 **Where the work is.** Merged into `claude/relaxed-ride-5mlbdu` on 10 Nov at his yes (it came from
-branch `claude/hover-text-smoothing`, PR 18). The first account's preview link,
-https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST (version 17), shows it; on the second account, build
-the preview from this branch as the checkpoint below says.
+branch `claude/hover-text-smoothing`, PR 18). The preview link in the review loop below shows it.
 
 **Item 1 of the 9 Nov list, the hover highlight: he said "these look good, we're fine on these now"
 (10 Nov).** What he approved, all in `site/dev/preview/proposals.css`:
@@ -169,9 +175,8 @@ instant (`transition: none`), and every state applies to `:hover` and `:active`.
 components.css; blocks 2, 3, 5, 6 and 8 to 15 and the Hover tester panel are gone from the preview.
 Still open: Haven's nav fades on the real site (block 7, a separate item), so verify-hover-still.mjs
 on `site` alone flags it; the preview passes. Item 1 is done; the old next step follows for the record.
-The first account's artifact link (version 17) still shows the old proposals and the tester panel, so it
-will not match. To see the shipped hovers on either account: `node scripts/build-preview.mjs site
-../portfolio-site-preview`, then open :4319 (Mac smoothing and the 0.05 and 0.36 px outlines are all in
+To see the shipped hovers: build and publish the preview as the review loop below says, or
+`node scripts/build-preview.mjs site ../portfolio-site-preview`, then open :4319 (Mac smoothing and the 0.05 and 0.36 px outlines are all in
 components.css; nothing else is needed).
 
 **Next.** Move the final spec above into site/css (the link styles live in components.css), move block 2
@@ -204,7 +209,6 @@ link. He has not finished it in Figma; build it from the VC master once he says 
   The homemade Edit tool was removed on 10 Nov. Type review stays on the preview. Changes become proposals,
   then site/css on his yes.
 - Research on designer editing tools: `~/Code/portfolio/reports/designer-editing-systems/REPORT.md` (uncommitted on main).
-- The old preview artifact link is private to his first account; this account uses the wifi links above.
 
 ### Handoff, 9 Nov evening (from session "Portfolio: site build Phase 3 responsive")
 He asked for a new session to carry the site build on, starting with the hover highlight. In order:
@@ -231,9 +235,7 @@ He asked for a new session to carry the site build on, starting with the hover h
    fading; the cw logo has no hover.
 8. **Parked to the end, at his ask:** Contact button motion (tuners linked below), footer band motion.
 
-How to work: the review loop and the block (below). Preview link https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST:
-read it with the Artifact tool, rebuild with node scripts/build-preview.mjs site <dir>, publish to that
-url. He comments on it, and comments sent to Claude arrive as turns. Branch: claude/relaxed-ride-5mlbdu
+How to work: the review loop and the block (below), which says how to publish the preview. He comments on it, and comments sent to Claude arrive as turns. Branch: claude/relaxed-ride-5mlbdu
 (commits after 9aa1315 are not yet in claude/lucid-carson-u56t7v). The Phase 2 session is finished and
 holding.
 
@@ -428,11 +430,16 @@ Every piece of site work, at every stage, runs this loop. Nothing is done becaus
    feels right.
 5. **Done on his yes only.** Write his yes and the date next to the piece in this file.
 
-Preview link: https://claude.ai/artifact/WEWiXsm3fsWdV2gd7z5BST (private to him). Rebuild with
-`node scripts/build-preview.mjs site <dir>`, then publish to that same url.
+Preview link: https://claude.ai/artifact/McviYhengPB92skSvB2YEu, the only one. Any Claude Code session
+on his Mac can update it: run `node scripts/build-preview.mjs HEAD <dir>/pv` (builds what is committed,
+so commit first) and make the Artifact publish call it prints at the end. If a read or publish says not
+found, run Artifact list and use the "Chadwick Fenner, product designer" row; do not explain it to him
+as another account's link.
 
 Loop log:
 - 21 Nov, card to collection transition (step 1, proposed): three directions for the move from the Mondai card on Home to the collection page, A Open, B Dock, C Zoom, on a test build at https://claude.ai/artifact/Vk1mZz4hirZJi9pVuHxnwR (direction in the edit panel, Motion tab). Pick: B. Docs and gates in docs/motion/card-transition/. Waiting on him.
+- 17 Nov, capacity card demo on the framework page (done on his yes: "i checked it works fine"). Type on
+  as it opens, his cursor, right right left left (76c1c9f). Tried on the preview link, version 4 built from cfe7bea.
 - 14 Nov, Start of week carousel on the framework page (done on his yes: "this works for the time being,
   it can always be improved later"). Center mode, his picks of 12 Nov, built 13 Nov (e65521e). Research,
   options and gates in docs/motion/week-carousel/.

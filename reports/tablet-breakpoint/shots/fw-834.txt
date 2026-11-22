@@ -1,0 +1,120 @@
+scrollWidth 834 client 834 height 17613
+SEC Introduction top 112 h 672
+  h1.t.s-display-212.c-neutral-100.fw-title [5812:16453] x 32 w 738 h 96 y 112 disp flex fs 115.5px  Framework CS
+  p.t.s-label-12.c-neutral-525.nowrap [5812:16456] x 32 w 25 h 9 y 248 disp block fs 12px  Role
+  p.t.s-body-16.c-neutral-050.nowrap [5812:16457] x 32 w 128 h 11 y 266 disp block fs 16px  Founding designer
+  p.t.s-label-12.c-neutral-525.nowrap [5812:16459] x 32 w 43 h 9 y 302 disp block fs 12px  Affiliate
+  p.t.s-body-16.c-neutral-050.nowrap [5812:16460] x 32 w 52 h 11 y 321 disp block fs 16px  Mondai
+  p.t.s-label-12.c-neutral-525.nowrap [5812:16462] x 32 w 33 h 9 y 356 disp block fs 12px  Focus
+  p.t.s-body-16.c-neutral-050.nowrap [5812:16463] x 32 w 206 h 11 y 375 disp block fs 16px  Design, research and strategy.
+  span.rule [] x 0 w 834 h 1 y 434 disp block fs 16px  
+  p.t.s-heading-24.c-neutral-050 [5812:16466] x 32 w 640 h 45 y 483 disp block fs 24px  Designed as an AI guide for newcomers fr
+  p.t.s-body-16.c-neutral-050.paras [5812:16468] x 32 w 640 h 159 y 552 disp block fs 16px  There’s no set path into tech, so Mondai
+SEC Competitive analysis top 784 h 903
+  h2.t.s-heading-20.c-neutral-500 [5812:16473] x 32 w 176 h 14 y 856 disp block fs 20px  Competitive analysis
+  p.t.s-heading-40.c-neutral-050 [5812:16474] x 32 w 760 h 121 y 890 disp block fs 40px  Mondai had no direct model, but learning
+  p.t.s-label-14-c.c-neutral-525.nowrap [5812:16480] x 32 w 103 h 10 y 1047 disp block fs 14px  01. Progress
+  p.t.s-heading-20.c-neutral-050.nowrap [5812:16481] x 32 w 130 h 14 y 1093 disp block fs 20px  CareerFoundry
+  p.t.s-body-16.c-neutral-300 [5812:16482] x 32 w 640 h 55 y 1118 disp block fs 16px  Studies find that tracking real progress
+  p.t.s-label-14-c.c-neutral-525.nowrap [5812:16485] x 32 w 209 h 10 y 1209 disp block fs 14px  02. Calendar integration
+  p.t.s-heading-20.c-neutral-050.nowrap [5812:16486] x 32 w 60 h 14 y 1255 disp block fs 20px  Motion
+  p.t.s-body-16.c-neutral-300 [5812:16487] x 32 w 640 h 55 y 1280 disp block fs 16px  Motion uses AI to find free time in a us
+  p.t.s-label-14-c.c-neutral-525.nowrap [5812:16491] x 32 w 135 h 10 y 1371 disp block fs 14px  03. Home screen
+  p.t.s-heading-20.c-neutral-050.nowrap [5812:16492] x 32 w 53 h 14 y 1417 disp block fs 20px  Linear
+  p.t.s-body-16.c-neutral-300 [5812:16493] x 32 w 640 h 33 y 1442 disp block fs 16px  Linear opens straight onto the work in f
+  p.t.s-label-14-c.c-neutral-525.nowrap [5812:16496] x 32 w 81 h 10 y 1511 disp block fs 14px  04. Timing
+  p.t.s-heading-20.c-neutral-050.nowrap [5812:16497] x 32 w 122 h 14 y 1557 disp block fs 20px  Learning apps
+  p.t.s-body-16.c-neutral-300 [5812:16498] x 32 w 640 h 33 y 1581 disp block fs 16px  Every learning app I reviewed, even the 
+SEC The foundation we built on top 1687 h 851
+  h2.t.s-heading-20.c-neutral-525 [5812:16504] x 32 w 230 h 14 y 1759 disp block fs 20px  The foundation we built on
+  p.t.s-heading-40.c-neutral-100 [5812:16505] x 32 w 760 h 121 y 1793 disp block fs 40px  Mondai calls the whole route to a user’s
+  p.t.s-heading-20.c-neutral-100 [5812:16510] x 32 w 81 h 14 y 1950 disp block fs 20px  Pathways
+  p.t.s-body-16.c-neutral-300 [5812:16511] x 32 w 640 h 33 y 1975 disp block fs 16px  The Growth Journey is made up of five Pa
+  p.t.s-heading-20.c-neutral-100 [5812:16588] x 32 w 83 h 14 y 2044 disp block fs 20px  Hierarchy
+  p.t.s-body-16.c-neutral-300 [5812:16589] x 32 w 640 h 33 y 2069 disp block fs 16px  Each Pathway holds Action Items, the ind
+  img.fig [5812:16512] x 32 w 770 h 324 y 2142 disp block fs 16px  
+SEC Growth Journey top 2538 h 1024
+  h2.t.s-heading-20.c-neutral-525 [5812:16593] x 32 w 139 h 14 y 2610 disp block fs 20px  Growth Journey
+  p.t.s-heading-40.c-neutral-100 [5812:16594] x 32 w 760 h 121 y 2645 disp block fs 40px  The whole route has a page of its own, o
+  p.t.s-body-16.c-neutral-300.paras [5812:16597] x 32 w 640 h 153 y 2806 disp block fs 16px  Users need to see how the Pathway they’r
+  img.fig [5812:16598] x 32 w 770 h 491 y 2999 disp block fs 16px  
+SEC Pathway top 3562 h 985
+  h2.t.s-heading-20.c-neutral-525 [5812:16772] x 32 w 73 h 14 y 3634 disp block fs 20px  Pathway
+  p.t.s-heading-40.c-neutral-050 [5812:16773] x 32 w 760 h 121 y 3669 disp block fs 40px  Each Pathway has its own page, with all 
+  p.t.s-body-16.c-neutral-300 [5812:16777] x 32 w 640 h 55 y 3829 disp block fs 16px  This page shows the Pathway the user is 
+  p.t.s-heading-20.c-neutral-050 [5812:16779] x 32 w 104 h 14 y 3921 disp block fs 20px  Focus Areas
+  p.t.s-body-16.c-neutral-300 [5812:16780] x 32 w 640 h 33 y 3945 disp block fs 16px  Focus Areas, like user testing or wirefr
+  img.fig [5812:16775] x 32 w 770 h 457 y 4019 disp block fs 16px  
+SEC Action hub top 4547 h 1018
+  h2.t.s-heading-20.c-neutral-525 [5812:16785] x 32 w 97 h 14 y 4619 disp block fs 20px  Action Hub
+  p.t.s-heading-40.c-neutral-050 [5812:16786] x 32 w 760 h 121 y 4654 disp block fs 40px  Most of a user’s week happens on one scr
+  p.t.s-body-16.c-neutral-300.paras [5812:16965] x 32 w 640 h 153 y 4815 disp block fs 16px  I designed the Action Hub around one que
+  img.fig [5812:16790] x 32 w 770 h 485 y 5008 disp block fs 16px  
+SEC Action item top 5565 h 1532
+  h2.t.s-heading-20.c-neutral-525 [5812:16970] x 32 w 98 h 14 y 5637 disp block fs 20px  Action Item
+  p.t.s-heading-40.c-neutral-050 [5812:16971] x 32 w 760 h 121 y 5671 disp block fs 40px  Every Action Item is a piece of work the
+  p.t.s-body-16.c-neutral-300 [5812:17083] x 32 w 640 h 121 y 5832 disp block fs 16px  I couldn’t know yet how the AI would beh
+  img.fig [5812:16973] x 32 w 770 h 1031 y 5994 disp block fs 16px  
+SEC Personalized timeline top 7096 h 1342
+  span.panel-example [5812:17126] x 0 w 0 h 0 y 0 disp none fs 16px  
+  h2.t.s-heading-20.c-neutral-525 [5812:17086] x 32 w 182 h 14 y 7192 disp block fs 20px  Personalized timeline
+  p.t.s-heading-40.c-neutral-050 [5812:17087] x 32 w 760 h 121 y 7227 disp block fs 40px  How many Action Items a user gets in a w
+  p.t.s-heading-20.c-neutral-050.w-bold [5812:17121] x 32 w 76 h 14 y 7384 disp block fs 20px  Capacity
+  p.t.s-body-16.c-neutral-300 [5812:17122] x 32 w 640 h 121 y 7408 disp block fs 16px  Each user tells Mondai how many hours th
+  p.t.s-heading-20.c-neutral-050.w-bold [5812:17124] x 32 w 48 h 14 y 7566 disp block fs 20px  Effort
+  p.t.s-body-16.c-neutral-300 [5812:17125] x 32 w 504 h 11 y 7590 disp block fs 16px  How much work each Action Item takes, wh
+  img.fig [5812:17089] x 32 w 616 h 596 y 7642 disp block fs 16px  
+  p.t.s-label-12-c.c-neutral-525.nowrap [5812:17127] x 32 w 105 h 29 y 8278 disp block fs 12px  Example:
+  p.t.s-label-14.c-neutral-300 [5812:17128] x 32 w 640 h 60 y 8306 disp block fs 14px  Aisha’s capacity is 6 hours a week. Last
+SEC Calendar setup top 8438 h 1186
+  h2.t.s-heading-20.c-neutral-525 [5812:17133] x 32 w 132 h 14 y 8510 disp block fs 20px  Calendar setup
+  p.t.s-heading-40.c-neutral-050 [5812:17134] x 32 w 760 h 121 y 8545 disp block fs 40px  Calendar sync is optional. Users who tur
+  p.t.s-body-16.c-neutral-300.paras [5812:17137] x 32 w 640 h 131 y 8706 disp block fs 16px  The first question sets a time range, an
+  img.fig [5812:17138] x 32 w 770 h 675 y 8877 disp block fs 16px  
+SEC Schedule view top 9624 h 1969
+  h2.t.s-heading-20.c-neutral-525 [5812:17146] x 32 w 124 h 14 y 9696 disp block fs 20px  Schedule view
+  p.t.s-heading-40.c-neutral-050 [5812:17147] x 32 w 760 h 167 y 9731 disp block fs 40px  With a calendar synced, the Action Hub c
+  p.t.s-body-16.c-neutral-300.nowrap [5812:17150] x 32 w 640 h 33 y 9938 disp block fs 16px  The list stays the default view, and the
+  img.fig [5812:17152] x 32 w 770 h 367 y 10011 disp block fs 16px  
+  p.t.s-body-16.c-neutral-300 [5812:20111] x 32 w 640 h 55 y 10410 disp block fs 16px  Mondai looks for gaps between the user’s
+  p.t.s-body-16.c-neutral-300 [5812:20112] x 32 w 640 h 55 y 10489 disp block fs 16px  Mondai only reads the calendar. It never
+  p.t.s-heading-20.c-neutral-050.nowrap [5812:20246] x 32 w 246 h 14 y 10581 disp block fs 20px  Rescheduling an Action Item
+  p.t.s-body-16.c-neutral-300.paras [5812:20247] x 32 w 640 h 159 y 10605 disp block fs 16px  Users can move their Action Items from t
+  img.fig [5812:20114] x 32 w 770 h 717 y 10805 disp block fs 16px  
+SEC Falling behind top 11593 h 2182
+  span.panel-card [5812:20259] x 0 w 0 h 0 y 0 disp none fs 16px  
+  span.panel-card [5812:20311] x 0 w 0 h 0 y 0 disp none fs 16px  
+  span.vrule [5812:20343] x 0 w 0 h 0 y 0 disp none fs 16px  
+  h2.t.s-heading-20.c-neutral-525 [5812:20254] x 32 w 121 h 14 y 11689 disp block fs 20px  Falling behind
+  p.t.s-heading-40.c-neutral-050 [5812:20255] x 32 w 760 h 121 y 11724 disp block fs 40px  The Action Hub keeps two dates for the P
+  p.t.s-body-16.c-neutral-300 [5812:20258] x 32 w 640 h 55 y 11885 disp block fs 16px  Both sit in a rail down the right side o
+  p.t.s-label-14-c.c-green [5812:20296] x 32 w 129 h 10 y 11976 disp block fs 14px  Pathway target
+  p.t.s-body-16.c-neutral-300 [5812:20297] x 32 w 640 h 33 y 11996 disp block fs 16px  Set from the user’s capacity, it holds s
+  p.t.s-label-14-c.c-green.nowrap [5812:20299] x 32 w 112 h 10 y 12066 disp block fs 14px  Pathway pace
+  p.t.s-body-16.c-neutral-300 [5812:20300] x 32 w 640 h 33 y 12086 disp block fs 16px  It updates once a week, so nobody watche
+  p.t.s-label-14-c.c-green [5812:20302] x 32 w 136 h 10 y 12155 disp block fs 14px  Ahead of target
+  p.t.s-body-16.c-neutral-300 [5812:20303] x 32 w 598 h 11 y 12175 disp block fs 16px  The gap between the two dates, in days. 
+  img.fig [5812:20260] x 32 w 770 h 707 y 12227 disp block fs 16px  
+  span.rule [5812:20250] x 0 w 834 h 1 y 12982 disp block fs 16px  
+  h2.t.s-heading-20.c-neutral-525 [5812:20308] x 32 w 121 h 14 y 13031 disp block fs 20px  Falling behind
+  p.t.s-heading-40.c-neutral-050 [5812:20309] x 32 w 760 h 75 y 13065 disp block fs 40px  When an Action Item is still open on Sat
+  p.t.s-label-14-c.c-green [5812:20314] x 32 w 77 h 10 y 13176 disp block fs 14px  Rollover
+  p.t.s-body-16.c-neutral-300 [5812:20315] x 32 w 294 h 11 y 13196 disp block fs 16px  An Action Item carried over from last we
+  img.fig [5812:20316] x 32 w 770 h 196 y 13248 disp block fs 16px  
+  p.t.s-body-16.c-neutral-300 [5812:20350] x 32 w 640 h 165 y 13476 disp block fs 16px  A week that comes up short can feel like
+  p.t.s-heading-20.c-neutral-050.nowrap.fb-effect [5812:20346] x 32 w 185 h 26 y 13677 disp flex fs 20px  The Rollover effect
+SEC Buffer flow top 13775 h 1089
+  h2.t.s-heading-20.c-neutral-525 [5812:20353] x 32 w 94 h 14 y 13847 disp block fs 20px  Buffer flow
+  p.t.s-heading-40.c-neutral-050 [5812:20354] x 32 w 760 h 121 y 13882 disp block fs 40px  Finish the week’s work early and the day
+  p.t.s-body-16.c-neutral-300.paras [5812:20357] x 32 w 640 h 257 y 14043 disp block fs 16px  The moment the last Action Item of the w
+  img.fig [5812:20358] x 32 w 770 h 452 y 14340 disp block fs 16px  
+SEC Start of week top 14864 h 1057
+  h2.t.s-heading-20.c-neutral-525 [5812:20500] x 32 w 113 h 14 y 14936 disp block fs 20px  Start of week
+  p.t.s-heading-40.c-neutral-050 [5812:20501] x 32 w 760 h 121 y 14970 disp block fs 40px  Whether a user finished last week early 
+  p.t.s-body-16.c-neutral-300 [5812:20715] x 32 w 640 h 55 y 15131 disp block fs 16px  This is the first screen a user sees eac
+  ul.week [5812:20504] x 32 w 770 h 555 y 15227 disp flex fs 16px  Template 1 of 5Clean slateThis one only 
+  div.week-nav [5812:20705] x 233 w 369 h 35 y 15814 disp block fs 16px  Scroll to view more templates
+SEC In reflection top 15921 h 742
+  p.t.s-heading-20.c-neutral-500.nowrap [5812:21563] x 32 w 141 h 14 y 16029 disp block fs 20px  What’s still open
+  p.t.s-display-96.c-neutral-050 [5812:21564] x 32 w 760 h 310 y 16067 disp block fs 64px  The least settled rule is the one for wh
+  p.t.s-heading-24.c-neutral-100.paras [5812:21566] x 32 w 640 h 173 y 16417 disp block fs 24px  Right now it steps in after three weeks 

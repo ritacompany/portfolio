@@ -7,8 +7,8 @@ layout check. What is missing is his eye on them, on a real phone, page by page.
 review loop that is fast for him, plus Figma only where he wants to redesign something.
 
 1. **Put the site on his phone today.** Serve the build on the home wifi so he opens it on his own phone
-   (Safari, real fonts, real touch). Zero setup, no account. This replaces the old preview link, which is
-   private to the first account.
+   (Safari, real fonts, real touch). Zero setup, no account. The preview link in docs/SITE_BUILD_PLAN.md
+   (review loop) also works on his phone.
 2. **Then a real preview address.** Cloudflare Pages gives every branch its own preview address on the free
    plan. That is the hosting decided on 7 Nov, so setting it up for previews is the same work the domain
    move off Wix (deadline 26 Nov) needs anyway. One job, two wins. Needs his Cloudflare login.

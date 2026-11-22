@@ -1,5 +1,17 @@
 # Portfolio decisions
 
+## 2026-11-20: The Mondai collection page is the "Mondai case study collection" frame
+
+Chadwick's 20 Nov review: the new frame "Mondai case study collection" (6331:27875, file
+5RO0m4bYYrTvbiaOgaU3tI, page CS) replaces the old "Mondai Case Studies" list (Transported Multi-CS
+Model 5812:22999 and the list frame 4288:36293 in the Portfolio Design file); that page will not be
+used. `/mondai/` (site/mondai/index.html, site/css/collection.css) was rebuilt from 6331:27875: the
+Mondai wordmark with the "Case study collection" label, then three cards (Framework CS live, Operations
+CS and Design system CS locked with "(Coming soon)"). The frame is unfinished: the Operations and Design
+system images are still to come, so their slots hold Figma's placeholders at the true 394 by 469. He is
+editing the frame himself; build from the live frame, never over his changes. The old rows (intro
+paragraph, list with badges, Design system linking to #design-system) are gone from the site.
+
 ## 2026-11-12: No stroke on the footer portraits, on any page
 
 Chadwick has asked in several chats for no stroke on the footer portraits (9 Nov: "neither should have a stroke"; again 12 Nov). The rim was the pill's light background being antialiased separately from the photo, so a thin grey line showed around the black suit. The fix had only ever been made in the preview layer (`site/dev/preview/proposals.css`), which the real pages never load, so it kept coming back. It now lives in `site/css/components.css` (`.footer__pill`: one `clip-path` for the background and the photo, no `border-radius` plus `overflow`), which every page's footer uses. Keep it there: do not reintroduce `border-radius` or `overflow: hidden` on `.footer__pill`, and fix footer issues in `site/css`, never only in a preview file.

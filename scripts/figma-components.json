@@ -34,7 +34,7 @@
       { "name": "State=Locked, Lines=Top + bottom", "node": "5812:22661", "x": 0, "y": 1057, "w": 992, "h": 131 } ] },
     { "key": "button", "node": "5812:22672", "image": "figma/button.png", "w": 299, "h": 77, "variants": [
       { "name": "Property 1=outline", "node": "5812:22691", "x": 0, "y": 0, "w": 299, "h": 76.49 } ] },
-    { "key": "small-button", "node": "5812:22855", "image": "figma/small-button.png", "w": 184, "h": 48, "variants": [
-      { "name": "Property 1=Default", "node": "5812:22856", "x": 0, "y": 0, "w": 184, "h": 48 } ] }
+    { "key": "small-button", "node": "4868:13675", "image": "figma/small-button.png", "w": 130, "h": 34, "variants": [
+      { "name": "Property 1=Default", "node": "4868:13675", "x": 0, "y": 0, "w": 130, "h": 34, "why": "16 Nov: redrawn in his Portfolio Design file IarvWaqjIwrZ2afQmMxKm6; image exported there, its #444 canvas made transparent" } ] }
   ]
 }

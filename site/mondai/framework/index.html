@@ -16,7 +16,10 @@
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/framework.css">
   <link rel="stylesheet" href="/css/mondai-motion.css">
+  <link rel="stylesheet" href="/css/capacity-demo.css">
   <script src="/js/fit-desktop.js"></script>
+  <link rel="stylesheet" href="/css/page-transition.css">
+  <script src="/js/page-transition.js"></script>
 </head>
 <body>
   <div class="canvas framework" id="top" data-figma-node="5812:16446">
@@ -151,8 +154,8 @@
         <p class="t s-label-14-c c-green" data-figma-node="5812:20314" style="left:900px;top:1389px;width:239px">Rollover</p>
         <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20315" style="left:900px;top:1423px;width:174px">An Action Item carried over from last week.</p>
         <img class="fig" data-figma-node="5812:20316" src="/assets/framework/rollover-v4@2x.webp" alt="An unfinished Action Item tagged Rollover, carried into the new week." width="815" height="201" loading="lazy" decoding="async" style="left:41px;top:1336px;width:815px;height:201px">
-        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20350" style="left:391px;top:1659.66px;width:543px">A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.</p>
         <p class="t s-heading-20 c-neutral-050 nowrap fb-effect" data-figma-node="5812:20346" style="left:391px;top:1615.83px"><img src="/assets/framework/rollover-icon-v4.svg" alt="" width="19" height="26">The Rollover effect</p>
+        <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20350" style="left:391px;top:1659.66px;width:543px">A week that comes up short can feel like failing, and that feeling makes users less likely to keep going. So nobody has to decide what to do with it while they’re already behind: an unfinished Action Item moves into the next week on its own. Asking users to choose at that moment, with the math on screen, makes it feel like a gate instead of a guide. The Rollover takes up some of the next week’s capacity, so some of that week’s Action Items move to the week after, and the ones behind them move along too. That is why the pace date moves later, and since the journey pace is the last Pathway’s pace, the journey moves with it. The target stays where it was.</p>
       </section>
       <section class="fw-sec" data-figma-node="5812:20498" aria-label="Start of week" style="height:1305px">
         <h2 class="t s-heading-20 c-neutral-525" data-figma-node="5812:20500" style="left:158px;top:64px;width:660px">Start of week</h2>
@@ -160,10 +163,24 @@
         <p class="t s-body-16 c-neutral-300" data-figma-node="5812:20715" style="left:1098px;top:490px;width:309px">This is the first screen a user sees each Sunday, before the Action Hub. It picks one of five versions depending on how last week went. If they’re on track, it says less. If they’re behind their target, it offers ways to catch up.</p>
         <div class="sow" data-figma-node="5812:20504" style="left:33px;top:371px"><div class="sow__stage" role="region" aria-roledescription="carousel" aria-label="Start of week templates. Use the arrow keys or the dots to see all five." tabindex="0"><img class="sow__card" src="/assets/framework/week-card-clean-slate@2x.webp" width="580" height="550" alt="Template 1 of 5, Clean slate: the clean slate start of week screen in Mondai." aria-roledescription="slide" data-title="Clean slate" data-desc="This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead." decoding="async"><img class="sow__card" src="/assets/framework/week-card-catching-up@2x.webp" width="578.5" height="550" alt="Template 2 of 5, Catching up: the catching up start of week screen in Mondai." aria-roledescription="slide" data-title="Catching up" data-desc="Finishing every Action Item doesn’t close the gap for a user who is behind, so this screen shows how many days they made up last week and points them to finishing early until they’re back on target." decoding="async"><img class="sow__card" src="/assets/framework/week-card-rollover@2x.webp" width="558.5" height="550" alt="Template 3 of 5, Rollover: the rollover start of week screen in Mondai." aria-roledescription="slide" data-title="Rollover" data-desc="When a week ends unfinished, the Rollover Action Items wait in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes unseen." decoding="async"><img class="sow__card" src="/assets/framework/week-card-recalibration@2x.webp" width="559.5" height="504" alt="Template 4 of 5, Recalibration: the recalibration start of week screen in Mondai." aria-roledescription="slide" data-title="Recalibration" data-desc="Rollover handles one unfinished week. When it keeps happening, the screen suggests a capacity that fits the hours the user has been giving. They can take it, set their own or skip it with a warning." decoding="async"><img class="sow__card" src="/assets/framework/week-card-reset@2x.webp" width="559.5" height="475.5" alt="Template 5 of 5, Reset: the reset start of week screen in Mondai." aria-roledescription="slide" data-title="Reset" data-desc="After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with their progress kept. It has one button, because most users would pick keep my plan just because it’s the default." decoding="async"></div><div class="sow__dots"><button type="button" class="sow__dot" aria-label="Show template 1 of 5" aria-current="true"></button><button type="button" class="sow__dot" aria-label="Show template 2 of 5"></button><button type="button" class="sow__dot" aria-label="Show template 3 of 5"></button><button type="button" class="sow__dot" aria-label="Show template 4 of 5"></button><button type="button" class="sow__dot" aria-label="Show template 5 of 5"></button></div><div class="sow__cap" aria-live="polite"><p class="t s-label-12-c c-neutral-525 sow__label" data-figma-node="5812:20702">Template <span class="sow__num"><span>1</span></span> of 5</p><p class="t s-heading-20 w-bold c-neutral-100 sow__title sow__fade" data-figma-node="5812:20703">Clean slate</p><p class="t s-body-16 c-neutral-300 sow__desc sow__fade" data-figma-node="5812:20704">This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead.</p></div></div>
       </section>
-      <section class="fw-sec" data-figma-node="5812:21559" aria-label="What’s still open" style="height:831px">
-        <p class="t s-heading-20 c-neutral-500 nowrap" data-figma-node="5812:21563" style="left:156px;top:64px">What’s still open</p>
-        <p class="t s-display-96 c-neutral-050" data-figma-node="5812:21564" style="left:149px;top:134px;width:1291px">The least settled rule is the one for when Recalibration steps in, because no user had lived a week with the plan yet.</p>
-        <p class="t s-heading-24 c-neutral-100 paras paras-tight" data-figma-node="5812:21566" style="left:272px;top:565px;width:900px"><span class="para">Right now it steps in after three weeks in a row where a user finishes less than about half the hours they set. That line is a starting point, and the first users’ weeks will move it.</span><span class="para">It comes too early if most users who see it skip it and catch up anyway, and too late if users stop coming back before it ever shows.</span></p>
+      <section class="fw-sec fw-end-sec" data-figma-node="5812:21559" aria-label="The test">
+        <!-- CS2 ending, example results (final-copy.md, his ask 14 Nov; reviewed as ending-filled-preview.html). Every count is an invented example until the tests in ending-test-plan.md run. No Figma frame yet. -->
+        <h2 class="t s-heading-20 c-neutral-500 nowrap fw-end__eyebrow">The test</h2>
+        <p class="t s-display-96 c-neutral-050 fw-end__title">No one had lived a week with the plan. Eight people lived two weeks of it.</p>
+        <div class="fw-end">
+          <dl class="fw-end__ctx">
+            <div><dt class="t s-label-12-c c-neutral-525">What I tested</dt><dd class="t s-heading-20 c-neutral-300">Whether people give the hours they say they can, and whether the target and pace dates and Rollover make sense unexplained.</dd></div>
+            <div><dt class="t s-label-12-c c-neutral-525">How</dt><dd class="t s-heading-20 c-neutral-300">Each person typed their hours, worked a plan sized to them for two real weeks and logged every session. A prototype click-through only shows what people say they’d do. Each test needed at least 5 of 8 to pass.</dd></div>
+          </dl>
+          <ul class="fw-end__stats">
+            <li class="fw-end__stat"><p class="t s-label-12-c c-neutral-525 fw-end__tag">Capacity</p><p class="t fw-end__num">6<span class="fw-end__den">of 8</span></p><span class="fw-end__dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><p class="t s-heading-20 c-neutral-300 fw-end__label">spent at least four fifths of the hours they typed</p></li>
+            <li class="fw-end__stat"><p class="t s-label-12-c c-neutral-525 fw-end__tag">Target and pace</p><p class="t fw-end__num">7<span class="fw-end__den">of 8</span></p><span class="fw-end__dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><p class="t s-heading-20 c-neutral-300 fw-end__label">predicted what a short week does to their dates</p></li>
+            <li class="fw-end__stat"><p class="t s-label-12-c c-neutral-525 fw-end__tag">Rollover</p><p class="t fw-end__num">6<span class="fw-end__den">of 8</span></p><span class="fw-end__dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><p class="t s-heading-20 c-neutral-300 fw-end__label">read carried over work as the plan helping them</p></li>
+          </ul>
+          <p class="t s-heading-20 c-neutral-100 fw-end__passed">All three passed.</p>
+          <p class="t s-label-12-c c-neutral-525 fw-end__key">What I changed</p>
+          <p class="t fw-end__close">The <b>two</b> who spent less than four fifths had typed the most hours, so their plans overfilled. Recalibration, which offers a lower number, now steps in after two short weeks instead of three.</p>
+        </div>
       </section>
     </main>
 
@@ -209,7 +226,7 @@
                 <div class="footer__links">
                   <p class="footer__label footer__links-label">Links</p>
                   <a class="footer__out col-7 span-3" href="https://www.linkedin.com/in/chadwickfenner/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
-                  <a class="footer__out col-10 span-3" href="#resume" hidden data-hidden-until="his resume file"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+                  <a class="footer__out col-10 span-3" data-link-until="his resume file"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
                 </div>
               </div>
             </div>
@@ -221,5 +238,6 @@
 <script src="/js/start-of-week.js" defer></script>
 <script src="/vendor/lenis-1.1.20.min.js" defer></script>
 <script src="/js/mondai-motion.js" defer></script>
+<script type="module" src="/js/capacity-demo.js"></script>
 </body>
 </html>

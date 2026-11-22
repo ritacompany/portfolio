@@ -43,10 +43,10 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
   EXPECT: ^HAVEN_TABLET_OK 8 of 8$
   EVIDENCE: 14 Nov run: exit 0, HAVEN_TABLET_OK 8 of 8. F12 fixed in site/css/components.css on his word (13 Nov: the labels fit, the layout was wrong): measured labels 319, 190 and 297 px; the bar is 44 px at 768, 834, 1024, 1180 and 1440 on Haven and framework. Before the fixes: 55 problems
 
-- [ ] R3: F7 to F10 no picture is shown larger than its own pixels on a 2x screen, at 768, 1024, 1180 and 1440
+- [x] R3: F7 to F10 no picture is shown larger than its own pixels on a 2x screen, at 768, 1024, 1180 and 1440
   CHECK: node reports/haven-tablet/media.mjs 768,1024,1180,1440
   EXPECT: ^MEDIA_SHARP_OK$
-  EVIDENCE: unmet: 32 soft images; every Haven picture is a 1x export. Needs his 2x exports (Figma connector is on a view seat at its limit)
+  EVIDENCE: 17 Nov: exit 0, MEDIA_SHARP_OK. Every soft picture rendered from his Figma file at 2x (3x for the profile frame and program texture); see reports/haven-images/GATES.md
 
 - [x] R4: the tablet rules still move nothing at 390, 1200 and 1440
   CHECK: node reports/haven-tablet/swap.mjs
@@ -54,7 +54,7 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
   EVIDENCE: 13 Nov run: exit 0, 474 boxes identical at 390, 1200 and 1440; control differs at 768 (295) and 1180 (304)
 
 - [x] R5: F1 has researched examples and one recommended pattern, and he has picked before anything is rebuilt
-  EVIDENCE: timeline-research.md (nine examples), his yes 14 Nov; built in current.css below 1160. verify.mjs F1 passes 8 of 8 runs (end marker in the first view at 768); with the block stripped F1 fails
+  EVIDENCE: timeline-research.md (nine examples), his yes 14 Nov; built in current.css below 1160. verify.mjs F1 passes 8 of 8 runs (end marker in the first view at 768); with the block stripped F1 fails. 16 Nov: rebuilt to his 1b pick (Figma 5053:13372); verify.mjs 768,834,900,1024,1159,1180 HAVEN_TABLET_OK 12 of 12, swap.mjs HAVEN_SWAP_OK 3 widths
 
 - [x] R6: F13 is answered with what exists and a proposal for what does not
   EVIDENCE: answered in this session's reply; a session for live comments proposed as its own task
@@ -63,3 +63,13 @@ Scope: every issue in ISSUES.md fixed at 768, 834, 1024 and 1180 with reduced mo
   CHECK: node /Users/chadwickfenner/.claude/skills/fix-the-process/scripts/check-fix-record.mjs fixes/2026-11-13-haven-tablet-review-misses.md
   EXPECT: fix record complete
   EVIDENCE: check-fix-record: fix record complete (status: not verified, layer 2)
+
+## Round 3: F1 rebuilt to his 1b pick, 16 Nov
+
+- [x] R8: from 768 to 1159 the MVP chart is his 1b timeline (Figma 5053:13372); every stage name fits inside its pill, every pill sits in the track, the end marker sits on line 6, nothing scrolls sideways, at 768, 834, 900, 1024, 1159 and 1180
+  CHECK: node reports/haven-tablet/verify.mjs 768,834,900,1024,1159,1180
+  EXPECT: ^HAVEN_TABLET_OK 12 of 12$
+  EVIDENCE: 16 Nov run after the pill colour fix: exit 0, HAVEN_TABLET_OK 12 of 12. Positive control: with the 14 Nov current.css it prints 2 problems (F1 1b timeline hidden) at 768. swap.mjs HAVEN_SWAP_OK 3 widths (390, 1200, 1440 unchanged). Screens at 768 and 1159 viewed against his frame
+
+- [x] R9: his Figma frame 5053:13391 shows the whole timeline with 48 px under it and his trimmed top kept (his yes, 16 Nov)
+  EVIDENCE: use_figma read back: frame 907 tall, track at y -31 as he set it, 48 px from the track bottom to the frame bottom, bottom aligned (was centred); the section grew to 1628 on its own auto layout
