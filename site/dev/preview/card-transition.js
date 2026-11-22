@@ -1,34 +1,36 @@
 // Card to collection transition, proposal (docs/motion/card-transition/). Preview only: lives in
-// site/dev/preview until Chadwick says yes, then moves into site/js/site.js and the pages unchanged.
+// site/dev/preview until Chadwick says yes. Lands on the new collection page (Figma 6331:27875, PR #30).
 //
-// One script on both pages. Home: a release on the Mondai card draws a copy of the card exactly where it
-// is, fades a Neutral/900 veil over everything else (220 ms), keeps where every part of the card sat in
-// this tab's session storage and opens /mondai/. Collection: reads that, starts on the same frame (the
-// card alone on Neutral/900) and plays one of three directions, then hands the words to the real title
-// and label with no jump.
-//   A. Open: the card's frame grows to fill the screen and becomes the page.
-//   B. Dock: the card closes along an arc into the Mondai mark beside the title.
-//   C. Zoom: the page arrives as a half size miniature under the card's name and the view zooms in.
+// Three directions, picked in the edit panel (Motion tab):
+//   A. Title: PR #30's own page change, untouched (site/js/page-transition.js, a cross document view
+//      transition): the card's "Mondai" grows into the wordmark while the pages fade through the page
+//      colour. This script stays out of the way.
+//   B. Card: the card's picture frame travels and resizes into the Framework CS card's frame; inside it the
+//      Home picture gives way to the framework preview. "Mondai" grows into the wordmark.
+//   C. Open: the card's frame grows to fill the screen and becomes the page; the picture dissolves into it.
+//      "Mondai" grows into the wordmark.
+// B and C: on release Home draws a copy of the card's picture and shared words exactly where they are and
+// fades a Neutral/900 veil over everything else (220 ms), keeps where they sat in this tab's session
+// storage and opens /mondai/. The collection starts on that same frame and plays the direction; the
+// browser's view transition is skipped for that one page change. The collection to framework page change
+// stays PR #30's in every direction.
 // Every frame is a pure function of time (window.CardTransition.seek), so the review capture can step it.
 // Reduced motion: no exit, no arrival; the link opens the page at rest.
 (function cardTransition() {
   if (window.CardTransition) return;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   const SEEK = !!window.__CT_SEEK; // review capture: nothing runs on its own clock, nothing navigates
-  const O = {
-    dir: "A", exit: 220,
-    kA: 80, dA: 18, kB: 120, dB: 22, kC: 40, dC: 13,
-  };
-  const FILL = { A: 0.45, B: 0.45, C: 0.35 }; // share of the travel (spring progress) at which the page only items start
-  // C draws the page while it moves, so its items fade quicker than the shared 1.4 s and start at once.
-  const FADE = { A: [1000, 120], B: [1000, 120], C: [700, 80] }; // share of the travel at which the page only items start to fade in
+  const O = { dir: "B", exit: 220, kB: 90, dB: 19, kC: 80, dC: 18 };
+  const DIRS = ["A", "B", "C"];
+  const FILL = { B: 0.3, C: 0.3 };          // spring progress at which the page only items start
+  const FADE = { B: [900, 90], C: [1000, 100] }; // page only items: fade length and step, ms
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
   };
   const saved = store.get("card-transition:dir");
-  if (saved && /^[ABC]$/.test(saved)) O.dir = saved;
-  try { const q = new URLSearchParams(location.search).get("ct"); if (q && /^[ABC]$/.test(q)) O.dir = q; } catch (e) {}
+  if (saved && DIRS.includes(saved)) O.dir = saved;
+  try { const q = new URLSearchParams(location.search).get("ct"); if (q && DIRS.includes(q)) O.dir = q; } catch (e) {}
 
   // ---- Handoff between the two pages: session storage, with window.name as the fallback
   const HKEY = "card-transition:handoff";
@@ -66,73 +68,63 @@
     for (let t = 0; t < 6; t += 1 / 240) if (Math.abs(1 - spring(t, k, d)) > tol) last = t;
     return Math.round(last * 1000);
   }
-  const rgb = (s) => (s.match(/[\d.]+/g) || [0, 0, 0, 1]).map(Number).concat([1]).slice(0, 4);
-  const mix = (a, b, p) => { const x = rgb(a), y = rgb(b); return `rgba(${x.map((v, i) => (i < 3 ? Math.round(lerp(v, y[i], p)) : +lerp(v, y[i], p).toFixed(3))).join(", ")})`; };
   const box = (el) => { const r = el.getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; };
   const lerpBox = (a, b, p) => ({ x: lerp(a.x, b.x, p), y: lerp(a.y, b.y, p), w: lerp(a.w, b.w, p), h: lerp(a.h, b.h, p) });
   const TEXT_PROPS = ["font-family", "font-size", "font-weight", "line-height", "letter-spacing", "text-transform", "color", "text-box-trim", "text-box-edge", "font-feature-settings", "-webkit-font-smoothing", "padding-inline-end"];
   const styleOf = (el) => { const cs = getComputedStyle(el), o = {}; for (const p of TEXT_PROPS) o[p] = cs.getPropertyValue(p); return o; };
   const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(), cs = getComputedStyle(el); return r.width > 0 && r.height > 0 && cs.visibility !== "hidden" && cs.display !== "none" && +cs.opacity > 0; };
-  const px = (v) => parseFloat(v) || 0;
 
-  // Parts that are only on the card (the description, the phone's Learn more): copied with their own box,
-  // every visual property inlined, so the copy draws exactly what Home drew.
-  const BOX_PROPS = ["display", "box-sizing", "width", "height", "padding", "border", "border-radius", "background-color", "background-image", "box-shadow", "color", "font", "letter-spacing", "text-transform", "text-box-trim", "text-box-edge", "white-space", "zoom", "align-items", "justify-content", "gap", "-webkit-text-stroke", "text-align", "opacity", "-webkit-font-smoothing", "position", "inset", "translate"];
-  function serial(el) {
-    const copy = el.cloneNode(true), a = [el, ...el.querySelectorAll("*")], b = [copy, ...copy.querySelectorAll("*")];
-    a.forEach((n, i) => {
-      const cs = getComputedStyle(n), o = b[i];
-      o.removeAttribute("class"); o.removeAttribute("id"); o.removeAttribute("href");
-      o.setAttribute("style", BOX_PROPS.map((p) => `${p}:${cs.getPropertyValue(p)}`).join(";"));
-    });
-    copy.style.position = "static"; copy.style.inset = "auto"; copy.style.translate = "none"; copy.style.margin = "0";
-    return copy.outerHTML;
-  }
-  const make = (cls, parent) => { const e = document.createElement("div"); e.className = cls; parent && parent.append(e); return e; };
+  const make = (cls, parent, tag = "div") => { const e = document.createElement(tag); e.className = cls; parent && parent.append(e); return e; };
   function textCopy(text, st, parent) {
     const e = make("ct-text", parent);
     e.textContent = text;
     for (const p in st) if (st[p]) e.style.setProperty(p, st[p]);
     return e;
   }
-  function extraCopy(x, parent) { const e = make("ct-text", parent); e.innerHTML = x.html; return e; }
   const place = (e, x, y, s = 1) => { e.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${s.toFixed(5)})`; };
+  const imgCopy = (src, w, h, parent, cls = "ct-img") => {
+    const i = make(cls, parent, "img");
+    i.alt = ""; i.decoding = "sync"; i.src = src;
+    i.style.width = w + "px"; i.style.height = h + "px";
+    return i;
+  };
 
-  // Everything the card draws in its media: the background and each visible image at its drawn rect.
+  // The card's picture: its background and each visible image at its drawn rect.
   function snapMedia(media) {
     const m = box(media), cs = getComputedStyle(media);
     const imgs = [...media.querySelectorAll("img")].filter(visible).map((img) => ({ src: img.currentSrc || img.src, r: box(img), o: +getComputedStyle(img).opacity }));
     return { r: m, bg: cs.backgroundImage !== "none" ? cs.backgroundImage : "", bgc: cs.backgroundColor, imgs };
   }
-  function drawMedia(snap, parent) {
+  // A frame that clips; inside it the Home picture (with a Neutral/900 shade over it) and, for B, the
+  // picture that waits at the destination.
+  function drawFrame(snap, parent, dest) {
     const wrap = make("ct-pic", parent);
     const bg = make("ct-bg", wrap);
     bg.style.width = snap.r.w + "px"; bg.style.height = snap.r.h + "px";
     bg.style.backgroundColor = snap.bgc; if (snap.bg) bg.style.backgroundImage = snap.bg;
-    const imgs = snap.imgs.map((d) => {
-      const i = document.createElement("img");
-      i.className = "ct-img"; i.alt = ""; i.decoding = "sync"; i.src = d.src;
-      i.style.width = d.r.w + "px"; i.style.height = d.r.h + "px"; i.style.opacity = d.o;
-      wrap.append(i);
-      return { el: i, r: d.r };
-    });
-    // A Neutral/900 shade over the picture: the words travel across it, so it darkens under them first.
+    const imgs = snap.imgs.map((d) => { const i = imgCopy(d.src, d.r.w, d.r.h, wrap); i.style.opacity = d.o; return { el: i, r: d.r }; });
     const shade = make("ct-shade", wrap);
-    return { wrap, bg, imgs, shade };
+    let to = null;
+    if (dest) { to = imgCopy(dest.src, dest.r.w, dest.r.h, wrap, "ct-img ct-cover"); to.style.opacity = "0"; }
+    return { wrap, bg, imgs, shade, to, dest };
   }
-  // Draw the picture as if its frame were the box F: the frame clips, the picture covers it from its centre.
-  function paintMedia(M, snap, F, radius = 0, opacity = 1, shade = 0) {
+  // Draw the frame as the box F: it clips, the Home picture covers it from its centre.
+  function paintFrame(M, snap, F, { home = 1, shade = 0, dest = 0 } = {}) {
     const vw = innerWidth, vh = innerHeight, o = snap.r;
-    M.wrap.style.clipPath = `inset(${F.y.toFixed(2)}px ${(vw - F.x - F.w).toFixed(2)}px ${(vh - F.y - F.h).toFixed(2)}px ${F.x.toFixed(2)}px round ${radius.toFixed(2)}px)`;
-    M.wrap.style.opacity = opacity.toFixed(4);
-    M.shade.style.opacity = shade.toFixed(4);
+    M.wrap.style.clipPath = `inset(${F.y.toFixed(2)}px ${(vw - F.x - F.w).toFixed(2)}px ${(vh - F.y - F.h).toFixed(2)}px ${F.x.toFixed(2)}px)`;
     const s = Math.max(F.w / o.w, F.h / o.h), cx = F.x + F.w / 2, cy = F.y + F.h / 2, ox = o.x + o.w / 2, oy = o.y + o.h / 2;
-    place(M.bg, cx - (o.w * s) / 2, cy - (o.h * s) / 2, 1);
-    M.bg.style.transform += ` scale(${s.toFixed(5)})`;
-    for (const i of M.imgs) place(i.el, cx + (i.r.x - ox) * s, cy + (i.r.y - oy) * s, s);
+    place(M.bg, cx - (o.w * s) / 2, cy - (o.h * s) / 2, 1); M.bg.style.transform += ` scale(${s.toFixed(5)})`;
+    M.bg.style.opacity = home.toFixed(4);
+    for (const i of M.imgs) { place(i.el, cx + (i.r.x - ox) * s, cy + (i.r.y - oy) * s, s); i.el.style.opacity = home.toFixed(4); }
+    M.shade.style.opacity = (shade * home).toFixed(4);
+    if (M.to) {
+      const r = M.dest.r, k = Math.max(F.w / r.w, F.h / r.h);
+      place(M.to, cx - (r.w * k) / 2, cy - (r.h * k) / 2, k);
+      M.to.style.opacity = dest.toFixed(4);
+    }
   }
 
-  // =============================================================== Home: the exit
+  // =============================================================== Home: the exit (B and C)
   const card = document.querySelector("a.work-card-mondai");
   let exiting = null;
   function snapCard(e) {
@@ -140,44 +132,31 @@
     const part = (sel) => { const el = card.querySelector(sel); return visible(el) ? { r: box(el), st: styleOf(el), text: el.textContent.trim() } : null; };
     const m = box(media);
     const pt = e && e.clientX ? { x: e.clientX, y: e.clientY } : { x: m.x + m.w / 2, y: m.y + m.h / 2 };
-    return {
-      v: 1, at: Date.now(), dir: O.dir, vw: innerWidth, vh: innerHeight, pt,
-      media: snapMedia(media),
-      name: part(".work-card__name"), slashes: part(".work-card__slashes"), kind: part(".work-card__kind"),
-      extras: [...card.querySelectorAll(".work-card__desc, .work-card__more, .work-card__learn")].filter(visible).map((el) => ({ r: box(el), html: serial(el) })),
-    };
-  }
-  function buildCardCopy(d, layer) {
-    const M = drawMedia(d.media, layer);
-    paintMedia(M, d.media, d.media.r);
-    const texts = ["name", "slashes", "kind"].map((k) => d[k]).filter(Boolean).map((p) => {
-      const e = textCopy(p.text, p.st, layer); place(e, p.r.x, p.r.y); return e;
-    });
-    // Card only parts (the description, the phone's Learn more) are left under the veil: they do not
-    // continue to the collection, so they go with Home and never meet the travelling words.
-    return { M, texts };
+    return { v: 2, at: Date.now(), dir: O.dir, vw: innerWidth, vh: innerHeight, pt, media: snapMedia(media), name: part(".work-card__name"), kind: part(".work-card__kind") };
   }
   function exitFrame(t) {
-    if (!exiting) return;
-    exiting.veil.style.opacity = (1 - (1 - clamp(t / O.exit)) ** 4).toFixed(4); // quart out
+    if (exiting) exiting.veil.style.opacity = (1 - (1 - clamp(t / O.exit)) ** 4).toFixed(4); // quart out
   }
   function startExit(e) {
     const d = snapCard(e);
     const layer = make("ct-layer ct-layer--exit", document.body);
     const veil = make("ct-veil", layer);
     veil.style.opacity = "0";
-    buildCardCopy(d, layer);
+    // What continues: the picture and the two shared words. The "//", the description and the phone's
+    // Learn more are not on the collection, so they go with Home under the veil.
+    const M = drawFrame(d.media, layer);
+    paintFrame(M, d.media, d.media.r);
+    for (const p of [d.name, d.kind]) if (p) place(textCopy(p.text, p.st, layer), p.r.x, p.r.y);
     exiting = { layer, veil, d };
     const cur = window.SiteCursor && window.SiteCursor.element;
     if (cur) cur.style.opacity = "0";
     handoff.save(d);
     if (SEEK) return;
     const t0 = performance.now();
-    const go = () => location.assign(card.href);
     (function tick(now) {
       const t = now - t0;
       exitFrame(t);
-      if (t >= O.exit) { go(); return; }
+      if (t >= O.exit) { location.assign(card.href); return; }
       requestAnimationFrame(tick);
     })(t0);
   }
@@ -188,12 +167,14 @@
   }
   if (card) {
     card.addEventListener("click", (e) => {
+      if (O.dir === "A") return; // PR #30's view transition takes this one
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       if (reduce.matches || exiting) return;
       e.preventDefault();
       startExit(e);
     });
-    // Back to Home from the collection: the page comes back from the cache as it was left.
+    // The veil already did the browser's fade; skip its view transition for this one page change.
+    addEventListener("pageswap", (e) => { if (exiting && e.viewTransition) e.viewTransition.skipTransition(); });
     addEventListener("pageshow", (e) => { if (e.persisted) clearExit(); });
   }
 
@@ -201,149 +182,124 @@
   const coll = document.querySelector("main.collection");
   const canvas = coll && coll.closest(".canvas");
   let run = null;
-  const imp = (el, p, v) => el.style.setProperty(p, v, "important");
-  // The page's own entrance (mondai-motion) also fades these items; while the transition owns them its
-  // animations are cancelled, so the two never fight over a frame.
-  const quiet = (el) => { if (el && el.getAnimations) for (const a of el.getAnimations()) if (a.id !== "ct") a.cancel(); };
+  const imp = (el, p, v) => el && el.style.setProperty(p, v, "important");
+  // The page's own entrance (mondai-motion) also animates these items; while the transition owns them
+  // its animations are cancelled, so the two never fight over a frame.
+  const quiet = (el) => { if (el && el.getAnimations) for (const a of el.getAnimations({ subtree: true })) a.cancel(); };
 
   function measure() {
     const q = (s) => canvas.querySelector(s);
+    // Cards whose head is not yet 100 px inside the screen (the phone's lower cards) stay with the page's
+    // own scroll entrance, as on a direct visit; the transition only owns what the visitor can see.
+    const cards = [...canvas.querySelectorAll(".collection__cards > li")].filter((li) => {
+      const h = li.querySelector(".cs-card__head");
+      return (h ? h.getBoundingClientRect().top : li.getBoundingClientRect().top) < innerHeight - 100;
+    });
     const P = {
-      header: canvas.querySelector(":scope > .page-header"), brand: q(".collection__brand"), mark: q(".collection__mark"),
-      h1: q(".collection__brand h1"), intro: q(".collection__intro"), label: q(".collection__label"),
-      slashes: q(".collection__slashes"), kind: q(".collection__label h2"), rows: [...canvas.querySelectorAll(".collection__rows > li")],
+      header: canvas.querySelector(":scope > .page-header"), title: q(".collection__title"),
+      wordmark: q(".collection__wordmark"), wordImg: q(".collection__wordmark img"), kind: q(".collection__kind"),
+      cards, live: cards.find((li) => li.querySelector(".cs-card__link")),
     };
-    if (!P.h1 || !P.label || !P.kind) return null;
-    const D = {};
-    for (const k of ["mark", "h1", "slashes", "kind"]) if (P[k]) D[k] = { r: box(P[k]), st: styleOf(P[k]) };
-    return { P, D };
+    if (!P.wordmark || !P.wordImg || !P.kind || !P.live) return null;
+    P.liveMedia = P.live.querySelector(".cs-card__media"); P.liveImg = P.liveMedia && P.liveMedia.querySelector("img");
+    P.liveHead = P.live.querySelector(".cs-card__head");
+    return { P, D: { wordmark: box(P.wordmark), kind: { r: box(P.kind), st: styleOf(P.kind) }, media: box(P.liveMedia) } };
   }
 
   function prepare(d) {
     const m = measure();
     if (!m) return null;
     const { P, D } = m;
-    const dir = /^[ABC]$/.test(d.dir) ? d.dir : "A";
+    const dir = d.dir === "C" ? "C" : "B";
     const k = O["k" + dir], dd = O["d" + dir], T = settle(k, dd);
-    const R = { d, dir, P, D, k, dd, T, words: [], fades: [] };
+    const R = { d, dir, P, D, k, dd, T };
+    const prog = (t) => (t >= T ? 1 : clamp(spring(t / 1000, k, dd) / spring(T / 1000, k, dd)));
+    const when = (q) => { let t = 0; while (t < T && prog(t) < q) t += 4; return t; };
+    R.prog = prog;
 
-    // Layers: the picture (behind the page for C, so the miniature page sits over the card) and the words.
-    R.pic = make("ct-layer ct-layer--pic" + (dir === "C" ? " is-under" : ""), document.body);
+    R.pic = make("ct-layer ct-layer--pic", document.body);
     R.wordsLayer = make("ct-layer ct-layer--words", document.body);
-    R.M = drawMedia(d.media, R.pic);
-    if (dir === "C") { canvas.style.position = "relative"; canvas.style.zIndex = "1"; canvas.style.transformOrigin = "0 0"; }
+    R.M = drawFrame(d.media, R.pic, dir === "B" && P.liveImg ? { src: P.liveImg.currentSrc || P.liveImg.src, r: D.media } : null);
 
-    // Shared words: copies drawn in the collection's own style, starting at the card's size, spacing and colour.
-    const pairs = [["name", "h1"], ["slashes", "slashes"], ["kind", "kind"]];
-    for (const [from, to] of pairs) {
-      const a = d[from], b = D[to];
-      if (!b) continue;
-      if (!a) { R.fades.push(P[to]); continue; } // not on the card at this width (the phone has no //): fades in
-      if (dir === "C" && to === "h1") { R.h1Rides = { a, b }; continue; } // the real title rides the page
-      const s0 = px(a.st["font-size"]) / px(b.st["font-size"]);
-      const el = textCopy(P[to].textContent.trim(), b.st, R.wordsLayer);
-      R.words.push({ el, a, b, s0, real: P[to], ls0: px(a.st["letter-spacing"]) / s0, ls1: px(b.st["letter-spacing"]) });
+    // "Mondai": the card's word fades out while the wordmark, drawn at its full size and scaled down to the
+    // word's width, fades in over it; both grow together, pinned at the baseline and the left edge.
+    if (d.name) {
+      R.nameText = textCopy(d.name.text, d.name.st, R.wordsLayer);
+      R.mark = imgCopy(P.wordImg.currentSrc || P.wordImg.src, D.wordmark.w, D.wordmark.h, R.wordsLayer, "ct-img ct-mark");
     }
-    R.extras = []; // card only parts went with Home's veil
+    // "Case study collection": the card's label travels to the page's label and hands over to it there
+    // (different type on each side: Label/12 C capitals on the card, 16 px on two lines on the page).
+    if (d.kind) R.kindText = textCopy(d.kind.text, d.kind.st, R.wordsLayer);
 
-    // Page only items fade in place in reading order: one step per line, the shared 1.4 s power1 out.
-    const order = [P.header, P.intro, ...P.rows].filter(Boolean);
+    // Page only items fade in place in reading order. B: the live card's head fades and its frame is the
+    // one that arrives; C: the whole live card fades with the others.
+    const steps = [P.header];
+    for (const li of P.cards) steps.push(dir === "B" && li === P.live ? P.liveHead : li);
     R.fadeDur = FADE[dir][0];
-    const when = (q) => { let t = 0; while (t < R.T && spring(t / 1000, k, dd) / spring(R.T / 1000, k, dd) < q) t += 4; return t; };
-    R.fadeList = order.map((el, i) => ({ el, at: when(FILL[dir]) + i * FADE[dir][1] }));
-    // C: the label copy travels down past the intro to reach its place, so the intro waits until it has
-    // passed (75 percent of the travel) and the two lines never cross.
-    if (dir === "C" && P.intro) {
-      const f = R.fadeList.find((x) => x.el === P.intro); if (f) f.at = when(0.75);
-    }
-    // A shared word the card does not draw at this width (the phone has no //) fades in as its partner lands.
-    R.extraFades = R.fades.map((el) => ({ el, at: when(0.85) }));
-    R.end = Math.max(R.T, ...R.fadeList.concat(R.extraFades).map((f) => f.at + R.fadeDur));
+    R.fades = steps.filter(Boolean).map((el, i) => ({ el, at: when(FILL[dir]) + i * FADE[dir][1] }));
+    R.end = Math.max(T, ...R.fades.map((f) => f.at + R.fadeDur));
 
-    // Hold the real page: brand and label boxes shown (their parts are driven one by one), page items hidden.
-    imp(P.brand, "opacity", "1"); imp(P.brand, "visibility", "visible");
-    imp(P.label, "opacity", "1"); imp(P.label, "visibility", "visible");
-    for (const w of R.words) imp(w.real, "visibility", "hidden");
-    for (const f of R.fadeList.concat(R.extraFades)) { imp(f.el, "opacity", "0"); imp(f.el, "visibility", "visible"); }
-    if (P.mark) imp(P.mark, "opacity", "0");
-    if (R.h1Rides) imp(P.h1, "visibility", "visible");
+    // Hold the real page: title block shown with its parts driven one by one, everything else hidden.
+    imp(P.title, "opacity", "1"); imp(P.title, "visibility", "visible");
+    imp(P.wordmark, "visibility", d.name ? "hidden" : "visible");
+    imp(P.kind, "opacity", "0");
+    for (const li of P.cards) {
+      for (const el of li.querySelectorAll(".cs-card__head, .cs-card__media, .cs-card__media-empty")) { imp(el, "opacity", "1"); imp(el, "visibility", "visible"); }
+      for (const img of li.querySelectorAll(".cs-card__media > img")) imp(img, "clip-path", "none");
+    }
+    for (const f of R.fades) { imp(f.el, "opacity", "0"); imp(f.el, "visibility", "visible"); }
+    if (dir === "B") imp(P.liveMedia, "opacity", "0");
     document.documentElement.classList.add("ct-arriving", "ct-checked");
     return R;
   }
 
-  // C's camera: page point (x, y) is drawn at (tx + s x, ty + s y).
-  function camera(R, p) {
-    const a = R.d.name, b = R.D.h1;
-    const s0 = px(a.st["font-size"]) / px(b.st["font-size"]);
-    const tx0 = a.r.x - s0 * b.r.x, ty0 = a.r.y - s0 * b.r.y;
-    return { s0, tx0, ty0, s: lerp(s0, 1, p), tx: lerp(tx0, 0, p), ty: lerp(ty0, 0, p) };
-  }
-  const toWorld = (c, r) => ({ x: (r.x - c.tx0) / c.s0, y: (r.y - c.ty0) / c.s0, w: r.w / c.s0, h: r.h / c.s0 });
-  const toScreen = (c, r) => ({ x: c.tx + c.s * r.x, y: c.ty + c.s * r.y, w: r.w * c.s, h: r.h * c.s });
-
   function frame(R, t) {
     const { d, D, P, dir } = R;
-    // The spring rescaled so it reaches exactly 1 on the frame it settles: the hand over never jumps.
-    const p = t >= R.T ? 1 : clamp(spring(t / 1000, R.k, R.dd) / spring(R.T / 1000, R.k, R.dd));
-    const media = d.media.r, vw = innerWidth, vh = innerHeight;
-    let cam = null;
+    const p = R.prog(t), vw = innerWidth, vh = innerHeight, media = d.media.r;
+    for (const el of [P.title, P.kind, P.wordmark, ...P.cards]) quiet(el);
 
     // ---- The picture
-    if (dir === "A") {
-      const F = lerpBox(media, { x: 0, y: 0, w: vw, h: vh }, p);
-      paintMedia(R.M, d.media, F, 0, 1 - smooth(range(p, 0.35, 0.85)), 0.65 * smooth(range(p, 0, 0.25)));
-    } else if (dir === "B") {
-      const M = D.mark ? D.mark.r : { x: D.h1.r.x - 60, y: D.h1.r.y, w: 40, h: 40 };
-      const px1 = p, py1 = 1 - (1 - p) ** 1.6; // y leads x: the centre travels on an arc, not a diagonal
-      const w = lerp(media.w, M.w, p), h = lerp(media.h, M.h, p);
-      const cx = lerp(media.x + media.w / 2, M.x + M.w / 2, px1), cy = lerp(media.y + media.h / 2, M.y + M.h / 2, py1);
-      const F = { x: cx - w / 2, y: cy - h / 2, w, h };
-      paintMedia(R.M, d.media, F, Math.min(w, h) / 2 * smooth(range(p, 0.2, 0.75)), 1 - smooth(range(p, 0.45, 0.75)), 0.65 * smooth(range(p, 0, 0.25)));
+    if (dir === "B") {
+      // The frame travels to the card's frame; the Home picture is shaded first, then gives way to the
+      // framework preview inside the frame (a container transform: only the frame is shared).
+      const F = lerpBox(media, D.media, p);
+      R.F = F;
+      paintFrame(R.M, d.media, F, { home: 1 - smooth(range(p, 0.2, 0.5)), shade: 0.6 * smooth(range(p, 0, 0.2)), dest: smooth(range(p, 0.4, 0.75)) });
     } else {
-      cam = camera(R, p);
-      canvas.style.transform = p >= 1 ? "" : `translate3d(${cam.tx.toFixed(2)}px, ${cam.ty.toFixed(2)}px, 0) scale(${cam.s.toFixed(5)})`;
-      paintMedia(R.M, d.media, toScreen(cam, toWorld(cam, media)), 0, 1 - smooth(range(p, 0, 0.3)), 0.65 * smooth(range(p, 0, 0.2)));
+      const F = lerpBox(media, { x: 0, y: 0, w: vw, h: vh }, p);
+      paintFrame(R.M, d.media, F, { home: 1 - smooth(range(p, 0.4, 0.9)), shade: 0.65 * smooth(range(p, 0, 0.25)) });
     }
 
-    // ---- Shared words
-    for (const w of R.words) {
-      let to = w.b.r;
-      if (cam) to = toScreen(cam, w.b.r); // C: the label lands where the page's own label is this frame
-      // The label and // drop first (y leads x), so the growing name never runs into them on the card's line.
-      const py = w.real === P.h1 ? p : 1 - (1 - p) ** 2;
-      const x = lerp(w.a.r.x, to.x, p), y = lerp(w.a.r.y, to.y, py);
-      place(w.el, x, y, lerp(w.s0, 1, p));
-      w.el.style.letterSpacing = lerp(w.ls0, w.ls1, p).toFixed(3) + "px";
-      w.el.style.color = mix(w.a.st.color, w.b.st.color, p);
+    // ---- "Mondai" into the wordmark: left edges and baselines meet, the width carries the size
+    if (R.mark) {
+      const a = d.name.r, b = D.wordmark;
+      const w = lerp(a.w, b.w, p), x = lerp(a.x, b.x, p), base = lerp(a.y + a.h, b.y + b.h, p);
+      const sm = w / b.w, st = w / a.w;
+      place(R.mark, x, base - b.h * sm, sm);
+      place(R.nameText, x, base - a.h * st, st);
+      const swap = smooth(range(p, 0, 0.15)); // brief: the two shapes differ a little, so they overlap for only a few frames
+      R.mark.style.opacity = swap.toFixed(4);
+      R.nameText.style.opacity = (1 - swap).toFixed(4);
     }
-    if (R.h1Rides) {
-      const { a, b } = R.h1Rides, s0 = cam.s0;
-      P.h1.style.letterSpacing = lerp(px(a.st["letter-spacing"]) / s0, px(b.st["letter-spacing"]), p).toFixed(3) + "px";
-      P.h1.style.color = mix(a.st.color, b.st.color, p);
+    // ---- The label: travels, grows to the page's size, hands over at the end
+    if (R.kindText) {
+      const a = d.kind.r, b = D.kind.r;
+      const py = 1 - (1 - p) ** 2; // drops first, so the growing wordmark never runs into it
+      const s = lerp(1, parseFloat(D.kind.st["font-size"]) / parseFloat(d.kind.st["font-size"]), p);
+      place(R.kindText, lerp(a.x, b.x, p), lerp(a.y, b.y, py), s);
+      R.kindText.style.opacity = (1 - smooth(range(p, 0.45, 0.65))).toFixed(4); // gone before the page's label shows: two typesettings never overlap
     }
-    // Description and the phone's Learn more: not on the collection, they fade where they are (C: with the world).
-    for (const x of R.extras) {
-      const r = cam ? toScreen(cam, toWorld(cam, x.p.r)) : x.p.r;
-      place(x.el, r.x, r.y, cam ? cam.s / cam.s0 : 1);
-      x.el.style.opacity = (1 - power1Out(t / 180)).toFixed(4); // gone in 180 ms by time, not progress, so a fast spring start never cuts it
-    }
+    imp(P.kind, "opacity", (R.kindText ? smooth(range(p, 0.65, 0.95)) : power1Out((t - (R.fades[0] ? R.fades[0].at : 0)) / R.fadeDur)).toFixed(4));
 
-    // ---- The mark
-    if (P.mark) {
-      const m = dir === "A" ? range(p, 0.5, 1) : dir === "B" ? range(p, 0.5, 0.9) : range(p, 0.3, 0.7);
-      imp(P.mark, "opacity", power1Out(m).toFixed(4));
-    }
-    for (const el of [P.brand, P.label, P.mark, ...R.fadeList.map((f) => f.el), ...R.extraFades.map((f) => f.el)]) quiet(el);
     // ---- Page only items
-    for (const f of R.fadeList.concat(R.extraFades)) imp(f.el, "opacity", power1Out((t - f.at) / R.fadeDur).toFixed(4));
+    for (const f of R.fades) imp(f.el, "opacity", power1Out((t - f.at) / R.fadeDur).toFixed(4));
 
-    // ---- Hand over: the words become the real title and label on the frame the travel settles
+    // ---- Hand over on the frame the travel settles: the copies become the real wordmark and card frame
     if (t >= R.T && !R.handed) {
       R.handed = true;
-      for (const w of R.words) { w.real.style.removeProperty("visibility"); w.el.remove(); }
+      P.wordmark.style.removeProperty("visibility"); imp(P.wordmark, "visibility", "visible");
+      if (dir === "B") imp(P.liveMedia, "opacity", "1");
       R.pic.remove(); R.wordsLayer.remove();
-      if (R.h1Rides) { P.h1.style.letterSpacing = ""; P.h1.style.color = ""; }
-      if (dir === "C") { canvas.style.transform = ""; canvas.style.position = ""; canvas.style.zIndex = ""; canvas.style.transformOrigin = ""; }
     }
     if (t >= R.end) finish(R);
   }
@@ -353,16 +309,14 @@
     if (!R.handed) frame(R, R.T);
     R.done = true;
     const P = R.P;
-    for (const el of [P.brand, P.label, P.mark, P.h1, ...R.fadeList.map((f) => f.el), ...R.extraFades.map((f) => f.el)].filter(Boolean)) {
-      imp(el, "opacity", "1"); imp(el, "visibility", "visible");
-    }
+    for (const el of [P.title, P.wordmark, P.kind, P.liveMedia, ...R.fades.map((f) => f.el)].filter(Boolean)) { imp(el, "opacity", "1"); imp(el, "visibility", "visible"); }
     document.documentElement.classList.remove("ct-arriving");
     removeEventListener("pointerdown", R.stop, true); removeEventListener("keydown", R.stop, true); removeEventListener("wheel", R.stop, true);
     if (run === R) run = null;
   }
 
   function arrive(d, { fresh = true } = {}) {
-    if (!coll || !d || d.v !== 1) return null;
+    if (!coll || !d || d.v !== 2 || d.dir === "A") return null;
     if (fresh && !SEEK && (Date.now() - d.at > 5000)) return null;
     if (Math.abs(d.vw - innerWidth) > 2 || Math.abs(d.vh - innerHeight) > 2) return null;
     if (run) finish(run);
@@ -378,8 +332,9 @@
       const t0 = performance.now();
       (function tick(now) { if (R.done) return; frame(R, now - t0); if (!R.done) requestAnimationFrame(tick); })(t0);
     };
-    // Images were decoded on Home a moment ago; wait at most 150 ms for this page's copy, holding frame 0.
-    Promise.race([Promise.all(R.M.imgs.map((i) => i.el.decode().catch(() => {}))), new Promise((r) => setTimeout(r, 150))]).then(go);
+    // Images were decoded on Home a moment ago; wait at most 150 ms for this page's copies, holding frame 0.
+    const imgs = [...R.pic.querySelectorAll("img"), ...R.wordsLayer.querySelectorAll("img")];
+    Promise.race([Promise.all(imgs.map((i) => i.decode().catch(() => {}))), new Promise((r) => setTimeout(r, 150))]).then(go);
     return R;
   }
 
@@ -387,17 +342,16 @@
     const d = reduce.matches ? null : handoff.take();
     const R = d ? arrive(d) : null;
     if (!R) document.documentElement.classList.add("ct-checked");
+    else addEventListener("pagereveal", (e) => { if (e.viewTransition) e.viewTransition.skipTransition(); });
   }
 
   // =============================================================== Review and tuning
   window.CardTransition = {
     options: O,
     get run() { return run; },
-    // Home: start the exit from a click at (x, y) without navigating; seekExit(t) paints it.
     startExit: (x, y) => startExit(x != null ? { clientX: x, clientY: y } : null),
     seekExit: exitFrame,
     handoff: () => exiting && exiting.d,
-    // Collection: start from a handoff (the last one by default) and paint time t.
     arrive: (d) => arrive(d || handoff.last(), { fresh: false }),
     seek: (t) => run && frame(run, t),
     get duration() { return run ? run.end : 0; },
@@ -405,21 +359,19 @@
   };
 
   const set = (k) => (v) => { O[k] = v; if (k === "dir") store.set("card-transition:dir", v); };
-  const replay = () => { const d = handoff.last(); if (!d) return; d.dir = O.dir; arrive(d, { fresh: false }); };
+  const replay = () => { const d = handoff.last(); if (!d || O.dir === "A") return; d.dir = O.dir; arrive(d, { fresh: false }); };
   const def = {
     id: "card-transition", title: "Card to collection", tab: "Motion",
     note: coll
-      ? "Replay runs the move again here in the direction picked. Pick a direction, then go back to Home and click the Mondai card to feel the whole thing."
+      ? "Replay runs B or C again here. A is the browser's own page change: go back to Home and click the Mondai card to feel it."
       : "Pick a direction, then click the Mondai card. Each opens the collection page a different way.",
     controls: [
-      { key: "dir", label: "Direction", type: "select", options: [["A", "A. Open: the card becomes the page"], ["B", "B. Dock: the card closes into the logo"], ["C", "C. Zoom: the view pushes into the card"]], value: O.dir, default: "A", onInput: set("dir") },
-      { key: "exit", label: "Home fade to black", min: 80, max: 600, step: 10, unit: "ms", value: O.exit, default: 220, onInput: set("exit") },
-      { key: "kA", label: "A spring stiffness", min: 20, max: 300, step: 5, value: O.kA, default: 80, enabledWhen: (v) => v.dir === "A", onInput: set("kA") },
-      { key: "dA", label: "A spring damping", min: 5, max: 40, step: 0.5, value: O.dA, default: 18, enabledWhen: (v) => v.dir === "A", onInput: set("dA") },
-      { key: "kB", label: "B spring stiffness", min: 20, max: 300, step: 5, value: O.kB, default: 120, enabledWhen: (v) => v.dir === "B", onInput: set("kB") },
-      { key: "dB", label: "B spring damping", min: 5, max: 40, step: 0.5, value: O.dB, default: 22, enabledWhen: (v) => v.dir === "B", onInput: set("dB") },
-      { key: "kC", label: "C spring stiffness", min: 20, max: 300, step: 5, value: O.kC, default: 40, enabledWhen: (v) => v.dir === "C", onInput: set("kC") },
-      { key: "dC", label: "C spring damping", min: 5, max: 40, step: 0.5, value: O.dC, default: 13, enabledWhen: (v) => v.dir === "C", onInput: set("dC") },
+      { key: "dir", label: "Direction", type: "select", options: [["A", "A. Title: PR #30's page change, the name grows into the wordmark"], ["B", "B. Card: the picture becomes the Framework CS card"], ["C", "C. Open: the picture fills the screen and becomes the page"]], value: O.dir, default: "B", onInput: set("dir") },
+      { key: "exit", label: "Home fade to black", min: 80, max: 600, step: 10, unit: "ms", value: O.exit, default: 220, enabledWhen: (v) => v.dir !== "A", onInput: set("exit") },
+      { key: "kB", label: "B spring stiffness", min: 20, max: 300, step: 5, value: O.kB, default: 90, enabledWhen: (v) => v.dir === "B", onInput: set("kB") },
+      { key: "dB", label: "B spring damping", min: 5, max: 40, step: 0.5, value: O.dB, default: 19, enabledWhen: (v) => v.dir === "B", onInput: set("dB") },
+      { key: "kC", label: "C spring stiffness", min: 20, max: 300, step: 5, value: O.kC, default: 80, enabledWhen: (v) => v.dir === "C", onInput: set("kC") },
+      { key: "dC", label: "C spring damping", min: 5, max: 40, step: 0.5, value: O.dC, default: 18, enabledWhen: (v) => v.dir === "C", onInput: set("dC") },
     ],
     actions: coll ? [{ label: "Replay", onClick: replay }] : [],
   };

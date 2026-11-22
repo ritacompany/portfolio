@@ -437,7 +437,7 @@ found, run Artifact list and use the "Chadwick Fenner, product designer" row; do
 as another account's link.
 
 Loop log:
-- 21 Nov, card to collection transition (step 1, proposed): three directions for the move from the Mondai card on Home to the collection page, A Open, B Dock, C Zoom, on a test build at https://claude.ai/artifact/Vk1mZz4hirZJi9pVuHxnwR (direction in the edit panel, Motion tab). Pick: B. Docs and gates in docs/motion/card-transition/. Waiting on him.
+- 22 Nov, card to collection transition (step 1, proposed): rebuilt onto the new collection page (6331:27875, PR #30) after his note that the 21 Nov round landed on the retired page. Three directions, A Title (PR #30's own page change), B Card, C Open, on a test build at https://claude.ai/artifact/Vk1mZz4hirZJi9pVuHxnwR (direction in the edit panel, Motion tab). Docs and gates in docs/motion/card-transition/. Waiting on him.
 - 17 Nov, capacity card demo on the framework page (done on his yes: "i checked it works fine"). Type on
   as it opens, his cursor, right right left left (76c1c9f). Tried on the preview link, version 4 built from cfe7bea.
 - 14 Nov, Start of week carousel on the framework page (done on his yes: "this works for the time being,

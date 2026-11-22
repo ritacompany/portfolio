@@ -45,3 +45,21 @@ Fresh eyes: not run this round. A hook allows three reviewer subagents per turn 
 - P1: C, both widths: the label's spring tail is long (it lands at about 1.2 s on the phone). Tunable on the panel.
 - P1: C still reads more as a dissolve with a growing title than a camera push. Honest limit of the direction; said so in the hand off.
 - P2: B, 390 100 to 133 ms: the label passes over the shaded, shrinking tile. Readable; kept.
+
+## Round 5
+Fresh eyes: first round on the new collection page (6331:27875). Rounds 1 to 4 above were on the retired page and their fixes carried over (the shade before the words cross the picture, card only parts under Home's veil). C reads clean; B's picture swap overlapped "Mondai" for a few frames at 1440; C dipped to near black at 300 to 400 ms; the fill came late.
+- P0: B, 1440 167 to 233 ms: the shaded Home picture and the framework preview overlapped inside the frame for too long, with the growing wordmark over both. Fixed: the Home picture goes between 20 and 50 percent, the preview comes between 40 and 75, so the two overlap only briefly while the frame is the moving object.
+- P0 found by me: 390, 267 to 300 ms: the card's capital label and the page's sentence case label overlapped at two sizes. Fixed: the card's label is gone by 65 percent and the page's label starts at 65.
+- P1: C, 300 to 400 ms: near black before the page fills. The picture now dissolves from 40 to 90 percent and the fill starts at 30 percent.
+- P1: B and C, the fill came late. It now starts at 30 percent of the travel with shorter steps.
+- Found while checking: on PR #30's own build, a direct visit never loads the Design system card's glitch image (lazy, and held behind a closed clip that never opens). Confirmed on that branch alone. Not this piece; told to Chadwick.
+
+## Round 6
+Fresh eyes: No P0. B is the one it would ship: the laptop shrinks into the first case study card while "Mondai" swells above it. C's grow costs a dim beat on desktop and puts the label over picture text on the phone.
+- P1: B, 390 200 to 300 ms: the label's hand over shifts about 20 px across, because the card's label sits left and the page's sits right under the wordmark. Open; the two typesettings differ, so a perfect overlap is not possible without changing the page.
+- P1: C, 390 133 to 267 ms: the label sits on the zoomed picture's own UI text. Readable; the picture is shaded.
+- P1: C, 1440 333 to 433 ms: still a quiet beat before the cards arrive; C settles at about 1.3 s.
+- P1: B, 1440 67 to 167 ms: the label crosses the shaded laptop screen. Readable.
+- P2: B and C, 390 about 300 ms: the Framework CS head meets the frame's top edge while the frame is still moving.
+- P2: the Design system card's picture arrives as a hard edged tile at 600 to 700 ms.
+- Found by G2 and G4 at 390: on the phone the lower cards sit below the page's own entrance trigger. The transition now owns only what is 100 px inside the screen; the rest waits for the scroll, as on a direct visit.

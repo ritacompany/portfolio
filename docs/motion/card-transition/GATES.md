@@ -2,29 +2,25 @@
 
 OWNS: site/dev/preview/card-transition.js, site/dev/preview/card-transition.css, scripts/check-card-transition.mjs, docs/motion/card-transition/**
 
-Status, 21 Nov: every runnable gate (G1 to G7 and the G1 control) printed PASS on the final preview build. Evidence fingerprints were not recorded through the unlazy checker, so the boxes stay unticked until it is run with approval. M1 waits on him. The review log's motion check fails until a fresh eyes round closes round 4 (the reviewer limit per turn was reached).
+Status, 22 Nov: rebuilt onto the new collection page (6331:27875, PR #30). Runs are recorded in review_log.md. Evidence fingerprints are not recorded through the unlazy checker, so boxes stay unticked until it runs with approval. M1 waits on him.
 
-Scope: three directions (A Open, B Dock, C Zoom) for the move from the Mondai card on Home to the Mondai
-collection page, on the preview build. Nothing in the shipped site changes until his yes.
+Scope: three directions (A Title, PR #30's view transition; B Card; C Open) for the move from the Mondai card on Home to the new Mondai collection page, on the preview build of this branch. Nothing in the shipped site changes until his yes.
 
-Harness: each check builds the preview into output/ct-preview, then runs `node scripts/check-card-transition.mjs <gate> output/ct-preview`.
-It serves the preview build, drives Chromium at 1440 by 900 and 390 by 844 for every direction, and prints
-`<gate> PASS` only after every assertion holds. Stepped gates use window.CardTransition.seek, the same
-frames the review sheets show.
+Harness: each check builds the preview into output/ct-preview, then runs `node scripts/check-card-transition.mjs <gate> output/ct-preview`. It serves the preview build and drives Chromium at 1440 by 900 and 390 by 844. Stepped gates cover B and C (A is drawn by the browser and cannot be stepped); G4 covers all three.
 
-- [ ] G1: Across the page change, Home's last exit frame and the collection's first arrival frame match (mean difference under 1 of 255, under 0.2 percent of pixels off by more than 40), every direction, both widths.
+- [ ] G1: Across the page change, Home's last exit frame and the collection's first arrival frame match (mean difference under 1 of 255, under 0.2 percent of pixels off by more than 40), B and C, both widths.
   CHECK: node scripts/build-preview.mjs site output/ct-preview && node scripts/check-card-transition.mjs G1 output/ct-preview
   EXPECT: G1 PASS
 - [ ] G1c: Control for G1: the same comparison fails Home's last frame against the arrival a quarter of the way in.
   CHECK: node scripts/build-preview.mjs site output/ct-preview && node scripts/check-card-transition.mjs CONTROL output/ct-preview
   EXPECT: CONTROL PASS
-- [ ] G2: The arrival ends on the collection page exactly as a direct visit leaves it, with no copy layer and no transform left.
+- [ ] G2: The arrival ends on the collection page as a direct visit leaves it (with the Design system image shown; see the note in the script), no copy layer left.
   CHECK: node scripts/build-preview.mjs site output/ct-preview && node scripts/check-card-transition.mjs G2 output/ct-preview
   EXPECT: G2 PASS
-- [ ] G3: One frame before the words hand over, each copy sits within 1.5 px of the real title and label.
+- [ ] G3: One frame before the hand over, the wordmark copy and B's card frame sit within 1.5 px of the real ones.
   CHECK: node scripts/build-preview.mjs site output/ct-preview && node scripts/check-card-transition.mjs G3 output/ct-preview
   EXPECT: G3 PASS
-- [ ] G4: On the real clock, a click on the card in each direction reaches /mondai/, the arrival runs and nothing is left over (every page item at full opacity).
+- [ ] G4: On the real clock a click on the card lands on /mondai/ in every direction; B and C run the arrival, A leaves it to the browser; nothing on screen is left hidden.
   CHECK: node scripts/build-preview.mjs site output/ct-preview && node scripts/check-card-transition.mjs G4 output/ct-preview
   EXPECT: G4 PASS
 - [ ] G5: Reduced motion: the click opens /mondai/ with no veil on Home and no arrival.

@@ -2,89 +2,76 @@
 
 Live motion. Runs in the visitor's browser across a real page change: Home (`/`) to the Mondai collection
 (`/mondai/`). Proposal only: it lives in `site/dev/preview/card-transition.js` and `.css` and runs on the
-preview build. Nothing reaches the shipped site until Chadwick says yes.
+preview build of this branch. Nothing reaches the shipped site until Chadwick says yes.
+
+## Which collection page
+The new one: Figma "Mondai case study collection" `6331:27875`, built on draft PR #30 (branch
+claude/mondai-collection), which this branch merges. His 20 Nov call retired the old list page
+(`5812:22999`). The first round of this work (21 Nov) was built on the old page by mistake; record in
+`fixes/2026-11-22-transition-built-on-retired-collection-page.md`.
 
 ## What was there before
-Nothing. Clicking the Mondai card is a plain page load; the collection page then runs its own entrance
-(mondai-motion: text fades in place over 1.4 s after a 0.35 s wait). The earlier prototype
-`prototypes/homepage-foundations/collection-page.html` (tracker H13) holds no transition: it shows the card
-and the collection page as two sections of one page joined by a `#collection` jump link, with hover states
-only.
+- main: nothing. Clicking the card is a plain page load, then the page's own entrance.
+- PR #30: a provisional page change (`site/js/page-transition.js`, `docs/motion/page-transition/`), a cross
+  document view transition: the pages fade through the page colour and the card's "Mondai" grows into the
+  wordmark in 0.7 s; the same for the Framework CS card title into the case study heading. It is kept
+  here as direction A, unchanged, and still runs the collection to framework page change in every
+  direction.
 
 ## Reference
-- The Figma frames the two pages are built from: Transported home `5812:22862` (the card) and Multi-CS
-  Model `5812:22999` (the collection). The transition invents no layout: every start is the card exactly as
-  Home draws it and every end is the collection exactly as it is built.
-- The craft rule "Shared element" in `.claude/motion-patterns.md`: what is on both sides travels and resizes;
-  the two screens never crossfade around it.
-- The press that starts it: the site cursor (`docs/motion/site-cursor/`). Release on the card media follows
-  the card link; the transition starts from that release.
+- The two Figma frames: Transported home `5812:22862` (the card) and `6331:27875` (the collection). The
+  transition invents no layout: every start is the card exactly as Home draws it and every end is the
+  collection exactly as it is built.
+- The craft rule "Shared element" in `.claude/motion-patterns.md`: what is on both sides travels and resizes.
+- The press that starts it: the site cursor (`docs/motion/site-cursor/`).
 
 What is on both sides, measured in the code:
 
 | On the card (Home) | On the collection | Change |
 |---|---|---|
-| "Mondai", Heading/20, Neutral/050 (Neutral/000 while hovered) | the title, Heading/40, Neutral/050 | travels, grows to twice the size, tracking from -0.02 to -0.04 em |
-| "//", Mark/15, Neutral/200 | "//", Mark/15, Neutral/500 | travels, colour only |
-| "Case study collection", Label/12 C, Neutral/300 | the list label, Label/12 C, Neutral/400 | travels, colour only |
-| the card picture | nothing | each direction treats it differently: this is what makes the three different |
-| "Tech career navigator" | nothing | goes with Home under the veil |
+| "Mondai", Heading/20 | the Mondai wordmark, 586 by 157 at 1440 (an outlined vector of the same word) | grows about eight times; the word hands over to the wordmark in the first 15 percent, while both are small |
+| "Case study collection", Label/12 C capitals, one line | "Case study collection", 16 px, two lines | travels and grows; the card's label fades out, then the page's fades in at the same place, never both at once |
+| the card picture's frame | the Framework CS card's frame (B), or the whole page (C) | the frame is the shared object; what is inside it changes |
+| "//", the description, the phone's Learn more | nothing | go with Home under the veil |
 
-Take: the shared words travel in every direction, at their real sizes at both ends, so nothing jumps.
-Not taken: a crossfade of either page around them; a rise on any text (the masked rise was rejected); the
-picture appearing anywhere on the collection page once the move ends.
+Not taken: a crossfade of either page around the shared words; a rise on any text (rejected); the Home
+picture surviving on the collection once the move ends.
 
-## How it runs across the page change
-1. Release on the card. Home draws a copy of the card exactly where it is and fades a Neutral/900 veil over
-   everything else in 220 ms (quart out), so the last frame of Home is the card alone on the page colour.
-   Then the browser loads `/mondai/`.
-2. The collection page reads where the card was (kept in this tab's session storage) and starts on that same
-   frame: the card alone on Neutral/900. The direction plays from there.
-3. The words land on the real title and label, which take over with no jump; the copies are removed.
-4. Everything that is only on the collection (the nav, the Mondai mark, the intro, the rows) fades in place,
-   power1 out, in reading order. It starts from the shared text fade but runs quicker (below), because here
-   it follows a move the visitor started rather than a scroll.
+## How B and C run across the page change
+1. Release on the card. Home draws a copy of the picture and the two shared words exactly where they are
+   and fades a Neutral/900 veil over everything else in 220 ms (quart out). Then the browser loads `/mondai/`.
+   The browser's own view transition is skipped for that one page change.
+2. The collection reads where the card was (this tab's session storage) and starts on that same frame.
+3. The copies land on the real wordmark, label and card frame, which take over with no jump.
+4. Everything only on the collection (the nav, the card heads, the other cards) fades in place, power1 out,
+   in reading order.
 
 ## The three directions
-Each is a different structure: the picture becomes the page, the picture becomes the logo, or the camera
-moves.
-
-- **A. Open.** The card's frame grows to fill the screen and becomes the page. The picture grows with it and
-  dissolves into the Neutral/900 as it passes the edges; the words ride to their places inside it. Pattern:
-  container transform, origin aware (the page opens out of the card).
-- **B. Dock.** The card closes into the Mondai mark beside the title. The picture shrinks along an arc to the
-  mark's 40 px circle and hands over to the mark; the name grows out of it into the title. Pattern: shared
-  element, origin aware in reverse (the card ends where the brand starts).
-- **C. Zoom.** The collection page arrives as a half size miniature with its title sitting exactly on the
-  card's name, and the view zooms in to full size. The picture belongs to the same world and flies past the
-  edges as the camera pushes in. Pattern: camera move; the title is never copied, it rides the page.
+- **A. Title** (PR #30, unchanged): only the name moves. The two pages fade through the page colour while
+  "Mondai" grows into the wordmark. Drawn by the browser (Chrome, Edge, Safari 18.2 and later).
+- **B. Card**: the picture becomes the first case study. The card's frame travels and resizes into the
+  Framework CS card's frame; inside it the Home picture is shaded, then gives way to the framework preview
+  (a container transform: only the frame is shared, the content changes inside it). The other two cards
+  and the heads fade in beside it.
+- **C. Open**: the picture becomes the page. The frame grows to fill the screen, the picture dissolves into
+  the page colour, and the page's cards and heads fade in on it.
 
 ## Timing
-- Exit on Home: 220 ms, starting on the frame of the release (Doherty threshold).
-- Travel: one spring per direction, closed form, as in `site/lib/motion.js`. A moves large media: HEAVY tuned
-  a touch quicker (k 80, d 18, no overshoot, 0.84 s). B uses TYPE (k 120, d 22, 0.68 s) because the picture
-  ends 40 px wide. C is a camera move: HEAVY, slower (k 40, d 13, 1.25 s) so the zoom can be read. Each
-  starts at 0 velocity, so the first 0.1 s is a soft lift, not a snap.
-- The spring is rescaled to reach exactly 1 on the frame it is within 0.5 percent; the words hand over then,
-  with no jump.
-- Fades for collection only items: A and B 1.0 s, 0.12 s steps, from 60 percent of the travel; C 0.7 s,
-  0.08 s steps, from 30 percent, once the picture has gone, and the intro waits until 75 percent so the
-  travelling label never crosses it. Card only text never reaches the collection: it goes under Home's veil. The picture is shaded to 35 percent before the words cross it.
-
-## Rules used
-- Shared element, origin aware, no layout shift (only transform, opacity and clip path move; the real page is
-  laid out from the first frame), interruptible (any click or key during the arrival finishes it at once).
-- Frequency of use: a visitor opens this once or twice, so it may take a little over a second.
+- Exit on Home: 220 ms from the frame of the release (Doherty threshold).
+- Travel: one closed form spring per direction (site/lib/motion.js), no overshoot, starting at 0 velocity:
+  B k 90, d 19 (0.78 s); C k 80, d 18 (0.84 s). Rescaled to reach exactly 1 on the frame it is within 0.5
+  percent, when the copies hand over.
+- The Home picture is shaded to about 40 percent in the first quarter, before the words cross it.
+- Page only items: from 30 percent of the travel; B 0.9 s fades 0.09 s apart, C 1.0 s, 0.1 s.
 
 ## Where it runs
-- Any pointer: mouse, touch, keyboard Enter. A modified click (new tab, new window) is left to the browser.
-- Only when the collection is opened from the card in the same tab within 5 s and the window size has not
-  changed. A direct visit, a reload or the back button gets the page's own entrance, unchanged.
-- Back from the collection to Home: the veil and copy are removed on return, so Home is as it was left.
+- Any pointer: mouse, touch, keyboard Enter. A modified click is left to the browser.
+- Only when the collection opens from the card in the same tab within 5 s at the same window size. A direct
+  visit, a reload or the back button gets the page's own entrance.
+- Back to Home: the veil and copies are removed on return.
 
 ## Reduced motion
-No veil and no travel: the link opens the collection, which shows at rest (mondai-motion already stands down
-under reduced motion).
+No veil and no travel; PR #30's view transition is off under reduced motion too. The page shows at rest.
 
 ## Not in scope
-The Haven card (it opens a case study page, not a collection) and the reverse move back to Home.
+The Haven card, the reverse move, and a new collection to framework move (PR #30's title morph stays).
