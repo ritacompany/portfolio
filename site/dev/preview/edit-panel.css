@@ -279,5 +279,3 @@ html.ep-docked { margin-right: var(--ep-dock, 0px) !important; position: relativ
 /* Phone sheet: room under the page's content equal to the sheet, so the end of the page scrolls clear. */
 html.ep-sheet { padding-bottom: var(--ep-sheet-h, 0px) !important; }
 
-/* Home motion's own box is replaced by its groups in this panel (works-bridge.js). */
-html.ep-has-home .hm-panel { display: none !important; }

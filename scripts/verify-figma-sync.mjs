@@ -54,7 +54,9 @@ const desktop = [
   [".work-card-haven .work-card__name", { c: "#f2f1f8", x: 957, y: 1174 }],
   [".work-card-haven .work-card__desc", { c: "#7b7b86", fs: 14, ls: 0.02, x: 1211, y: 1176, tol: 1 }],
   [".work-card-haven .work-card__media", { bg: "#0f0f1b", x: 957, y: 1203, w: 443, h: 443 }],
-  [".work-card-haven .haven-art__clip img", { x: 941, y: 1203, w: 487, h: 430, tol: 1.5 }],
+  // The frame draws Image 2 at 941, 487 wide, clipped by the 443 card. The site ships the 443 wide slice of
+  // that image cut on 18 Nov (same crop, fewer pixels), so it is measured as the slice: x 957, 443 by 429.82.
+  [".work-card-haven .haven-art__clip img", { x: 957, y: 1203, w: 443, h: 429.82, tol: 1.5 }],
   [".about-story", { line: "#1d1d21", y: 1746, h: 569 }],
   [".about-story .about__label", { c: "#d2d2db", x: 40, y: 1779 }],
   [".about-story .about__body", { c: "#d2d2db", x: 858, y: 1779, w: 542, h: 456 }],
@@ -70,7 +72,8 @@ const desktop = [
   [".footer__nav li:first-child a", { c: "#e8e7ee", x: 40, fy: 122, text: "Home" }],
   [".footer__nav li:nth-child(3) a", { text: "Selected works" }],
   [".footer__nav li:nth-child(4)", { display: "none" }],
-  [".menu__links li:nth-child(3)", { display: "none" }],
+  // The phone menu follows his phone frame (18 Nov: About and Works, no Testimonials row), so there is no
+  // hidden third row to check.
   [".footer__contact .footer__label", { c: "#7b7b86", x: 623, fy: 49 }],
   [".footer__email", { c: "#e8e7ee", x: 623, fy: 124 }],
   [".footer__note p:first-child", { c: "#4b4b52", fy: 166 }],

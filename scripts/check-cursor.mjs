@@ -1,8 +1,8 @@
 // Gates for the site cursor (docs/motion/site-cursor/GATES.md). Serves site/ and drives Chromium.
 //   node scripts/check-cursor.mjs <G1|G2|G3|control|G4|G5|G6|all> [--page /]
 // Each gate prints "<gate> PASS" only after every assertion holds, otherwise "<gate> FAIL: <why>" and exits 1.
-// While the cursor is a proposal in site/dev/preview, a page that does not load it gets site-cursor.css and
-// site-cursor.js injected, the same files the preview build adds to every page.
+// Since 22 Nov every page loads site/js/site-cursor.js itself (styles in components.css); a page that does
+// not is a failure, so nothing is injected.
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
@@ -41,10 +41,7 @@ async function open(opts = {}, page = PAGE) {
   pg.on("pageerror", (e) => errors.push(String(e)));
   await pg.goto(BASE + page, { waitUntil: "load" });
   const has = await pg.evaluate(() => !!window.SiteCursor);
-  if (!has) {
-    await pg.addStyleTag({ url: "/dev/preview/site-cursor.css" });
-    await pg.addScriptTag({ url: "/dev/preview/site-cursor.js" });
-  }
+  if (!has) throw new Error(page + " does not load the site cursor (js/site-cursor.js)");
   await pg.evaluate(() => document.fonts.ready);
   await wait(100);
   return { ctx, pg, errors };
@@ -177,9 +174,11 @@ const gates = {
       });
       must(r.pointer, `coarse pointer not emulated at ${width}`);
       must(!r.el && !r.cls, `custom cursor rendered on touch at ${width}`);
+      // His 18 Nov Master and the 22 Nov newest frame draw the card at rest with no Learn more, so on touch it
+      // stays hidden at rest (it shows on keyboard focus; the whole card is the link).
       if (width >= 768) {
-        must(r.op === "1" && r.vis === "visible" && r.disp !== "none" && r.w > 0, `static Learn more hidden on touch at ${width}: opacity ${r.op} display ${r.disp}`);
-        out.push(`${width}: no cursor, static Learn more ${r.w.toFixed(0)}px wide`);
+        must(r.op === "0", `static Learn more shows at rest on touch at ${width}: opacity ${r.op}`);
+        out.push(`${width}: no cursor, card at rest as drawn`);
       } else out.push(`${width}: no cursor (phone layout shows the link under the card)`);
       await ctx.close();
     }
@@ -212,7 +211,7 @@ const gates = {
     must(r.fv, "card is not :focus-visible");
     must(r.cls, "custom cursor not running, so this would not test the hide and show");
     must(r.op === "1", `static Learn more opacity ${r.op} on focus`);
-    const ex = (r.mw * 343.39) / 879, ey = (r.mh * 250.87) / 575.28;
+    const ex = (r.mw * 344.73) / 879, ey = (r.mh * 251.43) / 575.28; // his 16 Nov Small button (4923:12095)
     must(Math.abs(r.cl - ex) < 1 && Math.abs(r.ct - ey) < 1, `offset ${r.cl},${r.ct} vs Figma ${ex.toFixed(2)},${ey.toFixed(2)}`);
     await ctx.close();
     return `focus-visible, opacity 1, left ${r.cl.toFixed(2)} top ${r.ct.toFixed(2)} (Figma ${ex.toFixed(2)}, ${ey.toFixed(2)})`;
@@ -229,7 +228,7 @@ const gates = {
     await pg.mouse.move(b.x + b.width / 2, b.y + b.height / 2);
     await pg.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
     c = await cursor(pg);
-    must(c.state === "pill" && /\b3px\b/.test(c.pill.shadow) && c.pill.w > 150 && c.labelOpacity === "1", `pill not at rest after one frame: ${c.pill.w}px ${c.pill.shadow} ${c.labelOpacity}`);
+    must(c.state === "pill" && /\b3px\b/.test(c.pill.shadow) && c.pill.w > 120 && c.labelOpacity === "1", `pill not at rest after one frame: ${c.pill.w}px ${c.pill.shadow} ${c.labelOpacity}`); // full Small button width (129.5 since 16 Nov); a mid spring pill is still near the 24 px dot
     await ctx.close();
     return "cursor on the pointer after one frame, all durations 0s, pill at rest at once";
   },

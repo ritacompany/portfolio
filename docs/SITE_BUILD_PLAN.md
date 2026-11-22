@@ -6,6 +6,23 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### One Home, preview work moved into the site, 22 Nov (latest; branch claude/sharp-turing-jy21r2)
+Home existed in three versions: the working branch (claude/relaxed-ride-5mlbdu, with the 16 to 18 Nov card and
+Master syncs), main (the site cursor, PR 34) and PR 40 (sync to his newest frame "Mondai home newest" 6364:28896,
+built on main). This branch merges all three. Where the two syncs clashed, PR 40 won (newest read; the numbers
+differ by half a pixel at most); his phone menu and the 443 wide Haven image slice stay from the working branch.
+His 16 Nov call (no card rise) beats the 21 Nov cursor branch, which had not seen it.
+Moved into site/ on his yes (22 Nov): js/home-motion.js (Lenis at Haven's setting, nav fixed from 768 up, Haven
+style text fades, refresh starts at the top) with its CSS at the end of home.css; js/site-cursor.js on every page
+with its CSS in components.css, its Learn more now sized as his 16 Nov Small button (130 by 34). Not moved: the
+extra gap above Selected works and the Product Designer exit (his newest frame has neither), the tuning panels.
+Still preview only, waiting on him: proposals.css (blocks 1, 4, 7 and the R phone review items), cards-phone.js,
+scroll-feel.js, scroll-fixes.js. The Mondai card rest image is fixed (mean 20.0 of 255; 13.2 with the hover baked in).
+Gates: reports/home-unify-2026-11-22/GATES.md, 11 of 11. Phone link: https://claude.ai/artifact/MCp5KFuB72Z5UriV23LkEf
+(this account). Known and not this branch's: 20 fit and 15 overlap problems on the framework page at tablet and
+phone widths (baseline files in that folder), already on the working branch.
+Next: the phone pass with him, Home first, on that link.
+
 ### Seth Lukin motion removed, 16 Nov (latest)
 His call (16 Nov): ditch everything taken from Seth Lukin's site. Gone: the parked CHD then WCK name load
 (`site/motion-lab/home-load/`, `docs/motion/home-load/`), the Selected works card rise and the square

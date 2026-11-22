@@ -1,0 +1,20 @@
+framework @1024: <img.sow__card> "Template 2 of 5, Catching up: the catchi" spans 789 to 1144, visible 32 to 992
+framework @1024: <img.sow__card> "Template 3 of 5, Rollover: the rollover " spans 1249 to 1591, visible 32 to 992
+framework @1024: <img.sow__card> "Template 4 of 5, Recalibration: the reca" spans 1702 to 2046, visible 32 to 992
+framework @1024: <img.sow__card> "Template 5 of 5, Reset: the reset start " spans 2157 to 2500, visible 32 to 992
+framework @1200: <img.sow__card> "Template 2 of 5, Catching up: the catchi" spans 695 to 1009, visible 27 to 875
+framework @1200: <img.sow__card> "Template 3 of 5, Rollover: the rollover " spans 1102 to 1404, visible 27 to 875
+framework @1200: <img.sow__card> "Template 4 of 5, Recalibration: the reca" spans 1502 to 1805, visible 27 to 875
+framework @1200: <img.sow__card> "Template 5 of 5, Reset: the reset start " spans 1903 to 2206, visible 27 to 875
+framework @1366: <img.sow__card> "Template 2 of 5, Catching up: the catchi" spans 792 to 1148, visible 31 to 996
+framework @1366: <img.sow__card> "Template 3 of 5, Rollover: the rollover " spans 1254 to 1598, visible 31 to 996
+framework @1366: <img.sow__card> "Template 4 of 5, Recalibration: the reca" spans 1710 to 2055, visible 31 to 996
+framework @1366: <img.sow__card> "Template 5 of 5, Reset: the reset start " spans 2166 to 2511, visible 31 to 996
+framework @390: <img.sow__card> "Template 2 of 5, Catching up: the catchi" spans 331 to 521, visible 24 to 366
+framework @390: <img.sow__card> "Template 3 of 5, Rollover: the rollover " spans 566 to 749, visible 24 to 366
+framework @390: <img.sow__card> "Template 4 of 5, Recalibration: the reca" spans 797 to 980, visible 24 to 366
+framework @390: <img.sow__card> "Template 5 of 5, Reset: the reset start " spans 1028 to 1211, visible 24 to 366
+framework @768: <img.sow__card> "Template 2 of 5, Catching up: the catchi" spans 587 to 847, visible 32 to 736
+framework @768: <img.sow__card> "Template 3 of 5, Rollover: the rollover " spans 924 to 1176, visible 32 to 736
+framework @768: <img.sow__card> "Template 4 of 5, Recalibration: the reca" spans 1257 to 1509, visible 32 to 736
+framework @768: <img.sow__card> "Template 5 of 5, Reset: the reset start " spans 1590 to 1842, visible 32 to 736

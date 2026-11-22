@@ -379,3 +379,15 @@
 @media (max-width: 767.98px) and (prefers-reduced-motion: reduce) {
   .page-header.is-past-hero { animation: none; }
 }
+
+/* Home motion (site/js/home-motion.js; his ask, 10 Nov; moved from the preview on his yes, 22 Nov). Only
+   once the script has added html.hm, so a page whose script fails stays as drawn. */
+/* Nav fixed to the top across the full width from 768 up, like Haven's. The phone keeps its own bar
+   (js/home-phone.js). */
+@media (min-width: 768px) {
+  html.hm .home .page-header { position: fixed; top: var(--navbar-top, 19px); z-index: 30; pointer-events: none; }
+  html.hm .home .page-header a, html.hm .home .page-header button { pointer-events: auto; }
+}
+/* Text entrances: opacity only, timed in the script. */
+html.hm .home .hm-item { opacity: 0; }
+html.hm .home .hm-item.hm-in { opacity: 1; }

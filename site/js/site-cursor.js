@@ -1,5 +1,4 @@
-// Site cursor, proposal (docs/motion/site-cursor/). Lives in site/dev/preview until Chadwick says yes; then
-// this block moves into site/js/site.js and site-cursor.css into site/css/components.css, unchanged.
+// Site cursor (docs/motion/site-cursor/), on every page. Moved from the preview on his yes, 22 Nov.
 //
 // Copied from the reference, cursors.framer.wiki "Simple Replace": its own component code (framer-DyGFw)
 // and the live page, read 21 Nov. A 24 px dot with a 0 12 24 drop shadow at 20 percent black, drawn exactly
@@ -46,6 +45,7 @@
     root = document.createElement("div");
     root.className = "site-cursor";
     root.setAttribute("aria-hidden", "true");
+    root.setAttribute("data-bleed", ""); // decorative, drawn over everything on purpose: layout checks skip it
     root.innerHTML = '<span class="site-cursor__shape"><span class="site-cursor__label">Learn more</span>'
       + '<span class="site-cursor__ink"><span class="site-cursor__label">Learn more</span></span></span>'
       + '<span class="site-cursor__probe">Learn more</span>';
@@ -130,21 +130,4 @@
     get state() { return state; },
   };
   if (document.body) sync(); else addEventListener("DOMContentLoaded", sync);
-
-  // Tuning, preview only: the shared edit panel, when the page has it.
-  const set = (k) => (v) => window.SiteCursor.set({ [k]: v });
-  const def = {
-    id: "site-cursor", title: "Cursor", tab: "Motion",
-    note: "Click anywhere for the dot's press; hold on a work card for the button's press. Defaults are the reference's own values.",
-    controls: [
-      { key: "dot", label: "Dot size", min: 8, max: 40, step: 1, unit: "px", value: O.dot, default: 24, hint: "Reference: 24", onInput: set("dot") },
-      { key: "dotPress", label: "Dot pressed", min: 8, max: 40, step: 1, unit: "px", value: O.dotPress, default: 20, hint: "Reference: 20", onInput: set("dotPress") },
-      { key: "stiffness", label: "Spring stiffness", min: 100, max: 1000, step: 10, value: O.stiffness, default: 400, hint: "Reference: 400", onInput: set("stiffness") },
-      { key: "damping", label: "Spring damping", min: 5, max: 80, step: 1, value: O.damping, default: 30, hint: "Reference: 30", onInput: set("damping") },
-      { key: "pressDur", label: "Button ripple", min: 40, max: 400, step: 10, unit: "ms", value: O.pressDur, default: 140, onInput: set("pressDur") },
-      { key: "pressScale", label: "Button pressed scale", min: 0.8, max: 1, step: 0.005, value: O.pressScale, default: 0.98, onInput: set("pressScale") },
-      { key: "lerp", label: "Follow", hint: "1 sits on the pointer, as the reference does", min: 0.1, max: 1, step: 0.01, value: O.lerp, default: 1, onInput: set("lerp") },
-    ],
-  };
-  if (window.EditPanel) window.EditPanel.register(def); else (window.EditPanelQueue ||= []).push(def);
 })();
