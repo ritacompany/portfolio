@@ -1,17 +1,20 @@
-/* Home, his VC master (Portfolio Design IarvWaqjIwrZ2afQmMxKm6, 4494:5909) at 1440, synced 10 Nov
-   (docs/FIGMA_SYNC_2026-11-10.md). The data-figma-node ids in the page are the old transported copy's.
+/* Home at 1440: "Mondai home newest" (Desktop 1 MVP file 5RO0m4bYYrTvbiaOgaU3tI, page CS, 6364:28896),
+   synced 22 Nov (reports/figma-sync-2026-11-22/DIFF.md). Before that, his VC master 4494:5909, synced
+   10 Nov. Ids starting 6364 are the newest frame's; the rest are the old transported copy's.
    Layout only: color and type come from tokens.css, the parts from components.css. Sections overlap by
    half a pixel, as in Figma. */
 
-.home { --navbar-top: 15px; }
+.home { --navbar-top: 19px; } /* logo top 19 in 6364:28908 */
+/* No role line in the newest navbar; the phone hero keeps it (below). */
+@media (min-width: 768px) { .home .navbar__role { display: none; } }
 
 /* Hero, 5812:22863 */
 .hero { position: relative; height: 900px; }
-.hero__intro { position: absolute; top: 468px; left: 0; right: 0; align-items: end; }
+.hero__intro { position: absolute; top: 451px; left: 0; right: 0; align-items: end; }
 /* Labels hug their text like Figma's auto width layers. */
 .hero__city, .about__label, .about__when { justify-self: start; width: fit-content; }
 .hero__lede {
-  width: min(457px, 100%);
+  width: 100%; max-width: 457px; /* 6364:28913, 457 wide */
   font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-200); /* 4929:12396, Neutral/200 since 11 Nov */
   text-box: trim-both cap alphabetic;
 }
@@ -19,10 +22,10 @@
 .hero__lede-phone { display: none; }
 /* Under 1200 the block starts 2.33 past column 5, where the old frame had it. */
 .hero__where { display: flex; flex-direction: column; gap: 12px; margin-left: 2.33px; }
-/* The master widens the lede to 457 and puts the location 126 after it, at x 623: column 6. */
+/* The newest frame puts the location at x 699 (6364:28914), 659 into the 1360 content width. */
 @media (min-width: 1200px) {
-  .hero__lede { grid-column: 1 / span 5; }
-  .hero__where { grid-column: 6 / span 4; margin-left: 0; }
+  .hero__lede { grid-column: 1 / span 5; grid-row: 1; }
+  .hero__where { grid-column: 1 / -1; grid-row: 1; margin-left: calc(100% * 659 / 1360); }
 }
 .hero__city {
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
@@ -37,19 +40,23 @@
   text-box: trim-both cap alphabetic;
 }
 /* CHDWCK is live text in the master (Satoshi Medium 392.5, Neutral/200), running off both edges; the
-   SVG is his text outlined and clipped to the frame, glyph tops at 580.51. */
-.hero__name { position: absolute; top: 580.51px; left: 0; width: 100%; }
+   SVG is his text outlined and clipped to the frame. Glyph tops at 589.5 in 6364:28921 (580.51 before). */
+.hero__name { position: absolute; top: 589.51px; left: 0; width: 100%; }
 .hero__name img { width: 100%; height: auto; overflow: visible; }
 
-/* Selected works, 4923:12086. No line above it in the master. */
-.works { margin-top: -0.5px; padding: 165px 0 270px; }
+/* Selected works, 6364:28922. The newest frame drops the "Selected works" heading at 1440: the cards
+   start at 1042 and About at 1746. The heading stays for screen readers and the phone frame. */
+.works { margin-top: -0.5px; padding: 142.5px 0 100px; }
+@media (min-width: 768px) {
+  .works__title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
 .works__title {
   grid-column: 1 / -1; justify-self: center;
   font: var(--heading-64); letter-spacing: var(--heading-64-track); color: var(--neutral-200); /* 4923:12112, 11 Nov */
   padding-inline-end: 0.04em;
   text-box: trim-both cap alphabetic;
 }
-.works__cards { display: flex; align-items: stretch; gap: 38px; margin-top: 125px; padding-inline: var(--grid-margin); }
+.works__cards { display: flex; align-items: stretch; gap: 38px; margin-top: 0; padding-inline: var(--grid-margin); }
 
 .work-card { display: flex; flex-direction: column; gap: 15.71px; color: inherit; text-decoration: none; }
 /* Card widths, the description offset and Learn more are shares of the Figma sizes (879 and 435 of the
@@ -73,13 +80,13 @@
 }
 .work-card__desc {
   position: absolute; top: 2px; left: var(--desc-x);
-  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-200);
+  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-550); /* 6364:28932, 22 Nov */
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
 }
-/* Mondai's description is drawn at 13.75 in the master (no text style); Haven's is Label/14. */
-.work-card-mondai .work-card__desc { --desc-x: calc(100% * 569.64 / 879); font-size: var(--card-desc-size); }
-.work-card-haven .work-card__desc { --desc-x: calc(100% * 230.79 / 443); }
+/* Both descriptions are Label/14 in the newest frame, at 582 into the Mondai card and 254 into Haven's. */
+.work-card-mondai .work-card__desc { --desc-x: calc(100% * 582 / 879); }
+.work-card-haven .work-card__desc { --desc-x: calc(100% * 254 / 443); }
 .work-card__media { position: relative; overflow: hidden; }
 /* The master lets the Mondai media run 4.17 past the card (579.45 tall). His call, 13 Nov: the two cards
    always end on one line, so the media is clipped to the card, 575.28 tall, losing 4.17 of the image's
@@ -128,8 +135,8 @@
 /* About, 4494:5932. Row lines Neutral/700. */
 .about { margin-top: -0.5px; }
 .about__row { align-items: start; box-shadow: inset 0 1px 0 var(--neutral-700); }
-.about-story { min-height: 543px; padding-top: 33px; }
-.about-role { min-height: 208px; padding-top: 36px; }
+.about-story { min-height: 569px; padding-top: 33px; }
+.about-role { min-height: 234px; padding-top: 36px; }
 .about__label {
   font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-300);
   white-space: nowrap; padding-inline-end: 0.02em;
@@ -147,8 +154,58 @@
   text-box: trim-both cap alphabetic;
 }
 .about-story .about__body { width: min(595px, 100%); margin-left: 1px; }
+/* Newest frame: both bodies at x 858, 542 wide (6364:28953, 6364:28960), column 8. */
+@media (min-width: 1200px) {
+  .about__body, .about-story .about__body { width: min(542px, 100%); margin-left: 1.33px; }
+  /* The frame's rows pad 80 under the text; with the min heights above this lands on 569 and 234 at 1440
+     and lets a taller body below 1440 push the next line down. 79, since the trimmed text runs a fraction
+     past Figma's whole pixels. */
+  .about-story, .about-role { padding-bottom: 79px; }
+}
 .about__body > * + * { margin-top: 26px; }
 .about__body ul { padding-left: 30px; }
+
+/* Testimonials, 6364:29031: 800 tall, no line above. Quote centered at 1126 of 1440, Medium 56, line
+   61, tracking -4 percent (no text style in Figma); 51 below it the person and the LinkedIn source;
+   the three dots 43 under that. The avatar is his own cut out portrait on green in the frame. */
+.testimonials { position: relative; height: 800px; padding: 199px calc(100% * 157 / 1440) 0; }
+.testimonial { margin: 0; }
+.quote__text { margin: 0; }
+.quote__text p {
+  font: var(--quote-56); letter-spacing: var(--quote-56-track); color: var(--neutral-050);
+  text-wrap: pretty;
+  text-box: trim-both cap alphabetic;
+}
+.quote__by { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 51px; }
+.quote__person { display: flex; align-items: flex-start; gap: 24px; }
+.quote__avatar { position: relative; flex: none; width: 67px; height: 67px; border-radius: 50%; overflow: hidden; background: var(--quote-avatar-bg); }
+.quote__avatar-frame { position: absolute; left: -4px; top: 0; width: 63px; height: 84px; overflow: hidden; }
+.quote__avatar-frame img { position: absolute; left: 0; top: -2.57%; width: 99.91%; height: 105.14%; max-width: none; }
+.quote__who, .quote__source { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
+.quote__source { align-items: flex-end; }
+.quote__name {
+  font: var(--body-16); letter-spacing: var(--body-16-track); color: var(--neutral-050);
+  white-space: nowrap; text-box: trim-both cap alphabetic;
+}
+.quote__role, .quote__source-label {
+  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-550);
+  white-space: nowrap; text-box: trim-both cap alphabetic;
+}
+.quote__link { gap: 4px; }
+.quote__link span { text-box: trim-both cap alphabetic; }
+.quote__dots { display: flex; justify-content: center; gap: 8px; margin-top: 43px; }
+.quote__dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--neutral-600); }
+.quote__dots .is-on { background: var(--neutral-200); }
+@media (max-width: 1199.98px) {
+  .testimonials { height: auto; padding: 120px var(--grid-margin) 140px; }
+  .quote__text p { font: var(--heading-40); letter-spacing: var(--heading-40-track); }
+}
+@media (max-width: 767.98px) {
+  .testimonials { padding: 96px var(--grid-margin) 120px; }
+  .quote__text p { font: var(--heading-24); letter-spacing: var(--heading-24-track); }
+  .quote__by { flex-direction: column; gap: 32px; margin-top: 40px; }
+  .quote__source { align-items: flex-start; margin-top: 0; }
+}
 
 .home .footer { margin-top: -0.5px; }
 /* The home footer instance overrides the band's image filters in Figma (temperature 0, shadows -84
@@ -253,7 +310,7 @@
   .work-card__slashes { display: none; }
   .work-card__kind { order: 2; grid-column: 1 / -1; justify-self: start; margin-top: 11.06px; color: var(--neutral-550); font-weight: 700; }
   .works .work-card__media { order: 3; grid-column: 1 / -1; margin-top: 20px; margin-bottom: 0; aspect-ratio: 404 / 266.324; }
-  .work-card__desc { order: 4; position: static; margin: 20px 0 0; font-size: var(--card-desc-size); }
+  .work-card__desc { order: 4; position: static; margin: 20px 0 0; font-size: var(--card-desc-size); color: var(--neutral-200); } /* phone frame keeps Neutral/200 */
   .work-card__more { order: 5; display: inline-block; margin: 13px 0 -7px; justify-self: end; }
   .work-card__desk-art, .work-card__media .button-sm { display: none; }
   .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; }

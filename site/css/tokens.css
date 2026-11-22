@@ -50,6 +50,8 @@
   --mondai-card-top: #2a2a2f;
   --mondai-card-bottom: #09090a;
   --haven-card-night: #0f0f1b;
+  /* Not a Figma variable: the green behind the testimonial avatar (6364:29037). */
+  --quote-avatar-bg: #33db84;
 
   /* Color: 03 Mondai. Green/400 keys portfolio labels to the green in Mondai screens beside them
      (Framework CS, Falling behind). */
@@ -120,7 +122,7 @@
   --body-20: 400 20px/26px var(--font);       /* Body/20, added in Figma by 10 Nov */
   --body-20-track: -0.02em;
   --body-16: 400 16px/22px var(--font);
-  --body-16-track: -0.01em;
+  --body-16-track: 0em;            /* Body/16 tracking 0 in the library by 22 Nov (was -1 percent) */
   --body-16-m: 500 16px/21px var(--font);
   --body-16-m-track: -0.01em;
   /* Figma groups the label styles as Body/Label/14 and so on; the names here stay short. */
@@ -128,6 +130,8 @@
   --label-14-track: 0.02em;
   --label-14-c: 400 14px/14px var(--font);   /* the C styles are set in capitals */
   --label-14-c-track: 0.06em;
+  --label-14-c-m: 500 14px/14px var(--font);   /* Label/14 C M, the nav links (22 Nov) */
+  --label-14-c-m-track: 0.06em;
   --label-12: 400 12px/17px var(--font);
   --label-12-track: 0.04em;
   --label-12-c: 400 12px/17px var(--font);
@@ -139,6 +143,10 @@
   /* Not a Figma text style: the work card descriptions are drawn at 13.75 px with no style in the
      master (Mondai, 4923:12102) and on every phone card (4929:12207). */
   --card-desc-size: 13.75px;
+  /* Not a Figma text style: the testimonial quote, Medium 56, line 109 percent, tracking -4 percent
+     (6364:29034, no style in the frame). */
+  --quote-56: 500 56px/61px var(--font);
+  --quote-56-track: -0.04em;
   /* Not a Figma text style: the // before section labels is drawn at 15.17 px Medium (Collection
      frame, 5812:23010). Kept here so pages never carry raw type values. */
   --mark-15: 500 15.17px/1.16 var(--font);

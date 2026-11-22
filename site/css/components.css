@@ -54,9 +54,10 @@
 .link-block:hover, .link-block.is-hover { background: var(--neutral-100); }
 .link-block:active, .link-block.is-pressed { background: var(--neutral-200); }
 
+/* Navbar Base (6331:20421), 22 Nov: Label/14 C M, Neutral/200, like the logo. */
 .link-nav {
-  font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
-  color: var(--neutral-050);
+  font: var(--label-14-c-m); letter-spacing: var(--label-14-c-m-track); text-transform: uppercase;
+  color: var(--neutral-200);
 }
 /* Small all-caps link hover (nav here, LinkedIn and Back to top in the footer; his approval, 10 Nov).
    No block: the word goes to Neutral/050 (the nav already rests there in the master, 10 Nov) and gets
@@ -253,7 +254,7 @@
 .footer__transition-baked img { top: 0; width: 100%; height: 100%; }
 .footer__main {
   position: relative; height: 776px; overflow: hidden;
-  display: flex; flex-direction: column; gap: 183px;
+  display: flex; flex-direction: column; gap: 168px; /* Footer 6331:20483, 22 Nov (183 before) */
   padding-top: 48px;
 }
 .footer__top, .footer__bottom { align-items: start; }
