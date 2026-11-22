@@ -551,6 +551,12 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
    nav did; haven.js toggles is-on-light on .site-nav. */
 .page-header.site-nav { position: fixed; top: 24px; z-index: 30; pointer-events: none; }
 .site-nav a { pointer-events: auto; }
-.site-nav .link-nav, .site-nav .navbar__logo img { transition: color 0.3s ease, filter 0.3s ease; }
-.site-nav.is-on-light .link-nav { color: var(--neutral-900); }
+/* The nav ink fades over the bridge through a registered property on the bar, so the links themselves
+   carry no transition and their hover still swaps instantly (the links rest on Neutral/200 since 22 Nov). */
+@property --nav-ink { syntax: "<color>"; inherits: true; initial-value: #dedee5; }
+.site-nav { --nav-ink: var(--neutral-200); transition: --nav-ink 0.3s ease; }
+.site-nav.is-on-light { --nav-ink: var(--neutral-900); }
+.site-nav .link-nav { color: var(--nav-ink); transition: none; }
+.site-nav:not(.is-on-light) .link-nav:is(:hover, :active, .is-hover, .is-pressed) { color: var(--neutral-050); }
+.site-nav .navbar__logo img { transition: filter 0.3s ease; }
 .site-nav.is-on-light .navbar__logo img { filter: invert(1); }

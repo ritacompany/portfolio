@@ -28,49 +28,56 @@ const dump = process.argv.includes("--dump");
 
 // [selector, expected]. c: text colour, bg: background colour, line: inset top line colour, fw: weight,
 // fs: size px, ls: tracking as a share of size, x/y/w/h: box (tol default 1.5), fy: y from the footer top,
-// content: computed content url contains, text: textContent.
+// content: computed content url contains, text: textContent, display: computed display.
 const desktop = [
-  [".navbar__role", { c: "#7b7b86", x: 389.36 }],
-  [".navbar__links .link-nav", { c: "#f2f1f8" }],
-  [".hero__lede", { c: "#dedee5", fw: 500, fs: 20, ls: -0.02, x: 40, y: 468, w: 457, h: 66 }],
+  // 22 Nov: re-read from "Mondai home newest" 6364:28896 (Desktop 1 MVP file 5RO0m4bYYrTvbiaOgaU3tI, page CS);
+  // reports/figma-sync-2026-11-22/DIFF.md. The Testimonials section is in this frame, so the footer starts at 3349.
+  [".navbar__logo", { x: 40, y: 19, w: 47.36, tol: 1 }],
+  [".navbar__links .link-nav", { c: "#dedee5", fw: 500, y: 21, tol: 1 }],
+  [".hero__lede", { c: "#dedee5", fw: 500, fs: 20, ls: -0.02, x: 40, y: 451, w: 457, h: 66 }],
   [".hero__lede-wide", {
-    text: "I’m a system-minded, nuance led designer, designing for what we know now, while leaving space for what may change our minds." }],
-  [".hero__city", { c: "#7b7b86", x: 623, y: 498, tol: 1 }],
-  [".hero__move img", { x: 623, y: 519, w: 16, tol: 1 }],
-  [".hero__move span", { c: "#dedee5", fw: 400, fs: 16, x: 645, y: 521.5, tol: 1 }],
-  [".hero__wordmark", { y: 580.51, h: 293, w: 1440, tol: 1 }],
+    text: "I’m a system-minded, nuance led designer, looking for tomorrow’s problem in today’s perfectly reasonable decision." }],
+  [".hero__city", { c: "#7b7b86", x: 699, y: 481, tol: 1 }],
+  [".hero__move img", { x: 699, y: 502, w: 16, tol: 1 }],
+  [".hero__move span", { c: "#dedee5", fw: 400, fs: 16, ls: 0, x: 721, y: 504, tol: 1 }],
+  [".hero__wordmark", { y: 589.51, h: 293, w: 1440, tol: 1.5 }],
   [".works", { line: "none" }],
-  [".works__title", { c: "#dedee5", fs: 64, x: 518.5, y: 1064.5, w: 403 }],
-  [".work-card-mondai", { x: 40, y: 1235.5, w: 879 }],
-  [".work-card-mondai .work-card__name", { c: "#f2f1f8", x: 40, y: 1235.5 }],
-  [".work-card__slashes", { c: "#dedee5", x: 117.06, y: 1237, tol: 2 }],
-  [".work-card__kind", { c: "#dedee5", fw: 400, fs: 12, ls: 0.1, x: 139.11, y: 1238, tol: 2 }],
-  [".work-card-mondai .work-card__desc", { c: "#dedee5", fw: 400, fs: 13.75, ls: 0.02, x: 609.64, y: 1237.5, tol: 1 }],
-  [".work-card-mondai .work-card__media", { x: 40, y: 1265.21, w: 879 }],
+  [".work-card-mondai", { x: 40, y: 1042, w: 879 }],
+  [".work-card-mondai .work-card__name", { c: "#f2f1f8", x: 40, y: 1042 }],
+  [".work-card__slashes", { c: "#dedee5", x: 117, y: 1043, tol: 2 }],
+  [".work-card__kind", { c: "#dedee5", fw: 400, fs: 12, ls: 0.1, x: 138, y: 1044, tol: 2 }],
+  [".work-card-mondai .work-card__desc", { c: "#7b7b86", fw: 400, fs: 14, ls: 0.02, x: 622, y: 1044, tol: 1 }],
+  [".work-card-mondai .work-card__media", { x: 40, y: 1071, w: 879 }],
   [".work-card-haven", { x: 957, w: 443 }],
-  [".work-card-haven .work-card__name", { c: "#f2f1f8", x: 957, y: 1367.67 }],
-  [".work-card-haven .work-card__desc", { c: "#dedee5", fs: 14, ls: 0.02, x: 1187.79, y: 1369.67, tol: 1 }],
-  [".work-card-haven .work-card__media", { bg: "#0f0f1b", x: 957, y: 1397.38, w: 443, h: 443 }],
-  [".work-card-haven .haven-art__clip img", { x: 941.29, y: 1396.88, w: 487.35, h: 429.82, tol: 1 }],
-  [".about-story", { line: "#1d1d21", y: 2109.99, h: 543 }],
-  [".about-story .about__label", { c: "#d2d2db", x: 40, y: 2142.99 }],
-  [".about-story .about__body", { c: "#d2d2db", x: 741, y: 2142.99, w: 595 }],
-  [".about-role", { line: "#1d1d21", y: 2652.99, h: 208 }],
-  [".about-role .about__label", { c: "#d2d2db", x: 40, y: 2688.99 }],
-  [".about__when", { c: "#7b7b86", x: 40, y: 2713.99 }],
-  [".about-role .about__body", { c: "#d2d2db", x: 740, y: 2688.99, w: 650 }],
-  [".footer", { line: "#1d1d21", h: 777 }],
-  [".footer__back span", { c: "#7b7b86", x: 59.29, fy: 48.5 }],
-  [".footer__nav li:first-child a", { c: "#e8e7ee", x: 40, fy: 122 }],
+  [".work-card-haven .work-card__name", { c: "#f2f1f8", x: 957, y: 1174 }],
+  [".work-card-haven .work-card__desc", { c: "#7b7b86", fs: 14, ls: 0.02, x: 1211, y: 1176, tol: 1 }],
+  [".work-card-haven .work-card__media", { bg: "#0f0f1b", x: 957, y: 1203, w: 443, h: 443 }],
+  [".work-card-haven .haven-art__clip img", { x: 941, y: 1203, w: 487, h: 430, tol: 1.5 }],
+  [".about-story", { line: "#1d1d21", y: 1746, h: 569 }],
+  [".about-story .about__label", { c: "#d2d2db", x: 40, y: 1779 }],
+  [".about-story .about__body", { c: "#d2d2db", x: 858, y: 1779, w: 542, h: 456 }],
+  [".about-role", { line: "#1d1d21", y: 2315, h: 234 }],
+  [".about-role .about__label", { c: "#d2d2db", x: 40, y: 2351 }],
+  [".about__when", { c: "#7b7b86", x: 40, y: 2376 }],
+  [".about-role .about__body", { c: "#d2d2db", x: 858, y: 2351, w: 542, h: 118 }],
+  // Testimonials (6364:29031) is in the frame but hidden on the site, on hold at his ask (22 Nov), so the
+  // footer follows About and its parts are measured from its own top.
+  [".testimonials", { display: "none" }],
+  [".footer", { line: "#1d1d21", y: 2549, h: 777 }],
+  [".footer__back span", { c: "#7b7b86", x: 59, fy: 48 }],
+  [".footer__nav li:first-child a", { c: "#e8e7ee", x: 40, fy: 122, text: "Home" }],
+  [".footer__nav li:nth-child(3) a", { text: "Selected works" }],
+  [".footer__nav li:nth-child(4)", { display: "none" }],
+  [".menu__links li:nth-child(3)", { display: "none" }],
   [".footer__contact .footer__label", { c: "#7b7b86", x: 623, fy: 49 }],
   [".footer__email", { c: "#e8e7ee", x: 623, fy: 124 }],
-  [".footer__note p:first-child", { c: "#4b4b52", fy: 166.01 }],
+  [".footer__note p:first-child", { c: "#4b4b52", fy: 166 }],
   [".footer__note p:last-child", { c: "#e8e7ee" }],
   [".footer__contact .button", { x: 623, fy: 268 }],
-  [".footer__pill", { x: 1208.66, fy: 49, w: 85.95, h: 253.45 }],
-  [".footer__meta", { c: "#4b4b52", x: 40, fy: 528.21 }],
-  [".footer__out span", { c: "#e8e7ee", x: 762.83, fy: 528.01 }],
-  [".footer__wordmark", { fy: 550.17, tol: 2 }]
+  [".footer__pill", { x: 1209, fy: 49, w: 86, h: 253 }],
+  [".footer__meta", { c: "#4b4b52", x: 40, fy: 513 }],
+  [".footer__links .footer__out span", { c: "#e8e7ee", x: 763, fy: 512, tol: 2 }],
+  [".footer__wordmark", { fy: 550, tol: 2 }]
 ];
 const phone = [
   ["body", { bg: "#000000" }],
@@ -101,7 +108,7 @@ const phone = [
 // Icon files: their one fill against the Figma vector fill.
 const files = [
   ["assets/home/chdwck-hero.svg", "#dedee5"], ["assets/ui/dolly.svg", "#c9c9d4"], ["assets/ui/dolly-200.svg", "#dedee5"],
-  ["assets/ui/logo.svg", "#f2f1f8"], ["assets/ui/logo-300.svg", "#d2d2db"], ["assets/ui/menu.svg", "#90909d"],
+  ["assets/ui/logo.svg", "#dedee5"], ["assets/ui/logo-300.svg", "#d2d2db"], ["assets/ui/menu.svg", "#90909d"],
   ["assets/ui/close.svg", "#90909d"], ["assets/ui/chdwck.svg", "#f2f1f8"], ["assets/ui/arrow-out.svg", "#f2f1f8"], ["assets/ui/arrow-up.svg", "#7b7b86"]
 ];
 
@@ -130,7 +137,7 @@ try {
         const sh = cs.boxShadow === "none" ? "none" : (cs.boxShadow.match(/rgba?\([^)]*\)/) || [""])[0];
         return { c: hex(cs.color), bg: hex(cs.backgroundColor), line: sh === "none" ? "none" : hex(sh), fw: +cs.fontWeight, fs: parseFloat(cs.fontSize),
           ls: cs.letterSpacing === "normal" ? 0 : parseFloat(cs.letterSpacing) / parseFloat(cs.fontSize),
-          x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height, fy: r.top + scrollY - ft, content: cs.content, text: el.textContent.trim() };
+          x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height, fy: r.top + scrollY - ft, content: cs.content, text: el.textContent.trim(), display: cs.display };
       });
     }, list);
     list.forEach(([sel, want], i) => {
