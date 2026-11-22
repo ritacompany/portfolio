@@ -21,8 +21,6 @@
 :root {
   --rv-portrait-scale: 0.7;    /* R2: footer portraits on tablet */
   --rv-about-gap: 40px;        /* R12: About label to its text on phone (was 24) */
-  --rv-card-gap: 16px;         /* R14: card text to Learn more on phone */
-  --rv-learn-scale: 0.6;       /* R14: Learn more size on phone; the Figma Small button is 184 by 58 */
 }
 
 /* R4. The Mondai card export carries a lighter 7 px strip down its right edge. Widen the image by those
@@ -45,22 +43,3 @@
   .about-story, .about-role { row-gap: var(--rv-about-gap); }
 }
 
-/* R14. Phone cards (his answer, 9 Nov): the card's text stacks on the left and Learn more sits at the
-        bottom right beside it (cards-phone.js copies the button into the head). No overlay on a phone. */
-.work-card__learn { display: none; }
-@media (max-width: 767.98px) {
-  .work-card__head { display: grid; grid-template-columns: auto 1fr auto; align-items: end; column-gap: 8px; row-gap: 10px; }
-  .work-card__name { grid-column: 1 / 3; grid-row: 1; }
-  .work-card__slashes { grid-column: 1; grid-row: 2; }
-  .work-card__kind { grid-column: 2; grid-row: 2; }
-  /* R15 (10 Nov, his yes): the slashes and the label share one centre line, as they do on desktop. */
-  .work-card__slashes, .work-card__kind { align-self: center; }
-  .work-card__desc { grid-column: 1 / 3; margin-left: 0; white-space: normal; }
-  .work-card-mondai .work-card__desc { grid-row: 3; }
-  .work-card-haven .work-card__desc { grid-row: 2; }
-  .work-card__learn { display: inline-flex; grid-column: 3; grid-row: 1 / span 3; align-self: end; margin-left: var(--rv-card-gap, 16px); zoom: var(--rv-learn-scale, 0.6); }
-  .work-card-haven .work-card__learn { grid-row: 1 / span 2; }
-  .work-card__media .button-sm, .work-card__media::after { display: none; }
-}
-/* Haven's added Learn more sits at the centre of its square image. */
-.work-card-haven .work-card__media .button-sm { left: 50%; top: 50%; translate: -50% -50%; }

@@ -65,4 +65,10 @@ Scope: this branch holds the working branch, main and PR 40 as one Home; the app
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=2fb6d0af1ac4/16 entries; EXPECT=matched; output-sha256=949fb627311111b72ad01d47757b8157a575a819e75bb0b7eff7d3ddc81a2ce7; output-bytes=101
 
 - [x] G11: He has a phone link to the Home page built from this branch.
-  EVIDENCE: preview built with node scripts/build-preview.mjs site <scratchpad>/preview (HOVER_STILL_OK 50 hovers, 179 files) and published 22 Nov as https://claude.ai/artifact/MCp5KFuB72Z5UriV23LkEf version 1; the old preview link McviYhengPB92skSvB2YEu is not readable from this account
+  EVIDENCE: preview built with node scripts/build-preview.mjs site <scratchpad>/preview (HOVER_STILL_OK 50 hovers, 179 files) and published 22 Nov as https://claude.ai/artifact/MCp5KFuB72Z5UriV23LkEf version 1, version 2 with the touch Learn more (HOVER_STILL_OK 49 hovers); the old preview link McviYhengPB92skSvB2YEu is not readable from this account
+
+- [x] G12: On touch screens (390, 834 and 1180 wide) each work card shows Learn more in Label/14, not in capitals, with a right arrow, on the card's right edge 23 below the image; pressing it turns on the dark on Neutral/100 block without moving the text; with a mouse at 1440 it is hidden.
+  CHECK: node reports/home-unify-2026-11-22/check.mjs touch
+  EXPECT: TOUCH_LINK_OK
+  CWD: ../..
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=408c9a3b6c12/16 entries; EXPECT=matched; output-sha256=3d920b984209aef6c7089cdbcb0a3ba64578b0eacfff9a9f12214879cd49af2b; output-bytes=164

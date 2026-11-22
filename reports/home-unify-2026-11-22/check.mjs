@@ -142,4 +142,68 @@ else if (mode === "fit" || mode === "overlap") {
   done(`NO_NEW_${mode.toUpperCase()}_PROBLEMS`, `${now.length} known, ${base.size} on the working branch`);
 }
 
-else { console.log("usage: check.mjs <heads|moved|live|fit|overlap>"); process.exit(2); }
+else if (mode === "touch") {
+  // His ask, 22 Nov: on touch screens (phone and tablet) each work card carries a Learn more link, Label/14
+  // not in capitals with a right arrow; pressing it shows the dark on Neutral/100 block and nothing moves.
+  // With a mouse it is hidden (the site cursor carries Learn more).
+  const { chromium } = createRequire(import.meta.url)("playwright");
+  const site = join(ROOT, "site");
+  const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".webp": "image/webp", ".png": "image/png", ".woff2": "font/woff2" };
+  const server = createServer((req, res) => {
+    let f = join(site, normalize(decodeURIComponent(new URL(req.url, "http://x").pathname)));
+    if (existsSync(f) && statSync(f).isDirectory()) f = join(f, "index.html");
+    if (!existsSync(f)) { res.writeHead(404); return res.end(); }
+    res.writeHead(200, { "content-type": types[extname(f)] || "application/octet-stream" }); res.end(readFileSync(f));
+  }).listen(0, "127.0.0.1");
+  await new Promise((r) => server.once("listening", r));
+  const BASE = `http://127.0.0.1:${server.address().port}`;
+  const browser = await chromium.launch();
+  const notes = [];
+  const read = (pg) => pg.evaluate(() => [...document.querySelectorAll(".work-card")].map((c) => {
+    const l = c.querySelector(".work-card__more"), cs = getComputedStyle(l), r = l.getBoundingClientRect();
+    const t = l.querySelector("span").getBoundingClientRect(), m = c.querySelector(".work-card__media").getBoundingClientRect(), card = c.getBoundingClientRect();
+    return { card: c.classList[1], disp: cs.display, fs: cs.fontSize, tt: cs.textTransform, fw: cs.fontWeight, text: l.textContent.trim(), arrow: !!l.querySelector("svg path"),
+      bg: cs.backgroundColor, color: cs.color, tx: t.x, ty: t.y, right: r.right, cardRight: card.right, below: t.top - m.bottom };
+  }));
+  try {
+    for (const [w, h] of [[390, 844], [834, 1112], [1180, 820]]) {
+      const ctx = await browser.newContext({ viewport: { width: w, height: h }, hasTouch: true, isMobile: true, deviceScaleFactor: 1 });
+      const pg = await ctx.newPage();
+      await pg.goto(BASE + "/", { waitUntil: "load" }); await pg.evaluate(() => document.fonts.ready); await pg.waitForTimeout(300);
+      const rest = await read(pg);
+      for (const r of rest) {
+        must(r.disp !== "none", `${w}: ${r.card} has no Learn more on touch`);
+        must(r.fs === "14px" && r.tt === "none" && r.fw === "400", `${w}: ${r.card} Learn more not Label/14 non caps: ${r.fs} ${r.tt} ${r.fw}`);
+        must(r.text === "Learn more" && r.arrow, `${w}: ${r.card} Learn more text or arrow missing`);
+        must(Math.abs(r.right - 6 - r.cardRight) < 1.5, `${w}: ${r.card} Learn more text not on the card's right edge (${r.right - 6} vs ${r.cardRight})`);
+        must(r.bg === "rgba(0, 0, 0, 0)", `${w}: ${r.card} Learn more has a block at rest`);
+      }
+      // Press each card: the block turns on, the text stays put.
+      for (let i = 0; i < rest.length; i++) {
+        const sel = `.work-card:nth-child(${i + 1})`;
+        await pg.evaluate((s) => document.querySelector(s).scrollIntoView({ block: "center" }), `.works__cards > ${sel}`);
+        await pg.waitForTimeout(200);
+        const before = (await read(pg))[i];
+        const box = await pg.evaluate((s) => { const r = document.querySelector(s + " .work-card__more").getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; }, `.works__cards > ${sel}`);
+        const cdp = await ctx.newCDPSession(pg);
+        await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: box.x, y: box.y }] });
+        await pg.waitForTimeout(150);
+        const pressed = (await read(pg))[i];
+        await cdp.send("Input.dispatchTouchEvent", { type: "touchCancel", touchPoints: [] });
+        must(pressed.bg === "rgb(232, 231, 238)" && pressed.color !== before.color, `${w}: ${pressed.card} press shows no highlight: ${pressed.bg} ${pressed.color}`);
+        must(Math.abs(pressed.tx - before.tx) < 0.05 && Math.abs(pressed.ty - before.ty) < 0.05, `${w}: ${pressed.card} Learn more moved on press`);
+      }
+      notes.push(`${w}: ${rest.map((r) => `${r.card.replace("work-card-", "")} ${r.below.toFixed(0)} below image`).join(", ")}`);
+      await ctx.close();
+    }
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const pg = await ctx.newPage();
+    await pg.goto(BASE + "/", { waitUntil: "load" }); await pg.waitForTimeout(200);
+    const mouse = await read(pg);
+    must(mouse.every((r) => r.disp === "none"), "Learn more link shows with a mouse at 1440");
+    await ctx.close();
+  } finally { await browser.close(); server.close(); }
+  done("TOUCH_LINK_OK", notes.join("; "));
+}
+
+else { console.log("usage: check.mjs <heads|moved|live|fit|overlap|touch>"); process.exit(2); }

@@ -21,6 +21,10 @@ scroll-feel.js, scroll-fixes.js. The Mondai card rest image is fixed (mean 20.0 
 Gates: reports/home-unify-2026-11-22/GATES.md, 11 of 11. Phone link: https://claude.ai/artifact/MCp5KFuB72Z5UriV23LkEf
 (this account). Known and not this branch's: 20 fit and 15 overlap problems on the framework page at tablet and
 phone widths (baseline files in that folder), already on the working branch.
+Touch Learn more (his yes, 22 Nov): on any touch screen, phone or tablet, each card shows Learn more in Label/14,
+not in capitals, with a right arrow (Material Symbols arrow_forward), 23 under the image at the right edge; pressing
+the card gives it the big link highlight (js/home-motion.js marks it, since iPhone Safari skips :active). It replaces
+the phone frame's caps link and the R14 button proposal. A mouse keeps the site cursor. Gate G12.
 Next: the phone pass with him, Home first, on that link.
 
 ### Seth Lukin motion removed, 16 Nov (latest)

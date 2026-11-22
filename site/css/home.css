@@ -245,6 +245,13 @@
 }
 /* Phone parts that exist only under 768: hidden at tablet and desktop. */
 .navbar__menu, .hero__contact, .hero__vertical, .work-card__phone-art, .work-card__more, .menu { display: none; }
+/* Learn more on touch screens, phone and tablet (his ask, 22 Nov): no hover and no site cursor there, so the
+   card carries a Learn more link under its image, at the right edge. A mouse keeps the site cursor. */
+@media (hover: none), (pointer: coarse) {
+  /* margin 0 on top: the card already spaces its parts 15.71 apart, which puts the text 23 under the image, as on
+     the phone; the right and bottom margins cancel the 4 by 6 press padding. */
+  .work-card .work-card__more { display: flex; width: fit-content; margin: 0 -6px -4px auto; }
+}
 
 /* Phone, under 768: his Mobile frames (Portfolio Design, VC, 4929:12379, 10 Nov), drawn at 402 by 874.
    They replace the collapsed desktop layout that was here. */
@@ -322,7 +329,7 @@
   .work-card__kind { order: 2; grid-column: 1 / -1; justify-self: start; margin-top: 11.06px; color: var(--neutral-550); font-weight: 700; }
   .works .work-card__media { order: 3; grid-column: 1 / -1; margin-top: 20px; margin-bottom: 0; aspect-ratio: 404 / 266.324; }
   .work-card__desc { order: 4; position: static; margin: 20px 0 0; font-size: var(--card-desc-size); color: var(--neutral-200); } /* phone frame keeps Neutral/200 */
-  .work-card__more { order: 5; display: inline-block; margin: 13px 0 -7px; justify-self: end; }
+  .work-card .work-card__more { order: 5; margin: 16px -6px -4px 0; justify-self: end; } /* text 20 below, as before */
   .work-card__desk-art, .work-card__media .button-sm { display: none; }
   .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; }
   .work-card__phone-art img { position: absolute; max-width: none; transition: transform 900ms var(--ease-expo-out); }
