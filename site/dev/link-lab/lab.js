@@ -91,11 +91,9 @@
       html: '<a class="footer__back" href="#"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>',
       proto: '<div class="proto-col"><a class="footer__back" href="#"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a></div>',
       protoCaption: "Back to top, at the head of the footer.",
-      knobs: [color("rest", "Text at rest", "neutral-550"), color("hover", "Text on hover and press", "neutral-050"), num("iconStep", "Arrow: shades darker than the text", 0, "", 0, 5, 1), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
-      note: "On the live site the arrow is an image in Neutral/550 that a filter brightens on hover. Here, once any value changes, the arrow is drawn in a token so it can sit a set number of shades under the text.",
-      css: (r) => r.rule(".footer__back", ["color", "rest"]) + r.rule(".footer__back:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]) +
-        r.rule(".footer__back img", ["filter", "iconStep", () => "none"], ["object-position", "iconStep", () => "100vw 0"], ["-webkit-mask", "iconStep", () => 'url("/assets/ui/arrow-up.svg") center / contain no-repeat'], ["mask", "iconStep", () => 'url("/assets/ui/arrow-up.svg") center / contain no-repeat'], ["background", ["rest", "iconStep"], (c, n) => css(shift(c, n))]) +
-        r.rule(".footer__back:is(:hover, :active, .lab-hover, .lab-press) img", ["filter", "iconStep", () => "none"], ["background", ["hover", "iconStep"], (c, n) => css(shift(c, n))]),
+      knobs: [color("rest", "Text at rest", "neutral-550"), color("hover", "Text on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
+      note: "The arrow is an image: it turns light on hover but does not follow these colours.",
+      css: (r) => r.rule(".footer__back", ["color", "rest"]) + r.rule(".footer__back:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]),
     },
     {
       id: "button", name: "Small button", cls: ".button-sm", touchHover: false,
@@ -168,7 +166,7 @@
   const saved = load();
   const narrow = matchMedia("(max-width: 899.98px)").matches;
   const S = {
-    values: saved.values || {}, seededIcon: saved.seededIcon, notes: saved.notes || "", open: saved.open || {},
+    values: saved.values || {}, seededIcon2: saved.seededIcon2, notes: saved.notes || "", open: saved.open || {},
     // Opens on mouse wherever there is a mouse, whatever the window width; touch is only ever his choice
     // for that visit (an earlier version opened on touch in narrow windows and switched hover off).
     mode: matchMedia("(hover: hover)").matches ? "mouse" : "touch",
@@ -176,10 +174,11 @@
     left: narrow ? false : saved.left !== false, right: narrow ? false : saved.right !== false,
   };
   // His 23 Nov direction, shown as a proposal until he says yes: an icon rests darker than its text and
-  // moves up the same number of shades on hover. Seeded once at one shade; Reset puts the live site back.
-  if (!saved.seededIcon) {
-    for (const id of ["out", "back"]) { S.values[id] = S.values[id] || {}; delete S.values[id].arrowHover; if (S.values[id].iconStep === undefined) S.values[id].iconStep = 1; }
-    S.seededIcon = true;
+  // moves up the same number of shades on hover. LinkedIn and Resume only; Back to top stays as the site has it.
+  // Seeded once at one shade; Reset puts the live site back.
+  if (!saved.seededIcon2) {
+    S.values.out = S.values.out || {}; delete S.values.out.arrowHover; if (S.values.out.iconStep === undefined) S.values.out.iconStep = 1;
+    S.seededIcon2 = true; if (S.values.back) delete S.values.back.iconStep; if (S.values.back && !Object.keys(S.values.back).length) delete S.values.back;
   }
   let saveT;
   const flush = () => { clearTimeout(saveT); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
