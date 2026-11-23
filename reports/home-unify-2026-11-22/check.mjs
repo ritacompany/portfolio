@@ -119,7 +119,10 @@ else if (mode === "live") {
     pg = await ctx.newPage();
     await pg.goto(BASE + "/", { waitUntil: "load" });
     await pg.waitForTimeout(400);
-    const ph = await pg.evaluate(() => ({ cur: !!document.querySelector(".site-cursor"), cls: document.documentElement.classList.contains("has-site-cursor"), sw: document.documentElement.scrollWidth }));
+    const ph = await pg.evaluate(() => { const t = document.querySelector(".works__title"), r = t.getBoundingClientRect();
+      return { cur: !!document.querySelector(".site-cursor"), cls: document.documentElement.classList.contains("has-site-cursor"), sw: document.documentElement.scrollWidth, titleH: r.height, titleW: r.width }; });
+    // His phone frame (Mobile frames 6382:29154, Selected works) shows the heading; desktop and tablet hide it.
+    must(ph.titleH > 20 && ph.titleW > 150, `Selected works heading hidden on the phone: ${ph.titleW} by ${ph.titleH}`);
     must(!ph.cur && !ph.cls, "site cursor runs on a phone");
     must(ph.sw <= 390, `sideways scroll on a phone: scrollWidth ${ph.sw}`);
     notes.push(`390 no cursor, scrollWidth ${ph.sw}`);

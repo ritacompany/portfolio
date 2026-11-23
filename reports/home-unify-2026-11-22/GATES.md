@@ -58,7 +58,7 @@ Scope: this branch holds the working branch, main and PR 40 as one Home; the app
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=2fb6d0af1ac4/16 entries; EXPECT=matched; output-sha256=b3e59fe7bd71b170cc966fe629cc442414c0359ca9445c363df76371e30c64a7; output-bytes=9
 
-- [x] G10: On the real site, served fresh: at 1440 the nav stays fixed after scrolling, the cursor turns into Learn more over each work card, About text fades in and the Mondai card at rest is not darkened; at 390 there is no site cursor and no sideways scroll.
+- [x] G10: On the real site, served fresh: at 1440 the nav stays fixed after scrolling, the cursor turns into Learn more over each work card, About text fades in and the Mondai card at rest is not darkened; at 390 there is no site cursor, no sideways scroll and the Selected works heading shows, as his phone frame draws it.
   CHECK: node reports/home-unify-2026-11-22/check.mjs live
   EXPECT: LIVE_OK
   CWD: ../..
