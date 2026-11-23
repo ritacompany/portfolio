@@ -8,6 +8,8 @@
   const KEY = "link-lab:v1";
   const TOKENS = ["000", "050", "100", "200", "300", "400", "500", "525", "550", "575", "590", "600", "650", "675", "700", "800", "825", "850", "900", "1000"].map((n) => "neutral-" + n);
   const css = (v) => (TOKENS.includes(v) ? `var(--${v})` : v);
+  // One shade in the token scale is one step along this list (Neutral/050 to /100 to /200 ...).
+  const shift = (v, n) => (TOKENS.includes(v) ? TOKENS[Math.min(TOKENS.length - 1, TOKENS.indexOf(v) + n)] : v);
   const nice = (v) => (TOKENS.includes(v) ? "Neutral/" + v.slice(8) : v);
   const hexOf = (v) => (TOKENS.includes(v) ? getComputedStyle(document.documentElement).getPropertyValue("--" + v).trim() : v);
 
@@ -76,11 +78,11 @@
       rule: "23 Nov, his call: rests on the nav's Neutral/200 and hovers as the nav does, Neutral/050 plus the outline; the arrow now changes with the text.",
       html: `<a class="footer__out" href="#">${arrowOut}<span>Linkedin</span></a>`,
       proto: '<div class="proto-row proto-out"><p class="footer__meta">@2026, Chadwick Fenner</p><a class="footer__out" href="#"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a><a class="footer__out"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a></div>',
-      protoCaption: "The footer's bottom row. Resume is not a link yet, so it does not react. Proposed, waiting on your yes: the arrow goes one shade brighter on hover, Neutral/000, shown here; the live site still uses Neutral/050.",
-      proposal: true,
-      knobs: [color("rest", "Text and arrow at rest", "neutral-200"), color("hover", "Text on hover and press", "neutral-050"), color("arrowHover", "Arrow on hover and press (proposed)", "neutral-000"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
+      protoCaption: "The footer's bottom row. Resume is not a link yet, so it does not react.",
+      knobs: [color("rest", "Text at rest", "neutral-200"), color("hover", "Text on hover and press", "neutral-050"), num("iconStep", "Arrow: shades darker than the text", 0, "", 0, 5, 1), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
       css: (r) => r.rule(".footer__out", ["color", "rest"]) + r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]) +
-        r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press) img", ["background", "arrowHover"]),
+        r.rule(".footer__out img", ["background", ["rest", "iconStep"], (c, n) => css(shift(c, n))]) +
+        r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press) img", ["background", ["hover", "iconStep"], (c, n) => css(shift(c, n))]),
     },
     {
       id: "back", name: "Back to top", cls: ".footer__back",
@@ -89,9 +91,11 @@
       html: '<a class="footer__back" href="#"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>',
       proto: '<div class="proto-col"><a class="footer__back" href="#"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a></div>',
       protoCaption: "Back to top, at the head of the footer.",
-      knobs: [color("rest", "Text at rest", "neutral-550"), color("hover", "Text on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
-      note: "The arrow is an image: it turns light on hover but does not follow these colours.",
-      css: (r) => r.rule(".footer__back", ["color", "rest"]) + r.rule(".footer__back:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]),
+      knobs: [color("rest", "Text at rest", "neutral-550"), color("hover", "Text on hover and press", "neutral-050"), num("iconStep", "Arrow: shades darker than the text", 0, "", 0, 5, 1), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
+      note: "On the live site the arrow is an image in Neutral/550 that a filter brightens on hover. Here, once any value changes, the arrow is drawn in a token so it can sit a set number of shades under the text.",
+      css: (r) => r.rule(".footer__back", ["color", "rest"]) + r.rule(".footer__back:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]) +
+        r.rule(".footer__back img", ["filter", "iconStep", () => "none"], ["object-position", "iconStep", () => "100vw 0"], ["-webkit-mask", "iconStep", () => 'url("/assets/ui/arrow-up.svg") center / contain no-repeat'], ["mask", "iconStep", () => 'url("/assets/ui/arrow-up.svg") center / contain no-repeat'], ["background", ["rest", "iconStep"], (c, n) => css(shift(c, n))]) +
+        r.rule(".footer__back:is(:hover, :active, .lab-hover, .lab-press) img", ["filter", "iconStep", () => "none"], ["background", ["hover", "iconStep"], (c, n) => css(shift(c, n))]),
     },
     {
       id: "button", name: "Small button", cls: ".button-sm", touchHover: false,
@@ -164,13 +168,19 @@
   const saved = load();
   const narrow = matchMedia("(max-width: 899.98px)").matches;
   const S = {
-    values: saved.values || {}, notes: saved.notes || "", open: saved.open || {},
+    values: saved.values || {}, seededIcon: saved.seededIcon, notes: saved.notes || "", open: saved.open || {},
     // Opens on mouse wherever there is a mouse, whatever the window width; touch is only ever his choice
     // for that visit (an earlier version opened on touch in narrow windows and switched hover off).
     mode: matchMedia("(hover: hover)").matches ? "mouse" : "touch",
     view: saved.view || "tuned", zoom: saved.zoom || "1", rightW: saved.rightW || 340,
     left: narrow ? false : saved.left !== false, right: narrow ? false : saved.right !== false,
   };
+  // His 23 Nov direction, shown as a proposal until he says yes: an icon rests darker than its text and
+  // moves up the same number of shades on hover. Seeded once at one shade; Reset puts the live site back.
+  if (!saved.seededIcon) {
+    for (const id of ["out", "back"]) { S.values[id] = S.values[id] || {}; delete S.values[id].arrowHover; if (S.values[id].iconStep === undefined) S.values[id].iconStep = 1; }
+    S.seededIcon = true;
+  }
   let saveT;
   const flush = () => { clearTimeout(saveT); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
   const save = () => { clearTimeout(saveT); saveT = setTimeout(flush, 150); };
