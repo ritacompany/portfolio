@@ -1,0 +1,14 @@
+/* Proposal, ending bar on a phone (his ask, 23 Nov): short names, "Mondai design system CS" and
+   "Mondai framework CS", and no Explore more case studies. The short name is a second span in the markup,
+   shown only under 768. */
+.ending-bar .eb-short { display: none; }
+@media (max-width: 767px) {
+  .ending-bar .eb-long { display: none; }
+  .ending-bar .eb-short { display: inline; }
+  /* Two lines at most at 320: the bar takes the 16 px phone margin and a 16 px gap, and each name breaks evenly. */
+  .ending-bar { grid-template-columns: 1fr 1fr; grid-template-areas: "prev next"; row-gap: 0; column-gap: 16px; padding-inline: 16px; }
+  .ending-bar .eb-short { text-wrap: balance; }
+  .ending-bar__all { display: none; }
+}
+/* Under 360 the names step to 12 px, the floor, so they stay on two lines at 320. */
+@media (max-width: 359px) { .ending-bar .eb-short { font-size: 12px; } }

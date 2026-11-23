@@ -1,0 +1,15 @@
+/* Option, MVP timeline on a phone: one 12 column axis and two bars. The overlap of the phases is the
+   whole picture; the stage pills go. Facts are the ones already on the page. */
+.tl-mini { display: none; }
+@media (max-width: 767px) {
+  .mvp .phases { display: none; }
+  .tl-mini { display: block; margin-top: 48px; padding-inline: var(--m); }
+  .tl-mini__axis { display: grid; grid-template-columns: repeat(12, 1fr); font-size: 12px; letter-spacing: 0.04em; color: var(--n500); text-align: center; font-variant-numeric: tabular-nums; }
+  .tl-mini__rows { position: relative; margin-top: 12px; padding-block: 8px; background: linear-gradient(to right, var(--n800) 1px, transparent 1px) 0 0 / calc(100% / 12) 100% repeat-x; }
+  .tl-mini__bar { display: flex; align-items: center; height: 44px; margin-block: 8px; padding-inline: 14px; border-radius: 999px; font-size: 16px; font-weight: 700; color: var(--n050); }
+  .tl-mini__bar--id { margin-left: 0; width: calc(7 / 12 * 100%); background: var(--phase-identity); }
+  .tl-mini__bar--co { margin-left: calc(4 / 12 * 100%); width: calc(8 / 12 * 100%); background: var(--phase-community); }
+  .tl-mini__end { position: absolute; top: -4px; bottom: -4px; left: calc(7 / 12 * 100%); border-left: 1px dashed var(--n200); }
+  .tl-mini__note { margin-top: 16px; font-size: 16px; line-height: 1.4; color: var(--n300); }
+  .tl-mini__note b { font-weight: 500; color: var(--n100); }
+}

@@ -1,0 +1,27 @@
+/* Proposal, nav on a phone: the site's phone bar and menu (his Mobile frames 6382:29154, built on Home in
+   home.css) on Haven. Solid Neutral/1000 bar fixed at the top with the logo and the burger; the burger opens
+   the full screen menu. If he says yes this moves out of home.css into components.css so every page shares it. */
+.navbar__menu, .menu { display: none; }
+@media (max-width: 767px) {
+  .page-header.site-nav { top: 0; background: var(--neutral-1000); }
+  .site-nav .navbar { display: flex; align-items: center; padding-block: 18px; }
+  .site-nav .navbar__links { display: none; }
+  .site-nav .navbar__logo img { content: url("/assets/ui/logo-300.svg"); filter: none; }
+  .site-nav.is-on-light { background: var(--neutral-1000); }
+  .navbar__menu { display: grid; place-items: center; margin: -16px -13px -16px auto; padding: 16px 13px; background: none; border: 0; cursor: pointer; pointer-events: auto; -webkit-tap-highlight-color: transparent; }
+  .navbar__menu img { width: 18px; height: 12px; }
+  .navbar__menu:active img { opacity: 0.6; }
+  .menu { position: fixed; inset: 0; z-index: 40; display: flex; flex-direction: column; padding: 24px var(--m) 40px; background: var(--neutral-1000); opacity: 0; transition: opacity 200ms var(--ease-quart-out); }
+  .menu[hidden] { display: none; }
+  .menu[data-open] { opacity: 1; }
+  .menu__bar { display: flex; align-items: center; }
+  .menu__bar .navbar__logo { display: block; }
+  .menu .navbar__logo img { content: url("/assets/ui/logo-300.svg"); }
+  .menu__close { padding: 15px; margin: -15px -15px -15px auto; }
+  .menu__close img { width: 14px; height: 14px; }
+  .menu__body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 100px; }
+  .menu__links { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; list-style: none; padding: 0; margin: 0; }
+  .menu__links li { display: flex; }
+  .menu__contact { display: flex; flex-direction: column; align-items: flex-start; }
+  .menu__contact .footer__email { margin-top: 26px; }
+}

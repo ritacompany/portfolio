@@ -1,0 +1,15 @@
+/* Option, MVP timeline on a phone: two stacked phase blocks, each with its span and where it ends; a
+   12 dot strip per block keeps the overlap visible without the stage pills. */
+.tl-steps { display: none; }
+@media (max-width: 767px) {
+  .mvp .phases { display: none; }
+  .tl-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; padding-inline: var(--m); }
+  .tl-step { padding: 20px; border-radius: 16px; border: 1px solid var(--n600); display: flex; flex-direction: column; gap: 14px; }
+  .tl-step__head { display: flex; align-items: baseline; justify-content: space-between; font-size: 20px; font-weight: 500; color: var(--n050); }
+  .tl-step__range { font-size: 14px; letter-spacing: 0.04em; color: var(--n400); font-variant-numeric: tabular-nums; }
+  .tl-step__dots { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; }
+  .tl-step__dots i { height: 6px; border-radius: 3px; background: var(--n800); }
+  .tl-step--id .tl-step__dots i.on { background: var(--phase-identity); }
+  .tl-step--co .tl-step__dots i.on { background: var(--phase-community); }
+  .tl-step__end { font-size: 16px; color: var(--n300); }
+}

@@ -23,3 +23,13 @@ pill-tips files), so they are stale, not a check for this work.
 The change itself waits on his yes: the site review hook blocks edits under site/ until he approves, so the
 proposal lives in `site/dev/haven-phone/` (phone.css to append to haven.css, haven.js with the one line change).
 Screenshots are on the canvas; `shots/` is kept out of git (17 MB).
+
+## Round 2, his voice note (23 Nov)
+
+| Gate | Check | Result |
+|------|-------|--------|
+| R1 ending bar names | `/tmp` bar probe, now in GATES as: short names on at most two lines at 320, 360, 375, 390, 430 | PASS with `options/ending-bar.css` (one line measured impossible: 213 px needed, 191 max) |
+| R2 quiz options clear | labels off screen, on labels, on icons or on the phone, 320 to 767, both options | PASS, 0 collisions (`quiz-orbit.css`, `quiz-bigphone.css`) |
+| R3 phone nav | bar and menu render on Haven at 390 from the shared markup | screenshots on the canvas; lands after his yes, moving Home's phone bar CSS into components.css |
+| R4 dividers | report in `reports/dividers-2026-11-23/ISSUES.md` | colour waits on his call |
+| R5 journey flow Figma frame | built in his file | BLOCKED: the Figma build hook needs a typed message from him that says build |
