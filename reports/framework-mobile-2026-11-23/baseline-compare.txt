@@ -1,0 +1,5 @@
+fit: live 20, proposal 20, new 0
+overlap: live 15, proposal 15, new 0
+size: live 0, proposal 0, new 0
+health: live 0, proposal 0, new 0
+BASELINE_SAME

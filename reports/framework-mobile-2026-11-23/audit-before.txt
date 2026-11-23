@@ -1,0 +1,63 @@
+== /mondai/framework/ @320: scrollWidth 320 vw 320, tap highlight rgba(51, 181, 229, 0.4), errors 0
+  hidden (1)
+    img.capdemo__cursor "" opacity 0.00 visible
+  small (0)
+  body (0)
+  past (0)
+  blurry (0)
+  hover (4)
+    components.css: .link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed
+    components.css: .link-footer:hover, .link-footer.is-hover, .link-footer:active, .link-footer.is-pressed
+    framework.css: .sow__dot:hover
+    framework.css: .sow__dot[aria-current="true"]:hover
+== /mondai/framework/ @360: scrollWidth 360 vw 360, tap highlight rgba(51, 181, 229, 0.4), errors 0
+  hidden (1)
+    img.capdemo__cursor "" opacity 0.00 visible
+  small (0)
+  body (0)
+  past (0)
+  blurry (0)
+  hover (4)
+    components.css: .link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed
+    components.css: .link-footer:hover, .link-footer.is-hover, .link-footer:active, .link-footer.is-pressed
+    framework.css: .sow__dot:hover
+    framework.css: .sow__dot[aria-current="true"]:hover
+== /mondai/framework/ @375: scrollWidth 375 vw 375, tap highlight rgba(51, 181, 229, 0.4), errors 0
+  hidden (1)
+    img.capdemo__cursor "" opacity 0.00 visible
+  small (0)
+  body (0)
+  past (0)
+  blurry (1)
+    img[5812:17089].fig "Weekly capacity and Action Items" file 616 shown 327 (1.88x)
+  hover (4)
+    components.css: .link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed
+    components.css: .link-footer:hover, .link-footer.is-hover, .link-footer:active, .link-footer.is-pressed
+    framework.css: .sow__dot:hover
+    framework.css: .sow__dot[aria-current="true"]:hover
+== /mondai/framework/ @390: scrollWidth 390 vw 390, tap highlight rgba(51, 181, 229, 0.4), errors 0
+  hidden (1)
+    img.capdemo__cursor "" opacity 0.00 visible
+  small (0)
+  body (0)
+  past (0)
+  blurry (1)
+    img[5812:17089].fig "Weekly capacity and Action Items" file 616 shown 342 (1.80x)
+  hover (4)
+    components.css: .link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed
+    components.css: .link-footer:hover, .link-footer.is-hover, .link-footer:active, .link-footer.is-pressed
+    framework.css: .sow__dot:hover
+    framework.css: .sow__dot[aria-current="true"]:hover
+== /mondai/framework/ @430: scrollWidth 430 vw 430, tap highlight rgba(51, 181, 229, 0.4), errors 0
+  hidden (1)
+    img.capdemo__cursor "" opacity 0.00 visible
+  small (0)
+  body (0)
+  past (0)
+  blurry (1)
+    img[5812:17089].fig "Weekly capacity and Action Items" file 616 shown 382 (1.61x)
+  hover (4)
+    components.css: .link-nav:hover, .link-nav.is-hover, .link-nav:active, .link-nav.is-pressed
+    components.css: .link-footer:hover, .link-footer.is-hover, .link-footer:active, .link-footer.is-pressed
+    framework.css: .sow__dot:hover
+    framework.css: .sow__dot[aria-current="true"]:hover
