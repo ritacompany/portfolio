@@ -1,0 +1,118 @@
+<title>Design system CS canvas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=IBM+Plex+Sans+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a collapsible rail of versions on the left, then each version drawn on his black page at pool scale, A over B over C. */
+:root {
+  --bg: #050605; --panel: #0c0d0c; --line: #2a2d2a; --line-soft: #1b1d1b;
+  --text: #e9ece6; --muted: #a3a9a0; --slot: #6b716a;
+  --sans: "Heebo", system-ui, sans-serif; --mono: "IBM Plex Sans Mono", ui-monospace, monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f4f5f3; --panel: #ffffff; --line: #c9ccc6; --line-soft: #e1e3df;
+  --text: #141614; --muted: #50554f; --slot: #868b84; color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { background: var(--bg); color: var(--text); }
+body { font-family: var(--sans); font-size: 15px; line-height: 1.5; margin: 0; }
+.shell { display: flex; min-height: 100vh; }
+.rail { position: sticky; top: env(safe-area-inset-top, 0px); align-self: flex-start; height: 100vh; width: 260px;
+  flex: none; border-right: 1px solid var(--line); background: var(--panel); padding: 20px 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: 16px; overflow: auto; }
+.shell.collapsed .rail { width: 44px; padding: 20px 6px; }
+.shell.collapsed .rail > :not(.toggle) { display: none; }
+.toggle { font: 500 12px var(--mono); color: var(--text); background: transparent; border: 1px solid var(--line);
+  padding: 6px 8px; cursor: pointer; align-self: flex-start; }
+.toggle:hover { border-color: var(--muted); }
+.toggle:active { background: var(--line-soft); }
+.toggle:focus-visible, .rail a:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
+.rail h1 { font: 600 17px var(--sans); margin: 0; text-wrap: balance; }
+.rail .sub { color: var(--muted); font-size: 13px; margin: 0; }
+.rail nav { display: flex; flex-direction: column; gap: 8px; }
+.rail a { display: flex; flex-direction: column; gap: 2px; color: var(--text); text-decoration: none;
+  border: 1px solid var(--line); padding: 10px 12px; }
+.rail a:hover { border-color: var(--muted); }
+.rail a:active { background: var(--line-soft); }
+.rail a span { font: 12px var(--mono); color: var(--muted); }
+.rail .small { font-family: var(--sans); }
+.rail .points { font-size: 13px; color: var(--muted); margin: 0; padding-left: 18px; }
+.rail .points li { margin-bottom: 4px; }
+main { flex: 1; min-width: 0; padding-block: 28px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 72px; }
+.version { max-width: 1440px; width: 100%; margin: 0 auto; container-type: inline-size; }
+.label { display: grid; gap: 4px; margin-bottom: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+.tag { font: 500 13px var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+.angle, .covers { margin: 0; color: var(--muted); font-size: 14px; max-width: 75ch; }
+.covers { font-family: var(--mono); font-size: 12px; }
+.frame { position: relative; width: 100%; background: #000; color: #e9ece6; }
+:root[data-theme="light"] .frame, .frame { --fr-muted: #a3a9a0; }
+.frame > * { position: absolute; margin: 0; }
+.frame .eyebrow { font: 500 calc(14 / 1440 * 100cqw) var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--fr-muted); }
+.frame .headline { font: 500 calc(40 / 1440 * 100cqw)/1.15 var(--sans); text-wrap: balance; }
+.frame .side, .frame .body { font-size: calc(16 / 1440 * 100cqw); line-height: 1.5; }
+.frame .side p, .frame .body p, .frame .cap p { margin: 0 0 .7em; }
+  .frame .body .cap { position: static; margin-bottom: 1em; }
+.frame .cap { font-size: calc(14 / 1440 * 100cqw); line-height: 1.45; color: var(--fr-muted); }
+.frame .sources { font: calc(12 / 1440 * 100cqw)/1.4 var(--mono); color: var(--fr-muted); }
+.slot { border: 1px dashed #5d635c; display: flex; align-items: center; justify-content: flex-start; padding: 4%; }
+.slotnote { font: calc(14 / 1440 * 100cqw)/1.45 var(--mono); color: #8d938b; max-width: 56%; }
+.slotnote span, .note span { display: block; color: #c9cfc6; margin-bottom: .4em; }
+.slot .note { position: absolute; right: 3%; width: 30%; font: calc(13 / 1440 * 100cqw)/1.4 var(--mono); color: #c9cfc6;
+  border-left: 1px solid #5d635c; padding-left: .8em; }
+.slot .note.n1 { top: 8%; }
+.slot .note.n2 { bottom: 8%; }
+.flow { display: none; }
+@container (max-width: 760px) {
+  .frame { display: none; }
+  .flow { display: flex; flex-direction: column; gap: 14px; background: #000; color: #e9ece6; padding: 20px 16px; }
+  .flow .eyebrow { font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: #a3a9a0; }
+  .flow .headline { font: 500 24px/1.2 var(--sans); margin: 0; text-wrap: balance; }
+  .flow p { margin: 0 0 .7em; }
+  .flow .slot { min-height: 160px; }
+  .flow .slotnote { font-size: 13px; }
+  .flow .cap { font-size: 14px; color: #a3a9a0; margin: 0; }
+  .flow .sources { font: 12px var(--mono); color: #a3a9a0; }
+}
+@media (max-width: 720px) {
+  .shell { flex-direction: column; }
+  .rail { position: static; height: auto; width: 100%; border-right: 0; border-bottom: 1px solid var(--line);
+    padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .shell.collapsed .rail { width: 100%; padding: 12px 16px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+html { scroll-behavior: smooth; }
+</style>
+<div class="shell" id="shell">
+  <aside class="rail" id="rail">
+    <button class="toggle" id="toggle" type="button" aria-expanded="true" aria-controls="rail">Hide panel</button>
+    <h1>Design system CS: colour, round 1</h1>
+    <p class="sub">Three versions of one section. Each carries every point; they differ in layout, order and emphasis. Leave comments on the page; they come back to the session.</p>
+    <nav>
+{{NAV}}
+    </nav>
+    <ol class="points">
+      <li>Usage audit, one token per job</li>
+      <li>Judged by purpose on 11 sheets</li>
+      <li>Icon one step darker than its text</li>
+      <li>Roles only in the pickers</li>
+      <li>Gold is not in the system</li>
+      <li>Dark only, one mode</li>
+      <li>Agent test as the proof</li>
+      <li>Raw value to role to layer, one visual</li>
+    </ol>
+  </aside>
+  <main>
+{{CARDS}}
+  </main>
+</div>
+<script>
+(function () {
+  var shell = document.getElementById('shell'), btn = document.getElementById('toggle');
+  function set(c) { shell.classList.toggle('collapsed', c); btn.textContent = c ? 'Show' : 'Hide panel';
+    btn.setAttribute('aria-expanded', String(!c)); try { localStorage.setItem('ds-canvas-rail', c ? '1' : '0'); } catch (e) {} }
+  var start = false; try { start = localStorage.getItem('ds-canvas-rail') === '1'; } catch (e) {}
+  set(start);
+  btn.addEventListener('click', function () { set(!shell.classList.contains('collapsed')); });
+})();
+</script>
