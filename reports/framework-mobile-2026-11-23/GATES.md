@@ -79,7 +79,8 @@ Manual:
 
 - [x] G16: the canvas shows real 2x touch screenshots at several phone widths, before and after per section, and the title options, with my pick
   EVIDENCE: canvas https://claude.ai/artifact/FjHyNuWbAaPackaNHgxP9E, 10 artboards, 18 screenshots at 2x on touch emulation (320, 390, 430)
-- [ ] G17: committed and pushed to claude/framework-mobile, draft PR into claude/sharp-turing-jy21r2, nothing merged
+- [x] G17: committed and pushed to claude/framework-mobile, draft PR into claude/sharp-turing-jy21r2, nothing merged
+  EVIDENCE: draft PR https://github.com/ritacompany/portfolio/pull/43 into claude/sharp-turing-jy21r2, not merged
 
 Exemptions (measured, not fixed):
 - verify-responsive fit flags carousel cards 2 to 5 past the screen. The stage clips them on purpose (overflow
