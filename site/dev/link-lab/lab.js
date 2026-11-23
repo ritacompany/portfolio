@@ -73,11 +73,11 @@
     {
       id: "out", name: "LinkedIn and Resume", cls: ".footer__out",
       where: "The footer's bottom row. Resume shows but is not a link until his resume file exists (17 Nov).",
-      rule: "Small link hover, 10 Nov: Neutral/100 to Neutral/050 plus the outline. The arrow is Neutral/050 already.",
+      rule: "23 Nov, his call: rests on the nav's Neutral/200 and hovers as the nav does, Neutral/050 plus the outline; the arrow now changes with the text.",
       html: `<a class="footer__out" href="#">${arrowOut}<span>Linkedin</span></a>`,
       proto: '<div class="proto-row proto-out"><p class="footer__meta">@2026, Chadwick Fenner</p><a class="footer__out" href="#"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a><a class="footer__out"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a></div>',
       protoCaption: "The footer's bottom row. Resume is not a link yet, so it does not react.",
-      knobs: [color("rest", "Text at rest", "neutral-100"), color("hover", "Text on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
+      knobs: [color("rest", "Text and arrow at rest", "neutral-200"), color("hover", "Text and arrow on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
       css: (r) => r.rule(".footer__out", ["color", "rest"]) + r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]),
     },
     {

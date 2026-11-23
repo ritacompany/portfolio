@@ -1,6 +1,6 @@
 # Gates: link states lab, first deliverable
 
-OWNS: site/dev/link-lab/**, scripts/build-link-lab.mjs, reports/link-lab/**
+OWNS: site/dev/link-lab/**, scripts/build-link-lab.mjs, reports/link-lab/**, site/css/components.css
 
 Scope: a published lab showing every site link in each state on the real backgrounds with live tuning, autosave and Copy values, with the site's CSS untouched until he approves a change.
 
@@ -9,7 +9,7 @@ Scope: a published lab showing every site link in each state on the real backgro
   EXPECT: LINK_LAB_OK
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=29538a15a04a/16 entries; EXPECT=matched; output-sha256=ee87ea7b4cfa1db54717d1c4f8e27d3f639055a287db29f4e0cd3a0390a7524f; output-bytes=12
 
-- [x] G2: the site's CSS is unchanged from the base branch (nothing moved into site/css without his yes)
+- [x] G2: nothing on the live site changed except components.css, where his approved link changes go
   CHECK: node reports/link-lab/site-untouched.mjs
   EXPECT: SITE_CSS_UNTOUCHED
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=29538a15a04a/16 entries; EXPECT=matched; output-sha256=fe58241a8965cc0c6e4d80c761b1ef797f2d8861a62c699dae81c0e3a2b1d094; output-bytes=19
@@ -26,3 +26,8 @@ Scope: a published lab showing every site link in each state on the real backgro
 
 - [x] G5: the reply gives the link, what each link is used for and asks which one to start with
   EVIDENCE: manual, 23 Nov: the first reply carries the artifact link (version 2 republished after the save fix), the eleven components with where each is used, three findings and one question asking which link to start with
+
+- [x] G6: LinkedIn and Resume rest on Neutral/200 and hover to Neutral/050 like the nav, with the arrow in the text's colour, on Home, Haven and Framework at 1440 and 390 (his call, 23 Nov; negative control: the check fails on the old CSS, text 232 and no mask)
+  CHECK: node reports/link-lab/check-out.mjs
+  EXPECT: OUT_LINKS_OK
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=29538a15a04a/16 entries; EXPECT=matched; output-sha256=0008d81fcbaedb621132388f9f7e11859a385958d2b321e06e5b6cabdc744575; output-bytes=13
