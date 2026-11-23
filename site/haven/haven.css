@@ -78,8 +78,8 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 .muted { color: var(--n500); }
 .tb-item { display: block; }
 
-.rule-b { border-bottom: 1px solid var(--n675); }
-.rule-t { border-top: 1px solid var(--n675); }
+.rule-b { border-bottom: 1px solid var(--neutral-700); }
+.rule-t { border-top: 1px solid var(--neutral-700); }
 
 /* ---------- Reveal rules (metalab.com source, see prototypes/journey-map/README.md) ---------- */
 .js-motion .tb-item { visibility: hidden; opacity: 0; }
@@ -98,7 +98,7 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 .pill { height: 40px; padding: 0 20px; border: 1px solid var(--n550); border-radius: 48px; display: inline-flex; align-items: center; font-size: 12px; line-height: 1.4; letter-spacing: 0.08em; font-weight: 400; text-transform: uppercase; color: var(--n100); white-space: nowrap; }
 
 /* ---------- Hero, 3558:22720 ---------- */
-.hero { position: relative; padding: 131px var(--m) 184px; border-bottom: 1px solid var(--n675); }
+.hero { position: relative; padding: 131px var(--m) 184px; border-bottom: 1px solid var(--neutral-700); }
 .hero__top { display: flex; flex-direction: column; gap: 64px; }
 .hero__top .display { margin-left: calc(-18 * var(--g)); white-space: nowrap; }
 .meta { display: flex; gap: calc(132 * var(--g)); }
@@ -108,7 +108,7 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 .hero__lead { margin-top: 120px; display: flex; flex-direction: column; gap: 80px; }
 .hero__tagline { width: 440px; max-width: 100%; }
 .hero__media { align-self: flex-end; width: calc(778 * var(--g)); aspect-ratio: 778 / 463; }
-.hero__context { margin-top: 192px; padding-bottom: 80px; border-bottom: 1px solid var(--n800); display: flex; flex-direction: column; gap: 160px; }
+.hero__context { margin-top: 192px; padding-bottom: 80px; border-bottom: 1px solid var(--neutral-700); display: flex; flex-direction: column; gap: 160px; }
 .hero__statement { width: calc(899 * var(--g)); margin-left: calc(229 * var(--g)); }
 
 /* ---------- Identifying the problem, 3507:9724 ---------- */
@@ -209,7 +209,7 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 /* Figma 3300:13311 overrides Heading/64 with Satoshi Bold. Recorded as a detached style in the build notes. */
 .bridge-hold { height: 70vh; height: 70svh; }
 .after-bridge { position: relative; z-index: 1; background: var(--n900); }
-.section-rule { margin: 0 auto; width: calc(1437 * var(--g)); max-width: 100%; border: 0; border-top: 1px solid var(--n675); }
+.section-rule { margin: 0 auto; width: calc(1437 * var(--g)); max-width: 100%; border: 0; border-top: 1px solid var(--neutral-700); }
 
 /* Frame two stacks its sections 105 apart, Figma 3300:12803 */
 

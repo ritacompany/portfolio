@@ -6,7 +6,7 @@
 .eyebrow { letter-spacing:-.02em; }
 .flipped { display:inline-block; transform:scaleX(-1); }
 .hero { padding:130px var(--m) 72px; }
-.hero__top { gap:80px; padding-bottom:24px; margin-inline:calc(-1 * var(--m)); padding-inline:var(--m); border-bottom:1px solid var(--n800); }
+.hero__top { gap:80px; padding-bottom:24px; margin-inline:calc(-1 * var(--m)); padding-inline:var(--m); border-bottom:1px solid var(--neutral-700); }
 .display { font-weight:400; line-height:.83; }
 .meta { gap:calc(141 * var(--g)); }
 .hero__lead { margin-top:64px; flex-direction:row; gap:calc(145 * var(--g)); }
@@ -41,7 +41,7 @@
 .mvp__row { margin-top:80px; }
 .mvp__tl { display:none; } /* his 1b timeline, shown 768 to 1159 only (F1 below) */
 .gap-67 { display:none; }
-.wires { padding:64px 0 164px; border-bottom:1px solid var(--n800); }
+.wires { padding:64px 0 164px; border-bottom:1px solid var(--neutral-700); }
 .wires__text { padding-top:0; }
 .wires__lead { margin-top:40px; }
 .testing { margin-top:0; padding-top:64px; }
@@ -196,7 +196,6 @@
  .cr:not(.has-chat) .cr-phone { position:static; width:min(70%,314px); margin-inline:auto; }
  .cr:not(.has-chat) .cr-para { position:static; width:100%; }
 }
-.rule-b,.rule-t,.section-rule { border-color:var(--n800); }
 @media(min-width:768px) { .cr:not(.has-chat) .cr-para { width:min(360px,calc(360 * var(--g))); } }
 @media(min-width:1160px) {
  .display { font-size:clamp(72px,14.7222vw,212px); }
