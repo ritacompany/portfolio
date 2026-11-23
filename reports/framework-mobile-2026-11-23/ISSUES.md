@@ -70,6 +70,7 @@ limit, so neither file could be re-checked today. Haven's phone rules are the re
   the two width boards, Competitive analysis, Personalized timeline and Start of week. Falling behind and The test
   were off screen. This is his read of the look, not yet the yes that moves phone.css onto the live page, and the
   title option is still open.
+- Live: he said yes with title A on 23 Nov; the block is in site/css/framework.css.
 - Dividers: he has started another session that will change the divider colors site wide. This proposal changes
   no color. The only divider rule it touches is the hero rule's stretch inside the new grid (layout only), so the
   two pieces of work do not collide. Whoever lands second rechecks the hero rule on a phone.

@@ -87,3 +87,10 @@ Exemptions (measured, not fixed):
   hidden, center mode): only a sliver of the next card shows, which is the cue to swipe. G10 and G11 cover it.
 - verify-responsive overlap flags "Capacity" over "6 of 8" (and two more) at every width. It compares em boxes,
   and the 104 px number's em box rises above its trimmed line; the ink is 28 or more apart (G13).
+
+After his yes (23 Nov, question card "[site change]", answer "Yes, title A"):
+
+- [x] G18: the phone block is in site/css/framework.css and every gate passes on the live page; the repo's fit and overlap sets at all five default widths are the baseline sets, size and health OK
+  CHECK: node reports/framework-mobile-2026-11-23/check.mjs /mondai/framework/
+  EXPECT: PHONE_OK 13 of 13
+  EVIDENCE: check-live-after.txt (PHONE_OK 13 of 13); after-fit.txt and after-overlap.txt the same 20 and 15 items as base-fit.txt and base-overlap.txt; after-size.txt and after-health.txt OK; repo-checks-after.txt (REPO_CHECKS_OK 5 of 5)
