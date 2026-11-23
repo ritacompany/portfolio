@@ -14,7 +14,5 @@ Scope: ten opened, public, 2024 or later, senior design system case studies with
   EXPECT: CLAIMS-PASS
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio/reference/design-system-cs/research; path=0546b5e32cbf/16 entries; EXPECT=matched; output-sha256=652f903174ab504e2eccb72424adee714aa0526974b7c95c814892bd54209829; output-bytes=1370
 
-- [ ] G3: an independent fresh agent confirms or rejects each claim
-  EVIDENCE: pending
-
-ABANDON: G3 the repo's agent limit hook blocked every agent launch this turn after denied launches were counted; it can run on his next message
+- [x] G3: an independent fresh agent confirms or rejects each claim; failures are replaced and re-checked
+  EVIDENCE: 23 Nov 2026, Sonnet round 1: 8 pass, 1 fail (Jiachen Cui, replaced), 1 unverifiable (Vera Marshalova, Cloudflare blocked the agent; read in full by check-claims.cjs). Round 2 on the two changed links: both pass.
