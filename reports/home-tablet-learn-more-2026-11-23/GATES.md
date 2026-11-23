@@ -4,7 +4,7 @@ OWNS: site/css/home.css, site/dev/home-tablet/**, reports/home-tablet-learn-more
 
 Scope: from 768 to 1199 each work card shows its description under the image at the left and Learn more (his Small button) at the right of the same line, wrapping under the description at 24 px or less; the two images end on one line; no mouse hover at tablet; a press still fills the button; the phone rules and everything else are unchanged; a canvas shows real screenshots at several tablet widths.
 
-Status, 23 Nov: built first as a preview at /dev/home-tablet/, since the site review gate refuses edits to css/home.css without his yes; on his Yes to the [site change] card the same rules moved into css/home.css. G6 and G10 fail on this branch with none of this work present (checked with it stashed): G6 is the phone button colour at 402 (Neutral/100 against Figma #f2f1f8), the phone session's; G10 is the visually hidden "Selected works" heading counted as overlapping the cards at 768, 1024 and 1366, from cf61cb4. Before the change, G1 on Home failed (3209 failures, first: "773: mondai wrapped though one line had 178.3 px between them").
+Status, 23 Nov: built first as a preview at /dev/home-tablet/, since the site review gate refuses edits to css/home.css without his yes; on his Yes to the [site change] card the same rules moved into css/home.css. G6 and G10 failed on the base branch until the phone session fixed both at eecbef2 (his yes), merged here. Before the change, G1 on Home failed (3209 failures, first: "773: mondai wrapped though one line had 178.3 px between them").
 
 - [x] G1: On Home, every width 768 to 1199 in 1 px steps obeys the wrap rule for both cards, with the images ending on one line.
   CHECK: node reports/home-tablet-learn-more-2026-11-23/check.mjs wrap
@@ -30,17 +30,17 @@ Status, 23 Nov: built first as a preview at /dev/home-tablet/, since the site re
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=ba21e502deb8/16 entries; EXPECT=matched; output-sha256=7ee408faee3a656c048bea642314790f7547880389866d5f6cafb8d3fa25fe62; output-bytes=117
 
-- [x] G5: The phone block of home.css is unchanged and home.css differs from 8e2c665 only by the tablet block.
+- [x] G5: The phone block of home.css is unchanged and home.css differs from eecbef2 only by the tablet block.
   CHECK: node reports/home-tablet-learn-more-2026-11-23/check.mjs phone
   EXPECT: PHONE_UNTOUCHED_OK
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=ba21e502deb8/16 entries; EXPECT=matched; output-sha256=5d81beef0a54617e330d1e423c02c799f63ef1521f6bd04d8c01a85a92802d46; output-bytes=55
 
-- [ ] G6: Every 1440 value from his newest Home frame still matches.
+- [x] G6: Every 1440 value from his newest Home frame still matches.
   CHECK: node scripts/verify-figma-sync.mjs
   EXPECT: /^FIGMA_SYNC_OK \d+ checks$/m
   CWD: ../..
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=30fe3949cf5b/16 entries; EXPECT=matched; output-sha256=4068465f5a27e0efdd3c184773e4f16ce1acda7cc499c7e7c62dafa58ce765cc; output-bytes=25
 
 - [x] G7: No hover moves a letter on any page of the site.
   CHECK: node scripts/verify-hover-still.mjs site
@@ -60,11 +60,11 @@ Status, 23 Nov: built first as a preview at /dev/home-tablet/, since the site re
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=ba21e502deb8/16 entries; EXPECT=matched; output-sha256=e2525da4a8aeae7883e3d161510cc0440b22fdb5c782c97c5e6d8e554e08ead4; output-bytes=55
 
-- [ ] G10: No new overlap problems.
+- [x] G10: No new overlap problems.
   CHECK: node reports/home-unify-2026-11-22/check.mjs overlap
   EXPECT: NO_NEW_OVERLAP_PROBLEMS
   CWD: ../..
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=30fe3949cf5b/16 entries; EXPECT=matched; output-sha256=2f26477bb190f6522e2a7279170f88e42287b7fbb1368a99a08f07da12216f60; output-bytes=59
 
 - [x] G11: The live motion checks pass.
   CHECK: node reports/home-unify-2026-11-22/check.mjs live
@@ -93,5 +93,3 @@ Status, 23 Nov: built first as a preview at /dev/home-tablet/, since the site re
 - [x] G15: The canvas shows real Playwright screenshots of the built preview at 768, 834, 977, 978, 1024 and 1180 (2x, touch), one per artboard, each labelled with its width and each button's state; labels match G2's flip at 978.
   EVIDENCE: manual, 23 Nov: https://claude.ai/artifact/LFdpsoo5cpFLHps3tpuput, six artboards from Playwright shots of /dev/home-tablet/ (deviceScaleFactor 2, hasTouch, isMobile), uploaded as assets; 768, 834 and 977 labelled Haven wrapped, 978, 1024 and 1180 both on the line, matching TABLET_WRAP_OK "haven: starts wrap, row from 978"; Home now carries the same rules and G1 reports the same flip.
 
-ABANDON: G6 Fails on the base branch with none of this work present (402 .work-card__more colour against Figma #f2f1f8): a phone value, owned by the phone session. Handoff to that session.
-ABANDON: G10 Fails on the base branch with none of this work present: the visually hidden "Selected works" heading (cf61cb4) is counted as sitting on the card images. The tablet change removed its text overlap with the Mondai description at 768 and 1024; the rest belongs to the phone session's heading change or to the checker. Handoff.
