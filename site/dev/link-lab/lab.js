@@ -79,10 +79,9 @@
       html: `<a class="footer__out" href="#">${arrowOut}<span>Linkedin</span></a>`,
       proto: '<div class="proto-row proto-out"><p class="footer__meta">@2026, Chadwick Fenner</p><a class="footer__out" href="#"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a><a class="footer__out"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a></div>',
       protoCaption: "The footer's bottom row. Resume is not a link yet, so it does not react.",
-      knobs: [color("rest", "Text at rest", "neutral-200"), color("hover", "Text on hover and press", "neutral-050"), num("iconStep", "Arrow: shades darker than the text", 0, "", 0, 5, 1), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
+      knobs: [color("rest", "Text at rest", "neutral-200"), color("hover", "Text on hover and press", "neutral-050"), color("arrowRest", "Arrow at rest", "neutral-200"), color("arrowHover", "Arrow on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
       css: (r) => r.rule(".footer__out", ["color", "rest"]) + r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]) +
-        r.rule(".footer__out img", ["background", ["rest", "iconStep"], (c, n) => css(shift(c, n))]) +
-        r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press) img", ["background", ["hover", "iconStep"], (c, n) => css(shift(c, n))]),
+        r.rule(".footer__out img", ["background", "arrowRest"]) + r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press) img", ["background", "arrowHover"]),
     },
     {
       id: "back", name: "Back to top", cls: ".footer__back",
@@ -166,7 +165,7 @@
   const saved = load();
   const narrow = matchMedia("(max-width: 899.98px)").matches;
   const S = {
-    values: saved.values || {}, seededIcon2: saved.seededIcon2, notes: saved.notes || "", open: saved.open || {},
+    values: saved.values || {}, seededIcon3: saved.seededIcon3, notes: saved.notes || "", open: saved.open || {},
     // Opens on mouse wherever there is a mouse, whatever the window width; touch is only ever his choice
     // for that visit (an earlier version opened on touch in narrow windows and switched hover off).
     mode: matchMedia("(hover: hover)").matches ? "mouse" : "touch",
@@ -174,11 +173,11 @@
     left: narrow ? false : saved.left !== false, right: narrow ? false : saved.right !== false,
   };
   // His 23 Nov direction, shown as a proposal until he says yes: an icon rests darker than its text and
-  // moves up the same number of shades on hover. LinkedIn and Resume only; Back to top stays as the site has it.
+  // jumps clearly on hover: Neutral/300 at rest, Neutral/000 on hover. LinkedIn and Resume only; Back to top stays as the site has it.
   // Seeded once at one shade; Reset puts the live site back.
-  if (!saved.seededIcon2) {
-    S.values.out = S.values.out || {}; delete S.values.out.arrowHover; if (S.values.out.iconStep === undefined) S.values.out.iconStep = 1;
-    S.seededIcon2 = true; if (S.values.back) delete S.values.back.iconStep; if (S.values.back && !Object.keys(S.values.back).length) delete S.values.back;
+  if (!saved.seededIcon3) {
+    S.values.out = S.values.out || {}; delete S.values.out.iconStep; S.values.out.arrowRest = "neutral-300"; S.values.out.arrowHover = "neutral-000";
+    S.seededIcon3 = true; if (S.values.back) delete S.values.back.iconStep; if (S.values.back && !Object.keys(S.values.back).length) delete S.values.back;
   }
   let saveT;
   const flush = () => { clearTimeout(saveT); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
