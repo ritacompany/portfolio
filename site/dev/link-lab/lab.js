@@ -76,9 +76,11 @@
       rule: "23 Nov, his call: rests on the nav's Neutral/200 and hovers as the nav does, Neutral/050 plus the outline; the arrow now changes with the text.",
       html: `<a class="footer__out" href="#">${arrowOut}<span>Linkedin</span></a>`,
       proto: '<div class="proto-row proto-out"><p class="footer__meta">@2026, Chadwick Fenner</p><a class="footer__out" href="#"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a><a class="footer__out"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a></div>',
-      protoCaption: "The footer's bottom row. Resume is not a link yet, so it does not react.",
-      knobs: [color("rest", "Text and arrow at rest", "neutral-200"), color("hover", "Text and arrow on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
-      css: (r) => r.rule(".footer__out", ["color", "rest"]) + r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]),
+      protoCaption: "The footer's bottom row. Resume is not a link yet, so it does not react. Proposed, waiting on your yes: the arrow goes one shade brighter on hover, Neutral/000, shown here; the live site still uses Neutral/050.",
+      proposal: true,
+      knobs: [color("rest", "Text and arrow at rest", "neutral-200"), color("hover", "Text on hover and press", "neutral-050"), color("arrowHover", "Arrow on hover and press (proposed)", "neutral-000"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
+      css: (r) => r.rule(".footer__out", ["color", "rest"]) + r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]) +
+        r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press) img", ["background", "arrowHover"]),
     },
     {
       id: "back", name: "Back to top", cls: ".footer__back",

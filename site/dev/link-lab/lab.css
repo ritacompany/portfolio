@@ -198,3 +198,6 @@
 .knob select.wide { width: 210px; }
 .scene .ending-bar { height: auto; min-height: 44px; }
 .lab-mode-flag { margin: 0 0 24px; }
+
+/* Proposal, waiting on his yes (23 Nov): LinkedIn's arrow one shade brighter than the text on hover. */
+.footer__out:is(:hover, :active, .lab-hover, .lab-press, .lab-sticky) img { background: var(--neutral-000); }
