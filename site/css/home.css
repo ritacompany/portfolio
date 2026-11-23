@@ -350,7 +350,7 @@
      more share the last line. They stay more than 24 px apart (the 24.02 px column gap); at 24 or less the
      button wraps to its own line under the description, 20 below it, at the right edge (his ask, 23 Nov).
      The description never wraps itself, so the button is what moves. */
-  .work-card { display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start; column-gap: 24.02px; row-gap: 0; } /* just over 24: at 24 or less it wraps */
+  .work-card { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; column-gap: 24.02px; row-gap: 0; } /* just over 24: at 24 or less it wraps */
   .work-card__head { display: contents; }
   .work-card__name { order: 1; flex: 0 0 100%; color: var(--neutral-200); }
   .work-card__slashes { display: none; }

@@ -309,6 +309,7 @@ else if (mode === "wrap") {
       for (const k of cards) {
         const sameLine = Math.abs(k.mt - k.dt) < 3 && k.ml > k.dr;
         must(Math.abs(k.mr - k.cr) < 1, `${w}: ${k.card} Learn more off the right edge (${k.mr} vs ${k.cr})`);
+        must(Math.abs(k.dl - k.cl) < 1, `${w}: ${k.card} description not on the left edge (${k.dl} vs ${k.cl})`);
         if (sameLine) {
           rows++;
           must(k.ml - k.dr > 24, `${w}: ${k.card} button only ${(k.ml - k.dr).toFixed(1)} from the description on one line`);
