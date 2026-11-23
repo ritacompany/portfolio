@@ -4,13 +4,13 @@ OWNS: site/css/home.css, site/dev/home-tablet/**, reports/home-tablet-learn-more
 
 Scope: from 768 to 1199 each work card shows its description under the image at the left and Learn more (his Small button) at the right of the same line, wrapping under the description at 24 px or less; the two images end on one line; no mouse hover at tablet; a press still fills the button; the phone rules and everything else are unchanged; a canvas shows real screenshots at several tablet widths.
 
-Status, 23 Nov: built and passing as a preview at /dev/home-tablet/. The site review gate (.claude/hooks/site-review-gate.mjs) refuses edits to css/home.css until he says yes in this chat, so G1 is unmet on Home until then. G6 and G10 fail on this branch with none of this work present (checked with it stashed): G6 is the phone button colour at 402 (Neutral/100 against Figma #f2f1f8), the phone session's; G10 is the visually hidden "Selected works" heading counted as overlapping the cards at 768, 1024 and 1366, from cf61cb4. Before the change, G1 on Home failed (3209 failures, first: "773: mondai wrapped though one line had 178.3 px between them").
+Status, 23 Nov: built first as a preview at /dev/home-tablet/, since the site review gate refuses edits to css/home.css without his yes; on his Yes to the [site change] card the same rules moved into css/home.css. G6 and G10 fail on this branch with none of this work present (checked with it stashed): G6 is the phone button colour at 402 (Neutral/100 against Figma #f2f1f8), the phone session's; G10 is the visually hidden "Selected works" heading counted as overlapping the cards at 768, 1024 and 1366, from cf61cb4. Before the change, G1 on Home failed (3209 failures, first: "773: mondai wrapped though one line had 178.3 px between them").
 
-- [ ] G1: On Home, every width 768 to 1199 in 1 px steps obeys the wrap rule for both cards, with the images ending on one line.
+- [x] G1: On Home, every width 768 to 1199 in 1 px steps obeys the wrap rule for both cards, with the images ending on one line.
   CHECK: node reports/home-tablet-learn-more-2026-11-23/check.mjs wrap
   EXPECT: /^TABLET_WRAP_OK \d+ one line, [1-9]\d* wrapped/m
   CWD: ../..
-  EVIDENCE: pending
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=ba21e502deb8/16 entries; EXPECT=matched; output-sha256=b5b447e6e31717dc62f3e814d1f57ae373dea49a83fb8f9b066dc249e872ffa9; output-bytes=95
 
 - [x] G2: The same rule holds on the preview at /dev/home-tablet/, what the canvas shows.
   CHECK: node reports/home-tablet-learn-more-2026-11-23/check.mjs wrap /dev/home-tablet/
@@ -90,5 +90,8 @@ Status, 23 Nov: built and passing as a preview at /dev/home-tablet/. The site re
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=ba21e502deb8/16 entries; EXPECT=matched; output-sha256=5b4161953cd2b63cf29cb4b5672f86a38297f404780a5c1444b66b911396025c; output-bytes=76
 
-- [ ] G15: The canvas shows real Playwright screenshots of the built preview at 768, 834, 977, 978, 1024 and 1180 (2x, touch), one per artboard, each labelled with its width and each button's state; labels match G2's flip at 978.
-  EVIDENCE: pending
+- [x] G15: The canvas shows real Playwright screenshots of the built preview at 768, 834, 977, 978, 1024 and 1180 (2x, touch), one per artboard, each labelled with its width and each button's state; labels match G2's flip at 978.
+  EVIDENCE: manual, 23 Nov: https://claude.ai/artifact/LFdpsoo5cpFLHps3tpuput, six artboards from Playwright shots of /dev/home-tablet/ (deviceScaleFactor 2, hasTouch, isMobile), uploaded as assets; 768, 834 and 977 labelled Haven wrapped, 978, 1024 and 1180 both on the line, matching TABLET_WRAP_OK "haven: starts wrap, row from 978"; Home now carries the same rules and G1 reports the same flip.
+
+ABANDON: G6 Fails on the base branch with none of this work present (402 .work-card__more colour against Figma #f2f1f8): a phone value, owned by the phone session. Handoff to that session.
+ABANDON: G10 Fails on the base branch with none of this work present: the visually hidden "Selected works" heading (cf61cb4) is counted as sitting on the card images. The tablet change removed its text overlap with the Mondai description at 768 and 1024; the rest belongs to the phone session's heading change or to the checker. Handoff.

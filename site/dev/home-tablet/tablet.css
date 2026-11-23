@@ -1,5 +1,5 @@
 /* Preview of the tablet Learn more layout (his ask, 23 Nov), loaded after css/home.css on /dev/home-tablet/.
-   Moves into css/home.css on his yes. Tablet, 768 to 1199: his phone pattern on the side by side cards (no
+   Now also in css/home.css (his yes, 23 Nov); kept so the preview and canvas stay reproducible. Tablet, 768 to 1199: his phone pattern on the side by side cards (no
    tablet frame exists). The name line stays above the image; the description leaves the head and sits under the
    image at the left, with Learn more at the right of the same line, both 20 under the image. They stay more than
    24 px apart (the 24.02 px column gap); at 24 or less the button wraps under the description, 20 below it, at
