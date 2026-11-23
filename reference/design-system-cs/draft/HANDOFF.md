@@ -26,6 +26,6 @@ Nothing. The three lines in `FRAME.md` belonged to draft 1 and go with it.
 
 ## Next action
 
-Content first, story last (`../outline-2/MATERIAL.md`, Order of work, his call 21 Nov). Start with the
-tokens block in the framework CS loop (`reference/cs2/WORKING_LOOP.md`); opening and ending last.
-Check: `node reference/design-system-cs/outline-2/check.mjs ../mondai`.
+Outline reshaped to the content research on 23 Nov (`../outline-2/MATERIAL.md`). Content first, story
+last. Next: colour, round 1, three versions in the framework CS loop (`reference/cs2/WORKING_LOOP.md`);
+opening and ending last. Check: `node reference/design-system-cs/outline-2/check.mjs ../mondai`.

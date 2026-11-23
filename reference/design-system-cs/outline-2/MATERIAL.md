@@ -22,11 +22,15 @@ are ids in `../NUMBERS.md`; decisions are rows in `../concept/DECISION-INVENTORY
 
 ## Order of work
 
-1. Content sections, in this order unless he picks another: tokens; layout and components; setting
-   agents up to build from it; proving it works. Each runs the framework CS loop: he names the block
+1. Content sections, in this order unless he picks another: colour; layout and components; proving
+   the checks; the agent test and what the system changed for agents. Each runs the framework CS loop: he names the block
    and what it needs, three versions per round that differ in structure, his comments, revise.
 2. The story: what the finished sections argue, found from them, then the frame rewritten.
 3. The opening (hero, with the system shown whole) and the ending (still imperfect), last.
+
+- 23 Nov 2026: the outline reshaped to the content research (`../research/CONTENT.md`): colour
+  decisions replace a tokens section; the AI part leads with the failed checks and the agent test;
+  the pipeline shrinks to one diagram. Decided by: Chadwick, in chat on 23 Nov.
 
 ## The frame (working, rewritten after the content sections)
 
@@ -54,67 +58,63 @@ are ids in `../NUMBERS.md`; decisions are rows in `../concept/DECISION-INVENTORY
 - **Tactic.** t06 answer first, with t17 the nut graf.
 - **Missing.** Whether Mondai frames can be shown publicly (`../GAPS.md` item 15).
 
-### 2. Tokens: how the setup works
+### 2. Colour: decided by purpose
 
-- **Decisions.** Raw values hidden as primitives, published roles named for their job, collections
-  split by job (Mondai `process/token-picker/MAPPING.md`, the 14 Oct structure); dark only, one mode
-  (inventory, 2 Oct); gold is not part of the system (inventory, 19 Aug).
-- **Visual.** To make: the chain from a raw value to a named role to a layer on a real screen.
-  Existing before and after of one component's bindings: Mondai
-  `process/token-picker/before-after/before-inline-notification.png` and
-  `after-inline-notification.png`.
-- **Numbers.** N23 (collections, published count, bindings to retiring variables), N21 (code names),
-  N24 (text styles bound to size variables).
-- **Tactic.** t24 refute the rejected option: one mixed list of raw values and roles, and why it lost.
-- **Caution.** N23 and Mondai `design-system-ai/EVIDENCE.md` hold the 14 Oct restructure back:
-  he disputed it on 15 Oct, and the re-audit found the variables match the 14 Oct snapshot. He then
-  published the library on 20 Oct (Mondai `design-system-plan/PLAN.md`, Update 21 Oct) and the live
-  read on 6 Nov shows the 9 collections. Read as settled by the publish (ASSUMED); confirm with the
-  tokens chat's record before this section's sentences.
+- **Job.** His colour decisions and how he knows they held. Not an explanation of token tiers: the
+  raw value to role to screen chain is one labelled visual with no paragraph of its own (research,
+  `../research/CONTENT.md`, Tokens or colour).
+- **Decisions.** One token per job from a usage audit of every colour (N30); the 11 sheets ruled by
+  purpose, never by shared value (21 Oct, N31); rules that turn feel into arithmetic (pressed one step
+  lighter than hover in dark mode; an icon one step darker than its text); roles only in the pickers
+  and three roles renamed for what they paint (22 Oct, N32); gold is not part of the system (19 Aug);
+  dark only as a one line scope cut (2 Oct).
+- **Visual.** Two or three of the 11 sheets with his ruling as the caption (Mondai
+  `process/token-picker/colour-by-job/sheets/`); the one labelled chain visual, to make.
+- **Numbers.** N30, N31, N32, N24. N23 stays out until the token audit reading is confirmed.
+- **Proof line.** The agent test: every colour agents placed sat on a published role, while
+  Text/Display was read as a size (N17, scoped to layers the agents made).
+- **Tactic.** t24 refute the rejected option (match by value), with t11 precision with its derivation.
 
 ### 3. Layout and components
 
-- **Decisions.** One 12 column grid with margins on column edges (23 Sep); spacing between areas
-  judged on eight real screens (25 to 27 Sep); spacing roles with the ladder gaps filled (2 Oct);
-  buttons fill by default, one or two columns wide (25 Sep); inputs on one outline ladder with
-  states named for the job (30 Sep); a component is decided by interaction, never repetition
-  (2 and 6 Oct).
-- **Visual.** Spacing roles labelled on a real screen: from Mondai `process/spacing-rules/previews/`
-  (48 against 64 sets) and `process/nosidebar-grid/renders/N-signup-grid.png` for the grid. A
-  component page with its usage note beside the variant grid: capture from Figma.
-- **Numbers.** N19 (33 widths across 236 buttons to the two width rule), N20 (raw spacing links moved
-  onto roles), N22 (descriptions).
-- **Tactic.** t21 name what it cost (fewer components means more written rules; every desktop layout
-  touched by the grid).
+- **Decisions, in rank order.** A component is decided by interaction, never repetition, with the
+  backtrack that forced it (2 and 6 Oct); buttons fill by default at one or two columns, from 236
+  buttons in 33 widths (25 Sep); spacing judged on eight real screens, then roles with the ladder
+  gaps filled (25 to 27 Sep, 2 Oct); inputs on one outline ladder, no filled state (30 Sep); one 12
+  column grid as one line and one labelled screen (23 Sep); documentation as one number (N22).
+- **Visual.** The button audit spread beside the rule; spacing before and after previews (Mondai
+  `process/spacing-rules/previews/`); one input image; the grid on a real screen (Mondai
+  `process/nosidebar-grid/renders/N-signup-grid.png`).
+- **Numbers.** N19 (no after count; do not claim a recount), N20, N22.
+- **Tactic.** t21 name what it cost.
 
 ## Part two: scaling it with AI
 
-### 4. Setting agents up to build from it
+### 4. Proving the checks: when a pass means right
 
-- **Decisions.** The system fed to an AI as a document still needed a designer's eye (Mar 2026);
-  the work moved to skills and agents that carry the system's rules: the design system page skill
-  and its page builder agent (Mondai `.claude/skills/design-system-page/SKILL.md`,
-  `.claude/agents/ds-page-builder.md`), the five stage pipeline from strategy doc to handoff
-  (`.claude/skills/new-work/SKILL.md`), the screen critic run before he sees a round
-  (`.claude/agents/screen-critic.md`). The cut when the process overgrew (N29).
-- **Visual.** To make: the pipeline as his real stages, detours included (t46 warns against a
-  textbook diagram). One agent build in Figma: N18's three screens.
-- **Numbers.** N18 (three screens in 9.7 minutes), N28 (thirteen agents at once: what failed), N29.
-- **Tactic.** t14 clues before the reveal: what the system had to change so agents could read it,
-  shown before the pipeline.
+- **Job.** The AI part carries its weight through tests and failures, not through tooling: skills,
+  MCP and pipeline diagrams are table stakes in 2026 (19 of 21 public systems ship an agent skill;
+  research, Scaling with AI).
+- **Decisions, in rank order.** 20 Sep: checks passed screens that were wrong, and were rebuilt to
+  read the real file; checks count only after catching planted mistakes (N14, N15); the screen
+  critic calibrated on frames he had already judged (N16).
+- **Visual.** The 20 Sep screen with the wrong buttons beside the system's buttons (to capture);
+  the planted mistake catch table.
+- **Tactic.** t29 the wrong turn and the signal missed.
 
-### 5. Proving it works
+### 5. The agent test and what the system changed for agents
 
-- **Decisions.** 20 Sep: agent screens passed every check and were wrong; checks rebuilt to read the
-  real file. A check counts only after it catches planted mistakes (Mondai
-  `.claude/skills/vaccinate/SKILL.md`, `ops/check-ledger.md`). The agent usability test (Mondai
-  `design-system-ai/evidence/AGENT-TEST-BEFORE.md`).
-- **Visual.** The settled screen beside an agent's rebuild with mistakes marked: Mondai
-  `design-system-ai/evidence/agent-test/reference-M4.1.png` and `build-run1.png`. The sprint table.
-- **Numbers.** N17 (about 31 mistakes a build, before), N9 (faults handed off 596 to 0), N14 and N15
-  (checks proven), N16 (the screen critic), N1 to N6 (time per feature, ESTIMATE), N11.
-- **Tactic.** t29 the wrong turn and the signal missed, with t12 before and after.
-- **Missing.** The agent test's after run (owned by the evidence chat in Mondai).
+- **Decisions.** Fresh agents rebuild a known screen from the library alone (N17, before); what the
+  system changed so agents could read it, told as system decisions: code names 0 of 235 to 425 of 431
+  (N21), buttons that hugged under the plugin, grid values that came from AI. The pipeline as one
+  real diagram with its detours and the overgrowth cut (N28, N29, N18), kept small.
+- **Visual.** The settled screen beside an agent's rebuild, mistakes marked (Mondai
+  `design-system-ai/evidence/agent-test/reference-M4.1.png` and `build-run1.png`); the pipeline
+  diagram, to make.
+- **Proof.** N9 (faults handed off 596 to 0 with its method), N1 to N6 (active days), N12 and N13
+  (what did not move).
+- **Missing.** The agent test's after run: without it this part has a before and no result.
+- **Tactic.** t12 before and after.
 
 ### 6. Ending: still imperfect (written last)
 
@@ -132,5 +132,5 @@ system makes possible.
 ## Next
 
 1. Confirm the token audit reading (section 2 caution) against the tokens chat's record.
-2. The first content block: tokens, from what he wants it to show. Capture its visuals from Figma.
+2. The first content block: colour, round 1, three versions. Capture its visuals.
 3. Section 1's Figma spread waits for the opening, at the end.

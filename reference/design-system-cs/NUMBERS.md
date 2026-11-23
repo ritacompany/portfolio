@@ -262,6 +262,36 @@ the waiting days, so they are not used.
 - **Mark:** CONFIRMED (as of 19 Oct; not re-read 6 Nov)
 - **Section:** 6
 
+## Colour by job (added 21 Nov 2026)
+
+Read from the Mondai records on 21 Nov 2026 for the tokens or colour section (`research/CONTENT.md`,
+items 19 to 22). Grey step names in these records predate the 13 Nov 2026 rename, so no grey step is
+named here.
+
+### N30 Colour by job audit: about 40,000 paints on the MVP screens and 3,555 in the library, one token per job
+- **Measures:** every colour the product paints, grouped by the job it does, with one token per job set at the colour his screens already use most for that job.
+- **Baseline:** none; this is the audit.
+- **Method:** read of the MVP screens (Cohorts, Peer Connect, Journey Advisement, Home, Action items) and every library component, 21 Oct; 38 rows in its token tables across surfaces, text, icons, outlines and dividers, actions and states and fixed families, plus a list of jobs where one job used several colours, left for his call. Nothing in Figma changed in this step.
+- **Source:** `process/token-picker/colour-by-job/LIST.md` (opening lines and tables).
+- **Mark:** CONFIRMED (3,555 and the 38 rows); ESTIMATE (the 40,000 and every per token use count, which the record rounds)
+- **Section:** tokens
+
+### N31 The 11 colour sheets ruled by purpose, then applied: 551, 130 and 9 layers changed on the MVP, 6 put back
+- **Measures:** how far his purpose rulings moved the shipped screens.
+- **Baseline:** the colours before the 21 Oct pass.
+- **Method:** the MVP changelog's counts table, per page: accent text to one green (decision 1) 74, 67, 271, 46 and 93 layers (551); progress parts (decision 8) 53 and 77 (130); overlays at 80% (decision 11) 4 and 5 (9); 6 reverted the same session because pathway progress is not accent text. His rulings on the 11 sheets, with the 22 Oct follow ups, are in the decisions file beside it.
+- **Source:** `process/token-picker/colour-by-job/CHANGELOG-mvp.md` (Counts); `process/token-picker/colour-by-job/HIS-DECISIONS-21OCT.md`; sheets in `process/token-picker/colour-by-job/sheets/`.
+- **Mark:** CONFIRMED (sums are arithmetic on the table)
+- **Section:** tokens
+
+### N32 The colour picker: primitives were 65% to 78% of every picker; roles only after 22 Oct
+- **Measures:** how much of what a person or agent saw when picking a colour was a raw value rather than a role.
+- **Baseline:** 22 Oct live read: 81 roles beside 88 visible primitives; primitives 65% to 78% of each colour picker.
+- **Method:** live read of both collections and every component page (`MEASURE.md`); the decision of 22 Oct cleared the primitives from every picker so people and agents pick roles only, renamed three roles for what they paint (one placeholder role had 2 of its 213 layers on placeholders) and took the roles from 81 to 80, with no layer changing colour.
+- **Source:** `process/token-picker/token-org/MEASURE.md` (Collections; What the picker shows today); `mondai/reference/DECISIONS.md`, 22 Oct 2026, roles only in the pickers.
+- **Mark:** CONFIRMED
+- **Section:** tokens
+
 ## The problem, counted (before the rebuild)
 
 ### N28 Thirteen page agents at once: 3 clean, 1 half built, 9 delivered nothing

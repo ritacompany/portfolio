@@ -22,3 +22,9 @@ the check on return.
 - [ ] G5: No dash punctuation, no Oxford commas, no quotes of Chadwick or Mondai sources (public repo).
   CHECK: node reference/design-system-cs/research/check-content.mjs
   EXPECT: CONTENT-PASS
+
+## Status, 21 Nov 2026 (research session)
+
+- G1, G2, G5: check prints CONTENT-PASS. G4: answered under Tokens or colour in CONTENT.md.
+- G3: met in a second turn after his yes: independent check run, 15 supported, 5 partly, 1 not
+  supported, 1 could not open; all corrected in CONTENT.md.

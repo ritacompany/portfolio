@@ -1,5 +1,7 @@
 # Maturity signals: what separates a design system from a component library, and what a small team can set up cheaply in a Figma library
 
+> Correction, 21 Nov 2026: an independent claim check (`reference/design-system-cs/research/claim-check.md`, C17) found n=147 on the public zeroheight report page but not the tier, documentation, modes or adoption percentages cited below. They may sit in the gated full report. Treat every zeroheight percentage here as unconfirmed until it is reread.
+
 Research date: 19 Oct 2026. Fetched pages were read in full through WebFetch, which hands back a model summary of the page, not the raw page. Quotes below are as that summary gave them. Before anything here is published as a direct quote, check it against the live page. Sources that could not be opened are listed under Gaps and are not used as evidence.
 
 System under study (from the brief, not checked in Figma): four variable collections, one dark mode, about 18 text styles, about 94 components with about 540 variants, colour almost fully tokenised, spacing and radius tokenised recently, almost no component descriptions, no code syntax on variables, third party icons.

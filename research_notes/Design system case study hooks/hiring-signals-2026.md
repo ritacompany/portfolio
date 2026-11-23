@@ -1,5 +1,7 @@
 # Hiring signals for a design system case study at senior, staff and lead level (update, 23 Oct 2026)
 
+> Correction, 21 Nov 2026: the Sujeet Jaiswal page cited below returned 404 in the claim check (`reference/design-system-cs/research/claim-check.md`, C21). Find its new address before citing it publicly. The Careem post is still readable on the board but has been removed by Careem (C22).
+
 Research run 23 Oct 2026. This file adds to four earlier notes and does not repeat them: R5 (2 Oct, `mondai/design-system-ai/research/R5-hiring-managers.md`), hiring-signals (19 Oct, `research_notes/Design system case study readiness/hiring-signals.md`), "What gets designers interviewed" and "Case study results without metrics". Each finding says whether it confirms, conflicts with or updates them.
 
 Sample and method:
