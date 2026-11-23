@@ -30,7 +30,7 @@ Status, 23 Nov: built first as a preview at /dev/home-tablet/, since the site re
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=ba21e502deb8/16 entries; EXPECT=matched; output-sha256=7ee408faee3a656c048bea642314790f7547880389866d5f6cafb8d3fa25fe62; output-bytes=117
 
-- [x] G5: The phone block of home.css is unchanged and home.css differs from e1ce478 only by the tablet block.
+- [x] G5: The phone block of home.css is unchanged and home.css differs from 8e2c665 only by the tablet block.
   CHECK: node reports/home-tablet-learn-more-2026-11-23/check.mjs phone
   EXPECT: PHONE_UNTOUCHED_OK
   CWD: ../..

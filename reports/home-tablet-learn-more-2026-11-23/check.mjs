@@ -161,11 +161,11 @@ else if (mode === "press") {
 
 else if (mode === "phone") {
   // The phone session owns everything under 768: the phone block of home.css must be byte for byte what it was
-  // when this branch started (e1ce478), and so must the desktop rules outside the new tablet block.
+  // when this branch started (8e2c665), and so must the desktop rules outside the new tablet block.
   const block = (css) => { const i = css.indexOf("@media (max-width: 767.98px) {\n  /* Mobile type"); const s = i >= 0 ? i : css.indexOf("/* Phone, under 768"); return css.slice(s, css.indexOf("@media (max-width: 767.98px) and (prefers-reduced-motion")); };
-  const base = execFileSync("git", ["show", "e1ce478:site/css/home.css"], { cwd: ROOT, encoding: "utf8" });
+  const base = execFileSync("git", ["show", "8e2c665:site/css/home.css"], { cwd: ROOT, encoding: "utf8" });
   const now = readFileSync(join(ROOT, "site/css/home.css"), "utf8");
-  must(block(base).length > 2000, "could not find the phone block at e1ce478");
+  must(block(base).length > 2000, "could not find the phone block at 8e2c665");
   must(block(base) === block(now), "the phone block of site/css/home.css changed");
   const strip = (css) => css.replace(/\n\/\* Tablet, 768 to 1199: his phone pattern[\s\S]*?\n}\n/, "\n");
   must(strip(now) === base, "home.css changed outside the new tablet block");
