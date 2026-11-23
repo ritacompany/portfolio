@@ -48,7 +48,9 @@
     items = items.filter(Boolean);
     if (el && items.length) { blocks.push({ el, items }); items.forEach((it) => it.classList.add("hm-item")); }
   };
-  home.querySelectorAll(".work-card").forEach((c) => { const h = c.querySelector(".work-card__head"); if (h) block(h, [...h.children]); });
+  // Watched by the card, not its head: on the phone the head is display: contents, has no box and would never
+  // be seen coming on screen, so the card text stayed hidden.
+  home.querySelectorAll(".work-card").forEach((c) => { const h = c.querySelector(".work-card__head"); if (h) block(c, [...h.children]); });
   const story = home.querySelector(".about-story");
   if (story) block(story, [story.querySelector(".about__label"), ...story.querySelectorAll(".about__body > *")]);
   const role = home.querySelector(".about-role");
