@@ -1,0 +1,22 @@
+/* Haven on a phone, under 768 (reports/haven-mobile-2026-11-23/ISSUES.md). Proposed for the end of
+   site/haven/haven.css once he says yes; the audit injects it to prove the fix before then.
+   P1, P2: his rule (23 Nov): no mouse hover on a phone. A phone keeps :hover on the last thing tapped, so
+   every hover look rests here unless the finger is down; the press (:active) keeps its look. No grey tap
+   flash either: each link has its own press, and the pills do nothing on touch.
+   P3: the quiz pillar labels were 9 px, under the 12 px floor; 12 fits every phone width (checked 320 to 767). */
+@media (max-width: 767px) {
+  a, button, .pill, .end-card, .wires__list { -webkit-tap-highlight-color: transparent; }
+
+  .site-nav .link-nav:hover:not(:active) { color: var(--nav-ink); -webkit-text-stroke: 0; -webkit-font-smoothing: antialiased; }
+  .footer__email:hover:not(:active) { color: var(--neutral-100); background: none; box-shadow: none; -webkit-text-stroke: 0; -webkit-font-smoothing: antialiased; }
+  .footer__out:hover:not(:active) { color: var(--neutral-100); -webkit-text-stroke: 0; }
+  .ending-bar a:hover:not(:active) { color: inherit; background: none; -webkit-font-smoothing: auto; }
+  .ending-bar a:hover:not(:active) img { filter: none; }
+  .resources a:hover:not(:active) { background: var(--n050); }
+  .resources a:active { background: var(--n400); }
+  .pill[aria-describedby]:hover:not([data-tip-open]) { border-color: var(--n550); }
+  /* The logo had only the grey flash as its press; it dims while pressed instead. */
+  .site-nav .navbar__logo:active img { opacity: 0.6; }
+
+  .qcol__text { font-size: 12px; }
+}
