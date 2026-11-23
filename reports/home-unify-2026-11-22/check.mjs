@@ -212,4 +212,67 @@ else if (mode === "touch") {
   done("TOUCH_LINK_OK", notes.join("; "));
 }
 
-else { console.log("usage: check.mjs <heads|moved|live|fit|overlap|touch>"); process.exit(2); }
+else if (mode === "mouse") {
+  // His correction, 23 Nov: the Learn more link belongs to the phone and tablet layouts, whatever the pointer,
+  // and those layouts have no mouse highlight on the cards.
+  const { chromium } = createRequire(import.meta.url)("playwright");
+  const site = join(ROOT, "site");
+  const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".webp": "image/webp", ".png": "image/png", ".woff2": "font/woff2" };
+  const server = createServer((req, res) => {
+    let f = join(site, normalize(decodeURIComponent(new URL(req.url, "http://x").pathname)));
+    if (existsSync(f) && statSync(f).isDirectory()) f = join(f, "index.html");
+    if (!existsSync(f)) { res.writeHead(404); return res.end(); }
+    res.writeHead(200, { "content-type": types[extname(f)] || "application/octet-stream" }); res.end(readFileSync(f));
+  }).listen(0, "127.0.0.1");
+  await new Promise((r) => server.once("listening", r));
+  const BASE = `http://127.0.0.1:${server.address().port}`;
+  const browser = await chromium.launch();
+  const notes = [];
+  const look = (pg, sel) => pg.evaluate((s) => {
+    const c = document.querySelector(s), q = (x) => c.querySelector(x);
+    const img = q(".work-card__media > img:not([hidden])") || q(".work-card__media img");
+    const vis = [...c.querySelectorAll(".work-card__media img")].map((i) => getComputedStyle(i).transform).join("|");
+    const art = q(".work-card__phone-art");
+    const btn = q(".work-card__media .button-sm");
+    return { name: getComputedStyle(q(".work-card__name")).color, desc: getComputedStyle(q(".work-card__desc")).color,
+      imgs: vis, art: art ? getComputedStyle(art).transform : "", btn: btn ? getComputedStyle(btn).opacity : "none",
+      more: getComputedStyle(q(".work-card__more")).display, tap: getComputedStyle(c).webkitTapHighlightColor };
+  }, sel);
+  try {
+    for (const [w, h] of [[402, 874], [834, 1112]]) {
+      const ctx = await browser.newContext({ viewport: { width: w, height: h } });
+      const pg = await ctx.newPage();
+      await pg.goto(BASE + "/", { waitUntil: "load" }); await pg.evaluate(() => document.fonts.ready); await pg.waitForTimeout(300);
+      for (const sel of [".work-card-mondai", ".work-card-haven"]) {
+        await pg.evaluate((s) => document.querySelector(s).scrollIntoView({ block: "center" }), sel);
+        await pg.mouse.move(2, 2); await pg.waitForTimeout(2300);
+        const rest = await look(pg, sel);
+        must(rest.more !== "none", `${w} mouse: ${sel} has no Learn more link`);
+        must(rest.tap === "rgba(0, 0, 0, 0)", `${w}: ${sel} draws a tap flash (${rest.tap})`);
+        const b = await pg.evaluate((s) => { const r = document.querySelector(s + " .work-card__media").getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; }, sel);
+        await pg.mouse.move(b.x - 4, b.y - 4); await pg.mouse.move(b.x, b.y); await pg.waitForTimeout(1200);
+        const hov = await look(pg, sel);
+        for (const k of ["name", "desc", "imgs", "art", "btn"]) must(hov[k] === rest[k], `${w} mouse: hovering ${sel} changes ${k}: ${rest[k]} -> ${hov[k]}`);
+        const st = await pg.evaluate(() => window.SiteCursor && window.SiteCursor.state);
+        must(st === "dot", `${w} mouse: cursor over ${sel} is "${st}", expected the plain dot`);
+      }
+      notes.push(`${w}: link shown, hover inert, cursor dot`);
+      await ctx.close();
+    }
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const pg = await ctx.newPage();
+    await pg.goto(BASE + "/", { waitUntil: "load" }); await pg.waitForTimeout(300);
+    await pg.evaluate(() => document.querySelector(".work-card-mondai").scrollIntoView({ block: "center" })); await pg.waitForTimeout(400);
+    const more = await pg.evaluate(() => getComputedStyle(document.querySelector(".work-card-mondai .work-card__more")).display);
+    must(more === "none", "1440 mouse: Learn more link shows; the cursor carries it there");
+    const b = await pg.evaluate(() => { const r = document.querySelector(".work-card-mondai .work-card__media").getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; });
+    await pg.mouse.move(b.x - 4, b.y - 4); await pg.mouse.move(b.x, b.y); await pg.waitForTimeout(700);
+    const st = await pg.evaluate(() => window.SiteCursor && window.SiteCursor.state);
+    must(st === "pill", `1440 mouse: cursor over the Mondai card is "${st}", expected Learn more`);
+    notes.push("1440: link hidden, cursor Learn more");
+    await ctx.close();
+  } finally { await browser.close(); server.close(); }
+  done("MOUSE_NARROW_OK", notes.join("; "));
+}
+
+else { console.log("usage: check.mjs <heads|moved|live|fit|overlap|touch|mouse>"); process.exit(2); }

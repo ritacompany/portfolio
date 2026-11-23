@@ -114,16 +114,17 @@
    fades, nothing moves. */
 .work-card__media .button-sm { position: absolute; left: calc(100% * 344.73 / 879); top: calc(100% * 251.43 / 575.28); opacity: 0; transition: opacity 300ms var(--ease-quart-out), transform 120ms var(--ease-quart-out); }
 .work-card:focus-visible .work-card__media .button-sm { opacity: 1; }
-@media (hover: hover) { .work-card:hover .work-card__media .button-sm { opacity: 1; } }
+@media (hover: hover) and (min-width: 1200px) { .work-card:hover .work-card__media .button-sm { opacity: 1; } }
 
 /* Work card states, tracker H11 (prototypes/homepage-foundations/work-card-states.html): the whole card
    is the link; hover eases the image in 3.5 percent, the label and description go white and Learn more
    takes its hover fill; focus shows the same plus a ring; press settles the image to 1 percent. Hover
-   only on devices that hover, so one tap opens a card. Reduced motion keeps the colour change. */
+   only on devices that hover and from 1200 up (his call, 23 Nov: the phone and tablet layouts carry the Learn
+   more link and no mouse highlight), so one tap opens a card. Reduced motion keeps the colour change. */
 .work-card__media > img { transform: scale(1); transition: transform 900ms var(--ease-expo-out); }
 .work-card__name, .work-card__slashes, .work-card__kind, .work-card__desc { transition: color 400ms var(--ease-quart-out); }
 .work-card:focus-visible { outline: 2px solid var(--neutral-000); outline-offset: 8px; }
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 1200px) {
   .work-card:hover .work-card__media > img { transform: scale(1.035); }
   .work-card-haven:hover .work-card__phone-art { transform: scale(1.035); }
   .work-card:hover .work-card__name, .work-card:hover .work-card__slashes,
@@ -245,9 +246,11 @@
 }
 /* Phone parts that exist only under 768: hidden at tablet and desktop. */
 .navbar__menu, .hero__contact, .hero__vertical, .work-card__phone-art, .work-card__more, .menu { display: none; }
-/* Learn more on touch screens, phone and tablet (his ask, 22 Nov): no hover and no site cursor there, so the
-   card carries a Learn more link under its image, at the right edge. A mouse keeps the site cursor. */
-@media (hover: none), (pointer: coarse) {
+/* Learn more link on the phone and tablet layouts, under 1200, whatever the pointer (his ask 22 Nov, corrected
+   23 Nov), and on any touch screen: under its image, at the right edge. From 1200 up a mouse gets the site
+   cursor's Learn more instead. No grey tap flash: the link has its own press highlight. */
+.work-card { -webkit-tap-highlight-color: transparent; }
+@media (max-width: 1199.98px), (hover: none), (pointer: coarse) {
   /* margin 0 on top: the card already spaces its parts 15.71 apart, which puts the text 23 under the image, as on
      the phone; the right and bottom margins cancel the 4 by 6 press padding. */
   .work-card .work-card__more { display: flex; width: fit-content; margin: 0 -6px -4px auto; }

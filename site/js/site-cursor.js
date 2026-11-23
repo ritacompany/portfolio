@@ -12,6 +12,7 @@
   if (window.SiteCursor) return;
   const fine = matchMedia("(hover: hover) and (pointer: fine)");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+  const wide = matchMedia("(min-width: 1200px)");
   const O = { lerp: 1, dot: 24, dotPress: 20, stiffness: 400, damping: 30, mass: 1, pressScale: 0.98, pressDur: 140 };
   const BUTTON = '[data-cursor="button"], .work-card .work-card__media';
   const TEXT = 'input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea, [contenteditable=""], [contenteditable="true"]';
@@ -79,7 +80,9 @@
   const resolve = (el) => {
     if (!el || !el.closest) return setState("dot");
     if (el.closest(TEXT)) return setState("hidden");
-    const btn = el.closest(BUTTON);
+    let btn = el.closest(BUTTON);
+    // Under 1200 the work cards carry their own Learn more link (his call, 23 Nov), so the cursor stays a dot.
+    if (btn && !wide.matches && btn.closest(".work-card")) btn = null;
     setState(btn ? "pill" : "dot", btn);
   };
   const move = (e) => {

@@ -72,3 +72,9 @@ Scope: this branch holds the working branch, main and PR 40 as one Home; the app
   EXPECT: TOUCH_LINK_OK
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=408c9a3b6c12/16 entries; EXPECT=matched; output-sha256=3d920b984209aef6c7089cdbcb0a3ba64578b0eacfff9a9f12214879cd49af2b; output-bytes=164
+
+- [x] G13: Below 1200 wide with a mouse (402 and 834) each card shows the Learn more link, hovering the card changes nothing (label colour, image size, no Learn more button) and the cursor stays a plain dot over it; the card draws no tap flash; at 1440 with a mouse the link stays hidden and the cursor still turns into Learn more.
+  CHECK: node reports/home-unify-2026-11-22/check.mjs mouse
+  EXPECT: MOUSE_NARROW_OK
+  CWD: ../..
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=3c3b0f9869f1/16 entries; EXPECT=matched; output-sha256=60d46c68e44a188727ddb9be000c38f37cc5c9b0895d70ca7feb28585d2fa4f3; output-bytes=137
