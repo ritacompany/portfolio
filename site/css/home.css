@@ -323,6 +323,8 @@
      then the description and Learn more (his Small button, 23 Nov) on one row. The phone images are their own crops. */
   .works { padding: 96px 0 188px; box-shadow: none; }
   .works__title { font: var(--heading-40); letter-spacing: var(--heading-40-track); color: var(--neutral-050); }
+  /* Visually hidden from 768 up (his newest desktop frame drops it); shown here, as his Mobile frames draw it. */
+  .works__title.visually-hidden { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: nowrap; }
   /* His call, 16 Nov: the cards 64 apart, more than the frame's 40 (the About and menu rhythm). */
   .works__cards { flex-direction: column; gap: 64px; margin-top: 62px; }
   .work-card-mondai, .work-card-haven { width: 100%; }
