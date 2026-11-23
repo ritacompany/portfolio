@@ -197,3 +197,4 @@
 .held[open] > summary::before { content: "\2212 "; }
 .knob select.wide { width: 210px; }
 .scene .ending-bar { height: auto; min-height: 44px; }
+.lab-mode-flag { margin: 0 0 24px; }

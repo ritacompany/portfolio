@@ -163,7 +163,9 @@
   const narrow = matchMedia("(max-width: 899.98px)").matches;
   const S = {
     values: saved.values || {}, notes: saved.notes || "", open: saved.open || {},
-    mode: saved.mode || (matchMedia("(max-width: 1199.98px), (hover: none), (pointer: coarse)").matches ? "touch" : "mouse"),
+    // Opens on mouse wherever there is a mouse, whatever the window width; touch is only ever his choice
+    // for that visit (an earlier version opened on touch in narrow windows and switched hover off).
+    mode: matchMedia("(hover: hover)").matches ? "mouse" : "touch",
     view: saved.view || "tuned", zoom: saved.zoom || "1", rightW: saved.rightW || 340,
     left: narrow ? false : saved.left !== false, right: narrow ? false : saved.right !== false,
   };
@@ -256,7 +258,7 @@
     <div class="scene ${bg}${c.protoBleed ? " scene--bleed" : ""}" data-c="${c.id}"><div class="cell__zoom">${c.proto}</div></div>
     <p class="scene__caption">${c.protoCaption}</p></div>`;
   const render = () => {
-    stage.innerHTML = COMPS.filter((c) => !c.global).map((c) => `
+    stage.innerHTML = (touchMode() && matchMedia("(hover: hover)").matches ? '<p class="comp__flag lab-mode-flag">Touch mode: hovers are switched off here, as on a phone. Pick Mouse at the top to see them.</p>' : "") + COMPS.filter((c) => !c.global).map((c) => `
       <section class="comp" id="comp-${c.id}">
         <div class="comp__head"><h2>${c.name}</h2><span class="mono">${c.cls}</span></div>
         <p class="comp__where">${c.where}</p>
