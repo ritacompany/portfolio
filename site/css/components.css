@@ -98,24 +98,6 @@
   -webkit-text-stroke: 0.05px currentColor;
 }
 
-/* Link, Touch (his ask, 22 Nov): the Learn more on work cards on touch screens, phone and tablet, where there
-   is no hover and no site cursor. Label/14, not in capitals, with a right arrow (Material Symbols
-   "arrow_forward", Apache 2.0). Pressing it, or the card it sits in, takes the big links' highlight: dark text
-   on a Neutral/100 block. The block is drawn by padding with a matching negative margin, so the text and
-   arrow stay exactly where they rest; nothing moves. Press only, never hover: a tap leaves a sticky hover. */
-.link-touch {
-  display: inline-flex; align-items: center; gap: 4px;
-  padding: 4px 6px; margin: -4px -6px;
-  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-050);
-  white-space: nowrap; text-decoration: none; transition: none;
-}
-.link-touch > span { text-box: trim-both cap alphabetic; }
-.link-touch__arrow { flex: none; width: 16px; height: 16px; }
-.link-touch:active, .link-touch.is-pressed, a:active .link-touch {
-  color: var(--neutral-900); background: var(--neutral-100);
-  -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto;
-}
-
 /* Link, Small size, his addition 10 Nov (Portfolio Design, Link set 4657:11003). Label/12 C, one step
    under the 14 px links, for tight rows such as Learn more on the phone work cards.
    Nav Small (4928:12157): Neutral/050 at rest, 7 px of padding above and below as the hit area. Hover

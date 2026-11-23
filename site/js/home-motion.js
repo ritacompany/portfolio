@@ -17,13 +17,13 @@
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   root.classList.add("hm");
 
-  // Touch Learn more (his ask, 22 Nov): pressing a card highlights its Learn more while the finger is down.
-  // Done here rather than with :active alone, which iPhone Safari skips without a touch listener.
+  // Learn more under the card (his Small button, 23 Nov): pressing anywhere on the card fills it while the finger
+  // or button is down. Done here rather than with :active alone, which iPhone Safari skips without a touch listener.
   home.querySelectorAll(".work-card").forEach((card) => {
-    const more = card.querySelector(".link-touch");
+    const more = card.querySelector(".work-card__more");
     if (!more) return;
     const off = () => more.classList.remove("is-pressed");
-    card.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") more.classList.add("is-pressed"); }, { passive: true });
+    card.addEventListener("pointerdown", () => more.classList.add("is-pressed"), { passive: true });
     ["pointerup", "pointercancel", "pointerleave", "blur"].forEach((t) => card.addEventListener(t, off, { passive: true }));
     addEventListener("scroll", off, { passive: true });
   });

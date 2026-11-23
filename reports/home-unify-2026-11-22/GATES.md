@@ -67,14 +67,20 @@ Scope: this branch holds the working branch, main and PR 40 as one Home; the app
 - [x] G11: He has a phone link to the Home page built from this branch.
   EVIDENCE: preview built with node scripts/build-preview.mjs site <scratchpad>/preview (HOVER_STILL_OK 50 hovers, 179 files) and published 22 Nov as https://claude.ai/artifact/MCp5KFuB72Z5UriV23LkEf version 1, version 2 with the touch Learn more (HOVER_STILL_OK 49 hovers); the old preview link McviYhengPB92skSvB2YEu is not readable from this account
 
-- [x] G12: On touch screens (390, 834 and 1180 wide) each work card shows Learn more in Label/14, not in capitals, with a right arrow, on the card's right edge 23 below the image; pressing it turns on the dark on Neutral/100 block without moving the text; with a mouse at 1440 it is hidden.
+- [x] G12: On touch screens each work card shows Learn more: at phone widths (360, 390) it is his Small button on the card's right edge 20 under the image, card text visible, pressing fills it Neutral/300 around a fixed centre and the fill does not stick; at tablet widths (834, 1180) it is present; with a mouse at 1440 it is hidden.
   CHECK: node reports/home-unify-2026-11-22/check.mjs touch
   EXPECT: TOUCH_LINK_OK
   CWD: ../..
-  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=408c9a3b6c12/16 entries; EXPECT=matched; output-sha256=3d920b984209aef6c7089cdbcb0a3ba64578b0eacfff9a9f12214879cd49af2b; output-bytes=164
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=3c3b0f9869f1/16 entries; EXPECT=matched; output-sha256=1502b25ce40b768abb38fa05d8a7ea1643b5b53a2a2f085f1d4e85cac04d24fe; output-bytes=142
 
 - [x] G13: Below 1200 wide with a mouse (402 and 834) each card shows the Learn more link, hovering the card changes nothing (label colour, image size, no Learn more button) and the cursor stays a plain dot over it; the card draws no tap flash; at 1440 with a mouse the link stays hidden and the cursor still turns into Learn more.
   CHECK: node reports/home-unify-2026-11-22/check.mjs mouse
   EXPECT: MOUSE_NARROW_OK
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=3c3b0f9869f1/16 entries; EXPECT=matched; output-sha256=60d46c68e44a188727ddb9be000c38f37cc5c9b0895d70ca7feb28585d2fa4f3; output-bytes=137
+
+- [x] G14: At every phone width from 320 to 767 the button shares the description's line only while more than 24 px from it, and drops under the description only when one line could not keep that; both 20 under the image on one line.
+  CHECK: node reports/home-unify-2026-11-22/check.mjs wrap
+  EXPECT: WRAP_OK
+  CWD: ../..
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=3c3b0f9869f1/16 entries; EXPECT=matched; output-sha256=5b4161953cd2b63cf29cb4b5672f86a38297f404780a5c1444b66b911396025c; output-bytes=76

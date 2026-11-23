@@ -251,9 +251,10 @@
    cursor's Learn more instead. No grey tap flash: the link has its own press highlight. */
 .work-card { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 1199.98px), (hover: none), (pointer: coarse) {
-  /* margin 0 on top: the card already spaces its parts 15.71 apart, which puts the text 23 under the image, as on
-     the phone; the right and bottom margins cancel the 4 by 6 press padding. */
-  .work-card .work-card__more { display: flex; width: fit-content; margin: 0 -6px -4px auto; }
+  .work-card .work-card__more { display: inline-block; width: fit-content; margin: 0 0 0 auto; }
+  /* His Small button, without its hover fill: there is no mouse on a phone or tablet, and a tap would leave the
+     fill stuck on. Pressing still fills it (.is-pressed, set in js/home-motion.js, or :active). */
+  .work-card .work-card__more:hover:not(.is-pressed):not(:active) { background: none; color: var(--neutral-100); }
 }
 
 /* Phone, under 768: his Mobile frames (Portfolio Design, VC, 4929:12379, 10 Nov), drawn at 402 by 874.
@@ -319,20 +320,25 @@
 
   /* Selected works, 4928:12018. Title at Heading/40, centered, 96 from the top of the section; cards
      stack 40 apart. Each card: name, the kind under it (Mondai), the image at 404 by 266 proportions,
-     then the description and a Learn more link on one row. The phone images are their own crops. */
+     then the description and Learn more (his Small button, 23 Nov) on one row. The phone images are their own crops. */
   .works { padding: 96px 0 188px; box-shadow: none; }
   .works__title { font: var(--heading-40); letter-spacing: var(--heading-40-track); color: var(--neutral-050); }
   /* His call, 16 Nov: the cards 64 apart, more than the frame's 40 (the About and menu rhythm). */
   .works__cards { flex-direction: column; gap: 64px; margin-top: 62px; }
   .work-card-mondai, .work-card-haven { width: 100%; }
-  .work-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0; }
+  /* The card is one wrapping flex row: name, label and image each take a full line; the description and Learn
+     more share the last line. They stay more than 24 px apart (the 24.02 px column gap); at 24 or less the
+     button wraps to its own line under the description, 20 below it, at the right edge (his ask, 23 Nov).
+     The description never wraps itself, so the button is what moves. */
+  .work-card { display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start; column-gap: 24.02px; row-gap: 0; } /* just over 24: at 24 or less it wraps */
   .work-card__head { display: contents; }
-  .work-card__name { order: 1; grid-column: 1 / -1; justify-self: start; color: var(--neutral-200); }
+  .work-card__name { order: 1; flex: 0 0 100%; color: var(--neutral-200); }
   .work-card__slashes { display: none; }
-  .work-card__kind { order: 2; grid-column: 1 / -1; justify-self: start; margin-top: 11.06px; color: var(--neutral-550); font-weight: 700; }
-  .works .work-card__media { order: 3; grid-column: 1 / -1; margin-top: 20px; margin-bottom: 0; aspect-ratio: 404 / 266.324; }
-  .work-card__desc { order: 4; position: static; margin: 20px 0 0; font-size: var(--card-desc-size); color: var(--neutral-200); } /* phone frame keeps Neutral/200 */
-  .work-card .work-card__more { order: 5; margin: 16px -6px -4px 0; justify-self: end; } /* text 20 below, as before */
+  .work-card__kind { order: 2; flex: 0 0 100%; margin-top: 11.06px; color: var(--neutral-550); font-weight: 700; }
+  .works .work-card__media { order: 3; flex: 0 0 100%; margin-top: 20px; margin-bottom: 0; aspect-ratio: 404 / 266.324; }
+  .work-card__desc { order: 4; flex: none; position: static; margin: 20px 0 0; white-space: nowrap; font-size: var(--card-desc-size); color: var(--neutral-200); } /* phone frame keeps Neutral/200 */
+  /* Top aligned with the description, both 20 under the image (his 23 Nov frame); wrapped, 20 under the description. */
+  .work-card .work-card__more { order: 5; flex: none; margin: 20px 0 0 auto; }
   .work-card__desk-art, .work-card__media .button-sm { display: none; }
   .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; }
   .work-card__phone-art img { position: absolute; max-width: none; transition: transform 900ms var(--ease-expo-out); }

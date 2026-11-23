@@ -146,9 +146,9 @@ else if (mode === "fit" || mode === "overlap") {
 }
 
 else if (mode === "touch") {
-  // His ask, 22 Nov: on touch screens (phone and tablet) each work card carries a Learn more link, Label/14
-  // not in capitals with a right arrow; pressing it shows the dark on Neutral/100 block and nothing moves.
-  // With a mouse it is hidden (the site cursor carries Learn more).
+  // On touch screens each work card shows Learn more: his Small button since 23 Nov (it was a Label/14 link the day
+  // before). Phone widths check its look, the visible card text, its place and the press fill; tablet widths only
+  // check it is there (the tablet session owns its tablet placement). With a mouse at 1440 it is hidden.
   const { chromium } = createRequire(import.meta.url)("playwright");
   const site = join(ROOT, "site");
   const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".webp": "image/webp", ".png": "image/png", ".woff2": "font/woff2" };
@@ -163,50 +163,48 @@ else if (mode === "touch") {
   const browser = await chromium.launch();
   const notes = [];
   const read = (pg) => pg.evaluate(() => [...document.querySelectorAll(".work-card")].map((c) => {
-    const l = c.querySelector(".work-card__more"), cs = getComputedStyle(l), r = l.getBoundingClientRect();
-    const t = l.querySelector("span").getBoundingClientRect(), m = c.querySelector(".work-card__media").getBoundingClientRect(), card = c.getBoundingClientRect();
-    return { card: c.classList[1], disp: cs.display, fs: cs.fontSize, tt: cs.textTransform, fw: cs.fontWeight, text: l.textContent.trim(), arrow: !!l.querySelector("svg path"),
-      bg: cs.backgroundColor, color: cs.color, tx: t.x, ty: t.y, right: r.right, cardRight: card.right, below: t.top - m.bottom,
+    const l = c.querySelector(".work-card__more"), cs = getComputedStyle(l), r = l.getBoundingClientRect(), m = c.querySelector(".work-card__media").getBoundingClientRect(), card = c.getBoundingClientRect();
+    return { card: c.classList[1], disp: cs.display, fs: cs.fontSize, tt: cs.textTransform, fw: cs.fontWeight, border: cs.borderTopWidth, text: l.textContent.trim(),
+      bg: cs.backgroundColor, cx: r.x + r.width / 2, cy: r.y + r.height / 2, right: r.right, cardRight: card.right, below: r.top - m.bottom,
       hidden: [...c.querySelectorAll(".work-card__head > *")].filter((e) => getComputedStyle(e).display !== "none" && getComputedStyle(e).opacity !== "1").map((e) => e.textContent.trim()) };
   }));
   try {
-    for (const [w, h] of [[390, 844], [834, 1112], [1180, 820]]) {
+    for (const [w, h, phone] of [[360, 780, true], [390, 844, true], [834, 1112, false], [1180, 820, false]]) {
       const ctx = await browser.newContext({ viewport: { width: w, height: h }, hasTouch: true, isMobile: true, deviceScaleFactor: 1 });
       const pg = await ctx.newPage();
       await pg.goto(BASE + "/", { waitUntil: "load" }); await pg.evaluate(() => document.fonts.ready); await pg.waitForTimeout(300);
       const rest = await read(pg);
       for (const r of rest) {
-        must(r.disp !== "none", `${w}: ${r.card} has no Learn more on touch`);
-        must(r.fs === "14px" && r.tt === "none" && r.fw === "400", `${w}: ${r.card} Learn more not Label/14 non caps: ${r.fs} ${r.tt} ${r.fw}`);
-        must(r.text === "Learn more" && r.arrow, `${w}: ${r.card} Learn more text or arrow missing`);
-        must(Math.abs(r.right - 6 - r.cardRight) < 1.5, `${w}: ${r.card} Learn more text not on the card's right edge (${r.right - 6} vs ${r.cardRight})`);
-        must(r.bg === "rgba(0, 0, 0, 0)", `${w}: ${r.card} Learn more has a block at rest`);
+        must(r.disp !== "none" && r.text.toLowerCase() === "learn more", `${w}: ${r.card} has no Learn more on touch`);
+        if (!phone) continue;
+        must(r.fs === "16px" && r.fw === "700" && r.tt === "uppercase" && r.border === "3px", `${w}: ${r.card} Learn more is not his Small button: ${r.fs} ${r.fw} ${r.tt} ${r.border}`);
+        must(Math.abs(r.right - r.cardRight) < 1, `${w}: ${r.card} Learn more not on the card's right edge (${r.right} vs ${r.cardRight})`);
+        must(r.bg === "rgba(0, 0, 0, 0)", `${w}: ${r.card} Learn more filled at rest`);
       }
-      // Press each card: the block turns on, the text stays put.
-      for (let i = 0; i < rest.length; i++) {
-        const sel = `.work-card:nth-child(${i + 1})`;
-        await pg.evaluate((s) => document.querySelector(s).scrollIntoView({ block: "center" }), `.works__cards > ${sel}`);
-        await pg.waitForTimeout(200);
+      if (phone) for (let i = 0; i < rest.length; i++) {
+        const sel = `.works__cards > .work-card:nth-child(${i + 1})`;
+        await pg.evaluate((s) => document.querySelector(s).scrollIntoView({ block: "center" }), sel);
         await pg.waitForTimeout(2200); // the text fades in over 1.4 s, 0.15 s apart
         const before = (await read(pg))[i];
         must(before.hidden.length === 0, `${w}: ${before.card} card text still hidden once on screen: ${before.hidden.join(", ")}`);
-        const box = await pg.evaluate((s) => { const r = document.querySelector(s + " .work-card__more").getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; }, `.works__cards > ${sel}`);
         const cdp = await ctx.newCDPSession(pg);
-        await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: box.x, y: box.y }] });
-        await pg.waitForTimeout(150);
+        await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: before.cx, y: before.cy }] });
+        await pg.waitForTimeout(200);
         const pressed = (await read(pg))[i];
         await cdp.send("Input.dispatchTouchEvent", { type: "touchCancel", touchPoints: [] });
-        must(pressed.bg === "rgb(232, 231, 238)" && pressed.color !== before.color, `${w}: ${pressed.card} press shows no highlight: ${pressed.bg} ${pressed.color}`);
-        must(Math.abs(pressed.tx - before.tx) < 0.05 && Math.abs(pressed.ty - before.ty) < 0.05, `${w}: ${pressed.card} Learn more moved on press`);
+        await pg.waitForTimeout(200);
+        const after = (await read(pg))[i];
+        must(pressed.bg === "rgb(210, 210, 219)", `${w}: ${pressed.card} press does not fill the button (Neutral/300): ${pressed.bg}`);
+        must(Math.abs(pressed.cx - before.cx) < 0.05 && Math.abs(pressed.cy - before.cy) < 0.05, `${w}: ${pressed.card} Learn more moved off its centre on press`);
+        must(after.bg === "rgba(0, 0, 0, 0)", `${w}: ${after.card} fill stuck on after the press: ${after.bg}`);
       }
-      notes.push(`${w}: ${rest.map((r) => `${r.card.replace("work-card-", "")} ${r.below.toFixed(0)} below image`).join(", ")}`);
+      notes.push(`${w}: ${phone ? rest.map((r) => `${r.card.replace("work-card-", "")} ${r.below.toFixed(0)} under image`).join(", ") : "present"}`);
       await ctx.close();
     }
     const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
     const pg = await ctx.newPage();
     await pg.goto(BASE + "/", { waitUntil: "load" }); await pg.waitForTimeout(200);
-    const mouse = await read(pg);
-    must(mouse.every((r) => r.disp === "none"), "Learn more link shows with a mouse at 1440");
+    must((await read(pg)).every((r) => r.disp === "none"), "Learn more under the card shows with a mouse at 1440");
     await ctx.close();
   } finally { await browser.close(); server.close(); }
   done("TOUCH_LINK_OK", notes.join("; "));
@@ -275,4 +273,60 @@ else if (mode === "mouse") {
   done("MOUSE_NARROW_OK", notes.join("; "));
 }
 
-else { console.log("usage: check.mjs <heads|moved|live|fit|overlap|touch|mouse>"); process.exit(2); }
+else if (mode === "wrap") {
+  // His ask, 23 Nov: on the phone, Learn more is his Small button on the description's line, and it drops below the
+  // description once the two would be 24 px or less apart. Checked at every phone width from 320 to 767 in 1 px
+  // steps on touch: on one line the gap is over 24; wrapped, it only wraps when one line could not keep over 24.
+  const { chromium } = createRequire(import.meta.url)("playwright");
+  const site = join(ROOT, "site");
+  const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".webp": "image/webp", ".png": "image/png", ".woff2": "font/woff2" };
+  const server = createServer((req, res) => {
+    let f = join(site, normalize(decodeURIComponent(new URL(req.url, "http://x").pathname)));
+    if (existsSync(f) && statSync(f).isDirectory()) f = join(f, "index.html");
+    if (!existsSync(f)) { res.writeHead(404); return res.end(); }
+    res.writeHead(200, { "content-type": types[extname(f)] || "application/octet-stream" }); res.end(readFileSync(f));
+  }).listen(0, "127.0.0.1");
+  await new Promise((r) => server.once("listening", r));
+  const BASE = `http://127.0.0.1:${server.address().port}`;
+  const browser = await chromium.launch();
+  const ctx = await browser.newContext({ viewport: { width: 402, height: 874 }, hasTouch: true, isMobile: true, deviceScaleFactor: 1 });
+  const pg = await ctx.newPage();
+  await pg.goto(BASE + "/", { waitUntil: "load" }); await pg.evaluate(() => document.fonts.ready); await pg.waitForTimeout(300);
+  const flips = {};
+  let rows = 0, wraps = 0;
+  try {
+    // The look once: his Small button.
+    const look = await pg.evaluate(() => { const b = document.querySelector(".work-card-mondai .work-card__more"), cs = getComputedStyle(b), r = b.getBoundingClientRect();
+      return { fs: cs.fontSize, fw: cs.fontWeight, tt: cs.textTransform, border: cs.borderTopWidth, radius: cs.borderTopLeftRadius, w: r.width, h: r.height }; });
+    must(look.fs === "16px" && look.fw === "700" && look.tt === "uppercase" && look.border === "3px" && Math.abs(look.w - 129.5) < 2 && Math.abs(look.h - 33.7) < 2,
+      `Learn more is not his Small button: ${JSON.stringify(look)}`);
+    for (let w = 320; w <= 767; w++) {
+      await pg.setViewportSize({ width: w, height: 874 });
+      const cards = await pg.evaluate(() => [...document.querySelectorAll(".work-card")].map((c) => {
+        const d = c.querySelector(".work-card__desc").getBoundingClientRect(), m = c.querySelector(".work-card__more").getBoundingClientRect(), cr = c.getBoundingClientRect(), img = c.querySelector(".work-card__media").getBoundingClientRect();
+        return { card: c.classList[1].replace("work-card-", ""), dl: d.left, dr: d.right, dt: d.top, db: d.bottom, ml: m.left, mr: m.right, mt: m.top, cl: cr.left, cr: cr.right, imgB: img.bottom };
+      }));
+      for (const k of cards) {
+        const sameLine = Math.abs(k.mt - k.dt) < 3 && k.ml > k.dr;
+        must(Math.abs(k.mr - k.cr) < 1, `${w}: ${k.card} Learn more off the right edge (${k.mr} vs ${k.cr})`);
+        if (sameLine) {
+          rows++;
+          must(k.ml - k.dr > 24, `${w}: ${k.card} button only ${(k.ml - k.dr).toFixed(1)} from the description on one line`);
+          must(Math.abs(k.dt - k.imgB - 20) < 1.5 && Math.abs(k.mt - k.imgB - 20) < 1.5, `${w}: ${k.card} description or button not 20 under the image`);
+        } else {
+          wraps++;
+          const room = (k.cr - k.cl) - (k.dr - k.dl) - (k.mr - k.ml);
+          must(room <= 24.5, `${w}: ${k.card} wrapped though one line had ${room.toFixed(1)} px between them`);
+          must(k.mt >= k.db + 19, `${w}: ${k.card} wrapped button not under the description`);
+        }
+        const state = sameLine ? "row" : "wrap";
+        if (!flips[k.card]) flips[k.card] = { last: state, at: [] };
+        else if (flips[k.card].last !== state) { flips[k.card].at.push(`${state} from ${w}`); flips[k.card].last = state; }
+      }
+    }
+  } finally { await browser.close(); server.close(); }
+  must(wraps > 0, "the button never wrapped between 320 and 767, so the wrap was not exercised");
+  done("WRAP_OK", `${rows} one line, ${wraps} wrapped; ` + Object.entries(flips).map(([k, v]) => `${k}: ${v.at.join(", ") || v.last}`).join("; "));
+}
+
+else { console.log("usage: check.mjs <heads|moved|live|fit|overlap|touch|mouse|wrap>"); process.exit(2); }
