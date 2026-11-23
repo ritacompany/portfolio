@@ -504,3 +504,41 @@
   .framework .fw .fw-sec > [data-figma-node="5812:16462"] { grid-row: 2; grid-column: 3; margin-top: 48px; }
   .framework .fw .fw-sec > [data-figma-node="5812:16463"] { grid-row: 3; grid-column: 3; }
 }
+
+/* Phone menu (his yes, 23 Nov): Home's burger and full screen menu (4928:11948, 4928:11959) on this page, under
+   768, in place of the three text links. The look is copied from home.css, which only Home loads; the behavior is
+   js/home-phone.js (the shared dialog), whose hero bar part does nothing here since this page has no .hero.
+   The logo stays where the navbar puts it; the burger takes the links' place at the right margin. */
+.framework .navbar__menu, .framework ~ .menu { display: none; }
+@media (max-width: 767.98px) {
+  .framework .navbar { display: flex; align-items: center; }
+  .framework .navbar__links { display: none; }
+  .framework .navbar__menu {
+    display: grid; place-items: center; margin: -16px -13px -16px auto; padding: 16px 13px;
+    background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  }
+  .framework .navbar__menu img { width: 18px; height: 12px; }
+  /* Home's phone bar and menu draw the logo in Neutral/300 (Neutral/050 on desktop); the same here. */
+  .framework .navbar__logo img { content: url("../assets/ui/logo-300.svg"); }
+  .framework ~ .menu {
+    position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column;
+    padding: 24px 16px 40px; background: var(--neutral-1000);
+    opacity: 0; transition: opacity 200ms var(--ease-quart-out);
+  }
+  .framework ~ .menu[hidden] { display: none; }
+  .framework ~ .menu[data-open] { opacity: 1; }
+  .framework ~ .menu .menu__bar { display: flex; align-items: center; }
+  .framework ~ .menu .navbar__logo { display: block; }
+  .framework ~ .menu .navbar__logo img { content: url("../assets/ui/logo-300.svg"); }
+  .framework ~ .menu .menu__close { padding: 15px; margin: -15px -15px -15px auto; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .framework ~ .menu .menu__close img { width: 14px; height: 14px; }
+  .framework ~ .menu .menu__body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 100px; }
+  .framework ~ .menu .menu__links { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin: 0; list-style: none; padding: 0; }
+  .framework ~ .menu .menu__links li { display: flex; }
+  .framework ~ .menu .menu__contact { display: flex; flex-direction: column; align-items: flex-start; }
+  .framework ~ .menu .footer__email { margin-top: 26px; }
+  .framework ~ .menu a { -webkit-tap-highlight-color: transparent; }
+}
+@media (max-width: 767.98px) and (prefers-reduced-motion: reduce) {
+  .framework ~ .menu { transition: none; }
+}

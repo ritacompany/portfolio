@@ -41,9 +41,10 @@ limit, so neither file could be re-checked today. Haven's phone rules are the re
 
 ## Open, outside this proposal
 
-- Capacity card picture is soft on a phone: the file is 616 wide, shown 342 at 390 and 382 at 430 (1.80x and
-  1.61x, under the 2x the rest of the page has). Needs a wider export of 5812:17089 from his Figma (refused today),
-  or the card capped at 308 wide on a phone. Not changed: the capacity session owns that card.
+- Capacity card picture: the file is 616 wide, shown 342 at 390 and 382 at 430 (1.80x and 1.61x, against 2x for
+  the rest of the page). He sees nothing wrong with it (23 Nov), and on a 3x phone the difference is not visible.
+  A 3x export was tried on 23 Nov: node 5812:17089 is no longer in either Figma file under that id, and the seat's
+  Figma tool limit then stopped the search. Left as is; re-export if a softness ever shows.
 - Nav and footer link hover rules live in components.css (`.link-nav:hover`, `.link-footer:hover`), shared with
   every page. Under his no hover rule they want a `(hover: hover)` wrapper there; not changed here, since the brief
   keeps components.css to its owner. The tap flash on those links is removed on this page (H2).
@@ -71,6 +72,9 @@ limit, so neither file could be re-checked today. Haven's phone rules are the re
   were off screen. This is his read of the look, not yet the yes that moves phone.css onto the live page, and the
   title option is still open.
 - Live: he said yes with title A on 23 Nov; the block is in site/css/framework.css.
+- Phone menu: he pointed out the page still showed the three desktop links on a phone (23 Nov). On his yes it now
+  has Home's burger and full screen menu (markup in index.html and scripts/framework-page/page.tpl, look in
+  framework.css, behavior js/home-phone.js).
 - Dividers: he has started another session that will change the divider colors site wide. This proposal changes
   no color. The only divider rule it touches is the hero rule's stretch inside the new grid (layout only), so the
   two pieces of work do not collide. Whoever lands second rechecks the hero rule on a phone.

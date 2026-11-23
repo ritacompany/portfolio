@@ -6,7 +6,7 @@ import { createRequire } from "node:module";
 import { serve } from "./serve.mjs";
 const { chromium } = createRequire(import.meta.url)("playwright");
 const [path = "/dev/framework-mobile/", only] = process.argv.slice(2);
-const want = only ? only.split(",") : ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13"];
+const want = only ? only.split(",") : ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13", "G14"];
 const PHONES = [320, 360, 375, 390, 430];
 const { server, base } = await serve();
 const browser = await chromium.launch();
@@ -282,6 +282,30 @@ await gate("G13", async (bad) => {
       return Math.round(inkTop - tag.getBoundingClientRect().bottom);
     }));
     r.forEach((g, i) => { if (g < 16) bad.push(`@${w} stat ${i + 1} ink gap ${g}`); });
+    await ctx.close();
+  }
+});
+
+// G14 Home's phone menu (his yes, 23 Nov): under 768 the burger replaces the three links and opens the full screen
+// menu by touch, which closes from its X; from 768 the links show and the burger does not
+await gate("G14", async (bad) => {
+  for (const w of [...PHONES, 768]) {
+    const { ctx, page } = await open(w, { mobile: w < 768 });
+    const vis = (s) => page.evaluate((s) => { const e = document.querySelector(s); if (!e) return false; const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && getComputedStyle(e).visibility !== "hidden"; }, s);
+    const burger = await vis(".page-header .navbar__menu"), links = await vis(".page-header .navbar__links");
+    if (w >= 768) { if (burger || !links) bad.push(`@${w} burger ${burger}, links ${links}`); await ctx.close(); continue; }
+    if (!burger || links) { bad.push(`@${w} burger ${burger}, links ${links}`); await ctx.close(); continue; }
+    const hb = await page.locator(".page-header .navbar__menu").boundingBox();
+    if (Math.round(hb.x + hb.width - 13) !== w - 16) bad.push(`@${w} burger icon right edge ${Math.round(hb.x + hb.width - 13)}`);
+    if (hb.height < 44 || hb.width < 44) bad.push(`@${w} burger target ${Math.round(hb.width)} by ${Math.round(hb.height)}`);
+    await page.locator(".page-header .navbar__menu").tap();
+    await page.waitForTimeout(400);
+    const m = await page.evaluate(() => { const e = document.getElementById("site-menu"), b = e.getBoundingClientRect(); return { open: e.hasAttribute("data-open"), op: getComputedStyle(e).opacity, full: b.width === innerWidth && b.height === innerHeight, text: e.innerText.replace(/\s+/g, " ").trim() }; });
+    if (!m.open || m.op !== "1" || !m.full) bad.push(`@${w} menu open ${m.open}, opacity ${m.op}, full screen ${m.full}`);
+    if (!/About Works Contact hello@chadwickfenner\.com/.test(m.text)) bad.push(`@${w} menu reads "${m.text}"`);
+    await page.locator("#site-menu .menu__close").tap();
+    await page.waitForTimeout(800); // the dialog hides on transitionend or after 600 ms
+    if (await vis("#site-menu")) bad.push(`@${w} menu still shows after the X`);
     await ctx.close();
   }
 });

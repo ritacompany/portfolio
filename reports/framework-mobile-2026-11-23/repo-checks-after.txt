@@ -1,6 +1,6 @@
 PASS scripts/verify-responsive.mjs health framework :: RESPONSIVE_HEALTH_OK 5 page widths
-PASS scripts/verify-hover-still.mjs site :: HOVER_STILL_OK 49 hovers
+PASS scripts/verify-hover-still.mjs site :: HOVER_STILL_OK 50 hovers
 PASS scripts/check-site.mjs :: site check OK (13 page(s))
-PASS scripts/check-week-carousel.mjs http://127.0.0.1:37195/mondai/framework/ /home/user/portfolio/reports/framework-mobile-2026-11-23/.carousel-shots :: CAROUSEL_CHECK_PASSED
-PASS scripts/check-week-carousel.mjs http://127.0.0.1:37195/dev/framework-mobile/ /home/user/portfolio/reports/framework-mobile-2026-11-23/.carousel-shots :: CAROUSEL_CHECK_PASSED
+PASS scripts/check-week-carousel.mjs http://127.0.0.1:39343/mondai/framework/ /home/user/portfolio/reports/framework-mobile-2026-11-23/.carousel-shots :: CAROUSEL_CHECK_PASSED
+PASS scripts/check-week-carousel.mjs http://127.0.0.1:39343/dev/framework-mobile/ /home/user/portfolio/reports/framework-mobile-2026-11-23/.carousel-shots :: CAROUSEL_CHECK_PASSED
 REPO_CHECKS_OK 5 of 5

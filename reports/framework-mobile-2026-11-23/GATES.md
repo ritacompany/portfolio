@@ -94,3 +94,10 @@ After his yes (23 Nov, question card "[site change]", answer "Yes, title A"):
   CHECK: node reports/framework-mobile-2026-11-23/check.mjs /mondai/framework/
   EXPECT: PHONE_OK 13 of 13
   EVIDENCE: check-live-after.txt (PHONE_OK 13 of 13); after-fit.txt and after-overlap.txt the same 20 and 15 items as base-fit.txt and base-overlap.txt; after-size.txt and after-health.txt OK; repo-checks-after.txt (REPO_CHECKS_OK 5 of 5)
+
+After his yes on the phone menu (23 Nov, question card "[site change]", answer "Yes, build it"):
+
+- [x] G19: under 768 Home's burger replaces the three links and opens the full screen menu by touch (About, Works, Contact and the email), which closes from its X; from 768 the links show and the burger does not
+  CHECK: node reports/framework-mobile-2026-11-23/check.mjs /mondai/framework/ G14
+  EXPECT: PHONE_OK 1 of 1
+  EVIDENCE: check-live-menu.txt (PHONE_OK 14 of 14 with the menu in); failed before the menu markup (burger false, links true at all five widths); fit and overlap sets unchanged, size and health OK, repo checks 5 of 5
