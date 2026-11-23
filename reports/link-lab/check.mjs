@@ -18,10 +18,11 @@ for (const w of [390, 768, 1440]) {
   const errs = []; p.on("pageerror", (e) => errs.push(e.message)); p.on("response", (r) => { if (r.status() >= 400) errs.push("404 " + r.url()); });
   await p.goto(url); await p.waitForTimeout(400);
   const r = await p.evaluate(() => ({ forced: document.getElementById("lab-forced").textContent.split("\n").filter(Boolean).length, sw: document.documentElement.scrollWidth, cw: innerWidth,
-    comps: document.querySelectorAll(".comp").length, cells: [...document.querySelectorAll(".comp")].every((c) => ["rest", "hover", "press", "focus", "live"].every((s) => c.querySelector(`.cell[data-state=${s}] a`))) }));
+    comps: document.querySelectorAll(".comp").length, scenes: document.querySelectorAll(".scene a").length, cells: [...document.querySelectorAll(".comp")].every((c) => ["rest", "hover", "press", "focus"].every((s) => c.querySelector(`.cell[data-state=${s}] a`))) }));
   if (errs.length) fails.push(`${w}: ${errs.join("; ")}`);
   if (r.forced < 20) fails.push(`${w}: only ${r.forced} forced rules`);
   if (r.sw > r.cw) fails.push(`${w}: sideways scroll ${r.sw} > ${r.cw}`);
+  if (r.scenes < 20) fails.push(`${w}: only ${r.scenes} live links in the prototypes`);
   if (r.comps !== 11 || !r.cells) fails.push(`${w}: components ${r.comps}, every state present ${r.cells}`);
   if (w === 1440) {
     await p.click("#knobs-footer summary");
@@ -31,6 +32,28 @@ for (const w of [390, 768, 1440]) {
     await ctx.grantPermissions(["clipboard-read", "clipboard-write"]); await p.click("#copy");
     const clip = await p.evaluate(() => navigator.clipboard.readText());
     if (!/Text at rest: Neutral\/300 #d2d2db \(site: Neutral\/100/.test(clip)) fails.push("copy text: " + clip);
+    // Mouse: a real hover on a prototype link takes the hover colour.
+    await p.click("#mode [data-v=mouse]"); await p.hover("#comp-footer .scene a >> nth=1"); await p.waitForTimeout(50);
+    const hov = await p.evaluate(() => getComputedStyle(document.querySelectorAll("#comp-footer .scene a")[1]).color);
+    if (hov !== "rgb(4, 4, 5)") fails.push("mouse hover on prototype: " + hov);
+    // Touch: hover no longer reacts; a tap leaves it stuck (site today); "No hover" leaves it off.
+    await p.click("#mode [data-v=touch]"); await p.hover("#comp-footer .scene a >> nth=2"); await p.waitForTimeout(50);
+    const noHov = await p.evaluate(() => getComputedStyle(document.querySelectorAll("#comp-footer .scene a")[2]).color);
+    if (noHov !== "rgb(210, 210, 219)") fails.push("touch hover still reacts: " + noHov);
+    await p.click("#comp-footer .scene a >> nth=2"); await p.mouse.move(5, 5);
+    const stuck = await p.evaluate(() => getComputedStyle(document.querySelectorAll("#comp-footer .scene a")[2]).color);
+    if (stuck !== "rgb(4, 4, 5)") fails.push("touch tap did not stick: " + stuck);
+    await p.click("#knobs-all summary"); await p.selectOption(".knob[data-c=all][data-k=tap] select", "none");
+    await p.click("#comp-footer .scene a >> nth=2"); await p.mouse.move(5, 5);
+    const off = await p.evaluate(() => getComputedStyle(document.querySelectorAll("#comp-footer .scene a")[2]).color);
+    if (off !== "rgb(210, 210, 219)") fails.push("no hover option still sticks: " + off);
+    // Work card: pressing the card fills Learn more.
+    const card = p.locator("#comp-button .proto-card"); const bb = await card.boundingBox();
+    await card.scrollIntoViewIfNeeded(); const b2 = await card.boundingBox();
+    await p.mouse.move(b2.x + 40, b2.y + 40); await p.mouse.down();
+    const fill = await p.evaluate(() => getComputedStyle(document.querySelector("#comp-button .proto-card .button-sm")).backgroundColor);
+    await p.mouse.up();
+    if (fill !== "rgb(210, 210, 219)") fails.push("card press did not fill Learn more: " + fill);
     await p.reload(); await p.waitForTimeout(300);
     const kept = await p.evaluate(() => getComputedStyle(document.querySelector("#comp-footer [data-state=rest] a")).color);
     if (kept !== "rgb(210, 210, 219)") fails.push("not kept after reload: " + kept);

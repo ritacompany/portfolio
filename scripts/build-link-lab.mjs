@@ -14,7 +14,7 @@ const files = [
   "css/tokens.css", "css/base.css", "css/components.css",
   "assets/fonts/satoshi-400.woff2", "assets/fonts/satoshi-500.woff2", "assets/fonts/satoshi-700.woff2",
   "assets/fonts/heebo-var-latin.woff2", "assets/fonts/plex-mono-400.woff2",
-  "assets/ui/arrow-out.svg", "assets/ui/arrow-up.svg", "assets/ui/chevron-left.svg", "assets/ui/ctx-arrow.svg", "assets/ui/lock.svg",
+  "assets/ui/arrow-out.svg", "assets/ui/arrow-up.svg", "assets/ui/chevron-left.svg", "assets/ui/ctx-arrow.svg", "assets/ui/lock.svg", "assets/ui/logo.svg", "assets/home/haven-card-phone.webp",
 ];
 for (const f of files) { mkdirSync(join(out, f, ".."), { recursive: true }); cpSync(join(site, f), join(out, f)); }
 

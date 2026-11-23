@@ -25,6 +25,8 @@
       where: "The navbar on every page: About, Work, Contact me. On Haven it turns dark over the light bridge.",
       rule: "Hover, 10 Nov: the word goes to Neutral/050 and one weight heavier, drawn as an outline so every letter keeps its place. No block. Press looks the same as hover.",
       html: '<a class="link-nav" href="#" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a>',
+      proto: '<div class="proto-navbar"><img class="proto-logo" src="/assets/ui/logo.svg" alt=""><span class="navbar__role">Product Designer</span><ul class="proto-row"><li><a class="link-nav" href="#" aria-label="About"><span aria-hidden="true">Abou<span class="mirror">7</span></span></a></li><li><a class="link-nav" href="#" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li><li><a class="link-nav" href="#" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li></ul></div>',
+      protoCaption: "The navbar as it sits at the top of each page.",
       light: true,
       flag: "Focus on the light bridge: the site's white focus ring on Neutral/400 is faint.",
       knobs: [color("rest", "Text at rest", "neutral-200"), color("hover", "Text on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01), color("lightRest", "Text on the light bridge", "neutral-900"), color("lightHover", "Hover on the light bridge", "neutral-900")],
@@ -37,6 +39,8 @@
       where: "The footer list on Home, Haven and Framework: Home, About, Selected works.",
       rule: "Hover, 10 Nov: dark text on a light block in the text's own resting colour, Neutral/100. The block reaches 0.02em past the capitals and baseline as a shadow, so nothing moves. Press looks the same.",
       html: '<a class="link-footer" href="#">Selected works</a>', cellMin: 220,
+      proto: '<ul class="footer__nav proto-col"><li><a class="link-footer" href="#">Home</a></li><li><a class="link-footer" href="#">About</a></li><li><a class="link-footer" href="#">Selected works</a></li></ul>',
+      protoCaption: "The footer list, spaced as in the footer.",
       knobs: [color("rest", "Text at rest", "neutral-100"), color("hoverText", "Text on hover and press", "neutral-900"), color("block", "Block on hover and press", "neutral-100"), num("reach", "Block reach above and below", 0.02, "em", 0, 0.4, 0.01), num("stroke", "Hover outline", 0.05, "px", 0, 1, 0.01)],
       css: (r) => r.rule(".link-footer:not(.link-footer-lg)", ["color", "rest"]) +
         r.rule(".link-footer:not(.link-footer-lg):is(:hover, :active, .lab-hover, .lab-press)", ["color", "hoverText"], ["background", "block"],
@@ -47,6 +51,8 @@
       where: "The phone menu on Home: About, Works. The footer link at Heading/40.",
       rule: "The footer link's style and hover at the larger size.",
       html: '<a class="link-footer link-footer-lg" href="#">Works</a>', cellMin: 200,
+      proto: '<div class="proto-phone"><ul class="menu__links proto-col"><li><a class="link-footer link-footer-lg" href="#">About</a></li><li><a class="link-footer link-footer-lg" href="#">Works</a></li></ul><div class="proto-contact"><p class="footer__label">Contact</p><a class="footer__email" href="#">hello@chadwickfenner.com</a></div></div>',
+      protoCaption: "The phone menu's lower half, at phone width.",
       knobs: [color("rest", "Text at rest", "neutral-100"), color("hoverText", "Text on press", "neutral-900"), color("block", "Block on press", "neutral-100"), num("reach", "Block reach above and below", 0.02, "em", 0, 0.4, 0.01), num("stroke", "Press outline", 0.05, "px", 0, 1, 0.01)],
       css: (r) => r.rule(".link-footer-lg", ["color", "rest"]) +
         r.rule(".link-footer-lg:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hoverText"], ["background", "block"],
@@ -57,6 +63,8 @@
       where: "The footer's contact column on Home, Haven and Framework, and the phone menu.",
       rule: "Hover as the footer links, 10 Nov: same weight and underline at rest and on hover; the block also reaches down past the underline.",
       html: '<a class="footer__email" href="#">hello@chadwickfenner.com</a>', cellMin: 340,
+      proto: '<div class="footer__contact proto-contact"><p class="footer__label">Contact</p><a class="footer__email" href="#">hello@chadwickfenner.com</a></div>',
+      protoCaption: "The footer's contact column.",
       knobs: [color("rest", "Text at rest", "neutral-100"), color("hoverText", "Text on hover and press", "neutral-900"), color("block", "Block on hover and press", "neutral-100"), num("below", "Block reach below", 0.4, "em", 0, 0.8, 0.01), num("above", "Block reach above", 0.02, "em", 0, 0.4, 0.01), num("stroke", "Hover outline", 0.05, "px", 0, 1, 0.01)],
       css: (r) => r.rule(".footer__email", ["color", "rest"]) +
         r.rule(".footer__email:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hoverText"], ["background", "block"],
@@ -67,6 +75,8 @@
       where: "The footer's bottom row. Resume shows but is not a link until his resume file exists (17 Nov).",
       rule: "Small link hover, 10 Nov: Neutral/100 to Neutral/050 plus the outline. The arrow is Neutral/050 already.",
       html: `<a class="footer__out" href="#">${arrowOut}<span>Linkedin</span></a>`,
+      proto: '<div class="proto-row proto-out"><p class="footer__meta">@2026, Chadwick Fenner</p><a class="footer__out" href="#"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a><a class="footer__out"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a></div>',
+      protoCaption: "The footer's bottom row. Resume is not a link yet, so it does not react.",
       knobs: [color("rest", "Text at rest", "neutral-100"), color("hover", "Text on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
       css: (r) => r.rule(".footer__out", ["color", "rest"]) + r.rule(".footer__out:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]),
     },
@@ -75,6 +85,8 @@
       where: "The footer on tablet and desktop. Hidden on the phone.",
       rule: "Small link hover, 10 Nov: Neutral/550 to Neutral/050 plus the outline; the arrow turns light.",
       html: '<a class="footer__back" href="#"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>',
+      proto: '<div class="proto-col"><a class="footer__back" href="#"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a></div>',
+      protoCaption: "Back to top, at the head of the footer.",
       knobs: [color("rest", "Text at rest", "neutral-550"), color("hover", "Text on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.36, "px", 0, 1.5, 0.01)],
       note: "The arrow is an image: it turns light on hover but does not follow these colours.",
       css: (r) => r.rule(".footer__back", ["color", "rest"]) + r.rule(".footer__back:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]),
@@ -84,6 +96,8 @@
       where: "Learn more on the Home work cards. Under 1200 and on touch it sits under the image; from 1200 up with a mouse the site cursor carries it.",
       rule: "States, 9 Nov (option A): hover fills the outline and the text turns dark; press sinks to Neutral/300 and scales to 98 percent. 23 Nov: no hover fill on the work cards under 1200 or on touch; press still fills.",
       html: '<a class="button-sm" href="#">Learn more</a>',
+      proto: '<a class="proto-card" href="#"><img src="/assets/home/haven-card-phone.webp" alt=""><span class="proto-card__row"><span class="proto-card__text"><span class="proto-card__name">Haven</span><span class="proto-card__desc">LGBTQIA + youth app</span></span><span class="work-card__more button-sm">Learn more</span></span></a>',
+      protoCaption: "A phone work card, simplified: the whole card is the link, and pressing anywhere on it fills Learn more, as on the site.",
       knobs: [color("rest", "Outline and text at rest", "neutral-100"), num("border", "Outline", 3, "px", 1, 6, 0.5), num("radius", "Corner radius", 32, "px", 0, 40, 1),
         color("fill", "Fill on hover", "neutral-100"), color("hoverText", "Text on hover", "neutral-900"), color("press", "Fill on press", "neutral-300"), color("pressText", "Text on press", "neutral-900"),
         num("scale", "Press scale", 98, "%", 90, 100, 0.5), num("time", "Press scale time", 120, "ms", 0, 400, 10)],
@@ -96,6 +110,8 @@
       where: "The light bar between a case study and the footer, on Haven and Framework: previous, Explore more, next.",
       rule: "Hover, 9 Nov: the bar is light, so the highlight is inverted, a dark block with light text. The chevron turns light with the text (11 Nov).",
       html: '<nav class="ending-bar lab-endbar"><a class="ending-bar__prev" href="#"><img src="/assets/ui/chevron-left.svg" alt=""><span>Mondai: framework case study</span></a></nav>', cellMin: 300,
+      proto: '<nav class="ending-bar"><a class="ending-bar__prev" href="#"><img src="/assets/ui/chevron-left.svg" alt=""><span>Mondai: design system case study</span></a><a class="ending-bar__all" href="#">Explore more case studies</a><a class="ending-bar__next" href="#"><span>Mondai: framework case study</span><img src="/assets/ui/chevron-left.svg" alt=""></a></nav>',
+      protoCaption: "The full bar, as on Haven.", protoBleed: true,
       flag: "Focus: the site's white focus ring sits on a nearly white bar here (Neutral/050), so a keyboard user can barely see it.",
       knobs: [color("bar", "Bar", "neutral-050"), color("rest", "Text at rest", "neutral-1000"), color("block", "Block on hover and press", "neutral-900"), color("hover", "Text on hover and press", "neutral-050")],
       css: (r) => r.rule(".ending-bar", ["background", "bar"]) + r.rule(".ending-bar a", ["color", "rest"]) + r.rule(".ending-bar a:is(:hover, :active, .lab-hover, .lab-press)", ["background", "block"], ["color", "hover"]),
@@ -105,6 +121,8 @@
       where: "Built from his Figma Link set, on no page yet. Sample label.",
       rule: "Label/14 C Bold, dark on a Neutral/400 block. Hover lightens the block to Neutral/100, press Neutral/200 (the Figma variants).",
       html: '<a class="link-block" href="#">Learn more</a>',
+      proto: '<div class="proto-row"><a class="link-block" href="#">Learn more</a><a class="link-block" href="#">Selected works</a><a class="link-block" href="#">About</a></div>',
+      protoCaption: "Sample labels in a row.",
       knobs: [color("text", "Text", "neutral-900"), color("rest", "Block at rest", "neutral-400"), color("hover", "Block on hover", "neutral-100"), color("press", "Block on press", "neutral-200"), num("padY", "Padding above and below", 7, "px", 0, 20, 1), num("padX", "Padding left and right", 6, "px", 0, 24, 1)],
       css: (r) => r.rule(".link-block", ["color", "text"], ["background", "rest"], ["padding", ["padY", "padX"], (a, b) => `${a}px ${b}px`]) + r.rule(".link-block:is(:hover, .lab-hover)", ["background", "hover"]) + r.rule(".link-block:is(:active, .lab-press)", ["background", "press"]),
     },
@@ -113,6 +131,8 @@
       where: "His addition 10 Nov for tight rows, on no page yet. Sample label.",
       rule: "Label/12 C Bold, dark on a Neutral/050 block; hover and press as Block.",
       html: '<a class="link-block-sm" href="#">Learn more</a>',
+      proto: '<div class="proto-row"><a class="link-block-sm" href="#">Learn more</a><a class="link-block-sm" href="#">Selected works</a><a class="link-block-sm" href="#">About</a></div>',
+      protoCaption: "Sample labels in a row.",
       knobs: [color("text", "Text", "neutral-900"), color("rest", "Block at rest", "neutral-050"), color("hover", "Block on hover", "neutral-100"), color("press", "Block on press", "neutral-200"), num("padY", "Padding above and below", 7, "px", 0, 20, 1), num("padX", "Padding left and right", 6, "px", 0, 24, 1)],
       css: (r) => r.rule(".link-block-sm", ["color", "text"], ["background", "rest"], ["padding", ["padY", "padX"], (a, b) => `${a}px ${b}px`]) + r.rule(".link-block-sm:is(:hover, .lab-hover)", ["background", "hover"]) + r.rule(".link-block-sm:is(:active, .lab-press)", ["background", "press"]),
     },
@@ -121,18 +141,21 @@
       where: "His addition 10 Nov for tight rows, on no page yet. Sample label.",
       rule: "Label/12 C on Neutral/050 with 7 px above and below as the hit area. It already rests on Neutral/050, so hover only adds the outline (0.31 px at 12 px).",
       html: '<a class="link-nav-sm" href="#">Learn more</a>',
+      proto: '<div class="proto-row"><a class="link-nav-sm" href="#">Learn more</a><a class="link-nav-sm" href="#">Selected works</a><a class="link-nav-sm" href="#">About</a></div>',
+      protoCaption: "Sample labels in a row.",
       knobs: [color("rest", "Text at rest", "neutral-050"), color("hover", "Text on hover and press", "neutral-050"), num("stroke", "Hover outline", 0.31, "px", 0, 1.5, 0.01)],
       css: (r) => r.rule(".link-nav-sm", ["color", "rest"]) + r.rule(".link-nav-sm:is(:hover, :active, .lab-hover, .lab-press)", ["color", "hover"], ["-webkit-text-stroke", "stroke", (v) => `${v}px currentColor`]),
     },
     {
       id: "all", name: "Every link", global: true,
       rule: "Focus is one site wide ring (base.css). Hover swaps instantly, in and out: a 200 ms fade showed grey on grey frames that read as a flicker (9 Nov).",
-      knobs: [color("ring", "Focus ring", "neutral-000"), num("ringW", "Focus ring width", 2, "px", 1, 4, 0.5), num("ringO", "Focus ring gap", 4, "px", 0, 10, 1), num("swap", "Hover change time", 0, "ms", 0, 400, 10)],
+      knobs: [color("ring", "Focus ring", "neutral-000"), num("ringW", "Focus ring width", 2, "px", 1, 4, 0.5), num("ringO", "Focus ring gap", 4, "px", 0, 10, 1), num("swap", "Hover change time", 0, "ms", 0, 400, 10),
+        { k: "tap", label: "Touch: after a tap", type: "choice", def: "sticks", choices: [["sticks", "Hover sticks (site today)"], ["none", "No hover (today's rule)"]] }],
       css: (r) => r.rule(":is(.lab-focus, :focus-visible)", ["outline", ["ringW", "ring"], (w, c) => `${w}px solid ${css(c)}`], ["outline-offset", "ringO", (v) => v + "px"]) +
         r.rule(":is(.link-block, .link-block-sm, .link-nav, .link-nav-sm, .link-footer, .footer__email, .footer__out, .footer__back, .ending-bar a)", ["transition", "swap", (v) => `color ${v}ms, background-color ${v}ms, box-shadow ${v}ms`]),
     },
   ];
-  const STATES = [["rest", "Rest"], ["hover", "Hover"], ["press", "Press"], ["focus", "Focus"], ["live", "Try it"]];
+  const STATES = [["rest", "Rest"], ["hover", "Hover"], ["press", "Press"], ["focus", "Focus"]];
 
   // Saved state.
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -192,8 +215,26 @@
       };
       out += c.css(r);
     }
-    tuned.textContent = out;
+    tuned.textContent = touchMode() ? out.replace(/:hover/g, ".lab-sticky") : out;
   };
+
+  const show = (k, v) => (k.type === "choice" ? k.choices.find((x) => x[0] === v)[1] : k.type === "color" ? `${nice(v)} ${hexOf(v)}` : `${v} ${k.unit}`);
+
+  // Touch: the site's :hover rules are switched off (rewritten to a class) so only press reacts, as on a
+  // phone. A tap then leaves the hover on that link until the next tap elsewhere, which is what iPhone
+  // Safari does with the site today; "No hover" leaves it off.
+  const hoverRules = [];
+  for (const sheet of document.styleSheets) {
+    if (!sheet.ownerNode?.matches?.("[data-site], link[href*='lab.css']")) continue;
+    let rules; try { rules = sheet.cssRules; } catch { continue; }
+    for (const rule of rules) if (rule instanceof CSSStyleRule && rule.selectorText.includes(":hover")) hoverRules.push([rule, rule.selectorText]);
+  }
+  const applyPointer = () => {
+    for (const [rule, sel] of hoverRules) rule.selectorText = touchMode() ? sel.replace(/:hover/g, ".lab-sticky") : sel;
+    clearSticky(); writeCSS();
+  };
+  let sticky = null;
+  const clearSticky = () => { sticky?.classList.remove("lab-sticky"); sticky = null; };
 
   // Stage.
   const stage = document.getElementById("stage");
@@ -211,6 +252,9 @@
       <div class="cell__body ${bg}"><div class="cell__zoom" data-cls="${cls}">${c.html}</div></div></div>`;
   };
   const strip = (c, bg) => `<div class="strip" style="--cell-min:${c.cellMin || 150}px">${STATES.map(([s, l]) => cellHTML(c, s, l, bg)).join("")}</div>`;
+  const scene = (c, bg, label) => `<div class="scene-wrap"><p class="strip-label">${label}<span>${touchMode() ? "touch: tap and hold" : "mouse: hover and click"}</span></p>
+    <div class="scene ${bg}${c.protoBleed ? " scene--bleed" : ""}" data-c="${c.id}"><div class="cell__zoom">${c.proto}</div></div>
+    <p class="scene__caption">${c.protoCaption}</p></div>`;
   const render = () => {
     stage.innerHTML = COMPS.filter((c) => !c.global).map((c) => `
       <section class="comp" id="comp-${c.id}">
@@ -219,9 +263,13 @@
         <p class="comp__rule">${c.rule}</p>
         ${c.flag ? `<p class="comp__flag">${c.flag}</p>` : ""}
         ${touchMode() && c.touchHover !== false ? `<p class="comp__flag">${TOUCH_FLAG}</p>` : ""}
-        ${c.light ? '<p class="strip-label">On the dark page</p>' : ""}
-        ${strip(c, "lab-dark")}
-        ${c.light ? '<p class="strip-label">On Haven\'s light bridge, Neutral/400</p>' + strip(c, "lab-light") : ""}
+        ${scene(c, "lab-dark", c.light ? "Try it on the dark page" : "Try it")}
+        ${c.light ? scene(c, "lab-light", "Try it on Haven's light bridge, Neutral/400") : ""}
+        <details class="held" ${S.held ? "open" : ""}><summary>Each state, held</summary>
+          ${c.light ? '<p class="strip-label">On the dark page</p>' : ""}
+          ${strip(c, "lab-dark")}
+          ${c.light ? '<p class="strip-label">On Haven\'s light bridge, Neutral/400</p>' + strip(c, "lab-light") : ""}
+        </details>
       </section>`).join("");
     // Put the forced state class on the link itself (for the end bar, the link inside its bar).
     for (const z of stage.querySelectorAll(".cell__zoom")) {
@@ -229,10 +277,21 @@
       const link = z.querySelector(".ending-bar a") || z.firstElementChild;
       link.classList.add(...cls.split(" "));
     }
-    for (const a of stage.querySelectorAll(".cell:not(.is-live) a")) a.tabIndex = -1;
+    for (const a of stage.querySelectorAll(".cell a")) a.tabIndex = -1;
+    for (const d of stage.querySelectorAll(".held")) d.addEventListener("toggle", () => { S.held = d.open; save(); });
     observe();
   };
-  stage.addEventListener("click", (e) => { if (e.target.closest("a")) e.preventDefault(); });
+  stage.addEventListener("click", (e) => {
+    const a = e.target.closest("a"); if (a) e.preventDefault();
+    if (!touchMode()) return;
+    const link = a && a.closest(".scene") && a.hasAttribute("href") && !a.classList.contains("proto-card") ? a : null;
+    clearSticky();
+    if (link && valOf(COMPS.find((c) => c.id === "all"), "tap") === "sticks") { sticky = link; link.classList.add("lab-sticky"); }
+  });
+  // The work card: pressing anywhere on it fills Learn more (home-motion.js does the same on the site).
+  stage.addEventListener("pointerdown", (e) => { const card = e.target.closest(".proto-card"); if (card) card.querySelector(".button-sm").classList.add("lab-press"); });
+  const unpress = () => stage.querySelectorAll(".proto-card .lab-press").forEach((b) => b.classList.remove("lab-press"));
+  for (const t of ["pointerup", "pointercancel", "pointerleave"]) stage.addEventListener(t, unpress, true);
   document.addEventListener("touchstart", () => {}, { passive: true }); // lets iPhone Safari run :active
 
   // Component list.
@@ -272,10 +331,10 @@
           ${c.knobs.map((k) => `
             <div class="knob" data-c="${c.id}" data-k="${k.k}">
               <span class="knob__label${k.type === "num" ? " is-scrub" : ""}">${k.label}</span>
-              <span class="knob__ctl">${k.type === "color"
+              <span class="knob__ctl">${k.type === "choice" ? `<select class="wide" aria-label="${k.label}">${k.choices.map(([v, t]) => `<option value="${v}">${t}</option>`).join("")}</select>` : k.type === "color"
                 ? `<span class="swatch"></span><select aria-label="${k.label}">${opts}</select><input type="text" aria-label="${k.label} hex" spellcheck="false">`
                 : `<input type="number" aria-label="${k.label}" min="${k.min}" max="${k.max}" step="${k.step}"><span class="unit">${k.unit}</span>`}</span>
-              <span class="knob__was">Site: ${k.type === "color" ? `${nice(k.def)} ${hexOf(k.def)}` : k.def + " " + k.unit}<button class="lab-link" data-reset>Reset</button></span>
+              <span class="knob__was">Site: ${show(k, k.def)}<button class="lab-link" data-reset>Reset</button></span>
             </div>`).join("")}
           <button class="lab-link" data-reset-group>Reset ${c.name.toLowerCase()}</button>
         </div>
@@ -286,6 +345,7 @@
     for (const el of knobsEl.querySelectorAll(".knob")) {
       const c = COMPS.find((x) => x.id === el.dataset.c), k = c.knobs.find((x) => x.k === el.dataset.k), v = valOf(c, k.k);
       el.classList.toggle("is-changed", changed(c, k.k));
+      if (k.type === "choice") { el.querySelector("select").value = v; continue; }
       if (k.type === "color") {
         const sel = el.querySelector("select"), txt = el.querySelector("input");
         sel.value = TOKENS.includes(v) ? v : "custom";
@@ -318,6 +378,7 @@
   };
   knobsEl.addEventListener("change", (e) => {
     const el = e.target.closest(".knob"); if (!el) return;
+    if (e.target.matches("select.wide")) { setVal(el.dataset.c, el.dataset.k, e.target.value); clearSticky(); return; }
     if (e.target.matches("select")) {
       if (e.target.value === "custom") { el.querySelector("input").focus(); return; }
       setVal(el.dataset.c, el.dataset.k, e.target.value);
@@ -360,7 +421,7 @@
     el.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; S[key] = b.dataset.v; sync(); after(); save(); });
     sync(); return sync;
   };
-  seg("mode", "mode", render);
+  seg("mode", "mode", () => { render(); applyPointer(); });
   const syncView = seg("view", "view", writeCSS);
   const setView = (v) => { S.view = v; syncView(); };
   const applyZoom = () => document.body.style.setProperty("--z", S.zoom);
@@ -392,7 +453,6 @@
   // Copy values: every value that differs from the site, with the site's value beside it, and his notes.
   const toastEl = document.getElementById("toast");
   const toast = (t) => { toastEl.textContent = t; toastEl.classList.add("is-on"); clearTimeout(toastEl._t); toastEl._t = setTimeout(() => toastEl.classList.remove("is-on"), 1800); };
-  const show = (k, v) => (k.type === "color" ? `${nice(v)} ${hexOf(v)}` : `${v} ${k.unit}`);
   const valuesText = () => {
     const out = ["Link states lab values"];
     for (const c of COMPS) {
@@ -414,5 +474,5 @@
     }
   });
 
-  render(); renderKnobs(); writeCSS();
+  render(); renderKnobs(); applyPointer();
 })();
