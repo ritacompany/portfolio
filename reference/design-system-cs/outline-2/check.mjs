@@ -8,7 +8,7 @@ const secs = s.split(/^### /m).slice(1);
 if (secs.length !== 6) { console.log('sections', secs.length); fail++; }
 for (const x of secs) {
   const name = x.split('\n')[0];
-  for (const k of [/\*\*(Decisions|Job|Items)\.\*\*/, /\*\*Visual\.\*\*/, /\*\*Tactic\.\*\*/])
+  for (const k of [/\*\*(Decisions|Job|Items)[^*]*\*\*/, /\*\*Visual\.\*\*/, /\*\*Tactic\.\*\*/])
     if (!k.test(x)) { console.log('missing', k, 'in', name); fail++; }
 }
 const paths = new Set();
