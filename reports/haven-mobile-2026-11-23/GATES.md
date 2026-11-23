@@ -32,4 +32,4 @@ Screenshots are on the canvas; `shots/` is kept out of git (17 MB).
 | R2 quiz options clear | labels off screen, on labels, on icons or on the phone, 320 to 767, both options | PASS, 0 collisions (`quiz-orbit.css`, `quiz-bigphone.css`) |
 | R3 phone nav | bar and menu render on Haven at 390 from the shared markup | screenshots on the canvas; lands after his yes, moving Home's phone bar CSS into components.css |
 | R4 dividers | report in `reports/dividers-2026-11-23/ISSUES.md` | colour waits on his call |
-| R5 journey flow Figma frame | built in his file | BLOCKED: the Figma build hook needs a typed message from him that says build |
+| R5 journey flow Figma frame | built in his file | PASS: frame 6394:30516 and component 6394:30515 on page CS under Mobile frames, at the built sizes (103 circles, 12 text, 120 pitch); Inter stands in for Satoshi, which the Figma plugin here cannot load |
