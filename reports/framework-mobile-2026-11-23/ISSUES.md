@@ -62,3 +62,14 @@ limit, so neither file could be re-checked today. Haven's phone rules are the re
   18vw (70 at 390), which breaks "Framework CS" onto two lines. C: today's size, the box on the margin.
   A keeps Haven's rule (ink on the margin, as big as the room allows) without breaking the name; B matches Haven's
   number but stacks a two word title into a block Haven's shorter "Haven CS" never makes.
+
+## His walkthrough (23 Nov)
+
+- On the canvas he called the boards he had open good, in his words "these all transition really nicely over
+  though honestly so I'd say that these are all good that I'm seeing here". Those were Read me, Title, Hero,
+  the two width boards, Competitive analysis, Personalized timeline and Start of week. Falling behind and The test
+  were off screen. This is his read of the look, not yet the yes that moves phone.css onto the live page, and the
+  title option is still open.
+- Dividers: he has started another session that will change the divider colors site wide. This proposal changes
+  no color. The only divider rule it touches is the hero rule's stretch inside the new grid (layout only), so the
+  two pieces of work do not collide. Whoever lands second rechecks the hero rule on a phone.
