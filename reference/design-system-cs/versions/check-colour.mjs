@@ -11,9 +11,9 @@ const layouts = [];
 // Page copy = the fields that go on the page.
 const COPY_FIELDS = /^(Eyebrow|Headline|Side text|Caption \d|Note \d[^:]*|Body[^:]*|Sources):\s*/;
 const POINTS = {
-  P1: [/3,555/, /used most/],
-  P2: [/what (it|they) do/, /551/, /(share|shared) (a )?(colour|value)|by value/],
-  P3: [/icon beside text/, /darker than (the |its |that )?text/],
+  P1: [/3,555/, /(using|used) most/],
+  P2: [/what (it|they) do|do the same thing/, /551/, /share|by value/],
+  P3: [/icon/, /one step darker than the text/],
   P4: [/65% to 78%/, /renamed/, /leaner public palette/],
   P5: [/Gold/],
   P6: [/dark only/i],

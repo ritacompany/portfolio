@@ -50,7 +50,7 @@ reread the K9 source itself before acting on it. Fixed means the copy in `colour
 | K11 | MATCH | icon rule still current, restated 13 Nov |
 | K12 | MATCH | 65% to 78% |
 | K13 | MATCH | roles only, bindings kept, no colour change |
-| K14 | MATCH | three renames, 2 of 213 |
+| K14 | MATCH | three renames, 2 of 213; the rest being times, dates and inactive labels was added in the 23 Nov voice rewrite and read by the lead in the same DECISIONS.md entry, not by the independent agent |
 | K15 | PARTLY, fixed | the record names leaner systems as the reason, not a weighed option; copy now says a leaner public palette would have recoloured the screens, without weighed |
 | K16 | MATCH | he found it confusing; paraphrased, never quoted |
 | K17 | MATCH, fixed | source says it never existed in the design system, not the file; copy now says it never had a value, ramp or variable; no claim about who ruled it |
