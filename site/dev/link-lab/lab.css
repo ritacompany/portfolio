@@ -1,0 +1,150 @@
+/* Link states lab chrome (site/dev/link-lab). Only the tool's own frame lives here; every link inside the
+   stage is drawn by the site's own tokens.css, base.css and components.css, unchanged. Never shipped. */
+@font-face { font-family: "Heebo"; src: url("../../assets/fonts/heebo-var-latin.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url("../../assets/fonts/plex-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+:root { color-scheme: dark; }
+.lab {
+  --c-bg: #08080a; --c-panel: #0f0f12; --c-line: #26262c; --c-line-2: #34343b;
+  --c-text: #d6d6dd; --c-dim: #9a9aa4; --c-hi: #f2f2f5;
+  --left-w: 220px; --right-w: 340px; --bar-h: 52px;
+  margin: 0; min-height: 100vh; min-height: 100svh;
+  background: var(--c-bg); color: var(--c-text);
+  font: 400 14px/1.45 "Heebo", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.lab button { font: inherit; }
+.lab :focus-visible { outline: 2px solid var(--c-hi); outline-offset: 2px; }
+.lab .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; }
+
+/* Top bar: sticks, holds the view controls. */
+.lab-bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  min-height: var(--bar-h); padding: 8px 12px; background: var(--c-panel); border-bottom: 1px solid var(--c-line);
+}
+.lab-bar h1 { font: 500 15px/1 "Heebo", sans-serif; color: var(--c-hi); margin: 0 8px 0 2px; white-space: nowrap; }
+.lab-bar__fill { flex: 1; }
+.lab-btn {
+  height: 32px; padding: 0 12px; border: 1px solid var(--c-line-2); background: transparent; color: var(--c-text);
+  cursor: pointer; white-space: nowrap;
+}
+.lab-btn:hover { border-color: #55555e; color: var(--c-hi); }
+.lab-btn:active { background: #1b1b20; }
+.lab-icon { width: 32px; padding: 0; display: grid; place-items: center; }
+.lab-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.lab-seg { display: flex; border: 1px solid var(--c-line-2); }
+.lab-seg button { height: 30px; padding: 0 10px; border: 0; background: transparent; color: var(--c-dim); cursor: pointer; white-space: nowrap; }
+.lab-seg button + button { border-left: 1px solid var(--c-line-2); }
+.lab-seg button:hover { color: var(--c-hi); }
+.lab-seg button[aria-pressed="true"] { background: #1d1d22; color: var(--c-hi); }
+
+/* Three areas: list, stage, tuning. Each side collapses; the stage takes the room. */
+.lab-body { display: grid; grid-template-columns: var(--left-w) minmax(0, 1fr) var(--right-w); align-items: start; }
+.lab.left-closed .lab-body { grid-template-columns: 0 minmax(0, 1fr) var(--right-w); }
+.lab.right-closed .lab-body { grid-template-columns: var(--left-w) minmax(0, 1fr) 0; }
+.lab.left-closed.right-closed .lab-body { grid-template-columns: 0 minmax(0, 1fr) 0; }
+.lab.left-closed .lab-left, .lab.right-closed .lab-right { display: none; }
+.lab-left { grid-column: 1; grid-row: 1; } .lab-stage { grid-column: 2; grid-row: 1; } .lab-right { grid-column: 3; grid-row: 1; }
+
+.lab-left, .lab-right {
+  position: sticky; top: var(--bar-h); height: calc(100vh - var(--bar-h)); height: calc(100svh - var(--bar-h));
+  background: var(--c-panel); overflow: auto;
+}
+.lab-left { border-right: 1px solid var(--c-line); padding: 14px 0; }
+.lab-left__head, .lab-right__head p { margin: 0; font: 500 12px/1 "IBM Plex Mono", monospace; color: var(--c-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+.lab-left__head { padding: 0 14px 10px; }
+.lab-left ul { list-style: none; margin: 0; padding: 0; }
+.lab-left a { display: block; padding: 7px 14px; color: var(--c-text); text-decoration: none; border-left: 2px solid transparent; }
+.lab-left a:hover { color: var(--c-hi); background: #16161a; }
+.lab-left a.is-current { border-left-color: var(--c-hi); color: var(--c-hi); }
+.lab-left a small { display: block; color: var(--c-dim); font-size: 12px; }
+.lab-left a .dot { display: inline-block; width: 6px; height: 6px; margin-left: 6px; border-radius: 50%; background: var(--c-hi); vertical-align: 2px; }
+
+.lab-right { border-left: 1px solid var(--c-line); overflow: visible; }
+.lab-right__scroll { height: 100%; overflow: auto; padding: 14px 14px 40px; }
+.lab-right__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.lab-drag { position: absolute; left: -4px; top: 0; bottom: 0; width: 8px; cursor: col-resize; z-index: 2; }
+.lab-drag:hover, .lab-drag.is-dragging { background: linear-gradient(90deg, transparent 3px, #55555e 3px, #55555e 5px, transparent 5px); }
+.lab-link { background: none; border: 0; padding: 0; color: var(--c-dim); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.lab-link:hover { color: var(--c-hi); }
+.lab-link:disabled { opacity: 0.4; cursor: default; text-decoration: none; }
+
+/* Tuning groups fold open. */
+.knob-group { border-top: 1px solid var(--c-line); }
+.knob-group > summary {
+  display: flex; align-items: center; gap: 8px; padding: 11px 0; cursor: pointer; list-style: none; color: var(--c-hi);
+}
+.knob-group > summary::-webkit-details-marker { display: none; }
+.knob-group > summary::before { content: ""; width: 6px; height: 6px; border-right: 1.4px solid var(--c-dim); border-bottom: 1.4px solid var(--c-dim); transform: rotate(-45deg); margin: 0 4px 0 2px; transition: transform 120ms; }
+.knob-group[open] > summary::before { transform: rotate(45deg); }
+.knob-group > summary .count { margin-left: auto; color: var(--c-dim); font: 400 12px "IBM Plex Mono", monospace; }
+.knob-group__body { padding: 0 0 14px; display: grid; gap: 10px; }
+.knob-group__note { margin: 0; color: var(--c-dim); font-size: 13px; }
+.knob { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 10px; }
+.knob__label { flex: 1 1 140px; }
+.knob__was { flex: 1 1 100%; }
+.knob__label { color: var(--c-text); cursor: default; user-select: none; }
+.knob__label.is-scrub { cursor: ew-resize; }
+.knob.is-changed .knob__label::after { content: ""; display: inline-block; width: 6px; height: 6px; margin-left: 6px; border-radius: 50%; background: var(--c-hi); vertical-align: 2px; }
+.knob__was { color: var(--c-dim); font-size: 12px; display: flex; gap: 8px; align-items: center; }
+.knob:not(.is-changed) .knob__was { display: none; }
+.knob__ctl { display: flex; align-items: center; gap: 6px; }
+.knob input[type="number"], .knob input[type="text"], .knob select, .lab-notes textarea {
+  background: #141418; color: var(--c-hi); border: 1px solid var(--c-line-2); height: 30px; padding: 0 8px;
+  font: 400 12px "IBM Plex Mono", monospace; border-radius: 0;
+}
+.knob input[type="number"] { width: 76px; }
+.knob input[type="text"] { width: 78px; }
+.knob select { width: 132px; }
+.knob .unit { color: var(--c-dim); font: 400 12px "IBM Plex Mono", monospace; min-width: 16px; }
+.knob .swatch { width: 18px; height: 18px; border: 1px solid #55555e; flex: none; }
+.lab-notes { display: grid; gap: 6px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--c-line); }
+.lab-notes textarea { height: auto; padding: 8px; font: 400 13px/1.4 "Heebo", sans-serif; resize: vertical; }
+
+/* Stage: the site's own dark page, one block per component. */
+.lab-stage { background: var(--neutral-900); min-height: calc(100svh - var(--bar-h)); padding: 28px clamp(16px, 3vw, 40px) 80px; }
+.comp { padding: 0 0 36px; margin-bottom: 36px; border-bottom: 1px solid var(--neutral-700); scroll-margin-top: calc(var(--bar-h) + 16px); }
+.comp__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 6px; }
+.comp__head h2 { margin: 0; font: 500 18px/1.2 "Heebo", sans-serif; color: var(--c-hi); }
+.comp__head .mono { color: var(--c-dim); }
+.comp__where, .comp__rule { margin: 0; max-width: 72ch; font: 400 14px/1.45 "Heebo", sans-serif; color: #b4b4bd; }
+.comp__rule { color: var(--c-dim); margin-top: 2px; }
+.comp__flag { margin: 8px 0 0; padding: 6px 10px; border: 1px solid #5a4a20; color: #e7d6a6; font: 400 13px/1.4 "Heebo", sans-serif; max-width: 72ch; }
+
+.strip-label { margin: 18px 0 8px; font: 400 12px/1 "IBM Plex Mono", monospace; color: var(--c-dim); }
+.strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--cell-min, 180px), 1fr)); gap: 12px; }
+.cell { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--neutral-700); }
+.cell__name { display: flex; justify-content: space-between; gap: 8px; padding: 7px 10px; font: 400 12px/1.2 "IBM Plex Mono", monospace; color: var(--c-dim); border-bottom: 1px solid var(--neutral-700); background: #08080a; }
+.cell__name em { font-style: normal; color: #e7d6a6; }
+.cell__body { flex: 1; display: grid; place-items: center; min-height: 92px; padding: 24px 16px; overflow: hidden; }
+.cell__zoom { zoom: var(--z, 1); }
+.cell.is-live .cell__name { color: var(--c-text); }
+.cell:not(.is-live) .cell__body > * { pointer-events: none; }
+.lab-light .cell__body, .cell__body.lab-light { background: var(--neutral-400); }
+
+/* Haven's light bridge (haven/haven.css 556 to 560): the nav ink turns Neutral/900 there and the hover keeps
+   that ink, adding only the outline. Copied here so the lab can show it without loading Haven's page CSS. */
+.lab-light .link-nav { color: var(--neutral-900); }
+.lab-light .link-nav:is(:hover, :active, .lab-hover, .lab-press) { color: var(--neutral-900); -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; }
+
+/* The end bar's links sit on its light bar; the lab shows one link on a short piece of that bar. */
+.lab-endbar { display: flex !important; height: auto !important; padding: 10px 16px !important; }
+
+.lab-toast { position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 10px 14px; background: #1d1d22; border: 1px solid var(--c-line-2); color: var(--c-hi); transition: opacity 160ms, transform 160ms; z-index: 40; }
+.lab-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+/* Under 900 the panels float over the stage: list from the left, tuning as a sheet from the bottom. */
+@media (max-width: 899.98px) {
+  .lab .lab-body { display: block; }
+  .lab-left { position: fixed; left: 0; top: var(--bar-h); width: min(280px, 84vw); z-index: 15; box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.5); }
+  .lab-right { position: fixed; left: 0; right: 0; top: auto; bottom: 0; height: 62svh; z-index: 16; border-left: 0; border-top: 1px solid var(--c-line-2); }
+  .lab-drag { display: none; }
+  .lab-bar h1 { flex: 1; }
+  .lab-bar__fill { display: none; }
+  .lab-bar { --bar-h: auto; }
+  .lab-left { top: 0; height: 100svh; padding-top: 60px; }
+  .lab-seg button { padding: 0 8px; }
+  .strip { --cell-min: 150px; }
+}
+@media (max-width: 899.98px) { .lab:not(.right-closed) .lab-stage { padding-bottom: 66svh; } }
+@media (max-width: 599.98px) { .lab-seg .long { display: none; } .lab-bar h1 { font-size: 14px; } }
