@@ -145,7 +145,11 @@
     left: narrow ? false : saved.left !== false, right: narrow ? false : saved.right !== false,
   };
   let saveT;
-  const save = () => { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} }, 150); };
+  const flush = () => { clearTimeout(saveT); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+  const save = () => { clearTimeout(saveT); saveT = setTimeout(flush, 150); };
+  // Leaving the page writes at once, so a change made just before closing is never lost.
+  addEventListener("pagehide", flush);
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flush(); });
 
   const valOf = (c, k) => { const v = S.values[c.id]?.[k]; return v === undefined ? c.knobs.find((x) => x.k === k).def : v; };
   const changed = (c, k) => S.values[c.id]?.[k] !== undefined;
