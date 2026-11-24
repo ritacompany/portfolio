@@ -341,6 +341,11 @@
   .work-card-haven .work-card__desc { position: static; }
   .work-card-mondai .work-card__desc { display: none; } /* not in his Works frame */
   .work-card .work-card__more { order: 2; flex: none; margin: 0 0 0 auto; }
+  /* Both cards stacked together (js/home-motion.js adds .is-stacked once either card has 24 px or less between its
+     title and Learn more, his call 24 Nov): the title takes its own line and the button sits under it, left aligned,
+     20 below. Without the script each card still wraps on its own. */
+  .works__cards.is-stacked .work-card__head { flex-basis: 100%; }
+  .works__cards.is-stacked .work-card .work-card__more { margin-left: 0; }
   .works .work-card__media { order: 3; flex: 0 0 100%; margin: 0; aspect-ratio: 404 / 266.324; }
   /* Learn more is his new Small button (6437:24294): a 2 px Neutral/200 outline and Neutral/200 text, 130 by 32.
      No hover look on the phone; the press fill stays (.is-pressed or :active, components.css). */

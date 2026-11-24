@@ -79,7 +79,7 @@ Scope: this branch holds the working branch, main and PR 40 as one Home; the app
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=3c3b0f9869f1/16 entries; EXPECT=matched; output-sha256=60d46c68e44a188727ddb9be000c38f37cc5c9b0895d70ca7feb28585d2fa4f3; output-bytes=137
 
-- [ ] G14: His Works frame (6437:24298, 24 Nov) at every phone width from 320 to 767: the title block on the left edge and Learn more on the right edge share the first line only while more than 24 px apart, and the button drops 20 under the title only when one line could not keep that; the image sits 20 under the last line.
+- [ ] G14: His Works frame (6437:24298, 24 Nov) at every phone width from 320 to 767: the title block on the left edge and Learn more on the right edge share the first line while both cards keep more than 24 px between them; once either card has 24 px or less, both buttons drop 20 under their titles, left aligned (his call, 24 Nov); the image sits 20 under the last line.
   CHECK: node reports/home-unify-2026-11-22/check.mjs wrap
   EXPECT: WRAP_OK
   CWD: ../..

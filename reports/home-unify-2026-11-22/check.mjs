@@ -165,7 +165,7 @@ else if (mode === "touch") {
   const read = (pg) => pg.evaluate(() => [...document.querySelectorAll(".work-card")].map((c) => {
     const l = c.querySelector(".work-card__more"), cs = getComputedStyle(l), r = l.getBoundingClientRect(), m = c.querySelector(".work-card__media").getBoundingClientRect(), card = c.getBoundingClientRect();
     return { card: c.classList[1], disp: cs.display, fs: cs.fontSize, tt: cs.textTransform, fw: cs.fontWeight, border: cs.borderTopWidth, text: l.textContent.trim(),
-      bg: cs.backgroundColor, cx: r.x + r.width / 2, cy: r.y + r.height / 2, right: r.right, cardRight: card.right, below: r.top - m.bottom,
+      bg: cs.backgroundColor, cx: r.x + r.width / 2, cy: r.y + r.height / 2, right: r.right, left: r.left, cardLeft: card.left, cardRight: card.right, stacked: !!c.closest(".is-stacked"), below: r.top - m.bottom,
       hidden: [...c.querySelectorAll(".work-card__head > *")].filter((e) => getComputedStyle(e).display !== "none" && getComputedStyle(e).opacity !== "1").map((e) => e.textContent.trim()) };
   }));
   try {
@@ -178,7 +178,8 @@ else if (mode === "touch") {
         must(r.disp !== "none" && r.text.toLowerCase() === "learn more", `${w}: ${r.card} has no Learn more on touch`);
         if (!phone) continue;
         must(r.fs === "16px" && r.fw === "700" && r.tt === "uppercase" && r.border === "2px", `${w}: ${r.card} Learn more is not his new Small button: ${r.fs} ${r.fw} ${r.tt} ${r.border}`);
-        must(Math.abs(r.right - r.cardRight) < 1, `${w}: ${r.card} Learn more not on the card's right edge (${r.right} vs ${r.cardRight})`);
+        // On the title line it sits on the right edge; dropped under the title (both cards, his call 24 Nov) on the left edge.
+        must(r.stacked ? Math.abs(r.left - r.cardLeft) < 1 : Math.abs(r.right - r.cardRight) < 1, `${w}: ${r.card} Learn more not on the ${r.stacked ? "left" : "right"} edge`);
         must(r.bg === "rgba(0, 0, 0, 0)", `${w}: ${r.card} Learn more filled at rest`);
       }
       if (phone) for (let i = 0; i < rest.length; i++) {
@@ -276,7 +277,8 @@ else if (mode === "mouse") {
 else if (mode === "wrap") {
   // His "Works" frame, 24 Nov (6437:24298): on the phone each card's title block (name and label) and Learn more
   // share the first line, bottoms aligned, title on the left edge, button on the right edge, image 20 below.
-  // His ask: set them to auto and drop the button below the title once they come 24 px or less apart. Checked at
+  // His ask: set them to auto and drop the button below the title once they come 24 px or less apart; both cards
+  // together, left aligned under the title (24 Nov). Checked at
   // every phone width from 320 to 767 in 1 px steps on touch: on one line the gap is over 24; wrapped, it only
   // wraps when one line could not keep over 24, and the button sits 20 under the title.
   const { chromium } = createRequire(import.meta.url)("playwright");
@@ -304,26 +306,32 @@ else if (mode === "wrap") {
       && Math.abs(look.w - 130) < 3 && Math.abs(look.h - 31.7) < 2, `Learn more is not his new Small button (130 by 32 in Figma; the browser sets the text 2.5 narrower): ${JSON.stringify(look)}`);
     for (let w = 320; w <= 767; w++) {
       await pg.setViewportSize({ width: w, height: 874 });
+      // The page restacks from a ResizeObserver, which runs at the next frame: wait for it before measuring.
+      await pg.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
       const cards = await pg.evaluate(() => [...document.querySelectorAll(".work-card")].map((c) => {
         const h = c.querySelector(".work-card__head").getBoundingClientRect(), m = c.querySelector(".work-card__more").getBoundingClientRect(), cr = c.getBoundingClientRect(), img = c.querySelector(".work-card__media").getBoundingClientRect();
         const vis = [...c.querySelectorAll(".work-card__head > *")].filter((e) => getComputedStyle(e).display !== "none");
         const tw = Math.max(...vis.map((e) => e.getBoundingClientRect().width));
         return { card: c.classList[1].replace("work-card-", ""), hl: h.left, hr: h.left + tw, ht: h.top, hb: h.bottom, ml: m.left, mr: m.right, mt: m.top, mb: m.bottom, cl: cr.left, cr: cr.right, imgT: img.top };
       }));
-      for (const k of cards) {
+      // His call, 24 Nov: both cards drop together once either card has 24 px or less, and a dropped button sits
+      // under the title, left aligned.
+      const rooms = cards.map((k) => (k.cr - k.cl) - (k.hr - k.hl) - (k.mr - k.ml));
+      const tight = rooms.some((r) => r <= 24);
+      for (const [i, k] of cards.entries()) {
         const sameLine = Math.abs(k.mb - k.hb) < 1.5 && k.ml > k.hr;
-        must(Math.abs(k.mr - k.cr) < 1, `${w}: ${k.card} Learn more off the right edge (${k.mr} vs ${k.cr})`);
         must(Math.abs(k.hl - k.cl) < 1, `${w}: ${k.card} title not on the left edge (${k.hl} vs ${k.cl})`);
+        must(sameLine === !tight, `${w}: ${k.card} is ${sameLine ? "on the line" : "dropped"} though the tightest card has ${Math.min(...rooms).toFixed(1)} px`);
         if (sameLine) {
           rows++;
+          must(Math.abs(k.mr - k.cr) < 1, `${w}: ${k.card} Learn more off the right edge (${k.mr} vs ${k.cr})`);
           must(k.ml - k.hr > 24, `${w}: ${k.card} button only ${(k.ml - k.hr).toFixed(1)} from the title on one line`);
           must(Math.abs(k.imgT - Math.max(k.hb, k.mb) - 20) < 1.5, `${w}: ${k.card} image not 20 under the title line`);
         } else {
           wraps++;
-          const room = (k.cr - k.cl) - (k.hr - k.hl) - (k.mr - k.ml);
-          must(room <= 24.5, `${w}: ${k.card} wrapped though one line had ${room.toFixed(1)} px between them`);
-          must(Math.abs(k.mt - k.hb - 20) < 1.5, `${w}: ${k.card} wrapped button not 20 under the title`);
-          must(Math.abs(k.imgT - k.mb - 20) < 1.5, `${w}: ${k.card} image not 20 under the wrapped button`);
+          must(Math.abs(k.ml - k.cl) < 1, `${w}: ${k.card} dropped button not left aligned (${k.ml} vs ${k.cl})`);
+          must(Math.abs(k.mt - k.hb - 20) < 1.5, `${w}: ${k.card} dropped button not 20 under the title`);
+          must(Math.abs(k.imgT - k.mb - 20) < 1.5, `${w}: ${k.card} image not 20 under the dropped button`);
         }
         const state = sameLine ? "row" : "wrap";
         if (!flips[k.card]) flips[k.card] = { last: state, at: [] };

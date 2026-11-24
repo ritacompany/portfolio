@@ -29,7 +29,7 @@ Phone works, his "Works" frame (6437:24298, Mobile frames, page CS of 5RO0m4bY),
 (name, then Mondai's kind or Haven's description in Label/12 C Bold, Neutral/550) with Learn more beside it, his new
 Small button 6437:24294 (2 px Neutral/200 outline, 130 by 32), image 20 below, cards 40 apart (was 64). Mondai's
 description is not on the phone. His ask "set to auto": the title and button share a line while more than 24 px apart,
-else the button drops 20 under the title at the right edge. Measured: Mondai drops below 378 px wide, Haven below 356.
+else the button drops 20 under the title. His call, 24 Nov: both cards drop together once either is tight, left aligned under the title (js/home-motion.js sets .is-stacked). Measured: both drop below 378 px wide (Mondai is the tighter card).
 Gate G14 checks every width 320 to 767. Canvas: https://claude.ai/artifact/3XCtLyJd3F9hfuaLbaGhJZ
 Next: the phone pass with him, Home first, on that link.
 
