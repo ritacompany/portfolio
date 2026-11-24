@@ -35,7 +35,7 @@
 - Box and side stub sheet (cropped from the sources): https://claude.ai/artifact/4fnAKC764QW9gV42edjxW9. His pick 24 Nov: the control box, kit part 22 from Cable flower. A solid panel box with small glowing windows, cables plugged into it through colored collars. The stub on its side becomes a fat colored collar joining the pipe. The clear case was the other option; dropped because its busy insides would sit right behind his name text at the bottom.
 - Wire spray, his yes 24 Nov: kit part 76. Small bursts of thin shiny chrome wire sprouting from the coral's forks, hard metal next to the soft sorrel flowers.
 - Noodle puffs, his yes 24 Nov: kit part 9. Small round puffs of tightly curled glossy strands on beaded stems.
-- Coral: still open. Kit images were too small to read, so a sheet of real photos: https://claude.ai/artifact/2Pw6zqi8XMnv4fhEAFLYf2. Options are firestick plant (my pick, the land plant that looks like coral, matching his part 68 note), branching tube sponge (thick stubby arms), precious coral and finger coral. Never say "tips" to him without a picture.
+- Coral, his pick 24 Nov: precious coral (Corallium rubrum), the coral used in jewelry. Slim smooth arms branching like a little tree, polished and glossy, no grit. Reference: refs/coral-precious.jpg (Eric A. Lazo-Wasem, CC0, Wikimedia Commons). Its branches are slimmer than the chunky coral in the current drawing, so the detailed sketch should thin them. Color comes with the palette. Options sheet: https://claude.ai/artifact/2Pw6zqi8XMnv4fhEAFLYf2
 - Sheets that worked for him: one question per page section, a photo per option, the pick stated once.
 
 ## Next
