@@ -29,6 +29,8 @@
 - Planter, his call 24 Nov: "a little pot like thing like simple and colored." A plain smooth little pot in a color from the palette, opaque. No slots, no lab parts, nothing black. He rejected the net pot (a black thing in the middle is ugly) and couldn't picture the rubber stopper. Color comes with the palette.
 - Secondary power connector, his yes 24 Nov: a small clear lever connector, a lever for each wire, the thin wires from the pot going in and one cable out to the box. Levers take a palette color.
 - Before each next part, ask what he already pictures. He had a clear picture of the planter (simple little colored pot) and three option sheets missed it. Only build a photo sheet when he has no picture yet.
+- The hero is built from his source pieces on the parts board: Sync Next (pieces/B2C3.jpg: the frosted pipe, the coral in a cup with a yellow collar, the yellow box with sliders, glossy candy cables) and Cable flower (pieces/660C.jpg: clear tubes, thin colored wires, ribbed boots, ribbed hose, zip ties). For every remaining part, crop from these first; look elsewhere only for what they lack. He said so on 24 Nov after an outside photo hunt.
+- Cords sheet, cropped from the two sources: https://claude.ai/artifact/DhGrXEFWU4FokaiQ3wUr5L. My picks: glossy smooth candy cables up the right leg (Sync Next), loose thin colored wires from the pot (Cable flower), chunky collar plugs at the box (Sync Next), ribbed boots at the flower grips (kit 40). Not picked yet.
 - Sheets that worked for him: one question per page section, a photo per option, the pick stated once.
 
 ## Next
