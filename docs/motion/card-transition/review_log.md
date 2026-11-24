@@ -70,3 +70,23 @@ Fresh eyes: Chadwick, 24 Nov, from a screen recording of the published build: "i
 - P0 found by G8's first run: one empty black frame where the pages swap (the preview's own buttons let the browser paint the new page before the move was drawn on it). Fixed: the transition script blocks the collection's first paint until it has run (`blocking="render"`, added as an opt-in to scripts/build-preview.mjs). G8 now also fails any frame far darker than both neighbours; it caught this one before the fix and passes after.
 - P1: A (PR #30's view transition) shares the page load; the hidden frame now caches the page, which shortens it, but A was not reworked.
 - Videos for him, real clock, the page held back 0.3 s as on the published build: output/motion/card-transition/videos/ (now-A, now-B, now-C, before-B).
+
+## Round 8
+Fresh eyes: on real-time recordings (the page held back 0.3 s). B has no P0. A, then PR #30's browser view transition, sat still for about 0.37 s after the press: it cannot start until the page has loaded, the same pause he reported. C went to an empty black stage for about 0.27 s.
+- P0: A, 0 to 466 ms: Home still before anything moves. Fixed: A rebuilt on this engine (only the words travel), so it starts on the release like B and C.
+- P0: C, 566 to 833 ms: only "Mondai" on black. Fixed: the picture now dissolves between 55 and 100 percent, as the cards arrive.
+- P1: B, the veil read late then stepped. Addressed in round 9.
+
+## Round 9
+Fresh eyes: the pause had moved, not gone: the move landed by about 600 ms but the page's own items only appeared when the page arrived, about 870 ms; the label vanished before the page's label appeared; the veil cut to black.
+- P0: all, 600 to 870 ms: the dead beat after the move. Fixed: Home opens the page while the veil is still closing (at 55 percent of its 220 ms) so the load overlaps the move, and the page's items fade over 0.6 s from the page's first frame.
+- P0: A, 200 to 233 ms: cut to black. Fixed: the veil eases in on a sine, so it starts at once but never cuts.
+- P1: A and C, the label gap. Fixed: the page's label is drawn as part of the move, so it arrives on schedule even before the page has loaded.
+- Found by G8 while checking: about one run in three, one frame at 390 where the card's picture is missing as the pages swap (the new page has not decoded the image yet). Not fixed: the page cannot hold its first paint for an image (tested: neither a module script with top level await nor a script inserted `rel=expect` delays first paint). Open, flagged to him.
+
+## Round 10
+Fresh eyes: No P0 in B or C. B carries a visible object the whole way, with a short lull (570 to 770 ms) while the page arrives. C is smooth but dark in the middle.
+- P0: A, 266 to 700 ms: only the wordmark on black until the page arrives. Closed by taking A out of the recommendation: with only the words travelling, nothing else can be drawn until the page has loaded, so A always has this beat when the page is slow. It stays on the panel as the baseline, labelled with the beat.
+- P1: B, 570 to 770 ms: a short lull while the page arrives; with the page cached by the hidden frame it is shorter on a real visit.
+- P1: C, 266 to 500 ms: the growing frame is too dark to read as opening.
+- P2: the other cards' fade is slow to settle.

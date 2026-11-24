@@ -3,14 +3,13 @@
 // site/dev/preview until Chadwick says yes. Lands on the new collection page (Figma 6331:27875, PR #30).
 //
 // Three directions, picked in the edit panel (Motion tab):
-//   A. Title: PR #30's own page change, untouched (site/js/page-transition.js, a cross document view
-//      transition): the card's "Mondai" grows into the wordmark while the pages fade through the page
-//      colour. This script stays out of the way.
+//   A. Title: PR #30's idea (the title morph) on this engine, so it starts on the release instead of after
+//      the page loads: only the words travel, "Mondai" grows into the wordmark, the picture goes with Home.
 //   B. Card: the card's picture frame travels and resizes into the Framework CS card's frame; inside it the
 //      Home picture gives way to the framework preview. "Mondai" grows into the wordmark.
 //   C. Open: the card's frame grows to fill the screen and becomes the page; the picture dissolves into it.
 //      "Mondai" grows into the wordmark.
-// B and C: the move starts on Home on the frame of the release and keeps running while the collection
+// Every direction: the move starts on Home on the frame of the release and keeps running while the collection
 // loads, so the page load never shows as a pause (his note, 24 Nov: a 0.4 s freeze between the fade and
 // the move). Home knows where everything lands because it measured the collection beforehand in a hidden
 // frame (which also puts the page in the browser's cache). Home fades a Neutral/900 veil over everything
@@ -24,10 +23,10 @@
   if (window.CardTransition) return;
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   const SEEK = !!window.__CT_SEEK; // review capture: nothing runs on its own clock, nothing navigates
-  const O = { dir: "B", exit: 220, kB: 90, dB: 19, kC: 80, dC: 18 };
+  const O = { dir: "B", exit: 220, kA: 90, dA: 19, kB: 90, dB: 19, kC: 80, dC: 18 };
   const DIRS = ["A", "B", "C"];
-  const FILL = { B: 0.3, C: 0.3 };          // spring progress at which the page only items start
-  const FADE = { B: [900, 90], C: [1000, 100] }; // page only items: fade length and step, ms
+  const FILL = { A: 0.3, B: 0.3, C: 0.3 };          // spring progress at which the page only items start
+  const FADE = { A: [600, 70], B: [600, 70], C: [600, 70] }; // short: the page often arrives late in the move // page only items: fade length and step, ms
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
@@ -147,12 +146,20 @@
     // "Case study collection": the card's label travels to the page's label and hands over to it there
     // (different type on each side: Label/12 C capitals on the card, 16 px on two lines on the page).
     if (d.kind) X.kindText = textCopy(d.kind.text, d.kind.st, X.wordsLayer);
+    // The page's own label, drawn here too, so it can arrive during the move even before the page has loaded.
+    X.kindTo = textCopy(D.kind.text || (d.kind ? d.kind.text : ""), D.kind.st, X.wordsLayer);
+    X.kindTo.style.whiteSpace = "normal"; X.kindTo.style.width = D.kind.r.w + "px";
+    place(X.kindTo, D.kind.r.x, D.kind.r.y); X.kindTo.style.opacity = "0";
     return X;
   }
   function paintTravel(X, t) {
     const { d, D, dir } = X;
     const p = X.prog(t), vw = innerWidth, vh = innerHeight, media = d.media.r;
-    if (dir === "B") {
+    if (dir === "A") {
+      // Only the words travel (PR #30's idea, the title morph): the picture stays where it was, darkens and
+      // goes with Home in the first quarter.
+      paintFrame(X.M, d.media, media, { home: 1 - smooth(range(p, 0.05, 0.3)), shade: 0.65 * smooth(range(p, 0, 0.15)) });
+    } else if (dir === "B") {
       // The frame travels to the card's frame; the Home picture is shaded first, then gives way to the
       // framework preview inside the frame (a container transform: only the frame is shared).
       const F = lerpBox(media, D.media.r, p);
@@ -160,7 +167,7 @@
       paintFrame(X.M, d.media, F, { home: 1 - smooth(range(p, 0.2, 0.5)), shade: 0.6 * smooth(range(p, 0, 0.2)), dest: smooth(range(p, 0.4, 0.75)) });
     } else {
       const F = lerpBox(media, { x: 0, y: 0, w: vw, h: vh }, p);
-      paintFrame(X.M, d.media, F, { home: 1 - smooth(range(p, 0.4, 0.9)), shade: 0.65 * smooth(range(p, 0, 0.25)) });
+      paintFrame(X.M, d.media, F, { home: 1 - smooth(range(p, 0.55, 1)), shade: 0.65 * smooth(range(p, 0, 0.25)) }); // dissolves as the cards arrive, so the stage is never empty
     }
     // "Mondai" into the wordmark: left edges and baselines meet, the width carries the size
     if (X.mark) {
@@ -181,6 +188,7 @@
       place(X.kindText, lerp(a.x, b.x, p), lerp(a.y, b.y, py), s);
       X.kindText.style.opacity = (1 - smooth(range(p, 0.45, 0.65))).toFixed(4); // gone before the page's label shows: two typesettings never overlap
     }
+    X.kindTo.style.opacity = smooth(range(p, 0.65, 0.95)).toFixed(4);
     return p;
   }
   const removeTravel = (X) => { X.pic.remove(); X.wordsLayer.remove(); };
@@ -195,7 +203,7 @@
     const st = (() => { const cs = win.getComputedStyle(kind), o = {}; for (const p of TEXT_PROPS) o[p] = cs.getPropertyValue(p); return o; })();
     return {
       wordmark: { r: box(wordmark), src: wordImg.currentSrc || wordImg.src },
-      kind: { r: box(kind), st },
+      kind: { r: box(kind), st, text: kind.textContent.trim() },
       media: { r: box(media), src: img ? img.currentSrc || img.src : "" },
     };
   }
@@ -212,7 +220,7 @@
   }
   function exitFrame(t) {
     if (!exiting) return;
-    exiting.veil.style.opacity = (1 - (1 - clamp(t / O.exit)) ** 4).toFixed(4); // quart out
+    exiting.veil.style.opacity = Math.sin(clamp(t / O.exit) * Math.PI / 2).toFixed(4); // sine out: it starts at once but never cuts to black
     if (exiting.X) { paintTravel(exiting.X, t); exiting.lastT = t; }
   }
 
@@ -255,9 +263,9 @@
     // Learn more are not on the collection, so they go with Home under the veil.
     const D = dest && dest.key === destKey() ? dest : null;
     let X = null;
-    if (D && d.dir !== "A") {
+    if (D) {
       // The move starts here, now. Its layers sit inside the exit layer, over the veil.
-      X = buildTravel(d, D, d.dir === "C" ? "C" : "B", layer);
+      X = buildTravel(d, D, DIRS.includes(d.dir) ? d.dir : "B", layer);
       d.t0 = performance.timeOrigin + performance.now();
     } else {
       // Not measured yet (a very fast click): the card holds still on the veil and the collection plays
@@ -277,8 +285,9 @@
     (function tick(now) {
       const t = now - t0;
       exitFrame(t);
-      // Open the collection once the veil is down, and keep drawing the move until the browser swaps pages.
-      if (t >= O.exit && !gone) { gone = true; location.assign(card.href); if (!X) return; }
+      // Open the collection while the veil is still closing (it is 90 percent down by then) and keep drawing
+      // the move until the browser swaps pages, so the page load overlaps the move instead of following it.
+      if (t >= (X ? O.exit * 0.55 : O.exit) && !gone) { gone = true; location.assign(card.href); if (!X) return; }
       requestAnimationFrame(tick);
     })(t0);
   }
@@ -305,7 +314,6 @@
     card.addEventListener("focus", measureDest);
     addEventListener("resize", () => { if (dest && dest.key !== destKey()) dest = null; });
     card.addEventListener("click", (e) => {
-      if (O.dir === "A") return; // PR #30's view transition takes this one
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       if (reduce.matches || exiting) return;
       e.preventDefault();
@@ -349,7 +357,7 @@
     const m = measure();
     if (!m) return null;
     const { P, D } = m;
-    const dir = d.dir === "C" ? "C" : "B";
+    const dir = DIRS.includes(d.dir) ? d.dir : "B";
     const X = buildTravel(d, D, dir, document.body);
     const R = { d, dir, P, D, X, T: X.T, prog: X.prog };
     const when = (q) => { let t = 0; while (t < R.T && R.prog(t) < q) t += 4; return t; };
@@ -386,7 +394,7 @@
     const { P, dir } = R;
     for (const el of [P.title, P.kind, P.wordmark, ...P.cards]) quiet(el);
     const p = R.handed ? 1 : paintTravel(R.X, t);
-    imp(P.kind, "opacity", (R.X.kindText ? smooth(range(p, 0.65, 0.95)) : power1Out((t - (R.fades[0] ? R.fades[0].at : 0)) / R.fadeDur)).toFixed(4));
+    imp(P.kind, "opacity", R.handed ? "1" : "0"); // the copy carries the label until the hand over
 
     // ---- Page only items
     for (const f of R.fades) imp(f.el, "opacity", power1Out((t - f.at) / R.fadeDur).toFixed(4));
@@ -395,6 +403,7 @@
     if (t >= R.T && !R.handed) {
       R.handed = true;
       P.wordmark.style.removeProperty("visibility"); imp(P.wordmark, "visibility", "visible");
+      imp(P.kind, "opacity", "1");
       if (dir === "B") imp(P.liveMedia, "opacity", "1");
       removeTravel(R.X);
     }
@@ -413,7 +422,7 @@
   }
 
   function arrive(d, { fresh = true } = {}) {
-    if (!coll || !d || d.v !== 2 || d.dir === "A") return null;
+    if (!coll || !d || d.v !== 2) return null;
     if (window.frameElement && window.frameElement.dataset && window.frameElement.dataset.ctMeasure) return null;
     if (fresh && !SEEK && (Date.now() - d.at > 5000)) return null;
     if (Math.abs(d.vw - innerWidth) > 2 || Math.abs(d.vh - innerHeight) > 2) return null;
@@ -464,15 +473,17 @@
   };
 
   const set = (k) => (v) => { O[k] = v; if (k === "dir") store.set("card-transition:dir", v); };
-  const replay = () => { const d = handoff.last(); if (!d || O.dir === "A") return; d.dir = O.dir; arrive(d, { fresh: false }); };
+  const replay = () => { const d = handoff.last(); if (!d) return; d.dir = O.dir; arrive(d, { fresh: false }); };
   const def = {
     id: "card-transition", title: "Card to collection", tab: "Motion",
     note: coll
-      ? "Replay runs B or C again here. A is the browser's own page change: go back to Home and click the Mondai card to feel it."
+      ? "Replay runs the picked direction again here. To feel the whole move, go back to Home and click the Mondai card."
       : "Pick a direction, then click the Mondai card. Each opens the collection page a different way.",
     controls: [
-      { key: "dir", label: "Direction", type: "select", options: [["A", "A. Title: PR #30's page change, the name grows into the wordmark"], ["B", "B. Card: the picture becomes the Framework CS card"], ["C", "C. Open: the picture fills the screen and becomes the page"]], value: O.dir, default: "B", onInput: set("dir") },
-      { key: "exit", label: "Home fade to black", min: 80, max: 600, step: 10, unit: "ms", value: O.exit, default: 220, enabledWhen: (v) => v.dir !== "A", onInput: set("exit") },
+      { key: "dir", label: "Direction", type: "select", options: [["A", "A. Title (baseline): only the words travel; leaves an empty beat while the page loads"], ["B", "B. Card: the picture becomes the Framework CS card"], ["C", "C. Open: the picture fills the screen and becomes the page"]], value: O.dir, default: "B", onInput: set("dir") },
+      { key: "exit", label: "Home fade to black", min: 80, max: 600, step: 10, unit: "ms", value: O.exit, default: 220, onInput: set("exit") },
+      { key: "kA", label: "A spring stiffness", min: 20, max: 300, step: 5, value: O.kA, default: 90, enabledWhen: (v) => v.dir === "A", onInput: set("kA") },
+      { key: "dA", label: "A spring damping", min: 5, max: 40, step: 0.5, value: O.dA, default: 19, enabledWhen: (v) => v.dir === "A", onInput: set("dA") },
       { key: "kB", label: "B spring stiffness", min: 20, max: 300, step: 5, value: O.kB, default: 90, enabledWhen: (v) => v.dir === "B", onInput: set("kB") },
       { key: "dB", label: "B spring damping", min: 5, max: 40, step: 0.5, value: O.dB, default: 19, enabledWhen: (v) => v.dir === "B", onInput: set("dB") },
       { key: "kC", label: "C spring stiffness", min: 20, max: 300, step: 5, value: O.kC, default: 80, enabledWhen: (v) => v.dir === "C", onInput: set("kC") },

@@ -7,12 +7,12 @@
 //   G1       hand over across the page change: Home's last exit frame and the arrival's first frame match
 //   G2       the arrival's last frame matches a direct visit to /mondai/ at rest
 //   G3       one frame before the hand over, the wordmark copy (and B's card frame) sit within 1.5 px of the real ones
-//   G4       real clock: a click on the card in each direction lands on /mondai/ with nothing left over (A: this script stays out)
+//   G4       real clock: a click on the card in each direction lands on /mondai/ with nothing left over 
 //   G5       reduced motion: the click opens /mondai/ with no veil and no arrival
 //   G6       a direct visit gets the page's own entrance: no layer, the nav shows
 //   G7       back from the collection: Home shows no veil
 //   G8       real clock, the collection held back 0.3 s on the network: no still stretch over 0.12 s in
-//            the first 0.7 s after the click (his 24 Nov note: a pause before the move), and no frame far
+//            the first second after the click (his 24 Nov note: a pause before the move), and no frame far
 //            darker than both its neighbours (an empty page painted between the two)
 //   CONTROL  G1's comparison fails on frames that really differ (the arrival at mid travel)
 import { createServer } from "node:http";
@@ -31,8 +31,8 @@ const pv = argv[1] && !argv[1].startsWith("-") ? argv[1] : opt("preview", "");
 const root = path.resolve(pv);
 if (!gate || !pv) { console.error("usage: node scripts/check-card-transition.mjs <CAPTURE|G1..G7|CONTROL> <preview dir>"); process.exit(2); }
 const OUT = path.resolve(repo, opt("out", "output/motion/card-transition"));
-// A is PR #30's view transition, drawn by the browser: it cannot be stepped, so stepped gates cover B and C.
-const DIRS = (opt("dirs", "B,C")).split(",");
+// A, B and C all run on this script (A was PR #30's view transition until 24 Nov).
+const DIRS = (opt("dirs", "A,B,C")).split(",");
 const ALL = ["A", ...DIRS.filter((d) => d !== "A")];
 const WIDTHS = [[1440, 900], [390, 844]];
 
@@ -205,8 +205,7 @@ if (gate === "G4") {
         ops: op(".page-header, .collection__title, .collection__wordmark, .collection__kind, .collection__cards > li, .cs-card__head, .cs-card__media") };
     });
     console.log(`  ${dir} ${w}: navigated after ${nav} ms, arrival ran ${started}, left: layers ${s.layers}, transform ${s.transform}, min opacity ${Math.min(...s.ops)}`);
-    // A belongs to the browser's view transition: this script must stay out of it.
-    if ((dir === "A" ? started : !started) || s.layers || s.arriving || s.transform !== "none" || Math.min(...s.ops) < 1) fail(`${dir} ${w}: wrong owner for the page change or something left behind`);
+    if (!started || s.layers || s.arriving || s.transform !== "none" || Math.min(...s.ops) < 1) fail(`${dir} ${w}: wrong owner for the page change or something left behind`);
     await c.close();
   }
   await done(true);
@@ -285,7 +284,7 @@ if (gate === "G8") {
     if (process.env.CT_DEBUG) console.log(dir, w, "clickAt", clickAt.toFixed(2), rows.filter((r) => r[0] > clickAt - 0.6 && r[0] < clickAt + 1.6).map((r) => r[0].toFixed(2) + ":" + r[1].toFixed(2)).join(" "));
     let longest = 0, run = 0, at = 0;
     for (let i = 1; i < rows.length; i++) {
-      if (rows[i][0] <= start || rows[i][0] > start + 0.7) continue;
+      if (rows[i][0] <= start || rows[i][0] > start + 1.0) continue;
       const dt = rows[i][0] - rows[i - 1][0];
       if (rows[i][1] < STILL) { run += dt; if (run > longest) { longest = run; at = rows[i][0] - start - run; } } else run = 0;
     }
@@ -304,7 +303,7 @@ if (gate === "G8") {
       if (lo > 2 && L[i][1] < lo * 0.6) { flashes++; console.log(`  ${dir} ${w}: dark frame at ${((L[i][0] - start) * 1000).toFixed(0)} ms (${L[i][1].toFixed(1)} against ${lo.toFixed(1)})`); }
     }
     if (flashes) fail(`${dir} ${w}: ${flashes} empty frame(s) between the pages`);
-    console.log(`  ${dir} ${w}: longest still stretch in the first 0.7 s after the click ${(longest * 1000).toFixed(0)} ms (from ${(at * 1000).toFixed(0)} ms), network delay ${DELAY} ms`);
+    console.log(`  ${dir} ${w}: longest still stretch in the first second after the click ${(longest * 1000).toFixed(0)} ms (from ${(at * 1000).toFixed(0)} ms), network delay ${DELAY} ms`);
     if (longest > 0.12) fail(`${dir} ${w}: the move pauses for ${(longest * 1000).toFixed(0)} ms`);
   }
   await done(true);

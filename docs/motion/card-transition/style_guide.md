@@ -14,9 +14,9 @@ claude/mondai-collection), which this branch merges. His 20 Nov call retired the
 - main: nothing. Clicking the card is a plain page load, then the page's own entrance.
 - PR #30: a provisional page change (`site/js/page-transition.js`, `docs/motion/page-transition/`), a cross
   document view transition: the pages fade through the page colour and the card's "Mondai" grows into the
-  wordmark in 0.7 s; the same for the Framework CS card title into the case study heading. It is kept
-  here as direction A, unchanged, and still runs the collection to framework page change in every
-  direction.
+  wordmark in 0.7 s; the same for the Framework CS card title into the case study heading. Its idea is
+  direction A here, rebuilt on this engine (24 Nov); it still runs the collection to framework page
+  change in every direction.
 
 ## Reference
 - The two Figma frames: Transported home `5812:22862` (the card) and `6331:27875` (the collection). The
@@ -57,8 +57,11 @@ If Home has not measured the page yet (a click within moments of arriving), the 
 and the collection plays the move once it loads, as before.
 
 ## The three directions
-- **A. Title** (PR #30, unchanged): only the name moves. The two pages fade through the page colour while
-  "Mondai" grows into the wordmark. Drawn by the browser (Chrome, Edge, Safari 18.2 and later).
+- **A. Title**: only the words move (PR #30's idea, the title morph, rebuilt on 24 Nov). "Mondai" grows into
+  the wordmark and the label travels to its place; the picture stays where it was, darkens and goes with
+  Home. PR #30 drew this with the browser's own view transition, which cannot start until the page has
+  loaded: the review of the real-time videos found a 0.37 s still Home before it began. On this engine it
+  starts on the release like B and C.
 - **B. Card**: the picture becomes the first case study. The card's frame travels and resizes into the
   Framework CS card's frame; inside it the Home picture is shaded, then gives way to the framework preview
   (a container transform: only the frame is shared, the content changes inside it). The other two cards
@@ -69,10 +72,10 @@ and the collection plays the move once it loads, as before.
 ## Timing
 - Exit on Home: 220 ms from the frame of the release (Doherty threshold).
 - Travel: one closed form spring per direction (site/lib/motion.js), no overshoot, starting at 0 velocity:
-  B k 90, d 19 (0.78 s); C k 80, d 18 (0.84 s). Rescaled to reach exactly 1 on the frame it is within 0.5
+  A and B k 90, d 19 (0.78 s); C k 80, d 18 (0.84 s). Rescaled to reach exactly 1 on the frame it is within 0.5
   percent, when the copies hand over.
 - The Home picture is shaded to about 40 percent in the first quarter, before the words cross it.
-- Page only items: from 30 percent of the travel; B 0.9 s fades 0.09 s apart, C 1.0 s, 0.1 s.
+- Page only items: from 30 percent of the travel (never before the page's first frame), 0.9 s fades 0.09 s apart.
 
 ## Where it runs
 - Any pointer: mouse, touch, keyboard Enter. A modified click is left to the browser.
