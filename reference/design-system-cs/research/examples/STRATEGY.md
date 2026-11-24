@@ -130,10 +130,10 @@ is adoption across many products, which CS3 cannot have. The AI pages (WellSky, 
 match on agents but measure little. Musterhall and Anorbank match on scale and honesty. The nearest
 public match found so far is Usborne's Help Scout page in `../../REFERENCE-BOARD.md`.
 
-The rule: if fewer than two pages score close on both the AI relationship and proof style, the
-organizer commissions one narrow hunt: designer written case studies where agents are readers of the
-system and the system was tested by what they got wrong. Until that rule is applied, no new hunt
-runs.
+The closer hunt is already running (Chadwick, 24 Nov: "can we do a new research path then too for
+closer references"): ten designer written case studies where agents read and build from the system and
+the system was tested by what they got wrong. It lands here as `CLOSE-EXAMPLES.md` and
+`CLOSE-STUDY.md`. Lens D scores those ten with the rest, so the fit read covers thirty pages.
 
 ## The gap matrix: the main output
 
@@ -162,7 +162,7 @@ From the matrix, four short outputs for the writing sessions:
 
 1. `BASELINE.md`, and the Fortune 200 section index (Sonnet).
 2. Lenses A to D in one batch.
-3. Fit decision; a narrow hunt only if the rule calls for it.
+3. Lens D's fit read once the closer set lands.
 4. Lens E once the visual set lands.
 5. Gap matrix, independent check, then the four outputs.
 6. One message to him: what CS3 is missing, ranked, and the decisions that are his, each with a pick.
