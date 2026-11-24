@@ -1,5 +1,5 @@
 // LinkedIn and Resume, his call 23 Nov: rest on the nav's Neutral/200, hover to Neutral/050 like the nav, and the
-// arrow takes the text's colour in both. Checks the real footer on Home, Haven and Framework at 1440 and 390.
+// arrow rests on Neutral/300 and hovers to Neutral/000 (his yes, 24 Nov). Checks the real footer on Home, Haven and Framework at 1440 and 390.
 // Prints OUT_LINKS_OK only when text and arrow match at rest and on hover everywhere.
 import { createServer } from "node:http";
 import { readFileSync, statSync } from "node:fs";
@@ -12,7 +12,7 @@ await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const base = `http://127.0.0.1:${server.address().port}`;
 const { chromium } = createRequire(import.meta.url)("playwright");
 const b = await chromium.launch(); const fails = [];
-const REST = "rgb(222, 222, 229)", HOVER = "rgb(242, 241, 248)";
+const REST = "rgb(222, 222, 229)", HOVER = "rgb(242, 241, 248)", ARROW_REST = "rgb(210, 210, 219)", ARROW_HOVER = "rgb(255, 255, 255)";
 for (const page of ["index.html", "haven/index.html", "mondai/framework/index.html"]) for (const w of [1440, 390]) {
   const p = await b.newPage({ viewport: { width: w, height: 900 } });
   await p.goto(`${base}/${page}`); await p.waitForTimeout(300);
@@ -21,10 +21,10 @@ for (const page of ["index.html", "haven/index.html", "mondai/framework/index.ht
     return { text: getComputedStyle(a).color, arrow: getComputedStyle(i).backgroundColor, mask: getComputedStyle(i).maskImage || getComputedStyle(i).webkitMaskImage, resume: r && getComputedStyle(r).color }; });
   const rest = await read(); await a.hover(); await p.waitForTimeout(50); const hov = await read();
   const tag = `${page} ${w}`;
-  if (rest.text !== REST || rest.arrow !== REST) fails.push(`${tag} rest ${JSON.stringify(rest)}`);
+  if (rest.text !== REST || rest.arrow !== ARROW_REST) fails.push(`${tag} rest ${JSON.stringify(rest)}`);
   if (rest.resume && rest.resume !== REST) fails.push(`${tag} resume rest ${rest.resume}`);
   if (!/arrow-out\.svg/.test(rest.mask)) fails.push(`${tag} arrow not masked: ${rest.mask}`);
-  if (hov.text !== HOVER || hov.arrow !== HOVER) fails.push(`${tag} hover ${JSON.stringify(hov)}`);
+  if (hov.text !== HOVER || hov.arrow !== ARROW_HOVER) fails.push(`${tag} hover ${JSON.stringify(hov)}`);
   await p.close();
 }
 await b.close(); server.close();
