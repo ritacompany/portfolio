@@ -1,0 +1,40 @@
+/* Proposal, quiz on a phone (his ask, 24 Nov): no pillars. The five areas float in place above the phone,
+   each icon with its label centred under it, scattered, swaying gently side to side (a slow "float": a few px of
+   drift on a long loop, each one out of step with the others). As the reader scrolls on, the phone rises up into
+   place under them. The phone is much bigger: 64 percent of the width, 229 px at 390 (it was 138). */
+@media (max-width: 767px) {
+  .quiz__stage { aspect-ratio: 358 / 820; overflow: hidden; }
+  .qcol__pillar { display: none; }
+  .qcol { position: absolute; inset: 0; pointer-events: none; }
+  .qcol__icon { width: auto !important; height: 7.2%; margin-left: 0; translate: -50% 0; }
+  .qcol__label { white-space: nowrap; }
+  /* Scatter: three across the top, two lower and further in, never on the phone. Icon x = label x, so the
+     label is centred under its icon. */
+  .qcol:nth-child(3) .qcol__icon { left: 50% !important; top: 0% !important; }
+  .qcol:nth-child(3) .qcol__label { left: 50% !important; top: 9.5% !important; }
+  .qcol:nth-child(2) .qcol__icon { left: 17% !important; top: 3% !important; }
+  .qcol:nth-child(2) .qcol__label { left: 17% !important; top: 12.5% !important; }
+  .qcol:nth-child(4) .qcol__icon { left: 83% !important; top: 4% !important; }
+  .qcol:nth-child(4) .qcol__label { left: 83% !important; top: 13.5% !important; }
+  .qcol:nth-child(1) .qcol__icon { left: 30% !important; top: 21% !important; }
+  .qcol:nth-child(1) .qcol__label { left: 30% !important; top: 30.5% !important; }
+  .qcol:nth-child(5) .qcol__icon { left: 70% !important; top: 22% !important; }
+  .qcol:nth-child(5) .qcol__label { left: 70% !important; top: 31.5% !important; }
+  /* The phone: big, centred, resting 37 percent down; --rise lifts it into place with the scroll. */
+  .quiz__phone { left: 18% !important; top: 37% !important; width: 64% !important; transform: translate3d(0, var(--rise, 0px), 0) !important; }
+  /* Float: each area sways on its own loop. */
+  .qcol { animation: qfloat 6s ease-in-out infinite alternate; }
+  .qcol:nth-child(2) { animation-duration: 7.2s; animation-delay: -2.1s; }
+  .qcol:nth-child(3) { animation-duration: 5.4s; animation-delay: -3.7s; }
+  .qcol:nth-child(4) { animation-duration: 6.6s; animation-delay: -1.2s; }
+  .qcol:nth-child(5) { animation-duration: 7.8s; animation-delay: -4.6s; }
+  @keyframes qfloat {
+    0% { transform: translate3d(-5px, 0, 0) rotate(-1deg); }
+    50% { transform: translate3d(2px, -4px, 0) rotate(0.5deg); }
+    100% { transform: translate3d(5px, 1px, 0) rotate(1deg); }
+  }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .qcol { animation: none; }
+  .quiz__phone { transform: none !important; }
+}

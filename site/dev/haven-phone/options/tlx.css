@@ -1,0 +1,49 @@
+/* Proposal, MVP timeline on a phone, round 2 (his notes, 24 Nov): one axis and two bars, with the two launches
+   drawn back into the chart as the desktop does. Identity ends in the middle of 07, Community at the end of 12;
+   a dashed line marks each end and leads to its label. Three ways to place the labels (tlx.js?v=1, 2 or 3). */
+.tlx { display: none; }
+@media (max-width: 767px) {
+  .mvp .phases { display: none; }
+  .tlx { display: block; position: relative; margin: 48px var(--m) 0; --id: calc(6.5 / 12 * 100%); --co: calc(4 / 12 * 100%); }
+  .tlx__axis { display: grid; grid-template-columns: repeat(12, 1fr); font-size: 12px; letter-spacing: 0.04em; color: var(--n500); text-align: center; font-variant-numeric: tabular-nums; }
+  .tlx__chart { position: relative; }
+  .tlx__rows { margin-top: 10px; padding-block: 8px; background: linear-gradient(to right, var(--n800) 1px, transparent 1px) 0 0 / calc(100% / 12) 100% repeat-x; }
+  .tlx__bar { display: flex; align-items: center; height: 44px; margin-block: 8px; padding-inline: 14px; border-radius: 999px; font-size: 16px; font-weight: 700; color: var(--n050); }
+  .tlx__bar--id { width: var(--id); background: var(--phase-identity); }
+  .tlx__bar--co { margin-left: var(--co); width: calc(100% - var(--co)); background: var(--phase-community); }
+  .tlx__line { position: absolute; top: 0; bottom: 0; border-left: 1px dashed var(--n200); }
+  .tlx__line--id { left: var(--id); }
+  .tlx__line--co { right: 0; }
+  .tlx__label { font-size: 14px; line-height: 1.35; color: var(--n300); }
+  .tlx__label b { display: block; font-weight: 500; color: var(--n050); }
+
+  /* 1. Flags on top: a label row above the axis; each dashed line runs from its label down to its bar's end.
+     Identity's label starts at its line and reads right; Community's ends at its line and reads left. */
+  .tlx--1 .tlx__flags { position: relative; height: 104px; }
+  .tlx--1 .tlx__flags .tlx__label { position: absolute; top: 0; }
+  .tlx--1 .tlx__flags .tlx__label--id { left: var(--id); padding-left: 8px; max-width: calc(100% - var(--id) - 4px); }
+  .tlx--1 .tlx__flags .tlx__label--co { right: 0; padding-right: 8px; text-align: right; top: 74px; }
+  .tlx--1 .tlx__line--id { top: 0; bottom: 60px; }
+  .tlx--1 .tlx__line--co { top: 74px; bottom: 8px; }
+  .tlx--1 .tlx__label--id { white-space: normal; }
+
+  /* 2. Lines down: both lines drop below the chart to labels underneath, each label hanging off its line. */
+  .tlx--2 .tlx__line--id { top: 26px; bottom: -26px; }
+  .tlx--2 .tlx__line--co { top: 84px; bottom: -110px; }
+  .tlx--2 .tlx__under { position: relative; height: 126px; }
+  .tlx--2 .tlx__under .tlx__label { position: absolute; }
+  .tlx--2 .tlx__under .tlx__label--id { left: var(--id); top: 18px; padding-left: 8px; max-width: calc(100% - var(--id) - 4px); }
+  .tlx--2 .tlx__under .tlx__label--co { right: 0; top: 104px; padding-right: 8px; text-align: right; }
+  .tlx--2 .tlx__label--id b, .tlx--2 .tlx__label--co b { display: inline; }
+
+  /* 3. Dots on the axis: a dot on the axis at each end, the dashed line running down through the bars, and the
+     two launches listed under the chart, left aligned, keyed by their column. */
+  .tlx--3 .tlx__axis { padding-top: 22px; }
+  .tlx--3 .tlx__dot { position: absolute; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--n050); translate: -50% -50%; }
+  .tlx--3 .tlx__dot--id { left: var(--id); }
+  .tlx--3 .tlx__dot--co { left: 100%; }
+  .tlx--3 .tlx__line { top: 5px; }
+  .tlx--3 .tlx__list { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .tlx--3 .tlx__list .tlx__label { display: flex; gap: 12px; }
+  .tlx--3 .tlx__list .tlx__label i { flex: none; width: 9px; height: 9px; margin-top: 6px; border-radius: 50%; background: var(--n050); }
+}
