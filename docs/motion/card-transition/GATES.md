@@ -32,4 +32,7 @@ Harness: each check builds the preview into output/ct-preview, then runs `node s
 - [ ] G7: Back from the collection, Home shows no veil.
   CHECK: node scripts/build-preview.mjs site output/ct-preview && node scripts/check-card-transition.mjs G7 output/ct-preview
   EXPECT: G7 PASS
+- [ ] G8: On the real clock, with the collection held back 0.3 s on the network, a recorded click shows no still stretch over 0.12 s in the first 0.7 s and no frame far darker than both neighbours (his 24 Nov note: a pause). Fails on the 22 Nov build (0.4 s still at 1440, 0.32 s at 390).
+  CHECK: node scripts/build-preview.mjs site output/ct-preview && node scripts/check-card-transition.mjs G8 output/ct-preview
+  EXPECT: G8 PASS
 - [ ] M1 (manual): Chadwick has clicked through all three on the published test build and picked one or sent notes. Open until he answers.

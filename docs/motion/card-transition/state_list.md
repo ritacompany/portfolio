@@ -1,15 +1,14 @@
 # Card to collection transition: states
 
-Lands on the new collection page (Figma 6331:27875). Times for B and C are from the release on the card;
-arrival times from the first frame of `/mondai/` (the browser holds Home's last frame until the new page
-paints). A is PR #30's view transition and keeps its own timings (docs/motion/page-transition/).
+Lands on the new collection page (Figma 6331:27875). Times for B and C are from the release on the card,
+on both pages. A is PR #30's view transition and keeps its own timings (docs/motion/page-transition/).
 
 | State | When | Look |
 |---|---|---|
 | Rest | before the release | Home as it is; the cursor in its Learn more press |
-| Exit | 0 to 220 ms on Home | a copy of the picture, "Mondai" and the label sits exactly on the card; a Neutral/900 veil fades over everything else, the "//", description, phone Learn more and cursor included |
-| Hand over | the page load | Home's last frame: picture and two words alone on Neutral/900 |
-| Arrival start | 0 ms on `/mondai/` | the same frame, drawn by the collection page; nav and card frames held hidden |
+| Exit | 0 to 220 ms on Home | the move starts at once: the picture, "Mondai" and the label travel from the card; a Neutral/900 veil fades over everything else, the "//", description, phone Learn more and cursor included |
+| Page load | from 220 ms until the browser swaps pages | Home keeps drawing the move on the veil |
+| Arrival | the collection's first painted frame | the move continues from Home's last frame and catches up with the clock over about 0.15 s; nav and cards held hidden |
 | Travel | B 0.78 s, C 0.84 s | per direction, below |
 | Settle | the spring within 0.5 percent | the wordmark copy sits on the real wordmark, B's frame on the Framework CS card frame; copies removed |
 | Fill | from 30 percent of the travel | nav, card heads and cards fade in place, power1 out, left to right |

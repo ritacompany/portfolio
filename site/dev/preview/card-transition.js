@@ -1,3 +1,4 @@
+// preview: render-blocking (scripts/build-preview.mjs puts it in the head; the page paints only after it ran)
 // Card to collection transition, proposal (docs/motion/card-transition/). Preview only: lives in
 // site/dev/preview until Chadwick says yes. Lands on the new collection page (Figma 6331:27875, PR #30).
 //
@@ -9,10 +10,13 @@
 //      Home picture gives way to the framework preview. "Mondai" grows into the wordmark.
 //   C. Open: the card's frame grows to fill the screen and becomes the page; the picture dissolves into it.
 //      "Mondai" grows into the wordmark.
-// B and C: on release Home draws a copy of the card's picture and shared words exactly where they are and
-// fades a Neutral/900 veil over everything else (220 ms), keeps where they sat in this tab's session
-// storage and opens /mondai/. The collection starts on that same frame and plays the direction; the
-// browser's view transition is skipped for that one page change. The collection to framework page change
+// B and C: the move starts on Home on the frame of the release and keeps running while the collection
+// loads, so the page load never shows as a pause (his note, 24 Nov: a 0.4 s freeze between the fade and
+// the move). Home knows where everything lands because it measured the collection beforehand in a hidden
+// frame (which also puts the page in the browser's cache). Home fades a Neutral/900 veil over everything
+// that does not continue (220 ms), opens /mondai/, and keeps drawing the move until the browser swaps the
+// page. The collection picks the move up from the time it left off, catching up to the clock over about
+// 0.15 s instead of jumping, and the browser's view transition is skipped for that one page change. The collection to framework page change
 // stays PR #30's in every direction.
 // Every frame is a pure function of time (window.CardTransition.seek), so the review capture can step it.
 // Reduced motion: no exit, no arrival; the link opens the page at rest.
@@ -124,6 +128,78 @@
     }
   }
 
+  // =============================================================== The move, drawn the same on both pages
+  // d: the card as Home drew it. D: where it lands on the collection ({ wordmark: { r, src }, kind: { r, st },
+  // media: { r, src } }). Times are ms from the release.
+  function buildTravel(d, D, dir, parent) {
+    const k = O["k" + dir], dd = O["d" + dir], T = settle(k, dd);
+    const X = { d, D, dir, k, dd, T };
+    X.prog = (t) => (t >= T ? 1 : clamp(spring(t / 1000, k, dd) / spring(T / 1000, k, dd)));
+    X.pic = make("ct-layer ct-layer--pic", parent);
+    X.wordsLayer = make("ct-layer ct-layer--words", parent);
+    X.M = drawFrame(d.media, X.pic, dir === "B" && D.media.src ? { src: D.media.src, r: D.media.r } : null);
+    // "Mondai": the card's word fades out while the wordmark, drawn at its full size and scaled down to the
+    // word's width, fades in over it; both grow together, pinned at the baseline and the left edge.
+    if (d.name && D.wordmark.src) {
+      X.nameText = textCopy(d.name.text, d.name.st, X.wordsLayer);
+      X.mark = imgCopy(D.wordmark.src, D.wordmark.r.w, D.wordmark.r.h, X.wordsLayer, "ct-img ct-mark");
+    }
+    // "Case study collection": the card's label travels to the page's label and hands over to it there
+    // (different type on each side: Label/12 C capitals on the card, 16 px on two lines on the page).
+    if (d.kind) X.kindText = textCopy(d.kind.text, d.kind.st, X.wordsLayer);
+    return X;
+  }
+  function paintTravel(X, t) {
+    const { d, D, dir } = X;
+    const p = X.prog(t), vw = innerWidth, vh = innerHeight, media = d.media.r;
+    if (dir === "B") {
+      // The frame travels to the card's frame; the Home picture is shaded first, then gives way to the
+      // framework preview inside the frame (a container transform: only the frame is shared).
+      const F = lerpBox(media, D.media.r, p);
+      X.F = F;
+      paintFrame(X.M, d.media, F, { home: 1 - smooth(range(p, 0.2, 0.5)), shade: 0.6 * smooth(range(p, 0, 0.2)), dest: smooth(range(p, 0.4, 0.75)) });
+    } else {
+      const F = lerpBox(media, { x: 0, y: 0, w: vw, h: vh }, p);
+      paintFrame(X.M, d.media, F, { home: 1 - smooth(range(p, 0.4, 0.9)), shade: 0.65 * smooth(range(p, 0, 0.25)) });
+    }
+    // "Mondai" into the wordmark: left edges and baselines meet, the width carries the size
+    if (X.mark) {
+      const a = d.name.r, b = D.wordmark.r;
+      const w = lerp(a.w, b.w, p), x = lerp(a.x, b.x, p), base = lerp(a.y + a.h, b.y + b.h, p);
+      const sm = w / b.w, st = w / a.w;
+      place(X.mark, x, base - b.h * sm, sm);
+      place(X.nameText, x, base - a.h * st, st);
+      const swap = smooth(range(p, 0, 0.15)); // brief: the two shapes differ a little, so they overlap for only a few frames
+      X.mark.style.opacity = swap.toFixed(4);
+      X.nameText.style.opacity = (1 - swap).toFixed(4);
+    }
+    // The label: travels, grows to the page's size, hands over at the end
+    if (X.kindText) {
+      const a = d.kind.r, b = D.kind.r;
+      const py = 1 - (1 - p) ** 2; // drops first, so the growing wordmark never runs into it
+      const s = lerp(1, parseFloat(D.kind.st["font-size"]) / parseFloat(d.kind.st["font-size"]), p);
+      place(X.kindText, lerp(a.x, b.x, p), lerp(a.y, b.y, py), s);
+      X.kindText.style.opacity = (1 - smooth(range(p, 0.45, 0.65))).toFixed(4); // gone before the page's label shows: two typesettings never overlap
+    }
+    return p;
+  }
+  const removeTravel = (X) => { X.pic.remove(); X.wordsLayer.remove(); };
+
+  // Where the move lands, read from the collection itself (its own document, or one in a hidden frame).
+  function readDest(doc) {
+    const q = (sel) => doc.querySelector(sel);
+    const wordmark = q(".collection__wordmark"), wordImg = q(".collection__wordmark img"), kind = q(".collection__kind");
+    const link = q(".cs-card__link"), media = link && link.querySelector(".cs-card__media"), img = media && media.querySelector("img");
+    if (!wordmark || !wordImg || !kind || !media) return null;
+    const win = doc.defaultView;
+    const st = (() => { const cs = win.getComputedStyle(kind), o = {}; for (const p of TEXT_PROPS) o[p] = cs.getPropertyValue(p); return o; })();
+    return {
+      wordmark: { r: box(wordmark), src: wordImg.currentSrc || wordImg.src },
+      kind: { r: box(kind), st },
+      media: { r: box(media), src: img ? img.currentSrc || img.src : "" },
+    };
+  }
+
   // =============================================================== Home: the exit (B and C)
   const card = document.querySelector("a.work-card-mondai");
   let exiting = null;
@@ -135,7 +211,40 @@
     return { v: 2, at: Date.now(), dir: O.dir, vw: innerWidth, vh: innerHeight, pt, media: snapMedia(media), name: part(".work-card__name"), kind: part(".work-card__kind") };
   }
   function exitFrame(t) {
-    if (exiting) exiting.veil.style.opacity = (1 - (1 - clamp(t / O.exit)) ** 4).toFixed(4); // quart out
+    if (!exiting) return;
+    exiting.veil.style.opacity = (1 - (1 - clamp(t / O.exit)) ** 4).toFixed(4); // quart out
+    if (exiting.X) { paintTravel(exiting.X, t); exiting.lastT = t; }
+  }
+
+  // The collection, measured ahead of the click in a hidden frame the size of this window, so the move
+  // can start on Home. Doing it once also puts the page and its images in the browser's cache, which makes
+  // the page change itself quicker in every direction, A included. Kept per window size.
+  const DKEY = "card-transition:dest";
+  let dest = null, measuring = false;
+  const destKey = () => `${innerWidth}x${innerHeight}`;
+  try { const c = JSON.parse(sessionStorage.getItem(DKEY)); if (c && c.key === destKey()) dest = c.D; } catch (e) {}
+  function measureDest() {
+    if (!card || measuring || SEEK && window.__CT_NO_MEASURE) return;
+    if (dest && dest.key === destKey()) return;
+    measuring = true;
+    const f = document.createElement("iframe");
+    f.dataset.ctMeasure = "1";
+    f.setAttribute("aria-hidden", "true"); f.tabIndex = -1;
+    f.style.cssText = `position:fixed;left:0;top:0;width:${innerWidth}px;height:${innerHeight}px;border:0;visibility:hidden;pointer-events:none;z-index:-1`;
+    f.src = card.href;
+    const done = () => { measuring = false; f.remove(); };
+    f.addEventListener("load", () => {
+      const doc = f.contentDocument;
+      if (!doc) return done();
+      const read = () => {
+        const D = readDest(doc);
+        if (D) { D.key = destKey(); dest = D; try { sessionStorage.setItem(DKEY, JSON.stringify({ key: D.key, D })); } catch (e) {} }
+        done();
+      };
+      (doc.fonts ? doc.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(read), done);
+    });
+    setTimeout(() => { if (measuring) done(); }, 8000);
+    document.body.append(f);
   }
   function startExit(e) {
     const d = snapCard(e);
@@ -144,28 +253,57 @@
     veil.style.opacity = "0";
     // What continues: the picture and the two shared words. The "//", the description and the phone's
     // Learn more are not on the collection, so they go with Home under the veil.
-    const M = drawFrame(d.media, layer);
-    paintFrame(M, d.media, d.media.r);
-    for (const p of [d.name, d.kind]) if (p) place(textCopy(p.text, p.st, layer), p.r.x, p.r.y);
-    exiting = { layer, veil, d };
+    const D = dest && dest.key === destKey() ? dest : null;
+    let X = null;
+    if (D && d.dir !== "A") {
+      // The move starts here, now. Its layers sit inside the exit layer, over the veil.
+      X = buildTravel(d, D, d.dir === "C" ? "C" : "B", layer);
+      d.t0 = performance.timeOrigin + performance.now();
+    } else {
+      // Not measured yet (a very fast click): the card holds still on the veil and the collection plays
+      // the move once it loads, as before.
+      const M = drawFrame(d.media, layer);
+      paintFrame(M, d.media, d.media.r);
+      for (const p of [d.name, d.kind]) if (p) place(textCopy(p.text, p.st, layer), p.r.x, p.r.y);
+    }
+    exiting = { layer, veil, d, X, lastT: 0 };
+    exitFrame(0);
     const cur = window.SiteCursor && window.SiteCursor.element;
     if (cur) cur.style.opacity = "0";
     handoff.save(d);
     if (SEEK) return;
     const t0 = performance.now();
+    let gone = false;
     (function tick(now) {
       const t = now - t0;
       exitFrame(t);
-      if (t >= O.exit) { location.assign(card.href); return; }
+      // Open the collection once the veil is down, and keep drawing the move until the browser swaps pages.
+      if (t >= O.exit && !gone) { gone = true; location.assign(card.href); if (!X) return; }
       requestAnimationFrame(tick);
     })(t0);
   }
+  // The last frame Home drew, so the collection continues from exactly there.
+  addEventListener("pagehide", () => {
+    if (!exiting || !exiting.X) return;
+    const d = exiting.d; d.lastT = exiting.lastT;
+    try { sessionStorage.setItem(HKEY, JSON.stringify(d)); } catch (e) {}
+    try { window.name = "ct:" + JSON.stringify(d); } catch (e) {}
+  });
   function clearExit() {
     if (exiting) { exiting.layer.remove(); exiting = null; }
     const cur = window.SiteCursor && window.SiteCursor.element;
     if (cur) cur.style.opacity = "";
   }
-  if (card) {
+  if (card && !(window.frameElement && window.frameElement.dataset && window.frameElement.dataset.ctMeasure)) {
+    // Measure as soon as the card is near the screen, when the browser is idle; a hover or press also asks.
+    const idle = window.requestIdleCallback || ((f) => setTimeout(f, 200));
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); idle(measureDest); } }, { rootMargin: "100% 0px" });
+      io.observe(card);
+    }
+    card.addEventListener("pointerenter", measureDest);
+    card.addEventListener("focus", measureDest);
+    addEventListener("resize", () => { if (dest && dest.key !== destKey()) dest = null; });
     card.addEventListener("click", (e) => {
       if (O.dir === "A") return; // PR #30's view transition takes this one
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -203,7 +341,8 @@
     if (!P.wordmark || !P.wordImg || !P.kind || !P.live) return null;
     P.liveMedia = P.live.querySelector(".cs-card__media"); P.liveImg = P.liveMedia && P.liveMedia.querySelector("img");
     P.liveHead = P.live.querySelector(".cs-card__head");
-    return { P, D: { wordmark: box(P.wordmark), kind: { r: box(P.kind), st: styleOf(P.kind) }, media: box(P.liveMedia) } };
+    const D = readDest(document);
+    return D ? { P, D } : null;
   }
 
   function prepare(d) {
@@ -211,33 +350,23 @@
     if (!m) return null;
     const { P, D } = m;
     const dir = d.dir === "C" ? "C" : "B";
-    const k = O["k" + dir], dd = O["d" + dir], T = settle(k, dd);
-    const R = { d, dir, P, D, k, dd, T };
-    const prog = (t) => (t >= T ? 1 : clamp(spring(t / 1000, k, dd) / spring(T / 1000, k, dd)));
-    const when = (q) => { let t = 0; while (t < T && prog(t) < q) t += 4; return t; };
-    R.prog = prog;
+    const X = buildTravel(d, D, dir, document.body);
+    const R = { d, dir, P, D, X, T: X.T, prog: X.prog };
+    const when = (q) => { let t = 0; while (t < R.T && R.prog(t) < q) t += 4; return t; };
 
-    R.pic = make("ct-layer ct-layer--pic", document.body);
-    R.wordsLayer = make("ct-layer ct-layer--words", document.body);
-    R.M = drawFrame(d.media, R.pic, dir === "B" && P.liveImg ? { src: P.liveImg.currentSrc || P.liveImg.src, r: D.media } : null);
-
-    // "Mondai": the card's word fades out while the wordmark, drawn at its full size and scaled down to the
-    // word's width, fades in over it; both grow together, pinned at the baseline and the left edge.
-    if (d.name) {
-      R.nameText = textCopy(d.name.text, d.name.st, R.wordsLayer);
-      R.mark = imgCopy(P.wordImg.currentSrc || P.wordImg.src, D.wordmark.w, D.wordmark.h, R.wordsLayer, "ct-img ct-mark");
-    }
-    // "Case study collection": the card's label travels to the page's label and hands over to it there
-    // (different type on each side: Label/12 C capitals on the card, 16 px on two lines on the page).
-    if (d.kind) R.kindText = textCopy(d.kind.text, d.kind.st, R.wordsLayer);
+    // Where this page picks the move up: from the last frame Home drew, or from the start when Home only
+    // held the card still (it had not measured this page yet).
+    R.tStart = d.t0 ? (d.lastT != null ? d.lastT : performance.timeOrigin + performance.now() - d.t0) : 0;
 
     // Page only items fade in place in reading order. B: the live card's head fades and its frame is the
     // one that arrives; C: the whole live card fades with the others.
     const steps = [P.header];
     for (const li of P.cards) steps.push(dir === "B" && li === P.live ? P.liveHead : li);
     R.fadeDur = FADE[dir][0];
-    R.fades = steps.filter(Boolean).map((el, i) => ({ el, at: when(FILL[dir]) + i * FADE[dir][1] }));
-    R.end = Math.max(T, ...R.fades.map((f) => f.at + R.fadeDur));
+    // Never earlier than this page's first frame, so nothing arrives already half faded.
+    const base = Math.max(when(FILL[dir]), R.tStart);
+    R.fades = steps.filter(Boolean).map((el, i) => ({ el, at: base + i * FADE[dir][1] }));
+    R.end = Math.max(R.T, ...R.fades.map((f) => f.at + R.fadeDur));
 
     // Hold the real page: title block shown with its parts driven one by one, everything else hidden.
     imp(P.title, "opacity", "1"); imp(P.title, "visibility", "visible");
@@ -254,42 +383,10 @@
   }
 
   function frame(R, t) {
-    const { d, D, P, dir } = R;
-    const p = R.prog(t), vw = innerWidth, vh = innerHeight, media = d.media.r;
+    const { P, dir } = R;
     for (const el of [P.title, P.kind, P.wordmark, ...P.cards]) quiet(el);
-
-    // ---- The picture
-    if (dir === "B") {
-      // The frame travels to the card's frame; the Home picture is shaded first, then gives way to the
-      // framework preview inside the frame (a container transform: only the frame is shared).
-      const F = lerpBox(media, D.media, p);
-      R.F = F;
-      paintFrame(R.M, d.media, F, { home: 1 - smooth(range(p, 0.2, 0.5)), shade: 0.6 * smooth(range(p, 0, 0.2)), dest: smooth(range(p, 0.4, 0.75)) });
-    } else {
-      const F = lerpBox(media, { x: 0, y: 0, w: vw, h: vh }, p);
-      paintFrame(R.M, d.media, F, { home: 1 - smooth(range(p, 0.4, 0.9)), shade: 0.65 * smooth(range(p, 0, 0.25)) });
-    }
-
-    // ---- "Mondai" into the wordmark: left edges and baselines meet, the width carries the size
-    if (R.mark) {
-      const a = d.name.r, b = D.wordmark;
-      const w = lerp(a.w, b.w, p), x = lerp(a.x, b.x, p), base = lerp(a.y + a.h, b.y + b.h, p);
-      const sm = w / b.w, st = w / a.w;
-      place(R.mark, x, base - b.h * sm, sm);
-      place(R.nameText, x, base - a.h * st, st);
-      const swap = smooth(range(p, 0, 0.15)); // brief: the two shapes differ a little, so they overlap for only a few frames
-      R.mark.style.opacity = swap.toFixed(4);
-      R.nameText.style.opacity = (1 - swap).toFixed(4);
-    }
-    // ---- The label: travels, grows to the page's size, hands over at the end
-    if (R.kindText) {
-      const a = d.kind.r, b = D.kind.r;
-      const py = 1 - (1 - p) ** 2; // drops first, so the growing wordmark never runs into it
-      const s = lerp(1, parseFloat(D.kind.st["font-size"]) / parseFloat(d.kind.st["font-size"]), p);
-      place(R.kindText, lerp(a.x, b.x, p), lerp(a.y, b.y, py), s);
-      R.kindText.style.opacity = (1 - smooth(range(p, 0.45, 0.65))).toFixed(4); // gone before the page's label shows: two typesettings never overlap
-    }
-    imp(P.kind, "opacity", (R.kindText ? smooth(range(p, 0.65, 0.95)) : power1Out((t - (R.fades[0] ? R.fades[0].at : 0)) / R.fadeDur)).toFixed(4));
+    const p = R.handed ? 1 : paintTravel(R.X, t);
+    imp(P.kind, "opacity", (R.X.kindText ? smooth(range(p, 0.65, 0.95)) : power1Out((t - (R.fades[0] ? R.fades[0].at : 0)) / R.fadeDur)).toFixed(4));
 
     // ---- Page only items
     for (const f of R.fades) imp(f.el, "opacity", power1Out((t - f.at) / R.fadeDur).toFixed(4));
@@ -299,7 +396,7 @@
       R.handed = true;
       P.wordmark.style.removeProperty("visibility"); imp(P.wordmark, "visibility", "visible");
       if (dir === "B") imp(P.liveMedia, "opacity", "1");
-      R.pic.remove(); R.wordsLayer.remove();
+      removeTravel(R.X);
     }
     if (t >= R.end) finish(R);
   }
@@ -317,6 +414,7 @@
 
   function arrive(d, { fresh = true } = {}) {
     if (!coll || !d || d.v !== 2 || d.dir === "A") return null;
+    if (window.frameElement && window.frameElement.dataset && window.frameElement.dataset.ctMeasure) return null;
     if (fresh && !SEEK && (Date.now() - d.at > 5000)) return null;
     if (Math.abs(d.vw - innerWidth) > 2 || Math.abs(d.vh - innerHeight) > 2) return null;
     if (run) finish(run);
@@ -324,21 +422,25 @@
     const R = prepare(d);
     if (!R) return null;
     run = R;
-    frame(R, 0);
+    frame(R, R.tStart);
     R.stop = () => finish(R);
     if (SEEK) return R;
     addEventListener("pointerdown", R.stop, true); addEventListener("keydown", R.stop, true); addEventListener("wheel", R.stop, { capture: true, passive: true });
-    const go = () => {
-      const t0 = performance.now();
-      (function tick(now) { if (R.done) return; frame(R, now - t0); if (!R.done) requestAnimationFrame(tick); })(t0);
-    };
-    // Images were decoded on Home a moment ago; wait at most 150 ms for this page's copies, holding frame 0.
-    const imgs = [...R.pic.querySelectorAll("img"), ...R.wordsLayer.querySelectorAll("img")];
-    Promise.race([Promise.all(imgs.map((i) => i.decode().catch(() => {}))), new Promise((r) => setTimeout(r, 150))]).then(go);
+    // No waiting: the move continues on this page's first frame. While the browser swapped pages the clock
+    // ran on, so the move catches up with it smoothly (the gap closes over about 0.15 s) rather than jumping.
+    const a0 = performance.now();
+    const clock = d.t0 ? (now) => performance.timeOrigin + now - d.t0 : (now) => now - a0;
+    const lag0 = Math.max(0, clock(a0) - R.tStart);
+    (function tick(now) {
+      if (R.done) return;
+      frame(R, clock(now) - lag0 * Math.exp(-(now - a0) / 150));
+      if (!R.done) requestAnimationFrame(tick);
+    })(a0);
     return R;
   }
 
-  if (coll) {
+  const inMeasure = !!(window.frameElement && window.frameElement.dataset && window.frameElement.dataset.ctMeasure);
+  if (coll && !inMeasure) {
     const d = reduce.matches ? null : handoff.take();
     const R = d ? arrive(d) : null;
     if (!R) document.documentElement.classList.add("ct-checked");
@@ -356,6 +458,9 @@
     seek: (t) => run && frame(run, t),
     get duration() { return run ? run.end : 0; },
     get travel() { return run ? run.T : 0; },
+    get start() { return run ? run.tStart : 0; },
+    get measured() { return !!(dest && dest.key === destKey()); },
+    measure: () => measureDest(),
   };
 
   const set = (k) => (v) => { O[k] = v; if (k === "dir") store.set("card-transition:dir", v); };

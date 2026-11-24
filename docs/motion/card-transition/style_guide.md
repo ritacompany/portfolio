@@ -38,13 +38,23 @@ Not taken: a crossfade of either page around the shared words; a rise on any tex
 picture surviving on the collection once the move ends.
 
 ## How B and C run across the page change
-1. Release on the card. Home draws a copy of the picture and the two shared words exactly where they are
-   and fades a Neutral/900 veil over everything else in 220 ms (quart out). Then the browser loads `/mondai/`.
-   The browser's own view transition is skipped for that one page change.
-2. The collection reads where the card was (this tab's session storage) and starts on that same frame.
-3. The copies land on the real wordmark, label and card frame, which take over with no jump.
-4. Everything only on the collection (the nav, the card heads, the other cards) fades in place, power1 out,
-   in reading order.
+His 24 Nov note, from a recording of the published build: "there's a pause". Measured in his recording: the
+card sat still on black for about 0.4 s (19.37 to 19.77 s) between Home's fade and the move, the page load
+plus a 150 ms wait for images. The move now never waits for the page:
+1. Ahead of the click (when the card nears the screen, on hover or on focus) Home loads the collection in a
+   hidden frame the size of the window and reads where everything lands. That also puts the page and its
+   images in the browser's cache, so the page change is quicker in every direction, A included.
+2. Release on the card: the move starts on Home on that frame. A Neutral/900 veil fades over everything that
+   does not continue (220 ms), then Home opens `/mondai/` and keeps drawing the move until the browser swaps
+   the page. The browser's own view transition is skipped for that one page change.
+3. The collection is not painted until its transition script has run (`blocking="render"`), so its first
+   frame is the move, never an empty page. It picks the move up from the last frame Home drew and catches up
+   with the clock over about 0.15 s instead of jumping.
+4. The copies land on the real wordmark, label and card frame, which take over with no jump.
+5. Everything only on the collection (the nav, the card heads, the other cards) fades in place, power1 out,
+   in reading order, never earlier than the page's first frame.
+If Home has not measured the page yet (a click within moments of arriving), the card holds still on the veil
+and the collection plays the move once it loads, as before.
 
 ## The three directions
 - **A. Title** (PR #30, unchanged): only the name moves. The two pages fade through the page colour while

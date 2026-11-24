@@ -11,6 +11,9 @@
 //   G5       reduced motion: the click opens /mondai/ with no veil and no arrival
 //   G6       a direct visit gets the page's own entrance: no layer, the nav shows
 //   G7       back from the collection: Home shows no veil
+//   G8       real clock, the collection held back 0.3 s on the network: no still stretch over 0.12 s in
+//            the first 0.7 s after the click (his 24 Nov note: a pause before the move), and no frame far
+//            darker than both its neighbours (an empty page painted between the two)
 //   CONTROL  G1's comparison fails on frames that really differ (the arrival at mid travel)
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
@@ -54,7 +57,7 @@ async function ctx(w, h, { seek = true, dir = "B", reduced = false } = {}) {
   await c.addInitScript(([seek, dir]) => { if (seek) window.__CT_SEEK = true; try { localStorage.setItem("card-transition:dir", dir); } catch (e) {} }, [seek, dir]);
   return c;
 }
-async function homeAtCard(page) {
+async function homeAtCard(page, wantMeasured = true) {
   await page.goto(base + "/index.html", { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
   await page.evaluate(() => document.querySelector("a.work-card-mondai").scrollIntoView({ block: "center" }));
@@ -62,6 +65,8 @@ async function homeAtCard(page) {
   const m = await page.evaluate(() => { const r = document.querySelector("a.work-card-mondai .work-card__media").getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
   await page.mouse.move(m.x - 40, m.y - 30); await page.mouse.move(m.x, m.y, { steps: 4 });
   await page.waitForTimeout(700);
+  // Home measures the collection in a hidden frame before the move can start on Home.
+  if (wantMeasured && await page.evaluate(() => "measured" in window.CardTransition)) await page.waitForFunction(() => window.CardTransition.measured, null, { timeout: 15000 });
   return m;
 }
 const shot = (page) => page.screenshot({ type: "png" });
@@ -100,7 +105,7 @@ async function stepped(dir, w, h, { every = 1000 / 30, keep = false } = {}) {
   const lastHome = await shot(page);
   await page.goto(base + "/mondai/index.html", { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
-  const info = await page.evaluate(() => { const C = window.CardTransition; return C.run ? { end: C.duration, T: C.travel } : null; });
+  const info = await page.evaluate(() => { const C = window.CardTransition; return C.run ? { end: C.duration, T: C.travel, start: C.start } : null; });
   if (!info) { fail(`${dir} ${w}: the arrival did not start`); await c.close(); return null; }
   await page.waitForFunction(() => [...document.querySelectorAll(".ct-img")].every((i) => i.complete));
   // Measured before the frames run: the hand over is one way, so this has to come before the run passes it.
@@ -110,12 +115,12 @@ async function stepped(dir, w, h, { every = 1000 / 30, keep = false } = {}) {
     if (!R || R.handed) return null;
     const out = [];
     const cmp = (word, a, b) => out.push({ word, dx: Math.abs(a.left - b.left), dy: Math.abs(a.top - b.top), dw: Math.abs(a.width - b.width) });
-    if (R.mark) cmp("wordmark", R.mark.getBoundingClientRect(), R.P.wordImg.getBoundingClientRect());
-    if (R.F) cmp("card frame", { left: R.F.x, top: R.F.y, width: R.F.w }, R.P.liveMedia.getBoundingClientRect());
+    if (R.X.mark) cmp("wordmark", R.X.mark.getBoundingClientRect(), R.P.wordImg.getBoundingClientRect());
+    if (R.X.F) cmp("card frame", { left: R.X.F.x, top: R.X.F.y, width: R.X.F.w }, R.P.liveMedia.getBoundingClientRect());
     return out;
   });
   const arrive = [];
-  for (let t = 0; t <= info.end + 1; t += every) { await page.evaluate((t) => window.CardTransition.seek(t), t); arrive.push({ t, png: await shot(page) }); }
+  for (let t = info.start; t <= info.end + 1; t += every) { await page.evaluate((t) => window.CardTransition.seek(t), t); arrive.push({ t, png: await shot(page) }); }
   await page.evaluate((t) => window.CardTransition.seek(t), info.end + 1);
   const lastArrive = await shot(page);
   const state = await page.evaluate(() => ({ layers: document.querySelectorAll(".ct-layer").length, transform: getComputedStyle(document.querySelector(".canvas")).transform }));
@@ -239,6 +244,69 @@ if (gate === "G7") {
   const s = await page.evaluate(() => ({ url: location.pathname, layers: document.querySelectorAll(".ct-layer").length }));
   console.log(`  back: ${JSON.stringify(s)}`);
   if (/mondai/.test(s.url) || s.layers) fail("Home came back with the veil");
+  await done(true);
+}
+if (gate === "G8") {
+  // His 24 Nov note: a pause between Home's fade and the move. Real clock, the collection page held back on
+  // the network the way the published build is (about 0.3 s), a video of the click, and the longest run
+  // of still frames inside the first second after the click. A pause is a still run inside the move.
+  const { execFileSync } = await import("node:child_process");
+  const { readdirSync, readFileSync } = await import("node:fs");
+  const DELAY = Number(opt("delay", 300));
+  for (const [w, h] of WIDTHS) for (const dir of DIRS) {
+    const vdir = path.join(OUT, `g8-${dir}-${w}`); rmSync(vdir, { recursive: true, force: true }); mkdirSync(vdir, { recursive: true });
+    const c = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, recordVideo: { dir: vdir, size: { width: w, height: h } } });
+    await c.addInitScript((dir) => { try { localStorage.setItem("card-transition:dir", dir); } catch (e) {} }, dir);
+    const page = await c.newPage();
+    const born = Date.now(); // the video starts with the page
+    const m = await homeAtCard(page);
+    await c.route("**/mondai/index.html", async (route) => { await new Promise((r) => setTimeout(r, DELAY)); await route.continue(); });
+    await page.waitForTimeout(600);
+    const clickAt = (Date.now() - born) / 1000;
+    await page.mouse.click(m.x, m.y);
+    await page.waitForURL(/mondai\/index\.html/, { timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(2500);
+    await c.close();
+    const vid = path.join(vdir, readdirSync(vdir).find((f) => f.endsWith(".webm")));
+    const log = path.join(vdir, "diff.txt");
+    execFileSync("ffmpeg", ["-v", "error", "-i", vid, "-vf", `scale=240:-1,format=gray,tblend=all_mode=difference,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=${log}`, "-f", "null", "-"]);
+    const rows = []; let t = null;
+    for (const line of readFileSync(log, "utf8").split("\n")) {
+      const a = line.match(/pts_time:([\d.]+)/); if (a) t = +a[1];
+      const b = line.match(/YAVG=([\d.]+)/); if (b && t !== null) rows.push([t, +b[1]]);
+    }
+    // Still: below 0.5 (screen recording noise reaches 0.3 at 1440; the move itself runs above 1).
+    const STILL = 0.5;
+    // The click, as timed against the page's birth: the first frame that changes from there on (Home keeps a
+    // little motion of its own, so the veil's first frame is the marker).
+    const near = rows.filter((r) => r[0] >= clickAt - 0.3 && r[1] > 1);
+    if (!near.length) { fail(`${dir} ${w}: no click found in the video`); continue; }
+    const start = near[0][0];
+    if (process.env.CT_DEBUG) console.log(dir, w, "clickAt", clickAt.toFixed(2), rows.filter((r) => r[0] > clickAt - 0.6 && r[0] < clickAt + 1.6).map((r) => r[0].toFixed(2) + ":" + r[1].toFixed(2)).join(" "));
+    let longest = 0, run = 0, at = 0;
+    for (let i = 1; i < rows.length; i++) {
+      if (rows[i][0] <= start || rows[i][0] > start + 0.7) continue;
+      const dt = rows[i][0] - rows[i - 1][0];
+      if (rows[i][1] < STILL) { run += dt; if (run > longest) { longest = run; at = rows[i][0] - start - run; } } else run = 0;
+    }
+    // A flash: one frame much darker than both its neighbours (an empty page painted between the two).
+    const lum = path.join(vdir, "lum.txt");
+    execFileSync("ffmpeg", ["-v", "error", "-i", vid, "-vf", `scale=240:-1,format=gray,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=${lum}`, "-f", "null", "-"]);
+    const L = []; let lt = null;
+    for (const line of readFileSync(lum, "utf8").split("\n")) {
+      const a = line.match(/pts_time:([\d.]+)/); if (a) lt = +a[1];
+      const b = line.match(/YAVG=([\d.]+)/); if (b && lt !== null) L.push([lt, +b[1]]);
+    }
+    let flashes = 0;
+    for (let i = 1; i < L.length - 1; i++) {
+      if (L[i][0] <= start || L[i][0] > start + 1.5) continue;
+      const lo = Math.min(L[i - 1][1], L[i + 1][1]);
+      if (lo > 2 && L[i][1] < lo * 0.6) { flashes++; console.log(`  ${dir} ${w}: dark frame at ${((L[i][0] - start) * 1000).toFixed(0)} ms (${L[i][1].toFixed(1)} against ${lo.toFixed(1)})`); }
+    }
+    if (flashes) fail(`${dir} ${w}: ${flashes} empty frame(s) between the pages`);
+    console.log(`  ${dir} ${w}: longest still stretch in the first 0.7 s after the click ${(longest * 1000).toFixed(0)} ms (from ${(at * 1000).toFixed(0)} ms), network delay ${DELAY} ms`);
+    if (longest > 0.12) fail(`${dir} ${w}: the move pauses for ${(longest * 1000).toFixed(0)} ms`);
+  }
   await done(true);
 }
 console.error("unknown gate " + gate); await done(false);
