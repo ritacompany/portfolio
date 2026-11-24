@@ -97,7 +97,9 @@ const phone = [
   [".work-card__kind", { c: "#7b7b86", fw: 700 }],
   [".work-card-mondai .work-card__desc", { c: "#dedee5", fs: 13.75 }],
   [".work-card-haven .work-card__desc", { c: "#dedee5", fs: 13.75 }],
-  [".work-card__more", { c: "#f2f1f8" }],
+  // 23 Nov: Learn more under the phone card is his Small button (Neutral/100 outline and text), from his screenshot;
+  // before that it was the Nav Small link in Neutral/050.
+  [".work-card__more", { c: "#e8e7ee" }],
   [".about__row", { line: "#1d1d21" }],
   [".about-story .about__label", { c: "#d2d2db" }],
   [".about-role .about__label", { c: "#dedee5" }],
