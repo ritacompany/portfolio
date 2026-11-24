@@ -28,4 +28,4 @@ ABANDON: G4 Halstack (and the two Cloudflare pages) were not passed by an indepe
   EVIDENCE: https://claude.ai/artifact/Y9xXP7mVwqB3Quz9Wvq8iY version 3 holds 239 files (page, data, 10 texts, 227 screens) per the artifact file listing; Playwright at 390 and 1280 px: no sideways scroll, arrow keys move screens, screens load, no script errors
 
 - [x] G6: the files are on the remote branch and a draft PR into claude/design-system-cs-draft is open
-  EVIDENCE: branch claude/design-system-cs-visual pushed; PR link in the session's final message
+  EVIDENCE: branch claude/design-system-cs-visual pushed; draft PR https://github.com/ritacompany/portfolio/pull/48 into claude/design-system-cs-draft
