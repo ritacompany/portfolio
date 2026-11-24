@@ -188,33 +188,36 @@ independently. Outline 2 sections are numbered as in `../../outline-2/MATERIAL.m
 - Take: captions that explain the decision behind the board, two or three lines long.
 - Skip: few numbers; the results section is words.
 
-## 10. Tidal: Avani Palkhiwala, co-led the dark mode work
+## 10. Halstack: Lara Cordoba Puerto, led the token refactor
 
-- Link: https://elk-khaki-4eel.squarespace.com/work/ds
-- Archive: 10 screens, about 750 words. Work 2024 to 2025 for a mid 2025 launch.
-- Visuals that carry it: a reference token architecture from a public system as the starting model;
-  the navigation shown in light, dark and dark with a brand override side by side; an old product
-  screen beside the first dark palette, showing why the first surface colour was too blue; palette
-  tests with sticky note feedback; the shipped app in light and dark.
-- Captions and layout: short captions that read left to right (light, overridden, dark), set small
-  under each image; a process told as palette tests in order.
-- Serves: 2 colour (the palette that skewed too blue, shown beside the legacy screen it echoed, is a
-  wrong turn drawn as a picture: the shape for a colour decision that was reversed).
-- Take: show the rejected palette beside the reason it was rejected.
-- Skip: thin on outcomes; the page stops at shipping.
+- Link: https://www.designsystemscollective.com/a-token-story-part-1-51ac3df380db
+- Archive: 17 screens, about 2,100 words. 12 Jun 2025. Part one of a series, on Design Systems
+  Collective.
+- Visuals that carry it: the token inventory as a run of tables, one per kind (colour ramps with name,
+  value and swatch; font family, weight, style and scale with a live preview; spacing; border width
+  and radius; shadow; height), all in the same purple headed table style; a first inventory of what
+  existed before the refactor.
+- Captions and layout: a centred caption under each table naming the set (colour core tokens for the
+  system); the tables are drawn consistently enough that the run reads as one reference sheet. The
+  text is a first person story, with a meme or two between sections.
+- Serves: 2 colour and 3 layout and components (a token table with a preview column is the plainest
+  way to show a scale: the name, the value and what it looks like on one row).
+- Take: the preview column, so each row shows the value it names.
+- Skip: the memes; and the tables are primitives only, so the page never shows a role or a screen.
 
 ## Catalogue: visual devices across all twenty pages, by what they prove
 
 Pages from the first set are named as in `STUDY.md`: Wise, JPMorgan, IndiGo, CASSI, Musterhall,
 Diorama, WellSky, Anorbank, MCP audit, Fortune 200. This set: Bupa, Bitsight, NXT, Holzprofi24,
-Ether.fi, JW Player, Student Beans, E-signature platform, Limbo Citi, Tidal.
+Ether.fi, JW Player, Student Beans, E-signature platform, Limbo Citi, Halstack.
 
 ### Proves how the system is built
 
 - Token chain, one value traced from raw value to role to component: Bitsight (light and dark side by
   side, the best in either set), Holzprofi24 (one name, three brand colours), WellSky (as arrows with a
-  picture per step), Bupa (three tiers with counts), Tidal (the borrowed reference model).
+  picture per step), Bupa (three tiers with counts).
 - Layer rows, each layer with its one job: NXT, Wise (primitives, nested variables, global tokens).
+- Token table with a preview column: Halstack (every primitive kind), Bupa (three tiers).
 - Library map, which file holds which layer: JW Player (three file cards), Wise (book tiles), Limbo
   Citi (library pages).
 - Structure diagram of brands or tools around a core: Fortune 200 (hub and spoke of brands), Bupa (hub
@@ -227,7 +230,7 @@ Ether.fi, JW Player, Student Beans, E-signature platform, Limbo Citi, Tidal.
 ### Proves the system holds across themes and brands
 
 - One screen in each theme or brand side by side: Wise (the bar), Bitsight (light, dark, colour
-  blind), E-signature platform (light and deep blue), Tidal (light, dark, dark with override), Diorama.
+  blind), E-signature platform (light and deep blue), Diorama.
 - Several brands on one platform, each on its own coloured mat: Limbo Citi, Holzprofi24 (three shop
   resolutions).
 - One mat for every image, so mixed evidence reads as one system: E-signature platform (grey),
@@ -247,7 +250,6 @@ Ether.fi, JW Player, Student Beans, E-signature platform, Limbo Citi, Tidal.
 
 - Audit board of values in use, flagged: Ether.fi (duplicate, drift, off scale), Holzprofi24 (audit
   findings and failures by area), Fortune 200 (lint report tables), Bupa (audit tiles).
-- The rejected option drawn beside its reason: Tidal (the too blue palette beside the legacy screen).
 - Duplicate gallery: Ether.fi.
 
 ### Proves the change
@@ -282,7 +284,7 @@ Ether.fi, JW Player, Student Beans, E-signature platform, Limbo Citi, Tidal.
   in two themes; Limbo Citi's coloured mats if more than one surface is shown.
 - 2 colour: Ether.fi's audit legend (duplicate, drift, off scale) for N30; Bitsight's light and dark
   chain for the labelled chain visual; JW Player's two naming schemes side by side for the renamed
-  roles (N32); Tidal's rejected palette beside its reason for a reversed call.
+  roles (N32); Halstack's preview column for any scale shown as a table.
 - 3 layout and components: NXT's rule above the button matrix for the 236 buttons in 33 widths; Limbo
   Citi's two to three line caption under each board.
 - 4 proving the checks: Holzprofi24's decisions table with a trade off column.

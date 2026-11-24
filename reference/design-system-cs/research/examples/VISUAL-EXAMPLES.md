@@ -19,7 +19,7 @@ on numbers drawn as pictures.
 | 7 | [Student Beans: a design system one year on](https://medium.com/pion/using-research-techniques-to-improve-a-design-system-1-year-on-852f60ab19c3) | Max Dunne, head of product design (author bio) | 26 Jun 2024 | **data** `before and after` `number tiles` |
 | 8 | [E-signature platform: token based system](https://contra.com/p/sAqWlEF7-token-based-design-system-for-b2-b-signature-platform) | Bozena Bulat, senior product designer, first designer on the team (summary) | 2025 work; posted 24 Sep 2026 | `rule plates` `theme comparison` `screens in context` |
 | 9 | [Limbo Citi: a municipal web platform](https://kristiansportfolio.com/limbo-citi) | Kristian Lykke Hansen, senior digital designer and design lead (role block) | 2022 to 2025 | `brand comparison` `rule plates` `library map` `screens in context` |
-| 10 | [Tidal: dark mode for a design system](https://elk-khaki-4eel.squarespace.com/work/ds) | Avani Palkhiwala, co-led the dark mode work for the Tidal system (team section) | Work 2024 to 2025, for a mid 2025 launch | `theme comparison` `token chain` `before and after` `screens in context` |
+| 10 | [Halstack: a token story](https://www.designsystemscollective.com/a-token-story-part-1-51ac3df380db) | Lara Cordoba Puerto, led the token refactor of the Halstack system at DXC Assure (opening) | 12 Jun 2025 | `token table` `rule plates` `before and after` |
 
 ## Close to CS3, flagged for the organizer
 
@@ -51,7 +51,11 @@ If the organizer runs the narrow hunt in `STRATEGY.md`, start from those two.
   system images), an enterprise system for 40+ products (no level on the page) and Student Beans
   (Cloudflare blocked the agent; our own browser read it in full, so it stays, as Vera Marshalova's
   Medium page did in the first set). The four were replaced with Holzprofi24, JW Player, Limbo Citi and
-  Tidal, and a second check ran on those.
+  Tidal. A second Sonnet check passed Holzprofi24 and Limbo Citi, failed Tidal (co-lead only, and the
+  system was later scrapped) and could not open JW Player (Cloudflare again; our browser read it in
+  full, with the lead role stated). Tidal was replaced with Halstack. A third Sonnet check could not
+  run (the session's agent limit), so Halstack rests on our own full read only; it is also hosted
+  behind the same Cloudflare check, so treat it as the least verified page in the set.
 - Most others were cut for one of four reasons: text with few or no system images (Kenneth Courtney, Flatstudio,
   Charles on Contra, Murphy Trueman); images that did not load (several Contra pages); no lead or
   senior role on the page (Vodafone UK's taxonomy post, by.U, Infinum, Harvey, HP); or written by an
