@@ -29,4 +29,7 @@ method on both pages. Neither page scrolls sideways at 360 or 390.
 | P9 | Hero details | one wrapping row, 20 by 32 | three stacked rows, 24 apart, label 10 over value |
 | P10 | Hero paragraphs | 40 apart, tagline 32 under the mark | 24 under the tagline, 40 apart |
 
-Fix for each: take Haven's value. The rest (body 16, media full width, one column, text to media 32) already matches.
+Fix for each: take Haven's value.
+
+> Correction, 24 Nov: row P1 is wrong. His phone grid is 4 columns, 24 margin, 24 gutter (docs/DECISIONS.md); Haven's 16 was the deviation, not the model. Haven moves to the grid (reports/haven-mobile-2026-11-23).
+ The rest (body 16, media full width, one column, text to media 32) already matches.

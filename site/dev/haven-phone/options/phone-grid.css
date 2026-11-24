@@ -1,0 +1,20 @@
+/* Haven on his phone grid (docs/DECISIONS.md, 10 Nov): under 768, 4 columns, 24 margin, 24 gutter, the same
+   tokens every page uses (tokens.css: --grid-columns 4, --grid-margin 24, --grid-gutter 24). Haven had kept its own
+   16 px margin and 16 px gaps. Full width content spans all 4 columns; side by side pieces sit 24 apart. */
+@media (max-width: 767px) {
+  main, .site-nav { --m: var(--grid-margin); }
+  .ending { --edge: var(--grid-margin); }
+  /* Each name is two set lines (Mondai design / system CS, Mondai / framework CS), inside the 24 margins with at
+     least the 24 gutter between them; the links lose their 6 px side padding here so both fit at 320. */
+  .ending-bar { grid-template-columns: auto auto; justify-content: space-between; column-gap: var(--grid-gutter); padding-inline: var(--grid-margin); }
+  .ending-bar .eb-short { white-space: nowrap; }
+  .ending-bar__prev, .ending-bar__next { padding-inline: 0; }
+  .ending-bar__prev img { margin-left: -8.69px; }
+  #site-menu.menu { padding-inline: var(--grid-margin); }
+  /* The interview numbers had no side margin at all on a phone; they now sit inside the grid like the rest. */
+  .stats { padding-inline: var(--grid-margin); }
+  .stats__row, .stat-total { column-gap: var(--grid-gutter); }
+  .cards-research, .security__media { gap: var(--grid-gutter); }
+}
+/* Under 390 the two names step to 12 px, the floor, so they fit side by side. */
+@media (max-width: 389px) { .ending-bar .eb-short { font-size: 12px; } }
