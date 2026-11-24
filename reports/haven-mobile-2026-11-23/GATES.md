@@ -33,3 +33,16 @@ Screenshots are on the canvas; `shots/` is kept out of git (17 MB).
 | R3 phone nav | bar and menu render on Haven at 390 from the shared markup | screenshots on the canvas; lands after his yes, moving Home's phone bar CSS into components.css |
 | R4 dividers | report in `reports/dividers-2026-11-23/ISSUES.md` | colour waits on his call |
 | R5 journey flow Figma frame | built in his file | PASS: frame 6394:30516 and component 6394:30515 on page CS under Mobile frames, at the built sizes (103 circles, 12 text, 120 pitch); Inter stands in for Satoshi, which the Figma plugin here cannot load |
+
+## After landing (his typed yes, 24 Nov)
+
+Shipped page, no preview: `A --only hover,press,tapflash,size,qlabel` at 320 to 767 HAVEN_PHONE_OK; `A --only
+hscroll,hidden,cut,blur` at 320 to 430 HAVEN_PHONE_OK; `same-as-base.mjs` SAME_AS_BASE_ABOVE_767_OK (768, 1024,
+1440 pixel identical to claude/sharp-turing-jy21r2); verify-responsive fit, overlap, health and size on haven OK;
+HOVER_STILL_OK 50; site check OK (13 pages); HAVEN_MOTION_OK. Phone menu opens and closes by tap at 320, 390 and
+767, hidden at 768 and 1440, no page errors.
+
+Two faults the preview hid, caught here and fixed: the hide rule for the burger outranked the phone rule (now
+`:where()`), and the menu's padding used `--m`, which is not set outside the page, so the close button sat
+under the menu body. Divider colour is left to the session "Portfolio: divider strokes to Neutral/700 everywhere".
+G1 to G9: met. R1 to R5: met. Quiz and timeline options: on the canvas for his pick, not built.

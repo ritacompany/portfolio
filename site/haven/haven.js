@@ -84,6 +84,7 @@
     var row = document.getElementById("journey-row");
     if (!stage || !map) return;
     var P = 160, DT = 1700, R = 1376, RATE = 0.85, HOLD = 450, AT = 0.8, VERTICAL_BELOW = 560;
+    var PHONE = matchMedia("(max-width: 767px)");
     var IO = "cubic-bezier(.65,0,.35,1)", OUT = "cubic-bezier(.22,1,.36,1)";
     var by = {}, nums = [];
     stage.querySelectorAll(".flow__step").forEach(function (el) { by[el.dataset.id] = el; });
@@ -123,7 +124,8 @@
       if (played) anims.forEach(function (a) { a.currentTime = DT; });
     }
     function fit() {
-      var w = map.clientWidth, v = w < VERTICAL_BELOW;
+      // The phone layout (under 768) keeps it vertical at every width: from 592 the sideways row was scaled to 9.9 px text.
+      var w = map.clientWidth, v = w < VERTICAL_BELOW || PHONE.matches;
       if (v !== vertical) { vertical = v; build(); }
       stage.style.setProperty("--flow-scale", String(vertical ? 0.75 : box.clientWidth / 777));
       map.style.setProperty("--flow-scale", "0.75");
