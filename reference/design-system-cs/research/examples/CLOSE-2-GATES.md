@@ -25,6 +25,7 @@ Scope: a second, harder hunt for designer written case studies that explain a sy
 - [x] G5: the private archive artifact is updated with the new pages and keeps the old entries, or a separate private artifact is linked from CLOSE-2-STUDY.md (manual)
   EVIDENCE: 25 Nov 2026, https://claude.ai/artifact/AaPQccq74qnUChWtTgnjR4 version 3 lists 193 files: the first pass's page, 6 texts and 100 screens kept, plus 6 new texts and 79 new screens; local Playwright run at 390 and 1280 px before publish: no sideways scroll, a second pass page loads its screen, no script errors.
 
-- [ ] G6: the files above are committed and identical on the remote branch
+- [x] G6: the files above are committed and identical on the remote branch
   CHECK: node check-close-2-pushed.mjs
   EXPECT: CLOSE2-PUSHED-PASS
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio/reference/design-system-cs/research/examples; path=3385fc4b5c2f/16 entries; EXPECT=matched; output-sha256=55bf78bc1aaa916ff34f6525fb80dc159773f66063cfb47b130d4d16c09bfa41; output-bytes=19
