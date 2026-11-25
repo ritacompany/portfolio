@@ -27,6 +27,7 @@
           <li><a class="link-nav" href="/#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
           <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
         </ul>
+        <button class="navbar__menu" type="button" aria-label="Menu" aria-controls="site-menu" aria-expanded="false" data-dialog-open="site-menu" data-figma-node="4928:11948"><img src="/assets/ui/menu.svg" alt="" width="18" height="12"></button>
       </nav>
     </header>
 
@@ -81,7 +82,24 @@
           </footer>
 
   </div>
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden data-figma-node="4928:11959">
+    <div class="menu__bar">
+      <a class="navbar__logo" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+      <button class="navbar__menu menu__close" type="button" aria-label="Close menu" data-dialog-close data-figma-node="4929:12498"><img src="/assets/ui/close.svg" alt="" width="14" height="14"></button>
+    </div>
+    <nav class="menu__body" aria-label="Main">
+      <ul class="menu__links">
+        <li><a class="link-footer link-footer-lg" href="/#about">About</a></li>
+        <li><a class="link-footer link-footer-lg" href="/#work">Works</a></li>
+      </ul>
+      <div class="menu__contact">
+        <p class="footer__label">Contact</p>
+        <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+      </div>
+    </nav>
+  </div>
 <script type="module" src="/js/contact-goo.js"></script>
+<script type="module" src="/js/home-phone.js"></script>
 <script src="/js/site.js" defer></script>
 <script src="/js/start-of-week.js" defer></script>
 </body>

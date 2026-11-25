@@ -1,0 +1,14 @@
+G1 FAIL: @320 text left 24 to 24; @320 nav logo at 24; @360 text left 24 to 24; @360 nav logo at 24; @375 text left 24 to 24; @375 nav logo at 24
+G2 FAIL: @320 title 40.8 px, 0.142 of the content width; @320 ink starts at 27.0; @360 title 46.8 px, 0.143 of the content width; @360 ink starts at 28.0; @375 title 49.0 px, 0.143 of the content width; @375 ink starts at 28.0
+G3 FAIL: @320 eyebrows 20px/26px; @320 headings 28px/34px; @390 eyebrows 20px/26px; @390 headings 28px/34px; @430 eyebrows 20px/26px; @430 headings 28px/34px
+G4 FAIL: @320 Introduction bottom 56; @320 Competitive analysis top 56; @320 Competitive analysis bottom 56; @320 The foundation we built on top 56; @320 The foundation we built on bottom 56; @320 Growth Journey top 56
+G5 FAIL: @320 eyebrow to heading 20 (Competitive analysis); @320 heading to next 36 (Competitive analysis); @320 subhead to body 10 (CareerFoundry); @320 subhead to body 10 (Motion); @320 subhead to body 10 (Linear); @320 subhead to body 10 (Learning apps)
+G6 FAIL: @320 Role and Affiliate not on one row; @320 Affiliate -131 from Role; @320 label to value not 16; @320 title to details 40; @320 Focus 78 under the first row; @360 Role and Affiliate not on one row
+G7 FAIL: @320 tagline to text 24; @390 tagline to text 24; @430 tagline to text 24
+G8 FAIL: dot changes under hover: rgb(56, 56, 61) to rgb(144, 144, 157); no pressed state for the dots
+G9 FAIL: .sow__card flashes rgba(51, 181, 229, 0.4); .sow__dot flashes rgba(51, 181, 229, 0.4); .sow__stage flashes rgba(51, 181, 229, 0.4); .navbar a flashes rgba(51, 181, 229, 0.4); .footer a flashes rgba(51, 181, 229, 0.4)
+G10 PASS
+G11 PASS
+G12 PASS
+G13 PASS
+PHONE_FAIL 9 of 13

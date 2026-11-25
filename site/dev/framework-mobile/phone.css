@@ -1,0 +1,76 @@
+/* Framework case study on a phone (under 768), proposal of 23 Nov for Chadwick's yes.
+   Loaded after framework.css by site/dev/framework-mobile/index.html only; on his yes this whole block moves
+   into framework.css after the existing phone rules, unchanged. Every rule sits inside the phone query, so
+   768 and up are untouched (reports/framework-mobile-2026-11-23/check.mjs G12 proves it).
+   Source for each value: Haven's phone (site/haven/haven.css, max-width 767px), measured with the text
+   trimmed to cap top and baseline the same way on both pages (reports/framework-mobile-2026-11-23/
+   haven-trimmed.mjs), the P list in reports/mobile-breakpoint/ISSUES.md. His Figma files have no phone
+   frames of this page that the repo records; the Figma read was refused on 23 Nov (seat limit). */
+@media (max-width: 767.98px) {
+  /* P1: Haven's 16 side margin, on the page and the nav. The footer keeps the site's 24, as on Haven. */
+  .framework .fw, .framework .navbar { --grid-margin: 16px; }
+
+  /* P2: the title, option A (recommended): as large as one line allows, ink on the margin as Haven's
+     (pulled left 0.06 em). "Framework CS" is 5.75 em wide, so 0.172 of the content width fills it.
+     Haven's own 18vw would need two lines here; that is option B on the canvas. */
+  .framework .fw { --display-212: 400 calc((100vw - 2 * var(--grid-margin)) * 0.172)/0.83 var(--font); }
+  .framework .fw .fw-sec > h1 { margin-left: -0.06em; margin-bottom: 0; }
+
+  /* P3 and P4: eyebrow 16, Heading/40 28 on Haven's 1.15 line. */
+  .framework .fw { --heading-40: 500 28px/32.2px var(--font); }
+  .framework .fw .fw-sec > h2.s-heading-20 { font-size: 16px; line-height: 21.12px; }
+
+  /* P5: sections 64 top and 88 bottom; the hero keeps its own top. */
+  .framework .fw .fw-sec { padding-top: 64px; padding-bottom: 88px; }
+  .framework .fw .fw-sec:first-child { padding-top: 0; padding-bottom: 88px; }
+  /* Personalized timeline and Falling behind start with a desktop panel that is hidden under 1160, but the
+     eyebrow after it still took the 24 a sibling gets, so those two sections opened 24 lower than the rest. */
+  .framework .fw .fw-sec > :is(.panel-card, .panel-example, .vrule) + h2 { margin-top: 0; }
+
+  /* P6 to P8: the rhythm, general to particular. Eyebrow to heading 40; heading to what follows 80; a
+     subhead or label to its body 20; Label/12 to its value 16 (Haven's dt to dd); Label/14 C to its subhead 16. */
+  .framework .fw .fw-sec > h2 + :is(.s-heading-40, .s-display-96) { margin-top: 40px; }
+  .framework .fw .fw-sec > :is(.s-heading-40, .s-display-96) + * { margin-top: 80px; }
+  .framework .fw .fw-sec > :is(.s-heading-20:not(h2):not(.fb-effect), .s-label-14-c) + :is(.s-body-16, .s-heading-24) { margin-top: 20px; }
+  .framework .fw .fw-sec > .s-label-14-c + .s-heading-20 { margin-top: 16px; }
+  .framework .fw .fw-sec > .s-label-12 + .s-body-16 { margin-top: 16px; }
+  /* The Rollover effect subhead is a flex row, so its words are not trimmed (cap top 5.55 under the box,
+     baseline 6 over its foot): the margins take that off so it reads like every other subhead. */
+  .framework .fw .fw-sec > .fb-effect { margin-top: 30.45px; }
+  .framework .fw .fw-sec > .fb-effect + .s-body-16 { margin-top: 14px; }
+  /* Rescheduling an Action Item keeps his 32 to its body at every width (framework.css, 20 Nov). */
+  .framework .fw .fw-sec > [data-figma-node="5812:20246"] + [data-figma-node="5812:20247"] { margin-top: 32px; }
+
+  /* P9: the hero details in one wrapping row, as Haven's: Role and Affiliate side by side 32 apart, Focus
+     on the next row 32 under them (it does not fit beside them under 500), label 16 over its value, the
+     title 48 over them. A grid, because label and value are siblings in the markup. */
+  .framework .fw .fw-sec[data-figma-node="5812:16447"] {
+    display: grid; grid-template-columns: max-content max-content minmax(0, 1fr); column-gap: 32px;
+    justify-items: start; align-items: start;
+  }
+  .framework .fw .fw-sec[data-figma-node="5812:16447"] > * { grid-column: 1 / -1; }
+  .framework .fw .fw-sec[data-figma-node="5812:16447"] > .rule { justify-self: stretch; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16456"], [data-figma-node="5812:16459"]) { grid-row: 2; margin-top: 48px; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16457"], [data-figma-node="5812:16460"]) { grid-row: 3; margin-top: 16px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:16462"] { grid-row: 4; margin-top: 32px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:16463"] { grid-row: 5; margin-top: 16px; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16456"], [data-figma-node="5812:16457"]) { grid-column: 1; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16459"], [data-figma-node="5812:16460"]) { grid-column: 2; }
+  .framework .fw .fw-sec > :is([data-figma-node="5812:16462"], [data-figma-node="5812:16463"]) { grid-column: 1 / -1; }
+
+  /* P10: the tagline 32 under the mark (already), the text 40 under the tagline, its paragraphs 40 apart (already). */
+  .framework .fw .fw-sec > [data-figma-node="5812:16466"] + [data-figma-node="5812:16468"] { margin-top: 40px; }
+
+  /* No hover on a phone (his rule, 23 Nov): the carousel dots keep their resting color under a finger, so a
+     tapped dot does not stay lit; a press still darkens it while the finger is down. */
+  .framework .sow__dot:hover { background: var(--neutral-600); }
+  .framework .sow__dot[aria-current="true"]:hover { background: var(--neutral-200); }
+  .framework .sow__dot:active { background: var(--neutral-400); }
+  /* No grey tap flash: the cards move, the dots press and the links have their own pressed state. */
+  .framework :is(a, button, .sow__stage, .sow__card) { -webkit-tap-highlight-color: transparent; }
+}
+@media (min-width: 500px) and (max-width: 767.98px) {
+  /* Focus fits beside Role and Affiliate from 500 (459 of text plus two 32 gaps), so the row holds all three. */
+  .framework .fw .fw-sec > [data-figma-node="5812:16462"] { grid-row: 2; grid-column: 3; margin-top: 48px; }
+  .framework .fw .fw-sec > [data-figma-node="5812:16463"] { grid-row: 3; grid-column: 3; }
+}
