@@ -256,8 +256,7 @@
     .security__a { flex: 501 1 0; }
     .security__b { flex: 464 1 0; }
   }
-  /* F4: inside each insight card the text sits the same distance from the top and the bottom. */
-  .tcard__body { flex: 1; min-height: 0; padding: 24px; display: flex; align-items: center; }
+  /* F4: each insight card hugs its text, 32 top, 24 sides, 34 bottom, as on desktop (his ask 25 Nov). */
   /* F11: a tablet has no hover, so every ending card is shown open, caption visible, in a row that
      swipes sideways. Cards are 410 px apart at full size so the open panels do not overlap. */
   .ending .stage-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; margin-top: 120px; }
