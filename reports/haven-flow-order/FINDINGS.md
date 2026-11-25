@@ -82,3 +82,7 @@ No. Every sentence about the flow is right under the proposed order:
 ## The phone column at his sizes
 
 `site/dev/haven-flow-vertical/` is the flow order proposal with the phone column drawn at his frame's sizes, same motion as desktop moving down the column. Render: `video/haven-flow-phone.mp4` (390 by 844 at 2x, 60 fps). At these sizes the column is 822 px tall and the screen under the 50 px bar is 794 px, so all five steps never fit on one phone screen at once; in the video the top of step 1 sits under the bar so the landing on step 5 shows whole. Shrinking the circles to about 145 px or the gap between rows to 8 px would fit it; that is his call on sizes, not changed here.
+
+## His updated phone design (25 Nov)
+
+The phone frame he updated is "haven update journey mobile" (6445:24415), a second frame beside 6394:30516 that first carried the same name, which is why the first build used the old circles. The new design: a "Flow updates" heading over five rows of number, dotted rule and label chip, Select Confidante as the green chip. Built in `site/dev/haven-flow-mobile/` (from `build-mobile.mjs`), same motion as desktop moving down the list, video in `video/haven-flow-mobile.mp4`. His frame lists 4 Intro chat, 5 Schedule chat, the old order; the build uses the corrected order he approved (4 Schedule chat, 5 Intro chat at the start). The frame labels are shorter than the desktop circles (Select Confidante, Schedule chat), and the heading Flow updates is new copy on the page; both are taken from his frame. Not live: it waits for his yes.

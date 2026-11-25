@@ -1,12 +1,14 @@
 // Renders the phone journey flow to an MP4: 390 by 844 viewport at device scale 2 (780 by 1688 frames),
 // full frame. Each frame is a screenshot after seeking the page's own WAAPI animations, so the video is
 // the page's motion at its true timing (1700 ms timeline at playback rate 0.85, 2 s of wall time).
-// Usage: node reports/haven-flow-order/render-flow.mjs <base url> <path> <out.mp4> [fps]
+// Usage: node reports/haven-flow-order/render-flow.mjs <base url> <path> <out.mp4> [fps] [list top px]
+// list top: where the flow box sits on the screen (default 11, the whole circle column in frame).
 import { chromium } from "playwright";
 import { mkdirSync, rmSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 
-const [base, path, out, fpsArg] = process.argv.slice(2);
+const [base, path, out, fpsArg, topArg] = process.argv.slice(2);
+const TOP = Number(topArg || 11);
 const FPS = Number(fpsArg || 60), RATE = 0.85, DT = 1700;
 const HOLD_START = 0.6, PLAY = DT / RATE / 1000, HOLD_END = 1.2;
 const dir = "/tmp/claude-0/flow-frames";
@@ -17,8 +19,8 @@ const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceSc
 const p = await ctx.newPage();
 await p.goto(base + path, { waitUntil: "load" });
 await p.evaluate(() => document.fonts.ready);
-// Put the column in frame: its top 11 px below the top of the screen, so all 822 px fit.
-await p.evaluate(() => { const r = document.getElementById("flow-map").getBoundingClientRect(); window.scrollTo(0, scrollY + r.top - 11); });
+// Put the flow box TOP px below the top of the screen.
+await p.evaluate((top) => { const r = document.querySelector("#flow-map .flow__box").getBoundingClientRect(); window.scrollTo(0, scrollY + r.top - top); }, TOP);
 // Let the page reveal the row and start the flow, then take the clock away from it.
 await p.waitForFunction(() => document.getElementById("flow-map").dataset.bumpDone === "true", null, { timeout: 15000 });
 const n = await p.evaluate(() => {
