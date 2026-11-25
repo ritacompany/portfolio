@@ -1,6 +1,6 @@
 # Fix: the independent checker ran in a session with no repositories and talked as if it knew CS3
 
-Status: not verified
+Status: verified (restructure); hook not installed
 
 ## Evidence
 Bad output: the checker session for the second reference pass had no repository attached (its session record lists no sources). It still ranked pages "by closeness to the model page", offered to re-rate them against the case study, told Chadwick it had attached the portfolio repo, then in the next reply confirmed it had not opened or attached it.
@@ -42,8 +42,8 @@ Fresh run: the relevance checker launched 25 Nov from the main session, inside t
 Before: a ranking with no CS3 file read.
 After: the relevance checker's report opens by naming outline-2/MATERIAL.md, NUMBERS.md and STRATEGY.md with what each says (N9 596 to 0, N17 about 31 a build with no after), and rates every page for a CS3 section.
 Check result after: PASS. All three named files exist in /home/user/portfolio/reference/design-system-cs/, and the figures it cites match NUMBERS.md.
-Second case: the third search pass, launched the same way, must also name the CS3 files it read.
+Second case: the third search pass, launched the same way, named MATERIAL.md, NUMBERS.md and the archived model page as read first and rated all 33 new pages for a CS3 section. PASS.
 Enforcement test: n/a until the hook is approved.
 
 ## Report
-Unverified: the fresh run has not returned yet. Without the hook, the restructure holds only while the main session does the dispatching; a future brief could repeat cause 2. Chadwick decides whether to install the hook.
+Unverified: without the hook, the restructure holds only while the main session does the dispatching; a future brief could repeat cause 2. Chadwick decides whether to install the hook.
