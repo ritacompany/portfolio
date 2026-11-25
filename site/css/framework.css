@@ -7,10 +7,10 @@
    the title down to 164. Framework only: Home and Haven frames still carry the old navbar. */
 .framework { --navbar-top: 19px; }
 .fw { padding-top: 164px; }
-.fw-sec { position: relative; box-shadow: inset 0 -1px 0 var(--neutral-800); }
+.fw-sec { position: relative; box-shadow: inset 0 -1px 0 var(--neutral-700); }
 .fw-sec > * { position: absolute; }
 .fig { display: block; max-width: none; }
-.rule { left: 0; right: 0; height: 1px; background: var(--neutral-800); }
+.rule { left: 0; right: 0; height: 1px; background: var(--neutral-700); }
 
 /* Text: trimmed to cap height and baseline like Figma, so top is the cap top. */
 .t { text-box: trim-both cap alphabetic; }
