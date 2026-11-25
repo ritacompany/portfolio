@@ -257,6 +257,26 @@
   .work-card .work-card__more:hover:not(.is-pressed):not(:active) { background: none; color: var(--neutral-100); }
 }
 
+/* Tablet, 768 to 1199: his phone pattern on the side by side cards (his ask, 23 Nov; no tablet frame exists).
+   The name line stays above the image; the description leaves the head and sits under the image at the left,
+   with Learn more at the right of the same line, both 20 under the image. They stay more than 24 px apart (the
+   24.02 px column gap); at 24 or less the button wraps under the description, 20 below it, at the right edge.
+   The images still end on one line (his call, 13 Nov): the cards start together and Haven's name line is pushed
+   down by the height Mondai's image has over Haven's (575.28 against 443 at Figma widths, as a share of the
+   card width, so it holds at every width). */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .works__cards { align-items: flex-start; }
+  .work-card, .work-card-haven { flex-direction: row; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; justify-content: flex-start; column-gap: 24.02px; row-gap: 0; } /* just over 24: at 24 or less it wraps */
+  .work-card__head { display: contents; }
+  .work-card__name { order: 1; flex: none; }
+  /* The name line keeps its 11.06 spacing inside the 24.02 card gap. */
+  .work-card__slashes, .work-card__kind { order: 2; flex: none; align-self: center; margin-left: -12.96px; }
+  .work-card-haven .work-card__name { margin-top: calc(100% * 132.28 / 443); }
+  .works .work-card__media { order: 3; flex: 0 0 100%; margin-top: 15.71px; }
+  .work-card__desc { order: 4; flex: none; position: static; margin: 20px 0 0; white-space: nowrap; }
+  .work-card .work-card__more { order: 5; flex: none; margin: 20px 0 0 auto; }
+}
+
 /* Phone, under 768: his Mobile frames (Portfolio Design, VC, 4929:12379, 10 Nov), drawn at 402 by 874.
    They replace the collapsed desktop layout that was here. */
 @media (max-width: 767.98px) {
