@@ -86,3 +86,7 @@ No. Every sentence about the flow is right under the proposed order:
 ## His updated phone design (25 Nov)
 
 The phone frame he updated is "haven update journey mobile" (6445:24415), a second frame beside 6394:30516 that first carried the same name, which is why the first build used the old circles. The new design: a "Flow updates" heading over five rows of number, dotted rule and label chip, Select Confidante as the green chip. Built in `site/dev/haven-flow-mobile/` (from `build-mobile.mjs`), same motion as desktop moving down the list, video in `video/haven-flow-mobile.mp4`. His frame lists 4 Intro chat, 5 Schedule chat, the old order; the build uses the corrected order he approved (4 Schedule chat, 5 Intro chat at the start). The frame labels are shorter than the desktop circles (Select Confidante, Schedule chat), and the heading Flow updates is new copy on the page; both are taken from his frame. Not live: it waits for his yes.
+
+## Open for the final animation review
+
+His note, 25 Nov: the phone list is fine for now; the scroll timing needs checking in the final animation review. Today it uses the desktop trigger: the slide starts 450 ms after the list's top passes 80% up the screen, and replays after the list leaves below. The phone list is 281 px tall against the desktop row's 177 px, so whether it starts too early or late on a phone is the question to settle there.
