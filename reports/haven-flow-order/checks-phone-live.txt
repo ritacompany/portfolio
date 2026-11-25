@@ -1,0 +1,31 @@
+@320 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@320 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@320 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@320 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@320 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@320 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@360 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@360 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@360 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@360 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@360 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@360 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@375 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@375 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@375 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@375 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@375 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@375 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@390 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@390 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@390 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@390 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@390 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@390 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@430 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@430 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@430 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@430 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@430 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@430 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+30 finding(s)

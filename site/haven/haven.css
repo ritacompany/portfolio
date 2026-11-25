@@ -560,3 +560,23 @@ main { --g: calc(min(100cqw, 1920px) / 1440); --m: calc(40 * var(--g)); }
 .site-nav:not(.is-on-light) .link-nav:is(:hover, :active, .is-hover, .is-pressed) { color: var(--neutral-050); }
 .site-nav .navbar__logo img { transition: filter 0.3s ease; }
 .site-nav.is-on-light .navbar__logo img { filter: invert(1); }
+
+/* Phone journey flow (his yes, 25 Nov) from his Figma frame "haven update journey mobile" (6445:24415), read 25 Nov.
+   Only the vertical layout (under 768, where haven.js turns the flow vertical) changes.
+   Heading: Flow updates, 20 px bold, cap trimmed, 48 below the copy, 34 above the list.
+   Rows 62 apart: number 16 px medium n300 at x 0, a 1 px dashed rule, 3 on 3 off (haven-neutral-550), from x 22 to 80,
+   a chip at x 92: n800, radius 4, padding 9 8 12, label 16 px medium n050 cap trimmed.
+   The key chip is the flow green with a bold n900 label. The frame sets labels in Inter; the page keeps Satoshi.
+   The list sits at x 24 on a 390 screen, as in the frame. */
+.flow__label { display: none; }
+.flow.is-vertical { flex-direction: column; align-items: flex-start; justify-content: flex-start; height: auto; padding-left: calc(24px - var(--flow-inset, 16px)); }
+.flow.is-vertical .flow__label { display: block; margin: 0 0 34px; font-size: 20px; line-height: 1.16; font-weight: 700; color: var(--n050); text-box: trim-both cap alphabetic; }
+.flow.is-vertical .flow__box { width: 347px; max-width: 100%; height: 281px; margin: 0; aspect-ratio: auto; }
+.flow.is-vertical .flow__stage { width: 347px; height: 281px; }
+.flow.is-vertical .flow__step { left: 92px; top: 0; width: auto; height: auto; padding: 9px 8px 12px; border: 0; border-radius: 4px; background: var(--n800); display: flex; align-items: center; justify-content: flex-start; }
+.flow.is-vertical .flow__step span { display: none; }
+.flow.is-vertical .flow__step::before { content: attr(data-phone); font-size: 16px; line-height: 1.16; font-weight: 500; color: var(--n050); white-space: nowrap; text-box: trim-both cap alphabetic; }
+.flow.is-vertical .flow__step-key { background: var(--flow-key); }
+.flow.is-vertical .flow__step-key::before { color: var(--n900); font-weight: 700; }
+.flow.is-vertical .flow__num { left: 0; width: auto; font-size: 16px; line-height: 1.16; font-weight: 500; color: var(--n300); text-align: left; text-box: trim-both cap alphabetic; transform: translateY(-50%); }
+.flow.is-vertical .flow__num::after { content: ""; position: absolute; left: 22px; top: 50%; width: 58px; height: 1px; background: repeating-linear-gradient(90deg, var(--haven-neutral-550) 0 3px, transparent 3px 6px); }

@@ -1,0 +1,11 @@
+site check OK (13 page(s))
+RESPONSIVE_FIT_OK 5 page widths
+RESPONSIVE_OVERLAP_OK 5 page widths
+RESPONSIVE_HEALTH_OK 5 page widths
+RESPONSIVE_SIZE_OK 5 page widths
+HOVER_STILL_OK 50 hovers
+@430 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@430 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+30 finding(s)
+
+[exited with code 0]
