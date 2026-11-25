@@ -94,7 +94,7 @@
       stage.appendChild(n); nums.push(n);
     }
     var sel = by.select, box = stage.parentNode;
-    var start = { quiz: 0, review: 1, select: 2, intro: 3, schedule: 4 };
+    var start = { quiz: 0, review: 1, select: 2, schedule: 3, intro: 4 };
     var vertical = null, anims = [], started = false, timer = null, played = false;
 
     function X(slot, s) {
@@ -106,7 +106,7 @@
     function slide(el, from, t, dur) {
       A(el, [{ offset: 0, transform: X(from) }, { offset: at(t), transform: X(from), easing: IO }, { offset: at(t + dur), transform: X(from - 1) }, { offset: 1, transform: X(from - 1) }]);
     }
-    function endState() { sel.style.transform = X(4); by.intro.style.transform = X(2); by.schedule.style.transform = X(3); }
+    function endState() { sel.style.transform = X(4); by.schedule.style.transform = X(2); by.intro.style.transform = X(3); }
     function build() {
       anims.forEach(function (a) { a.cancel(); }); anims = [];
       map.classList.toggle("is-vertical", vertical);
@@ -118,8 +118,8 @@
       if (!motion || !stage.animate) { endState(); return; }
       A(sel, [{ offset: 0, transform: X(2), easing: OUT }, { offset: at(224), transform: X(2, 1.06), easing: IO }, { offset: at(1184), transform: X(4, 1.06), easing: OUT }, { offset: at(R), transform: X(4) },
         { offset: at(R + 20), transform: X(4), easing: OUT }, { offset: at(R + 130), transform: X(4, 1.06), easing: OUT }, { offset: at(R + 280), transform: X(4) }, { offset: 1, transform: X(4) }]);
-      slide(by.intro, 3, 300, 560);
-      slide(by.schedule, 4, 360, 560);
+      slide(by.schedule, 3, 300, 560);
+      slide(by.intro, 4, 360, 560);
       // A flow that already played stays at its end while the layout changes
       if (played) anims.forEach(function (a) { a.currentTime = DT; });
     }

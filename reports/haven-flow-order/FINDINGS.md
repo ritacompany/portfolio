@@ -16,6 +16,10 @@ Proposed order:
 
 The slide is unchanged: Select a Confidante still moves from slot 3 to slot 5 and the two chat steps still move one slot left. No case study copy changes; the copy is already right.
 
+## Applied
+
+25 Nov, on his yes: the order and aria-label are changed on the live page (site/haven/index.html and haven.js) and in reference/haven/final-copy.md. The phone sizes from his frame are not applied; they stay in site/dev/haven-flow-vertical.
+
 ## What each source says
 
 ### Figma file 5RO0m4bYYrTvbiaOgaU3tI, page CS, frame Transported Haven CS (5812:21569)

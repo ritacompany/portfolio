@@ -10,7 +10,7 @@ Scope: find the true order of the Confidante selection flow from primary sources
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=566f4cad3627/16 entries; EXPECT=matched; output-sha256=86c5cd3588c485b45149140e08ae3dd8c66c2bc257e2bb00c34161f47c128e56; output-bytes=1053
 
 - [x] G2: the same checker fails on the live page against the corrected order (positive control that it can fail)
-  CHECK: node -e "const r=require('child_process').spawnSync('node',['reports/haven-flow-order/check-flow.mjs','http://127.0.0.1:4400','/haven/','quiz,review,select,schedule,intro','quiz,review,schedule,intro,select'],{encoding:'utf8'});process.stdout.write(r.status!==0&&/FLOW_ORDER_FAIL/.test(r.stdout)?'CONTROL_FAILS_OK\n':'CONTROL_DID_NOT_FAIL\n');process.exit(r.status!==0?0:1)"
+  CHECK: node -e "const r=require('child_process').spawnSync('node',['reports/haven-flow-order/check-flow.mjs','http://127.0.0.1:4400','/haven/','quiz,review,select,intro,schedule','quiz,review,intro,schedule,select'],{encoding:'utf8'});process.stdout.write(r.status!==0&&/FLOW_ORDER_FAIL/.test(r.stdout)?'CONTROL_FAILS_OK\n':'CONTROL_DID_NOT_FAIL\n');process.exit(r.status!==0?0:1)"
   EXPECT: CONTROL_FAILS_OK
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=566f4cad3627/16 entries; EXPECT=matched; output-sha256=0081174e95403bb072fb6f2f2023c046c2aaeb13074cb7e6843857edeb4bf145; output-bytes=17
 
@@ -37,8 +37,13 @@ Scope: find the true order of the Confidante selection flow from primary sources
 - [x] G7: phone audit on the live page has no more findings than before (30, checks-before.txt) and none about the flow
   EVIDENCE: 25 Nov, audit.mjs on the live page: 30 findings before and after (checks-before.txt, checks-after.txt), all 14 px card body text at 320 to 430, none on the flow. The live page is unchanged until his yes; the audit only serves /haven/, so the dev proposals are covered by G1, G9 and check-site instead.
 
-- [ ] G8: he was asked with a [site change] card showing before and after; site/haven is changed only after his yes
-  EVIDENCE: pending
+- [x] G8: he was asked with a [site change] card showing before and after; site/haven is changed only after his yes
+  EVIDENCE: 25 Nov, he wrote "yes fic" then "fix"; the site hook did not count the mid-turn message, so a second [site change] card was asked and he answered "Yes, change the order (Recommended)". Applied to site/haven/index.html, site/haven/haven.js and reference/haven/final-copy.md after that answer. Live page then: FLOW_ORDER_OK with the corrected order, check-site, responsive, hover all OK, phone audit identical (checks-applied.txt).
+
+- [x] G11: the live page now draws the corrected order at every width
+  CHECK: node reports/haven-flow-order/check-flow.mjs http://127.0.0.1:4400 /haven/ quiz,review,select,schedule,intro quiz,review,schedule,intro,select "Revised flow: identity quiz, review matches, schedule a chat, intro chat, select a Confidante"
+  EXPECT: FLOW_ORDER_OK
+  EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=ab46ed77fd57/16 entries; EXPECT=matched; output-sha256=86c5cd3588c485b45149140e08ae3dd8c66c2bc257e2bb00c34161f47c128e56; output-bytes=1053
 
 - [x] G9: the vertical proposal at his Figma sizes draws the corrected orders and lands Select on slot 5 at every width
   CHECK: node reports/haven-flow-order/check-flow.mjs http://127.0.0.1:4400 /dev/haven-flow-vertical/ quiz,review,select,schedule,intro quiz,review,schedule,intro,select "Revised flow: identity quiz, review matches, schedule a chat, intro chat, select a Confidante"
