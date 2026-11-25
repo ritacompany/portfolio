@@ -2,6 +2,10 @@
 
 Read only audit. Every line below was checked against the branches on GitHub on 25 Nov (tips, ancestry and test merges in a scratch worktree), not taken from TRACKER.md, LEDGER.md or NEXT.md. Nothing under `site/`, in Figma or in any PR was changed.
 
+## Update, later on 25 Nov
+
+Step 1 of Next is done. The PR review session merged #49 and #50 into `claude/haven-mobile`, then #44, #42, #43, #45 and #46 into `claude/sharp-turing-jy21r2` (checked: every one of those branches is now inside `sharp-turing`). `sharp-turing` is still not on `main`. Its checks fail only on the image check: 6 soft pictures (the Mondai card phone and laptop on home at 390, the framework timeline and right rail at 390 to 1024) and 2 Haven pictures over 500 KB (`program-texture-3x.webp` 591 KB, `profile-background.webp` 568 KB). The site check and the responsive check pass. Next is now steps 2 and 3 below.
+
 ## The short version
 
 Almost everything built since 16 Nov sits on a stack of unmerged branches. `main` has only the site cursor (PR #34), the Haven tablet ending, the taste audit and the hero illustration work. The site is not live. The stack merges together cleanly today, so the next job is to fold it up and land it on `main`.
