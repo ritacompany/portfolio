@@ -318,29 +318,39 @@
   /* Figma nudges single letters on top of the word's tracking. */
   .hero__vertical > span { margin-inline-end: var(--t, 0em); }
 
-  /* Selected works, 4928:12018. Title at Heading/40, centered, 96 from the top of the section; cards
-     stack 40 apart. Each card: name, the kind under it (Mondai), the image at 404 by 266 proportions,
-     then the description and Learn more (his Small button, 23 Nov) on one row. The phone images are their own crops. */
+  /* Selected works on the phone: his "Works" frame, 6437:24298 (Mobile frames, page CS, file 5RO0m4bY), 24 Nov.
+     Title at Heading/40, centered, 96 from the top of the section; cards 40 apart (his new frame; it was 64 at
+     his call on 16 Nov). Each card: a title block (name, then a label in Label/12 C Bold, Neutral/550: Mondai's
+     kind, Haven's description) with Learn more beside it at the right edge, then the image 20 below. The phone
+     images are their own crops. */
   .works { padding: 96px 0 188px; box-shadow: none; }
   .works__title { font: var(--heading-40); letter-spacing: var(--heading-40-track); color: var(--neutral-050); }
   /* Visually hidden from 768 up (his newest desktop frame drops it); shown here, as his Mobile frames draw it. */
   .works__title.visually-hidden { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: nowrap; }
-  /* His call, 16 Nov: the cards 64 apart, more than the frame's 40 (the About and menu rhythm). */
-  .works__cards { flex-direction: column; gap: 64px; margin-top: 62px; }
+  .works__cards { flex-direction: column; gap: 40px; margin-top: 62px; }
   .work-card-mondai, .work-card-haven { width: 100%; }
-  /* The card is one wrapping flex row: name, label and image each take a full line; the description and Learn
-     more share the last line. They stay more than 24 px apart (the 24.02 px column gap); at 24 or less the
-     button wraps to its own line under the description, 20 below it, at the right edge (his ask, 23 Nov).
-     The description never wraps itself, so the button is what moves. */
-  .work-card { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; column-gap: 24.02px; row-gap: 0; } /* just over 24: at 24 or less it wraps */
-  .work-card__head { display: contents; }
-  .work-card__name { order: 1; flex: 0 0 100%; color: var(--neutral-200); }
+  /* The card is one wrapping flex row (his ask: set to auto, 24 Nov): the title block and Learn more share the
+     first line, bottoms aligned, as far apart as the card allows. They always stay more than 24 px apart (the
+     24.02 px column gap); at 24 or less Learn more drops to its own line under the title block, at the right
+     edge. Lines are 20 apart, so the image is 20 under whichever comes last. The title never wraps itself. */
+  .work-card { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: flex-end; column-gap: 24.02px; row-gap: 20px; }
+  .work-card__head { order: 1; flex: none; position: static; display: flex; flex-direction: column; align-items: flex-start; gap: 11.06px; height: auto; }
+  .work-card__name { color: var(--neutral-200); }
   .work-card__slashes { display: none; }
-  .work-card__kind { order: 2; flex: 0 0 100%; margin-top: 11.06px; color: var(--neutral-550); font-weight: 700; }
-  .works .work-card__media { order: 3; flex: 0 0 100%; margin-top: 20px; margin-bottom: 0; aspect-ratio: 404 / 266.324; }
-  .work-card__desc { order: 4; flex: none; position: static; margin: 20px 0 0; white-space: nowrap; font-size: var(--card-desc-size); color: var(--neutral-200); } /* phone frame keeps Neutral/200 */
-  /* Top aligned with the description, both 20 under the image (his 23 Nov frame); wrapped, 20 under the description. */
-  .work-card .work-card__more { order: 5; flex: none; margin: 20px 0 0 auto; }
+  .work-card__kind, .work-card-haven .work-card__desc { margin: 0; font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; font-weight: 700; color: var(--neutral-550); white-space: nowrap; }
+  .work-card-haven .work-card__desc { position: static; }
+  .work-card-mondai .work-card__desc { display: none; } /* not in his Works frame */
+  .work-card .work-card__more { order: 2; flex: none; margin: 0 0 0 auto; }
+  /* Both cards stacked together (js/home-motion.js adds .is-stacked once either card has 24 px or less between its
+     title and Learn more, his call 24 Nov): the title takes its own line and the button sits under it, left aligned,
+     20 below. Without the script each card still wraps on its own. */
+  .works__cards.is-stacked .work-card__head { flex-basis: 100%; }
+  .works__cards.is-stacked .work-card .work-card__more { margin-left: 0; }
+  .works .work-card__media { order: 3; flex: 0 0 100%; margin: 0; aspect-ratio: 404 / 266.324; }
+  /* Learn more is his new Small button (6437:24294): a 2 px Neutral/200 outline and Neutral/200 text, 130 by 32.
+     No hover look on the phone; the press fill stays (.is-pressed or :active, components.css). */
+  .work-card .work-card__more:not(.is-pressed):not(:active) { border-width: 2px; border-color: var(--neutral-200); background: none; color: var(--neutral-200); }
+  .work-card .work-card__more:is(.is-pressed, :active) { border-width: 2px; }
   .work-card__desk-art, .work-card__media .button-sm { display: none; }
   .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; }
   .work-card__phone-art img { position: absolute; max-width: none; transition: transform 900ms var(--ease-expo-out); }

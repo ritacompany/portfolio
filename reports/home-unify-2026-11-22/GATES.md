@@ -67,7 +67,7 @@ Scope: this branch holds the working branch, main and PR 40 as one Home; the app
 - [x] G11: He has a phone link to the Home page built from this branch.
   EVIDENCE: preview built with node scripts/build-preview.mjs site <scratchpad>/preview (HOVER_STILL_OK 50 hovers, 179 files) and published 22 Nov as https://claude.ai/artifact/MCp5KFuB72Z5UriV23LkEf version 1, version 2 with the touch Learn more (HOVER_STILL_OK 49 hovers); the old preview link McviYhengPB92skSvB2YEu is not readable from this account
 
-- [x] G12: On touch screens each work card shows Learn more: at phone widths (360, 390) it is his Small button on the card's right edge 20 under the image, card text visible, pressing fills it Neutral/300 around a fixed centre and the fill does not stick; at tablet widths (834, 1180) it is present; with a mouse at 1440 it is hidden.
+- [ ] G12: On touch screens each work card shows Learn more: at phone widths (360, 390) it is his new Small button (6437:24294, 2 px Neutral/200 outline) on the card's right edge, card text visible, pressing fills it Neutral/300 around a fixed centre and the fill does not stick; at tablet widths (834, 1180) it is present; with a mouse at 1440 it is hidden.
   CHECK: node reports/home-unify-2026-11-22/check.mjs touch
   EXPECT: TOUCH_LINK_OK
   CWD: ../..
@@ -79,7 +79,7 @@ Scope: this branch holds the working branch, main and PR 40 as one Home; the app
   CWD: ../..
   EVIDENCE: exit=0; shell=/bin/sh; cwd=/home/user/portfolio; path=3c3b0f9869f1/16 entries; EXPECT=matched; output-sha256=60d46c68e44a188727ddb9be000c38f37cc5c9b0895d70ca7feb28585d2fa4f3; output-bytes=137
 
-- [x] G14: At every phone width from 320 to 767 the button shares the description's line only while more than 24 px from it, and drops under the description only when one line could not keep that; both 20 under the image on one line.
+- [ ] G14: His Works frame (6437:24298, 24 Nov) at every phone width from 320 to 767: the title block on the left edge and Learn more on the right edge share the first line while both cards keep more than 24 px between them; once either card has 24 px or less, both buttons drop 20 under their titles, left aligned (his call, 24 Nov); the image sits 20 under the last line.
   CHECK: node reports/home-unify-2026-11-22/check.mjs wrap
   EXPECT: WRAP_OK
   CWD: ../..

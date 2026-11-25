@@ -165,7 +165,7 @@ else if (mode === "touch") {
   const read = (pg) => pg.evaluate(() => [...document.querySelectorAll(".work-card")].map((c) => {
     const l = c.querySelector(".work-card__more"), cs = getComputedStyle(l), r = l.getBoundingClientRect(), m = c.querySelector(".work-card__media").getBoundingClientRect(), card = c.getBoundingClientRect();
     return { card: c.classList[1], disp: cs.display, fs: cs.fontSize, tt: cs.textTransform, fw: cs.fontWeight, border: cs.borderTopWidth, text: l.textContent.trim(),
-      bg: cs.backgroundColor, cx: r.x + r.width / 2, cy: r.y + r.height / 2, right: r.right, cardRight: card.right, below: r.top - m.bottom,
+      bg: cs.backgroundColor, cx: r.x + r.width / 2, cy: r.y + r.height / 2, right: r.right, left: r.left, cardLeft: card.left, cardRight: card.right, stacked: !!c.closest(".is-stacked"), below: r.top - m.bottom,
       hidden: [...c.querySelectorAll(".work-card__head > *")].filter((e) => getComputedStyle(e).display !== "none" && getComputedStyle(e).opacity !== "1").map((e) => e.textContent.trim()) };
   }));
   try {
@@ -177,8 +177,9 @@ else if (mode === "touch") {
       for (const r of rest) {
         must(r.disp !== "none" && r.text.toLowerCase() === "learn more", `${w}: ${r.card} has no Learn more on touch`);
         if (!phone) continue;
-        must(r.fs === "16px" && r.fw === "700" && r.tt === "uppercase" && r.border === "3px", `${w}: ${r.card} Learn more is not his Small button: ${r.fs} ${r.fw} ${r.tt} ${r.border}`);
-        must(Math.abs(r.right - r.cardRight) < 1, `${w}: ${r.card} Learn more not on the card's right edge (${r.right} vs ${r.cardRight})`);
+        must(r.fs === "16px" && r.fw === "700" && r.tt === "uppercase" && r.border === "2px", `${w}: ${r.card} Learn more is not his new Small button: ${r.fs} ${r.fw} ${r.tt} ${r.border}`);
+        // On the title line it sits on the right edge; dropped under the title (both cards, his call 24 Nov) on the left edge.
+        must(r.stacked ? Math.abs(r.left - r.cardLeft) < 1 : Math.abs(r.right - r.cardRight) < 1, `${w}: ${r.card} Learn more not on the ${r.stacked ? "left" : "right"} edge`);
         must(r.bg === "rgba(0, 0, 0, 0)", `${w}: ${r.card} Learn more filled at rest`);
       }
       if (phone) for (let i = 0; i < rest.length; i++) {
@@ -198,7 +199,7 @@ else if (mode === "touch") {
         must(Math.abs(pressed.cx - before.cx) < 0.05 && Math.abs(pressed.cy - before.cy) < 0.05, `${w}: ${pressed.card} Learn more moved off its centre on press`);
         must(after.bg === "rgba(0, 0, 0, 0)", `${w}: ${after.card} fill stuck on after the press: ${after.bg}`);
       }
-      notes.push(`${w}: ${phone ? rest.map((r) => `${r.card.replace("work-card-", "")} ${r.below.toFixed(0)} under image`).join(", ") : "present"}`);
+      notes.push(`${w}: ${phone ? rest.map((r) => `${r.card.replace("work-card-", "")} on the title line or below it`).join(", ") : "present"}`);
       await ctx.close();
     }
     const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
@@ -274,9 +275,12 @@ else if (mode === "mouse") {
 }
 
 else if (mode === "wrap") {
-  // His ask, 23 Nov: on the phone, Learn more is his Small button on the description's line, and it drops below the
-  // description once the two would be 24 px or less apart. Checked at every phone width from 320 to 767 in 1 px
-  // steps on touch: on one line the gap is over 24; wrapped, it only wraps when one line could not keep over 24.
+  // His "Works" frame, 24 Nov (6437:24298): on the phone each card's title block (name and label) and Learn more
+  // share the first line, bottoms aligned, title on the left edge, button on the right edge, image 20 below.
+  // His ask: set them to auto and drop the button below the title once they come 24 px or less apart; both cards
+  // together, left aligned under the title (24 Nov). Checked at
+  // every phone width from 320 to 767 in 1 px steps on touch: on one line the gap is over 24; wrapped, it only
+  // wraps when one line could not keep over 24, and the button sits 20 under the title.
   const { chromium } = createRequire(import.meta.url)("playwright");
   const site = join(ROOT, "site");
   const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".webp": "image/webp", ".png": "image/png", ".woff2": "font/woff2" };
@@ -295,30 +299,39 @@ else if (mode === "wrap") {
   const flips = {};
   let rows = 0, wraps = 0;
   try {
-    // The look once: his Small button.
+    // The look once: his new Small button 6437:24294, a 2 px Neutral/200 outline, 130 by 32.
     const look = await pg.evaluate(() => { const b = document.querySelector(".work-card-mondai .work-card__more"), cs = getComputedStyle(b), r = b.getBoundingClientRect();
-      return { fs: cs.fontSize, fw: cs.fontWeight, tt: cs.textTransform, border: cs.borderTopWidth, radius: cs.borderTopLeftRadius, w: r.width, h: r.height }; });
-    must(look.fs === "16px" && look.fw === "700" && look.tt === "uppercase" && look.border === "3px" && Math.abs(look.w - 129.5) < 2 && Math.abs(look.h - 33.7) < 2,
-      `Learn more is not his Small button: ${JSON.stringify(look)}`);
+      return { fs: cs.fontSize, fw: cs.fontWeight, tt: cs.textTransform, border: cs.borderTopWidth, bc: cs.borderTopColor, c: cs.color, w: r.width, h: r.height }; });
+    must(look.fs === "16px" && look.fw === "700" && look.tt === "uppercase" && look.border === "2px" && look.bc === "rgb(222, 222, 229)" && look.c === "rgb(222, 222, 229)"
+      && Math.abs(look.w - 130) < 3 && Math.abs(look.h - 31.7) < 2, `Learn more is not his new Small button (130 by 32 in Figma; the browser sets the text 2.5 narrower): ${JSON.stringify(look)}`);
     for (let w = 320; w <= 767; w++) {
       await pg.setViewportSize({ width: w, height: 874 });
+      // The page restacks from a ResizeObserver, which runs at the next frame: wait for it before measuring.
+      await pg.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
       const cards = await pg.evaluate(() => [...document.querySelectorAll(".work-card")].map((c) => {
-        const d = c.querySelector(".work-card__desc").getBoundingClientRect(), m = c.querySelector(".work-card__more").getBoundingClientRect(), cr = c.getBoundingClientRect(), img = c.querySelector(".work-card__media").getBoundingClientRect();
-        return { card: c.classList[1].replace("work-card-", ""), dl: d.left, dr: d.right, dt: d.top, db: d.bottom, ml: m.left, mr: m.right, mt: m.top, cl: cr.left, cr: cr.right, imgB: img.bottom };
+        const h = c.querySelector(".work-card__head").getBoundingClientRect(), m = c.querySelector(".work-card__more").getBoundingClientRect(), cr = c.getBoundingClientRect(), img = c.querySelector(".work-card__media").getBoundingClientRect();
+        const vis = [...c.querySelectorAll(".work-card__head > *")].filter((e) => getComputedStyle(e).display !== "none");
+        const tw = Math.max(...vis.map((e) => e.getBoundingClientRect().width));
+        return { card: c.classList[1].replace("work-card-", ""), hl: h.left, hr: h.left + tw, ht: h.top, hb: h.bottom, ml: m.left, mr: m.right, mt: m.top, mb: m.bottom, cl: cr.left, cr: cr.right, imgT: img.top };
       }));
-      for (const k of cards) {
-        const sameLine = Math.abs(k.mt - k.dt) < 3 && k.ml > k.dr;
-        must(Math.abs(k.mr - k.cr) < 1, `${w}: ${k.card} Learn more off the right edge (${k.mr} vs ${k.cr})`);
-        must(Math.abs(k.dl - k.cl) < 1, `${w}: ${k.card} description not on the left edge (${k.dl} vs ${k.cl})`);
+      // His call, 24 Nov: both cards drop together once either card has 24 px or less, and a dropped button sits
+      // under the title, left aligned.
+      const rooms = cards.map((k) => (k.cr - k.cl) - (k.hr - k.hl) - (k.mr - k.ml));
+      const tight = rooms.some((r) => r <= 24);
+      for (const [i, k] of cards.entries()) {
+        const sameLine = Math.abs(k.mb - k.hb) < 1.5 && k.ml > k.hr;
+        must(Math.abs(k.hl - k.cl) < 1, `${w}: ${k.card} title not on the left edge (${k.hl} vs ${k.cl})`);
+        must(sameLine === !tight, `${w}: ${k.card} is ${sameLine ? "on the line" : "dropped"} though the tightest card has ${Math.min(...rooms).toFixed(1)} px`);
         if (sameLine) {
           rows++;
-          must(k.ml - k.dr > 24, `${w}: ${k.card} button only ${(k.ml - k.dr).toFixed(1)} from the description on one line`);
-          must(Math.abs(k.dt - k.imgB - 20) < 1.5 && Math.abs(k.mt - k.imgB - 20) < 1.5, `${w}: ${k.card} description or button not 20 under the image`);
+          must(Math.abs(k.mr - k.cr) < 1, `${w}: ${k.card} Learn more off the right edge (${k.mr} vs ${k.cr})`);
+          must(k.ml - k.hr > 24, `${w}: ${k.card} button only ${(k.ml - k.hr).toFixed(1)} from the title on one line`);
+          must(Math.abs(k.imgT - Math.max(k.hb, k.mb) - 20) < 1.5, `${w}: ${k.card} image not 20 under the title line`);
         } else {
           wraps++;
-          const room = (k.cr - k.cl) - (k.dr - k.dl) - (k.mr - k.ml);
-          must(room <= 24.5, `${w}: ${k.card} wrapped though one line had ${room.toFixed(1)} px between them`);
-          must(k.mt >= k.db + 19, `${w}: ${k.card} wrapped button not under the description`);
+          must(Math.abs(k.ml - k.cl) < 1, `${w}: ${k.card} dropped button not left aligned (${k.ml} vs ${k.cl})`);
+          must(Math.abs(k.mt - k.hb - 20) < 1.5, `${w}: ${k.card} dropped button not 20 under the title`);
+          must(Math.abs(k.imgT - k.mb - 20) < 1.5, `${w}: ${k.card} image not 20 under the dropped button`);
         }
         const state = sameLine ? "row" : "wrap";
         if (!flips[k.card]) flips[k.card] = { last: state, at: [] };
