@@ -6,7 +6,7 @@
 - Plugs are on the top of the box toward the back (option B), spread out evenly.
 - The spring is narrow and hugs the cables.
 - Nothing extra gets added to the tube.
-- Current drawing: `v4-top-annotated.svg` (rendered as `v5-top-annotated.png`), built by `build.py` with STYLE "top".
+- Old drawing: `v4-top-annotated.svg` (rendered as `v5-top-annotated.png`), built by `build.py` with STYLE "top". Superseded by build_v6.py on 25 Nov; it still has the placeholder flowers.
 - Checks: `GATES.md`, run with `check_round.py` and `check_cables.py`. Cable containment must pass on every change.
 
 ## Flowers (picked 18 Nov, not yet in the drawing)
@@ -40,7 +40,7 @@
 - Sheets that worked for him: one question per page section, a photo per option, the pick stated once.
 
 ## Next
-- Build the flowers into `build.py` in place of the placeholder circles, then run the checks.
+- The current drawing is `build_v6.py` (v6-structure.svg plus one v6-<palette>-regions.svg per palette). Every color test is drawn from it, never from build.py, and must pass `python3 check_v6.py decisions|cables|spray|spread` (GATES-v6.md) before he sees it. When a part decision changes, change build_v6.py and the decisions check together. Color versions page: https://claude.ai/artifact/4XohZF9HEE9dgRcLmJXa37 (A periwinkle glass is my pick; not picked yet).
 - Still to come after that: flower layout, color distribution and detail.
 
 ## References
