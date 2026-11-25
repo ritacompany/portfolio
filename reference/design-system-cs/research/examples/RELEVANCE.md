@@ -1,0 +1,83 @@
+# Relevance check: 18 pages held against CS3
+
+25 Nov 2026. Each page was opened in a real browser and read in full (17 of 18; see the gaps note at the end). Nothing here quotes more than a few words from any page; the repo is public.
+
+**CS3 files read:**
+
+- `reference/design-system-cs/outline-2/MATERIAL.md`: outline 2. Six sections (opening, colour, layout and components, proving the checks, the agent test and what the system changed, still imperfect), the working frame (reader, argument, repeat, stake) and what each section shows. The argument is that agents build well only from a system crafted well, so AI readiness meant improving the system itself, not adding files on top.
+- `reference/design-system-cs/NUMBERS.md`: every CS3 number with its baseline and method. Strong: N9 (faults handed off 596 to 0), N14 to N16 (checks proven on planted mistakes, critic false alarms), N21 and N22 (code names and descriptions), N30 to N32 (colour by job). Missing: N17 has a before (about 31 mistakes a build) and no after run, N19 has no recount of the 236 buttons, N25 (component wiring) is still imperfect, N12 and N13 show review rounds and repeats did not fall.
+- `reference/design-system-cs/research/examples/STRATEGY.md`: why reference pages are collected. They calibrate audience, tone, order, decisions, numbers, visuals and honesty for a hiring manager reading a senior page, and they show what to borrow section by section.
+
+Method notes. Criteria A to D as set: a page passes when B is strong and at least two of A, C and D are strong. A was judged on experience shown (title, stated years, body of work), not the word senior. E is the CS3 relevance read. Where an author's own site was needed, I opened it (Marques, Hickey, Sanderson, Tarkowska, Ambitious Designer, Yurchenko, Hellmuth and Morales Achiardi's profile). Zhiyang's own site returned a server error, so that author's experience is judged from the page alone.
+
+## The table
+
+| Page | Pass or fail | Experienced designer? | Agents build from it, system changed | Counted proof | Small team, honest about gaps | Relevance to CS3 |
+| --- | --- | --- | --- | --- | --- | --- |
+| [Nayara Marques](https://nayaramarques.com/design-system) | Pass | Strong. About page states 9 years, a design lead role with 4 designers, and solo product work. | Strong. Contracts, rules, templates and a decision map were added to the system, and component types refuse restyling. | Strong. Six fresh-agent builds in two conditions: unlabelled parts 176 against 1, and an earlier run without templates for comparison. | Strong. Alone, dated update on 12 Nov, says the test is small and the team plan is unrun. | High, section 5. Take the two-condition table (same brief, fresh agents that never saw the checks) and the dated update line. |
+| [PJ Onori](https://www.sanity.io/engineering/design-system-evals) | Pass | Strong. Principal product designer, and the tool grew from his past work on another major system. | Strong. Docs rebuilt as structured data, code chunks and lint added, then each helper switched off to see real failures. | Strong. 30 runs per model, current against new: successful builds, fixes per build, accessibility findings, time and cost. | Partial. A small team on a company system still mid-build, openly says he is flying blind. | High, section 5. Take the idea of reporting the after run beside the before for the same task, plus cost per build. |
+| [Charles Sanderson](https://chsanderson.com/portfolio/design-system-redux-with-agentic-development) | Fail | Strong. Product design leader leading design across several teams. | Partial. Agents authored and reviewed the system; screens built by product teams were not tested. | Strong. Audit of about 210 hand-built buttons and 1,300 inline styles, and contrast fixes with before and after ratios. | Strong. One lead with agents, 2 of 5 teams adopted, a reversed decision told plainly. | Medium, section 3. Take the pairing of a before audit of the product with what changed, as N19 needs an after recount. |
+| [Surendar Selvaraj](https://www.designsystemscollective.com/i-gave-my-agent-claude-md-and-design-md-it-ignored-my-entire-component-library-c6d7e9be34d4) | Fail | Strong. States 15 or more years in B2B and design systems. | Partial. Adds a components file on top, plus filling Figma descriptions, which is closer to changing the system. | Weak. No counts of mistakes before or after. | Partial. A team, one afternoon of work, candid about what it exposed. | Low, section 3. Confirms the Figma description step CS3 counted (N22); CS3 already has the numbers this page lacks. |
+| [Richard, The Ambitious Designer](https://ambitiousdesigner.substack.com/p/design-system-for-ai-agents) | Fail | Partial. Says most of a career and a newsletter since 2021, no years or title. | Strong. One writer, hard rules as data and judgment as prose, an exceptions file that agents read but cannot edit. | Weak. No counts. | Strong. Only designer, and a closing section on exactly when it breaks. | Medium, section 6. Take the "where it breaks" structure for the still imperfect list. Borderline fail on experience. |
+| [Eva Hörner](https://medium.com/design-bootcamp/how-to-make-your-design-system-agent-ready-ea4cfc062270) | Fail | Strong. Leads product design teams in enterprise software. | Partial. Proposes a layered spec structure; says it is experimenting. | Weak. Names the kinds of mistakes agents made, counts none. | Partial. A team still experimenting, honest it is early. | Low, section 5. Her list of drift types (state, colour meaning, spacing, hierarchy) matches CS3's agent test categories. |
+| [Mark at Klai](https://getklai.com/blog/agent-ready-design-system) | Pass (author is a founder or engineer, not a designer) | Weak. Company blog voice from a founder or engineer, no design experience shown. | Strong. Rules pushed into the code so mistakes cannot be expressed, and docs generated from code. | Strong. Five claims in their own design document checked and all wrong, then a before and after table. | Strong. Small team, lists what they refused to build, admits one measurement not run. | High, section 4. Take the four levels a rule can live at (impossible, caught, generated, stated) as the shape of the argument. |
+| [Automattic](https://automattic.design/2026/10/27/working-towards-higher-quality-agentic-experiences/) | Not rated | Not read | Not read | Not read | Not read | Not rated. The page could not be read. |
+| [Cristian Morales Achiardi](https://www.designsystemscollective.com/towards-an-agentic-design-system-c7e0a6469bb1) | Fail | Partial. A long run of articles and open skills, but no title or years shown. | Partial. Agents were measured on querying the system, not on building screens. | Strong. 11 trials, with and without the structure, on time, accuracy and components found. | Strong. Solo, own site, future phase labelled as future. | Medium, section 5. Take the clean control design: same model, same questions, one variable changed, medians shown. |
+| [Zhiyang](https://medium.com/design-bootcamp/making-design-system-ai-ready-case-study-4edde4c19188) | Fail | Weak. Product designer on a side project, no experience stated. | Strong. Colour tokens closed to a fixed list, 15 specs and an audit script. | Partial. Setup counts (64 colours replaced) but no count of agent mistakes. | Strong. Solo side project, lists what still fails and calls it overkill. | Medium, section 2. Closed colour tokens mirror CS3's roles-only pickers (N32); take the plain "what doesn't quite work" list. |
+| [Adam Hickey](https://adamhickey.com/lab/agent-review.html) | Pass | Strong. Senior designer who led UX across 40+ enterprise apps. | Strong. Agent built three fixes from his own system and 12 rules, with checks that fail off-system colour. | Partial. 326 states tested and a one run rules against no rules comparison, labelled not proof. | Strong. Solo, and every claim tagged working, simulated, hypothesis or still open. | High, section 6. Take the four-tag status block for the still imperfect list, and the point that all three fixes passed the checks. |
+| [Justyna Tarkowska](https://www.designsystemscollective.com/teaching-ai-agents-design-system-judgment-aa9f56a32a53) | Fail | Strong. 12 years in design, currently on a design system team. | Partial. Agents document, audit and port components; system gained contracts, an exceptions register and checks. | Weak. A couple dozen lessons logged, called one story not a study. | Partial. A team, candid that over-teaching backfires. | High, section 4. Take the ladder of check over step over written rule, and the case where a written rule failed until it became a check. |
+| [Melina Kukkasela](https://www.designsystemscollective.com/four-feedback-loops-for-an-ai-native-design-system-5868751261a2) | Pass | Strong. 16 years, Lead Product Designer on a multi-brand system. | Strong. Agents build pages through the system's server, and the first test led to fixes in docs, instructions and a check. | Strong. 18 runs with and without the setup; template pages passing every check went from 0% to 100% after fixes; 9 false alarms in their own checks. | Partial. A team with seven agent roles, plainly says it is one case and not a study. | High, section 5. Take the with and without setup test, and the finding that the checks themselves had false alarms (CS3 has N16). |
+| [Andriy Yurchenko](https://ayurchenko.xyz/writing/design-systems-for-coding-agents) | Pass | Strong. 14 years and a system for every product he worked on. | Strong. Rules file, component catalog and a self-running audit tested against brief only and written guidelines. | Strong. 11 builds with measured values: raw values in new code 34, 25 then 0; agent time fell. | Partial. Solo consultant on a test product, states the sample is small, also sells a review. | High, section 5. Take the counted table by condition, and the habit of counting every button before changing anything (N19). |
+| [Christoph Hellmuth](https://christophhellmuth.com/open-design-system-bench-aurora-improvements/) | Pass | Strong. His site states 16 or more years and large system work. The page speaks as "we" with no byline seen. | Strong. Entry points, generated docs and token exports rebuilt, and the system's own docs were found teaching mistakes. | Strong. Audit score 64.8 to 82.0; 113 of 113 unguided attempts used none of the system; 10 of 55 compiled. | Partial. A multi-team system, but a clear list of what was not re-measured and why. | High, section 6. Take how it states the after run is not yet done and why; CS3's missing after run (N17) can be told the same way. |
+| [Tina Singh](https://www.designsystemscollective.com/what-breaks-when-ai-starts-writing-your-design-system-de7c44d26c11) | Fail | Partial. Senior UI designer, no years shown. | Partial. Contracts, a validator and a server added; agents building was not measured. | Partial. Seven planted mistakes, seven caught, two as warnings, and a clean control. | Strong. Solo, says it is slower now and still unproven. | Medium, section 4. Take the one line result that reports warnings and the clean component separately. |
+| [Julia Gale](https://juliagale.com/baseline.html) | Pass | Strong. Senior product designer with a mentoring practice and a public CV. | Strong. Agent built the pages under written rules, and the system gained 143 colours, 43 tokens and failing builds. | Partial. Every colour contrast checked and 6 agent failures listed with fixes, but mistakes not counted. | Strong. Two designers with a client team, lists the pairs that still fail. | High, section 2. Take the colour decision told with the generated palette she rejected and the per cell contrast table. |
+| [krpadesigns-aiux](https://github.com/krpadesigns-aiux/agent-ready-design-system) | Pass (author unnamed beyond a handle, experience not shown) | Weak. A first name on a portfolio system, no experience shown. | Strong. Registry, contracts and a decision policy; fresh agent sessions built apps and the system was edited after the test. | Strong. 5 of 5 policy decisions, 3 of 3 builds, 9 of 13 browser checks, then a same-task retest passing 5 of 5. | Strong. Solo, release candidate, says one agent fabricated its test claims. | High, section 5. Take the same-task retest: the same wording, a fresh agent, a human re-running the build and browser checks. |
+
+## Why each page passed or failed
+
+1. Marques: passes on all four tests; a solo, experienced designer with a small counted test and honest limits.
+2. Onori: passes; strongest counted proof in the set, with a system rebuilt so agents could read it.
+3. Sanderson: fails on B only; agents wrote the system, but nobody measured agents building screens from it.
+4. Selvaraj: fails; a layer on top of the system and no counts at all.
+5. The Ambitious Designer: fails narrowly; a good account of a system built for agents, but no counts and no stated years.
+6. Hörner: fails; a sensible structure and a list of mistakes, with nothing counted and the work still an experiment.
+7. Klai: passes on the rule through B, C and D; but the author is not shown to be a designer, so treat it as an engineering voice.
+8. Automattic: not rated; the page sits behind a bot check and could not be read.
+9. Morales Achiardi: fails on B; the test measured agents answering questions about the system, not building from it.
+10. Zhiyang: fails; solid setup and honest limits, but a side project with no experience shown and no counts of mistakes.
+11. Hickey: passes; senior, agents built from his system and rules, and every claim carries a status tag.
+12. Tarkowska: fails narrowly; agents maintain the system and a check ladder is shown, but nothing is counted.
+13. Kukkasela: passes; senior, agents build from the system, and results are counted with before and after.
+14. Yurchenko: passes; senior, agents built from a changed system, and the counts by condition are clear.
+15. Hellmuth: passes; senior, a system rebuilt for agents, and strong before and after counts with what is unmeasured named.
+16. Singh: fails on B; contracts and a planted mistake test, but agents building from the system was not measured.
+17. Gale: passes; senior, agent built under rules, and the colour work is the best match to CS3's first written section.
+18. krpadesigns-aiux: passes on B, C and D; the author's experience is not shown, so use it for the method, not as a voice.
+
+## Ranking by usefulness to CS3, best first
+
+1. Kukkasela: the nearest match to section 5; a with and without test, a 0 to 100 fix, and checks that were themselves wrong.
+2. krpadesigns-aiux: shows how to run and word the missing after run on the same task, and scores honestly.
+3. Marques: the page Chadwick likes; two-condition proof, contracts, and a clear closing structure.
+4. Onori: how to count an after run across many runs and models, with cost and helpers switched off.
+5. Hellmuth: the model for telling a half-finished measurement honestly (section 6 and 5).
+6. Klai: the four levels framing for section 4 and the check-your-own-claims table.
+7. Yurchenko: counted tables by condition, and counting the buttons before the fix (section 3 and 5).
+8. Gale: the best colour section reference; decisions told with the rejected option and contrast shown per cell.
+9. Hickey: the status tag pattern for section 6 and the point that passing checks is not the same as right.
+10. Tarkowska: the check over step over rule ladder for section 4.
+11. Sanderson: before and after audit pairing, and a reversed decision told plainly (section 3).
+12. Singh: a one line planted mistake result with a clean control (section 4).
+13. Morales Achiardi: a clean controlled design for the agent test (section 5).
+14. Zhiyang: closed colour tokens as a parallel to roles-only pickers (section 2).
+15. The Ambitious Designer: the "where it breaks" shape for section 6.
+16. Selvaraj: confirms the description step, adds nothing CS3 lacks.
+17. Hörner: a mild confirmation of the kinds of mistakes agents make.
+18. Automattic: not read, so not ranked.
+
+## Gaps in this check
+
+- Automattic could not be read. The live page returned a bot check on the first try and again on a retry after a wait with a changed address; the earlier archive attempts in the scratchpad hit the same block. It is not rated or ranked.
+- Zhiyang's own site returned a server error, so that author's experience rests on the article alone.
+- Hellmuth's case study has no visible byline. It is on his own site and speaks as "we", so I read it as his with that caveat.
+- GitHub page: I read the rendered README and the linked review document (Release 1 evaluation findings) in full.

@@ -40,8 +40,8 @@ Net growth reason: n/a
 ## Verification
 Fresh run: the relevance checker launched 25 Nov from the main session, inside the session that has all three repos, told to read MATERIAL.md, NUMBERS.md and STRATEGY.md first and name them.
 Before: a ranking with no CS3 file read.
-After: pending its report.
-Check result after: pending.
+After: the relevance checker's report opens by naming outline-2/MATERIAL.md, NUMBERS.md and STRATEGY.md with what each says (N9 596 to 0, N17 about 31 a build with no after), and rates every page for a CS3 section.
+Check result after: PASS. All three named files exist in /home/user/portfolio/reference/design-system-cs/, and the figures it cites match NUMBERS.md.
 Second case: the third search pass, launched the same way, must also name the CS3 files it read.
 Enforcement test: n/a until the hook is approved.
 
