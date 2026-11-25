@@ -5,22 +5,22 @@ OWNS: reports/status-2026-11-25/**
 Scope: STATUS.md with Done, Open and Next, every branch fact checked against GitHub, committed and pushed with a draft PR into main.
 
 - [ ] G1: STATUS.md has Done, Open and Next, and Next holds exactly three items
-  CHECK: node reports/status-2026-11-25/verify.mjs sections
+  CHECK: node verify.mjs sections
   EXPECT: sections ok
   EVIDENCE: pending
 
 - [ ] G2: No em dash, en dash or double hyphen in STATUS.md
-  CHECK: node reports/status-2026-11-25/verify.mjs dashes
+  CHECK: node verify.mjs dashes
   EXPECT: dashes ok
   EVIDENCE: pending
 
 - [ ] G3: The branch facts STATUS.md states hold on the remote branches
-  CHECK: node reports/status-2026-11-25/verify.mjs branches
+  CHECK: node verify.mjs branches
   EXPECT: branches ok
   EVIDENCE: pending
 
 - [ ] G4: The audit commit is pushed to claude/portfolio-status
-  CHECK: node reports/status-2026-11-25/verify.mjs pushed
+  CHECK: node verify.mjs pushed
   EXPECT: pushed ok
   EVIDENCE: pending
 
