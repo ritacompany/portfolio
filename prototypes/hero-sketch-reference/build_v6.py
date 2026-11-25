@@ -29,23 +29,32 @@ CORAL=["M250 612 V480",
        "M250 540 Q224 530 204 546"]
 CORAL_W=13
 FORKS=[(250,480),(214,392),(298,374),(184,318),(330,296)]          # wire spray sits on these
-SORREL=[(232,446),(272,428),(200,372),(160,402),(312,342),(342,388),(178,280),(250,575)]  # on the branch surface, off the tips
+SORREL=[(234,444),(282,402),(196,366),(146,404),(322,334),(356,396),(250,566)]  # on the branch surface, off the tips
 
 # Right side flowers. Hellebores nod: the stem rises, arcs over and the head hangs facing down.
-HELLEBORE=[dict(grip=0,stem="M560 556 C548 470 520 380 500 330 Q484 296 452 300",head=(436,352),r=76,tilt=-18),
-           dict(grip=2,stem="M640 556 C664 470 700 380 724 336 Q742 300 776 312",head=(780,366),r=70,tilt=16)]
-NOODLE=[dict(grip=1,a=(600,544),b=(612,208),r=30),
-        dict(grip=0,a=(560,556),b=(470,470),r=24),
-        dict(grip=2,a=(640,556),b=(806,250),r=27)]
+# Flowers hold their own against the pipe (his rule): hellebores about as wide as the pipe is thick times two,
+# turned to face outward and down at an angle, not hanging. tilt is the turn of the face away from straight down.
+HELLEBORE=[dict(grip=0,head=(506,290),r=128,tilt=45),
+           dict(grip=2,head=(768,404),r=116,tilt=-45)]
+for h in HELLEBORE:
+    x,y=h["head"]; t=math.radians(h["tilt"]); vx,vy=0,-0.45*h["r"]
+    ax,ay=x+vx*math.cos(t)-vy*math.sin(t),y+vx*math.sin(t)+vy*math.cos(t)
+    gx,gy=GRIPS[h["grip"]][:2]
+    h["attach"]=(round(ax),round(ay))
+    h["stem"]=f"M{gx} {gy} C{gx+(10 if gx>600 else 8)} {gy-100} {ax+(-30 if gx>600 else 40):.0f} {ay+90:.0f} {ax:.0f} {ay:.0f}"
+NOODLE=[dict(grip=1,a=(600,544),b=(684,112),r=48),
+        dict(grip=0,a=(560,556),b=(452,512),r=42),
+        dict(grip=2,a=(640,556),b=(846,196),r=46)]
+SORREL_R=30   # pinwheel width, big enough to read next to the pipe
 
 def g(part,body): return f'<g data-part="{part}">{body}</g>'
 
 def pinwheel(x,y,fill,st,line):
     s=""
     for i in range(5):
-        a=i*72+18; r=math.radians(a); cx,cy=x+math.cos(r)*7,y+math.sin(r)*7
-        s+=f'<ellipse cx="{cx:.1f}" cy="{cy:.1f}" rx="9.5" ry="5.5" transform="rotate({a+28} {cx:.1f} {cy:.1f})" fill="{fill}" stroke="{st}" stroke-width="{1.5 if line else 1}"/>'
-    return s+f'<circle cx="{x}" cy="{y}" r="2.6" fill="{st if line else "#E1EC9B"}"/>'
+        a=i*72+18; r=math.radians(a); cx,cy=x+math.cos(r)*SORREL_R*0.42,y+math.sin(r)*SORREL_R*0.42
+        s+=f'<ellipse cx="{cx:.1f}" cy="{cy:.1f}" rx="{SORREL_R*0.58:.1f}" ry="{SORREL_R*0.33:.1f}" transform="rotate({a+28} {cx:.1f} {cy:.1f})" fill="{fill}" stroke="{st}" stroke-width="{1.5 if line else 1}"/>'
+    return s+f'<circle cx="{x}" cy="{y}" r="{SORREL_R*0.14:.1f}" fill="{st if line else "#E1EC9B"}"/>'
 
 def spray(x,y,col,w):
     s=""

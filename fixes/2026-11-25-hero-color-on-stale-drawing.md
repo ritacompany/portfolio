@@ -42,5 +42,7 @@ Check result after: PASS on all four modes.
 Second case: three palettes (a-periwinkle, b-pink, c-green) each pass spread and spray separately.
 Enforcement test: n/a
 
+Follow up 25 Nov: he said the flowers had lost their size and looked droopy. The v6 redraw had shrunk them below the old layout (hellebore r 76 against the old r 95) and hung the hellebores straight down, breaking his rule that flowers hold their own next to the pipe and nothing leans oddly. The decisions check now also tests size against the pipe width and that hellebores face out at 30 to 70 degrees. The rejected drawing fails it ("hellebore r 76 small next to a 104px pipe", "hellebore tilt -18 hangs or stands"); the new one passes.
+
 ## Report
 Unverified: no fresh session has made a color test from HANDOFF.md alone to show it picks up build_v6.py and runs check_v6.py. Nothing outside the agent forces the check before he sees a test; the HANDOFF Next line is the only pointer. A real guard would be a hook that blocks publishing a hero color image unless check_v6.py passed, which he would need to want.

@@ -39,6 +39,14 @@ def decisions(path):
     if len(ns["FORKS"])<4: bad.append("fewer than 4 wire sprays")
     if len(ns["HELLEBORE"])!=2 or len(ns["NOODLE"])!=3: bad.append("flower count")
     if ns["CORAL_W"]>15: bad.append("coral not slim")
+    # his rule: flowers big enough to hold their own next to the pipe; hellebores face out, not hang
+    pw=ns["PW"]
+    for h in ns["HELLEBORE"]:
+        if h["r"]<0.9*pw: bad.append(f"hellebore r {h['r']} small next to a {pw}px pipe")
+        if not 30<=abs(h["tilt"])<=70: bad.append(f"hellebore tilt {h['tilt']} hangs or stands, not facing out")
+    for n in ns["NOODLE"]:
+        if n["r"]<0.33*pw: bad.append(f"noodle puff r {n['r']} small")
+    if ns.get("SORREL_R",0)<0.22*pw: bad.append("sorrel small")
     svg=ns["build"]("line")
     for part in ("rings","rims","pot","coral","sorrel","spray","wires","connector","cables","spring","grips","box","plugs","stems","beaded","noodles","hellebores"):
         if f'data-part="{part}"' not in svg: bad.append(f"no {part}")
