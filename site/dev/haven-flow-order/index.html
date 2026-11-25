@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven case study (flow order proposal)</title>
+<meta name="description" content="Haven, a UX bootcamp case study: an MVP that helps LGBTQIA+ youth reach affirming environments through a Confidante program.">
+<link rel="preload" href="/assets/satoshi-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/haven/assets/nav-logo.svg">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/grid.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/haven/haven.css">
+<link rel="stylesheet" href="/haven/current.css">
+<link rel="stylesheet" href="/haven/pill-tips.css">
+<script>
+  // Hidden reveal states apply only when motion will run. Without JS, or with reduced motion, the page is fully visible.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js-motion");
+</script>
+</head>
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="page-header site-nav">
+  <nav class="navbar grid" aria-label="Main">
+    <a class="navbar__logo col-1" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+    <ul class="navbar__links col-8 span-5">
+      <li><a class="link-nav" href="/#about" aria-label="About"><span aria-hidden="true">Abou<span class="mirror">7</span></span></a></li>
+      <li><a class="link-nav" href="/#work" aria-label="Work"><span aria-hidden="true">Work<span class="mirror">5</span></span></a></li>
+      <li><a class="link-nav" href="#contact" aria-label="Contact me"><span aria-hidden="true">Contact<span class="gap">m<span class="mirror">3</span></span></span></a></li>
+    </ul>
+    <button class="navbar__menu" type="button" aria-label="Menu" aria-controls="site-menu" aria-expanded="false" data-dialog-open="site-menu"><img src="/assets/ui/menu.svg" alt="" width="18" height="12"></button>
+  </nav>
+</header>
+
+<main id="main">
+  <section data-node="4683:20252" class="hero" aria-labelledby="haven-title">
+    <div class="hero__top" data-tb>
+      <h1 class="display tb-item" id="haven-title">Haven CS</h1>
+      <dl class="meta tb-item"><div><dt>Scope</dt><dd>Solo project</dd></div><div><dt>Affiliate</dt><dd>CareerFoundry</dd></div><div><dt>Focus</dt><dd>Research, strategy and design.</dd></div></dl>
+    </div>
+    <div class="hero__lead">
+      <p class="h24 hero__tagline" data-tb><img class="hero__mark tb-item" src="/haven/assets/haven-wordmark.svg" alt="" width="80" height="18" data-node="4961:11998"><span class="tb-item">Designed as a way for LGBTQIA+ youth to gain access to affirming environments.</span></p>
+      <div class="hero__background body" data-tb><p class="tb-item">For many LGBTQIA+ teenagers, finding a sense of belonging and acceptance can be a difficult and isolating experience. The lack of affirming environments at home and in their communities is linked to a higher risk of suicide.</p><p class="tb-item">This project was developed as part of a UX bootcamp. The brief was to create a functional product for a specific user group and include a way to connect users with an expert, which Haven calls a Confidante. Just having Haven on their phone could put a user at risk, so I designed it to stay hidden and to keep every chat by text.</p></div>
+    </div>
+  </section>
+  <section class="data" data-node="4683:20275" aria-labelledby="data-title">
+    <div class="data__intro" data-tb><h2 class="eyebrow tb-item" id="data-title">The data</h2><p class="h40 tb-item">The Trevor Project studied how affirming spaces and accepting adults relate to that risk.</p></div>
+    <div class="data__row">
+      <div class="resources"><p>Learn more about what you can do to support LGBTQIA+ youth at the links below:</p><ul><li><a href="https://www.thetrevorproject.org/">The Trevor Project</a></li><li><a href="https://pflag.org/">PFLAG</a></li><li><a href="https://familyproject.sfsu.edu/">Family Acceptance Project</a></li></ul></div>
+      <div class="data__cards" data-tb>
+        <article class="data-card tb-item"><h3>Affirming spaces</h3><div><p class="data-card__number">35<span>%</span></p><p class="data-card__caption">lower odds of a suicide attempt.</p><p class="data-card__body">LGBTQ youth who reported at least one affirming space had 35% lower odds of reporting a suicide attempt.</p></div><p class="data-card__source">Source: The Trevor Project</p></article>
+        <article class="data-card tb-item"><h3>Accepting adults</h3><div><p class="data-card__number">40<span>%</span></p><p class="data-card__caption">less likely to attempt suicide.</p><p class="data-card__body">LGBTQ youth who had at least one affirming adult in their home were 40% less likely to attempt suicide.</p></div><p class="data-card__source">Source: The Trevor Project</p></article>
+      </div>
+    </div>
+    <figure class="mask data__collage" data-mask><div class="mask__scale"><img src="/haven/assets/collage-2x.webp" width="1440" height="440" alt="Haven screens arranged as an isometric phone collage on a violet background."></div></figure>
+  </section>
+  <section data-node="4683:20339" class="access rule-b" aria-labelledby="access-title">
+    <div class="access__text" data-tb>
+      <h2 class="eyebrow tb-item" id="access-title">Demographic access</h2>
+      <p class="h40 tb-item">Minors need a guardian’s consent to join a study. Asking would out the teens who need Haven most, so I interviewed two proxy groups instead.</p>
+    </div>
+    <div class="stats" data-tb>
+      <div class="stats__row">
+        <p class="stat stat-left tb-item"><span class="stat__label">Subject matter experts</span><span class="stat__num">3</span></p>
+        <img class="stats__cross tb-item" src="/haven/assets/stats-cross.svg" width="128" height="124.75" alt="">
+        <p class="stat tb-item"><span class="stat__num">3</span><span class="stat__label stat__label-narrow">LGBTQIA+ college students</span></p>
+      </div>
+      <p class="stat stat-total tb-item"><span></span><span class="stat__num">6</span><span class="stat__label stat__label-total">Total interviews</span></p>
+      <img class="stats__arrow tb-item" src="/haven/assets/stats-arrow.svg" width="120" height="124.75" alt="">
+    </div>
+    <h3 class="h40 access__insights-title" data-tb><span class="tb-item">5 key insights</span></h3>
+    <ol class="cards cards-research" data-tb>
+      <li class="card tb-item"><p class="card__label">Insight 1</p><p class="card__title">Humanizing experts</p><p class="card__body">When choosing between experts, users look for what makes each one feel human. They want to know the expert will understand them.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 2</p><p class="card__title">Sensitive conversations</p><p class="card__body">Users were uncomfortable discussing sensitive identity topics aloud, especially when someone nearby could overhear.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 3</p><p class="card__title">Unique identities</p><p class="card__body">A one size fits all identity model could flatten the demographic differences that shape each user’s unique experience.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 4</p><p class="card__title">Scheduling concerns</p><p class="card__body">Users need to pick a time when they can be alone and feel safe talking to an expert.</p></li>
+      <li class="card tb-item"><p class="card__label">Insight 5</p><p class="card__title">Personal security</p><p class="card__body">Users are concerned with using an LGBTQIA+ product in case disapproving guardians or peers may find out.</p></li>
+    </ol>
+  </section>
+  <section data-node="4683:20398" class="mvp rule-b" aria-labelledby="mvp-title">
+    <div class="mvp__text" data-tb>
+      <h2 class="eyebrow tb-item" id="mvp-title">Designing an MVP</h2>
+      <p class="h40 mvp__lead tb-item">Because the subject is complicated and sensitive, I planned Haven as an MVP in two phases: identity first, then community.</p>
+      <div class="mvp__row tb-item">
+        <p class="body body-400 mvp__body">An interview made it clear that Haven needs identity and community together. There wasn’t time to design both, so I split them into two phases and decided which features mattered most now.</p>
+        <ul class="legend">
+          <li><span class="legend__phase">Phase 1</span><span class="legend__item"><i class="legend__swatch legend__swatch-identity"></i>Identity</span></li>
+          <li><span class="legend__phase">Phase 2</span><span class="legend__item"><i class="legend__swatch legend__swatch-community"></i>Community</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mvp__timeline" data-tb>
+      <div class="mvp__chart tb-item">
+        <img src="/haven/assets/mvp-timeline.svg" width="1440" height="554" loading="lazy" alt="Timeline of twelve columns. Phase 1, Identity, runs empathize, define, ideate, prototype and test through column 7, ending at the identity launch, which is where this case study ends. Phase 2, Community, starts at column 5 and repeats the cycle through column 12 toward the community launch.">
+      </div>
+      <div class="mvp__tl tb-item" role="img" aria-label="Timeline of twelve columns, one stage per row. Phase 1, Identity: empathize, define, ideate, prototype, empathize, test, ideate and prototype, ending at the identity launch after column 6, which is where this case study ends. Phase 2, Community: empathize and ideate from column 5, then empathize, define, ideate and three rounds of prototype through column 12 to the community launch.">
+        <div class="tl__head" aria-hidden="true"><p class="tl__end">Case study end point</p><p class="tl__launch tl__launch-identity">Identity launch</p><p class="tl__launch tl__launch-community">Community launch</p><ol class="tl__cols"><li>01</li><li>02</li><li>03</li><li>04</li><li>05</li><li>06</li><li>07</li><li>08</li><li>09</li><li>10</li><li>11</li><li>12</li></ol></div>
+        <ol class="tl__rows" aria-hidden="true"><li class="tl__stage stage-identity" style="--x:0;--w:116">Empathize</li><li class="tl__stage stage-identity" style="--x:102;--w:87">Define</li><li class="tl__stage stage-identity" style="--x:147;--w:87">Ideate</li><li class="tl__stage stage-identity" style="--x:190;--w:89">Prototype</li><li class="tl__stage stage-identity" style="--x:259;--w:92">Empathize</li><li class="tl__stage stage-identity" style="--x:279;--w:72">Test</li><li class="tl__stage stage-identity" style="--x:317;--w:64">Ideate</li><li class="tl__stage stage-identity" style="--x:305;--w:89">Prototype</li><li class="tl__stage stage-community tl__first" style="--x:259;--w:92">Empathize</li><li class="tl__stage stage-community" style="--x:317;--w:64">Ideate</li><li class="tl__stage stage-community" style="--x:391;--w:92">Empathize</li><li class="tl__stage stage-community" style="--x:431;--w:66">Define</li><li class="tl__stage stage-community" style="--x:491;--w:72">Ideate</li><li class="tl__stage stage-community" style="--x:511;--w:89">Prototype</li><li class="tl__stage stage-community" style="--x:563;--w:95">Prototype</li><li class="tl__stage stage-community" style="--x:611;--w:92">Prototype</li></ol>
+      </div>
+      <div class="phases tb-item">
+        <div class="phase">
+          <p class="phase__head"><i class="legend__swatch legend__swatch-identity"></i>Phase 1, Identity<span class="phase__range">01 to 07</span></p>
+          <span class="phase__track phase__track-identity" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+          <ol class="phase__stages"><li class="phase__stage stage-identity">Empathize</li><li class="phase__stage stage-identity">Define</li><li class="phase__stage stage-identity">Ideate</li><li class="phase__stage stage-identity">Prototype</li><li class="phase__stage stage-identity">Test</li><li class="phase__stage stage-identity">Empathize</li><li class="phase__stage stage-identity">Ideate</li><li class="phase__stage stage-identity">Prototype</li></ol>
+          <p class="phase__end">Identity launch, where this case study ends</p>
+        </div>
+        <div class="phase">
+          <p class="phase__head"><i class="legend__swatch legend__swatch-community"></i>Phase 2, Community<span class="phase__range">05 to 12</span></p>
+          <span class="phase__track phase__track-community" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+          <ol class="phase__stages"><li class="phase__stage stage-community">Empathize</li><li class="phase__stage stage-community">Ideate</li><li class="phase__stage stage-community">Empathize</li><li class="phase__stage stage-community">Define</li><li class="phase__stage stage-community">Ideate</li><li class="phase__stage stage-community">Prototype</li><li class="phase__stage stage-community">Prototype</li><li class="phase__stage stage-community">Prototype</li></ol>
+          <p class="phase__end">Community launch</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section data-node="3300:12810" class="wires" aria-labelledby="wires-title">
+    <div class="wires__text" data-tb>
+      <h2 class="eyebrow tb-item" id="wires-title">Wireframes</h2>
+      <p class="h40 wires__lead tb-item">My first wireframes gave users a chat length to pick, a passcode as their only security and their top three Confidantes to swipe through. Testing changed all three.</p>
+    </div>
+    <div class="mask mask-clear wires__row" data-mask>
+      <div class="mask__scale">
+        <ul class="wires__list scroll-x" tabindex="0" aria-label="Five wireframes, scrolls sideways on small screens">
+          <li><img src="/haven/assets/wire-1-duration.png" width="180" height="374" loading="lazy" alt="Wireframe: set chat duration, with 15, 30, 45 and 60 minute options."></li>
+          <li><img src="/haven/assets/wire-2-passcode.png" width="180" height="374" loading="lazy" alt="Wireframe: the original security step, a passcode only."></li>
+          <li><img src="/haven/assets/wire-3-quiz.png" width="180" height="374" loading="lazy" alt="Wireframe: identity quiz page on social dynamics, with statements to select."></li>
+          <li><img src="/haven/assets/wire-4-matches.png" width="180" height="374" loading="lazy" alt="Wireframe: top three matches, swiped up and down."></li>
+          <li><img src="/haven/assets/wire-5-profile.png" width="180" height="374" loading="lazy" alt="Wireframe: Confidante profile with a schedule chat button."></li>
+        </ul>
+      </div>
+    </div>
+
+    </section>
+  <section class="testing rule-b" aria-labelledby="testing-title">
+      <div class="testing__row">
+        <div class="testing__text" data-tb>
+          <h2 id="testing-title" class="eyebrow tb-item">Usability testing</h2>
+          <p class="h40 testing__lead tb-item">Six participants tested three key flows.</p>
+        </div>
+        <ol class="tasks" data-tb>
+          <li class="task tb-item"><span class="task__num">01</span><span class="task__title">Confidante match enrollment</span></li>
+          <li class="task tb-item"><span class="task__num">02</span><span class="task__title">Select a Confidante</span></li>
+          <li class="task tb-item"><span class="task__num">03</span><span class="task__title">Schedule a chat</span></li>
+        </ol>
+      </div>
+      <div class="ticker rule-t rule-b" aria-hidden="true">
+        <div class="ticker__track">
+          <span class="ticker__set"><i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS</span><span class="ticker__set"><i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS<i></i>KEY INSIGHTS</span>
+        </div>
+      </div>
+      <h4 class="visually-hidden">Key insights from testing</h4>
+      <ol class="cards cards-testing" data-tb>
+        <li class="tcard tb-item"><p class="tcard__label">Insight 1</p><p class="tcard__body">Users weren’t sure whether they’d talk to the expert by text, voice or video.</p></li>
+        <li class="tcard tb-item"><p class="tcard__label">Insight 2</p><p class="tcard__body">Users had trouble understanding the duration section of the scheduling page.</p></li>
+        <li class="tcard tb-item"><p class="tcard__label">Insight 3</p><p class="tcard__body">Users were concerned that the design lacked enough security features.</p></li>
+        <li class="tcard tb-item"><p class="tcard__label">Insight 4</p><p class="tcard__body">Users wanted to know more about each Confidante before choosing one.</p></li>
+      </ol>
+  </section>
+
+  <div class="bridge-stack">
+    <div class="bridge" id="bridge">
+      <span class="bridge__line" aria-hidden="true"></span>
+      <div class="bridge__copy" data-tb>
+        <p class="h64 bridge__text tb-item">Each solution below is tagged with the interview and testing insights that shaped it.</p>
+      </div>
+    </div>
+    <div class="bridge-hold" aria-hidden="true"></div>
+    <div class="after-bridge">
+  <hr class="section-rule">
+  <section data-node="3515:11603" class="program rule-b" aria-labelledby="program-title">
+    <div class="program__text" data-tb>
+      <h2 class="eyebrow tb-item" id="program-title">The Confidante program</h2>
+      <p class="h40 tb-item">The Confidante program is built to adapt to each user’s needs and comfort.</p>
+    </div>
+    <div class="program__row">
+      <p class="h20 program__intro" data-tb><span class="tb-item">Confidantes support the user in two capacities:</span></p>
+      <figure class="mask program__media" data-mask>
+        <div class="mask__scale">
+          <img class="program__texture" src="/haven/assets/program-texture-3x.webp" width="893" height="459" loading="lazy" alt="">
+          <ol class="roles">
+            <li class="role"><span class="role__num">01</span><span class="role__text">A community liaison that connects the user to different people and communities.</span></li>
+            <li class="role"><span class="role__num">02</span><span class="role__text">A source of support for users who need guidance or someone to talk to.</span></li>
+          </ol>
+        </div>
+      </figure>
+    </div>
+  </section>
+  <section data-node="3300:13351" class="quiz rule-b" aria-labelledby="quiz-title">
+    <div class="quiz__text" data-tb>
+      <h2 class="eyebrow tb-item" id="quiz-title">Primary identity quiz</h2>
+      <p class="h40 quiz__lead tb-item">One identity model for every user would flatten the differences that shape their experience, so the quiz matches users on the experiences they pick.</p>
+      <ul class="pills">
+        <li><span class="pill">Interview insight 1</span></li>
+        <li><span class="pill">Interview insight 3</span></li>
+        <li><span class="pill">Confidante role 1</span></li>
+      </ul>
+    </div>
+    <div class="quiz__row">
+      <p class="body quiz__body" data-tb><span class="tb-item">The quiz groups prompts into five areas: attraction, gender identity, race and ethnicity, belonging and upbringing. Confidantes then see a summary of the shared experiences behind each match, so they can tailor support and recommend communities that fit.</span></p>
+      <div class="quiz__stage" id="quiz-stage">
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:0.000%;top:37.822%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:3.632%;top:33.686%;width:8.286%" src="/haven/assets/icon-magnet.webp" alt="A red magnet" loading="lazy">
+          <span class="qcol__label" style="left:7.781%;top:28.307%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Attraction">Attraction</span></span>
+        </div>
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:21.090%;top:25.132%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:25.494%;top:18.871%;width:6.856%" src="/haven/assets/icon-mirror.webp" alt="A hand mirror" loading="lazy">
+          <span class="qcol__label" style="left:28.871%;top:13.492%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Gender identity">Gender identity</span></span>
+        </div>
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:42.202%;top:12.081%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:45.721%;top:5.644%;width:8.627%" src="/haven/assets/icon-lock.webp" alt="A padlock" loading="lazy">
+          <span class="qcol__label" style="left:49.983%;top:0.265%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Belonging">Belonging</span></span>
+        </div>
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:63.326%;top:25.132%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:66.572%;top:21.869%;width:9.194%" src="/haven/assets/icon-yarn.webp" alt="A ball of yarn" loading="lazy">
+          <span class="qcol__label" style="left:71.107%;top:16.490%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Race & ethnicity">Race &amp; ethnicity</span></span>
+        </div>
+        <div class="qcol">
+          <svg class="qcol__pillar" style="left:84.449%;top:38.183%" viewBox="0 0 137.099 567.671" aria-hidden="true"><path pathLength="1" d="M20.4319 53.762C47.0066 65.9465 90.0927 65.9465 116.667 53.762C143.242 41.5776 143.242 21.8228 116.667 9.63832C90.0927 -2.54611 47.0066 -2.54611 20.4319 9.63832C-6.14274 21.8228 -6.14274 41.5776 20.4319 53.762ZM20.4319 53.762C8.11753 48.1159 0.5 40.3158 0.5 31.7001V535.971C0.5 544.587 8.11661 552.387 20.431 558.033M20.433 558.033C47.0077 570.217 90.0937 570.217 116.668 558.033C128.983 552.387 136.599 544.587 136.599 535.971V31.7001"/></svg>
+          <img class="qcol__icon" style="left:88.059%;top:30.864%;width:8.854%" src="/haven/assets/icon-flower.webp" alt="A flower growing from a die" loading="lazy">
+          <span class="qcol__label" style="left:92.230%;top:25.485%"><span class="qcol__bar" aria-hidden="true"></span><span class="qcol__text" data-text="Upbringing">Upbringing</span></span>
+        </div>
+        <img class="quiz__phone" style="left:30.704%;top:38.289%;width:38.649%" src="/haven/assets/quiz-phone.webp" width="341" height="700" loading="lazy" alt="A phone showing quiz question 16 of 30, with an answer selected.">
+      </div>
+    </div>
+  </section>
+  <section data-node="3878:3068" class="journey rule-b" aria-labelledby="journey-title">
+    <div class="journey__head" data-tb>
+      <h2 class="eyebrow tb-item" id="journey-title">Testing synthesis</h2>
+      <p class="h40 journey__lead tb-item">Haven’s early flow asked users to choose a Confidante before they could have an introductory chat.</p>
+      <ul class="pills">
+        <li><span class="pill">Interview insight 1</span></li>
+        <li><span class="pill">Testing insight 4</span></li>
+      </ul>
+    </div>
+    <div class="journey__row" data-tb id="journey-row">
+      <h3 class="h24 journey__title tb-item">Confidante selection journey flow</h3>
+      <div class="journey__body">
+        <p class="body journey__copy tb-item">Testing showed users hesitating over which Confidante to pick. They went back and forth between profiles, and some undid their choice after making it. I moved selection after the introductory chat, which exists to help them decide. In the revised flow, users can chat with more than one Confidante before choosing one.</p>
+        <div class="flow tb-item" id="flow-map">
+          <div class="flow__box">
+            <ol class="flow__stage" id="flow-stage" aria-label="Revised flow: identity quiz, review matches, schedule a chat, intro chat, select a Confidante">
+              <li class="flow__step" data-id="quiz"><span>Identity
+quiz</span></li>
+              <li class="flow__step" data-id="review"><span>Review
+matches</span></li>
+              <li class="flow__step flow__step-key" data-id="select"><span>Select a
+Confidante</span></li>
+              <li class="flow__step" data-id="schedule"><span>Schedule
+a chat</span></li>
+              <li class="flow__step" data-id="intro"><span>Intro
+chat</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section data-node="3516:28205" class="profile rule-b" aria-labelledby="profile-title">
+    <div class="profile__text" data-tb>
+      <h2 class="eyebrow tb-item" id="profile-title">Confidante profile</h2>
+      <p class="h40 tb-item">Users need to understand who the Confidante is before making a decision. They need to feel understood, represented and safe.</p>
+    </div>
+    <div class="profile__block">
+      <ul class="pills">
+        <li><span class="pill">Interview insight 1</span></li>
+        <li><span class="pill">Interview insight 3</span></li>
+        <li><span class="pill">Testing insight 4</span></li>
+      </ul>
+      <div class="profile__row">
+        <figure class="mask profile__phone" data-mask>
+          <div class="mask__scale">
+          <div class="pframe" id="profile-frame">
+            <img class="pframe__collage" src="/haven/assets/profile-base.webp" width="680" height="677" loading="lazy" alt=""><img class="pframe__overlay" src="/haven/assets/profile-background.webp" width="680" height="677" loading="lazy" alt="">
+            <div class="phone">
+              <img class="phone__case" src="/haven/assets/profile-phone-straight.webp" width="298" height="614" loading="lazy" alt="">
+              <div class="phone__screen">
+                <img class="phone__content" src="/haven/assets/profile-screen-expanded.webp" width="440" height="1870" loading="lazy" alt="Penelope’s Confidante profile, scrolling through her shared experiences.">
+                <img class="phone__header" src="/haven/assets/profile-screen-header.webp" width="440" height="128" loading="lazy" alt="">
+                <img class="phone__footer" src="/haven/assets/profile-screen-footer.webp" width="440" height="160" loading="lazy" alt="">
+                <img class="phone__chip" src="/haven/assets/profile-screen-chip.webp" width="206" height="48" loading="lazy" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        </figure>
+        <div class="profile__side">
+          <figure class="mask profile__who" data-mask data-delay="0.2">
+            <div class="mask__scale"><img src="/haven/assets/profile-card-2x.webp" width="680" height="363" loading="lazy" alt="A shared experience card on the Confidante profile: Religious parents."></div>
+          </figure>
+          <p class="body body-400 profile__body" data-tb><span class="tb-item">Shared experiences, differences and humanized bios help users compare Confidantes and decide whom to schedule a chat with. Testing showed that those details needed more prominence. I made shared experiences the focus of the page and replaced vertical swiping with suggested Confidantes along the bottom, so users could switch between profiles.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section data-node="3555:5990" class="schedule rule-b" aria-labelledby="schedule-title">
+    <div class="schedule__text" data-tb>
+      <h2 class="eyebrow tb-item" id="schedule-title">Scheduling a chat</h2>
+      <p class="h40 tb-item">Users needed to know what to expect before booking an introductory chat.</p>
+    </div>
+    <div class="schedule__row">
+      <p class="body body-400 schedule__body" data-tb><span class="tb-item">Testers were confused about how chats would work and how long they would last, so the scheduling screen now says they happen by text, last a set 30 minutes and can end early. That lets users pick a time when they can be alone.</span></p>
+      <div class="schedule__media-col">
+        <ul class="pills">
+          <li><span class="pill">Interview insight 4</span></li>
+          <li><span class="pill">Testing insight 1</span></li>
+          <li><span class="pill">Testing insight 2</span></li>
+        </ul>
+        <figure class="mask schedule__media" data-mask>
+          <div class="mask__scale"><img src="/haven/assets/schedule-2x.webp" width="1047" height="457" loading="lazy" alt="Two phones on a violet fingerprint texture: Your events listing two introduction chats, and Schedule a chat with a date picker and time slots."></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section data-node="4262:4967" class="chat cr rule-b" id="chat-rotate" aria-labelledby="chat-title">
+    <div class="chat__text" data-tb><h2 class="eyebrow tb-item" id="chat-title">Chat-based interactions</h2><p class="h40 tb-item">When speaking out loud is not safe or private, the interaction itself has to lower the barrier to asking for support.</p></div>
+    <div class="cr-block"><div class="cr-stage"><span class="pill cr-pill">Interview insight 2</span>
+      <div class="cr-phone" data-screen="/haven/assets/chat-screen.webp" role="img" aria-label="An introduction chat by text with a Confidante"><img class="cr-still" src="/haven/assets/chat-still-2x.webp" width="314" height="648" alt=""></div>
+      <p class="body body-400 cr-para">Chats happen by text, not voice or video, so users don’t have to say anything sensitive out loud. Each chat has a set length and can end early, which leaves users in control of when and how much they share.</p>
+    </div></div>
+  </section>
+  <section data-node="3300:13477" class="security rule-b" aria-labelledby="security-title">
+    <div class="security__text" data-tb>
+      <h2 class="eyebrow tb-item" id="security-title">Security features</h2>
+      <p class="h40 tb-item">Privacy is a condition for access. Users need safeguards that protect the app before, during and after a conversation.</p>
+    </div>
+    <div class="security__block">
+      <ul class="pills security__pills">
+        <li><span class="pill">Interview insight 5</span></li>
+        <li><span class="pill">Testing insight 3</span></li>
+      </ul>
+      <div class="security__row">
+        <div class="security__media">
+          <figure class="mask security__a" data-mask>
+            <div class="mask__scale"><img src="/haven/assets/security-pin-2x.webp" width="501" height="751" loading="lazy" alt="Create a security PIN, with the option to use Face ID."></div>
+          </figure>
+          <figure class="mask security__b" data-mask data-delay="0.2">
+            <div class="mask__scale"><img src="/haven/assets/security-discreet-2x.webp" width="464" height="751" loading="lazy" alt="Keep Haven discreet: choose a disguise icon, hide Haven in the app switcher and keep notifications off."></div>
+          </figure>
+        </div>
+        <p class="body body-400 security__body" data-tb><span class="tb-item">Interviews showed that discovery by guardians or peers could stop someone from using Haven at all, and testing showed the early concepts did not communicate enough protection. The final setup disguises the app icon, hides Haven in the app switcher, keeps notifications off until the user turns them on and adds a security PIN with Face ID. Privacy is visible when users need it, not buried in a later settings screen.</span></p>
+      </div>
+    </div>
+  </section>
+  <section data-node="4659:13118" class="ending" aria-labelledby="ending-title">
+    <div class="ending__head" data-tb><h2 class="eyebrow tb-item" id="ending-title">Where things stand</h2><p class="ending__title tb-item">Haven’s initial MVP phase was built around two needs:</p><p class="h24 ending__needs tb-item">To be understood and to be safe.</p></div>
+  <div class="stage-wrap" id="wrap">
+    <div class="stage-size"></div>
+    <div class="stage">
+      <div class="track" id="track">
+        <article class="end-card" tabindex="0" role="button" aria-expanded="false" aria-label="Identity quiz">
+          <div class="end-bg"></div>
+          <img class="end-phone" src="/assets/haven-end/w-p1-quiz.webp" alt="Identity quiz question screen" width="454" height="929" decoding="sync">
+          <p class="end-caption">A quiz pairs users with Confidantes who share their experiences.</p>
+          <div class="end-cover"></div><div class="end-dim"></div>
+        </article>
+        <article class="end-card" tabindex="0" role="button" aria-expanded="false" aria-label="Confidante profile">
+          <div class="end-bg"></div>
+          <img class="end-phone" src="/assets/haven-end/w-p2-profile.webp" alt="Confidante profile with shared experiences" width="454" height="927" decoding="sync">
+          <p class="end-caption">Profiles lead with the experiences a user and Confidante share.</p>
+          <div class="end-cover"></div><div class="end-dim"></div>
+        </article>
+        <article class="end-card" tabindex="0" role="button" aria-expanded="false" aria-label="Your events">
+          <div class="end-bg"></div>
+          <img class="end-phone" src="/assets/haven-end/w-p3-events.webp" alt="Your events screen with two introduction chats" width="454" height="931" decoding="sync">
+          <p class="end-caption">Intro chats happen by text, at a time the user can be alone.</p>
+          <div class="end-cover"></div><div class="end-dim"></div>
+        </article>
+        <article class="end-card" tabindex="0" role="button" aria-expanded="false" aria-label="Introduction chat">
+          <div class="end-bg"></div>
+          <img class="end-phone" src="/assets/haven-end/w-p4-intro.webp" alt="Introduction chat with a Confidante" width="454" height="934" decoding="sync">
+          <p class="end-caption">An intro chat comes first, so users can see if it feels right.</p>
+          <div class="end-cover"></div><div class="end-dim"></div>
+        </article>
+        <article class="end-card" tabindex="0" role="button" aria-expanded="false" aria-label="Security setup">
+          <div class="end-bg"></div>
+          <img class="end-phone" src="/assets/haven-end/w-p5-security.webp" alt="Keep Haven discreet setup with disguise icons" width="454" height="937" decoding="sync">
+          <p class="end-caption">Haven can hide behind a different icon on the user’s phone.</p>
+          <div class="end-cover"></div><div class="end-dim"></div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+    <div class="ending__bottom"><p class="h40 ending__close" data-tb><span class="tb-item"><span>Identity was the first phase.</span><br><span class="ending__word">Community</span> is the next.</span></p><div class="resources"><p>Learn more about what you can do to support LGBTQIA+ youth at the links below:</p><ul><li><a href="https://www.thetrevorproject.org/">The Trevor Project</a></li><li><a href="https://pflag.org/">PFLAG</a></li><li><a href="https://familyproject.sfsu.edu/">Family Acceptance Project</a></li></ul></div></div>
+  </section>
+
+    </div>
+  </div>
+</main>
+
+<nav class="ending-bar" data-figma-node="5812:22557" aria-label="More case studies">
+  <a class="ending-bar__prev" href="/mondai/"><img src="/assets/ui/chevron-left.svg" alt=""><span class="eb-long">Mondai: design system case study</span><span class="eb-short">Mondai design system CS</span></a>
+  <a class="ending-bar__all" href="/#work">Explore more case studies</a>
+  <a class="ending-bar__next" href="/mondai/framework/"><span class="eb-long">Mondai: framework case study</span><span class="eb-short">Mondai framework CS</span><img src="/assets/ui/chevron-left.svg" alt=""></a>
+</nav>
+
+          <footer class="footer" data-figma-node="5812:22558" id="contact">
+            <div class="footer__main">
+              <div class="footer__top grid">
+                <div class="col-1 span-5">
+                  <a class="footer__back" href="#top"><img src="/assets/ui/arrow-up.svg" alt=""><span>Back to top</span></a>
+                  <ul class="footer__nav">
+                <li><a class="link-footer" href="/">Home</a></li>
+                <li><a class="link-footer" href="/#about">About</a></li>
+                <li><a class="link-footer" href="/#work">Selected works</a></li>
+                <li><a class="link-footer" href="#contact">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="footer__contact col-6 span-3">
+                  <p class="footer__label">Contact</p>
+                  <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+                  <div class="footer__note">
+                    <p>I’m currently living in Chicago, IL</p>
+                    <p>and seeking opportunities in NYC.</p>
+                  </div>
+                  <a class="button" href="mailto:hello@chadwickfenner.com">
+                    <span class="button__icon" aria-hidden="true"><img src="/assets/ui/mail-asterisk.svg" alt=""></span>
+                    <span class="button__label">Contact</span>
+                  </a>
+                </div>
+                <div class="footer__portraits col-10 span-3" aria-hidden="true">
+                  <span class="footer__pill"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                  <span class="footer__pill footer__pill-flip"><span class="footer__frame"><img src="/assets/ui/footer-portrait.webp" alt=""></span></span>
+                </div>
+              </div>
+              <img class="footer__wordmark" data-bleed src="/assets/ui/chdwck.svg" alt="" aria-hidden="true">
+              <div class="footer__bottom grid">
+                <p class="footer__meta col-1 span-3">@2026, Chadwick Fenner</p>
+                <p class="footer__meta col-4 span-3"><time id="chicago-time">10:24:00pm CST</time></p>
+                <div class="footer__links">
+                  <p class="footer__label footer__links-label">Links</p>
+                  <a class="footer__out col-7 span-3" href="https://www.linkedin.com/in/chadwickfenner/"><img src="/assets/ui/arrow-out.svg" alt=""><span>Linkedin</span></a>
+                  <a class="footer__out col-10 span-3" data-link-until="his resume file"><img src="/assets/ui/arrow-out.svg" alt=""><span>Resume</span></a>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+
+
+<div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="menu__bar">
+    <a class="navbar__logo" href="/" aria-label="Chadwick Fenner, home"><img src="/assets/ui/logo.svg" alt=""></a>
+    <button class="navbar__menu menu__close" type="button" aria-label="Close menu" data-dialog-close><img src="/assets/ui/close.svg" alt="" width="14" height="14"></button>
+  </div>
+  <nav class="menu__body" aria-label="Main">
+    <ul class="menu__links">
+      <li><a class="link-footer link-footer-lg" href="/#about">About</a></li>
+      <li><a class="link-footer link-footer-lg" href="/#work">Works</a></li>
+    </ul>
+    <div class="menu__contact">
+      <p class="footer__label">Contact</p>
+      <a class="footer__email" href="mailto:hello@chadwickfenner.com">hello@chadwickfenner.com</a>
+    </div>
+  </nav>
+</div>
+<script type="module" src="/haven/phone-menu.js"></script>
+<script src="/haven/vendor/lenis.min.js"></script>
+<script src="/haven/vendor/gsap.min.js"></script>
+<script src="/dev/haven-flow-order/haven.js"></script>
+<script src="/haven/pill-tips.js"></script>
+<script type="module" src="/haven/current.js"></script>
+<script type="module" src="/js/contact-goo.js"></script>
+<script src="/js/site-cursor.js" defer></script>
+</body>
+</html>

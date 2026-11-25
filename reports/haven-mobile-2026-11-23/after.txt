@@ -1,0 +1,60 @@
+@320 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@320 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@320 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@320 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@320 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@320 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@320 tapflash: <ul.wires__list> "" tap highlight rgba(51, 181, 229, 0.4)
+@360 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@360 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@360 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@360 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@360 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@360 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@360 tapflash: <ul.wires__list> "" tap highlight rgba(51, 181, 229, 0.4)
+@375 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@375 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@375 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@375 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@375 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@375 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@375 tapflash: <ul.wires__list> "" tap highlight rgba(51, 181, 229, 0.4)
+@390 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@390 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@390 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@390 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@390 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@390 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@390 tapflash: <ul.wires__list> "" tap highlight rgba(51, 181, 229, 0.4)
+@430 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@430 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@430 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@430 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@430 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@430 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@430 tapflash: <ul.wires__list> "" tap highlight rgba(51, 181, 229, 0.4)
+@600 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@600 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@600 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@600 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@600 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@600 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@600 blur: assets/security-pin-2x.webp drawn 568 px wide from 1002 px (1.76x)
+@600 blur: assets/security-discreet-2x.webp drawn 568 px wide from 928 px (1.63x)
+@600 blur: ../assets/haven-end/w-p1-quiz.webp drawn 239 px wide from 454 px (1.90x)
+@600 blur: ../assets/haven-end/w-p2-profile.webp drawn 239 px wide from 454 px (1.90x)
+@600 blur: ../assets/haven-end/w-p3-events.webp drawn 239 px wide from 454 px (1.90x)
+@600 blur: ../assets/haven-end/w-p4-intro.webp drawn 239 px wide from 454 px (1.90x)
+@600 blur: ../assets/haven-end/w-p5-security.webp drawn 239 px wide from 454 px (1.90x)
+@600 tapflash: <ul.wires__list> "" tap highlight rgba(51, 181, 229, 0.4)
+@767 body: <p.data-card__body> "LGBTQ youth who reported at least on" paragraph at 14.0 px
+@767 body: <p.data-card__body> "LGBTQ youth who had at least one aff" paragraph at 14.0 px
+@767 body: <p.card__body> "When choosing between experts, users" paragraph at 14.0 px
+@767 body: <p.card__body> "Users were uncomfortable discussing " paragraph at 14.0 px
+@767 body: <p.card__body> "A one size fits all identity model c" paragraph at 14.0 px
+@767 body: <p.card__body> "Users are concerned with using an LG" paragraph at 14.0 px
+@767 blur: assets/profile-card-2x.webp drawn 735 px wide from 1360 px (1.85x)
+@767 blur: assets/security-pin-2x.webp drawn 735 px wide from 1002 px (1.36x)
+@767 blur: assets/security-discreet-2x.webp drawn 735 px wide from 928 px (1.26x)
+@767 tapflash: <ul.wires__list> "" tap highlight rgba(51, 181, 229, 0.4)
+59 finding(s)

@@ -1,0 +1,4 @@
+/* Option, quiz on a phone: pillars kept, labels at 12, the phone half the width instead of 39 percent. */
+@media (max-width: 767px) {
+  .quiz__phone { left: 25% !important; width: 50% !important; }
+}

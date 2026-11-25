@@ -1,0 +1,19 @@
+/* Option, quiz on a phone: no pillars; the phone is bigger and the five areas, icon over label, sit around
+   it. The phone stays in place (no pin), so the labels keep their spots around it. */
+@media (max-width: 767px) {
+  .quiz__stage { aspect-ratio: 358 / 540; }
+  .qcol__pillar { display: none; }
+  .quiz__phone { left: 26% !important; top: 25% !important; width: 48% !important; transform: none !important; }
+  .qcol__icon { width: 11% !important; transform: translateX(-50%); }
+  .qcol__label { white-space: nowrap; }
+  .qcol:nth-child(1) .qcol__icon { left: 12% !important; top: 46% !important; }
+  .qcol:nth-child(1) .qcol__label { left: 12% !important; top: 54% !important; }
+  .qcol:nth-child(2) .qcol__icon { left: 17% !important; top: 4% !important; }
+  .qcol:nth-child(2) .qcol__label { left: 17% !important; top: 12% !important; }
+  .qcol:nth-child(3) .qcol__icon { left: 50% !important; top: 0% !important; }
+  .qcol:nth-child(3) .qcol__label { left: 50% !important; top: 8% !important; }
+  .qcol:nth-child(4) .qcol__icon { left: 83% !important; top: 4% !important; }
+  .qcol:nth-child(4) .qcol__label { left: 83% !important; top: 12% !important; }
+  .qcol:nth-child(5) .qcol__icon { left: 88% !important; top: 46% !important; }
+  .qcol:nth-child(5) .qcol__label { left: 88% !important; top: 54% !important; }
+}
