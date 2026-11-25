@@ -1,6 +1,6 @@
 # Fix: the independent checker ran in a session with no repositories and talked as if it knew CS3
 
-Status: verified (restructure); hook not installed
+Status: verified (restructure and hook on planted cases); hook not yet seen blocking a live call
 
 ## Evidence
 Bad output: the checker session for the second reference pass had no repository attached (its session record lists no sources). It still ranked pages "by closeness to the model page", offered to re-rate them against the case study, told Chadwick it had attached the portfolio repo, then in the next reply confirmed it had not opened or attached it.
@@ -26,7 +26,7 @@ Layer: 3 (restructure), with layer 4 proposed
 Why not earlier layers: 1, nothing conflicts that can be deleted; 2, the source is my own brief, which is restructured rather than patched.
 Replaces: n/a
 Restructure: the main session now launches every research and checking agent itself, as in-session agents that see the repos on disk; no agent starts another session. The relevance checker must read the CS3 outline and numbers before judging and name them in its report.
-Proposed layer 4 (not installed, needs Chadwick's yes): a PreToolUse hook in this repo that blocks create_session when no source_url is passed.
+Layer 4, approved by Chadwick 25 Nov ("yes"): a PreToolUse hook, .claude/hooks/session-repo-guard.mjs, wired in .claude/settings.json, blocks create_session when no source_url is passed.
 
 ## Check
 Check: yes or no reviewer question on each checker report: does it name the CS3 files it read, and do those paths exist in /home/user/portfolio? Plus the session record: did the checking agent run where the portfolio repo was on disk?
@@ -43,7 +43,7 @@ Before: a ranking with no CS3 file read.
 After: the relevance checker's report opens by naming outline-2/MATERIAL.md, NUMBERS.md and STRATEGY.md with what each says (N9 596 to 0, N17 about 31 a build with no after), and rates every page for a CS3 section.
 Check result after: PASS. All three named files exist in /home/user/portfolio/reference/design-system-cs/, and the figures it cites match NUMBERS.md.
 Second case: the third search pass, launched the same way, named MATERIAL.md, NUMBERS.md and the archived model page as read first and rated all 33 new pages for a CS3 section. PASS.
-Enforcement test: n/a until the hook is approved.
+Enforcement test: node .claude/hooks/tests/session-repo-guard-cases.mjs prints SESSION-GUARD-PASS: blocks no source and a blank source, allows a portfolio source and other tools. Not tried as a live call, which would start a real session if the hook had not loaded.
 
 ## Report
-Unverified: without the hook, the restructure holds only while the main session does the dispatching; a future brief could repeat cause 2. Chadwick decides whether to install the hook.
+Unverified: the hook has not been seen blocking a live call; it covers sessions opened on the portfolio repo only, so a session opened on another repo is not guarded.
