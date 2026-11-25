@@ -108,6 +108,8 @@ Tags: Interview insight 1 | Testing insight 4
 Subhead: Confidante selection journey flow
 Body: Testing showed users hesitating over which Confidante to pick. They went back and forth between profiles, and some undid their choice after making it. I moved selection after the introductory chat, which exists to help them decide. In the revised flow, users can chat with more than one Confidante before choosing one.
 Flow: Identity quiz | Review matches | Select a Confidante | Schedule a chat | Intro chat
+Phone heading: Flow updates
+Phone flow: Identity quiz | Review matches | Select Confidante | Schedule chat | Intro chat
 Alt: Revised flow: identity quiz, review matches, schedule a chat, intro chat, select a Confidante
 
 ## Confidante profile

@@ -90,3 +90,5 @@ The phone frame he updated is "haven update journey mobile" (6445:24415), a seco
 ## Open for the final animation review
 
 His note, 25 Nov: the phone list is fine for now; the scroll timing needs checking in the final animation review. Today it uses the desktop trigger: the slide starts 450 ms after the list's top passes 80% up the screen, and replays after the list leaves below. The phone list is 281 px tall against the desktop row's 177 px, so whether it starts too early or late on a phone is the question to settle there.
+
+Applied 25 Nov on his yes: the Flow updates list is live on phones (site/haven/index.html, haven.js, haven.css; final-copy.md records the phone heading and labels). Checks after: flow order OK at every width, the list fits 320 to 767 with no sideways scroll, desktop and tablet renders of the flow pixel identical to before, check-site, responsive and hover OK, phone audit unchanged (checks-phone-live.txt).

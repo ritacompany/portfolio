@@ -83,7 +83,7 @@
     var map = document.getElementById("flow-map");
     var row = document.getElementById("journey-row");
     if (!stage || !map) return;
-    var P = 160, DT = 1700, R = 1376, RATE = 0.85, HOLD = 450, AT = 0.8, VERTICAL_BELOW = 560;
+    var P = 160, PV = 62, CV = 33, DT = 1700, R = 1376, RATE = 0.85, HOLD = 450, AT = 0.8, VERTICAL_BELOW = 560;
     var PHONE = matchMedia("(max-width: 767px)");
     var IO = "cubic-bezier(.65,0,.35,1)", OUT = "cubic-bezier(.22,1,.36,1)";
     var by = {}, nums = [];
@@ -98,7 +98,7 @@
     var vertical = null, anims = [], started = false, timer = null, played = false;
 
     function X(slot, s) {
-      var d = slot * P;
+      var d = slot * (vertical ? PV : P);
       return (vertical ? "translate(0," + d + "px)" : "translate(" + d + "px,0)") + " scale(" + (s == null ? 1 : s) + ")";
     }
     function at(ms) { return Math.min(1, ms / DT); }
@@ -111,7 +111,7 @@
       anims.forEach(function (a) { a.cancel(); }); anims = [];
       map.classList.toggle("is-vertical", vertical);
       nums.forEach(function (n, i) {
-        if (vertical) { n.style.left = "0px"; n.style.top = (i * P + 137 / 2 - 11) + "px"; }
+        if (vertical) { n.style.left = "0px"; n.style.top = (i * PV + CV / 2) + "px"; }
         else { n.style.left = (i * P) + "px"; n.style.top = ""; }
       });
       Object.keys(start).forEach(function (k) { by[k].style.transform = X(start[k]); });
@@ -127,7 +127,7 @@
       // The phone layout (under 768) keeps it vertical at every width: from 592 the sideways row was scaled to 9.9 px text.
       var w = map.clientWidth, v = w < VERTICAL_BELOW || PHONE.matches;
       if (v !== vertical) { vertical = v; build(); }
-      stage.style.setProperty("--flow-scale", String(vertical ? 0.75 : box.clientWidth / 777));
+      stage.style.setProperty("--flow-scale", String(vertical ? 1 : box.clientWidth / 777));
       map.style.setProperty("--flow-scale", "0.75");
     }
     fit();
