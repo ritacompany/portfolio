@@ -36,6 +36,7 @@
 - Wire spray, his yes 24 Nov: kit part 76. Small bursts of thin shiny chrome wire sprouting from the coral's forks, hard metal next to the soft sorrel flowers.
 - Noodle puffs, his yes 24 Nov: kit part 9. Small round puffs of tightly curled glossy strands on beaded stems.
 - Coral, his pick 24 Nov: precious coral (Corallium rubrum), the coral used in jewelry. Slim smooth arms branching like a little tree, polished and glossy, no grit. Reference: refs/coral-precious.jpg (Eric A. Lazo-Wasem, CC0, Wikimedia Commons). Its branches are slimmer than the chunky coral in the current drawing, so the detailed sketch should thin them. Color comes with the palette. Options sheet: https://claude.ai/artifact/2Pw6zqi8XMnv4fhEAFLYf2
+- Palette, his starting point 25 Nov (refs/palette-his-25nov.png): five color families, each a light and a dark shade, hexes are a guide not exact. Green #489E54 / #215129, periwinkle #9090F0 / #2D1782, pink #E58598 / red #C12F33, pale yellow #E1EC9B / olive #88982F, violet #C244F4 / #54176D. Not every color everywhere; a couple can be tiny details. His worry: the yellow could overpower. First test on the drawing: refs/palette-test-1.png (periwinkle pipe, pink coral and spring and noodle puffs, violet glowing pot, green box and cables, red connector and plugs, pale yellow flowers). Not settled.
 - Sheets that worked for him: one question per page section, a photo per option, the pick stated once.
 
 ## Next
