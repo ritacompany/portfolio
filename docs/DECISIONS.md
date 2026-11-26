@@ -1,8 +1,18 @@
 # Portfolio decisions
 
+## 2026-11-22: Testimonials stays hidden on the home page
+
+The Testimonials section is in his newest home frame (6364:29031) but stays hidden on the site, with
+its footer and phone menu links, until he says otherwise. Decided by Chadwick, 22 Nov: "hide ... that
+is a for later thing dont even worry about it for now". Do not raise it again.
+
 ## 2026-11-12: No stroke on the footer portraits, on any page
 
 Chadwick has asked in several chats for no stroke on the footer portraits (9 Nov: "neither should have a stroke"; again 12 Nov). The rim was the pill's light background being antialiased separately from the photo, so a thin grey line showed around the black suit. The fix had only ever been made in the preview layer (`site/dev/preview/proposals.css`), which the real pages never load, so it kept coming back. It now lives in `site/css/components.css` (`.footer__pill`: one `clip-path` for the background and the photo, no `border-radius` plus `overflow`), which every page's footer uses. Keep it there: do not reintroduce `border-radius` or `overflow: hidden` on `.footer__pill`, and fix footer issues in `site/css`, never only in a preview file.
+
+## 2026-11-10: Tablet and mobile layout grids set
+
+Chadwick set the responsive grids to follow the desktop grid. Tablet is 8 columns with 32px margins and 32px gutters. Mobile is 4 columns with 24px margins and 24px gutters. Desktop stays 12 columns with 40px margins and 40px gutters. All are stretch grids in Figma with no fixed column width. Margin equals gutter at every size so the page edge reads as one more gutter, and 12, 8 and 4 keep halves and quarters intact. Breakpoints are 1200 and 768. Full spec is in `docs/PROJECT_CONTEXT.md`.
 
 ## 2026-10-28: Haven uses Chadwick's corrected spacing
 

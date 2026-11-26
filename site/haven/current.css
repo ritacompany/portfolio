@@ -6,7 +6,7 @@
 .eyebrow { letter-spacing:-.02em; }
 .flipped { display:inline-block; transform:scaleX(-1); }
 .hero { padding:130px var(--m) 72px; }
-.hero__top { gap:80px; padding-bottom:24px; margin-inline:calc(-1 * var(--m)); padding-inline:var(--m); border-bottom:1px solid var(--n800); }
+.hero__top { gap:80px; padding-bottom:24px; margin-inline:calc(-1 * var(--m)); padding-inline:var(--m); border-bottom:1px solid var(--neutral-700); }
 .display { font-weight:400; line-height:.83; }
 .meta { gap:calc(141 * var(--g)); }
 .hero__lead { margin-top:64px; flex-direction:row; gap:calc(145 * var(--g)); }
@@ -41,7 +41,7 @@
 .mvp__row { margin-top:80px; }
 .mvp__tl { display:none; } /* his 1b timeline, shown 768 to 1159 only (F1 below) */
 .gap-67 { display:none; }
-.wires { padding:64px 0 164px; border-bottom:1px solid var(--n800); }
+.wires { padding:64px 0 164px; border-bottom:1px solid var(--neutral-700); }
 .wires__text { padding-top:0; }
 .wires__lead { margin-top:40px; }
 .testing { margin-top:0; padding-top:64px; }
@@ -196,7 +196,6 @@
  .cr:not(.has-chat) .cr-phone { position:static; width:min(70%,314px); margin-inline:auto; }
  .cr:not(.has-chat) .cr-para { position:static; width:100%; }
 }
-.rule-b,.rule-t,.section-rule { border-color:var(--n800); }
 @media(min-width:768px) { .cr:not(.has-chat) .cr-para { width:min(360px,calc(360 * var(--g))); } }
 @media(min-width:1160px) {
  .display { font-size:clamp(72px,14.7222vw,212px); }
@@ -256,11 +255,10 @@
     .security__a { flex: 501 1 0; }
     .security__b { flex: 464 1 0; }
   }
-  /* F4: inside each insight card the text sits the same distance from the top and the bottom. */
-  .tcard__body { flex: 1; min-height: 0; padding: 24px; display: flex; align-items: center; }
+  /* F4: each insight card hugs its text, 32 top, 24 sides, 34 bottom, as on desktop (his ask 25 Nov). */
   /* F11: a tablet has no hover, so every ending card is shown open, caption visible, in a row that
      swipes sideways. Cards are 410 px apart at full size so the open panels do not overlap. */
-  .ending .stage-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; margin-top: 56px; }
+  .ending .stage-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; margin-top: 120px; }
   .ending .stage-wrap::-webkit-scrollbar { display: none; }
   .ending .stage, .ending .stage:has(.has-active) { left: var(--edge); width: 2026px; transform: scale(var(--s)); transform-origin: top left; clip-path: none; }
   .ending .stage-size { width: calc(2026px * var(--s) + var(--edge) * 2); height: 1px; }
@@ -272,5 +270,180 @@
   .ending .end-dim, .ending .track.has-active .end-card:not(.is-active) .end-dim { opacity: 0; }
   .ending .end-phone { transform: translateY(-129px) scale(1.18229); transition: none; }
   .ending .end-cover { transform: translateY(134px); transition: none; }
-  .ending .ending__bottom, .ending:has(.has-active) .ending__bottom { margin-top: 32px; }
+  .ending .ending__bottom, .ending:has(.has-active) .ending__bottom { margin-top: 120px; }
+}
+
+/* ================= Phone, under 768: his review of 23 Nov (reports/haven-mobile-2026-11-23) ================= */
+/* Haven on a phone, under 768 (reports/haven-mobile-2026-11-23/ISSUES.md). His yes, 23 Nov.
+   P1, P2: his rule (23 Nov): no mouse hover on a phone. A phone keeps :hover on the last thing tapped, so
+   every hover look rests here unless the finger is down; the press (:active) keeps its look. No grey tap
+   flash either: each link has its own press, and the pills do nothing on touch.
+   P3: the quiz pillar labels were 9 px, under the 12 px floor; 12 fits every phone width (checked 320 to 767). */
+@media (max-width: 767px) {
+  a, button, .pill, .end-card, .wires__list { -webkit-tap-highlight-color: transparent; }
+
+  .site-nav .link-nav:hover:not(:active) { color: var(--nav-ink); -webkit-text-stroke: 0; -webkit-font-smoothing: antialiased; }
+  .footer__email:hover:not(:active) { color: var(--neutral-100); background: none; box-shadow: none; -webkit-text-stroke: 0; -webkit-font-smoothing: antialiased; }
+  .footer__out:hover:not(:active) { color: var(--neutral-100); -webkit-text-stroke: 0; }
+  .ending-bar a:hover:not(:active) { color: inherit; background: none; -webkit-font-smoothing: auto; }
+  .ending-bar a:hover:not(:active) img { filter: none; }
+  .resources a:hover:not(:active) { background: var(--n050); }
+  .resources a:active { background: var(--n400); }
+  .pill[aria-describedby]:hover:not([data-tip-open]) { border-color: var(--n550); }
+  /* The logo had only the grey flash as its press; it dims while pressed instead. */
+  .site-nav .navbar__logo:active img { opacity: 0.6; }
+
+  .qcol__text { font-size: 12px; }
+}
+
+/* Ending cards on a phone (his B, 23 Nov): every card shown open with its caption, in a row that swipes sideways,
+   as the tablet (his F11, 13 Nov: no hover, so nothing waits behind an interaction). */
+@media (max-width: 767px) {
+  .ending .stage-wrap { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .ending .stage, .ending .stage:has(.has-active) { left: var(--edge); width: 2026px; transform: scale(var(--s)); transform-origin: top left; clip-path: none; }
+  .ending .stage-size { width: calc(2026px * var(--s) + var(--edge) * 2); height: 1px; }
+  .ending .track { transform: none; transition: none; }
+  .ending .end-card:nth-child(1) { left: 0; } .ending .end-card:nth-child(2) { left: 410px; } .ending .end-card:nth-child(3) { left: 820px; }
+  .ending .end-card:nth-child(4) { left: 1230px; } .ending .end-card:nth-child(5) { left: 1640px; }
+  .ending .end-card, .ending .end-card.is-left, .ending .end-card.is-right { transform: none; transition: none; }
+  .ending .end-bg, .ending .end-dim { transform: scale(1.43494, 1.79762); transition: none; }
+  .ending .end-dim, .ending .track.has-active .end-card:not(.is-active) .end-dim { opacity: 0; }
+  .ending .end-phone { transform: translateY(-129px) scale(1.08); transition: none; }
+  .ending .end-cover { transform: translateY(134px); transition: none; }
+  .ending .ending__bottom, .ending:has(.has-active) .ending__bottom { margin-top: 48px; }
+}
+
+/* Ending bar on a phone (his ask, 23 Nov): short names, "Mondai design system CS" and
+   "Mondai framework CS", and no Explore more case studies. The short name is a second span in the markup,
+   shown only under 768. */
+.ending-bar .eb-short { display: none; }
+@media (max-width: 767px) {
+  .ending-bar .eb-long { display: none; }
+  .ending-bar .eb-short { display: inline; }
+  /* Two lines at most at 320: the bar takes the 16 px phone margin and a 16 px gap, and each name breaks evenly. */
+  .ending-bar { grid-template-columns: 1fr 1fr; grid-template-areas: "prev next"; row-gap: 0; column-gap: 16px; padding-inline: 16px; }
+  .ending-bar .eb-short { text-wrap: balance; }
+  .ending-bar__all { display: none; }
+}
+/* Under 360 the names step to 12 px, the floor, so they stay on two lines at 320. */
+@media (max-width: 359px) { .ending-bar .eb-short { font-size: 12px; } }
+
+/* Nav on a phone (his call, 23 Nov: the phone bar is the site's mobile navigation): the bar and menu from
+   his Mobile frames 6382:29154, as Home builds them in home.css. Solid Neutral/1000 bar fixed at the top with the logo and the burger; the burger opens
+   the full screen menu. Haven carries its own copy for now; one shared copy in components.css is the follow up, done with Home. */
+:where(.site-nav .navbar__menu, #site-menu) { display: none; }
+@media (max-width: 767px) {
+  .page-header.site-nav { top: 0; background: var(--neutral-1000); }
+  .site-nav .navbar { display: flex; align-items: center; padding-block: 18px; }
+  .site-nav .navbar__links { display: none; }
+  .site-nav .navbar__logo img { content: url("/assets/ui/logo-300.svg"); filter: none; }
+  .site-nav.is-on-light { background: var(--neutral-1000); }
+  .navbar__menu { display: grid; place-items: center; margin: -16px -13px -16px auto; padding: 16px 13px; background: none; border: 0; cursor: pointer; pointer-events: auto; -webkit-tap-highlight-color: transparent; }
+  .navbar__menu img { width: 18px; height: 12px; }
+  .navbar__menu:active img { opacity: 0.6; }
+  .menu { position: fixed; inset: 0; z-index: 40; display: flex; flex-direction: column; padding: 24px 16px 40px; background: var(--neutral-1000); opacity: 0; transition: opacity 200ms var(--ease-quart-out); }
+  .menu[hidden] { display: none; }
+  .menu[data-open] { opacity: 1; }
+  .menu__bar { display: flex; align-items: center; }
+  .menu__bar .navbar__logo { display: block; }
+  .menu .navbar__logo img { content: url("/assets/ui/logo-300.svg"); }
+  .menu__close { padding: 15px; margin: -15px -15px -15px auto; }
+  .menu__close img { width: 14px; height: 14px; }
+  .menu__body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 100px; }
+  .menu__links { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; list-style: none; padding: 0; margin: 0; }
+  .menu__links li { display: flex; }
+  .menu__contact { display: flex; flex-direction: column; align-items: flex-start; }
+  .menu__contact .footer__email { margin-top: 26px; }
+}
+
+/* ================= Phone, under 768: his yes of 25 Nov (reports/haven-mobile-2026-11-23) ================= */
+/* Haven on his phone grid (docs/DECISIONS.md, 10 Nov): under 768, 4 columns, 24 margin, 24 gutter, the same
+   tokens every page uses (tokens.css: --grid-columns 4, --grid-margin 24, --grid-gutter 24). Haven had kept its own
+   16 px margin and 16 px gaps. Full width content spans all 4 columns; side by side pieces sit 24 apart. */
+@media (max-width: 767px) {
+  main, .site-nav { --m: var(--grid-margin); }
+  .ending { --edge: var(--grid-margin); }
+  /* Each name is two set lines (Mondai design / system CS, Mondai / framework CS), inside the 24 margins with at
+     least the 24 gutter between them; the links lose their 6 px side padding here so both fit at 320. */
+  .ending-bar { grid-template-columns: auto auto; justify-content: space-between; column-gap: var(--grid-gutter); padding-inline: var(--grid-margin); }
+  .ending-bar .eb-short { white-space: nowrap; }
+  .ending-bar__prev, .ending-bar__next { padding-inline: 0; }
+  .ending-bar__prev img { margin-left: -8.69px; }
+  #site-menu.menu { padding-inline: var(--grid-margin); }
+  /* The interview numbers had no side margin at all on a phone; they now sit inside the grid like the rest. */
+  .stats { padding-inline: var(--grid-margin); }
+  .stats__row, .stat-total { column-gap: var(--grid-gutter); }
+  .cards-research, .security__media { gap: var(--grid-gutter); }
+}
+/* Under 390 the two names step to 12 px, the floor, so they fit side by side. */
+@media (max-width: 389px) { .ending-bar .eb-short { font-size: 12px; } }
+
+/* Quiz on a phone (his ask 24 Nov, his yes 25 Nov): no pillars. The five areas float in place above the phone,
+   each icon with its label centred under it, scattered, swaying gently side to side (a slow "float": a few px of
+   drift on a long loop, each one out of step with the others). As the reader scrolls on, the phone rises up into
+   place under them. The phone is much bigger: 64 percent of the width, 229 px at 390 (it was 138). */
+@media (max-width: 767px) {
+  .quiz__stage { aspect-ratio: 358 / 820; overflow: hidden; }
+  .qcol__pillar { display: none; }
+  .qcol { position: absolute; inset: 0; pointer-events: none; }
+  .qcol__icon { width: auto !important; height: 7.2%; margin-left: 0; translate: -50% 0; }
+  .qcol__label { white-space: nowrap; }
+  /* Scatter: three across the top, two lower and further in, never on the phone. Icon x = label x, so the
+     label is centred under its icon. */
+  .qcol:nth-child(3) .qcol__icon { left: 50% !important; top: 0% !important; }
+  .qcol:nth-child(3) .qcol__label { left: 50% !important; top: 9.5% !important; }
+  .qcol:nth-child(2) .qcol__icon { left: 17% !important; top: 3% !important; }
+  .qcol:nth-child(2) .qcol__label { left: 17% !important; top: 12.5% !important; }
+  .qcol:nth-child(4) .qcol__icon { left: 83% !important; top: 4% !important; }
+  .qcol:nth-child(4) .qcol__label { left: 83% !important; top: 13.5% !important; }
+  .qcol:nth-child(1) .qcol__icon { left: 30% !important; top: 21% !important; }
+  .qcol:nth-child(1) .qcol__label { left: 30% !important; top: 30.5% !important; }
+  .qcol:nth-child(5) .qcol__icon { left: 70% !important; top: 22% !important; }
+  .qcol:nth-child(5) .qcol__label { left: 70% !important; top: 31.5% !important; }
+  /* The phone: big, centred, resting 37 percent down; --rise lifts it into place with the scroll. */
+  .quiz__phone { left: 18% !important; top: 37% !important; width: 64% !important; transform: translate3d(0, var(--rise, 0px), 0) !important; }
+  /* Float: each area sways on its own loop. */
+  .qcol { animation: qfloat 6s ease-in-out infinite alternate; }
+  .qcol:nth-child(2) { animation-duration: 7.2s; animation-delay: -2.1s; }
+  .qcol:nth-child(3) { animation-duration: 5.4s; animation-delay: -3.7s; }
+  .qcol:nth-child(4) { animation-duration: 6.6s; animation-delay: -1.2s; }
+  .qcol:nth-child(5) { animation-duration: 7.8s; animation-delay: -4.6s; }
+  @keyframes qfloat {
+    0% { transform: translate3d(-5px, 0, 0) rotate(-1deg); }
+    50% { transform: translate3d(2px, -4px, 0) rotate(0.5deg); }
+    100% { transform: translate3d(5px, 1px, 0) rotate(1deg); }
+  }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .qcol { animation: none; }
+  .quiz__phone { transform: none !important; }
+}
+
+/* MVP timeline on a phone (his notes 24 Nov, his yes 25 Nov): the desktop chart's language, simplified. Each column
+   number sits on its own line with a small dot under it; the two launches are the desktop's big circle on a
+   line, its label just to the left; the two bars sit below them. Identity ends on 07's line, Community on 12's. */
+.tlx { display: none; }
+@media (max-width: 767px) {
+  .mvp .phases { display: none; }
+  .tlx { display: block; position: relative; margin: 48px var(--m) 0; --col: calc(100% / 12); --colpx: calc((100vw - 2 * var(--m)) / 12); }
+  .tlx__axis { display: grid; grid-template-columns: repeat(12, 1fr); font-size: 12px; letter-spacing: 0.04em; color: var(--n300); text-align: center; font-variant-numeric: tabular-nums; }
+  /* One line per column, under the centre of its number, starting at a small dot. */
+  .tlx__grid { position: absolute; left: 0; right: 0; top: 26px; bottom: 0; background: linear-gradient(to right, transparent calc(50% - 0.5px), var(--n675) calc(50% - 0.5px), var(--n675) calc(50% + 0.5px), transparent calc(50% + 0.5px)) 0 0 / var(--col) 100% repeat-x; }
+  .tlx__dots { position: absolute; left: 0; right: 0; top: 24px; display: grid; grid-template-columns: repeat(12, 1fr); justify-items: center; }
+  .tlx__dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--n500); }
+  /* Launches: the desktop's big circle on the column line, label to its left. The two sit on their own rows so the labels never meet at 320. */
+  .tlx__launches { position: relative; height: 120px; }
+  .tlx__launch { position: absolute; top: 24px; display: flex; align-items: flex-start; gap: 8px; translate: calc(-100% + 8px) 0; width: max-content; font-size: 14px; line-height: 1; color: var(--n100); white-space: nowrap; }
+  .tlx__launch::after { content: ""; flex: none; margin-top: -1px; width: 16px; height: 16px; border-radius: 50%; background: var(--n100); }
+  .tlx__launch--id { left: calc(var(--col) * 6.5); }
+  .tlx__launch--co { left: calc(var(--col) * 11.5); top: 86px; }
+  /* Under Identity launch, as the desktop chart marks it: Label/12 C, all caps, same white. */
+  .tlx__launch span { display: flex; flex-direction: column; gap: 8px; }
+  /* The label wraps rather than run past the margin where 07 sits close to the edge (320). */
+  .tlx__launch--id span { white-space: normal; max-width: calc(var(--colpx) * 6.5 - 24px); }
+  .tlx__launch small { font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; color: var(--n100); text-wrap: balance; }
+  .tlx__rows { position: relative; padding-bottom: 16px; }
+  .tlx__bar { display: flex; align-items: center; height: 40px; margin-top: 12px; padding-inline: 12px; border-radius: 0 999px 999px 0; font-size: 14px; font-weight: 700; color: var(--n050); }
+  .tlx__bar--id { width: calc(var(--col) * 6.5); background: var(--phase-identity); }
+  .tlx__bar--co { margin-left: calc(var(--col) * 4); width: calc(var(--col) * 7.5); background: var(--phase-community); }
 }

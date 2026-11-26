@@ -32,6 +32,7 @@
    CONTACT M3), as drawn in Figma. Screen readers get the plain word from aria-label. */
 .mirror { display: inline-block; transform: scaleX(-1); }
 .navbar__links li, .footer__nav li { display: flex; }
+.footer__nav li[hidden] { display: none; }
 
 /* Link, 5812:22559. Styles: Block, Nav, Footer. States: Default, Hover, Pressed. */
 .link-block, .link-nav, .link-footer {
@@ -54,9 +55,10 @@
 .link-block:hover, .link-block.is-hover { background: var(--neutral-100); }
 .link-block:active, .link-block.is-pressed { background: var(--neutral-200); }
 
+/* Navbar Base (6331:20421), 22 Nov: Label/14 C M, Neutral/200, like the logo. */
 .link-nav {
-  font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
-  color: var(--neutral-050);
+  font: var(--label-14-c-m); letter-spacing: var(--label-14-c-m-track); text-transform: uppercase;
+  color: var(--neutral-200);
 }
 /* Small all-caps link hover (nav here, LinkedIn and Back to top in the footer; his approval, 10 Nov).
    No block: the word goes to Neutral/050 (the nav already rests there in the master, 10 Nov) and gets
@@ -144,7 +146,7 @@
   display: flex; align-items: center; gap: 36px;
   padding: 36px 50px;
   color: var(--neutral-050); text-decoration: none;
-  --line: var(--neutral-800);
+  --line: var(--neutral-700);
 }
 .context-bottom { box-shadow: inset 0 -1px 0 var(--line); }
 .context-top { box-shadow: inset 0 1px 0 var(--line); }
@@ -254,7 +256,7 @@
 .footer__transition-baked img { top: 0; width: 100%; height: 100%; }
 .footer__main {
   position: relative; height: 776px; overflow: hidden;
-  display: flex; flex-direction: column; gap: 168px; /* 18 Nov: his Footer component's bottom row at 513.22, 15 higher */
+  display: flex; flex-direction: column; gap: 168px; /* Footer 6331:20483, 22 Nov (183 before) */
   padding-top: 48px;
 }
 .footer__top, .footer__bottom { align-items: start; }
@@ -334,10 +336,15 @@
   color: var(--neutral-590); white-space: nowrap;
   text-box: trim-both cap alphabetic;
 }
+/* LinkedIn and Resume, his call 23 Nov: "the icon was not changing with the text, which it obviously should,
+   and then I think it needs to be darker, like whatever color the nav menu items are, you can mimic those
+   color changes". So they rest on the nav's Neutral/200 and hover as the nav does (below), and the arrow is
+   drawn in a token of its own: arrow-out.svg becomes a mask over a colour fill, and the file's own
+   picture is pushed out of its box, so the arrow changes with the text and no page markup changes. */
 .footer__out {
   display: inline-flex; align-items: center; gap: 10px;
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
-  color: var(--neutral-100); text-decoration: none; white-space: nowrap;
+  color: var(--neutral-200); text-decoration: none; white-space: nowrap;
 }
 .footer__out[hidden] { display: none; }
 /* Resume shows as in his frames but is not a link until his resume file exists (his call, 17 Nov): no
@@ -349,14 +356,22 @@
 .footer__links-label { display: none; }
 /* The master's bottom row is an auto layout: LinkedIn lands at 742, 2 past column 7. */
 @media (min-width: 1200px) { .footer__links > .footer__out:first-of-type { margin-left: 2px; } }
-.footer__out img { width: 10.833px; height: 10.833px; flex: none; }
-/* Small link hover, as the nav (above): Neutral/100 to Neutral/050 and the outline; the arrow is Neutral/050 already. */
+.footer__out img {
+  width: 10.833px; height: 10.833px; flex: none;
+  background: var(--neutral-300); object-position: 100vw 0;
+  -webkit-mask: url("../assets/ui/arrow-out.svg") center / contain no-repeat;
+  mask: url("../assets/ui/arrow-out.svg") center / contain no-repeat;
+}
+/* Small link hover, as the nav (above): Neutral/200 to Neutral/050 and the outline. */
 .footer__out:is(:hover, :active) {
   color: var(--neutral-050); background: none; box-shadow: none;
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   -webkit-text-stroke: 0.36px currentColor;
 }
-.footer__out:is(:hover, :active) img { filter: none; }
+/* The arrow, his follow up 23 Nov: matched to the text it "barely gets brighter at all" on hover, since the
+   text also thickens. It rests one shade under the text, Neutral/300, and jumps to Neutral/000 on hover
+   ("much better", tried in site/dev/link-lab; his yes, 24 Nov). */
+.footer__out:is(:hover, :active) img { filter: none; background: var(--neutral-000); }
 .footer__out span { text-box: trim-both cap alphabetic; }
 
 /* Ending base, 5733:14576: the bar between a case study and the footer. Three columns of 414 at
@@ -476,9 +491,84 @@
   .footer__email { margin-top: 40px; }
   .footer__links { grid-area: links; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 92px; }
   .footer__links-label { display: block; margin-bottom: 38px; }
-  .footer__out { color: var(--neutral-100); }
-  .footer__out img { filter: none; }
+  .footer__out { color: var(--neutral-200); }
   .footer__portraits { grid-area: pics; justify-self: start; justify-content: flex-start; }
   .footer__bottom > .footer__meta { grid-area: meta; margin-top: 32px; white-space: normal; padding-right: 16px; }
   .footer__bottom > .footer__meta + .footer__meta { grid-area: time; justify-self: end; padding-right: 0; }
 }
+
+/* The footer clock ticks every second; fixed width digits stop it shifting sideways (taste: tabular-numbers). */
+.footer time { font-variant-numeric: tabular-nums; }
+
+/* Site cursor (docs/motion/site-cursor/), with site/js/site-cursor.js. Moved from the preview on his yes, 22 Nov.
+   The system cursor hides only once the script has started (html.has-site-cursor), so a page whose script
+   fails keeps it. Text fields keep the text cursor. */
+html.has-site-cursor, html.has-site-cursor * { cursor: none !important; }
+html.has-site-cursor :is(input:not([type="button"], [type="submit"], [type="checkbox"], [type="radio"], [type="range"]), textarea, [contenteditable=""], [contenteditable="true"]) { cursor: text !important; }
+
+.site-cursor {
+  position: fixed; left: 0; top: 0; z-index: 2147483000; width: 0; height: 0;
+  pointer-events: none; opacity: 0; transition: opacity 150ms var(--ease-quart-out);
+  /* Reference drop shadow: 0 12 24 at 20 percent black. --cur-spring and --cur-morph come from the script:
+     the reference's spring (stiffness 400, damping 30, mass 1) as a linear() curve and its settle time. */
+  --cur-drop: 0 12px 24px rgb(0 0 0 / 0.2);
+}
+.site-cursor.is-shown { opacity: 1; }
+.site-cursor[data-state="hidden"] { opacity: 0; }
+
+/* One shape, out of the page flow so its size changes move nothing else. Every size change runs on the
+   reference's spring. Dot: 24 px Neutral/100 (the inset fill covers it); pressed 20 px. Button: the small
+   button's box with the fill drained to the 3 px outline. */
+.site-cursor__shape {
+  position: absolute; left: 0; top: 0; overflow: hidden;
+  width: var(--cur-dot); height: var(--cur-dot); border-radius: 999px;
+  box-shadow: inset 0 0 0 30px var(--neutral-100), var(--cur-drop);
+  color: var(--neutral-100);
+  transform: translate(-50%, -50%);
+  transition: width var(--cur-morph) var(--cur-spring), height var(--cur-morph) var(--cur-spring),
+    box-shadow var(--cur-morph) var(--ease-quart-out), transform var(--cur-press-dur) var(--ease-quart-out);
+}
+/* Dot pressed, the reference's pressed variant: any click shrinks the dot to 20 px; release springs back. */
+.site-cursor[data-state="dot"].is-pressed .site-cursor__shape { width: var(--cur-dot-press); height: var(--cur-dot-press); }
+.site-cursor[data-state="pill"] .site-cursor__shape {
+  width: var(--cur-pill-w); height: var(--cur-pill-h);
+  box-shadow: inset 0 0 0 3px var(--neutral-100), var(--cur-drop);
+}
+
+/* The label sits centred at its final size and the opening shape reveals it. */
+.site-cursor__label, .site-cursor__probe {
+  font: 700 16px/1.4 var(--font); letter-spacing: -0.01em; text-transform: uppercase; /* .button-sm, his 16 Nov Small button */
+  white-space: nowrap; text-box: trim-both cap alphabetic;
+}
+.site-cursor__label {
+  position: absolute; left: 50%; top: 50%; transform: translate(calc(-50% + 0.02em), -50%);
+  opacity: 0; transition: opacity 120ms var(--ease-quart-out);
+}
+.site-cursor[data-state="pill"] .site-cursor__label { opacity: 1; transition: opacity 200ms var(--ease-quart-out) calc(var(--cur-morph) * 0.4); }
+/* Measures the button box: the same padding and outline width as .button-sm. */
+.site-cursor__probe {
+  position: absolute; left: -9999px; top: 0; visibility: hidden;
+  padding: 8px 11px; border: 3px solid transparent;
+}
+
+/* Press, his call 21 Nov: the button turns white only on mouse down (Neutral/100 fill, Neutral/900 text,
+   scale). The ink layer is that white state. */
+.site-cursor__ink {
+  position: absolute; inset: 0; border-radius: inherit;
+  background: var(--neutral-100); color: var(--neutral-900);
+  clip-path: circle(0 at 50% 50%);
+  transition: clip-path var(--cur-press-dur) var(--ease-quart-out);
+}
+.site-cursor__ink .site-cursor__label { opacity: 1; transition: none; }
+.site-cursor[data-state="pill"].is-pressed .site-cursor__shape { transform: translate(-50%, -50%) scale(var(--cur-press)); }
+
+/* Button pressed, his pick 21 Nov (A, from 21st.dev "Ripple Button": an outline button that fills from the
+   press point): the white floods out from the pointer, the pill's centre. Same Neutral/100 as the stroke. */
+.site-cursor[data-state="pill"].is-pressed .site-cursor__ink { clip-path: circle(75% at 50% 50%); }
+
+.site-cursor.is-reduced, .site-cursor.is-reduced * { transition: none !important; animation: none !important; }
+
+/* The cursor carries Learn more, so the static one on each work card steps aside on fine pointers and
+   comes back for keyboard focus at its Figma position. */
+html.has-site-cursor .work-card .work-card__media .button-sm { opacity: 0; }
+html.has-site-cursor .work-card:focus-visible .work-card__media .button-sm { opacity: 1; }

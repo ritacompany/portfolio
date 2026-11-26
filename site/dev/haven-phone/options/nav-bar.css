@@ -1,0 +1,5 @@
+/* Option, nav on a phone: a solid Neutral/1000 bar behind the fixed nav, as Home's phone bar, keeping the three links. */
+@media (max-width: 767px) {
+  .page-header.site-nav { top: 0; background: var(--neutral-1000); padding-block: 16px; }
+  .site-nav.is-on-light { background: var(--neutral-050); }
+}

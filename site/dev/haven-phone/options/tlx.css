@@ -1,0 +1,28 @@
+/* Proposal, MVP timeline on a phone (his notes, 24 Nov): the desktop chart's language, simplified. Each column
+   number sits on its own line with a small dot under it; the two launches are the desktop's big circle on a
+   line, its label just to the left; the two bars sit below them. Identity ends on 07's line, Community on 12's. */
+.tlx { display: none; }
+@media (max-width: 767px) {
+  .mvp .phases { display: none; }
+  .tlx { display: block; position: relative; margin: 48px var(--m) 0; --col: calc(100% / 12); --colpx: calc((100vw - 2 * var(--m)) / 12); }
+  .tlx__axis { display: grid; grid-template-columns: repeat(12, 1fr); font-size: 12px; letter-spacing: 0.04em; color: var(--n300); text-align: center; font-variant-numeric: tabular-nums; }
+  /* One line per column, under the centre of its number, starting at a small dot. */
+  .tlx__grid { position: absolute; left: 0; right: 0; top: 26px; bottom: 0; background: linear-gradient(to right, transparent calc(50% - 0.5px), var(--n675) calc(50% - 0.5px), var(--n675) calc(50% + 0.5px), transparent calc(50% + 0.5px)) 0 0 / var(--col) 100% repeat-x; }
+  .tlx__dots { position: absolute; left: 0; right: 0; top: 24px; display: grid; grid-template-columns: repeat(12, 1fr); justify-items: center; }
+  .tlx__dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--n500); }
+  /* Launches: the desktop's big circle on the column line, label to its left. The two sit on their own rows so the labels never meet at 320. */
+  .tlx__launches { position: relative; height: 120px; }
+  .tlx__launch { position: absolute; top: 24px; display: flex; align-items: flex-start; gap: 8px; translate: calc(-100% + 8px) 0; width: max-content; font-size: 14px; line-height: 1; color: var(--n100); white-space: nowrap; }
+  .tlx__launch::after { content: ""; flex: none; margin-top: -1px; width: 16px; height: 16px; border-radius: 50%; background: var(--n100); }
+  .tlx__launch--id { left: calc(var(--col) * 6.5); }
+  .tlx__launch--co { left: calc(var(--col) * 11.5); top: 86px; }
+  /* Under Identity launch, as the desktop chart marks it: Label/12 C, all caps, same white. */
+  .tlx__launch span { display: flex; flex-direction: column; gap: 8px; }
+  /* The label wraps rather than run past the margin where 07 sits close to the edge (320). */
+  .tlx__launch--id span { white-space: normal; max-width: calc(var(--colpx) * 6.5 - 24px); }
+  .tlx__launch small { font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; color: var(--n100); text-wrap: balance; }
+  .tlx__rows { position: relative; padding-bottom: 16px; }
+  .tlx__bar { display: flex; align-items: center; height: 40px; margin-top: 12px; padding-inline: 12px; border-radius: 0 999px 999px 0; font-size: 14px; font-weight: 700; color: var(--n050); }
+  .tlx__bar--id { width: calc(var(--col) * 6.5); background: var(--phase-identity); }
+  .tlx__bar--co { margin-left: calc(var(--col) * 4); width: calc(var(--col) * 7.5); background: var(--phase-community); }
+}

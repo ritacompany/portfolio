@@ -83,7 +83,8 @@
     var map = document.getElementById("flow-map");
     var row = document.getElementById("journey-row");
     if (!stage || !map) return;
-    var P = 160, DT = 1700, R = 1376, RATE = 0.85, HOLD = 450, AT = 0.8, VERTICAL_BELOW = 560;
+    var P = 160, PV = 62, CV = 33, DT = 1700, R = 1376, RATE = 0.85, HOLD = 450, AT = 0.8, VERTICAL_BELOW = 560;
+    var PHONE = matchMedia("(max-width: 767px)");
     var IO = "cubic-bezier(.65,0,.35,1)", OUT = "cubic-bezier(.22,1,.36,1)";
     var by = {}, nums = [];
     stage.querySelectorAll(".flow__step").forEach(function (el) { by[el.dataset.id] = el; });
@@ -93,11 +94,11 @@
       stage.appendChild(n); nums.push(n);
     }
     var sel = by.select, box = stage.parentNode;
-    var start = { quiz: 0, review: 1, select: 2, intro: 3, schedule: 4 };
+    var start = { quiz: 0, review: 1, select: 2, schedule: 3, intro: 4 };
     var vertical = null, anims = [], started = false, timer = null, played = false;
 
     function X(slot, s) {
-      var d = slot * P;
+      var d = slot * (vertical ? PV : P);
       return (vertical ? "translate(0," + d + "px)" : "translate(" + d + "px,0)") + " scale(" + (s == null ? 1 : s) + ")";
     }
     function at(ms) { return Math.min(1, ms / DT); }
@@ -105,27 +106,28 @@
     function slide(el, from, t, dur) {
       A(el, [{ offset: 0, transform: X(from) }, { offset: at(t), transform: X(from), easing: IO }, { offset: at(t + dur), transform: X(from - 1) }, { offset: 1, transform: X(from - 1) }]);
     }
-    function endState() { sel.style.transform = X(4); by.intro.style.transform = X(2); by.schedule.style.transform = X(3); }
+    function endState() { sel.style.transform = X(4); by.schedule.style.transform = X(2); by.intro.style.transform = X(3); }
     function build() {
       anims.forEach(function (a) { a.cancel(); }); anims = [];
       map.classList.toggle("is-vertical", vertical);
       nums.forEach(function (n, i) {
-        if (vertical) { n.style.left = "0px"; n.style.top = (i * P + 137 / 2 - 11) + "px"; }
+        if (vertical) { n.style.left = "0px"; n.style.top = (i * PV + CV / 2) + "px"; }
         else { n.style.left = (i * P) + "px"; n.style.top = ""; }
       });
       Object.keys(start).forEach(function (k) { by[k].style.transform = X(start[k]); });
       if (!motion || !stage.animate) { endState(); return; }
       A(sel, [{ offset: 0, transform: X(2), easing: OUT }, { offset: at(224), transform: X(2, 1.06), easing: IO }, { offset: at(1184), transform: X(4, 1.06), easing: OUT }, { offset: at(R), transform: X(4) },
         { offset: at(R + 20), transform: X(4), easing: OUT }, { offset: at(R + 130), transform: X(4, 1.06), easing: OUT }, { offset: at(R + 280), transform: X(4) }, { offset: 1, transform: X(4) }]);
-      slide(by.intro, 3, 300, 560);
-      slide(by.schedule, 4, 360, 560);
+      slide(by.schedule, 3, 300, 560);
+      slide(by.intro, 4, 360, 560);
       // A flow that already played stays at its end while the layout changes
       if (played) anims.forEach(function (a) { a.currentTime = DT; });
     }
     function fit() {
-      var w = map.clientWidth, v = w < VERTICAL_BELOW;
+      // The phone layout (under 768) keeps it vertical at every width: from 592 the sideways row was scaled to 9.9 px text.
+      var w = map.clientWidth, v = w < VERTICAL_BELOW || PHONE.matches;
       if (v !== vertical) { vertical = v; build(); }
-      stage.style.setProperty("--flow-scale", String(vertical ? 0.75 : box.clientWidth / 777));
+      stage.style.setProperty("--flow-scale", String(vertical ? 1 : box.clientWidth / 777));
       map.style.setProperty("--flow-scale", "0.75");
     }
     fit();

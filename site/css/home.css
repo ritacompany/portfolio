@@ -1,18 +1,20 @@
-/* Home, his VC master (Portfolio Design IarvWaqjIwrZ2afQmMxKm6, 4494:5909) at 1440, synced 10 Nov
-   (docs/FIGMA_SYNC_2026-11-10.md). The data-figma-node ids in the page are the old transported copy's.
+/* Home at 1440: "Mondai home newest" (Desktop 1 MVP file 5RO0m4bYYrTvbiaOgaU3tI, page CS, 6364:28896),
+   synced 22 Nov (reports/figma-sync-2026-11-22/DIFF.md). Before that, his VC master 4494:5909, synced
+   10 Nov. Ids starting 6364 are the newest frame's; the rest are the old transported copy's.
    Layout only: color and type come from tokens.css, the parts from components.css. Sections overlap by
    half a pixel, as in Figma. */
 
-.home { --navbar-top: 15px; }
+.home { --navbar-top: 19px; } /* logo top 19 in 6364:28908 */
+/* No role line in the newest navbar; the phone hero keeps it (below). */
+@media (min-width: 768px) { .home .navbar__role { display: none; } }
 
 /* Hero, 5812:22863 */
-/* 18 Nov: his Master stacks the navbar (51.5) over a 916 hero, so Selected works starts at 967.5. */
-.hero { position: relative; height: 968px; }
-.hero__intro { position: absolute; top: 450.5px; left: 0; right: 0; align-items: end; }
+.hero { position: relative; height: 900px; }
+.hero__intro { position: absolute; top: 451px; left: 0; right: 0; align-items: end; }
 /* Labels hug their text like Figma's auto width layers. */
 .hero__city, .about__label, .about__when { justify-self: start; width: fit-content; }
 .hero__lede {
-  width: min(457px, 100%);
+  width: 100%; max-width: 457px; /* 6364:28913, 457 wide */
   font: var(--heading-20); letter-spacing: var(--heading-20-track); color: var(--neutral-200); /* 4929:12396, Neutral/200 since 11 Nov */
   text-box: trim-both cap alphabetic;
 }
@@ -20,10 +22,10 @@
 .hero__lede-phone { display: none; }
 /* Under 1200 the block starts 2.33 past column 5, where the old frame had it. */
 .hero__where { display: flex; flex-direction: column; gap: 12px; margin-left: 2.33px; }
-/* The master widens the lede to 457; the location sits at x 699.36 since 18 Nov (column 6 plus 76.03). */
+/* The newest frame puts the location at x 699 (6364:28914), 659 into the 1360 content width. */
 @media (min-width: 1200px) {
-  .hero__lede { grid-column: 1 / span 5; }
-  .hero__where { grid-column: 6 / span 4; margin-left: 76.03px; }
+  .hero__lede { grid-column: 1 / span 5; grid-row: 1; }
+  .hero__where { grid-column: 1 / -1; grid-row: 1; margin-left: calc(100% * 659 / 1360); }
 }
 .hero__city {
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
@@ -38,21 +40,23 @@
   text-box: trim-both cap alphabetic;
 }
 /* CHDWCK is live text in the master (Satoshi Medium 392.5, Neutral/200), running off both edges; the
-   SVG is his text outlined and clipped to the frame. Glyph tops at 589.48 since 18 Nov (measured off
-   his render: the round tops of C and D, the box 292.8 tall as before). */
-.hero__name { position: absolute; top: 589.48px; left: 0; width: 100%; }
+   SVG is his text outlined and clipped to the frame. Glyph tops at 589.5 in 6364:28921 (580.51 before). */
+.hero__name { position: absolute; top: 589.51px; left: 0; width: 100%; }
 .hero__name img { width: 100%; height: auto; overflow: visible; }
 
-/* Selected works, 4923:12086. No line above it in the master. 18 Nov: his Master drops the title (kept
-   for screen readers), the cards start 74 into the 778 tall section and it ends 99 under them. */
-.works { margin-top: -0.5px; padding: 74px 0 99px; }
+/* Selected works, 6364:28922. The newest frame drops the "Selected works" heading at 1440: the cards
+   start at 1042 and About at 1746. The heading stays for screen readers and the phone frame. */
+.works { margin-top: -0.5px; padding: 142.5px 0 100px; }
+@media (min-width: 768px) {
+  .works__title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
 .works__title {
   grid-column: 1 / -1; justify-self: center;
   font: var(--heading-64); letter-spacing: var(--heading-64-track); color: var(--neutral-200); /* 4923:12112, 11 Nov */
   padding-inline-end: 0.04em;
   text-box: trim-both cap alphabetic;
 }
-.works__cards { display: flex; align-items: stretch; gap: 38px; padding-inline: var(--grid-margin); }
+.works__cards { display: flex; align-items: stretch; gap: 38px; margin-top: 0; padding-inline: var(--grid-margin); }
 
 .work-card { display: flex; flex-direction: column; gap: 15.71px; color: inherit; text-decoration: none; }
 /* Card widths, the description offset and Learn more are shares of the Figma sizes (879 and 435 of the
@@ -76,14 +80,12 @@
 }
 .work-card__desc {
   position: absolute; top: 2px; left: var(--desc-x);
-  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-550); /* Neutral/550 in the Master (4923:12102, 4923:12110) */
+  font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-550); /* 6364:28932, 22 Nov */
   white-space: nowrap;
   text-box: trim-both cap alphabetic;
 }
-/* 18 Nov: both descriptions are Label/14 in the Master; the phone cards keep 13.75 (below). */
-/* 18 Nov: Mondai's description starts 582.11 into the card (x 622.11 in the Master). */
-.work-card-mondai .work-card__desc { --desc-x: calc(100% * 582.11 / 879); }
-/* 16 Nov: Haven's description now starts 254 into its card (4923:12110). */
+/* Both descriptions are Label/14 in the newest frame, at 582 into the Mondai card and 254 into Haven's. */
+.work-card-mondai .work-card__desc { --desc-x: calc(100% * 582 / 879); }
 .work-card-haven .work-card__desc { --desc-x: calc(100% * 254 / 443); }
 .work-card__media { position: relative; overflow: hidden; }
 /* The master lets the Mondai media run 4.17 past the card (579.45 tall). His call, 13 Nov: the two cards
@@ -112,16 +114,17 @@
    fades, nothing moves. */
 .work-card__media .button-sm { position: absolute; left: calc(100% * 344.73 / 879); top: calc(100% * 251.43 / 575.28); opacity: 0; transition: opacity 300ms var(--ease-quart-out), transform 120ms var(--ease-quart-out); }
 .work-card:focus-visible .work-card__media .button-sm { opacity: 1; }
-@media (hover: hover) { .work-card:hover .work-card__media .button-sm { opacity: 1; } }
+@media (hover: hover) and (min-width: 1200px) { .work-card:hover .work-card__media .button-sm { opacity: 1; } }
 
 /* Work card states, tracker H11 (prototypes/homepage-foundations/work-card-states.html): the whole card
    is the link; hover eases the image in 3.5 percent, the label and description go white and Learn more
    takes its hover fill; focus shows the same plus a ring; press settles the image to 1 percent. Hover
-   only on devices that hover, so one tap opens a card. Reduced motion keeps the colour change. */
+   only on devices that hover and from 1200 up (his call, 23 Nov: the phone and tablet layouts carry the Learn
+   more link and no mouse highlight), so one tap opens a card. Reduced motion keeps the colour change. */
 .work-card__media > img { transform: scale(1); transition: transform 900ms var(--ease-expo-out); }
 .work-card__name, .work-card__slashes, .work-card__kind, .work-card__desc { transition: color 400ms var(--ease-quart-out); }
 .work-card:focus-visible { outline: 2px solid var(--neutral-000); outline-offset: 8px; }
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 1200px) {
   .work-card:hover .work-card__media > img { transform: scale(1.035); }
   .work-card-haven:hover .work-card__phone-art { transform: scale(1.035); }
   .work-card:hover .work-card__name, .work-card:hover .work-card__slashes,
@@ -161,60 +164,61 @@
   text-box: trim-both cap alphabetic;
 }
 .about-story .about__body { width: min(595px, 100%); margin-left: 1px; }
-/* 18 Nov: both bodies start at x 858 (column 8 plus 1.33) and run 542 wide, to the right margin. */
+/* Newest frame: both bodies at x 858, 542 wide (6364:28953, 6364:28960), column 8. */
 @media (min-width: 1200px) {
-  .about__body, .about-story .about__body { grid-column: 8 / -1; width: calc(100% - 1.33px); max-width: 542px; margin-left: 1.33px; }
+  .about__body, .about-story .about__body { width: min(542px, 100%); margin-left: 1.33px; }
+  /* The frame's rows pad 80 under the text; with the min heights above this lands on 569 and 234 at 1440
+     and lets a taller body below 1440 push the next line down. 79, since the trimmed text runs a fraction
+     past Figma's whole pixels. */
+  .about-story, .about-role { padding-bottom: 79px; }
 }
 .about__body > * + * { margin-top: 26px; }
 .about__body ul { padding-left: 30px; }
 
-.home .footer { margin-top: 0; }
-
-/* Testimonials, 5073:12175 (his Master, 18 Nov): 800 tall on Neutral/900 with a Neutral/700 line on top.
-   The quote block spans columns 2 to 11 (157 to 1283) from 199.5 down: the quote at 56 Medium, 109
-   percent, -4 percent, Neutral/050; 51 under it the person row (avatar 66.82 on Mondai green, 24 to the
-   name at Body/16 and the role at Label/14, 9 apart) with "Full recommendation" and the LinkedIn link
-   right aligned; 43 under that, three 7 px dots 8 apart. */
-.testimonials[hidden], .footer__nav li[hidden] { display: none; }
-.testimonials { min-height: 800px; padding-top: 199.5px; background: var(--neutral-900); box-shadow: inset 0 1px 0 var(--neutral-700); }
-.testimonials__inner { align-content: start; }
-.testimonial { grid-column: 2 / span 10; margin: 0; }
-.testimonial__quote { margin: 0; }
-.testimonial__quote p {
+/* Testimonials, 6364:29031: 800 tall, no line above. Quote centered at 1126 of 1440, Medium 56, line
+   61, tracking -4 percent (no text style in Figma); 51 below it the person and the LinkedIn source;
+   the three dots 43 under that. The avatar is his own cut out portrait on green in the frame. */
+.testimonials[hidden] { display: none; }
+.testimonials { position: relative; height: 800px; padding: 199px calc(100% * 157 / 1440) 0; }
+.testimonial { margin: 0; }
+.quote__text { margin: 0; }
+.quote__text p {
   font: var(--quote-56); letter-spacing: var(--quote-56-track); color: var(--neutral-050);
+  text-wrap: pretty;
   text-box: trim-both cap alphabetic;
 }
-.testimonial__by { display: flex; align-items: center; justify-content: space-between; gap: 27px; margin-top: 51px; }
-.testimonial__person { display: flex; align-items: center; gap: 24px; }
-.testimonial__avatar { width: 66.82px; height: 66.82px; border-radius: 50%; flex: none; }
-.testimonial__who, .testimonial__source { display: flex; flex-direction: column; gap: 9px; }
-.testimonial__source { align-items: flex-end; }
-.testimonial__name {
+.quote__by { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 51px; }
+.quote__person { display: flex; align-items: flex-start; gap: 24px; }
+.quote__avatar { position: relative; flex: none; width: 67px; height: 67px; border-radius: 50%; overflow: hidden; background: var(--quote-avatar-bg); }
+.quote__avatar-frame { position: absolute; left: -4px; top: 0; width: 63px; height: 84px; overflow: hidden; }
+.quote__avatar-frame img { position: absolute; left: 0; top: -2.57%; width: 99.91%; height: 105.14%; max-width: none; }
+.quote__who, .quote__source { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
+.quote__source { align-items: flex-end; }
+.quote__name {
   font: var(--body-16); letter-spacing: var(--body-16-track); color: var(--neutral-050);
-  text-box: trim-both cap alphabetic;
+  white-space: nowrap; text-box: trim-both cap alphabetic;
 }
-.testimonial__role, .testimonial__label {
+.quote__role, .quote__source-label {
   font: var(--label-14); letter-spacing: var(--label-14-track); color: var(--neutral-550);
-  text-box: trim-both cap alphabetic;
+  white-space: nowrap; text-box: trim-both cap alphabetic;
 }
-.testimonial__link { gap: 4px; }
-.testimonials__dots { grid-column: 1 / -1; justify-self: center; display: flex; gap: 8px; margin-top: 43px; }
-.testimonials__dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--neutral-600); }
-.testimonials__dots span:first-child { background: var(--neutral-200); }
-/* No frame for these yet: under 1200 the quote steps down to Heading/40, and on the phone it spans the
-   full width at Heading/24 with the source under the person, the section hugging its content. */
+.quote__link { gap: 4px; }
+.quote__link span { text-box: trim-both cap alphabetic; }
+.quote__dots { display: flex; justify-content: center; gap: 8px; margin-top: 43px; }
+.quote__dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--neutral-600); }
+.quote__dots .is-on { background: var(--neutral-200); }
 @media (max-width: 1199.98px) {
-  .testimonials { min-height: 0; padding: 160px 0; }
-  .testimonial { grid-column: 1 / -1; }
-  .testimonial__quote p { font: var(--heading-40); letter-spacing: var(--heading-40-track); }
+  .testimonials { height: auto; padding: 120px var(--grid-margin) 140px; }
+  .quote__text p { font: var(--heading-40); letter-spacing: var(--heading-40-track); }
 }
 @media (max-width: 767.98px) {
-  .testimonials { padding: 96px 0; background: var(--neutral-1000); } /* the phone page is Neutral/1000 (D32) */
-  .testimonial__quote p { font: var(--heading-24); letter-spacing: var(--heading-24-track); }
-  .testimonial__by { flex-direction: column; align-items: flex-start; gap: 32px; margin-top: 40px; }
-  .testimonial__source { align-items: flex-start; }
-  .testimonials__dots { margin-top: 40px; }
+  .testimonials { padding: 96px var(--grid-margin) 120px; }
+  .quote__text p { font: var(--heading-24); letter-spacing: var(--heading-24-track); }
+  .quote__by { flex-direction: column; gap: 32px; margin-top: 40px; }
+  .quote__source { align-items: flex-start; margin-top: 0; }
 }
+
+.home .footer { margin-top: -0.5px; }
 /* The home footer instance overrides the band's image filters in Figma (temperature 0, shadows -84
    against the component's temperature -19), so Home uses the band rendered from that instance. */
 
@@ -242,6 +246,36 @@
 }
 /* Phone parts that exist only under 768: hidden at tablet and desktop. */
 .navbar__menu, .hero__contact, .hero__vertical, .work-card__phone-art, .work-card__more, .menu { display: none; }
+/* Learn more link on the phone and tablet layouts, under 1200, whatever the pointer (his ask 22 Nov, corrected
+   23 Nov), and on any touch screen: under its image, at the right edge. From 1200 up a mouse gets the site
+   cursor's Learn more instead. No grey tap flash: the link has its own press highlight. */
+.work-card { -webkit-tap-highlight-color: transparent; }
+@media (max-width: 1199.98px), (hover: none), (pointer: coarse) {
+  .work-card .work-card__more { display: inline-block; width: fit-content; margin: 0 0 0 auto; }
+  /* His Small button, without its hover fill: there is no mouse on a phone or tablet, and a tap would leave the
+     fill stuck on. Pressing still fills it (.is-pressed, set in js/home-motion.js, or :active). */
+  .work-card .work-card__more:hover:not(.is-pressed):not(:active) { background: none; color: var(--neutral-100); }
+}
+
+/* Tablet, 768 to 1199: his phone pattern on the side by side cards (his ask, 23 Nov; no tablet frame exists).
+   The name line stays above the image; the description leaves the head and sits under the image at the left,
+   with Learn more at the right of the same line, both 20 under the image. They stay more than 24 px apart (the
+   24.02 px column gap); at 24 or less the button wraps under the description, 20 below it, at the right edge.
+   The images still end on one line (his call, 13 Nov): the cards start together and Haven's name line is pushed
+   down by the height Mondai's image has over Haven's (575.28 against 443 at Figma widths, as a share of the
+   card width, so it holds at every width). */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .works__cards { align-items: flex-start; }
+  .work-card, .work-card-haven { flex-direction: row; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; justify-content: flex-start; column-gap: 24.02px; row-gap: 0; } /* just over 24: at 24 or less it wraps */
+  .work-card__head { display: contents; }
+  .work-card__name { order: 1; flex: none; }
+  /* The name line keeps its 11.06 spacing inside the 24.02 card gap. */
+  .work-card__slashes, .work-card__kind { order: 2; flex: none; align-self: center; margin-left: -12.96px; }
+  .work-card-haven .work-card__name { margin-top: calc(100% * 132.28 / 443); }
+  .works .work-card__media { order: 3; flex: 0 0 100%; margin-top: 15.71px; }
+  .work-card__desc { order: 4; flex: none; position: static; margin: 20px 0 0; white-space: nowrap; }
+  .work-card .work-card__more { order: 5; flex: none; margin: 20px 0 0 auto; }
+}
 
 /* Phone, under 768: his Mobile frames (Portfolio Design, VC, 4929:12379, 10 Nov), drawn at 402 by 874.
    They replace the collapsed desktop layout that was here. */
@@ -304,22 +338,39 @@
   /* Figma nudges single letters on top of the word's tracking. */
   .hero__vertical > span { margin-inline-end: var(--t, 0em); }
 
-  /* Selected works, 4928:12018. Title at Heading/40, centered, 96 from the top of the section; cards
-     stack 40 apart. Each card: name, the kind under it (Mondai), the image at 404 by 266 proportions,
-     then the description and a Learn more link on one row. The phone images are their own crops. */
+  /* Selected works on the phone: his "Works" frame, 6437:24298 (Mobile frames, page CS, file 5RO0m4bY), 24 Nov.
+     Title at Heading/40, centered, 96 from the top of the section; cards 40 apart (his new frame; it was 64 at
+     his call on 16 Nov). Each card: a title block (name, then a label in Label/12 C Bold, Neutral/550: Mondai's
+     kind, Haven's description) with Learn more beside it at the right edge, then the image 20 below. The phone
+     images are their own crops. */
   .works { padding: 96px 0 188px; box-shadow: none; }
   .works__title { font: var(--heading-40); letter-spacing: var(--heading-40-track); color: var(--neutral-050); }
-  /* His call, 16 Nov: the cards 64 apart, more than the frame's 40 (the About and menu rhythm). */
-  .works__cards { flex-direction: column; gap: 64px; margin-top: 62px; }
+  /* Visually hidden from 768 up (his newest desktop frame drops it); shown here, as his Mobile frames draw it. */
+  .works__title.visually-hidden { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: nowrap; }
+  .works__cards { flex-direction: column; gap: 40px; margin-top: 62px; }
   .work-card-mondai, .work-card-haven { width: 100%; }
-  .work-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0; }
-  .work-card__head { display: contents; }
-  .work-card__name { order: 1; grid-column: 1 / -1; justify-self: start; color: var(--neutral-200); }
+  /* The card is one wrapping flex row (his ask: set to auto, 24 Nov): the title block and Learn more share the
+     first line, bottoms aligned, as far apart as the card allows. They always stay more than 24 px apart (the
+     24.02 px column gap); at 24 or less Learn more drops to its own line under the title block, at the right
+     edge. Lines are 20 apart, so the image is 20 under whichever comes last. The title never wraps itself. */
+  .work-card { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: flex-end; column-gap: 24.02px; row-gap: 20px; }
+  .work-card__head { order: 1; flex: none; position: static; display: flex; flex-direction: column; align-items: flex-start; gap: 11.06px; height: auto; }
+  .work-card__name { color: var(--neutral-200); }
   .work-card__slashes { display: none; }
-  .work-card__kind { order: 2; grid-column: 1 / -1; justify-self: start; margin-top: 11.06px; color: var(--neutral-550); font-weight: 700; }
-  .works .work-card__media { order: 3; grid-column: 1 / -1; margin-top: 20px; margin-bottom: 0; aspect-ratio: 404 / 266.324; }
-  .work-card__desc { order: 4; position: static; margin: 20px 0 0; font-size: var(--card-desc-size); color: var(--neutral-200); }
-  .work-card__more { order: 5; display: inline-block; margin: 13px 0 -7px; justify-self: end; }
+  .work-card__kind, .work-card-haven .work-card__desc { margin: 0; font: var(--label-12-c); letter-spacing: var(--label-12-c-track); text-transform: uppercase; font-weight: 700; color: var(--neutral-550); white-space: nowrap; }
+  .work-card-haven .work-card__desc { position: static; }
+  .work-card-mondai .work-card__desc { display: none; } /* not in his Works frame */
+  .work-card .work-card__more { order: 2; flex: none; margin: 0 0 0 auto; }
+  /* Both cards stacked together (js/home-motion.js adds .is-stacked once either card has 24 px or less between its
+     title and Learn more, his call 24 Nov): the title takes its own line and the button sits under it, left aligned,
+     20 below. Without the script each card still wraps on its own. */
+  .works__cards.is-stacked .work-card__head { flex-basis: 100%; }
+  .works__cards.is-stacked .work-card .work-card__more { margin-left: 0; }
+  .works .work-card__media { order: 3; flex: 0 0 100%; margin: 0; aspect-ratio: 404 / 266.324; }
+  /* Learn more is his new Small button (6437:24294): a 2 px Neutral/200 outline and Neutral/200 text, 130 by 32.
+     No hover look on the phone; the press fill stays (.is-pressed or :active, components.css). */
+  .work-card .work-card__more:not(.is-pressed):not(:active) { border-width: 2px; border-color: var(--neutral-200); background: none; color: var(--neutral-200); }
+  .work-card .work-card__more:is(.is-pressed, :active) { border-width: 2px; }
   .work-card__desk-art, .work-card__media .button-sm { display: none; }
   .work-card__phone-art { display: block; position: absolute; inset: 0; overflow: hidden; }
   .work-card__phone-art img { position: absolute; max-width: none; transition: transform 900ms var(--ease-expo-out); }
@@ -376,3 +427,15 @@
 @media (max-width: 767.98px) and (prefers-reduced-motion: reduce) {
   .page-header.is-past-hero { animation: none; }
 }
+
+/* Home motion (site/js/home-motion.js; his ask, 10 Nov; moved from the preview on his yes, 22 Nov). Only
+   once the script has added html.hm, so a page whose script fails stays as drawn. */
+/* Nav fixed to the top across the full width from 768 up, like Haven's. The phone keeps its own bar
+   (js/home-phone.js). */
+@media (min-width: 768px) {
+  html.hm .home .page-header { position: fixed; top: var(--navbar-top, 19px); z-index: 30; pointer-events: none; }
+  html.hm .home .page-header a, html.hm .home .page-header button { pointer-events: auto; }
+}
+/* Text entrances: opacity only, timed in the script. */
+html.hm .home .hm-item { opacity: 0; }
+html.hm .home .hm-item.hm-in { opacity: 1; }

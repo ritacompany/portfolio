@@ -6,6 +6,33 @@ CS and Haven pass their gates. Phase 2 is parked on his tuning and picks (see Pa
 
 ## Resume here
 
+### One Home, preview work moved into the site, 22 Nov (latest; branch claude/sharp-turing-jy21r2)
+Home existed in three versions: the working branch (claude/relaxed-ride-5mlbdu, with the 16 to 18 Nov card and
+Master syncs), main (the site cursor, PR 34) and PR 40 (sync to his newest frame "Mondai home newest" 6364:28896,
+built on main). This branch merges all three. Where the two syncs clashed, PR 40 won (newest read; the numbers
+differ by half a pixel at most); his phone menu and the 443 wide Haven image slice stay from the working branch.
+His 16 Nov call (no card rise) beats the 21 Nov cursor branch, which had not seen it.
+Moved into site/ on his yes (22 Nov): js/home-motion.js (Lenis at Haven's setting, nav fixed from 768 up, Haven
+style text fades, refresh starts at the top) with its CSS at the end of home.css; js/site-cursor.js on every page
+with its CSS in components.css, its Learn more now sized as his 16 Nov Small button (130 by 34). Not moved: the
+extra gap above Selected works and the Product Designer exit (his newest frame has neither), the tuning panels.
+Still preview only, waiting on him: proposals.css (blocks 1, 4, 7 and the R phone review items), cards-phone.js,
+scroll-feel.js, scroll-fixes.js. The Mondai card rest image is fixed (mean 20.0 of 255; 13.2 with the hover baked in).
+Gates: reports/home-unify-2026-11-22/GATES.md, 11 of 11. Phone link: https://claude.ai/artifact/MCp5KFuB72Z5UriV23LkEf
+(this account). Known and not this branch's: 20 fit and 15 overlap problems on the framework page at tablet and
+phone widths (baseline files in that folder), already on the working branch.
+Touch Learn more (his yes, 22 Nov): on any touch screen, phone or tablet, each card shows Learn more in Label/14,
+not in capitals, with a right arrow (Material Symbols arrow_forward), 23 under the image at the right edge; pressing
+the card gives it the big link highlight (js/home-motion.js marks it, since iPhone Safari skips :active). It replaces
+the phone frame's caps link and the R14 button proposal. A mouse keeps the site cursor. Gate G12.
+Phone works, his "Works" frame (6437:24298, Mobile frames, page CS of 5RO0m4bY), 24 Nov: each card is a title block
+(name, then Mondai's kind or Haven's description in Label/12 C Bold, Neutral/550) with Learn more beside it, his new
+Small button 6437:24294 (2 px Neutral/200 outline, 130 by 32), image 20 below, cards 40 apart (was 64). Mondai's
+description is not on the phone. His ask "set to auto": the title and button share a line while more than 24 px apart,
+else the button drops 20 under the title. His call, 24 Nov: both cards drop together once either is tight, left aligned under the title (js/home-motion.js sets .is-stacked). Measured: both drop below 378 px wide (Mondai is the tighter card).
+Gate G14 checks every width 320 to 767. Canvas: https://claude.ai/artifact/3XCtLyJd3F9hfuaLbaGhJZ
+Next: the phone pass with him, Home first, on that link.
+
 ### Seth Lukin motion removed, 16 Nov (latest)
 His call (16 Nov): ditch everything taken from Seth Lukin's site. Gone: the parked CHD then WCK name load
 (`site/motion-lab/home-load/`, `docs/motion/home-load/`), the Selected works card rise and the square

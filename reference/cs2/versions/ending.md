@@ -1,3 +1,59 @@
+# CS2 ending, round 4 (12 Nov): concept A, the return in numbers then one thing I'd change
+
+His call 11 Nov: version C (the Recalibration threshold) is awful as an idea. Research and the pick:
+reference/cs2/review-2026-11-07/ending-research.md. Three versions of A, different structures.
+Checks: no-ai-slop run as the skill on all three. Reader check runs/2026-11-12-end-a: round 1 all FAIL
+(the team of five, three weeks line read as process story 3 of 3 in every version; A1 and A3 no decision 3 of
+3). Fix: team line cut, replaced by the decision behind the one number and its reason. Re-check (r2): A3 PASS;
+A1 and A2 FAIL only on Q4 2 of 3, the list of six parts restates what the page taught (K8, K11, K12, K14).
+That list is the chain itself in A1, so it was left for his call rather than cut. No further re-check run.
+None of this is approved; the page still carries version C.
+
+## A1: the chain
+Eyebrow: Where it ended up
+Headline: By the end, six parts of the plan were set from one number the user gives.
+Visual: capacity on the left, six lines out to Target, Pace, how much fits in a week, Rollover, Recalibration
+and Reset. A chain, never a stat row (Haven has the stat block).
+Body 1: I kept it to one number so that whenever the plan changes, the user can trace it back to something they
+told Mondai and can change.
+Body 2: If I had another few weeks, I’d test that number before anything else. No user had tried a week with
+the plan before the rules were locked, and if the hours users type don’t match the hours they give, all six
+parts are off together.
+
+## A2: two columns
+Eyebrow: Looking back
+Headline: The framework runs on one number the user gives, and that number is the one thing no user has tried yet.
+Left, What it became: Six parts of the plan are set from capacity: the target, the pace, how much fits in a
+week, Rollover, Recalibration and Reset. I kept it to one number so that whenever the plan changes, the user
+can trace it back to something they told Mondai.
+Right, What I’d test first: Whether users type the hours they really have. I made the screen ask for an exact
+number so users count instead of picking a generous range, but no user had tried a week with the plan yet.
+Putting a handful of users through two real weeks would show it.
+
+## A3: one user's number
+Eyebrow: One number
+Headline: Aisha’s 6 hours set her target date, her pace, how many Action Items fit each week and when the plan
+steps in to change any of it.
+Visual: her 6 at the top, then each readout it sets, in the order her week reaches them.
+Body 1: That’s true for every user. I kept it to one number so that whenever the plan changes, the user can
+trace it back to something they told Mondai and can change.
+Body 2: If her real week is closer to 4 hours, her weeks hold more than she can finish, work keeps rolling over
+and her target stays ahead of where she’ll really land until Recalibration suggests a smaller number. No user
+had tried a week with the plan yet, so that gap is the first thing I’d test.
+
+## Where every claim traces
+- Six parts set from capacity (Target, Pace, weekly sizing, Rollover, Recalibration, Reset): THROUGHLINES s2. CONFIRMED.
+- One number so every change traces back to what the user told Mondai: PARAPHRASE of THROUGHLINES s7 (declared
+  over observed; Recalibration shown back as the user's own average) and s2.
+- Cut after round 1, kept for the record: three weeks in May (s1) and a team of five, unpaid and part time (s6).
+- No user testing on any of it: THROUGHLINES s9. CONFIRMED.
+- Exact number so users count instead of a generous range: Personalized timeline copy (final-copy.md). CONFIRMED.
+- Aisha at 6 hours: Personalized timeline copy. CONFIRMED. Her real week at 4 hours: INVENTED example, labelled as an if.
+- Recalibration suggests a smaller number when short weeks keep happening: Start of week 4 of 5. CONFIRMED.
+- That he would test capacity first, and with a handful of users over two weeks: ASSUMED, his to confirm.
+
+---
+
 # CS2 ending, round 3 (5 Nov)
 
 His comment on round 2: these are stories, not an ending. Look at how Haven ends: short and simple. Round 2

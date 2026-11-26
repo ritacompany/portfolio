@@ -1,0 +1,16 @@
+=== Ending with example results (v5)
+[eyebrow or sub-heading] The test
+[headline] No one had lived a week with the plan. Eight people lived two weeks of it.
+[eyebrow or sub-heading] What I tested
+Whether people give the hours they say they can, and whether the target and pace dates and Rollover make sense unexplained.
+[eyebrow or sub-heading] How
+Each person typed their hours, worked a plan sized to them for two real weeks and logged every session. A prototype click-through would only show what people say they'd do.
+[eyebrow or sub-heading] Capacity
+6 of 8 spent at least four fifths of the hours they typed.
+[eyebrow or sub-heading] Target and pace
+7 of 8 predicted what a short week does to their dates.
+[eyebrow or sub-heading] Rollover
+6 of 8 read carried over work as the plan helping them.
+Each test failed at 4 of 8 or fewer. All three passed.
+[eyebrow or sub-heading] What I changed
+The two who gave too few hours had typed the most, so their plan overfilled from week one. Recalibration, which offers a lower number, now steps in after two short weeks instead of three.

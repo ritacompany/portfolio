@@ -1,0 +1,10 @@
+/* Option, nav on a phone: Home's phone bar from his Mobile frames (6382:29154): solid Neutral/1000, logo and the burger; the links move into the menu. */
+@media (max-width: 767px) {
+  .page-header.site-nav { top: 0; background: var(--neutral-1000); padding-block: 16px; }
+  .site-nav.is-on-light { background: var(--neutral-050); }
+  .site-nav .navbar__links { display: none; }
+  .site-nav .navbar { display: flex; align-items: center; }
+  .haven-burger { display: grid; place-items: center; margin: -16px -13px -16px auto; padding: 16px 13px; background: none; border: 0; pointer-events: auto; }
+  .haven-burger img { width: 18px; height: 12px; }
+  .site-nav.is-on-light .haven-burger img { filter: invert(1); }
+}

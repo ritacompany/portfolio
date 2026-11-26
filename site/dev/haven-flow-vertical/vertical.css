@@ -1,0 +1,13 @@
+/* Journey flow on a phone at the sizes in his Figma frame 6394:30516 ("Haven phone, journey flow (390,
+   sizes as built 23 Nov)", read 25 Nov). Only the vertical layout changes; desktop and tablet keep the
+   sideways row. Stage px are Figma px: haven.js draws the column at a scale of 1.
+   Circle 151.6, stroke 1.47, label 20 / 1.16 medium (black 900 on the key step), numbers 74.7 bold in a
+   48 wide column at x 46, circle at x 142.5, rows 16 apart (pitch 167.6), 45 below the body copy.
+   Figma sets these in Inter; the page keeps Satoshi, its own face. */
+.flow.is-vertical { justify-content: flex-start; margin-top: -3px; }
+.flow.is-vertical .flow__box { width: 248px; height: 822.4px; margin-left: calc(46px - var(--flow-inset, 16px)); }
+.flow.is-vertical .flow__stage { width: 248px; height: 822.4px; }
+.flow.is-vertical .flow__step { left: 96.5px; top: 0; width: 151.6px; height: 151.6px; border-width: 1.47px; }
+.flow.is-vertical .flow__step span { font-size: 20px; line-height: 1.16; font-weight: 500; }
+.flow.is-vertical .flow__step-key span { font-weight: 900; transform: none; }
+.flow.is-vertical .flow__num { left: 0; width: 48px; text-align: center; font-size: 74.7px; line-height: 1; font-weight: 700; transform: translateY(-50%); }

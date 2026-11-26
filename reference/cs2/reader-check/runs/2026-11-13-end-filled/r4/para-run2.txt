@@ -1,0 +1,4 @@
+TESTED: The author checked whether the weekly plan works for real people: whether they actually give the hours they say they can, and whether the target and pace dates and carried over work make sense without explanation. Eight people used a plan sized to their own hours for two real weeks, because a click-through only shows what people say they would do.
+NUMBERS: 6 of 8 spent at least four fifths of the hours they typed, so most people really give the capacity they set. 7 of 8 correctly predicted what a short week does to their target and pace dates. 6 of 8 read carried over work as the plan helping them rather than as failure. Each needed at least 5 of 8 to pass.
+CLOSE: The two who fell short had typed the most hours, so their plans were overfilled. In response, Recalibration, which offers a lower hours number, now appears after two short weeks instead of three.
+CONFUSED: none
