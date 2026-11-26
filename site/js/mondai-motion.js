@@ -56,7 +56,10 @@
     weeks = q(".week", framework);
     texts.push(...q(".ending-bar"));
   } else {
-    texts = q(".collection__brand, .collection__intro, .collection__label, .collection__rows > li", collection);
+    // Collection (6331:27875): the title and card headers fade; the two card images open like the
+    // framework's flat browser screens; the empty Operations slot fades with its header.
+    texts = q(".collection__title, .cs-card__head, .cs-card__media-empty", collection);
+    masks = q(".cs-card__media > img", collection);
   }
   const weekTexts = (w) => q(".week__slide > .t", w);
   const weekImgs = (w) => q(".week__slide img", w);

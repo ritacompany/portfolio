@@ -1,0 +1,20 @@
+/* Page change between Home, the Mondai collection and the framework case study (his yes, 26 Nov).
+   A plain fade through the page colour; nothing travels between pages, so no title resizes. The old
+   label leaves with its page and the new one arrives with the page's own entrance (mondai-motion).
+   Plan and sources: reports/page-transition-research/PLAN.md (PR 54).
+   Old page out over 200 ms; new page in over 300 ms from 100 ms; done at 400 ms, as the arriving
+   page's text starts its own fade. Same for links, back and forward. Browsers without cross document
+   view transitions (Firefox today) just change page. */
+@view-transition { navigation: auto; }
+
+/* The page colour behind both snapshots, so there is never a white frame between pages */
+html { background: var(--neutral-900); }
+
+::view-transition-old(root) { animation: pt-out 200ms var(--ease-quart-out) both; }
+::view-transition-new(root) { animation: pt-in 300ms var(--ease-quart-out) 100ms both; }
+@keyframes pt-out { to { opacity: 0; } }
+@keyframes pt-in { from { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
