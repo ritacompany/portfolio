@@ -10,7 +10,7 @@ of its own, that plan wins wherever the two differ.
   sent settings back or said it feels right. Gates passing, a clip or a screenshot sheet never close it.
   Its GATES.md carries that as an unchecked manual gate until he answers. Worked example: site/dev/week-carousel/index.html.
 - Tuners, options pages and preview controls use the shared edit panel, site/dev/preview/edit-panel.js, never a panel of their own: it docks beside what he is tuning instead of over it. A standalone page loads it with one line, `<script src="/dev/preview/edit-panel.js" data-fluid defer></script>`, and lays itself out from its own width (container queries on body). A hook, tuner-panel-guard, sends back any page in site/dev or site/motion-lab that builds its own sliders or selects.
-- Page entrances that already run on the browser clock (text fades, image reveals, smooth scroll) stay as built. The renderer cannot capture them frame by frame, so they are reviewed in the browser, not rewritten to fit this contract.
+- Motion on the browser clock (page changes, page entrances, smooth scroll) is not rewritten to fit the render contract. It is filmed from the real site with scripts/record-browser.mjs and goes through the same review loop as a render.
 
 ## Reduced motion
 - Every piece has a reduced motion version: one still frame, the state the motion argues for (the phone facing the viewer, the screen at rest). Nothing inside the media moves.
@@ -33,7 +33,7 @@ of its own, that plan wins wherever the two differ.
 - New motion inside media uses closed form springs. Check the start as well as the settle: a stiff spring covers 40 percent of a move in 0.2 s and reads as a snap. Presets: UI (tiny overshoot) for phones and chips, TYPE (none) for anything with text, HEAVY for big media. A value with several targets uses track().
 
 ## Reference first
-- Before code, write docs/motion/<piece>/style_guide.md from a reference (a site's code, a frame, a clip): what to take and what not to take. Then docs/motion/<piece>/state_list.md. Then build.
+- Before code, write docs/motion/<piece>/style_guide.md from a reference (a site's code, a frame, a clip): what to take and what not to take. Then docs/motion/<piece>/state_list.md. Then the clip, made in site/motion-lab or site/dev and reviewed below, goes to him. It is built into site/ only after his yes to the clip; the site hook (site-review-gate) refuses a motion file change until the piece's review_log.md passes.
 
 ## Review loop, before Chadwick sees anything
 Problems are ranked, never scored: a score out of 10 finds nothing to fix (HyperFrames review guide).
