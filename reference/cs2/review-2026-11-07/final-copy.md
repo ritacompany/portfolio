@@ -105,7 +105,7 @@ Body: This is the first screen a user sees each Sunday, before the Action Hub. I
 1 of 5, Clean slate: This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead.
 2 of 5, Catching up: A user who is behind sees how many days they made up last week and how finishing early closes the rest of the gap.
 3 of 5, Rollover: Unfinished Action Items wait in the new week under a magenta tag. The screen shows the new pace, so the plan never changes unseen.
-4 of 5, Recalibration: After weeks under about half the hours they set, this screen suggests a capacity that fits. They can take it or keep their plan.
+4 of 5, Recalibration: After weeks under about half the hours they set, this screen suggests a capacity that fits. They can take it, set their own or skip it.
 5 of 5, Reset: After a long absence, the week rebuilds from today and keeps their progress. It has one button, so keep my plan can’t win by default.
 Note: templates 2 to 5 shortened 21 Nov, his yes, so each holds three lines at every width (Rollover and Recalibration were his wording; Recalibration now matches the archive: take it or keep their plan).
 

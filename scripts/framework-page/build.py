@@ -61,7 +61,7 @@ TEMPLATES = [
  ("week-clean-slate", "Template 1 of 5", "Clean slate", "This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead."),
  ("week-catching-up", "Template 2 of 5", "Catching up", "A user who is behind sees how many days they made up last week and how finishing early closes the rest of the gap."),
  ("week-rollover", "Template 3 of 5", "Rollover", "Unfinished Action Items wait in the new week under a magenta tag. The screen shows the new pace, so the plan never changes unseen."),
- ("week-recalibration", "Template 4 of 5", "Recalibration", "After weeks under about half the hours they set, this screen suggests a capacity that fits. They can take it or keep their plan."),
+ ("week-recalibration", "Template 4 of 5", "Recalibration", "After weeks under about half the hours they set, this screen suggests a capacity that fits. They can take it, set their own or skip it."),
  ("week-reset", "Template 5 of 5", "Reset", "After a long absence, the week rebuilds from today and keeps their progress. It has one button, so keep my plan can’t win by default."),
 ]
 CAROUSEL_TEXT_IDS = {"5812:20702", "5812:20703", "5812:20704"}
