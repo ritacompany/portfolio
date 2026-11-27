@@ -141,14 +141,16 @@
     if (e.key === "ArrowLeft") { e.preventDefault(); go(index - 1); }
   });
 
-  // Desktop keeps Figma's proportions (1017 stage, 543 card, side centers 481 px out). Narrower, the
-  // card is 80% of the stage and the side cards peek in at the edges.
+  // From 700 up (tablet and desktop) the cards keep Figma's size: 543 card, side centers 481 px out,
+  // 550 stage, as in his desktop frame and his 768 tablet frames (21 Nov: at tablet the cards had
+  // shrunk to 69% and their text was too small to read). The stage width only changes how much of
+  // the side cards shows. Narrower, the card is 80% of the stage and the side cards peek in.
   function fit() {
     W = stage.clientWidth;
     // cw is the width of the frame itself; the kept glow scales with it.
-    const wide = W >= 700, cw = wide ? W * (FRAME_W / 1017) : W * 0.8;
+    const wide = W >= 700, cw = wide ? FRAME_W : W * 0.8;
     K = cw / FRAME_W; SPACING = cw * (wide ? 481 / 543 : 0.845);
-    H = wide ? W * (STAGE_H / 1017) : STAGE_H * K;
+    H = wide ? STAGE_H : STAGE_H * K;
     stage.style.height = H + "px";
     paint();
   }

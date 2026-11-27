@@ -47,6 +47,18 @@
 
 .sow { width: 1017px; }
 .sow__stage { position: relative; height: 550px; overflow: hidden; touch-action: pan-y; outline: none; }
+/* Edge fade over the side cards, from 768 up (his ask and yes, 21 Nov): the same on both sides, in the page
+   fill (#040405, his gradient colour). The clear point stays at 22.4% of the stage in both his frames; the
+   darker outer band (0.63 opacity) is 39 px at the 704 tablet stage (his adjusted Recalibration tablet frame,
+   left and right averaged so both sides match) and grows with the stage to 132 px at the 1017 desktop stage
+   (his desktop frame), so it scales with the window. Above the cards, under nothing interactive. */
+.sow__stage::after {
+  --sow-fade-a: clamp(39.3px, calc(39.3px + (100% - 704px) * 0.2968), 132.2px);
+  content: ""; position: absolute; inset: 0; z-index: 20; pointer-events: none;
+  background: linear-gradient(to right, rgb(4 4 5) 0, rgb(4 4 5 / 0.63) var(--sow-fade-a), rgb(4 4 5 / 0) 22.365%,
+    rgb(4 4 5 / 0) 77.635%, rgb(4 4 5 / 0.63) calc(100% - var(--sow-fade-a)), rgb(4 4 5) 100%);
+}
+@media (max-width: 767.98px) { .sow__stage::after { content: none; } }
 .sow__stage:focus-visible { box-shadow: inset 0 0 0 2px var(--neutral-525); border-radius: 12px; }
 
 .sow__card {
@@ -358,6 +370,16 @@
 @media (max-width: 1159.98px) {
   .framework .fw .fw-sec > [data-figma-node="5812:20246"] + [data-figma-node="5812:20247"] { margin-top: 32px; }
 }
+/* 21 Nov, his note on the 768 preview: on a tablet no line of text runs the whole frame and none ends on a last line
+   of one or two words. The Schedule view intro takes his measure, breaking after "between" (that phrase is 430 at
+   16 px, the next word ends at 455), so it reads as two even lines at every tablet width; this replaces the 20 Nov
+   one line rule under 1160. Headlines and running text balance their lines, so no block ends on a short last row
+   (Chrome balances up to six lines; longer blocks wrap as before). Start of week is another session's and is left alone. Checked by reports/fw-fixes-round2-2026-11-21/check.mjs orphans. */
+@media (min-width: 768px) and (max-width: 1159.98px) {
+  .framework .fw .fw-sec > .oneline { max-width: 27.5em; }
+  .framework .fw .fw-sec:not([data-figma-node="5812:20498"]) > :is(.s-heading-40, .s-display-96) { text-wrap: balance; }
+  .framework .fw .fw-sec:not([data-figma-node="5812:20498"]) :is(.s-body-16, .s-heading-24, .s-label-14, .s-heading-20, .fw-end__close):not(.oneline) { text-wrap: balance; }
+}
 /* Footer, his Other pages variant (6331:20545, 20 Nov, not final): the Contact label is Medium, not Bold. The list and
    the hidden Resume are in the markup; Testimonials stays hidden until its Home section ships, as on Home. */
 .footer-other .button__label { font-weight: 500; }
@@ -393,7 +415,7 @@
   .framework .fw .fw-sec[data-figma-node="5812:17129"] { padding-bottom: 164px; }
   .framework .fw .fw-sec > [data-figma-node="5812:17138"] {
     order: 1; margin-top: 80px; width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 704 / 428;
-    box-sizing: border-box; padding-left: 100%; background: url("/assets/framework/calendar-setup-tablet.webp") center / 100% 100% no-repeat;
+    box-sizing: border-box; padding-left: 100%; background: url("../assets/framework/calendar-setup-tablet.webp") center / 100% 100% no-repeat;
   }
   .framework .fw .fw-sec > [data-figma-node="5812:17137"] { order: 2; margin-top: 37px; max-width: 578px; }
 
@@ -414,7 +436,7 @@
   .framework .fw .fw-sec > [data-figma-node="5812:20260"] {
     grid-column: 2; grid-row: 4 / span 7; margin-top: 41px; margin-bottom: 1px;
     width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 400 / 481; border-radius: 15px 0 0 15px;
-    box-sizing: border-box; padding-left: 100%; background: url("/assets/framework/right-rail-tablet.webp") center / 100% 100% no-repeat;
+    box-sizing: border-box; padding-left: 100%; background: url("../assets/framework/right-rail-tablet.webp") center / 100% 100% no-repeat;
   }
   .framework .fw .fw-sec > :is([data-figma-node="5812:20296"], [data-figma-node="5812:20297"], [data-figma-node="5812:20299"], [data-figma-node="5812:20300"], [data-figma-node="5812:20302"], [data-figma-node="5812:20303"]) { grid-column: 4; max-width: 520px; } /* the body measure, past his 256 at wide tablets */
   .framework .fw .fw-sec > [data-figma-node="5812:20296"] { grid-row: 4; margin-top: 96px; }

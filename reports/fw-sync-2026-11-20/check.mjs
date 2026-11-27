@@ -78,6 +78,9 @@ const gates = {
     for (let w = 320; w <= 1600; w += (process.env.STEP ? +process.env.STEP : 10)) {
       const p = await open("/mondai/framework/", w);
       const r = await probe(p, false);
+      // His 21 Nov note supersedes this rule on a tablet (768 to 1159): there the intro breaks after "between" into two
+      // even lines, checked by reports/fw-fixes-round2-2026-11-21/check.mjs orphans.
+      if (w >= 768 && w < 1160) { await p.close(); continue; }
       if (r.lines > 1 && r.natural <= r.room - 1) fails.push(`${w}: wraps into ${r.lines} lines though ${r.natural.toFixed(1)} fits ${r.room.toFixed(1)}`);
       await p.close();
     }
