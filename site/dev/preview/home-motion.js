@@ -1,14 +1,13 @@
 // Home motion, preview only (his ask, 10 Nov). Moves into site/js on his yes. Pairs with home-motion.css.
 //   Scroll     Lenis at Haven's setting (lerp 0.1), so Home and Haven scroll the same.
 //   Nav        fixed to the top; Product Designer rides up and out as the page moves into Selected works.
-//   Works      more room above the section; a panel switch holds the title in place (off by default). The
-//              cards scroll in plainly: the rise and square reveal from Seth Lukin's site are gone (his call,
-//              16 Nov).
+//   Works      the title holds while the cards rise over it; Haven arrives after Mondai (it lags, then
+//              catches up). The images show plainly: no cover reveal over them (his ask, 21 Nov).
 //   Text       card labels, About and Current role fade in as Haven's text blocks do (1.4 s, 0.15 s apart,
 //              once the block is 100 px inside the screen).
-//   Cards      at rest the image only; hover brings in the black layer and Learn more as the outline; the
-//              pressing the card swaps Learn more to the white button. Product Designer rests at the nav
-//              link colour. A refresh starts at the top of the page.
+//   Cards      no hover layer and no hover Learn more (his ask, 21 Nov): the site cursor carries Learn more
+//              on a fine pointer. Pressing the card swaps the static Learn more to the white button.
+//              Product Designer rests at the nav link colour. A refresh starts at the top of the page.
 //   Panel      sliders for every value he may tune, saved in this browser only.
 (() => {
   const home = document.querySelector(".home");
@@ -24,8 +23,8 @@
     worksGap: 320,   // px, hero to the Selected works title (was 165)
     titleAt: 38,     // vh, where the title holds
     hold: 70,        // vh, scroll the title holds alone before the first card comes in
+    rise: 150,       // px each card rises as it comes in (the reference: 150)
     titleHold: 0,    // 1 holds the title while the cards rise (the first pass); 0 scrolls it, as the reference
-    overlay: 0.47,   // Neutral/900 layer on hover, 47 percent as his frame (Rectangle 3003)
     roleFrom: 0.7,   // Product Designer starts to leave when the works section top is this far down the screen
     roleTo: 0.35,    // and is gone by here
   };
@@ -37,7 +36,6 @@
     root.style.setProperty("--hm-works-gap", V.worksGap + "px");
     root.style.setProperty("--hm-title-at", V.titleAt + "vh");
     root.style.setProperty("--hm-hold", V.hold + "vh");
-    root.style.setProperty("--rv-card-overlay", V.overlay);
     root.classList.toggle("hm-hold", V.titleHold === 1);
   };
   applyCss();
@@ -116,7 +114,26 @@
     });
   };
 
+  // ---- Cards, from Seth Lukin's works (docs/motion/home-load/style_guide.md, "Selected works on the
+  //      reference"). Each card rises 150 px once it comes in, on a spring with no bounce (stiffness 500,
+  //      damping 100, mass 1, about 1.9 s), and rises again once it has gone back below the screen (his ask).
+  //      The checker cover that cleared off the image is gone (his ask, 21 Nov): the image shows plainly.
+  const SPRING_K = 500, SPRING_D = 100;
+  function spring(t, k, d) {
+    if (t <= 0) return 0;
+    const w0 = Math.sqrt(k), z = d / (2 * w0);
+    if (z < 1) { const wd = w0 * Math.sqrt(1 - z * z); return 1 - Math.exp(-z * w0 * t) * (Math.cos(wd * t) + (z * w0 / wd) * Math.sin(wd * t)); }
+    if (Math.abs(z - 1) < 1e-9) return 1 - Math.exp(-w0 * t) * (1 + w0 * t);
+    const r1 = -w0 * (z - Math.sqrt(z * z - 1)), r2 = -w0 * (z + Math.sqrt(z * z - 1));
+    return 1 - (r2 * Math.exp(r1 * t) - r1 * Math.exp(r2 * t)) / (r2 - r1);
+  }
   const medias = cards.map((c) => c.querySelector(".work-card__media")).filter(Boolean);
+  const reveals = cards.map((card) => ({ card, media: card.querySelector(".work-card__media"), enteredAt: null, done: false, lift: 0 }));
+  const finish = (r) => { r.done = true; r.card.style.transform = ""; if (r.media) r.media.dataset.hmShown = ""; };
+  const resetReveal = (r) => {
+    r.done = false; r.enteredAt = null; r.lift = V.rise; if (r.media) delete r.media.dataset.hmShown;
+    r.card.style.transform = `translateY(${V.rise}px)`;
+  };
 
   const motionOn = () => !reduced;
   let io = null;
@@ -124,8 +141,14 @@
     if (io) io.disconnect();
     if (!motionOn() || !("IntersectionObserver" in window)) {
       blocks.forEach((b) => showText(b, true));
+      reveals.forEach(finish);
       return;
     }
+    reveals.forEach((r) => {
+      if (r.done) return;
+      // A card already above the screen at load (a jump link) is shown as it is.
+      if (r.card.getBoundingClientRect().bottom < 0) finish(r); else resetReveal(r);
+    });
     io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         const b = blocks.find((x) => x.el === e.target);
@@ -138,7 +161,7 @@
   };
   watch();
 
-  // ---- Per frame: Product Designer's exit.
+  // ---- Per frame: Product Designer's exit and each card's rise.
   const frame = () => {
     const vh = innerHeight;
     if (roleInner) {
@@ -152,26 +175,34 @@
       roleInner.style.opacity = (1 - p).toFixed(4);
       role.style.visibility = p >= 1 ? "hidden" : "";
     }
+    const now = performance.now() / 1000;
+    for (const r of reveals) {
+      if (r.done || !r.media) continue;
+      const rect = r.media.getBoundingClientRect();
+      // Back below the screen: reset, so the rise and the reveal play again next time (his ask).
+      if (r.enteredAt !== null && rect.top - (r.lift || 0) > vh + 4) { r.enteredAt = null; }
+      // A card comes in when its image does (Haven's sits 132 px lower, so it follows Mondai).
+      if (r.enteredAt === null && rect.top < vh) r.enteredAt = now;
+      const t = r.enteredAt === null ? 0 : now - r.enteredAt;
+      r.lift = V.rise * (1 - spring(t, SPRING_K, SPRING_D));
+      r.card.style.transform = `translateY(${r.lift.toFixed(2)}px)`;
+    }
     requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
 
-  // ---- Card hover. Mouse only: a tap on a phone or tablet opens the card.
+  // ---- Card press. No hover state (his ask, 21 Nov): the site cursor carries Learn more on a fine pointer.
+  //      Each card gets the static Learn more in its media (touch and keyboard focus show it); pressing the
+  //      card swaps it to the white button (his call, 10 Nov).
   cards.forEach((card) => {
     const media = card.querySelector(".work-card__media");
     if (!media) return;
     let btn = media.querySelector(".button-sm");
     if (!btn) { const src = home.querySelector(".work-card__media .button-sm"); if (!src) return; btn = src.cloneNode(true); btn.removeAttribute("data-figma-node"); media.append(btn); }
-    // Hover shows Learn more as the outline; pressing the card swaps it to the white button (his call, 10 Nov,
-    // replacing the fill near the middle).
-    card.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse" && hoverable.matches) card.classList.add("hm-hot"); });
-    card.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse" && hoverable.matches) card.classList.add("hm-hot"); });
     card.addEventListener("pointerdown", (e) => { if (e.button === 0) card.classList.add("hm-press"); });
-    ["pointerup", "pointercancel"].forEach((t) => card.addEventListener(t, () => card.classList.remove("hm-press")));
-    card.addEventListener("pointerleave", () => card.classList.remove("hm-hot", "hm-press"));
+    ["pointerup", "pointercancel", "pointerleave"].forEach((t) => card.addEventListener(t, () => card.classList.remove("hm-press")));
     card.addEventListener("keydown", (e) => { if (e.key === "Enter") card.classList.add("hm-press"); });
-    card.addEventListener("focus", () => { if (card.matches(":focus-visible")) card.classList.add("hm-hot"); });
-    card.addEventListener("blur", () => card.classList.remove("hm-hot", "hm-press"));
+    card.addEventListener("blur", () => card.classList.remove("hm-press"));
   });
 
   // ---- Panel.
@@ -179,8 +210,8 @@
     ["worksGap", "Gap above Selected works", 120, 800, 10, "px"],
     ["titleAt", "Title holds at", 15, 60, 1, "vh"],
     ["hold", "Title holds alone for", 0, 160, 5, "vh of scroll"],
+    ["rise", "Cards rise by", 0, 300, 10, "px"],
     ["titleHold", "Title holds in place (0 off, 1 on)", 0, 1, 1, ""],
-    ["overlay", "Dark layer on hover", 0, 0.9, 0.01, ""],
     ["roleFrom", "Product Designer starts leaving at", 0.2, 1, 0.05, "of screen"],
     ["roleTo", "and is gone at", 0, 0.9, 0.05, "of screen"],
   ];
@@ -190,7 +221,7 @@
   panel.innerHTML = `<div class="hm-panel__top"><span>Home motion</span><button type="button" data-t>Open</button></div>` +
     SLIDERS.map(([k, label, min, max, step, unit]) =>
       `<label><span>${label}<b data-v="${k}"></b></span><input type="range" data-k="${k}" min="${min}" max="${max}" step="${step}"></label>`).join("") +
-    `<div class="hm-panel__row"><button type="button" data-replay>Replay text</button><button type="button" data-copy>Copy values</button><button type="button" data-reset>Reset</button></div>`;
+    `<div class="hm-panel__row"><button type="button" data-replay>Replay reveals</button><button type="button" data-copy>Copy values</button><button type="button" data-reset>Reset</button></div>`;
   const show = () => SLIDERS.forEach(([k, , , , , unit]) => {
     panel.querySelector(`[data-k="${k}"]`).value = V[k];
     panel.querySelector(`[data-v="${k}"]`).textContent = ` ${V[k]} ${unit}`;
@@ -203,6 +234,7 @@
   });
   panel.querySelector("[data-replay]").addEventListener("click", () => {
     blocks.forEach((b) => { delete b.el.dataset.hmShown; b.items.forEach((it) => { it.style.transition = "none"; it.classList.remove("hm-in"); }); });
+    reveals.forEach((r) => { r.done = false; });
     lenis ? lenis.scrollTo(0, { immediate: true }) : scrollTo(0, 0);
     requestAnimationFrame(() => requestAnimationFrame(watch));
   });
@@ -216,5 +248,5 @@
   show();
   document.body.append(panel);
 
-  window.__hm = { V, lenis, blocks, medias, DEFAULTS };
+  window.__hm = { V, lenis, blocks, medias, reveals, finish, DEFAULTS };
 })();

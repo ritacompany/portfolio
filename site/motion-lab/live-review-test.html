@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live review test</title>
+<style>
+  body { margin: 0; background: #0e0e0e; color: #eee; font: 16px/1.5 system-ui, sans-serif; }
+  .spacer { height: 110vh; display: grid; place-items: center; color: #777; }
+  section { max-width: 1160px; margin: 0 auto; padding: 0 24px 120px; }
+  h2 { font-size: 40px; margin: 0 0 32px; }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .card { background: #1b1b1b; border-radius: 12px; overflow: hidden; opacity: 0; cursor: pointer; }
+  .card img { display: block; width: 100%; }
+  .card .label { padding: 12px 14px; font-weight: 600; white-space: nowrap; }
+  .card:hover { transform: scale(0.9); transition: transform 0.6s ease 0.8s; }
+  .after { margin-top: 40px; max-width: 640px; color: #bbb; }
+  @media (max-width: 700px) { .row { grid-template-columns: repeat(4, 1fr); gap: 8px; } h2 { font-size: 28px; } }
+</style>
+</head>
+<body>
+<div class="spacer">Scroll down</div>
+<section id="pieces">
+  <h2>The pieces before the framework</h2>
+  <div class="row">
+    <div class="card"><img data-src="a"><div class="label">Curriculum built with two educators</div></div>
+    <div class="card"><img data-src="b"><div class="label">Onboarding quiz with twelve questions</div></div>
+    <div class="card"><img data-src="c"><div class="label">Career pages for each target role</div></div>
+    <div class="card"><img data-src="d"><div class="label">Calendar sync plan, never shipped</div></div>
+  </div>
+  <p class="after">Each piece worked on its own. Nothing joined them into a plan someone changing careers could follow.</p>
+</section>
+<div class="spacer">End</div>
+<script src="../vendor/gsap-3.13.0.min.js"></script>
+<script>
+  const colors = { a: "#3b6ea5", b: "#a5683b", c: "#4f8a4a", d: "#7a4fa0" };
+  const svg = (c) => "data:image/svg+xml," + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="520"><rect width="400" height="520" fill="${c}"/></svg>`);
+  const cards = [...document.querySelectorAll(".card")];
+  const gaps = [0, 0.1, 0.4, 0.55];
+  const io = new IntersectionObserver((entries) => {
+    if (!entries.some((e) => e.isIntersecting)) return;
+    io.disconnect();
+    cards.forEach((card, i) => {
+      gsap.fromTo(card, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.5 + i * 0.3, delay: gaps[i], ease: "power2.out" });
+      setTimeout(() => { const img = card.querySelector("img"); img.src = svg(colors[img.dataset.src]); }, 600 + i * 250);
+    });
+  }, { threshold: 0.2 });
+  io.observe(document.querySelector("#pieces"));
+</script>
+</body>
+</html>

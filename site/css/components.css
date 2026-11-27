@@ -482,3 +482,6 @@
   .footer__bottom > .footer__meta { grid-area: meta; margin-top: 32px; white-space: normal; padding-right: 16px; }
   .footer__bottom > .footer__meta + .footer__meta { grid-area: time; justify-self: end; padding-right: 0; }
 }
+
+/* The footer clock ticks every second; fixed width digits stop it shifting sideways (taste: tabular-numbers). */
+.footer time { font-variant-numeric: tabular-nums; }

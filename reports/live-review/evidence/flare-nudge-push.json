@@ -1,0 +1,20 @@
+{
+  "origin": "http://localhost:4320",
+  "snapshot": {
+    "updatedAt": "2026-11-14T18:21:37.203Z",
+    "changes": [
+      {
+        "selector": "#haven-title",
+        "path": "main#main > section.hero > div.hero__top > h1#haven-title",
+        "textSnippet": "Haven CS",
+        "changes": [
+          {
+            "property": "margin-bottom",
+            "before": "0px",
+            "after": "24px"
+          }
+        ]
+      }
+    ]
+  }
+}

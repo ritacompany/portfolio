@@ -1,0 +1,22 @@
+/* Card to collection transition, proposal (docs/motion/card-transition/). Pairs with card-transition.js.
+   Lands on the new collection page (Figma 6331:27875, PR #30). */
+
+/* Until the script has checked whether it arrived from the card, the collection's nav and card frames
+   wait (the frames' grey fill is drawn before any entrance hides it), so a transition never starts with
+   them already drawn. A direct visit shows them as soon as the script runs; if it never runs, after 1 s.
+   Reduced motion never hides them. */
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.ct-checked) .canvas:has(> main.collection) > .page-header,
+  html:not(.ct-checked) .collection .cs-card__media { visibility: hidden; animation: ct-failsafe 0s 1s forwards; }
+}
+@keyframes ct-failsafe { to { visibility: visible; } }
+
+.ct-layer { position: fixed; inset: 0; z-index: 2147482000; pointer-events: none; overflow: hidden; contain: strict; }
+.ct-layer--exit { pointer-events: auto; }
+.ct-layer--words { z-index: 2147482001; }
+.ct-veil { position: absolute; inset: 0; background: var(--neutral-900); }
+.ct-pic { position: absolute; inset: 0; will-change: clip-path; }
+.ct-bg, .ct-img, .ct-text { position: absolute; left: 0; top: 0; transform-origin: 0 0; max-width: none; will-change: transform, opacity; }
+.ct-cover { object-fit: cover; }
+.ct-shade { position: absolute; inset: 0; background: var(--neutral-900); opacity: 0; }
+.ct-text { margin: 0; padding: 0; white-space: nowrap; }

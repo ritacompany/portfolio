@@ -8,12 +8,13 @@
     worksGap: ["Gap above the section", "px"],
     titleAt: ["Title holds at", "vh"],
     hold: ["Title holds alone for", "vh"],
-    overlay: ["Dark layer on hover", ""],
+    rise: ["Cards rise by", "px"],
     roleFrom: ["Product Designer leaves from", "of screen"],
     roleTo: ["and is gone at", "of screen"],
   };
   const SECTIONS = [
-    ["works-layout", "Selected works layout", ["worksGap", "titleHold", "titleAt", "hold", "overlay"], null],
+    ["works", "Selected works entrance", ["rise"], "How far each card rises as it comes in."],
+    ["works-layout", "Selected works layout", ["worksGap", "titleHold", "titleAt", "hold"], null],
     ["nav", "Nav", ["roleFrom", "roleTo"], null],
   ];
   let tries = 0;
@@ -41,7 +42,7 @@
       const def = {
         id: "home-" + id, title, note, persist: false,
         controls: keys.map(control).filter(Boolean),
-        actions: id === "works-layout" ? [{ label: "Replay text", onClick: click("[data-replay]") }] : [],
+        actions: id === "works" ? [{ label: "Replay reveals", onClick: click("[data-replay]") }] : [],
       };
       window.EditPanel ? window.EditPanel.register(def) : (window.EditPanelQueue ||= []).push(def);
     }

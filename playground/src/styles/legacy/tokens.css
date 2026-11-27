@@ -1,0 +1,203 @@
+/* Design tokens. Values read live on 10 Nov 2026 from his Portfolio Design file IarvWaqjIwrZ2afQmMxKm6,
+   local collections 01 Portfolio, 02 Haven and 03 Mondai and the thirteen local text styles
+   (docs/FIGMA_SYNC_2026-11-10.md). Figma wins: when a value changes there, change it here, never in a
+   component. Names follow the Figma names: Portfolio Neutral/550 is --neutral-550, Haven Violet/200 is
+   --haven-violet-200, Mondai Green/400 is --mondai-green-400. */
+
+:root {
+  /* Color: Portfolio, neutrals */
+  --neutral-000: #ffffff;
+  --neutral-050: #f2f1f8;
+  --neutral-100: #e8e7ee;
+  --neutral-200: #dedee5;
+  --neutral-300: #d2d2db;
+  --neutral-400: #c9c9d4;
+  --neutral-500: #aeaeb4;
+  --neutral-525: #90909d;
+  --neutral-550: #7b7b86;
+  --neutral-575: #65656e;
+  --neutral-590: #4b4b52;
+  --neutral-600: #38383d;
+  --neutral-650: #36363c;
+  --neutral-675: #28282b;
+  --neutral-700: #1d1d21;
+  --neutral-800: #121214;
+  --neutral-825: #0e0e0f;
+  --neutral-850: #0b0b0d;
+  --neutral-900: #040405;
+  --neutral-1000: #000000;
+
+  /* Color: Portfolio, accents */
+  --babylon-100: #01f76c;
+  --babylon-200: #00c455;
+  --babylon-300: #0aa04b;
+  --babylon-400: #077938;
+  --babylon-500: #015224;
+  --bloom-100: #9090f7;
+  --bloom-200: #301687;
+  --xoxo-100: #f47f97;
+  --xoxo-200: #d2142a;
+  --juice-100: #dfec90;
+  --juice-200: #849906;
+  --barney-100: #d236fd;
+  --barney-200: #5c1071;
+
+  /* Color: Portfolio, aliases */
+  --metadata-12: var(--neutral-100); /* Metadata/12 */
+
+  /* Color: the phone work card art, as drawn behind the images (VC, Mobile frames 4928:12058 and
+     4929:12222). */
+  --mondai-card-top: #2a2a2f;
+  --mondai-card-bottom: #09090a;
+  --haven-card-night: #0f0f1b;
+
+  /* Color: 03 Mondai. Green/400 keys portfolio labels to the green in Mondai screens beside them
+     (Framework CS, Falling behind). */
+  --mondai-green-400: #39f145;
+  --mondai-green-500: #07ee17;
+  --mondai-magenta-500: #cc14f9;
+  --mondai-turquoise-500: #00ffe7;
+  --mondai-blue-500: #0039f5;
+  --mondai-orange-400: #ec6d3d;
+  --mondai-orange-500: #e7480d;
+  --mondai-neutral-100: #eefae8;
+
+  /* Color: 02 Haven. Haven keeps its own CSS; these are here so it can move over. */
+  --haven-nimbus-100: #b4aaf4;
+  --haven-nimbus-200: #8877fd;
+  --haven-nimbus-300: #6854ec;
+  --haven-nimbus-500: #482cff;
+  --haven-violet-100: #edc9ff;
+  --haven-violet-200: #db98ff;
+  --haven-violet-300: #d080fc;
+  --haven-violet-500: #b755ec;
+  --haven-goldfish-500: #d2401f;
+  --haven-mantis-500: #78b765;
+  --haven-mantis-bright: #71f949;
+  --haven-red-700: #722a2a;
+  --haven-neutral-100: #eefae8;
+  --haven-neutral-150: #d9dfd1;
+  --haven-neutral-200: #c9cfc6;
+  --haven-neutral-250: #b5bdb1;
+  --haven-neutral-300: #a4aea3;
+  --haven-neutral-350: #90968e;
+  --haven-neutral-400: #767c74;
+  --haven-neutral-450: #5c675d;
+  --haven-neutral-500: #434942;
+  --haven-neutral-550: #333633;
+  --haven-neutral-600: #292d28;
+  --haven-neutral-650: #222321;
+  --haven-neutral-700: #181a18;
+  --haven-neutral-750: #131513;
+  --haven-neutral-800: #101110;
+  --haven-neutral-850: #0e0f0e;
+  --haven-neutral-900: #0b0c0a;
+  --haven-neutral-950: #0a0b0a;
+  --haven-neutral-1000: #080908;
+
+  /* Type: Satoshi, three weights shipped (400, 500, 700) */
+  --font: "Satoshi", system-ui, sans-serif;
+
+  /* Text styles. Each is a font shorthand plus a tracking value. Figma gives line height and
+     tracking as a percent of size, so line height is unitless and tracking is in em.
+     Use: font: var(--heading-40); letter-spacing: var(--heading-40-track); */
+  --display-212: 400 212px/176px var(--font);
+  --display-212-track: -0.055em;
+  --display-96: 500 96px/94px var(--font);
+  --display-96-track: -0.04em;
+  --heading-64: 500 64px/70px var(--font);
+  --heading-64-track: -0.04em;
+  --heading-40: 500 40px/46px var(--font);
+  --heading-40-track: -0.04em;
+  --heading-24: 500 24px/28px var(--font);
+  --heading-24-track: -0.04em;
+  /* Line heights are whole pixels: Figma rounds each style's percentage to the nearest pixel when it
+     lays out lines (Heading/20 132% is 26, Body/16 140% is 22, Heading/24 116% is 28). Measured on
+     multi line text across Home, Collection and Framework CS, where the trimmed heights only add up
+     with rounded values. */
+  --heading-20: 500 20px/26px var(--font);
+  --heading-20-track: -0.02em;
+  --body-20: 400 20px/26px var(--font);       /* Body/20, added in Figma by 10 Nov */
+  --body-20-track: -0.02em;
+  --body-16: 400 16px/22px var(--font);
+  --body-16-track: -0.01em;
+  --body-16-m: 500 16px/21px var(--font);
+  --body-16-m-track: -0.01em;
+  /* Figma groups the label styles as Body/Label/14 and so on; the names here stay short. */
+  --label-14: 400 14px/20px var(--font);
+  --label-14-track: 0.02em;
+  --label-14-c: 400 14px/14px var(--font);   /* the C styles are set in capitals */
+  --label-14-c-track: 0.06em;
+  --label-12: 400 12px/17px var(--font);
+  --label-12-track: 0.04em;
+  --label-12-c: 400 12px/17px var(--font);
+  --label-12-c-track: 0.1em;
+  /* Not a Figma text style: the phone hero's CHDWCK running down the edge (4928:11945), Medium,
+     tracked -9 percent. The hero sets the size (home.css), so 219.84 is only its size at 402 by 874. */
+  --wordmark-vertical: 500 219.84px/1 var(--font);
+  --wordmark-vertical-track: -0.09em;
+  /* Not a Figma text style: the work card descriptions are drawn at 13.75 px with no style in the
+     master (Mondai, 4923:12102) and on every phone card (4929:12207). */
+  --card-desc-size: 13.75px;
+  /* Not a Figma text style: the // before section labels is drawn at 15.17 px Medium (Collection
+     frame, 5812:23010). Kept here so pages never carry raw type values. */
+  --mark-15: 500 15.17px/1.16 var(--font);
+  --mark-15-track: 0.06em;
+
+  /* Grid: 12 columns, stretch, 40 margin and 40 gutter at 1440 (Figma layout grid on the CS frames).
+     The --grid-* variables in the Figma file are Mondai's grid and do not apply here. */
+  --grid-columns: 12;
+  --grid-margin: 40px;
+  --grid-gutter: 40px;
+  --page-max: 1440px;
+
+  /* Motion: shared curves. Durations live with each component. */
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-expo-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+
+  /* Tooltip: the insight tooltip on the Haven pills (Figma 4264:7197, Neutral/800 box, Body/Label/12 in
+     Neutral/200). Hover and focus only, per the WAI-ARIA tooltip pattern. The delays are read by
+     haven/pill-tips.js, so they stay in ms. */
+  --tooltip-bg: var(--neutral-800);
+  --tooltip-ink: var(--neutral-200);
+  --tooltip-radius: 6px;
+  --tooltip-width: 306px;
+  --tooltip-pad: 20px;
+  --tooltip-gap: 8px;
+  --tooltip-arrow: 12px;
+  --tooltip-edge: 16px;
+  --tooltip-drift: 4px;
+  --tooltip-in: 160ms;
+  --tooltip-out: 120ms;
+  --tooltip-open-delay: 300ms;
+  --tooltip-close-delay: 100ms;
+}
+
+/* Breakpoints. Desktop (1200 and up) is the Figma grid and type above; nothing below changes it.
+   Grids are his (docs/PROJECT_CONTEXT.md, 10 Nov): tablet, 768 to 1199, 8 columns, 32 margin, 32 gutter;
+   phone, under 768, 4 columns, 24 margin, 24 gutter. Only Display/96, Heading/64 and Display/212 step
+   down. His phone frames (VC, Mobile frames 4929:12379) keep Heading/40 and Heading/24 at full size, so
+   they no longer step down here; the framework page keeps its own step-down in framework.css.
+   Display/212 is sized to the content width, so "Framework CS" spans the page as it does at 1440
+   (1357 px of text at 212 px: 0.15 of the width per px leaves it at 96 percent of the content width). */
+@media (max-width: 1199.98px) {
+  :root {
+    --grid-columns: 8;
+    --grid-margin: 32px;
+    --grid-gutter: 32px;
+    --display-212: 400 calc((100vw - 2 * var(--grid-margin)) * 0.15)/0.83 var(--font);
+    --display-96: 500 64px/66px var(--font);
+    --heading-64: 500 56px/62px var(--font);
+  }
+}
+@media (max-width: 767.98px) {
+  :root {
+    --grid-columns: 4;
+    --grid-margin: 24px;
+    --grid-gutter: 24px;
+    --display-96: 500 40px/44px var(--font);
+    --heading-64: 500 40px/44px var(--font);
+  }
+}

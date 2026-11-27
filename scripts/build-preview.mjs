@@ -39,7 +39,13 @@ for (const f of walk(out).filter((f) => f.endsWith(".html"))) {
   });
   if (extras.length && !relative(out, f).startsWith("preview/")) {
     s = s.replace("</head>", extras.filter((x) => x.endsWith(".css")).map((x) => `  <link rel="stylesheet" href="${up}/preview/${x}">\n`).join("") + "</head>");
-    s = s.replace("</body>", extras.filter((x) => x.endsWith(".js")).map((x) => `<script src="${up}/preview/${x}" defer></script>\n`).join("") + "</body>");
+    // A preview script whose first line says "preview: render-blocking" goes in the head with
+    // blocking="render": the browser paints nothing of the page until it has run (deferred, so the page
+    // is parsed). Used by card-transition.js, whose first frame must be the move, not an empty page.
+    const blocking = (x) => readFileSync(join(tools, x), "utf8").split("\n", 1)[0].includes("preview: render-blocking");
+    const js = extras.filter((x) => x.endsWith(".js"));
+    s = s.replace("</head>", js.filter(blocking).map((x) => `  <script src="${up}/preview/${x}" defer blocking="render"></script>\n`).join("") + "</head>");
+    s = s.replace("</body>", js.filter((x) => !blocking(x)).map((x) => `<script src="${up}/preview/${x}" defer></script>\n`).join("") + "</body>");
   }
   writeFileSync(f, s);
 }
