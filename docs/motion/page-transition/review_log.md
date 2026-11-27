@@ -11,3 +11,12 @@ Fresh eyes: grey card box on the black page before any text when the collection 
 - P2: 4.12 to 4.20 s at 390 and 7.17 s: outgoing text dims slightly before images. That is the old page's own pixels under one even fade; nothing staggers. No change.
 - P2: 9.63 to 9.73 s: Home comes back dark and brightens over 0.1 s. As designed.
 - P2: 390, 1.50 s and 9.63 s: the large Home logo mark at the top edge fades with the page. As designed; flair later (nav holds still) would cover it.
+
+## Round 2
+Clips with the card box fix, filmed from a copy of the site (output/motion/page-fade-fix-1440.mp4, page-fade-fix-390.mp4); the site itself is unchanged until he says yes. Fresh eyes is the round 1 reviewer, resumed: the repo's cost hook allows three new agents a turn and they were used, so this reviewer had seen round 1 but still never saw code.
+Fresh eyes: no P0. The grey box is gone: 1.60 to 1.70 s and 7.23 to 7.33 s are page colour only, and the framework picture arrives only as it opens. The rest as in round 1.
+- P1: 4.23 to 4.50 s at 1440: page colour only for about 0.25 s before Framework CS; the nav is too faint to read at review scale (390 shows it). The beat is what the plan asked for; his call on the clip. State list no longer claims the nav at that moment.
+- P1: 390, 1.50 to 1.60 s and 9.63 to 9.73 s: the large Home logo mark fades with the page. As designed today; flair later (nav holds still) would answer it.
+- P2: 4.12 to 4.20 s at 390 and 7.17 s: big type reads as dimming a touch before pictures under one even fade. No change.
+- P2: 2.00 s: the collection's wordmark is about half in at 0.5 s after the click; matches the state list.
+- P2: 9.63 s: Home comes back dark and brightens over 0.1 s. As designed.

@@ -11,7 +11,7 @@ Times are clip seconds at 1440 by 900; the 390 by 844 clip lands within 0.02 s o
 - 2.30 s: the Mondai wordmark and the rows are part way through their 1.4 s fade.
 - 4.12 s: click Framework CS on the collection.
 - 4.32 s: the collection gone into the page colour.
-- 4.52 s: the fade is done; the framework page shows only the page colour and the nav.
+- 4.52 s: the fade is done; the framework page shows only the page colour until its title arrives.
 - 4.90 s: the Framework CS title is fading in on its own entrance.
 - 7.14 s: browser back from the framework page.
 - 7.34 s: the framework page gone; the collection arrives and its entrance plays again.
