@@ -9,7 +9,7 @@ Rules: .claude/motion-rules.md (a project motion plan wins over it).
 
 1. Reference: write docs/motion/<piece>/style_guide.md, then state_list.md. Real Figma exports only. Motion inside media only.
 2. Build a page with window.seek(t) using site/lib/motion.js, plus its reduced motion still (one frame, nothing moves). Samples: site/motion-lab/spring-sample.html (time), site/motion-lab/scroll-sample.html (scroll).
-3. Render a clip:
+3. Render a clip (motion on the browser clock, like a page change or an entrance: film the real site instead, node scripts/record-browser.mjs docs/motion/<piece>/record.json output/motion/<clip>.mp4 1440x900, and again at 390x844):
    node scripts/render.mjs --page site/motion-lab/spring-sample.html --width 720 --height 900 --fps 60 --dur 4.6
    Scroll scrub: node scripts/render.mjs --page site/motion-lab/scroll-sample.html --mode scroll --scroll "#scene" --start "top top" --end "bottom bottom" --dur 3 --fps 30
    One still: add --still 1.5. Element only: --clip "#c". Retina: --dpr 2.
@@ -19,3 +19,4 @@ Rules: .claude/motion-rules.md (a project motion plan wins over it).
    guide, state list and review images; log both lists as a round in review_log.md. Fix every P0;
    another round only while a P0 is open. Done when motion-check log and strips both PASS.
 6. Determinism check before shipping: render twice, the sha256 lines must match. Run at most two renders at once; three in parallel crashed one Chrome.
+7. Send him the clip. Only after his yes to the clip does it go into site/ (site-review-gate refuses it before the review log passes); then he feels it on the preview.
