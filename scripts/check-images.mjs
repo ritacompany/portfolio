@@ -65,7 +65,12 @@ for (const k of keys) for (const w of widths) {
     const out = [];
     const visible = (e, r) => r.width > 1 && r.height > 1 && getComputedStyle(e).visibility !== "hidden";
     for (const img of document.querySelectorAll("img")) {
-      const src = img.currentSrc || img.src, r = img.getBoundingClientRect();
+      // An <img> draws its file in its content box, so padding and border are taken off. A tablet rule that
+      // shows another file as the img's background empties the content box with padding-left 100% (framework
+      // right rail, 21 Nov); the hidden file is then not drawn and not measured, and the background is.
+      const src = img.currentSrc || img.src, b = img.getBoundingClientRect(), cs = getComputedStyle(img);
+      const side = (a, z) => parseFloat(cs[`padding${a}`]) + parseFloat(cs[`border${a}Width`]) + parseFloat(cs[`padding${z}`]) + parseFloat(cs[`border${z}Width`]);
+      const r = { width: b.width - side("Left", "Right"), height: b.height - side("Top", "Bottom") };
       if (!src || /\.svg(\?|#|$)/i.test(src) || src.startsWith("data:image/svg") || !visible(img, r)) continue;
       const px = await filePixels(src); if (!px) continue;
       out.push({ src, px, box: [r.width, r.height], ok: img.closest("[data-soft-ok]")?.dataset.softOk || null });

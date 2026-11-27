@@ -28,6 +28,30 @@
     addEventListener("scroll", off, { passive: true });
   });
 
+  // Phone works (his ask, 24 Nov): each card's title block and Learn more share a line while they stay more than
+  // 24 px apart. Once either card runs out of room, both cards drop their button under the title, left aligned,
+  // so the two always match. Measured from the content's own widths, so it holds for any text length.
+  const works = home.querySelector(".works__cards");
+  const phone = matchMedia("(max-width: 767.98px)");
+  const stack = () => {
+    if (!works) return;
+    if (!phone.matches) { works.classList.remove("is-stacked"); return; }
+    const tight = [...works.querySelectorAll(".work-card")].some((card) => {
+      const head = card.querySelector(".work-card__head"), more = card.querySelector(".work-card__more");
+      if (!head || !more) return false;
+      const parts = [...head.children].filter((el) => getComputedStyle(el).display !== "none");
+      const title = Math.max(0, ...parts.map((el) => el.getBoundingClientRect().width));
+      return card.clientWidth - title - more.getBoundingClientRect().width <= 24;
+    });
+    works.classList.toggle("is-stacked", tight);
+  };
+  if (works) {
+    stack();
+    if ("ResizeObserver" in window) new ResizeObserver(stack).observe(works);
+    phone.addEventListener("change", stack);
+    if (document.fonts) document.fonts.ready.then(stack);
+  }
+
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   if (!location.hash) scrollTo(0, 0);
 

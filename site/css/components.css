@@ -146,7 +146,7 @@
   display: flex; align-items: center; gap: 36px;
   padding: 36px 50px;
   color: var(--neutral-050); text-decoration: none;
-  --line: var(--neutral-800);
+  --line: var(--neutral-700);
 }
 .context-bottom { box-shadow: inset 0 -1px 0 var(--line); }
 .context-top { box-shadow: inset 0 1px 0 var(--line); }
@@ -336,10 +336,15 @@
   color: var(--neutral-590); white-space: nowrap;
   text-box: trim-both cap alphabetic;
 }
+/* LinkedIn and Resume, his call 23 Nov: "the icon was not changing with the text, which it obviously should,
+   and then I think it needs to be darker, like whatever color the nav menu items are, you can mimic those
+   color changes". So they rest on the nav's Neutral/200 and hover as the nav does (below), and the arrow is
+   drawn in a token of its own: arrow-out.svg becomes a mask over a colour fill, and the file's own
+   picture is pushed out of its box, so the arrow changes with the text and no page markup changes. */
 .footer__out {
   display: inline-flex; align-items: center; gap: 10px;
   font: var(--label-14-c); letter-spacing: var(--label-14-c-track); text-transform: uppercase;
-  color: var(--neutral-100); text-decoration: none; white-space: nowrap;
+  color: var(--neutral-200); text-decoration: none; white-space: nowrap;
 }
 .footer__out[hidden] { display: none; }
 /* Resume shows as in his frames but is not a link until his resume file exists (his call, 17 Nov): no
@@ -351,14 +356,22 @@
 .footer__links-label { display: none; }
 /* The master's bottom row is an auto layout: LinkedIn lands at 742, 2 past column 7. */
 @media (min-width: 1200px) { .footer__links > .footer__out:first-of-type { margin-left: 2px; } }
-.footer__out img { width: 10.833px; height: 10.833px; flex: none; }
-/* Small link hover, as the nav (above): Neutral/100 to Neutral/050 and the outline; the arrow is Neutral/050 already. */
+.footer__out img {
+  width: 10.833px; height: 10.833px; flex: none;
+  background: var(--neutral-300); object-position: 100vw 0;
+  -webkit-mask: url("../assets/ui/arrow-out.svg") center / contain no-repeat;
+  mask: url("../assets/ui/arrow-out.svg") center / contain no-repeat;
+}
+/* Small link hover, as the nav (above): Neutral/200 to Neutral/050 and the outline. */
 .footer__out:is(:hover, :active) {
   color: var(--neutral-050); background: none; box-shadow: none;
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   -webkit-text-stroke: 0.36px currentColor;
 }
-.footer__out:is(:hover, :active) img { filter: none; }
+/* The arrow, his follow up 23 Nov: matched to the text it "barely gets brighter at all" on hover, since the
+   text also thickens. It rests one shade under the text, Neutral/300, and jumps to Neutral/000 on hover
+   ("much better", tried in site/dev/link-lab; his yes, 24 Nov). */
+.footer__out:is(:hover, :active) img { filter: none; background: var(--neutral-000); }
 .footer__out span { text-box: trim-both cap alphabetic; }
 
 /* Ending base, 5733:14576: the bar between a case study and the footer. Three columns of 414 at
@@ -478,8 +491,7 @@
   .footer__email { margin-top: 40px; }
   .footer__links { grid-area: links; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 92px; }
   .footer__links-label { display: block; margin-bottom: 38px; }
-  .footer__out { color: var(--neutral-100); }
-  .footer__out img { filter: none; }
+  .footer__out { color: var(--neutral-200); }
   .footer__portraits { grid-area: pics; justify-self: start; justify-content: flex-start; }
   .footer__bottom > .footer__meta { grid-area: meta; margin-top: 32px; white-space: normal; padding-right: 16px; }
   .footer__bottom > .footer__meta + .footer__meta { grid-area: time; justify-self: end; padding-right: 0; }

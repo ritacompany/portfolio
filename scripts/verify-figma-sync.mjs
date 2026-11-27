@@ -95,11 +95,11 @@ const phone = [
   [".works__title", { c: "#f2f1f8", fs: 40 }],
   [".work-card__name", { c: "#dedee5" }],
   [".work-card__kind", { c: "#7b7b86", fw: 700 }],
-  [".work-card-mondai .work-card__desc", { c: "#dedee5", fs: 13.75 }],
-  [".work-card-haven .work-card__desc", { c: "#dedee5", fs: 13.75 }],
-  // 23 Nov: Learn more under the phone card is his Small button (Neutral/100 outline and text), from his screenshot;
-  // before that it was the Nav Small link in Neutral/050.
-  [".work-card__more", { c: "#e8e7ee" }],
+  // 24 Nov, his "Works" frame 6437:24298: Mondai's description is not on the phone; Haven's sits under its name in
+  // the label style (Label/12 C Bold, Neutral/550); Learn more is his new Small button 6437:24294, Neutral/200.
+  [".work-card-mondai .work-card__desc", { display: "none" }],
+  [".work-card-haven .work-card__desc", { c: "#7b7b86", fw: 700 }],
+  [".work-card__more", { c: "#dedee5" }],
   [".about__row", { line: "#1d1d21" }],
   [".about-story .about__label", { c: "#d2d2db" }],
   [".about-role .about__label", { c: "#dedee5" }],

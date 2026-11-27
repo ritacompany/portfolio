@@ -46,3 +46,17 @@ Two faults the preview hid, caught here and fixed: the hide rule for the burger 
 `:where()`), and the menu's padding used `--m`, which is not set outside the page, so the close button sat
 under the menu body. Divider colour is left to the session "Portfolio: divider strokes to Neutral/700 everywhere".
 G1 to G9: met. R1 to R5: met. Quiz and timeline options: on the canvas for his pick, not built.
+
+## Round 3 landed (his yes, 25 Nov): phone grid, floating quiz, MVP timeline
+
+His phone grid (docs/DECISIONS.md: 4 columns, 24 margin, 24 gutter) replaces Haven's own 16 px margin; the
+interview numbers gain the side margin they lacked; the ending bar names sit on two set lines inside the margins
+(12 px under 390). The quiz drops its pillars: the five areas float above a phone 64 percent of the width that
+rises into place on scroll. The MVP timeline follows the desktop chart: a line and dot under each column, the launch
+circles on 07 and 12 with their labels to the left, "Case study end point" in Label/12 C under Identity launch.
+
+Shipped page: audit hover, press, tapflash, size, qlabel, hscroll and cut at 320 to 767 HAVEN_PHONE_OK; hidden and
+blur at 320 to 430 HAVEN_PHONE_OK; no text outside the 24 px margins at 320, 390 and 430 apart from the Haven CS
+display title, whose ink sits on the margin by design; ending bar names two lines at 320 to 430; quiz labels clear
+of each other, the icons and the phone at 320 to 767; same-as-base SAME_AS_BASE_ABOVE_767_OK; verify-responsive
+fit, overlap, health and size OK; HOVER_STILL_OK; site check OK; HAVEN_MOTION_OK; phone menu opens and closes.
