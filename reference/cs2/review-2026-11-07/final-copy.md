@@ -103,10 +103,11 @@ Mock: Every task, every week, no gaps. becomes Every Action Item, every week, no
 Headline (his): Whether a user finished last week early or fell short, the next week starts with a recap and a plan for the week.
 Body: This is the first screen a user sees each Sunday, before the Action Hub. It picks one of five versions depending on how last week went. If they’re on track, it says less. If they’re behind their target, it offers ways to catch up.
 1 of 5, Clean slate: This one only shows when nothing carried over. A week with an open Action Item gets Rollover instead.
-2 of 5, Catching up: Finishing every Action Item doesn’t close the gap for a user who is behind, so this screen shows how many days they made up last week and points them to finishing early until they’re back on target.
-3 of 5, Rollover (his): When a week ends unfinished, the Rollover Action Items wait in the new week under a magenta tag. The screen shows where the pace landed and what carried over, so the plan never changes unseen.
-4 of 5, Recalibration (his): Rollover handles one unfinished week. When it keeps happening, the screen suggests a capacity that fits the hours the user has been giving. They can take it, set their own or skip it with a warning.
-5 of 5, Reset: After a long absence, the old plan is too far behind to catch up to, so the week rebuilds from today with their progress kept. It has one button, because most users would pick keep my plan just because it’s the default.
+2 of 5, Catching up: A user who is behind sees how many days they made up last week and how finishing early closes the rest of the gap.
+3 of 5, Rollover: Unfinished Action Items wait in the new week under a magenta tag. The screen shows the new pace, so the plan never changes unseen.
+4 of 5, Recalibration: After weeks under about half the hours they set, this screen suggests a capacity that fits. They can take it, set their own or skip it.
+5 of 5, Reset: After a long absence, the week rebuilds from today and keeps their progress. It has one button, so keep my plan can’t win by default.
+Note: templates 2 to 5 shortened 21 Nov, his yes, so each holds three lines at every width (Rollover and Recalibration were his wording; Recalibration now matches the archive: take it or keep their plan).
 
 ## Ending (CHANGED, version C, his pick 9 Nov)
 Eyebrow: What’s still open
