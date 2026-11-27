@@ -1,0 +1,9 @@
+[
+ { "goto": "/" },
+ { "scrollTo": ".work-card-mondai" },
+ { "wait": 700 },
+ { "hover": ".work-card-mondai" },
+ { "wait": 1200 },
+ { "click": ".work-card-mondai", "mark": "Click the Mondai card" },
+ { "wait": 2600 }
+]

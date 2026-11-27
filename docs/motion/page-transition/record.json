@@ -1,0 +1,39 @@
+[
+ {
+  "goto": "/"
+ },
+ {
+  "scrollTo": ".work-card-mondai"
+ },
+ {
+  "wait": 1200
+ },
+ {
+  "click": ".work-card-mondai",
+  "mark": "Home to collection"
+ },
+ {
+  "wait": 2600
+ },
+ {
+  "click": ".cs-card__link",
+  "mark": "Collection to framework"
+ },
+ {
+  "wait": 3000
+ },
+ {
+  "back": true,
+  "mark": "Back to collection"
+ },
+ {
+  "wait": 2400
+ },
+ {
+  "back": true,
+  "mark": "Back to Home"
+ },
+ {
+  "wait": 1600
+ }
+]
