@@ -1,0 +1,24 @@
+/* Proposal, 21 Nov (his ask: headlines run three lines where possible, each box capped so wide tablets do not
+   stretch them into two). Tablet only, 768 to 1159; phone and desktop untouched.
+   Each headline is capped at its own width from his 1440 frame, in em (frame width / 40). Tracking is in em, so at
+   the tablet 32 px each headline breaks exactly where it breaks at 1440 whenever the window gives it that room, and
+   it can never run wider and drop to two lines. Narrower than its cap it rewraps, still in three lines, down to a
+   660 px box (Schedule view, the widest headline), a 724 window: below the tablet range, so the size stays 32.
+   Measured in reports/headline-lines-2026-11-21/. Calendar setup leaves his tablet frame's four lines (16.5em) for
+   three like the rest. The ending title gets the same treatment from its 1440 width (1291 at 96). */
+@media (min-width: 768px) and (max-width: 1159.98px) {
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16474"] { max-width: 19.775em; } /* 791 at 40, Mondai had no direct model, */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16505"] { max-width: 19em; } /* 760 at 40, Mondai calls the whole route */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16594"] { max-width: 20.05em; } /* 802 at 40, The whole route has a page o */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16773"] { max-width: 21.05em; } /* 842 at 40, Each Pathway has its own pag */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16786"] { max-width: 18.181em; } /* 727.25 at 40, Most of a user’s week happen */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16971"] { max-width: 17.975em; } /* 719 at 40, Every Action Item is a piece */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:17087"] { max-width: 18.1em; } /* 724 at 40, How many Action Items a user */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:17134"] { max-width: 22.187em; } /* 887.49 at 40, Calendar sync is optional. U */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:17147"] { max-width: 22.65em; } /* 906 at 40, With a calendar synced, the */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:20354"] { max-width: 18.025em; } /* 721 at 40, Finish the week’s work early */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:20255"] { max-width: 23.2em; } /* 928 at 40, The Action Hub keeps two dat */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:20309"] { max-width: 17.7em; } /* 708 at 40, When an Action Item is still */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:20501"] { max-width: 19.15em; } /* 766 at 40, Whether a user finished last */
+  .framework .fw .fw-sec > .fw-end__title { max-width: 13.448em; } /* 1291 at 96 */
+}

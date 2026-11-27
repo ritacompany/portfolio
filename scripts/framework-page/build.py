@@ -35,7 +35,7 @@ FIGS = {  # node: (section, file, x, y, w, h, alt)
  "5812:17089": ("5812:17084", "timeline", 158, 8797, 308, 298, "Weekly capacity and Action Items in Mondai."),
  "5812:17138": ("5812:17129", "calendar-setup", 351, 9619, 1089, 955, "Calendar setup in Mondai: preferred hours and sharpest hours."),
  "5812:17152": ("5812:17143", "schedule-view", 0, 11215, 1440, 686, "The Action Hub as a schedule, with Action Items placed between the person's own events."),
- "5812:20114": ("5812:17143", "schedule-gaps", 154, 12167, 547, 509, "Rescheduling an Action Item into open time in the week."),
+ "5812:20114": ("5812:17143", "schedule-gaps-v2", 154, 12167, 547, 509, "Rescheduling an Action Item into open time in the week."),
  "5812:20260": ("5812:20248", "right-rail", 392, 13217, 466, 428, "The Action Hub's right rail with the Pathway target, the Pathway pace and days ahead of target."),
  "5812:20316": ("5812:20248", "rollover", 350, 14174, 789, 201, "A week ending with an unfinished Action Item that rolls into the next week."),
  "5812:20346": ("5812:20248", "rollover-effect", 390, 14448, 195, 31, ""),

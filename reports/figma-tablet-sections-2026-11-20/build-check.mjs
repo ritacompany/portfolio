@@ -32,7 +32,9 @@ for (const w of [768, 1024, 1150]) {
   const ptEnd = Math.max(effB.b, exT.b); near(capT.sh - ptEnd, 164, `${w} PT bottom padding`);
   // Calendar
   const cHl = await R('5812:17134'), cImg = await R('5812:17138'), cCap = await R('5812:17137');
-  ok(cHl.w <= 528.5, `${w} CAL headline width ${cHl.w}`); if (w === 768) ok(await lines('5812:17134') === 4, `768 CAL headline lines`);
+  // 21 Nov, his yes on the headline card (reports/headline-lines-2026-11-21/): Calendar setup runs three lines like every
+  // headline, capped at its 1440 width in em (22.187em, 710 at 32), no longer his tablet frame's four lines at 16.5em.
+  ok(cHl.w <= 710.5, `${w} CAL headline width ${cHl.w}`); ok(await lines('5812:17134') === 3, `${w} CAL headline lines`);
   near(cImg.y - cHl.b, 80, `${w} CAL headline to image`); near(cImg.x, 32, `${w} CAL image x`); near(cImg.w, c, `${w} CAL image width`);
   near(cImg.w / cImg.h, 704 / 428, `${w} CAL image shape`, 0.01); near(cCap.y - cImg.b, 37, `${w} CAL image to answers`);
   ok(cCap.w <= 578.5, `${w} CAL answers width ${cCap.w}`); near(cCap.sh - cCap.b, 164, `${w} CAL bottom padding`);

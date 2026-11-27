@@ -1,0 +1,13 @@
+/* Start of week preview, 21 Nov (moves into the framework stylesheet on his yes).
+   Edge fade over the side cards, from 768 up: the same on both sides, in the page fill (#040405, his
+   gradient colour). The clear point stays at 22.4% of the stage in both his frames; the darker outer band
+   (0.63 opacity) is 39 px at the 704 tablet stage (his adjusted Recalibration tablet frame, left and right
+   averaged so both sides match) and grows with the stage to 132 px at the 1017 desktop stage (his desktop
+   frame), so it scales with the window. Above the cards, under nothing interactive. */
+.sow__stage::after {
+  --sow-fade-a: clamp(39.3px, calc(39.3px + (100% - 704px) * 0.2968), 132.2px);
+  content: ""; position: absolute; inset: 0; z-index: 20; pointer-events: none;
+  background: linear-gradient(to right, rgb(4 4 5) 0, rgb(4 4 5 / 0.63) var(--sow-fade-a), rgb(4 4 5 / 0) 22.365%,
+    rgb(4 4 5 / 0) 77.635%, rgb(4 4 5 / 0.63) calc(100% - var(--sow-fade-a)), rgb(4 4 5) 100%);
+}
+@media (max-width: 767.98px) { .sow__stage::after { content: none; } }
