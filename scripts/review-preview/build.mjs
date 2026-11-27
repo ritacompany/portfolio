@@ -14,23 +14,22 @@ const site = join(here, "..", "..", "site");
 rmSync(out, { recursive: true, force: true });
 mkdirSync(join(out, "assets"), { recursive: true });
 for (const d of ["css", "js", "vendor"]) cpSync(join(site, d), join(out, d), { recursive: true });
+// Stylesheets live in css/, so their root url("/assets/...") paths become ../assets/... (without this, background
+// images such as Calendar setup and the right rail at tablet do not show in the preview).
+(function rel(d) { for (const f of readdirSync(d)) { const p = join(d, f); if (statSync(p).isDirectory()) rel(p); else if (f.endsWith(".css")) {
+  writeFileSync(p, readFileSync(p, "utf8").replace(/url\((["']?)\/(assets|css|js|vendor)\//g, "url($1../$2/"));
+} } })(join(out, "css"));
 for (const d of readdirSync(join(site, "assets"))) {
   const p = join(site, "assets", d);
   if (statSync(p).isDirectory()) cpSync(p, join(out, "assets", d), { recursive: true });
 }
 
-// Stylesheets live one level down (css/), so a root path such as url("/assets/x") becomes url("../assets/x").
-for (const f of readdirSync(join(out, "css"))) {
-  if (!f.endsWith(".css")) continue;
-  const p = join(out, "css", f);
-  writeFileSync(p, readFileSync(p, "utf8").replace(/url\((["']?)\/(?!\/)/g, "url($1../"));
-}
-
 let html = readFileSync(join(site, pageDir, "index.html"), "utf8");
+// A proposal page in site/dev may load its own files from /dev/<name>/: copy those next to the page.
+for (const [, f] of html.matchAll(/(?:src|href)="\/(dev\/[^"]+)"/g)) { mkdirSync(join(out, dirname(f)), { recursive: true }); cpSync(join(site, f), join(out, f)); }
 html = html
-  .replace(/(src|href)="\/(assets|css|js|vendor)\//g, '$1="$2/')
-  .replace(/href="\/[^"]*"/g, 'href="#"')
-  .replace(/url\((["']?)\/(?!\/)/g, "url($1");
+  .replace(/(src|href)="\/(assets|css|js|vendor|dev)\//g, '$1="$2/')
+  .replace(/href="\/[^"]*"/g, 'href="#"');
 writeFileSync(join(out, "page.html"), html);
 
 const viewer = readFileSync(join(here, "viewer.html"), "utf8")

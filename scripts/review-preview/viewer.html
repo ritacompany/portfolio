@@ -17,6 +17,8 @@ body { margin: 0; background: var(--bg); color: var(--fg); font: 13px/1.4 var(--
 .widths button[aria-pressed="true"] { background: var(--on); color: var(--on-fg); border-color: var(--on); }
 .widths button[aria-pressed="true"] small { color: #55555c; }
 .widths button:focus-visible { outline: 2px solid var(--on); outline-offset: 2px; }
+.refresh { font: inherit; color: var(--fg); background: var(--chip); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+.refresh:focus-visible { outline: 2px solid var(--on); outline-offset: 2px; }
 .info { color: var(--muted); font-variant-numeric: tabular-nums; margin-left: auto; }
 .stage { flex: 1; min-height: 0; overflow: hidden; display: flex; justify-content: center; padding: 16px; }
 .frame { transform-origin: top center; box-shadow: 0 0 0 1px var(--line); background: #18181b; flex: none; }
@@ -27,17 +29,18 @@ iframe { display: block; border: 0; width: 100%; height: 100%; }
 <div class="bar">
   <span class="name">__NAME__</span>
   <div class="widths" id="widths" role="group" aria-label="Viewport width"></div>
+  <button class="refresh" id="refresh" type="button" title="Reload the page at this width and keep the scroll spot, so animations replay">Refresh</button>
   <span class="info" id="info"></span>
 </div>
 <div class="stage" id="stage"><div class="frame" id="frame"><iframe id="page" src="page.html" title="__NAME__ page"></iframe></div></div>
 
 <script>
-const W = [[390, "phone"], [768, "tablet"], [1440, "desktop"]];
+const W = [[390, "phone"], [768, "tablet"], [1024, "tablet"], [1150, "tablet"], [1440, "desktop"]];
 const box = document.getElementById("widths"), frame = document.getElementById("frame"),
       stage = document.getElementById("stage"), info = document.getElementById("info");
 let cur = 768;
 try { cur = +localStorage.getItem("review-w") || 768; } catch (e) {}
-if (![390, 768, 1440].includes(cur)) cur = 768;
+if (!W.some(([w]) => w === cur)) cur = 768;
 function mode(w) { return w < 768 ? "phone layout" : w < 1160 ? "tablet layout (768 to 1159)" : "desktop layout (1160 up)"; }
 function fit() {
   const avail = stage.clientWidth - 32, h = stage.clientHeight - 32;
@@ -60,6 +63,13 @@ for (const [w, l] of W) {
   b.onclick = () => pick(w);
   box.appendChild(b);
 }
+// Refresh: reload the page at the current width and go back to the same scroll spot, so animations replay.
+const page = document.getElementById("page");
+document.getElementById("refresh").onclick = () => {
+  let y = 0; try { y = page.contentWindow.scrollY; } catch (e) {}
+  page.addEventListener("load", () => { try { page.contentWindow.scrollTo(0, y); } catch (e) {} }, { once: true });
+  try { page.contentWindow.location.reload(); } catch (e) { page.src = page.src; }
+};
 addEventListener("resize", fit);
 pick(cur);
 </script>

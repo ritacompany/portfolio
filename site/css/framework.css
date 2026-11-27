@@ -413,7 +413,6 @@
 
   /* Calendar setup: the laptop full width under the headline, the three answers under it. */
   .framework .fw .fw-sec[data-figma-node="5812:17129"] { padding-bottom: 164px; }
-  .framework .fw .fw-sec > [data-figma-node="5812:17134"] { max-width: 16.5em; }
   .framework .fw .fw-sec > [data-figma-node="5812:17138"] {
     order: 1; margin-top: 80px; width: 100% !important; max-width: none; height: auto !important; aspect-ratio: 704 / 428;
     box-sizing: border-box; padding-left: 100%; background: url("../assets/framework/calendar-setup-tablet.webp") center / 100% 100% no-repeat;
@@ -451,4 +450,30 @@
   /* Start of week: his text widths. */
   .framework .fw .fw-sec > [data-figma-node="5812:20715"] { max-width: 437px; }
   .framework .fw .fw-sec[data-figma-node="5812:20498"] .sow__desc { max-width: 314px; }
+}
+
+/* Headlines at three lines, 21 Nov (his ask, and his yes on the site change card). Tablet only, 768 to 1159.
+   Each headline is capped at its own width from his 1440 frame, in em (frame width / 40). Tracking is in em, so at
+   the tablet 32 px each headline breaks exactly where it breaks at 1440 whenever the window gives it that room, and
+   it can never run wider and drop to two lines. Narrower than its cap it rewraps, still in three lines, down to a
+   661 px box (Schedule view, the widest headline), a 725 window: below the tablet range, so the size stays 32 and
+   no clamp or four line rule is needed. One shared cap cannot do it: Competitive analysis drops to two past 640.
+   Calendar setup moves from his tablet frame's four lines (16.5em) to three like the rest, on his yes. The ending
+   title gets the same treatment from its 1440 width (1291 at 96). Measured and checked in
+   reports/headline-lines-2026-11-21/ (TABLE.md, check-lines.mjs). */
+@media (min-width: 768px) and (max-width: 1159.98px) {
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16474"] { max-width: 19.775em; } /* 791 at 40, Competitive analysis */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16505"] { max-width: 19em; } /* 760 at 40, The foundation we built on */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16594"] { max-width: 20.05em; } /* 802 at 40, Growth Journey */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16773"] { max-width: 21.05em; } /* 842 at 40, Pathway */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16786"] { max-width: 18.181em; } /* 727.25 at 40, Action Hub */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:16971"] { max-width: 17.975em; } /* 719 at 40, Action Item */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:17087"] { max-width: 18.1em; } /* 724 at 40, Personalized timeline */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:17134"] { max-width: 22.187em; } /* 887.49 at 40, Calendar setup */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:17147"] { max-width: 22.65em; } /* 906 at 40, Schedule view */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:20354"] { max-width: 18.025em; } /* 721 at 40, Buffer flow */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:20255"] { max-width: 23.2em; } /* 928 at 40, Target and pace */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:20309"] { max-width: 17.7em; } /* 708 at 40, Falling behind */
+  .framework .fw .fw-sec > .s-heading-40[data-figma-node="5812:20501"] { max-width: 19.15em; } /* 766 at 40, Start of week */
+  .framework .fw .fw-sec > .fw-end__title { max-width: 13.448em; } /* 1291 at 96, the ending title */
 }
