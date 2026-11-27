@@ -16,6 +16,7 @@
 //   { "goto": "/" }                      open a page and wait for it to load
 //   { "wait": 1500 }                     hold, in ms
 //   { "scrollTo": ".work-card-mondai" }  bring an element to the middle of the screen, without motion
+//   { "hover": ".work-card-mondai" }    glide the pointer onto an element
 //   { "click": ".work-card-mondai", "mark": "Home to collection" }   a real pointer click
 //   { "back": true, "mark": "Back to Home" }                         the browser back button
 // Prints MARK lines (seconds from the clip start) for writing state_list.md, and RECORDED when done.
@@ -90,6 +91,12 @@ for (const s of steps.slice(steps[0].goto ? 1 : 0)) {
       scrollTo(0, r.top + scrollY - (innerHeight - r.height) / 2);
     }, s.scrollTo);
     await page.waitForTimeout(300 * slow);
+  }
+  if (s.hover) {
+    // Glide the pointer onto the element from its left, so hover effects play as a person would see them.
+    const b = await page.locator(s.hover).first().boundingBox();
+    await page.mouse.move(Math.max(2, b.x - 80), b.y + b.height / 2);
+    await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2, { steps: 25 });
   }
   if (s.click) { mark(s.mark); await page.click(s.click); await page.waitForLoadState("load"); }
   if (s.back) { mark(s.mark); await page.goBack({ waitUntil: "load" }); }
