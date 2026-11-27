@@ -1,0 +1,45 @@
+15|origin/claude/mondai-collection-v2|2026-11-27|Mondai collection v2: gates and checks for the two version videos
+14|origin/claude/page-transition-research|2026-11-27|Handoff: Mondai collection updated 1 and updated 2, for the new session
+4|origin/claude/mondai-collection|2026-11-26|Page change: plain fade through the page colour, title morph removed (his yes, 26 Nov)
+5|origin/claude/portfolio-status|2026-11-25|Status audit: the stack is folded into sharp-turing; image check is what is left red
+493|origin/claude/busy-hawking-pf14c4|2026-11-25|Hook: block starting a session with no repository attached
+487|origin/claude/design-system-cs-images|2026-11-25|CS3 research: image library summary for the twenty case studies
+486|origin/claude/design-system-cs-visual|2026-11-24|Record the PR link in the visual set gates
+484|origin/claude/design-system-cs-draft|2026-11-24|Design system CS: handoff rewritten after the colour round and the examples research
+10|origin/card-to-collection-transition|2026-11-24|Card transition: the move overlaps the page load; A rebuilt as a baseline
+2|origin/claude/figma-location-handoff|2026-11-21|Record his yes: Figma locations live in one registry
+1|origin/wip/save-2026-11-20|2026-11-20|WIP: logo exploration, NEXT and decisions updates
+219|origin/claude/confident-davinci-399677|2026-11-20|WIP: calendar and rollover research notes
+104|origin/claude/3d-lightning-bolt-d5ee56|2026-11-20|WIP: 3D lightning bolt assets
+1|origin/claude/fw-footer-humanizer|2026-11-20|Footer humanizer pass for the framework page: line by line review and recommended rewrite,
+1|origin/sync/2026-11-16-relaxed-ride-wip|2026-11-16|Snapshot of unsaved work in relaxed-ride-wip on 16 Nov, so the second account can see it
+1|origin/sync/2026-11-16-main-wip|2026-11-16|Snapshot of unsaved work in main-wip on 16 Nov, so the second account can see it
+104|origin/sync/2026-11-16-lightning-bolt-wip|2026-11-16|Snapshot of unsaved work in lightning-bolt-wip on 16 Nov, so the second account can see it
+355|origin/sync/2026-11-16-inspiring-turing-wip|2026-11-16|Snapshot of unsaved work in inspiring-turing-wip on 16 Nov, so the second account can see 
+219|origin/sync/2026-11-16-confident-davinci-wip|2026-11-16|Snapshot of unsaved work in confident-davinci-wip on 16 Nov, so the second account can see
+590|origin/claude/hover-text-smoothing|2026-11-10|Handoff: hover decided (Bolder) and a final per-link spec
+511|origin/claude/affectionate-bardeen-fjj292|2026-11-09|Pickup note for the second account: where each workstream lives on GitHub
+560|origin/claude/sharp-euler-pz7rhv|2026-11-09|Mesh drift background on the current homepage, with a live editor
+536|origin/claude/lucid-carson-u56t7v|2026-11-09|Merge remote-tracking branch 'origin/claude/relaxed-ride-5mlbdu' into claude/lucid-carson-
+513|origin/claude/portfolio-figma-copy-updates-226187|2026-11-09|Figma copy guard: accept the reviewed CS2 final copy as a source
+517|origin/claude/contact-button-liquid|2026-11-09|Contact button: the gooey split timed from his recording, tuner and gates
+540|origin/claude/contact-button-gooey-recording|2026-11-09|Contact button: rest is the Figma default, colour behind fixed, rendered and reviewed
+47|origin/haven/case-study|2026-11-09|Chat phone study: round 10 render review scored, two renders match
+111|origin/claude/cool-albattani-5v7t70|2026-11-09|Buttons: keep his two Framer button recordings and frame sheets in the repo
+481|origin/claude/figma-satoshi-fonts|2026-11-08|Figma fonts: record the CS2 copy plugin built in Chadwick's Figma account
+449|origin/claude/portfolio-deployment-costs-ne3wd7|2026-11-07|Record hosting switch to Cloudflare Pages in NEXT
+459|origin/claude/fervent-heisenberg-yymdm7|2026-11-07|Motion: site build leaves site/motion-lab out; review check refuses an empty fresh eyes li
+452|origin/claude/design-system-cs-concept|2026-11-07|Design system CS: efficiency numbers, from the numbers chat (Mondai e940fa18)
+448|origin/claude/ds-reference-board|2026-11-06|Design system case study: reference board
+354|origin/claude/inspiring-turing-872a6e|2026-11-04|CS2: handoff; Falling behind playgrounds A and B, his comments, next action
+194|origin/claude/busy-volta-7hv5my|2026-10-25|CS2: drop the empty Action Hub block, not framework work (his call)
+171|origin/claude/sweet-heisenberg-ogwa5d|2026-10-24|Unlazy: the full skill folder, so it runs in portfolio sessions
+133|origin/claude/youthful-pasteur-jj360e|2026-10-22|Merge remote-tracking branch 'origin/main' into claude/youthful-pasteur-jj360e
+125|origin/cs2/cross-account-handoff|2026-10-21|CS2: cross account handoff. HANDOFF.md resume point, usage checkpoints at 75 and 90 percen
+133|origin/claude/case-study-framework-103c3c|2026-10-21|CS2 handoff: custom availability only with a synced calendar
+111|origin/claude/practical-heisenberg-0tnq4t|2026-10-19|Design system CS readiness: report on what to clean up, capture and set up before writing
+81|origin/wip/main-checkout-2026-10-15|2026-10-15|WIP backup of uncommitted main-checkout work, 15 Oct 2026 (not reviewed; output/ excluded 
+32|origin/claude/confident-poincare-b10757|2026-10-08|CS2 step 5: beat sheet before layout, visual form per beat research
+21|origin/codex/homepage-responsive|2026-10-06|WIP: homepage, Haven ending and about-source work in progress (parked before CS2)
+14|origin/claude/epic-rubin-rmbomr|2026-10-02|Replace the old CS2 material with the 27 Aug restart
+19|origin/claude/optimistic-euler-q7025d|2026-09-13|Implement the responsive homepage and make it canonical

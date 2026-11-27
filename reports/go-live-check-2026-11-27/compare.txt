@@ -1,0 +1,102 @@
+home 390 | Main: same
+home 390 | Introduction: same
+home 390 | 5812:22886: same
+home 390 | About: same
+home 390 | 5812:22998: same
+home 768 | Main: same
+home 768 | Introduction: 0.01% of pixels differ from sharp-turing
+home 768 | 5812:22886: same
+home 768 | About: 0.03% of pixels differ from sharp-turing
+home 768 | 5812:22998: same
+home 1440 | Main: same
+home 1440 | Introduction: same
+home 1440 | 5812:22886: same
+home 1440 | About: same
+home 1440 | 5812:22998: same
+haven 390 | header.page-header: same
+haven 390 | Main: same
+haven 390 | 4683:20252: same
+haven 390 | 4683:20275: same
+haven 390 | 4683:20339: same
+haven 390 | 4683:20398: same
+haven 390 | 3300:12810: same
+haven 390 | section.testing: same
+haven 390 | More case studies: same
+haven 390 | 5812:22558: 0.01% of pixels differ from sharp-turing
+haven 768 | header.page-header: same
+haven 768 | Main: same
+haven 768 | 4683:20252: same
+haven 768 | 4683:20275: same
+haven 768 | 4683:20339: same
+haven 768 | 4683:20398: same
+haven 768 | 3300:12810: same
+haven 768 | section.testing: same
+haven 768 | More case studies: same
+haven 768 | 5812:22558: 0.00% of pixels differ from sharp-turing
+haven 1440 | header.page-header: same
+haven 1440 | Main: same
+haven 1440 | 4683:20252: same
+haven 1440 | 4683:20275: same
+haven 1440 | 4683:20339: same
+haven 1440 | 4683:20398: same
+haven 1440 | 3300:12810: same
+haven 1440 | section.testing: same
+haven 1440 | More case studies: same
+haven 1440 | 5812:22558: same
+framework 768 | Main: 5.74% of pixels differ from relaxed-ride
+framework 768 | Introduction: 2.93% of pixels differ from relaxed-ride
+framework 768 | Competitive analysis: size 768x770 on relaxed-ride, 768x755 combined
+framework 768 | The foundation we built on: size 768x944 on relaxed-ride, 768x945 combined
+framework 768 | Growth Journey: size 768x1059 on relaxed-ride, 768x1058 combined
+framework 768 | Pathway: 1.50% of pixels differ from relaxed-ride
+framework 768 | Action hub: size 768x1097 on relaxed-ride, 768x1060 combined
+framework 768 | Action item: 2.34% of pixels differ from relaxed-ride
+framework 768 | Personalized timeline: size 768x822 on relaxed-ride, 768x823 combined
+framework 768 | Calendar setup: 1.24% of pixels differ from relaxed-ride
+framework 768 | Schedule view: 2.44% of pixels differ from relaxed-ride
+framework 768 | Buffer flow: size 768x1126 on relaxed-ride, 768x1112 combined
+framework 768 | Falling behind: size 768x2010 on relaxed-ride, 768x1995 combined
+framework 768 | Start of week: 1.26% of pixels differ from relaxed-ride
+framework 768 | The test: 0.32% of pixels differ from relaxed-ride
+framework 768 | More case studies: 2.64% of pixels differ from relaxed-ride
+framework 768 | 5812:21568: 0.16% of pixels differ from relaxed-ride
+framework 1440 | Main: 1.56% of pixels differ from relaxed-ride
+framework 1440 | Introduction: 1.51% of pixels differ from relaxed-ride
+framework 1440 | Competitive analysis: 1.36% of pixels differ from relaxed-ride
+framework 1440 | The foundation we built on: 0.37% of pixels differ from relaxed-ride
+framework 1440 | Growth Journey: 0.41% of pixels differ from relaxed-ride
+framework 1440 | Pathway: 0.41% of pixels differ from relaxed-ride
+framework 1440 | Action hub: 0.52% of pixels differ from relaxed-ride
+framework 1440 | Action item: 0.51% of pixels differ from relaxed-ride
+framework 1440 | Personalized timeline: 0.82% of pixels differ from relaxed-ride
+framework 1440 | Calendar setup: 0.38% of pixels differ from relaxed-ride
+framework 1440 | Schedule view: 0.83% of pixels differ from relaxed-ride
+framework 1440 | Buffer flow: 0.95% of pixels differ from relaxed-ride
+framework 1440 | Falling behind: 1.01% of pixels differ from relaxed-ride
+framework 1440 | Start of week: 0.41% of pixels differ from relaxed-ride
+framework 1440 | The test: same
+framework 1440 | More case studies: 0.90% of pixels differ from relaxed-ride
+framework 1440 | 5812:21568: 0.04% of pixels differ from relaxed-ride
+framework 390 | Main: same
+framework 390 | Introduction: same
+framework 390 | Competitive analysis: same
+framework 390 | The foundation we built on: same
+framework 390 | Growth Journey: same
+framework 390 | Pathway: same
+framework 390 | Action hub: same
+framework 390 | Action item: same
+framework 390 | Personalized timeline: same
+framework 390 | Calendar setup: same
+framework 390 | Schedule view: same
+framework 390 | Buffer flow: same
+framework 390 | Falling behind: same
+framework 390 | Start of week: same
+framework 390 | The test: same
+framework 390 | More case studies: same
+framework 390 | 5812:21568: same
+collection 390 | Main: same
+collection 390 | section.col-1: same
+collection 390 | section.collection__list: same
+collection 1440 | Main: same
+collection 1440 | section.col-1: same
+collection 1440 | section.collection__list: same

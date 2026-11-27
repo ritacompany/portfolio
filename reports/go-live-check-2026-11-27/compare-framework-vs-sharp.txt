@@ -1,0 +1,34 @@
+framework 768 | Main: same
+framework 768 | Introduction: 2.90% of pixels differ from sharp-turing
+framework 768 | Competitive analysis: 2.06% of pixels differ from sharp-turing
+framework 768 | The foundation we built on: 1.25% of pixels differ from sharp-turing
+framework 768 | Growth Journey: 1.14% of pixels differ from sharp-turing
+framework 768 | Pathway: 1.37% of pixels differ from sharp-turing
+framework 768 | Action hub: 0.93% of pixels differ from sharp-turing
+framework 768 | Action item: 0.48% of pixels differ from sharp-turing
+framework 768 | Personalized timeline: 1.20% of pixels differ from sharp-turing
+framework 768 | Calendar setup: size 768x1093 on sharp-turing, 768x1057 combined
+framework 768 | Schedule view: size 768x1836 on sharp-turing, 768x1835 combined
+framework 768 | Buffer flow: 1.03% of pixels differ from sharp-turing
+framework 768 | Falling behind: 1.01% of pixels differ from sharp-turing
+framework 768 | Start of week: size 768x1098 on sharp-turing, 768x1268 combined
+framework 768 | The test: 3.54% of pixels differ from sharp-turing
+framework 768 | More case studies: 7.15% of pixels differ from sharp-turing
+framework 768 | 5812:21568: 0.65% of pixels differ from sharp-turing
+framework 1440 | Main: same
+framework 1440 | Introduction: same
+framework 1440 | Competitive analysis: same
+framework 1440 | The foundation we built on: same
+framework 1440 | Growth Journey: same
+framework 1440 | Pathway: same
+framework 1440 | Action hub: same
+framework 1440 | Action item: same
+framework 1440 | Personalized timeline: same
+framework 1440 | Calendar setup: same
+framework 1440 | Schedule view: same
+framework 1440 | Buffer flow: same
+framework 1440 | Falling behind: same
+framework 1440 | Start of week: 0.18% of pixels differ from sharp-turing
+framework 1440 | The test: same
+framework 1440 | More case studies: same
+framework 1440 | 5812:21568: same
