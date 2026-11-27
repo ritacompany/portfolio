@@ -90,6 +90,12 @@ Three case studies with three separate jobs. CS1 owns the operation. CS2 owns th
 meaning the Growth Journey, weekly scheduling and product AI strategy. CS3 owns the design
 system. Material belonging to another case study gets noted and left alone, never absorbed.
 
+## Finding his Figma
+
+Designs move between his two accounts, so no list of Figma locations is kept (his call, 27 Nov, closing PR #27).
+Every task names the Figma link it works from. If a session cannot open it, it says which file and frame it
+tried and asks him for the current link, and does not report Figma as blocked before trying the link it was given.
+
 ## Who approves
 
 Chadwick. This is his portfolio and his career material, so nothing about how he is presented
