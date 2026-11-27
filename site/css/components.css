@@ -462,6 +462,11 @@
   .ending-bar__all { display: none; }
 }
 
+/* His review board, 27 Nov: no Explore more case studies at any width for now. Previous keeps the left and next
+   keeps the right; grid-column -2 is the last column in the desktop, tablet and phone grids alike. */
+.ending-bar__all { display: none; }
+.ending-bar__next { grid-column: -2; }
+
 @media (max-width: 767.98px) {
   .navbar__logo { grid-column: 1; }
   .navbar__role { display: none; }
