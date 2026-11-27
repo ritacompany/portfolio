@@ -6,8 +6,8 @@ time with every frame). Home, scroll to the Mondai card, click it; click Framewo
 Times are clip seconds at 1440 by 900; the 390 by 844 clip lands within 0.02 s of them.
 
 - 1.50 s: click the Mondai card on Home. Home fully visible.
-- 1.70 s: Home gone into the page colour. Nothing of Home is left; the collection is starting to show.
-- 1.90 s: the fade is done. The collection's own entrance has not started its text yet.
+- 1.70 s: Home gone into the page colour. Only the page colour and the nav, nothing else of the collection yet.
+- 1.90 s: the fade is done. The collection's own entrance is just starting: the wordmark is faint and rising.
 - 2.30 s: the Mondai wordmark and the rows are part way through their 1.4 s fade.
 - 4.12 s: click Framework CS on the collection.
 - 4.32 s: the collection gone into the page colour.

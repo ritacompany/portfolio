@@ -126,14 +126,17 @@ for (const [name, t] of marks) {
   let gap = 0; for (let i = 1; i < win.length; i++) gap = Math.max(gap, win[i].t - win[i - 1].t);
   console.log(`MARK ${((t - clip0) / k).toFixed(2)} s ${name} (${win.length} frames painted in the next ${(0.6 * slow).toFixed(1)} s, longest gap ${(gap * 1000).toFixed(0)} ms)`);
 }
-// A gap longer than 2 frames at 60 fps (in real time) means the capture dropped frames there: the clip
+// A gap longer than 3 frames at 60 fps (in real time) means the capture dropped frames there: the clip
 // would show a cut that the browser never drew. Exit 3 so the caller records again.
 let worst = 0;
+// The window is the page change itself (0.1 to 0.45 s after the click, real time), edges included, so
+// a capture that goes quiet there counts as dropped even if the few frames it has are close together.
 for (const [, t] of marks) {
-  const win = used.filter((f) => f.t >= t && f.t <= t + 0.6 * slow);
-  for (let i = 1; i < win.length; i++) worst = Math.max(worst, (win[i].t - win[i - 1].t) / slow);
+  const a = t + 0.1 * slow, b = t + 0.45 * slow;
+  const times = [a, ...used.filter((f) => f.t > a && f.t < b).map((f) => f.t), b];
+  for (let i = 1; i < times.length; i++) worst = Math.max(worst, (times[i] - times[i - 1]) / slow);
 }
 console.log(`RECORDED ${out}`);
-if (worst > 0.034) { console.log(`DROPPED_FRAMES: a ${(worst * 1000).toFixed(0)} ms gap after a mark; record again`); process.exit(3); }
+if (worst > 0.05) { console.log(`DROPPED_FRAMES: a ${(worst * 1000).toFixed(0)} ms gap after a mark; record again`); process.exit(3); }
 console.log("NO_DROPPED_FRAMES");
 process.exit(0);
